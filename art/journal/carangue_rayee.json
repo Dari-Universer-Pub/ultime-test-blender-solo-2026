@@ -285,6 +285,26 @@
         "largeur encore juste : queue à 1 à 2 px du bord gauche",
         "museau petit (à élargir en tête, non traité)"
       ]
+    },
+    {
+      "changement": "pixelisation de la carangue au nouveau rendu (corps 0,92, tête, dorsales, pectorale, queue fourchue) : nage 8, attaque 4, mort 6 dans une feuille à 3 étiquettes",
+      "image": "boards/carangue_rayee_pixel_4.png",
+      "image_sha256": "4ee8a0fb4e7437fae80ea930b1361d6a4967bde84d0c4bd9f223cf482aedc7a1",
+      "controle": {
+        "silhouette": "Le poisson se lit comme une carangue haute : tête, œil, dorsale épineuse, queue fourchue ; en mort il roule sur le flanc.",
+        "couleurs": "Blanc crème, bleu-gris, rayures violettes, jaune des nageoires : palette conforme.",
+        "cadrage": "La queue et le museau restent dans la case avec 1 à 2 px de marge.",
+        "taille": "Mesure (tools/mesure/mesurer.py) : hauteur 36 px sur les images les plus hautes (minimum atteint), largeur 61 à 63 px.",
+        "details": "L'œil, la pectorale et les rayures se lisent ; l'attaque se voit surtout par la dorsale plus haute.",
+        "coherence_base": "Même pipeline et même palette que les autres créatures.",
+        "pixels_parasites": "Liseré clair sur le contour ; pas de pixel isolé visible sur la planche."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "hauteur juste au minimum (36 px) : marge à gagner si possible",
+        "marges de 1 à 2 px sur les côtés : surveiller",
+        "attaque encore peu marquée"
+      ]
     }
   ]
 }
