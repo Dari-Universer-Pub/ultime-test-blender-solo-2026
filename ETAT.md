@@ -4,13 +4,13 @@
 M3 (biome 1 au niveau professionnel : radeau_surface et recif_peu_profond). M2 SUCCES (clone neuf, 15771fe) ; retouches 1 à 3 et 5 faites (169f712). Sons et musique : sous-agent en cours (assets/sources/, PROVENANCE.json : ne pas toucher à ces fichiers pendant ce temps).
 
 ### Plan M3 (cases à cocher, mises à jour au fil du travail)
-- [ ] plongeur : tags creusage 6, attaque 6, saut 4, degats 3, mort 8 (27 images ajoutées à la fin de la feuille ; les images 1 à 14 ne bougent pas, donc les retouches Aseprite restent valides)
-- [ ] créatures du biome 1 (poisson_volant, carangue_rayee, oursin_bombe, tortue_de_corail) : nage 8, attaque 4 (geste d'avertissement), mort 6 ; chacune : script Blender, 6 entrées de journal, 3 planches d'itération
+- [x] plongeur : tags creusage 6, attaque 6, saut 4, degats 3, mort 8 (commit dbca5b1 ; feuille à 41 images, 7 étiquettes, nage 37-39 px, amplitude 0,569). Défauts notés au journal (entrée 79) : creusage et dégâts trop semblables d'une image à l'autre, saut 3 à revoir.
+- [ ] créatures du biome 1 (poisson_volant, carangue_rayee, oursin_bombe, tortue_de_corail) : nage 8, attaque 4 (geste d'avertissement), mort 6 ; chacune : script Blender, 6 entrées de journal, 3 planches d'itération. État : poisson_volant (2 entrées, rendu complet à faire), carangue_rayee (4 entrées, rendu complet à faire), oursin_bombe (1 entrée, rendu complet en cours), tortue_de_corail (pas commencée)
 - [ ] tuilesets 47 cases : radeau_surface, recif_peu_profond
 - [ ] fonds (parallaxe) : 4 par biome
 - [ ] props : 12 par biome
 - [ ] effets : 8 au moins (type effet)
-- [ ] sons : 8 effets + 1 musique (sous-agent)
+- [~] sons : 9 fichiers téléchargés et vérifiés (PROVENANCE.json, SHA-256 OK, commit 235c6ff). Intégration dans le jeu pas encore faite ; son_impact est CC-BY-3.0 et doit être crédité.
 - [ ] jeu : créatures lues depuis data/creatures.json, combat (touche attaque), autotile, captures de profondeur (0, 30, 60, 100 m ; descente/remontée ; lampe/sans) et de biome
 - [ ] robot : étape « combattre » ajoutée
 - [ ] python3 tools/gate.py M3 → SUCCES, clone neuf, RAPPORT, commit, push
