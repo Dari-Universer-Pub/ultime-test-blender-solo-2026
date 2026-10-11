@@ -1,0 +1,20 @@
+{
+  "entrees": [
+    {
+      "changement": "premier rendu du prop cordage (rendu 512 px, pixel 64 px, planche de contrôle) : trois spires superposées ; lecture de bobine correcte",
+      "image": "boards/props/radeau_lot.png",
+      "image_sha256": "fc719549fff1738ba43e23936c1be471c5fbfd777ddcba9e7281863f6a4ea3f8",
+      "controle": {
+        "silhouette": "Forme reconnaissable à 64 px : trois spires superposées ; lecture de bobine correcte.",
+        "couleurs": "Couleurs des rampes de art/palette.json (ocre, metal, cuivre, palmes, lampe, bulle selon le prop).",
+        "cadrage": "Le prop est centré dans la case 64 px, sans bord coupé.",
+        "taille": "Hauteur de l'objet dans la case mesurée sur la planche de lot ; pas de minimum imposé aux props.",
+        "details": "Les détails principaux sont visibles à 64 px ; les petits détails de finition restent à faire.",
+        "coherence_base": "Même pipeline et mêmes rampes que les autres props du biome radeau_surface.",
+        "pixels_parasites": "Aucun pixel isolé notable sur la planche de lot."
+      },
+      "verdict": "garde",
+      "defauts_restants": []
+    }
+  ]
+}

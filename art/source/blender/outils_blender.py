@@ -248,6 +248,16 @@ def cube(centre, taille, mat, echelle=(1.0, 1.0, 1.0), nom=None):
     return o
 
 
+def tore(centre, grand_r, petit_r, mat, rotation=(0.0, 0.0, 0.0), nom=None):
+    """Anneau (tore) : cerclage, bouée, bobine de cordage."""
+    bpy.ops.mesh.primitive_torus_add(major_radius=grand_r, minor_radius=petit_r, location=centre, rotation=rotation)
+    o = bpy.context.active_object
+    o.data.materials.append(mat)
+    if nom:
+        o.name = nom
+    return o
+
+
 def cone(centre, rayon, hauteur, mat, rotation=(0.0, 0.0, 0.0), nom=None):
     bpy.ops.mesh.primitive_cone_add(radius1=rayon, radius2=0.0, depth=hauteur, location=centre, rotation=rotation)
     o = bpy.context.active_object

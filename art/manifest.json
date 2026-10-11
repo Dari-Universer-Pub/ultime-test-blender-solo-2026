@@ -254,6 +254,234 @@
           "boards/iterations/tortue_de_corail_it4.png"
         ]
       }
+    },
+    {
+      "id": "bidon_rouille",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/bidon_rouille.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/bidon_rouille.blend",
+      "aseprite": "art/source/aseprite/bidon_rouille.aseprite",
+      "sheet": "assets/sprites/bidon_rouille/bidon_rouille.png",
+      "data": "assets/sprites/bidon_rouille/bidon_rouille.json",
+      "planches": {
+        "base": "boards/props/bidon_rouille_base.png",
+        "modifie": "boards/props/bidon_rouille_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "caisse_bois",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/caisse_bois.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/caisse_bois.blend",
+      "aseprite": "art/source/aseprite/caisse_bois.aseprite",
+      "sheet": "assets/sprites/caisse_bois/caisse_bois.png",
+      "data": "assets/sprites/caisse_bois/caisse_bois.json",
+      "planches": {
+        "base": "boards/props/caisse_bois_base.png",
+        "modifie": "boards/props/caisse_bois_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "tonneau_bois",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/tonneau_bois.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/tonneau_bois.blend",
+      "aseprite": "art/source/aseprite/tonneau_bois.aseprite",
+      "sheet": "assets/sprites/tonneau_bois/tonneau_bois.png",
+      "data": "assets/sprites/tonneau_bois/tonneau_bois.json",
+      "planches": {
+        "base": "boards/props/tonneau_bois_base.png",
+        "modifie": "boards/props/tonneau_bois_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "ancre",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/ancre.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/ancre.blend",
+      "aseprite": "art/source/aseprite/ancre.aseprite",
+      "sheet": "assets/sprites/ancre/ancre.png",
+      "data": "assets/sprites/ancre/ancre.json",
+      "planches": {
+        "base": "boards/props/ancre_base.png",
+        "modifie": "boards/props/ancre_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "bouee",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/bouee.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/bouee.blend",
+      "aseprite": "art/source/aseprite/bouee.aseprite",
+      "sheet": "assets/sprites/bouee/bouee.png",
+      "data": "assets/sprites/bouee/bouee.json",
+      "planches": {
+        "base": "boards/props/bouee_base.png",
+        "modifie": "boards/props/bouee_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "cordage",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/cordage.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/cordage.blend",
+      "aseprite": "art/source/aseprite/cordage.aseprite",
+      "sheet": "assets/sprites/cordage/cordage.png",
+      "data": "assets/sprites/cordage/cordage.json",
+      "planches": {
+        "base": "boards/props/cordage_base.png",
+        "modifie": "boards/props/cordage_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "lanterne",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/lanterne.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/lanterne.blend",
+      "aseprite": "art/source/aseprite/lanterne.aseprite",
+      "sheet": "assets/sprites/lanterne/lanterne.png",
+      "data": "assets/sprites/lanterne/lanterne.json",
+      "planches": {
+        "base": "boards/props/lanterne_base.png",
+        "modifie": "boards/props/lanterne_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "planche_cassee",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/planche_cassee.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/planche_cassee.blend",
+      "aseprite": "art/source/aseprite/planche_cassee.aseprite",
+      "sheet": "assets/sprites/planche_cassee/planche_cassee.png",
+      "data": "assets/sprites/planche_cassee/planche_cassee.json",
+      "planches": {
+        "base": "boards/props/planche_cassee_base.png",
+        "modifie": "boards/props/planche_cassee_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "mat_court",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/mat_court.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/mat_court.blend",
+      "aseprite": "art/source/aseprite/mat_court.aseprite",
+      "sheet": "assets/sprites/mat_court/mat_court.png",
+      "data": "assets/sprites/mat_court/mat_court.json",
+      "planches": {
+        "base": "boards/props/mat_court_base.png",
+        "modifie": "boards/props/mat_court_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "gouvernail",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/gouvernail.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/gouvernail.blend",
+      "aseprite": "art/source/aseprite/gouvernail.aseprite",
+      "sheet": "assets/sprites/gouvernail/gouvernail.png",
+      "data": "assets/sprites/gouvernail/gouvernail.json",
+      "planches": {
+        "base": "boards/props/gouvernail_base.png",
+        "modifie": "boards/props/gouvernail_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "seau",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/seau.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/seau.blend",
+      "aseprite": "art/source/aseprite/seau.aseprite",
+      "sheet": "assets/sprites/seau/seau.png",
+      "data": "assets/sprites/seau/seau.json",
+      "planches": {
+        "base": "boards/props/seau_base.png",
+        "modifie": "boards/props/seau_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "bitte_amarrage",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/bitte_amarrage.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/bitte_amarrage.blend",
+      "aseprite": "art/source/aseprite/bitte_amarrage.aseprite",
+      "sheet": "assets/sprites/bitte_amarrage/bitte_amarrage.png",
+      "data": "assets/sprites/bitte_amarrage/bitte_amarrage.json",
+      "planches": {
+        "base": "boards/props/bitte_amarrage_base.png",
+        "modifie": "boards/props/bitte_amarrage_modifie.png",
+        "iterations": []
+      }
     }
   ]
 }

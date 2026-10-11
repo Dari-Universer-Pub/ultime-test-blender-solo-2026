@@ -110,6 +110,7 @@ def main():
         ob.rendre(scene, chemin)
     with open(os.path.join(SORTIE, "masques.txt"), "w", encoding="utf-8") as f:
         f.write("\n".join(f"tuile_{k:02d} {m}" for k, m in enumerate(masques, 1)) + "\n")
+    bpy.ops.wm.save_as_mainfile(filepath=os.path.join(ob.HERE, f"tuileset_{BIOME}.blend"))
 
 
 main()
