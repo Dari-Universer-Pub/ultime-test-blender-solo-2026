@@ -1,11 +1,20 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
 ## Phase courante
-M1 (univers complet en données, aucun code de jeu) : contrôle `python tools/gate.py M1` en SUCCES dans le dépôt de travail. Contrôle dans le clone neuf : voir « Dernier contrôle ». M0 validée par Julien. M2 NON commencée (Julien a demandé de s'arrêter après M1).
+M2 : contrôle `python tools/gate.py M2` en SUCCES dans le dépôt de travail (robot 12/12). Contrôle dans le clone neuf : voir « Dernier contrôle ». Ensuite : retouches obligatoires (1, 2, 3, 5), puis M3.
+
+## Feuille de route (validée par Julien)
+- M2 : jeu jouable branché sur data/*.json, robot en vraies touches (tests/robot/), export PCK testé.
+- Retouches obligatoires (avant M3) : hublot, tuyau/valves, relief du corps, planches périmées.
+- M3 : biome 1 (radeau_surface, recif_peu_profond) au niveau pro : tuilesets, fonds, props, créatures, effets, sons, captures.
+- M4 : biome 2 (fosse_sombre), mini-boss gardien_cloche, 3 variantes de scaphandre, 15 effets, 14 sons.
+- M5 : menus, options, pause, icône, export Windows dans builds/, PLAYTEST.md et PLAYTEST_JOURNAL.md.
+- M6 : relecture par un sous-agent indépendant (RELECTURE.md), corrections, RAPPORT.md final.
 
 ## Dernier contrôle
-- M1, dépôt de travail : `python tools/gate.py M1` → SUCCES. Univers : 9 biomes (tranche 1 : radeau_surface, recif_peu_profond ; tranche 2 : fosse_sombre ; 6 biomes hors échantillon), 66 objets, 45 recettes, 5 stations, 18 créatures (dont le colosse inoffensif baleine_de_verre), 3 boss (gardien_cloche = mini-boss de la fosse), 21 quêtes, 35 notes, 3 fins. Simulation de progression : tous les objets, biomes et quêtes atteignables depuis le radeau.
-- M1, clone neuf (commit 0b9f456, branche claude/cloches-varekh-dev-r716in) : SUCCES. Sortie complète dans RAPPORT.md (section M1).
+- M2, dépôt de travail : `python tools/gate.py M2` → SUCCES (robot : 12 étapes sur 12, captures prises pendant ce lancement).
+- M2, clone neuf : voir RAPPORT.md (section M2).
+- Test d'export (retouche 4) : `bash tests/export/verifier_pck.sh` → SUCCES (PCK lancé avec le moteur, radeau et tuiles affichés, 0 erreur de script). Le .exe Windows n'est pas lancé (pas de Wine ici).
 
 ## Journal visuel
 64 entrées : 47 gardées, 17 annulées. 64 images distinctes, SHA-256 vérifiés, 7 critères remplis par entrée.
@@ -80,7 +89,7 @@ Demandées par Julien à la validation de M0. Ne pas les traiter pendant M1 (pha
 1. Hublot : cadre continu d'1 px (clair ou sombre, contrasté) autour de la vitre cyan. Deux tentatives de liseré ont échoué (journal 60, 64) : essayer une forme de hublot plus grande dans Blender. Statut : À FAIRE.
 2. Silhouette de métier : un tuyau d'air ou des valves lisibles à ×1 (2 px minimum, fort contraste), sans dépasser 40 px. Statut : À FAIRE (la lampe seule ne suffit pas).
 3. Relief du corps : plus de volumes lisibles sur le torse et les jambes (3 à 4 tons par matière). Statut : À FAIRE.
-4. Export : tester `Image.load_from_file` sur res:// dans un .exe exporté (en M2) ; trouver une solution qui marche aussi depuis un clone neuf. Statut : À FAIRE en M2.
+4. Export : tester le chargement dans un export. Statut : FAIT en M2. Constat : `Image.load_from_file` ne marche PAS dans l'export (les PNG bruts ne sont pas exportés). Solution : images importées par Godot et chargées avec `load()`, cache d'import (.import et .godot/imported/) versionné pour la clone neuve, données JSON lues par FileAccess. Test : tests/export/verifier_pck.sh. Le .exe lui-même reste à lancer sur Windows.
 5. Planches `boards/plongeur_base.png` et `boards/plongeur_modifie.png` : périmées (première vague), à régénérer. Statut : À FAIRE.
 Acquis à garder à chaque retouche : taille 32-40 px sur chaque image, amplitude nage >= 0,45, amplitude idle >= 0,10, clone neuf SUCCES.
 

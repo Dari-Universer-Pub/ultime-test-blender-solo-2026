@@ -22,6 +22,146 @@
           "boards/iterations/plongeur_it4.png"
         ]
       }
+    },
+    {
+      "id": "decor_roche",
+      "data_id": null,
+      "type": "objet",
+      "filiere": "construit",
+      "script": "art/source/blender/decor_provisoire.py",
+      "biome": null,
+      "provisoire": true,
+      "sources": [],
+      "blend": null,
+      "aseprite": null,
+      "sheet": "assets/tuiles/roche.png",
+      "data": null,
+      "planches": {
+        "base": null,
+        "modifie": null,
+        "iterations": []
+      },
+      "note": "PROVISOIRE (M2) : rendu Blender pixelisé, remplacé par le décor final de M3."
+    },
+    {
+      "id": "decor_recif",
+      "data_id": null,
+      "type": "objet",
+      "filiere": "construit",
+      "script": "art/source/blender/decor_provisoire.py",
+      "biome": null,
+      "provisoire": true,
+      "sources": [],
+      "blend": null,
+      "aseprite": null,
+      "sheet": "assets/tuiles/recif.png",
+      "data": null,
+      "planches": {
+        "base": null,
+        "modifie": null,
+        "iterations": []
+      },
+      "note": "PROVISOIRE (M2) : rendu Blender pixelisé, remplacé par le décor final de M3."
+    },
+    {
+      "id": "decor_cuivre",
+      "data_id": null,
+      "type": "objet",
+      "filiere": "construit",
+      "script": "art/source/blender/decor_provisoire.py",
+      "biome": null,
+      "provisoire": true,
+      "sources": [],
+      "blend": null,
+      "aseprite": null,
+      "sheet": "assets/tuiles/cuivre.png",
+      "data": null,
+      "planches": {
+        "base": null,
+        "modifie": null,
+        "iterations": []
+      },
+      "note": "PROVISOIRE (M2) : rendu Blender pixelisé, remplacé par le décor final de M3."
+    },
+    {
+      "id": "decor_sable",
+      "data_id": null,
+      "type": "objet",
+      "filiere": "construit",
+      "script": "art/source/blender/decor_provisoire.py",
+      "biome": null,
+      "provisoire": true,
+      "sources": [],
+      "blend": null,
+      "aseprite": null,
+      "sheet": "assets/tuiles/sable.png",
+      "data": null,
+      "planches": {
+        "base": null,
+        "modifie": null,
+        "iterations": []
+      },
+      "note": "PROVISOIRE (M2) : rendu Blender pixelisé, remplacé par le décor final de M3."
+    },
+    {
+      "id": "decor_bois",
+      "data_id": null,
+      "type": "objet",
+      "filiere": "construit",
+      "script": "art/source/blender/decor_provisoire.py",
+      "biome": null,
+      "provisoire": true,
+      "sources": [],
+      "blend": null,
+      "aseprite": null,
+      "sheet": "assets/tuiles/bois.png",
+      "data": null,
+      "planches": {
+        "base": null,
+        "modifie": null,
+        "iterations": []
+      },
+      "note": "PROVISOIRE (M2) : rendu Blender pixelisé, remplacé par le décor final de M3."
+    },
+    {
+      "id": "decor_tole",
+      "data_id": null,
+      "type": "objet",
+      "filiere": "construit",
+      "script": "art/source/blender/decor_provisoire.py",
+      "biome": null,
+      "provisoire": true,
+      "sources": [],
+      "blend": null,
+      "aseprite": null,
+      "sheet": "assets/tuiles/tole.png",
+      "data": null,
+      "planches": {
+        "base": null,
+        "modifie": null,
+        "iterations": []
+      },
+      "note": "PROVISOIRE (M2) : rendu Blender pixelisé, remplacé par le décor final de M3."
+    },
+    {
+      "id": "decor_radeau",
+      "data_id": null,
+      "type": "objet",
+      "filiere": "construit",
+      "script": "art/source/blender/decor_provisoire.py",
+      "biome": null,
+      "provisoire": true,
+      "sources": [],
+      "blend": null,
+      "aseprite": null,
+      "sheet": "assets/objets/radeau.png",
+      "data": null,
+      "planches": {
+        "base": null,
+        "modifie": null,
+        "iterations": []
+      },
+      "note": "PROVISOIRE (M2) : rendu Blender pixelisé, remplacé par le décor final de M3."
     }
   ]
 }

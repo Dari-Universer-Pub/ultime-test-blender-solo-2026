@@ -4,6 +4,7 @@
 pixeliser.py - reduit un RENDU Blender au pixel art du projet.
 
     python3 tools/pixelisation/pixeliser.py art/rendu/plongeur art/pixel/plongeur
+    python3 tools/pixelisation/pixeliser.py art/rendu/decor art/pixel/decor --rampes roche,recif,cuivre,sable,ocre
     options : --facteur 8  --seuil 0.5  --sans-contour  --palette art/palette.json
 
 Etapes, dans cet ordre (les memes pour tous les assets, voir STYLE.md) :
@@ -55,13 +56,18 @@ def rgb_vers_lab(rgb):
     return np.stack([116 * f[..., 1] - 16, 500 * (f[..., 0] - f[..., 1]), 200 * (f[..., 1] - f[..., 2])], axis=-1)
 
 
-def charger_palette(chemin):
+def charger_palette(chemin, rampes_corps=None):
+    """rampes_corps : liste de rampes qui forment le corps (ex. le décor). Par défaut : toutes sauf les
+    rampes réservées (ocre, bulle) et les rampes de contour. Le plongeur n'en change pas."""
     rampes = json.load(open(chemin, encoding="utf-8"))["rampes"]
     corps, contour = [], {}
     for nom, tons in rampes.items():
         rgb = [hex_rgb(t) for t in tons]
         if nom in RAMPES_CONTOUR or nom == RAMPE_LISERE[0]:
             contour[nom] = rgb
+        elif rampes_corps is not None:
+            if nom in rampes_corps:
+                corps.extend(rgb)
         elif nom in RAMPES_EXCLUES_CORPS:
             continue
         else:
@@ -85,8 +91,8 @@ def voisins4(masque):
     return p[:-2, 1:-1], p[2:, 1:-1], p[1:-1, :-2], p[1:-1, 2:]   # haut, bas, gauche, droite
 
 
-def pixeliser(entree, sortie, palette_chemin, sans_contour):
-    corps, contour, _ = charger_palette(palette_chemin)
+def pixeliser(entree, sortie, palette_chemin, sans_contour, rampes_corps=None):
+    corps, contour, _ = charger_palette(palette_chemin, rampes_corps)
     corps_lab = rgb_vers_lab(corps / 255.0)
     im = np.asarray(Image.open(entree).convert("RGBA"), dtype=np.float64) / 255.0
     petit = reduire(im)
@@ -151,7 +157,9 @@ def main():
     ap.add_argument("--sans-contour", action="store_true")
     ap.add_argument("--palette", default=os.path.join(RACINE, "art", "palette.json"))
     ap.add_argument("--prefixe", default="")
+    ap.add_argument("--rampes", default="", help="rampes du corps, séparées par des virgules (ex. roche,recif)")
     a = ap.parse_args()
+    rampes_corps = [r for r in a.rampes.split(",") if r] or None
     globals()["FACTEUR"] = a.facteur
     globals()["SEUIL_ALPHA"] = a.seuil
     fichiers = sorted(f for f in os.listdir(a.entree) if f.endswith(".png") and f.startswith(a.prefixe))
@@ -161,7 +169,7 @@ def main():
     for f in fichiers:
         ent = os.path.join(a.entree, f)
         sort = os.path.join(a.sortie, f)
-        masque = pixeliser(ent, sort, a.palette, a.sans_contour)
+        masque = pixeliser(ent, sort, a.palette, a.sans_contour, rampes_corps)
         ys, xs = np.nonzero(masque)
         hauteur = (ys.max() - ys.min() + 1) if len(ys) else 0
         print(f"{f} : {masque.shape[1]}x{masque.shape[0]} px, silhouette {hauteur} px de haut")
