@@ -58,7 +58,7 @@ def construire(scene):
     ob.parent(museau, corps)
 
     # œil : blanc contrasté, pupille noire, côté caméra, sur la tête
-    ob.oeil((0.36, -0.22, 0.10), 0.085, corps, pupille=0.62, nom="oeil")
+    ob.oeil((0.40, -0.32, 0.10), 0.085, corps, pupille=0.62, nom="oeil")
 
     # aileron dorsal court
     dos = ob.cone((0.08, 0.0, 0.42), 0.10, 0.46, m_dos, nom="nageoire_dorsale")

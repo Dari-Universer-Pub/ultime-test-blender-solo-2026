@@ -166,6 +166,26 @@
       "defauts_restants": [
         "mesure complète à faire (cible 36 px)"
       ]
+    },
+    {
+      "changement": "pixelisation de la tortue au rendu final (carapace 0,62, coraux 0,26 remontés, tête et palmes attachées) : nage 8, attaque 4, mort 6 dans une feuille à 3 étiquettes",
+      "image": "boards/tortue_de_corail_pixel_2.png",
+      "image_sha256": "80ec94c3944d31b716a84bfd579dffc78ddad912c9f3fe647f33903c8cc2f54c",
+      "controle": {
+        "silhouette": "Carapace bombée, coraux sur le dos, tête et palmes : la tortue se lit à 64 px ; en mort la tête tombe.",
+        "couleurs": "Rose-recif de la carapace, sable du plastron, vert-bouteille des palmes et de la tête, orange des coraux : palette conforme.",
+        "cadrage": "La tortue tient la case, la tête et la queue ont une marge.",
+        "taille": "Mesure (tools/mesure/mesurer.py et pixeliser) : hauteur 36 px sur toutes les images, largeur 54 à 56 px.",
+        "details": "L'œil est lisible sur la tête ; la queue est fine (2 px) ; l'attaque se voit surtout par la tête tendue.",
+        "coherence_base": "Même pipeline et même palette que les autres créatures du biome.",
+        "pixels_parasites": "Liseré clair sur le contour ; la queue à 1 px peut se détacher."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "queue fine (1 à 2 px) : à épaissir en finition",
+        "plastron violet sous la carapace : à éclaircir en finition",
+        "attaque peu marquée : tête à tendre davantage"
+      ]
     }
   ]
 }

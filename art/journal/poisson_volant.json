@@ -264,6 +264,43 @@
       "defauts_restants": [
         "mesure complète à faire (cible 36 px)"
       ]
+    },
+    {
+      "changement": "pixelisation du poisson au rendu final (corps 0,70, aileron 0,46, pectorale fine, mort horizontale) : nage 8, attaque 4, mort 6 dans une feuille à 3 étiquettes",
+      "image": "boards/poisson_volant_pixel_2.png",
+      "image_sha256": "0a16c06c07d3df0f7fa55425716328dca41ec6c6d8c383a5d050ab71e1700c44",
+      "controle": {
+        "silhouette": "Le poisson se lit : aileron haut, queue orange, ventre argenté ; l'attaque le fait plonger ; la mort reste horizontale.",
+        "couleurs": "Dos violet, ventre argenté, queue orange : palette conforme.",
+        "cadrage": "Le poisson tient la case ; la queue et le museau ont une marge.",
+        "taille": "Mesure : nage 35 à 37 px, attaque jusqu'à 47 px, mort 35 à 36 px : minimum tenu.",
+        "details": "L'ŒIL NE SE LIT PAS : il est enfoncé dans le corps (son centre est à l'intérieur de la sphère), seul un liseré pâle dépasse. La pectorale ne se lit que par un contour clair.",
+        "coherence_base": "Même pipeline et même palette.",
+        "pixels_parasites": "Liseré clair marqué sur le contour du dos et de l'aileron."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "ŒIL invisible : centre à (0,36 ; -0,22 ; 0,10) à l'intérieur du corps ; le placer sur la surface (0,40 ; -0,32 ; 0,10)",
+        "pectorale peu lisible à 64 px"
+      ]
+    },
+    {
+      "changement": "œil : centre déplacé de (0,36 ; -0,22 ; 0,10) à (0,40 ; -0,32 ; 0,10) pour sortir de la sphère du corps (globe 0,085, pupille 0,62)",
+      "image": "boards/journal/poisson_volant_12.png",
+      "image_sha256": "73cb628e72af9379e5c8d8ceb27c0ece3ac46184415e7f0b3aaeb4ba3e26ccfe",
+      "controle": {
+        "silhouette": "Le poisson a maintenant un œil lisible sur la tête, qui fait lire la face.",
+        "couleurs": "Blanc crème de la rampe metal et pupille noire : contraste fort sur le violet.",
+        "cadrage": "L'œil reste dans le contour du corps ; le cadre ne change pas.",
+        "taille": "Globe d'environ 0,17 unité, soit environ 6 px sur 64 : au-dessus du minimum de 2 px.",
+        "details": "L'œil est net et distinct, la pupille noire se détache.",
+        "coherence_base": "Même outil d'œil que la carangue, l'oursin et la tortue.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "relancer le rendu complet avec le nouvel œil (la feuille actuelle est annulée)"
+      ]
     }
   ]
 }
