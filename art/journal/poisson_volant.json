@@ -227,6 +227,25 @@
       "defauts_restants": [
         "mesure complète à faire (cible 36 px)"
       ]
+    },
+    {
+      "changement": "corps : hauteur de l'ellipsoïde portée de 0,60 à 0,70",
+      "image": "boards/journal/poisson_volant_10.png",
+      "image_sha256": "8b3d6be048b77565d9be42bc301485bbf0c177e547d9d43a9806631afc80d931",
+      "controle": {
+        "silhouette": "Le corps est plus épais : le poisson gagne en hauteur mais devient plus lourd, presque une bulle.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Le ventre descend ; le poisson reste dans la case.",
+        "taille": "Gagne environ 2 à 3 px ; mesure complète à faire (cible 36 px).",
+        "details": "La bande argentée du ventre se décolle du dos : une fine ligne sombre apparaît dessous.",
+        "coherence_base": "Même matériau.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "bande argentée du ventre décollée : à recoller (z du ventre à -0,26)",
+        "mesure complète à faire"
+      ]
     }
   ]
 }

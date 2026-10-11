@@ -47,7 +47,7 @@ def construire(scene):
     m_queue = ob.materiau("poisson_queue", "palmes", bandes=(1, 2, 3, 4), rugosite=0.5)
     m_museau = ob.materiau("poisson_museau", "caoutchouc", bandes=(1, 2, 3, 3), rugosite=0.4)
 
-    corps = ob.sphere((0.0, 0.0, 0.0), 0.5, m_dos, echelle=(1.25, 0.9, 0.6), nom="corps")
+    corps = ob.sphere((0.0, 0.0, 0.0), 0.5, m_dos, echelle=(1.25, 0.9, 0.7), nom="corps")
 
     # ventre argenté : une calotte claire sous le corps, visible sur le bord inférieur
     ventre = ob.sphere((0.02, -0.02, -0.22), 0.5, m_ventre, echelle=(1.00, 0.80, 0.14), nom="ventre")

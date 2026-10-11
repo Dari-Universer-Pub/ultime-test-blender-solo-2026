@@ -94,6 +94,60 @@
         "partie basse violette de la carapace sous le plastron : à traiter",
         "mesure complète à faire"
       ]
+    },
+    {
+      "changement": "carapace : hauteur portée de 0,62 à 0,72 pour gagner en hauteur de silhouette",
+      "image": "boards/journal/tortue_de_corail_6.png",
+      "image_sha256": "c98a68c9fe887c577d32791cbba30a5b89267212332f39c94c94b30cc4012255",
+      "controle": {
+        "silhouette": "La carapace devient une boule : la tortue perd sa forme plate et large, elle ressemble à un ballon.",
+        "couleurs": "Le plastron sable disparaît presque sous la carapace ; la partie basse violette prend toute la hauteur.",
+        "cadrage": "La tortue tient la case.",
+        "taille": "Gagne environ 2 px de hauteur, mesure complète à faire.",
+        "details": "Les palmes et la tête restent lisibles mais le corps n'a plus de bande de plastron.",
+        "coherence_base": "Même matériau, forme moins juste.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "hauteur à gagner autrement (coraux plus hauts, carapace inchangée)"
+      ]
+    },
+    {
+      "changement": "coraux : hauteur de 0,16 à 0,26 sans déplacer leur centre (la base s'enfonce dans la carapace)",
+      "image": "boards/journal/tortue_de_corail_7.png",
+      "image_sha256": "08ba9bce4eea92b8393a1c7e9b809aa64fce0a53181ec26d23e54c6e25638703",
+      "controle": {
+        "silhouette": "Les coraux paraissent plus petits : la partie visible au-dessus de la carapace a diminué au lieu d'augmenter.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "Pas de gain de hauteur visible : la hauteur n'a pas augmenté.",
+        "details": "Les coraux sont des pointes minuscules ; l'effet recherché n'est pas atteint.",
+        "coherence_base": "Même matériau.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "coraux à remonter de la moitié de l'ajout pour que la base reste au même endroit"
+      ]
+    },
+    {
+      "changement": "coraux : centres remontés de 0,05 (hauteur 0,26 conservée) : la base reste sur la carapace et la pointe dépasse nettement",
+      "image": "boards/journal/tortue_de_corail_8.png",
+      "image_sha256": "3116b992727af0cf0b3d7232df2c313f96ad35ba696284f22c988d95939c7171",
+      "controle": {
+        "silhouette": "Les coraux dépassent nettement la carapace : le dos de la tortue a des pointes et la hauteur de silhouette augmente.",
+        "couleurs": "Orange et rose des coraux inchangés.",
+        "cadrage": "Les pointes les plus hautes restent dans la case.",
+        "taille": "Hauteur augmentée d'environ 3 px par rapport à la version 0,16 ; mesure complète à faire.",
+        "details": "Les coraux se détachent du dôme clair ; ils se lisent comme des pointes.",
+        "coherence_base": "Même forme de corail, mêmes matériaux.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "mesure complète à faire (cible 36 px)"
+      ]
     }
   ]
 }

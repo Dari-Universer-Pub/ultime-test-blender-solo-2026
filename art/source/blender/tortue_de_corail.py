@@ -37,7 +37,7 @@ PLAN = (
 DERNIERE = 18
 
 # coraux de la carapace : (x, z, rotation Y en radians) ; ils pointent vers le haut et vers l'extérieur
-CORAUX = ((-0.30, 0.20, -0.5), (-0.10, 0.22, -0.2), (0.10, 0.22, 0.1), (0.28, 0.19, 0.45))
+CORAUX = ((-0.30, 0.25, -0.5), (-0.10, 0.27, -0.2), (0.10, 0.27, 0.1), (0.28, 0.24, 0.45))
 
 
 def construire(scene):
@@ -56,7 +56,7 @@ def construire(scene):
     # coraux : petits cônes sur le dos, alternance orange et rose
     for k, (x, z, rot) in enumerate(CORAUX):
         mat = m_corail if k % 2 == 0 else m_corail_rose
-        c = ob.cone((x, 0.0, z), 0.07, 0.16, mat, rotation=(0.0, rot, 0.0), nom=f"corail_{k + 1}")
+        c = ob.cone((x, 0.0, z), 0.07, 0.26, mat, rotation=(0.0, rot, 0.0), nom=f"corail_{k + 1}")
         ob.parent(c, corps)
 
     # tête : charnière à l'avant ; œil et bec sont enfants de la tête
