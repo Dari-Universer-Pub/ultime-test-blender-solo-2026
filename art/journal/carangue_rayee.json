@@ -305,6 +305,54 @@
         "marges de 1 à 2 px sur les côtés : surveiller",
         "attaque encore peu marquée"
       ]
+    },
+    {
+      "changement": "itération Aseprite 2 : lisière cyan de l'avant du corps (x 47-60, y 17-31, 76 px) passée au cyan atténué #7aa0a8",
+      "image": "boards/journal/carangue_rayee_15.png",
+      "image_sha256": "ac7317c2e38e0de77c7b004c94122499db7d2c25831533ba3e81803df6eb749d",
+      "controle": {
+        "silhouette": "Inchangée : seule la lisière de la tête change de teinte.",
+        "couleurs": "#7aa0a8 est dans la rampe metal, comme le corps bleu-gris ; le glaçage cyan disparaît.",
+        "cadrage": "Inchangé.",
+        "taille": "Inchangée (mêmes pixels).",
+        "details": "Le museau et l'avant du corps sont plus doux ; les rayures et l'œil ne changent pas.",
+        "coherence_base": "Même rampe metal que le ventre.",
+        "pixels_parasites": "Aucun pixel ajouté."
+      },
+      "verdict": "garde",
+      "defauts_restants": []
+    },
+    {
+      "changement": "itération Aseprite 3 : pectorale jaune pâle #fff2a8 passée au jaune soutenu #f8c850 (x 40-56, y 30-43, 96 px)",
+      "image": "boards/journal/carangue_rayee_16.png",
+      "image_sha256": "a065756ce9e24412e824bb8a1a8b57f1eb616e4f6d7b753ed1b60e111bf55f15",
+      "controle": {
+        "silhouette": "Inchangée : la pectorale garde sa forme en trait diagonal.",
+        "couleurs": "#f8c850 est dans la rampe lampe, la même que la queue : le jaune contraste avec le crème du corps.",
+        "cadrage": "Inchangé.",
+        "taille": "Inchangée.",
+        "details": "La pectorale se lit mieux sur le crème (vérifié en comparaison zoomée et sur la planche).",
+        "coherence_base": "Même rampe lampe que la queue et la dorsale.",
+        "pixels_parasites": "Aucun pixel ajouté."
+      },
+      "verdict": "garde",
+      "defauts_restants": []
+    },
+    {
+      "changement": "itération Aseprite 4 : ventre gris-bleu #2e4a66 passé au gris-bleu clair #4a7088 (x 30-52, y 36-43, 642 px)",
+      "image": "boards/journal/carangue_rayee_17.png",
+      "image_sha256": "fbb03221b979b8447857385d863c473a3803760eeb31f1e340773ce6dcc70e38",
+      "controle": {
+        "silhouette": "Inchangée : même contour, le bas du corps est plus clair.",
+        "couleurs": "#4a7088 est dans la rampe metal ; le bas du corps se détache du fond bleu-noir.",
+        "cadrage": "Inchangé.",
+        "taille": "Inchangée.",
+        "details": "Le ventre se lit sur les trois animations de la planche it4 (nage, attaque, mort).",
+        "coherence_base": "Même rampe metal que le corps.",
+        "pixels_parasites": "Aucun pixel ajouté, les teintes restent dans la palette."
+      },
+      "verdict": "garde",
+      "defauts_restants": []
     }
   ]
 }
