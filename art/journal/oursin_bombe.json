@@ -115,6 +115,54 @@
         "piquants fins à 1 px : à épaissir en finition",
         "mort : galette lisible mais pas encore tombée"
       ]
+    },
+    {
+      "changement": "itération Aseprite 2 : lisière cyan du côté droit (x 30-48, y 19-40, 294 px) passée au brun clair #b88a6a",
+      "image": "boards/journal/oursin_bombe_6.png",
+      "image_sha256": "c6ed0ed0d169328fe2f792ac508984b98a08f32120d1d02dbef74148dda7bbaf",
+      "controle": {
+        "silhouette": "Inchangée : le contour de la sphère et des piquants est le même.",
+        "couleurs": "#b88a6a est dans la rampe cuivre, comme le corps ; le glaçage cyan disparaît du côté droit.",
+        "cadrage": "Inchangé.",
+        "taille": "Inchangée.",
+        "details": "Le côté éclairé se lit mieux ; l'œil n'est pas touché.",
+        "coherence_base": "Même rampe cuivre que le corps.",
+        "pixels_parasites": "Aucun pixel ajouté."
+      },
+      "verdict": "garde",
+      "defauts_restants": []
+    },
+    {
+      "changement": "itération Aseprite 3 : contour cyan restant de tout le pourtour (x 10-56, y 4-50) passé au cyan atténué #7aa0a8 (1449 px, avec piquants)",
+      "image": "boards/journal/oursin_bombe_7.png",
+      "image_sha256": "a0ce28715b1816c6c71f99ad85b756979effcb3b40e24b96cb2b7510e318dc08",
+      "controle": {
+        "silhouette": "Inchangée : même contour, le liseré est moins brillant.",
+        "couleurs": "#7aa0a8 est dans la rampe metal ; le contour reste bleuté mais ne brille plus.",
+        "cadrage": "Inchangé.",
+        "taille": "Inchangée.",
+        "details": "Une première version (piquants éclaircis) a été annulée : elle aplatissait le dégradé brun du corps. Celle-ci garde le volume.",
+        "coherence_base": "Même famille bulle que la carangue, cohérence du biome.",
+        "pixels_parasites": "Aucun pixel ajouté."
+      },
+      "verdict": "garde",
+      "defauts_restants": []
+    },
+    {
+      "changement": "itération Aseprite 4 : ventre brun-rouge #5e3a3a passé au brun moyen #8e5a3a (x 14-40, y 36-46, 455 px)",
+      "image": "boards/journal/oursin_bombe_8.png",
+      "image_sha256": "84553c02521de3d3f070cb55a267208f1ae98de48af94e67a13abf86d18a4062",
+      "controle": {
+        "silhouette": "Inchangée.",
+        "couleurs": "#8e5a3a est dans la rampe cuivre ; le bas se détache du fond bleu-noir.",
+        "cadrage": "Inchangé.",
+        "taille": "Inchangée.",
+        "details": "Le bas du corps reste plus sombre que le haut : le volume se lit toujours.",
+        "coherence_base": "Même rampe cuivre.",
+        "pixels_parasites": "Aucun pixel ajouté."
+      },
+      "verdict": "garde",
+      "defauts_restants": []
     }
   ]
 }
