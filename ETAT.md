@@ -1,10 +1,11 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
 ## Phase courante
-M0 (non validée : Julien a demandé des corrections, en cours). Ne pas passer à M1.
+M0 : contrôle SUCCES dans le clone neuf. En attente de validation visuelle de Julien. Ne pas passer à M1.
 
 ## Dernier contrôle
-(voir la dernière ligne ci-dessous, mise à jour après le contrôle dans le clone neuf)
+2026-10-11 11:42:46 M0 SUCCES erreurs=0 gate_sha256=55d6fbef1065ba7afcaf4f11922e1f57d6f56ed22d0fea591e7ed6b4a6c8beeb
+(clone neuf, commit a886191)
 
 ## En cours
 Corrections M0 demandées par Julien : taille 32-40 px, nage non raide, bras jamais verticaux, idle, casque et équipement, animation vivante, références, clone neuf.

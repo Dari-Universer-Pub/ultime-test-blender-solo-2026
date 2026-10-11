@@ -1,61 +1,88 @@
-# RAPPORT.md — Phase M0 (outils, palette, chaîne d'assets sur le plongeur)
+# RAPPORT.md — Phase M0 (plongeur, corrections demandées par Julien)
 
-Statut : **M0 en SUCCES au contrôle, en attente de validation visuelle de Julien** (PLAN.md, phase M0 ARRÊT POUR VALIDATION).
+Statut : **M0 en attente de validation visuelle de Julien.** M0 n'est pas validée. Aucune phase suivante n'est lancée.
 
-## Fait (vérifié par une commande ou un fichier)
+Contrôle : `python tools/gate.py M0` lancé dans un **clone neuf** de la branche (dossier vide, sans `.godot/`) : SUCCES (commit a886191).
 
-- Outils : `bash /opt/outils-varekh/verifier.sh` affiche `SUCCES` (13 OK), Godot 4.4.1, Blender 5.2.1, Aseprite 1.3.18.6.
-- Palette `art/palette.json` : 13 rampes, 70 couleurs, aucun noir pur, décalage de teinte d'au moins 15° sur chaque rampe.
-- Plongeur construit dans Blender par `art/source/blender/plongeur.py` : modèle en un maillage, squelette à 13 os, poids par distance,
-  caméra orthographique de profil, rendu 512 px. 14 images : `nage` (8) et `idle` (6), dans `art/rendu/plongeur/`.
-- Pixelisation par `tools/pixelisation/pixeliser.py` : réduction 8×8, seuil d'alpha 0,5, quantification Lab aux tons de la palette,
-  contour sélectif 1 px, nettoyage des pixels isolés. Images dans `art/pixel/plongeur/`.
-- Finition Aseprite : `art/source/aseprite/construire_plongeur.lua` (assemblage et étiquettes), `art/source/aseprite/finition_plongeur.lua`
-  (3 itérations). Source : `art/source/aseprite/plongeur.aseprite`. Feuille : `assets/sprites/plongeur/plongeur.png` (14 cases de 64 px),
-  JSON `assets/sprites/plongeur/plongeur.json` avec les étiquettes `nage` (0 à 7) et `idle` (8 à 13).
-- Journal visuel `art/journal/plongeur.json` : 10 entrées, chacune avec sa planche (`boards/journal/`), son SHA-256 et les 7 critères.
-  Verdicts : 10 × `garde`, aucun `annule`.
-  - Entrées 1 à 7 : modèle et pixelisation (quantification, contour, lissage, hublot déplacé puis agrandi, lampe, pose des bras).
-  - Entrées 8 à 10 : itérations Aseprite (reflet du hublot en 2 pixels, puis remplacement des bruns de la combinaison par des tons de la rampe combinaison).
-- Scène Godot minimale : `scenes/m0_plongeur.tscn` et `scripts/m0_plongeur.gd`. Les animations viennent du JSON Aseprite.
-  Capture prise par Godot (`get_viewport().get_texture().get_image().save_png`) : `shots/m0_plongeur_godot.png`.
-- Planches : `boards/plongeur_base.png` (premier rendu), `boards/plongeur_modifie.png` (version actuelle),
-  `boards/iterations/plongeur_it1.png` à `plongeur_it3.png`, `boards/plongeur_reference.png` (référence + rendu).
-- `art/manifest.json` : entrée `plongeur` (filière `construit`). `STYLE.md` : réglages chiffrés communs.
-- `tools/gate.py M0` affiche `SUCCES` (sortie complète ci-dessous, dernier contrôle 2026-10-11 08:50:17).
+## Corrections demandées : état honnête
+
+1. **Clone neuf** — corrigé et vérifié. Cause : le cache d'import `.godot/` n'est pas versionné ; Godot tentait de charger une texture jamais importée (message « Make sure resources have been imported »). Hypothèse H2 (les `.import` versionnés) non testée séparément. Solution : `scripts/m0_plongeur.gd` charge le PNG avec `Image.load_from_file`, sans cache.
+2. **Taille 32-40 px sur chaque image** — corrigé. Mesures par image ci-dessous (nage 37-39 px, idle 37-38 px).
+3. **Nage raide** — corrigé en partie. Amplitude nage 0,533 (cible ≥ 0,45). Battement de jambes et ondulation du buste plus amples ; bras balayant le plan de profondeur.
+4. **Bras verticaux en nage** — corrigé visuellement (planches 12, 13). **Non mesuré par angle** : l'angle des os n'a pas été contrôlé dans Blender.
+5. **Idle : bras devant le corps** — corrigé (planche 14). Amplitude idle 0,230 (cible ≥ 0,10, et ne baisse pas).
+6. **Casque et équipement** — partiellement.
+   - Fait : hublot en dôme de verre plus grand, sangles de harnais, palmes épaisses, liseré clair de lumière sous-marine, ombrage en 4 tons, contour sélectif (ombre seulement).
+   - Non fait : cadre du hublot, boulons, tuyau d'air. Quatre tentatives de cadre et deux de tuyau sont annulées (journal 15 à 18, 26, 27) : à 32-40 px, un élément de moins de 2 px disparaît à la pixelisation.
+   - Bouteilles : pas de valve ; reflet très faible (itération 3).
+7. **Animation vivante** — partiellement. Amplitude et ondulation ajoutées ; anticipation et effets d'arrondi ne sont pas réellement implémentés.
+8. **Références** — une seule image libre sur 2 ou 3 demandées. Wikimedia répond 429 à chaque tentative, y compris dans la session finale. Adresses prévues dans `art/references/SOURCES.md`.
+
+## Mesures (tools/mesure/mesurer.py)
+
+```
+## nage (8 images)
+| image | largeur | hauteur | plus grande dimension |
+|---|---|---|---|
+| nage_01.png | 38 | 21 | 38 |
+| nage_02.png | 37 | 22 | 37 |
+| nage_03.png | 39 | 25 | 39 |
+| nage_04.png | 39 | 25 | 39 |
+| nage_05.png | 39 | 24 | 39 |
+| nage_06.png | 38 | 26 | 38 |
+| nage_07.png | 39 | 27 | 39 |
+| nage_08.png | 39 | 25 | 39 |
+plus grande dimension : min 37, max 39
+amplitude nage : 0.533
+
+## idle (6 images)
+| image | largeur | hauteur | plus grande dimension |
+|---|---|---|---|
+| idle_01.png | 17 | 37 | 37 |
+| idle_02.png | 18 | 38 | 38 |
+| idle_03.png | 17 | 38 | 38 |
+| idle_04.png | 17 | 37 | 37 |
+| idle_05.png | 17 | 37 | 37 |
+| idle_06.png | 17 | 37 | 37 |
+plus grande dimension : min 37, max 38
+amplitude idle : 0.230
+```
+
+## Fait (vérifié)
+
+- Journal visuel `art/journal/plongeur.json` : 32 entrées, 24 gardées, 8 annulées. Images distinctes, empreintes SHA-256 vérifiées.
+- Planches d'itération : `boards/iterations/plongeur_it1.png` (gardée), `plongeur_it2.png` (tentative annulée), `plongeur_it3.png` (gardée, effet faible).
+- Planche finale : `boards/plongeur_reference.png` (référence et rendu idle + nage agrandis ×4).
+- Capture Godot : `shots/m0_plongeur_godot.png` (scène minimale, animation nage).
 
 ## Non vérifié
 
-- La qualité « niveau professionnel » n'est pas démontrée. Les 7 critères sont un jugement visuel de l'agent sur les planches, pas une mesure.
-  Le plongeur reste un personnage de base : bras de nage raides, palmes minces, pieds peu détaillés.
-- La boucle d'animation `nage` a été regardée sur des planches basse résolution puis sur les images finales de l'entrée 10 ; aucune vidéo complète n'a été jouée.
-- La scène Godot est vérifiée en lancement avec écran virtuel et en capture ; elle n'a pas été exportée ni jouée au clavier (rien d'exigé en M0).
-- Sons, musique et polices : aucun, rien n'est exigé en M0.
+- Qualité « niveau professionnel » : non démontrée. Les critères sont un jugement visuel de l'agent.
+- Angle des bras en nage : non mesuré.
+- Animation complète : seulement des images, pas de vidéo jouée.
 
 ## Limites
 
-- Références : **une seule** image libre est dans `art/references/` (Stockholm 1951, « No known copyright restrictions »).
-  Les deux autres, prévues dans `art/references/SOURCES.md`, n'ont pas pu être téléchargées : Wikimedia répond 429 (limite de débit) à chaque tentative.
-  AGENTS.md en demande 2 ou 3. Cette référence sert à s'inspirer, elle n'est pas utilisée dans le jeu.
-- Rendu EEVEE logiciel (llvmpipe), 64 échantillons, sans passe de normales (prévue par BRIEF §6 pour plus tard).
-- Dossiers `art/`, `boards/`, `shots/`, `tests/`, `tools/` marqués `.gdignore` : Godot ne les importe pas. Le jeu n'en a pas besoin.
-- Une seule variante de scaphandre et aucune animation autre que `nage` et `idle` : les autres animations (creusage, attaque, saut, dégâts, mort) sont en M3.
+- Format : à 32-40 px de haut, les détails de moins de 2 px ne se lisent pas (cadre, boulons, tuyau).
+- Références : une seule image téléchargée (`ref_03_plongeur_stockholm_1951.jpg`, « no known copyright restrictions »), pour s'inspirer seulement.
+- Godot : les dossiers `art/`, `boards/`, `shots/`, `tests/`, `tools/` ont un `.gdignore` (l'import ne se terminait pas). Le PNG est chargé à l'exécution : à vérifier à l'export (M5).
 
-## Écarts vers Dead Cells (à classer par impact pour la suite)
+## Écarts vers Dead Cells (par impact)
 
-1. Animation : pose de nage et flottement seulement, sans anticipation ni écrasement/étirement (fort impact sur les sensations).
-2. Personnage : silhouette encore générique, pas de détail d'équipement lisible (manomètres, tuyaux) (fort).
-3. Pixel art : finition encore minimale, trois itérations seulement (moyen).
-4. Lumière : pas de cartes de normales ni de Light2D sur le sprite (moyen).
-5. Décor : la scène est un dégradé d'eau sans particules ni profondeur (moyen).
+1. Silhouette générique : pas encore de personnalité ni d'équipement lisible à cette taille.
+2. Animation : pas d'anticipation ni d'écrasement/étirement réels.
+3. Bras de nage peu visibles : la brassée ne se lit pas bien.
+4. Détails du casque : hublot seulement, pas de cadre ni de reflet suffisant.
+5. Pixel art : finition minimale (3 itérations, dont une annulée).
 
 ## Ce que Julien doit juger lui-même
 
-- Le style du plongeur (planches `boards/plongeur_modifie.png`, `boards/iterations/`, `shots/m0_plongeur_godot.png`) : est-ce le ton visé ?
-- La beauté de la palette (`art/palette.json`) et des couleurs de combinaison.
-- Le ressenti de l'animation de nage (à regarder en jeu, pas sur des images).
+- Si la limite de 2 px est acceptable, ou si la taille du sprite doit passer à 48 px pour les détails fins (décision de design).
+- Le style général (planche `boards/plongeur_reference.png`, capture `shots/m0_plongeur_godot.png`).
+- Le ressenti de la nage (à regarder en jeu).
+- Accepter ou non l'image de référence téléchargée.
 
-## Sortie complète de `python3 tools/gate.py M0`
+## Sortie complète de `python tools/gate.py M0` (clone neuf, commit a886191)
 
 ```
 gate.py SHA-256 : 55d6fbef1065ba7afcaf4f11922e1f57d6f56ed22d0fea591e7ed6b4a6c8beeb
