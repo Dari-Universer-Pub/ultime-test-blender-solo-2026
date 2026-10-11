@@ -151,6 +151,101 @@
         "liseré clair à atténuer en finition",
         "pixels de queue détachés à 1 px : à relier en finition"
       ]
+    },
+    {
+      "changement": "œil : globe blanc de 0,095 de rayon et pupille noire de 0,62 du rayon, posés côté caméra sur la tête (au lieu d'un globe de 0,085 et d'une pupille de 0,45)",
+      "image": "boards/journal/carangue_rayee_8.png",
+      "image_sha256": "78bd7d303b75cc8b604ad4bfe448264fa09677b0540c6635d11747c7cefad6e8",
+      "controle": {
+        "silhouette": "Le poisson se lit maintenant comme tête et corps : l'œil à l'avant pose la tête.",
+        "couleurs": "Blanc crème de la rampe metal et pupille noire de la rampe caoutchouc : contraste fort sur le corps argenté.",
+        "cadrage": "L'œil reste dans le contour de la tête ; le cadre ne change pas.",
+        "taille": "Diamètre du globe d'environ 0,19 unité, soit environ 6 px sur 64 : au-dessus du minimum de 2 px.",
+        "details": "La pupille noire se lit à l'œil nu ; avant, le globe pâle se confondait avec le corps.",
+        "coherence_base": "Même outil d'œil que les autres créatures (ob.oeil) : même blanc, même pupille.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "pectorale en pièce plate : à redessiner en nageoire fine",
+        "bouche qui dépasse du museau : à rentrer dans le contour",
+        "dorsale molle en tache jaune : à affiner"
+      ]
+    },
+    {
+      "changement": "pectorale : pièce plate de 0,20 x 0,11 remplacée par une nageoire fine de 0,30 x 0,05, inclinée à -38 degrés",
+      "image": "boards/journal/carangue_rayee_9.png",
+      "image_sha256": "2b9409c83f3fbf1e1e28180e4d52d6999c00e19e9d3851cda59486ca6f7677ad",
+      "controle": {
+        "silhouette": "La pectorale se lit comme une nageoire de poisson, fine et inclinée vers l'arrière, et non plus comme une pièce.",
+        "couleurs": "Jaune de la rampe lampe, comme la queue et les piquants : cohérence des nageoires.",
+        "cadrage": "La nageoire reste sur le flanc, sans sortir du contour.",
+        "taille": "Environ 0,30 unité de long, soit 10 px sur 64 : lisible sans dominer le corps.",
+        "details": "La pectorale se détache du corps et de la rayure voisine ; elle est lisible à 64 px.",
+        "coherence_base": "Même matériau lampe que les autres nageoires.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "museau coupé par le bord droit : cadrage à décaler",
+        "dorsale molle en tache jaune : à affiner"
+      ]
+    },
+    {
+      "changement": "cadrage : centre de la caméra déplacé de -0,20 à -0,14 pour que le museau ne soit plus coupé par le bord droit",
+      "image": "boards/journal/carangue_rayee_10.png",
+      "image_sha256": "8fdfb5074153e59ad9075ac60d2108916e56c7426e48071d46576aac47aeab8c",
+      "controle": {
+        "silhouette": "Le poisson est entier : museau, tête, corps, queue fourchue.",
+        "couleurs": "Couleurs inchangées.",
+        "cadrage": "Le museau ne touche plus le bord ; la queue a une marge d'environ 2 px à gauche et le museau d'environ 1 px à droite : serré mais entier.",
+        "taille": "Hauteur inchangée (environ 37 px après pixelisation) ; largeur d'environ 60 px sur 64.",
+        "details": "Œil, pectorale et dorsale restent lisibles à l'échelle.",
+        "coherence_base": "Même cadre que la version précédente, changé seulement d'un décalage.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "marge droite de 1 px : à surveiller après pixelisation",
+        "point sombre hors du museau : bouche à replacer"
+      ]
+    },
+    {
+      "changement": "bouche : petite ellipse sombre déplacée sous le museau (0,63 ; -0,10 ; -0,10), en fente de 0,14 x 0,05 x 0,03",
+      "image": "boards/journal/carangue_rayee_11.png",
+      "image_sha256": "0366327495a42b7e9c4eca598db7b86124c43fecc0eaa11e2d7425f3bdcf4096",
+      "controle": {
+        "silhouette": "La tache sombre reste hors du contour du museau et du ventre : elle se lit comme un point flottant, pas comme une bouche.",
+        "couleurs": "Le noir de la rampe caoutchouc tranche sur le bleu-gris du ventre, mais sans rapport avec la tête.",
+        "cadrage": "La tache se trouve à la limite du bord droit de la case.",
+        "taille": "Environ 3 px sur 64 : trop petit pour se lire comme une bouche.",
+        "details": "La bouche ne se lit pas ; le museau, pointu et clair, fait déjà office de museau.",
+        "coherence_base": "Même matériau que la version précédente.",
+        "pixels_parasites": "Rendu brut : le point flottant est un défaut visible, pas un pixel parasite."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "bouche flottante : à retirer, le museau suffit"
+      ]
+    },
+    {
+      "changement": "bouche retirée : la tache sombre flottante disparaît, le museau pointu sert de museau",
+      "image": "boards/journal/carangue_rayee_12.png",
+      "image_sha256": "14e195b2a82e5734b559c2c448175d965d7e08ccefbbd4df8f1ef7d8754c303f",
+      "controle": {
+        "silhouette": "Le poisson se lit comme une carangue : museau pointu, œil, dorsale épineuse, dorsale molle, anale, pectorale et queue fourchue.",
+        "couleurs": "Blanc crème, bleu-gris, rayures violettes et jaune des nageoires : aucune tache parasite.",
+        "cadrage": "Le poisson tient la case, museau et queue entiers ; la marge droite reste d'environ 1 px.",
+        "taille": "Hauteur d'environ 37 px après pixelisation (mesure à la pixelisation).",
+        "details": "L'œil et la pectorale restent lisibles ; la dorsale molle et l'anale sont distinctes des piquants.",
+        "coherence_base": "Même matériau et même œil que la version précédente.",
+        "pixels_parasites": "Aucune tache hors du corps sur le rendu brut."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "dorsale molle en tache jaune arrondie : à affiner en finition",
+        "marge droite de 1 px : à vérifier après pixelisation"
+      ]
     }
   ]
 }

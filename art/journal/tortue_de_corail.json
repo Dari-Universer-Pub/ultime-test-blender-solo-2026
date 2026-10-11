@@ -1,0 +1,43 @@
+{
+  "entrees": [
+    {
+      "changement": "premier rendu de la tortue : carapace bombée recif, plastron sable, coraux en cônes, tête avec œil et bec, quatre palmes, queue (nage 1, attaque 2, mort 4)",
+      "image": "boards/journal/tortue_de_corail_1.png",
+      "image_sha256": "3a76374fa443cf94f08baa70eb0b14024daee62ecde7e4e2479b1d17332a9e6f",
+      "controle": {
+        "silhouette": "Une carapace bombée avec une tête et des palmes se lit comme une tortue, mais les coraux flottent au-dessus de la carapace et la tête et la queue sont détachées.",
+        "couleurs": "Carapace rose-recif, plastron sable, coraux orange et rose, palmes vert-bouteille : palette conforme.",
+        "cadrage": "La tortue tient la case, mais la queue et la tête sont loin du corps.",
+        "taille": "Non mesurée ici : rendu brut 512 px.",
+        "details": "L'œil et le bec sont lisibles sur la tête ; les palmes avant et arrière se détachent.",
+        "coherence_base": "Même pipeline et même œil que les autres créatures.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "coraux détachés au-dessus de la carapace",
+        "tête détachée du corps",
+        "queue détachée du corps"
+      ]
+    },
+    {
+      "changement": "placement : coraux (0,07 x 0,16) posés sur la carapace, tête avancée à 0,34 et réduite à 0,13, queue ramenée à -0,42",
+      "image": "boards/journal/tortue_de_corail_2.png",
+      "image_sha256": "a0ae29e2ff06e6e60892577b8e8cedfc66f0eac3fb7166fe29f1019dc36d0867",
+      "controle": {
+        "silhouette": "La tortue est un seul animal : coraux sur le dos, tête dans le prolongement du corps, queue au bout.",
+        "couleurs": "Inchangées.",
+        "cadrage": "La tortue est plus petite dans la case qu'avant : la hauteur est à contrôler après pixelisation.",
+        "taille": "Pas mesurée ici ; à mesurer (cible 36 à 46 px : probablement trop petite, cadre à revoir).",
+        "details": "Œil et bec restent lisibles sur la tête, palmes distinctes.",
+        "coherence_base": "Même pipeline ; la tortue se place dans la même logique que la carangue.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "hauteur probablement trop faible : cadre à resserrer après mesure",
+        "queue encore légèrement en retrait"
+      ]
+    }
+  ]
+}

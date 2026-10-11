@@ -134,6 +134,62 @@
         "amplitude de nage faible (0,298) : animation à renforcer",
         "liseré clair à atténuer"
       ]
+    },
+    {
+      "changement": "GROUPÉ (contrevient à la règle d'un changement à la fois, reconnu) : corps sombre caoutchouc 0-3, ventre argenté, pectorale fine à 30 degrés, œil à pupille de 0,62, museau, mort horizontale qui coule",
+      "image": "boards/journal/poisson_volant_5.png",
+      "image_sha256": "8a0110f058e4a402b67b4238d95d518f5a926de52a9ced5983fbc2fd3ca1b5fc",
+      "controle": {
+        "silhouette": "Le corps est plus bas et plus sombre ; la pectorale fine se lit comme une nageoire ; la mort reste horizontale (plus de bâton vertical).",
+        "couleurs": "Le dos est presque noir : il avale la pupille et le museau ; le ventre argenté ressort bien.",
+        "cadrage": "Le poisson tient la case dans les trois images ; la mort ne sort pas du cadre.",
+        "taille": "Non mesurée ici : rendu brut 512 px, mesure après pixelisation.",
+        "details": "L'œil apparaît en croissant blanc, la pupille noire se confond avec le dos : défaut principal.",
+        "coherence_base": "Palette conforme ; même œil que la carangue.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "dos trop sombre : pupille perdue, à éclaircir (caoutchouc 1-4)",
+        "ventre en plaque qui dépasse : à amincir"
+      ]
+    },
+    {
+      "changement": "dos : caoutchouc 1-4 au lieu de 0-3 (violet au lieu de quasi noir) pour que la pupille noire se détache",
+      "image": "boards/journal/poisson_volant_6.png",
+      "image_sha256": "31d7bc8a50b0bed033682abc9a336b507e703dfc295693b724e37b24711048e0",
+      "controle": {
+        "silhouette": "Inchangée : le corps, la pectorale et l'aileron restent à leur place.",
+        "couleurs": "Le dos passe au violet-bleu de la rampe caoutchouc ; le ventre argenté et la queue orange gardent leur contraste.",
+        "cadrage": "Le cadre ne change pas.",
+        "taille": "Non mesurée ici : rendu brut 512 px.",
+        "details": "L'œil se lit maintenant : globe blanc et pupille noire visibles, au lieu d'un croissant blanc.",
+        "coherence_base": "Même rampe caoutchouc que la carangue (bandes) : cohérence du biome.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "ventre en plaque qui dépasse vers l'avant : à amincir",
+        "mesure à faire après pixelisation"
+      ]
+    },
+    {
+      "changement": "ventre : épaisseur de la calotte argentée ramenée de 0,22 à 0,14 et descendue de 0,02 ; largeur de 1,15 à 1,00",
+      "image": "boards/journal/poisson_volant_7.png",
+      "image_sha256": "3cf19cb27c8d7bfab26e436dcfbd78f9e5f41d3ddfee40fc76398146d45067f0",
+      "controle": {
+        "silhouette": "Le ventre argenté est une bande fine sous le corps, comme chez un poisson, et ne forme plus une plaque.",
+        "couleurs": "Dos violet, ventre argenté, queue orange : contraste net et cohérent.",
+        "cadrage": "Le cadre ne change pas ; le ventre ne dépasse plus le corps vers l'avant.",
+        "taille": "Non mesurée ici : rendu brut 512 px.",
+        "details": "La bande argentée est lisible sans dominer la silhouette.",
+        "coherence_base": "Même rampe metal que le ventre précédent, moins épaisse.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "mesure après pixelisation (hauteur et largeur)"
+      ]
     }
   ]
 }

@@ -57,6 +57,8 @@ def construire(scene):
     m_piquant = ob.materiau("oursin_piquant", "cuivre", bandes=(2, 3, 4, 4), rugosite=0.35)
 
     corps = ob.sphere((0.0, 0.0, 0.0), RAYON_CORPS, m_corps, nom="corps")
+    # œil : globe blanc et pupille noire sur la face visible, côté caméra
+    ob.oeil((0.12, -0.36, 0.12), 0.075, corps, pupille=0.6, nom="oeil")
     piquants = []
     for k, d in enumerate(directions(NB_PIQUANTS)):
         centre = d * (RAYON_CORPS + LONGUEUR_PIQUANT / 2.0)
@@ -77,15 +79,15 @@ def animer(p):
         ob.cle(corps, f, loc=(0.0, 0.0, 0.03 * math.sin(t)))
         for k, pq in enumerate(piquants):
             ob.cle(pq, f, echelle=(1.0, 1.0, 1.0 + 0.06 * math.sin(t + k * 0.9)))
-    for f, gonfle, allonge in ((9, 1.04, 1.25), (10, 1.08, 1.45), (11, 1.07, 1.40), (12, 1.03, 1.20)):
+    for f, gonfle, allonge in ((9, 1.04, 1.70), (10, 1.08, 2.30), (11, 1.07, 2.20), (12, 1.03, 1.80)):
         ob.cle(corps, f, echelle=(gonfle, gonfle, gonfle))
         for pq in piquants:
             ob.cle(pq, f, echelle=(1.0, 1.0, allonge))
-    for f, affais, descente in ((13, 1.00, 0.00), (14, 0.95, -0.02), (15, 0.90, -0.05),
-                                (16, 0.88, -0.07), (17, 0.86, -0.08), (18, 0.86, -0.08)):
-        ob.cle(corps, f, echelle=(affais, affais, affais), loc=(0.0, 0.0, descente))
+    for f, s_, plat, descente in ((13, 1.00, 1.00, 0.00), (14, 1.04, 0.90, -0.03), (15, 1.10, 0.75, -0.07),
+                                  (16, 1.15, 0.65, -0.10), (17, 1.18, 0.58, -0.12), (18, 1.18, 0.55, -0.12)):
+        ob.cle(corps, f, echelle=(s_, s_, s_ * plat), loc=(0.0, 0.0, descente))
         for pq in piquants:
-            ob.cle(pq, f, echelle=(1.0, 1.0, 0.7 + 0.3 * affais))
+            ob.cle(pq, f, echelle=(1.0, 1.0, 1.0 - 0.6 * (f - 13) / 5.0))
 
 
 def main():

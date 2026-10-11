@@ -38,6 +38,63 @@
         "liseré clair trop fort sur le contour : à atténuer en finition",
         "tache sombre centre-gauche : à retirer ou à rendre plus nette"
       ]
+    },
+    {
+      "changement": "œil : globe blanc de 0,075 et pupille noire de 0,6 du rayon, posés côté caméra sur la face visible (0,12 ; -0,36 ; 0,12)",
+      "image": "boards/journal/oursin_bombe_3.png",
+      "image_sha256": "660cd901f7c518733466ae699805196d0488163c5cd97d829c0d40c1244ab95f",
+      "controle": {
+        "silhouette": "Un œil apparaît sur la face avant : l'oursin a maintenant une tête lisible.",
+        "couleurs": "Blanc et noir de la rampe metal et caoutchouc, contraste fort sur le bronze.",
+        "cadrage": "L'œil reste dans le contour de la sphère ; le cadre ne change pas.",
+        "taille": "Globe d'environ 0,15 unité, soit environ 5 px sur 64 : au-dessus du minimum de 2 px.",
+        "details": "La pupille noire se détache nettement du blanc et du bronze.",
+        "coherence_base": "Même outil d'œil que la carangue et le poisson volant.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "attaque : piques encore trop courts pour se voir",
+        "mort : affaissement à rendre visible"
+      ]
+    },
+    {
+      "changement": "attaque : échelle des piquants en attaque portée de 1,25-1,45 à 1,70-2,30 (sommet à l'image 10) ; le corps reste gonflé de 1,04 à 1,08",
+      "image": "boards/journal/oursin_bombe_4.png",
+      "image_sha256": "5fdc564609145368d42906c05a825da8a38234b5eadc3f286d73ca3bbeb3b4ee",
+      "controle": {
+        "silhouette": "L'oursin se hérisse : les piquants sortent nettement de la sphère, l'attaque se voit d'un coup d'œil.",
+        "couleurs": "Bronze et brun de la rampe cuivre inchangés.",
+        "cadrage": "Les piquants les plus longs restent dans la case (marge d'environ 2 px en haut).",
+        "taille": "Pas mesurée ici : rendu brut 512 px ; à mesurer après pixelisation.",
+        "details": "Les piquants allongés se détachent de l'œil et du corps ; le geste d'avertissement est lisible.",
+        "coherence_base": "Même pipeline que la version précédente.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "mort : affaissement et chute des piquants à rendre visibles",
+        "cadrage à vérifier après pixelisation (piquants hauts)"
+      ]
+    },
+    {
+      "changement": "mort : le corps s'aplatit (z x 0,55) et s'enfonce de 0,12 ; les piquants raccourcissent jusqu'à 0,4 et pendent sur le côté",
+      "image": "boards/journal/oursin_bombe_5.png",
+      "image_sha256": "11998e6018f24699f11ec01d2ad6f99fac9aa6881bf69c5ec243c27646f1364f",
+      "controle": {
+        "silhouette": "L'oursin s'affaisse en galette et ses piquants ne sont plus dressés : la mort se lit.",
+        "couleurs": "Bronze et brun inchangés.",
+        "cadrage": "L'oursin reste dans la case ; la galette est plus large qu'avant mais reste dans le cadre.",
+        "taille": "Pas mesurée ici : rendu brut 512 px.",
+        "details": "Les piquants courts sont visibles sur les côtés ; l'œil reste lisible.",
+        "coherence_base": "Même pipeline ; la galette est dans la même palette.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "piquants courts en mort : à rendre plus visiblement tombés en finition",
+        "mesure après pixelisation"
+      ]
     }
   ]
 }

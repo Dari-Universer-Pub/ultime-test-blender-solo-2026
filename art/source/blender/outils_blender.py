@@ -198,6 +198,21 @@ def pivot(scene, nom, emplacement, parent_obj=None):
     return o
 
 
+def oeil(centre, rayon, parent_obj, pupille=0.42, nom="oeil"):
+    """Œil lisible à 64 px : blanc de la rampe metal + pupille noire posée côté caméra (y négatif).
+
+    centre : point du globe, sur la surface visible (y négatif = côté caméra).
+    pupille : rayon de la pupille en fraction du globe.
+    """
+    blanc = materiau(nom + "_blanc", "metal", bandes=(4, 5, 5, 5), rugosite=0.2)
+    noir = materiau(nom + "_pupille", "caoutchouc", bandes=(0, 0, 0, 0), rugosite=0.3)
+    globe = sphere(centre, rayon, blanc, nom=nom)
+    point = sphere((centre[0], centre[1] - rayon * 0.55, centre[2]), rayon * pupille, noir, nom=nom + "_pupille")
+    parent(globe, parent_obj)
+    parent(point, parent_obj)
+    return globe
+
+
 def lisse(obj):
     bpy.ops.object.shade_smooth()
     return obj
