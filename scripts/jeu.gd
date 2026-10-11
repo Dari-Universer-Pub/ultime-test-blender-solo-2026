@@ -86,11 +86,11 @@ func construire_scene() -> void:
 	var ciel := ColorRect.new()
 	ciel.position = Vector2(-600, -400)
 	ciel.size = Vector2(1200, 400)
-	ciel.color = Color8(118, 180, 200)
+	ciel.material = materiau_ciel()
 	add_child(ciel)
 	var eau := ColorRect.new()
 	eau.position = Vector2(-600, 0)
-	eau.size = Vector2(1200, 1400)
+	eau.size = Vector2(1200, 4800)
 	eau.material = materiau_eau()
 	add_child(eau)
 	monde = Monde.new()
@@ -125,10 +125,21 @@ func construire_scene() -> void:
 	add_child(hud)
 
 
+# Ciel : dégradé du bleu haut vers l'horizon clair (sinon l'aplat du ciel domine les captures de surface).
+func materiau_ciel() -> ShaderMaterial:
+	var nuancier := Shader.new()
+	nuancier.code = "shader_type canvas_item;\nuniform vec4 haut : source_color;\nuniform vec4 bas : source_color;\nvoid fragment() {\n\tCOLOR = mix(haut, bas, UV.y);\n}\n"
+	var materiau := ShaderMaterial.new()
+	materiau.shader = nuancier
+	materiau.set_shader_parameter("haut", Color8(84, 146, 188))
+	materiau.set_shader_parameter("bas", Color8(150, 206, 214))
+	return materiau
+
+
 # Fond d'eau : dégradé du haut clair vers le bas profond (tons de la rampe verre).
 func materiau_eau() -> ShaderMaterial:
 	var nuancier := Shader.new()
-	nuancier.code = "shader_type canvas_item;\nuniform vec4 haut : source_color;\nuniform vec4 bas : source_color;\nuniform float profondeur_visible = 260.0;\nvoid fragment() {\n\tCOLOR = mix(haut, bas, clamp(UV.y * 1400.0 / profondeur_visible, 0.0, 1.0));\n}\n"
+	nuancier.code = "shader_type canvas_item;\nuniform vec4 haut : source_color;\nuniform vec4 bas : source_color;\nuniform float profondeur_visible = 4800.0;\nvoid fragment() {\n\tCOLOR = mix(haut, bas, clamp(UV.y * 4800.0 / profondeur_visible, 0.0, 1.0));\n}\n"
 	var materiau := ShaderMaterial.new()
 	materiau.shader = nuancier
 	materiau.set_shader_parameter("haut", Color8(42, 138, 160))
@@ -146,7 +157,7 @@ func _process(delta: float) -> void:
 		jouer("eclaboussure")
 	if Input.is_action_just_pressed("attaque") and panneau == "":
 		attaquer()
-	modulation.color = Color(1, 1, 1).lerp(Color(0.45, 0.55, 0.78), clampf(plongeur.global_position.y / 200.0, 0.0, 1.0))
+	modulation.color = Color(1, 1, 1).lerp(Color(0.58, 0.70, 0.88), clampf(plongeur.global_position.y / 200.0, 0.0, 1.0))
 	if Input.is_action_just_pressed("pause"):
 		basculer_panneau("pause")
 	if Input.is_action_just_pressed("inventaire"):
