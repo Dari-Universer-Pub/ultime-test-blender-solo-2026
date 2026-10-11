@@ -889,6 +889,25 @@
         "modifie": "boards/props/tuileset_radeau_surface_modifie.png",
         "iterations": []
       }
+    },
+    {
+      "id": "tuileset_recif_peu_profond",
+      "data_id": null,
+      "type": "tuileset",
+      "filiere": "construit",
+      "script": "art/source/blender/tuileset_biome.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/tuileset_recif_peu_profond.blend",
+      "aseprite": "art/source/aseprite/tuileset_recif_peu_profond.aseprite",
+      "sheet": "assets/sprites/tuileset_recif_peu_profond/tuileset_recif_peu_profond.png",
+      "data": "assets/sprites/tuileset_recif_peu_profond/tuileset_recif_peu_profond.json",
+      "planches": {
+        "base": "boards/props/tuileset_recif_peu_profond_base.png",
+        "modifie": "boards/props/tuileset_recif_peu_profond_modifie.png",
+        "iterations": []
+      }
     }
   ]
 }
