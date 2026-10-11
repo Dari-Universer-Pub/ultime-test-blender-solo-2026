@@ -1802,6 +1802,68 @@
       "defauts_restants": [
         "barres de 1 px illisibles à x1 : retirées"
       ]
+    },
+    {
+      "changement": "nage : bras en crawl (plage 0,1 à 3,0 rad, un bras devant pendant que l'autre revient), genoux qui battent, bras clair (ton 3 du kaki) séparé du tronc (ton 1)",
+      "image": "boards/journal/plongeur_nage_etape1.png",
+      "image_sha256": "e98909e85da8ef81cec5be8244d702e768d80e60a57f0867825f07b11299953e",
+      "controle": {
+        "silhouette": "Le corps couché se lit : casque laiton devant, jambes qui battent derrière, bras crème qui sort vers l'avant sur certaines images.",
+        "couleurs": "Bras crème, tronc kaki intermédiaire, jambes kaki clair, gant sombre : quatre tons séparés, pas de noir pur.",
+        "cadrage": "La silhouette déborde légèrement de la case de 80 px sur quelques images ; à corriger par la caméra.",
+        "taille": "Plus grande dimension 47 à 50 px sur les 8 images : une image dépasse la cible de 44 à 48 px.",
+        "details": "Le gant sombre se lit au bout du bras sur plusieurs images ; le genou bouge mais se lit peu en nage.",
+        "coherence_base": "Même pipeline Blender et même palette que l'idle validée ; aperçu rendu à 320 px.",
+        "pixels_parasites": "Aucun pixel parasite notable sur le contour."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "JULIEN NE VALIDE PAS : à mi-cycle le corps devient une bouillie beige, bras et jambes repliés sous le tronc, même ton",
+        "taille 50 px sur certaines images : cadre à réduire de 4 %",
+        "bras et jambe proches encore proches en nage",
+        "genou peu lisible en nage"
+      ]
+    },
+    {
+      "changement": "idle : bras qui se balancent d'avant en arrière (±0,45 rad, en opposition) avec coude qui plie ; genoux qui fléchissent (0,30 à 0,45 rad)",
+      "image": "boards/journal/plongeur_idle_etape2.png",
+      "image_sha256": "2023aa3dba67b66b26bdf01e37a7e54da994925e3d71f11d7ab962003a2ce0b4",
+      "controle": {
+        "silhouette": "Le bras crème se détache le long du flanc avant ; les genoux se lisent en mouvement sur les 6 images.",
+        "couleurs": "Bras crème sur tronc kaki intermédiaire, jambes kaki clair, bottes sombres : contrastes nets.",
+        "cadrage": "Le plongeur tient la case de 80 px ; une image monte à 49 px, à réduire par la caméra.",
+        "taille": "Plus grande dimension 46 à 49 px sur les 6 images ; cible 44 à 48 px dépassée d'un pixel sur certaines.",
+        "details": "Le gant sombre se lit mal au bout du bras : il se confond avec les bottes et le bas du corps.",
+        "coherence_base": "Même pipeline Blender et même palette que la pose validée ; aperçu rendu à 320 px.",
+        "pixels_parasites": "Aucun pixel parasite notable."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "RETIRÉE : étape faite hors ordre, Julien n'avait pas validé ; retour à la pose validée (HEAD)",
+        "gant sombre pas assez séparé des bottes",
+        "taille 49 px sur certaines images : caméra à réduire",
+        "bras proche sur le flanc : lisible mais étroit"
+      ]
+    },
+    {
+      "changement": "nage (état F) : bras proche tendu vers l'avant puis balayé vers le bas (1,4 à 2,3 rad), bras lointain en opposition (vers le bas), jambes en ciseaux (0,65 ± 0,25 rad) avec genou ; couleurs : bras proche crème, bras lointain et jambe lointaine kaki foncé, gants et bottes séparés par côté ; épaules et hanches d'origine",
+      "image": "boards/journal/plongeur_nage_etape3_F.png",
+      "image_sha256": "509b7a73348a6fa8d412b4b9f8f067b974c54b8a4befce998f7420e31a65b2b7",
+      "controle": {
+        "silhouette": "Les bras et les jambes se lisent mieux que l'état précédent, mais le casque domine et le bras proche et la jambe proche sont côte à côte.",
+        "couleurs": "Quatre tons séparés (crème, kaki, kaki foncé, gant très sombre), sans noir pur.",
+        "cadrage": "La silhouette de nage déborde : 51 à 53 px dans la case de 80 px, au-dessus de la cible.",
+        "taille": "Mesure : 51 à 53 px dans la plus grande dimension, cible 44 à 48 px : NON ATTEINTE.",
+        "details": "Mesure carte d'identité (8 images) : bras proche et jambe proche visibles sur toutes les images ; bras lointain et jambe lointaine sous 60 % non cachés sur 5 images sur 8 (1, 2, 6, 7, 8).",
+        "coherence_base": "Même pipeline Blender, mêmes rampes ; amplitude nage 0,452 (seuil 0,45) : atteinte de justesse.",
+        "pixels_parasites": "Aucun pixel parasite notable."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "NON VALIDÉ : critère de visibilité non atteint sur 5 images sur 8 (membres lointains cachés par le tronc, les bouteilles, le tuyau et le gant proche)",
+        "taille 51 à 53 px, cible 44 à 48 px non atteinte",
+        "décision demandée à Julien : réduire la silhouette de nage, ou assouplir le seuil pour les membres lointains (cachés par le corps en vue de profil)"
+      ]
     }
   ]
 }

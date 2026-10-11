@@ -1,9 +1,48 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
-## Phase courante
-PAUSE sur M4, demandée par Julien (« STOP sur M3 ») : refonte du héros (plongeur) d'abord.
-Étape en cours : UNE pose fixe, idle_01, en 47 px dans une case de 80 px. ARRÊT en attente de la validation de Julien
-sur cette pose. Les 41 animations ne sont PAS refaites tant que Julien n'a pas validé.
+## Phase courante (mise à jour)
+Animations du plongeur : NAGE EN COURS, NON VALIDÉE. ARRÊT : décision de Julien demandée (voir ci-dessous).
+Idle et creusage : code restauré à la version validée (HEAD) ; les tentatives faites avant validation sont annulées dans le journal.
+
+## Nage : mesure par carte d'identité (état F, 8 images)
+Mesure : `python3 tools/mesure/membres.py <dossier>` sur un rendu `PLONGEUR_IDENTITE=1` de `plongeur.py`.
+Pour chaque image : pixels visibles d'un membre / part non cachée (visible ÷ surface du membre seul).
+Un membre = son segment + son extrémité (gant du bras, botte de la jambe), du même côté (choix de mesure à valider).
+Critère : visible >= 20 px ET non caché >= 60 %, sur chaque image.
+
+| image | bras proche (vis / non caché) | bras lointain | jambe proche | jambe lointaine | verdict |
+|---|---|---|---|---|---|
+| nage_01 | 165 px / 86 % | 50 px / 33 % KO | 117 px / 81 % | 62 px / 54 % KO | ÉCHEC |
+| nage_02 | 147 px / 87 % | 70 px / 44 % KO | 97 px / 72 % | 77 px / 65 % | ÉCHEC |
+| nage_03 | 117 px / 84 % | 104 px / 61 % | 93 px / 74 % | 92 px / 72 % | OK |
+| nage_04 | 93 px / 71 % | 127 px / 67 % | 92 px / 65 % | 88 px / 63 % | OK |
+| nage_05 | 87 px / 65 % | 122 px / 64 % | 90 px / 67 % | 88 px / 62 % | OK |
+| nage_06 | 112 px / 78 % | 121 px / 65 % | 96 px / 67 % | 56 px / 40 % KO | ÉCHEC |
+| nage_07 | 146 px / 88 % | 92 px / 51 % KO | 108 px / 68 % | 44 px / 35 % KO | ÉCHEC |
+| nage_08 | 164 px / 88 % | 57 px / 35 % KO | 112 px / 70 % | 57 px / 48 % KO | ÉCHEC |
+
+Images en échec : nage_01, nage_02, nage_06, nage_07, nage_08 (5 sur 8). Membres proches : OK sur toutes les images.
+Taille (rendu 640 px, 16 échantillons) : 51 à 53 px, cible 44 à 48 px : NON ATTEINTE.
+Amplitude nage : 0,452 (seuil 0,45) : atteinte de justesse.
+
+Cause mesurée (recouvrement par image) : les membres lointains sont derrière le corps en vue de profil.
+- Bras lointain : caché par le tronc (24 à 32 px en certaines images), les bouteilles et le tuyau (zone au-dessus du tronc),
+  et par le gant proche quand celui-ci descend au même endroit.
+- Jambe lointaine : cachée par la jambe proche ou par le gant proche (image 7 et 8, jusqu'à 45 px).
+- Tests essayés (une seule chose changée à la fois) : balayage du bras proche et du bras lointain sur plusieurs plages,
+  opposition des bras, coude du bras lointain, jambes plus en arrière, épaules et hanches décalées de 2 px, tronc recentré,
+  gants de 3,5 px. Aucun ne passe les 8 images : chaque réglage déplace l'occlusion d'un membre à l'autre.
+  Le décalage des épaules et des hanches améliore les membres proches (bras proche 92 à 98 %) mais dégrade les lointains.
+
+Options pour Julien (décision de design, pas de réglage de plus) :
+1. Réduire la silhouette de nage à 44-48 px (casque et tronc plus petits, ou échelle propre à la nage ; l'idle validée
+   est à 46 px et ne doit pas changer).
+2. Dégager la zone au-dessus du tronc : bouteilles et tuyau plus bas ou plus fins (la zone bloque le bras lointain).
+3. Assouplir le seuil pour les membres lointains (ex. 40 % au lieu de 60 %), puisqu'ils sont derrière le corps en vue de profil.
+Je recommande 2 + 3 : le seuil de 60 % est atteint par les membres proches sur toutes les images.
+
+Journal : nage annulée (entrée 93, première tentative), nage état F annulée pour validation (entrée 95, planche
+`boards/journal/plongeur_nage_etape3_F.png`). Idle annulée (entrée 94, hors ordre).
 
 ## Refonte du héros : état exact (itération 2 : points 1 à 5 de Julien)
 - Pose idle_01 : 46 px de haut dans une case de 80 px. Julien a validé la direction (casque laiton, kaki, gants sombres, 47 px).

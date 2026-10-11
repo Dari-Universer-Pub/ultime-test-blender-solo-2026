@@ -147,58 +147,84 @@ def P(*v):
     return tuple(x * PX for x in v)
 
 
+# Carte d'identité (mesure M4) : chaque matériau du modèle appartient à un groupe, rendu en couleur plate
+# (sans ombrage) pour mesurer, image par image, quelle partie est visible. Nom de matériau -> (groupe, couleur).
+GROUPES_ID = {
+    "tronc": ("tronc", "#ff0000"), "tete": ("tete", "#ffd400"), "cadre_hublot": ("tete", "#ffd400"),
+    "hublot_verre": ("tete", "#ffd400"), "ceinture": ("ceinture", "#7a3cff"), "tuyau": ("tuyau", "#00e0ff"),
+    "bouteilles": ("bouteilles", "#ff7f00"), "palmes": ("palmes", "#ff00c8"), "lampe": ("lampe", "#ffffff"),
+    "lampe_tube": ("lampe", "#ffffff"), "bras_proche": ("bras_proche", "#00ff00"),
+    "bras_lointain": ("bras_lointain", "#005000"), "jambe_proche": ("jambe_proche", "#0000ff"),
+    "jambe_lointaine": ("jambe_lointaine", "#000090"), "gant_proche": ("gant_proche", "#a0ff00"),
+    "gant_lointain": ("gant_lointain", "#00a070"), "botte_proche": ("botte_proche", "#ff0080"),
+    "botte_lointaine": ("botte_lointaine", "#ff80c0"),
+}
+GROUPES = ["tronc", "tete", "ceinture", "tuyau", "bouteilles", "palmes", "lampe", "bras_proche", "bras_lointain",
+           "jambe_proche", "jambe_lointaine", "gant_proche", "gant_lointain", "botte_proche", "botte_lointaine"]
+
+
 def construire_modele():
-    m_kaki = materiau("combinaison", "kaki", 2, 0.5, bandes=(1, 2, 3))           # combinaison beige-kaki, 3 tons
-    m_kaki_ombre = materiau("combinaison_ombre", "kaki", 1, 0.6, bandes=(0, 1, 1))   # côté lointain : kaki plus foncé, mais lisible seul
-    m_kaki_clair = materiau("combinaison_claire", "kaki", 3, 0.5, bandes=(2, 3, 3))   # bras et jambes du côté proche : plus clairs que le tronc
-    m_laiton = materiau("laiton", "laiton", 2, 0.25, bandes=(1, 2, 3, 3))        # casque laiton doré, 4 tons
-    m_verre = materiau("hublot_verre", "verre", 4, 0.08, bandes=(2, 3, 4, 5))    # hublot clair, lisible à x1
-    m_gant = materiau("gant", "gant", 1, 0.6, bandes=(0, 1, 2))               # gants et bottes : bleu-violet très sombre
-    m_caout = materiau("caoutchouc", "gant", 1, 0.7, bandes=(0, 1, 2))            # ceinture de lest
-    m_metal = materiau("metal", "metal", 3, 0.35)
-    m_tuyau = materiau("tuyau_air", "cuivre", 3, 0.5, bandes=(1, 2, 3, 4))       # tuyau d'air : corde beige-brun, contraste avec les bouteilles
-    m_bout = materiau("bouteilles", "bouteille", 2, 0.4, bandes=(1, 2, 3, 4))    # bouteilles de dos, teinte à part
+    # tronc et côté lointain : kaki intermédiaire, et kaki le plus foncé pour le lointain (net, pas noir)
+    m_tronc = materiau("tronc", "kaki", 1, 0.5, bandes=(0, 1, 2))
+    m_bras_proche = materiau("bras_proche", "kaki", 3, 0.5, bandes=(2, 3, 3))            # bras proche : le plus clair
+    m_bras_lointain = materiau("bras_lointain", "kaki", 0, 0.6, bandes=(0, 0, 1))        # bras lointain : kaki foncé
+    m_jambe_proche = materiau("jambe_proche", "kaki", 2, 0.5, bandes=(1, 2, 2))          # jambe proche : kaki clair
+    m_jambe_lointaine = materiau("jambe_lointaine", "kaki", 0, 0.6, bandes=(0, 0, 1))    # jambe lointaine : kaki foncé
+    m_laiton = materiau("tete", "laiton", 2, 0.25, bandes=(1, 2, 3, 3))                  # casque laiton doré
+    m_verre = materiau("hublot_verre", "verre", 4, 0.08, bandes=(2, 3, 4, 5))            # hublot clair
+    m_cadre = materiau("cadre_hublot", "laiton", 0, 0.3, bandes=(0, 0, 1, 1))            # cadre : bronze sombre
+    m_gant_proche = materiau("gant_proche", "gant", 1, 0.6, bandes=(0, 1, 2))            # gants : bleu-violet très sombre
+    m_gant_lointain = materiau("gant_lointain", "gant", 1, 0.6, bandes=(0, 1, 2))
+    m_botte_proche = materiau("botte_proche", "gant", 1, 0.6, bandes=(0, 1, 2))          # bottes : idem
+    m_botte_lointaine = materiau("botte_lointaine", "gant", 1, 0.6, bandes=(0, 1, 2))
+    m_ceinture = materiau("ceinture", "gant", 1, 0.7, bandes=(0, 1, 2))                  # ceinture de lest
+    m_metal = materiau("lampe_tube", "metal", 3, 0.35)
+    m_tuyau = materiau("tuyau", "cuivre", 3, 0.5, bandes=(1, 2, 3, 4))                   # tuyau d'air : corde beige-brun
+    m_bout = materiau("bouteilles", "bouteille", 2, 0.4, bandes=(1, 2, 3, 4))            # bouteilles de dos
     m_palme = materiau("palmes", "bouteille", 3, 0.45, bandes=(1, 2, 3, 4))
     m_lampe = materiau("lampe", "lampe", 3, 0.3, emission=2.0)
 
     pieces = []
-    # casque en laiton : grosse sphère, hublot clair, cadre laiton face caméra, boulons, anneau de cou
+    # casque en laiton : grosse sphère, hublot clair, cadre bronze face caméra, boulons, anneau de cou
     pieces.append(sphere(P(1, 0, 18), 9 * PX, m_laiton))
     pieces.append(sphere(P(7, 0, 19), 5.5 * PX, m_verre))
-    cadre = anneau(P(7, -1, 19), 7 * PX, 1.5 * PX, materiau("cadre_hublot", "laiton", 0, 0.3, bandes=(0, 0, 1, 1)))   # anneau de bronze sombre
+    cadre = anneau(P(7, -1, 19), 7 * PX, 1.5 * PX, m_cadre)
     cadre.rotation_euler = (math.pi / 2, 0.0, 0.0)
     pieces.append(cadre)
     for b in ((1, -8, 26), (5, -8, 12), (-4, -7, 19)):
         pieces.append(sphere(P(*b), 1.2 * PX, m_laiton))
     pieces.append(anneau(P(0, 0, 9), 6 * PX, 1.5 * PX, m_laiton))
-    # tronc court (combinaison kaki), bassin, ceinture de lest
-    pieces.append(sphere(P(0, 0, 3), 7 * PX, m_kaki, (1.0, 0.85, 1.0)))
-    pieces.append(sphere(P(0, 0, -6), 6 * PX, m_kaki_ombre, (0.9, 0.8, 0.7)))
-    pieces.append(anneau(P(0, 0, -2), 7.5 * PX, 1.5 * PX, m_caout))
-    # bouteilles de dos (teinte à part) et tuyau d'air clair qui sort du casque
+    # tronc court, bassin, ceinture de lest
+    pieces.append(sphere(P(0, 0, 3), 7 * PX, m_tronc, (1.0, 0.85, 1.0)))
+    pieces.append(sphere(P(0, 0, -6), 6 * PX, m_tronc, (0.9, 0.8, 0.7)))
+    pieces.append(anneau(P(0, 0, -2), 7.5 * PX, 1.5 * PX, m_ceinture))
+    # bouteilles de dos et tuyau d'air (corde) : courbe à l'arrière
     for s in (-1.0, 1.0):
         pieces.append(tube(P(-6, s * 3, -4), P(-6, s * 3, 12), 2.5 * PX, m_bout))
-    for a_, b_ in ((P(-5, 0, 24), P(-11, 0, 20)), (P(-11, 0, 20), P(-13, 0, 10)), (P(-13, 0, 10), P(-10, 0, -2)), (P(-10, 0, -2), P(-8, 0, -6))):   # courbe à l'arrière, 3,6 px
+    for a_, b_ in ((P(-5, 0, 24), P(-11, 0, 20)), (P(-11, 0, 20), P(-13, 0, 10)), (P(-13, 0, 10), P(-10, 0, -2)), (P(-10, 0, -2), P(-8, 0, -6))):
         pieces.append(tube(a_, b_, 1.8 * PX, m_tuyau))
     # lampe de casque, jaune et allumée
     pieces.append(tube(P(9, 0, 25), P(12, 0, 25), 0.8 * PX, m_metal))
     pieces.append(sphere(P(13, 0, 25), 2 * PX, m_lampe))
-    # bras et jambes courts et épais (au moins 4 px de large), gros gants, grosses bottes, palmes
+    # bras et jambes courts et épais, gros gants, grosses bottes, palmes
     for c, s in (("g", -1.0), ("d", 1.0)):
-        ep = m_kaki_clair if c == "g" else m_kaki_ombre
+        m_bras = m_bras_proche if c == "g" else m_bras_lointain
+        m_jambe = m_jambe_proche if c == "g" else m_jambe_lointaine
+        m_gant = m_gant_proche if c == "g" else m_gant_lointain
+        m_botte = m_botte_proche if c == "g" else m_botte_lointaine
         a1, b1 = OS_REPOS_PX[f"bras_{c}_1"][0], OS_REPOS_PX[f"bras_{c}_1"][1]
         a2, b2 = OS_REPOS_PX[f"bras_{c}_2"][0], OS_REPOS_PX[f"bras_{c}_2"][1]
-        pieces.append(tube(P(*a1), P(*b1), 2.6 * PX, ep))
-        pieces.append(tube(P(*a2), P(*b2), 2.4 * PX, ep))
-        pieces.append(sphere(P(*b1), 2.6 * PX, ep))
-        pieces.append(sphere(P(*b2), 4.5 * PX, m_gant))                      # gant
+        pieces.append(tube(P(*a1), P(*b1), 2.6 * PX, m_bras))
+        pieces.append(tube(P(*a2), P(*b2), 2.4 * PX, m_bras))
+        pieces.append(sphere(P(*b1), 2.6 * PX, m_bras))
+        pieces.append(sphere(P(*b2), 4.5 * PX, m_gant))
         a1, b1 = OS_REPOS_PX[f"jambe_{c}_1"][0], OS_REPOS_PX[f"jambe_{c}_1"][1]
         a2, b2 = OS_REPOS_PX[f"jambe_{c}_2"][0], OS_REPOS_PX[f"jambe_{c}_2"][1]
-        pieces.append(tube(P(*a1), P(*b1), 3.2 * PX, ep))
-        pieces.append(tube(P(*a2), P(*b2), 3.0 * PX, ep))
-        pieces.append(sphere(P(*b1), 3.2 * PX, ep))
-        pieces.append(sphere(P(7 if c == "g" else -4, s * 3.5, -19), 4 * PX, m_gant, (1.4, 1.0, 0.75)))   # botte
-        pieces.append(sphere(P(10 if c == "g" else -1, s * 3.5, -21), 3 * PX, m_palme, (1.6, 0.9, 0.36)))  # palme
+        pieces.append(tube(P(*a1), P(*b1), 3.2 * PX, m_jambe))
+        pieces.append(tube(P(*a2), P(*b2), 3.0 * PX, m_jambe))
+        pieces.append(sphere(P(*b1), 3.2 * PX, m_jambe))
+        pieces.append(sphere(P(7 if c == "g" else -4, s * 3.5, -19), 4 * PX, m_botte, (1.4, 1.0, 0.75)))
+        pieces.append(sphere(P(10 if c == "g" else -1, s * 3.5, -21), 3 * PX, m_palme, (1.6, 0.9, 0.36)))
 
     bpy.ops.object.select_all(action="DESELECT")
     for p in pieces:
@@ -209,6 +235,66 @@ def construire_modele():
     corps = bpy.context.active_object
     corps.name = "Plongeur"
     return corps
+
+
+def lin_hex(h):
+    """Couleur hexadécimale sRGB -> linéaire (Blender), pour les matériaux plats de la carte d'identité."""
+    rgb = [int(h.lstrip("#")[k:k + 2], 16) / 255.0 for k in (0, 2, 4)]
+    return [c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4 for c in rgb]
+
+
+def materiau_plat(nom, h):
+    m = bpy.data.materials.new("id_" + nom)
+    m.use_nodes = True
+    arbre = m.node_tree
+    arbre.nodes.clear()
+    sortie = arbre.nodes.new("ShaderNodeOutputMaterial")
+    em = arbre.nodes.new("ShaderNodeEmission")
+    em.inputs["Color"].default_value = (*lin_hex(h), 1.0)
+    em.inputs["Strength"].default_value = 1.0
+    arbre.links.new(em.outputs["Emission"], sortie.inputs["Surface"])
+    return m
+
+
+def rendre_identite(scene, corps, frames):
+    """Carte d'identité : une image complète (couleurs plates), puis une image par groupe, seul sur la scène
+    (les autres faces sont supprimées de copies du modèle). Écrit aussi la palette d'identité pour la pixelisation."""
+    import bmesh
+    dossier = os.path.join(SORTIE, "identite")
+    os.makedirs(dossier, exist_ok=True)
+    couleurs = {}
+    noms_slots = []
+    for i, mat in enumerate(list(corps.data.materials)):
+        groupe, h = GROUPES_ID[mat.name]
+        couleurs[groupe] = h
+        noms_slots.append(groupe)
+        corps.data.materials[i] = materiau_plat(groupe, h)
+    with open(os.path.join(SORTIE, "identite_palette.json"), "w", encoding="utf-8") as fichier:
+        json.dump({"rampes": {g: [couleurs[g]] for g in GROUPES}}, fichier, indent=1)
+    for f in frames:
+        scene.frame_set(f)
+        scene.render.filepath = os.path.join(dossier, nom_image(f) + ".png")
+        bpy.ops.render.render(write_still=True)
+    corps.hide_render = True
+    for g in GROUPES:
+        copie = corps.copy()
+        copie.data = corps.data.copy()
+        scene.collection.objects.link(copie)
+        bm = bmesh.new()
+        bm.from_mesh(copie.data)
+        perdues = [fc for fc in bm.faces if noms_slots[fc.material_index] != g]
+        bmesh.ops.delete(bm, geom=perdues, context="FACES")
+        bm.to_mesh(copie.data)
+        bm.free()
+        copie.hide_render = False
+        dossier_g = os.path.join(SORTIE, "parties", g)
+        os.makedirs(dossier_g, exist_ok=True)
+        for f in frames:
+            scene.frame_set(f)
+            scene.render.filepath = os.path.join(dossier_g, nom_image(f) + ".png")
+            bpy.ops.render.render(write_still=True)
+        bpy.data.objects.remove(copie, do_unlink=True)
+    print("IDENTITE_OK", len(GROUPES), "groupes", len(frames), "images")
 
 
 def construire_squelette():
@@ -285,19 +371,25 @@ JAMBES_NAGE = [0.15, 0.45, 0.60, 0.35, 0.10, 0.20, 0.50, 0.60]   # amplitude du 
 
 
 def pose_nage(sq, f, t):
-    """Nage de profil : corps couche, tete vers +X ; bras et jambes suivent la table du cycle."""
-    s = math.sin
-    idx = int(round(t / (2 * math.pi / NAGE))) % NAGE
+    """Nage de profil, corps couché, tête vers +X. Sens des rotations des os : une rotation positive de l'os
+    fait pointer le membre vers l'arrière-haut (vérifié sur la carte d'identité).
+    Bras proche : balayage avant-bas, sous le casque (θ de 1,2 à 2,3 rad). Bras lointain : balayage vers le haut,
+    au-dessus du tronc (θ de -1,8 à -1,2 rad). Jambes en ciseaux : la proche remonte vers l'arrière, la lointaine
+    descend (θ = ∓(0,9 ± 0,25)), écart de plusieurs pixels, genou qui plie (M4, nage)."""
+    s, c = math.sin, math.cos
     poser(sq, f, "hanche", rot=(0.0, 1.30 + 0.06 * s(t), 0.0), loc=(0.0, 0.0, 0.0))
     poser(sq, f, "buste", rot=(0.0, 0.22 * s(t + math.pi / 2), 0.0))
     poser(sq, f, "tete", rot=(0.0, -0.06 * s(t), 0.0))
-    for c_, decal, signe in (("g", 0, 1.0), ("d", NAGE // 2, -1.0)):
-        k = (idx + decal) % NAGE
-        poser(sq, f, f"bras_{c_}_1", rot=(0.0, BRAS_NAGE[k], 0.0))
-        poser(sq, f, f"bras_{c_}_2", rot=(0.0, 0.3 + 0.2 * s(t + decal * math.pi / 4), 0.0))
-        poser(sq, f, f"jambe_{c_}_1", rot=(0.0, signe * JAMBES_NAGE[k], 0.0))
-        poser(sq, f, f"jambe_{c_}_2", rot=(0.0, signe * 0.8 * JAMBES_NAGE[k], 0.0))
-        poser(sq, f, f"pied_{c_}", rot=(0.0, signe * 0.8 * JAMBES_NAGE[k], 0.0))
+    for c_, signe in (("g", 1.0), ("d", -1.0)):
+        if c_ == "g":
+            theta_bras = 1.85 - 0.45 * c(t)   # bras proche : tendu vers l'avant (2,3 rad), balayé vers le bas (1,4 rad)
+        else:
+            theta_bras = 1.35 - 0.15 * c(t)   # bras lointain : en opposition, vers le bas
+        poser(sq, f, f"bras_{c_}_1", rot=(0.0, theta_bras, 0.0))
+        poser(sq, f, f"bras_{c_}_2", rot=(0.0, 0.3 if c_ == "g" else -0.2, 0.0))
+        poser(sq, f, f"jambe_{c_}_1", rot=(0.0, -signe * (0.65 + 0.25 * s(t)), 0.0))
+        poser(sq, f, f"jambe_{c_}_2", rot=(0.0, -signe * (0.35 + 0.25 * c(t)), 0.0))
+        poser(sq, f, f"pied_{c_}", rot=(0.0, -signe * 0.3 * s(t), 0.0))
 
 
 def pose_idle(sq, f, t):
@@ -521,6 +613,9 @@ def main():
     scene.frame_end = dernier
     bpy.ops.wm.save_as_mainfile(filepath=BLEND)
     os.makedirs(SORTIE, exist_ok=True)
+    if os.environ.get("PLONGEUR_IDENTITE"):
+        rendre_identite(scene, corps, [1, 2, 3, 4, 5, 6, 7, 8])
+        return
     for f in range(1, dernier + 1):
         if APERCU and f not in APERCU:
             continue
