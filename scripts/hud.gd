@@ -24,6 +24,14 @@ func _ready() -> void:
 	jauge.position = Vector2(40, 6)
 	jauge.size = Vector2(180, 12)
 	jauge.show_percentage = false
+	var fond_jauge := StyleBoxFlat.new()          # fond sombre à bordure claire : la jauge se lit sur l'eau
+	fond_jauge.bg_color = Color(0.03, 0.07, 0.12)
+	fond_jauge.border_color = Color(0.6, 0.9, 0.95)
+	fond_jauge.set_border_width_all(1)
+	jauge.add_theme_stylebox_override("background", fond_jauge)
+	var rempli_jauge := StyleBoxFlat.new()        # remplissage cyan : l'air se voit d'un coup d'œil
+	rempli_jauge.bg_color = Color(0.35, 0.85, 0.9)
+	jauge.add_theme_stylebox_override("fill", rempli_jauge)
 	racine.add_child(jauge)
 	var fond := ColorRect.new()                  # bandeau sombre sous les textes, lisible sur les tuiles
 	fond.position = Vector2(0, 296)
@@ -31,13 +39,16 @@ func _ready() -> void:
 	fond.color = Color(0.02, 0.06, 0.12, 0.7)
 	racine.add_child(fond)
 	message_texte = Label.new()
-	message_texte.position = Vector2(8, 24)
-	message_texte.size = Vector2(624, 20)
+	message_texte.position = Vector2(8, 22)
+	message_texte.size = Vector2(624, 36)
+	message_texte.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART   # le texte passe à la ligne au lieu d'être coupé
+	message_texte.add_theme_font_size_override("font_size", 12)
 	racine.add_child(message_texte)
 	barre_texte = Label.new()
 	barre_texte.position = Vector2(8, 300)
 	barre_texte.size = Vector2(624, 56)
 	barre_texte.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	barre_texte.add_theme_font_size_override("font_size", 12)
 	racine.add_child(barre_texte)
 	panneau_texte = Label.new()
 	panneau_texte.position = Vector2(120, 60)

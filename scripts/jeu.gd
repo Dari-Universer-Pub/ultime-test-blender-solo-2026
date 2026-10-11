@@ -56,6 +56,8 @@ func _ready() -> void:
 	construire_scene()
 	apparaitre_creatures()
 	lancer_ambiance()
+	if "--capturer" in OS.get_cmdline_user_args():
+		lancer_captures()
 	for depart in Donnees.depart["inventaire"]:
 		ajouter(depart["item"], int(depart["qte"]))
 	plongeur.global_position = POSITION_RADEAU
@@ -442,4 +444,40 @@ func lancer_ambiance() -> void:
 	lecteur.volume_db = -16.0
 	add_child(lecteur)
 	lecteur.play()
+
+
+# Captures de preuve (lancement avec --capturer) : profondeurs 0, 30, 60, 100 m en descente et en remontée,
+# lampe allumée ou éteinte ; puis les deux biomes. Chaque image est prise dans le viewport du jeu lui-même.
+const PROFONDEURS_CAPTURE := [0, 30, 60, 100]
+const POSITION_CAPTURE_X := 100.0
+const CAPTURES_BIOMES := {"radeau_surface": 60.0, "recif_peu_profond": 260.0}   # y en px (1 m = 16 px)
+
+
+func lancer_captures() -> void:
+	await get_tree().create_timer(1.5).timeout
+	for p in PROFONDEURS_CAPTURE:
+		for sens in ["descente", "remontee"]:
+			for lampe in ["lampe", "sans"]:
+				plongeur.global_position = Vector2(POSITION_CAPTURE_X, float(p) * Monde.TAILLE)
+				plongeur.velocity = Vector2(0.0, 60.0 if sens == "descente" else -60.0)
+				plongeur.lampe.enabled = lampe == "lampe"
+				await get_tree().create_timer(0.4).timeout
+				await RenderingServer.frame_post_draw
+				enregistrer_capture("shots/profondeur/%dm_%s_%s.png" % [p, sens, lampe])
+	for biome in CAPTURES_BIOMES:
+		plongeur.global_position = Vector2(POSITION_CAPTURE_X, CAPTURES_BIOMES[biome])
+		plongeur.velocity = Vector2.ZERO
+		plongeur.lampe.enabled = false
+		await get_tree().create_timer(0.6).timeout
+		await RenderingServer.frame_post_draw
+		enregistrer_capture("shots/biomes/%s.png" % biome)
+	print("CAPTURES_OK")
+	get_tree().quit()
+
+
+func enregistrer_capture(chemin_relatif: String) -> void:
+	var dossier := ProjectSettings.globalize_path("res://" + chemin_relatif.get_base_dir())
+	DirAccess.make_dir_recursive_absolute(dossier)
+	var image := get_viewport().get_texture().get_image()
+	image.save_png(ProjectSettings.globalize_path("res://" + chemin_relatif))
 
