@@ -31,6 +31,10 @@ RACINE = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 FACTEUR = 8                # rendu 512 px -> 64 px
 SEUIL_ALPHA = 0.5          # alpha moyen >= 0.5 : pixel opaque
 RAMPES_CONTOUR = ("contour_sombre", "contour_chaud")
+# rampes reservees a d'autres usages (biomes), exclues de la quantification du corps
+RAMPES_EXCLUES_CORPS = ("ocre", "bulle")
+# lumiere sous-marine : la rampe bulle sert au liseré clair du cote lumiere (pas dans le corps)
+RAMPE_LISERE = ("bulle", 2)
 CONTOUR_CHAUD = ("contour_chaud", 2)      # bord eclaire (haut-gauche)
 CONTOUR_SOMBRE = ("contour_sombre", 1)    # bord dans l'ombre (bas-droite)
 
@@ -56,8 +60,10 @@ def charger_palette(chemin):
     corps, contour = [], {}
     for nom, tons in rampes.items():
         rgb = [hex_rgb(t) for t in tons]
-        if nom in RAMPES_CONTOUR:
+        if nom in RAMPES_CONTOUR or nom == RAMPE_LISERE[0]:
             contour[nom] = rgb
+        elif nom in RAMPES_EXCLUES_CORPS:
+            continue
         else:
             corps.extend(rgb)
     tous = corps + [c for r in contour.values() for c in r]
@@ -110,14 +116,18 @@ def pixeliser(entree, sortie, palette_chemin, sans_contour):
                 bord |= voisin & ~opaque
                 cote += voisin * (dx + dy)
         bord &= ~opaque
-        ch_rgb = np.array(contour[CONTOUR_CHAUD[0]][CONTOUR_CHAUD[1]], dtype=np.uint8)
         sb_rgb = np.array(contour[CONTOUR_SOMBRE[0]][CONTOUR_SOMBRE[1]], dtype=np.uint8)
-        eclaire = bord & (cote > 0)
+        # contour selectif : un trait sombre seulement cote ombre ; cote lumiere, pas de contour
+        # (la matiere se prolonge en lumiere, le contour y est absent)
         ombre = bord & (cote <= 0)
-        out[eclaire, :3] = ch_rgb
         out[ombre, :3] = sb_rgb
-        out[bord, 3] = 255
-        opaque = opaque | bord
+        out[ombre, 3] = 255
+        # cote lumiere : liseré clair de lumiere sous-marine (rampe bulle, ton 3)
+        eclaire = bord & (cote > 0)
+        lisere_rgb = np.array(contour[RAMPE_LISERE[0]][RAMPE_LISERE[1]], dtype=np.uint8)
+        out[eclaire, :3] = lisere_rgb
+        out[eclaire, 3] = 255
+        opaque = opaque | ombre | eclaire
 
     # nettoyage : pixel opaque isole (aucun voisin opaque) retire
     haut, bas, gauche, droite = voisins4(opaque)

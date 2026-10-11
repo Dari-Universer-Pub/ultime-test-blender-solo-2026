@@ -199,6 +199,282 @@
         "reflet a 1 pixel sur les images nage",
         "palmes minces, a retravailler en iteration suivante"
       ]
+    },
+    {
+      "changement": "echelle : camera orthographique elargie de 3,2 a 3,8 unites : nage 44-45 px -> 37-38 px, idle 43-44 px -> 37 px (mesure tools/mesure/mesurer.py)",
+      "image": "boards/journal/plongeur_11.png",
+      "image_sha256": "174d14d631f974277ed6472c62484679278689b577edebe399e436a16da4ffa2",
+      "controle": {
+        "silhouette": "La silhouette ne change pas a x1 : la nage couchee et l'idle debout gardent leurs formes, seule la taille baisse.",
+        "couleurs": "Les couleurs restent celles de la palette : orange de la combinaison, turquoise des bouteilles, reflet jaune de la lampe.",
+        "cadrage": "Le plongeur occupe toujours sa case, avec de la marge a gauche et a droite ; la hauteur passe de 43 a 37 px en idle.",
+        "taille": "Mesure : nage de 37 a 38 px de long, idle de 37 px de haut sur les 14 images, dans la plage 32 a 40 px demandee.",
+        "details": "Les details deviennent plus petits (hublot, lampe, palmes) : il faudra les renforcer par le modele, pas par la taille.",
+        "coherence_base": "La chaine de pixelisation et la palette sont inchangees, seul le cadrage change.",
+        "pixels_parasites": "Aucun pixel isole nouveau : la reduction de taille ne cree pas de bords sales (controle du gate : moyenne d'isoles par image)."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "bras de nage qui passent par la verticale",
+        "nage en corps-planche sans ondulation",
+        "casque sans cadre ni boulons",
+        "amplitude de nage 0,385 (cible 0,45)"
+      ]
+    },
+    {
+      "changement": "bras de nage : rotation autour de l'axe X local (balayage dans le plan de profondeur) au lieu du plan de profil ; le bras ne passe plus par la verticale",
+      "image": "boards/journal/plongeur_12.png",
+      "image_sha256": "70acee49167f2c7ac6387079a26338632a1423d473c4b16fb56269c81b962acf",
+      "controle": {
+        "silhouette": "Le bras en antenne vertical (images 3 et 4 avant) a disparu : la silhouette de nage est horizontale a x1, sans pic au-dessus du casque.",
+        "couleurs": "Les couleurs ne changent pas ; les bras sont maintenant d'un orange plus sombre car ils se trouvent dans l'ombre du torse.",
+        "cadrage": "Le cadrage est identique, le plongeur reste dans la case de 64 px.",
+        "taille": "Longueur de nage toujours 37 a 38 px, dans la plage.",
+        "details": "Les bras sont trop caches derriere le torse : on les voit a peine, la brassee n'est pas encore lisible, il faut les decaler hors du corps.",
+        "coherence_base": "La rotation par os suit le repere du corps, comme les autres membres.",
+        "pixels_parasites": "Aucun pixel isole nouveau, le contour reste propre autour du torse et des bras."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "bras trop caches derriere le torse : brassee peu lisible",
+        "amplitude nage 0,334 (cible 0,45)",
+        "ondulation du corps absente",
+        "battement des jambes trop faible",
+        "casque sans cadre ni boulons"
+      ]
+    },
+    {
+      "changement": "nage : battement des jambes de +-0,30 a +-0,60 rad (cuisse) et ondulation du buste de +-0,10 a +-0,22 rad ; amplitude de nage 0,334 -> 0,532",
+      "image": "boards/journal/plongeur_13.png",
+      "image_sha256": "007e346490b6f859a1255ff3c51494ffdf6f06008044c7a84567e317e40a1d08",
+      "controle": {
+        "silhouette": "La nage n'est plus un bloc : les jambes s'ecartent selon l'image (1 a 8), le corps se courbe, la silhouette change d'une image a l'autre.",
+        "couleurs": "Les jambes apparaissent en brun-ocre : la quantification renvoie encore la combinaison vers les bruns, a corriger dans la pixelisation.",
+        "cadrage": "Le plongeur reste dans la case, longueur 37 a 39 px, dans la plage 32 a 40 px.",
+        "taille": "Mesure : 37 a 39 px de long sur les 8 images de nage, dans la plage demandee.",
+        "details": "Les pieds et les palmes sont plus visibles en bout de jambe, mais les bras restent presque caches derriere le torse.",
+        "coherence_base": "L'ondulation suit la hanche et le buste, dans le meme repere que le reste du corps.",
+        "pixels_parasites": "Aucun pixel isole nouveau : les mouvements ajoutes ne creent pas de bords sales."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "jambes en brun-ocre : quantification de la combinaison a corriger",
+        "bras caches derriere le torse",
+        "casque sans cadre ni boulons",
+        "idle : bras derriere le corps"
+      ]
+    },
+    {
+      "changement": "idle : bras tendus devant le corps (+0,45 rad au lieu de -0,60) ; respiration inchangee, amplitude idle 0,218 -> 0,223",
+      "image": "boards/journal/plongeur_14.png",
+      "image_sha256": "04692e57e0829323153bd7228f03e816a8a9aac32e0194f2aed3dd0f9815e0c1",
+      "controle": {
+        "silhouette": "Le bras est maintenant devant le torse en idle : la silhouette debout a une epaule et un bras lisibles, plus une colonne.",
+        "couleurs": "Le bras reprend l'orange de la combinaison, un ton plus sombre dans l'ombre du torse ; la couleur de base est gardee.",
+        "cadrage": "Le cadrage ne change pas : 37 px de haut, le plongeur reste dans sa case.",
+        "taille": "Hauteur idle 37 px, dans la plage 32 a 40 px.",
+        "details": "Le bras se distingue du corps, mais la main reste confondue avec la hanche : details de main a reprendre plus tard.",
+        "coherence_base": "Les bras suivent le meme repere que la nage, et la respiration (bascule et bob) est conservee.",
+        "pixels_parasites": "Aucun pixel isole nouveau : le bras ne cree pas de bord parasite sur le torse."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "main confondue avec la hanche en idle",
+        "casque sans cadre ni boulons",
+        "hublot : reflet trop court",
+        "tuyau d'air absent",
+        "sangles et bouteilles pas assez credibles",
+        "palmes minces"
+      ]
+    },
+    {
+      "changement": "cadre du hublot (anneau de rayon 0,215 a x=0,31) et quatre boulons de rayon 0,03 : tentative 1",
+      "image": "boards/journal/plongeur_15.png",
+      "image_sha256": "c0c54a00989df90ae89b9fea821a30a37ac7c7b5563780eda832a3bbc3e49619",
+      "controle": {
+        "silhouette": "Aucun changement visible a x1 : l'anneau est cache dans le volume du verre, la silhouette reste identique.",
+        "couleurs": "Pas de nouvelle couleur visible : le metal du cadre se confond avec le verre et le casque, rien ne ressort.",
+        "cadrage": "Le cadrage ne change pas, 37 px de haut en idle.",
+        "taille": "Hauteur inchangee : 37 px en idle, 37 a 39 px en nage.",
+        "details": "Le cadre et les boulons n'apparaissent pas a 37 px : ils sont a l'interieur du hublot, la tentative ne rend pas le casque plus lisible.",
+        "coherence_base": "Le metal reste dans la rampe metal de la palette, la coherence est gardee.",
+        "pixels_parasites": "Aucun pixel parasite ajoute, mais aussi aucun detail utile ajoute."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "cadre du hublot absent a 37 px",
+        "boulons invisibles",
+        "casque sans personnalite"
+      ]
+    },
+    {
+      "changement": "cadre du hublot place en avant du verre (centre x=0,36, rayon 0,25) et boulons de rayon 0,04 : tentative 2",
+      "image": "boards/journal/plongeur_16.png",
+      "image_sha256": "65e7f7b8b76ab491be36fac69c961c0dd758c6ee8fe86d5a48821c4792e2a931",
+      "controle": {
+        "silhouette": "La silhouette ne change pas a x1 : le bord du hublot s'eclaircit un peu, sans cadre lisible autour du verre.",
+        "couleurs": "Le metal du cadre se confond avec l'orange du casque : aucune couleur nouvelle ne ressort.",
+        "cadrage": "Le cadrage ne change pas : 37 a 39 px.",
+        "taille": "Hauteur idle 37 px, longueur de nage 37 a 39 px, dans la plage.",
+        "details": "Le cadre reste illisible : son tube fait 0,6 px a cette echelle, il est plus fin qu'un pixel et disparait a la reduction.",
+        "coherence_base": "Le metal reste dans la rampe metal de la palette.",
+        "pixels_parasites": "Aucun pixel parasite, mais le detail ajoute n'est pas visible."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "cadre du hublot illisible : tube trop fin (0,6 px)",
+        "boulons sous un pixel",
+        "casque sans personnalite"
+      ]
+    },
+    {
+      "changement": "cadre du hublot : tube de 0,06 (2 px) et boulons de 0,07 : tentative 3",
+      "image": "boards/journal/plongeur_17.png",
+      "image_sha256": "82c01b256206160f701363ed1cf69dfb0678a9ebd649af98973551ea67b5705f",
+      "controle": {
+        "silhouette": "La silhouette ne change pas a x1 : le cadre existe dans le rendu brut (barre gris-bleu a l'avant du hublot) mais disparait dans la reduction.",
+        "couleurs": "Le gris-bleu clair du metal se confond avec le verre cyan et le contour : aucun contraste ne ressort a 64 px.",
+        "cadrage": "Le cadrage ne change pas : 37 a 39 px.",
+        "taille": "Hauteur idle 37 px, longueur nage 37 a 39 px.",
+        "details": "Le cadre est present en 3D mais illisible en pixel : il faut un contraste de ton, pas plus d'epaisseur.",
+        "coherence_base": "Le metal reste dans la rampe metal de la palette.",
+        "pixels_parasites": "Aucun pixel parasite ajoute."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "cadre illisible en pixel : contraste de ton insuffisant",
+        "casque sans personnalite"
+      ]
+    },
+    {
+      "changement": "cadre du hublot en metal sombre (rampe metal, ton 1 #2e4a66) : tentative 4",
+      "image": "boards/journal/plongeur_18.png",
+      "image_sha256": "8dae2d3a93addada066150c62735db52bbe5356dd4c1c69f13f50d0fcd69fe57",
+      "controle": {
+        "silhouette": "Pas de changement visible a x1 : le cadre sombre n'apparait pas sur le bord du hublot.",
+        "couleurs": "Le metal sombre ne ressort pas : la quantification le ramene vers les tons proches du verre et du casque.",
+        "cadrage": "Le cadrage ne change pas : 37 a 39 px.",
+        "taille": "Hauteur idle 37 px, longueur nage 37 a 39 px.",
+        "details": "Le cadre ne se lit pas a 64 px : vu de profil il est une barre fine, son contraste reste insuffisant malgre le metal sombre.",
+        "coherence_base": "Le metal sombre reste dans la rampe metal de la palette.",
+        "pixels_parasites": "Aucun pixel parasite ajoute."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "cadre du hublot illisible en profil (4 hypotheses testees, toutes annulees)",
+        "casque sans personnalite"
+      ]
+    },
+    {
+      "changement": "ombrage en 4 tons par materiau (Principled -> Shader to RGB -> rampe en paliers de la palette, emission) : volumes en paliers au lieu d'un degrade",
+      "image": "boards/journal/plongeur_19.png",
+      "image_sha256": "e7fae267c529b6dcca39c0160bce8fba226286cd9c92f0a9da414c25b25c90db",
+      "controle": {
+        "silhouette": "La silhouette ne change pas a x1 : casque, torse, bras et jambes gardent leur contour.",
+        "couleurs": "L'orange de base est conserve sur le casque et le torse ; les ombres passent au rouge-prune et le haut des volumes au jaune chaud.",
+        "cadrage": "Le cadrage ne change pas : 37 a 39 px.",
+        "taille": "Hauteur idle 37 px, longueur nage 37 a 39 px, amplitude nage 0,532.",
+        "details": "Le casque et le torse montrent 3 a 4 paliers lisibles ; les bras et les jambes passent au rouge-prune sombre, a corriger par la quantification (ocre).",
+        "coherence_base": "Les paliers sont des tons exacts de art/palette.json, la coherence palette est gardee.",
+        "pixels_parasites": "Quelques pixels sombres isoles sur les bras : nettoyes par l'etape 5, le controle du gate les mesure."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "bras et jambes en rouge-prune trop sombre (quantification ocre)",
+        "contour trop epais et uniforme",
+        "casque sans cadre lisible",
+        "tuyau d'air absent",
+        "sangles absentes",
+        "palmes minces"
+      ]
+    },
+    {
+      "changement": "palette du corps sans la rampe ocre (les bruns de la quantification passent de 42 pixels a 0 sur 6271)",
+      "image": "boards/journal/plongeur_20.png",
+      "image_sha256": "7596a39c36aac6ad02de8eee4ca06e40ef68eb6ba267cd83b6c4500d7c8cb93f",
+      "controle": {
+        "silhouette": "La silhouette ne change pas a x1 : seules des teintes changent a l'interieur du corps.",
+        "couleurs": "Les bruns ocre disparaissent (42 pixels sur 6271 ramenes aux tons de la combinaison et du caoutchouc) ; la difference reste discrete a l'oeil.",
+        "cadrage": "Le cadrage ne change pas : 37 a 39 px.",
+        "taille": "Hauteur idle 37 px, longueur nage 37 a 39 px, amplitude nage 0,532.",
+        "details": "Les ombres des bras et des jambes sont un peu plus nettes, sans nouveau detail visible a 64 px.",
+        "coherence_base": "Aucun ton hors palette du corps : la rampe ocre reste reservee aux biomes.",
+        "pixels_parasites": "Le nombre de pixels isoles ne change pas, le nettoyage reste celui de l'etape 5."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "contour trop epais et uniforme",
+        "casque sans cadre lisible",
+        "tuyau d'air absent",
+        "sangles absentes",
+        "palmes minces"
+      ]
+    },
+    {
+      "changement": "contour selectif : trait sombre seulement cote ombre (bas-droite), aucun trait cote lumiere (haut-gauche)",
+      "image": "boards/journal/plongeur_21.png",
+      "image_sha256": "a433191f3b48c5688eda89d9a1708b5548c415cd2b2b7c872926a361bc0f8d8c",
+      "controle": {
+        "silhouette": "Le haut du casque et des bouteilles se decoupe moins bien sur l'eau claire, la silhouette est plus douce du cote lumiere.",
+        "couleurs": "Les traits sombres ne restent que du cote ombre, violet fonce ; le cote lumiere n'a plus de trait, la matiere se prolonge.",
+        "cadrage": "Le cadrage ne change pas, la taille passe de 37 a 39 px selon la pose : dans la plage.",
+        "taille": "Hauteur idle 37 px ; longueur nage 36 a 39 px, dans la plage 32 a 40 px.",
+        "details": "Le contour est plus fin et plus selectif, comme demande ; il faut compenser le cote lumiere par un liseré clair de lumiere sous-marine.",
+        "coherence_base": "Le trait sombre garde la rampe contour_sombre de la palette.",
+        "pixels_parasites": "Aucun pixel isole nouveau : le contour d'ombre reste d'un seul pixel."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "silhouette haute peu nette cote lumiere : besoin d'un liseré clair",
+        "casque sans cadre lisible",
+        "tuyau d'air absent",
+        "sangles absentes",
+        "palmes minces"
+      ]
+    },
+    {
+      "changement": "liseré clair du cote lumiere (rampe bulle ton 3 #c8f4e8) : lumiere sous-marine sur les bords haut-gauche",
+      "image": "boards/journal/plongeur_22.png",
+      "image_sha256": "b9d7a59da954d461c8b970662bd292e2ea506073e579c977c3d33b2ef41cb688",
+      "controle": {
+        "silhouette": "Le haut du casque, des bouteilles et des membres se detache sur l'eau : la silhouette est nette a x1 cote lumiere.",
+        "couleurs": "Le liseré est presque blanc-cyan (ton tres clair), le contraste avec le sombre du dos est fort, mais il est un peu trop lumineux.",
+        "cadrage": "Le cadrage ne change pas : 37 a 39 px.",
+        "taille": "Hauteur idle 37 px, longueur nage 37 a 39 px, dans la plage 32 a 40 px.",
+        "details": "Le liseré rend la lumiere d'ambiance lisible dans le sprite, mais il est regulier sur tout le bord clair : il faut le moduler.",
+        "coherence_base": "Le liseré vient de la rampe bulle de la palette, la lumiere reste dans la palette du projet.",
+        "pixels_parasites": "Aucun pixel isole : le liseré est relie au corps sur chaque bord."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "liseré trop clair et regulier : tester un ton plus cyan",
+        "casque sans cadre lisible",
+        "tuyau d'air absent",
+        "sangles absentes",
+        "palmes minces"
+      ]
+    },
+    {
+      "changement": "liseré clair du cote lumiere : ton plus cyan (rampe bulle ton 2 #8ad8d0) au lieu du ton presque blanc",
+      "image": "boards/journal/plongeur_23.png",
+      "image_sha256": "6b5f9df89670f4f18353c849c82c8795a1e45c17543f4d32abfd8d59b53d5d39",
+      "controle": {
+        "silhouette": "La silhouette reste nette a x1 sur le cote lumiere, le liseré reste continu sur le haut du casque et des bouteilles.",
+        "couleurs": "Le liseré cyan se fond mieux dans l'eau et ressemble a une lumiere sous-marine, sans l'effet blanc-neon de la tentative precedente.",
+        "cadrage": "Le cadrage ne change pas : 37 a 39 px.",
+        "taille": "Hauteur idle 37 px, longueur nage 37 a 39 px.",
+        "details": "Les bords lumieres se lisent mieux que sans liseré, sans agresser le regard : le liseré est moins uniforme, c'est le bon compromis.",
+        "coherence_base": "Le ton vient de la rampe bulle, il s'accorde aux bouteilles turquoise.",
+        "pixels_parasites": "Aucun pixel isole : le liseré est relie au corps."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "casque sans cadre ni boulons lisibles",
+        "tuyau d'air absent",
+        "sangles absentes",
+        "palmes minces",
+        "bras de nage peu lisibles (caches)"
+      ]
     }
   ]
 }

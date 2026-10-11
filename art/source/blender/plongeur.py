@@ -31,7 +31,7 @@ ECHANTILLONS = int(os.environ.get("PLONGEUR_ECHANTILLONS", "64"))
 # Apercu : PLONGEUR_IMAGES="1,9" ne rend que ces images (le rendu final rend toutes les images)
 APERCU = {int(v) for v in os.environ.get("PLONGEUR_IMAGES", "").split(",") if v.strip()}
 NAGE, IDLE = 8, 6
-LARGEUR_CADRE = 3.2     # unites de monde couvertes par la largeur de l'image (64 px : 0,05 par pixel)
+LARGEUR_CADRE = 3.8     # unites de monde couvertes par la largeur de l image (64 px) : plongeur 37 px
 SOUPLESSE = 0.14        # largeur de la transition des poids entre deux os (unites de monde)
 
 PAL = json.load(open(os.path.join(ROOT, "art", "palette.json"), encoding="utf-8"))["rampes"]
@@ -44,16 +44,46 @@ def couleur_lin(rampe, i):
     return [c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4 for c in srgb]
 
 
-def materiau(nom, rampe, i, rugosite=0.55, emission=0.0):
+def materiau(nom, rampe, i, rugosite=0.55, emission=0.0, bandes=(1, 2, 3, 4)):
+    """Materiau a 4 tons (ombrage en paliers) : Principled -> Shader to RGB -> rampe en paliers -> Emission.
+    Les paliers sont des tons de la palette (indices de la rampe), du plus sombre au plus clair."""
     m = bpy.data.materials.new(nom)
     m.use_nodes = True
-    b = m.node_tree.nodes["Principled BSDF"]
-    rgb = couleur_lin(rampe, i)
-    b.inputs["Base Color"].default_value = (rgb[0], rgb[1], rgb[2], 1.0)
-    b.inputs["Roughness"].default_value = rugosite
+    arbre = m.node_tree
+    arbre.nodes.clear()
+    sortie = arbre.nodes.new("ShaderNodeOutputMaterial")
     if emission:
-        b.inputs["Emission Color"].default_value = (rgb[0], rgb[1], rgb[2], 1.0)
-        b.inputs["Emission Strength"].default_value = emission
+        rgb = couleur_lin(rampe, i)
+        em = arbre.nodes.new("ShaderNodeEmission")
+        em.inputs["Color"].default_value = (rgb[0], rgb[1], rgb[2], 1.0)
+        em.inputs["Strength"].default_value = emission
+        arbre.links.new(em.outputs["Emission"], sortie.inputs["Surface"])
+        return m
+    rgb = couleur_lin(rampe, i)
+    principled = arbre.nodes.new("ShaderNodeBsdfPrincipled")
+    principled.inputs["Base Color"].default_value = (rgb[0], rgb[1], rgb[2], 1.0)
+    principled.inputs["Roughness"].default_value = rugosite
+    lumiere = arbre.nodes.new("ShaderNodeShaderToRGB")
+    paliers = arbre.nodes.new("ShaderNodeValToRGB")
+    paliers.color_ramp.interpolation = "CONSTANT"
+    el = paliers.color_ramp.elements
+    while len(el) > 1:
+        el.remove(el[-1])
+    positions = [0.0, 0.25, 0.5, 0.75][:len(bandes)]
+    for k, (pos, idx) in enumerate(zip(positions, bandes)):
+        c = couleur_lin(rampe, idx)
+        if k == 0:
+            el[0].position = pos
+            el[0].color = (c[0], c[1], c[2], 1.0)
+        else:
+            nouveau = el.new(pos)
+            nouveau.color = (c[0], c[1], c[2], 1.0)
+    emission_nd = arbre.nodes.new("ShaderNodeEmission")
+    emission_nd.inputs["Strength"].default_value = 1.0
+    arbre.links.new(principled.outputs["BSDF"], lumiere.inputs["Shader"])
+    arbre.links.new(lumiere.outputs["Color"], paliers.inputs["Fac"])
+    arbre.links.new(paliers.outputs["Color"], emission_nd.inputs["Color"])
+    arbre.links.new(emission_nd.outputs["Emission"], sortie.inputs["Surface"])
     return m
 
 
@@ -105,7 +135,7 @@ for _c, _s in (("g", -1.0), ("d", 1.0)):
 
 
 def construire_modele():
-    m_comb = materiau("combinaison", "combinaison", 4, 0.5)          # orange vif : il tranche sur l'eau
+    m_comb = materiau("combinaison", "combinaison", 4, 0.5, bandes=(1, 3, 4, 5))   # orange vif, ombre violette
     m_comb_ombre = materiau("combinaison_ombre", "combinaison", 2, 0.6)
     m_verre = materiau("hublot_verre", "verre", 3, 0.08)
     m_metal = materiau("metal", "metal", 3, 0.35)
@@ -212,18 +242,29 @@ def poser(sq, f, nom, rot=None, loc=None):
         pb.keyframe_insert("location", frame=f)
 
 
+def poser_profondeur(sq, f, nom, angle):
+    """Rotation autour de l'axe X local de l'os : le membre balaie le plan de profondeur (Y-Z du corps).
+    Dans une nage couchee, ce plan se projette a l'ecran sur l'axe du corps, donc le bras reste
+    horizontal et ne passe jamais par la verticale."""
+    pb = sq.pose.bones[nom]
+    pb.rotation_mode = "XYZ"
+    pb.rotation_euler = (angle, 0.0, 0.0)
+    pb.keyframe_insert("rotation_euler", frame=f)
+
+
 def pose_nage(sq, f, t):
     """Nage de profil : corps couche, tete vers +X, bras en brasse, jambes qui battent."""
     s, c = math.sin, math.cos
     poser(sq, f, "hanche", rot=(0.0, 1.30 + 0.06 * s(t), 0.0), loc=(0.0, 0.0, 0.0))
-    poser(sq, f, "buste", rot=(0.0, 0.10 * s(t + math.pi / 2), 0.0))
+    poser(sq, f, "buste", rot=(0.0, 0.22 * s(t + math.pi / 2), 0.0))
     poser(sq, f, "tete", rot=(0.0, -0.06 * s(t), 0.0))
     for c_, dephase in (("g", 0.0), ("d", math.pi)):
-        poser(sq, f, f"bras_{c_}_1", rot=(0.0, -2.6 + 0.9 * s(t + dephase), 0.0))
-        poser(sq, f, f"bras_{c_}_2", rot=(0.0, -0.5 + 0.5 * s(t + dephase + math.pi / 2), 0.0))
-        poser(sq, f, f"jambe_{c_}_1", rot=(0.0, 0.30 * s(t + dephase + math.pi), 0.0))
-        poser(sq, f, f"jambe_{c_}_2", rot=(0.0, 0.25 * s(t + dephase + math.pi / 2), 0.0))
-        poser(sq, f, f"pied_{c_}", rot=(0.0, 0.35 * s(t + dephase), 0.0))
+        phi = math.pi / 2 + (math.pi / 2) * s(t + dephase)     # 0 = bras le long du corps, pi = bras devant
+        poser_profondeur(sq, f, f"bras_{c_}_1", phi)
+        poser_profondeur(sq, f, f"bras_{c_}_2", 0.35 * s(t + dephase - 0.6))
+        poser(sq, f, f"jambe_{c_}_1", rot=(0.0, 0.60 * s(t + dephase + math.pi), 0.0))
+        poser(sq, f, f"jambe_{c_}_2", rot=(0.0, 0.50 * s(t + dephase + math.pi / 2), 0.0))
+        poser(sq, f, f"pied_{c_}", rot=(0.0, 0.50 * s(t + dephase), 0.0))
 
 
 def pose_idle(sq, f, t):
@@ -233,7 +274,7 @@ def pose_idle(sq, f, t):
     poser(sq, f, "buste", rot=(0.0, 0.04 * s(t + 0.8), 0.0))
     poser(sq, f, "tete", rot=(0.0, -0.03 * s(t), 0.0))
     for c_, dephase in (("g", 0.0), ("d", math.pi)):
-        poser(sq, f, f"bras_{c_}_1", rot=(0.0, -0.60 + 0.12 * s(t + dephase), 0.0))
+        poser(sq, f, f"bras_{c_}_1", rot=(0.0, 0.45 + 0.10 * s(t + dephase), 0.0))
         poser(sq, f, f"bras_{c_}_2", rot=(0.0, -0.10 + 0.10 * s(t + dephase + 0.6), 0.0))
         poser(sq, f, f"jambe_{c_}_1", rot=(0.0, 0.05 * s(t + dephase), 0.0))
         poser(sq, f, f"jambe_{c_}_2", rot=(0.0, 0.05 * s(t + dephase + 0.5), 0.0))

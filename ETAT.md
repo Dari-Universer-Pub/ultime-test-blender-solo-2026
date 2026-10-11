@@ -10,12 +10,20 @@ M0
 M0 terminé, en attente de validation visuelle (Julien regarde les planches avant la suite). Rien d'autre n'est lancé.
 
 ## Défauts visuels connus
-- Bras en idle : la pose part vers l'arrière, pas vers l'avant (journal, entrée 7).
-- Reflet du hublot : 2 pixels sur les images idle, 1 pixel sur les images nage (journal, entrée 9).
-- Palmes minces et pieds peu détaillés (journal, entrée 10).
-- Silhouette de nage : bras et palmes à retravailler, lisibilité à ×1 correcte mais perfectible.
+Etat après 23 entrées au journal (voir art/journal/plongeur.json) :
+- Casque : cadre et boulons NON lisibles à 37 px (4 tentatives annulées, entrées 15 à 18). Hypothèses testées : tube 0,6 px (trop fin) ; cadre en avant du verre ; tube 2 px ; métal sombre. Le cadre est présent dans le rendu brut (vu de profil, c'est une barre fine), il disparaît à la pixelisation.
+- Tuyau d'air : absent. Sangles : absentes. Bouteilles : une simple barre.
+- Palmes : minces. Pieds : peu lisibles.
+- Bras de nage : peu visibles, cachés derrière le torse.
+- Hublot : reflet 2 pixels (itération Aseprite à refaire sur le nouveau rendu).
 
 ## Blocage en cours
+Cadre du hublot illisible à 37 px : 4 hypothèses testées et annulées (entrées 15 à 18). Prochaine hypothèse : hublot plus clair (verre) avec bord sombre, plutôt qu'un cadre métallique.
+
+## Tailles et amplitudes (mesurées par tools/mesure/mesurer.py)
+- Avant M0 (entrée 1) : nage 44-45 px, idle 43-44 px, amplitude nage 0,402, idle 0,236.
+- Actuel : nage 36-39 px, idle 37 px, amplitude nage 0,532 (cible >= 0,45 : OK), idle 0,223 (cible >= 0,10 : OK).
+
 Clone neuf : `python tools/gate.py M0` donne ECHEC (Godot : « Failed loading resource ... .godot/imported/plongeur.png-....ctex »).
 - H1 (confirmée par le message « Make sure resources have been imported ») : `.godot/` est ignoré par git, donc le cache d'import n'existe pas dans un clone.
 - H2 (à tester) : le `.import` versionné ne sert à rien sans son cache. Test : les `.import` sont-ils nécessaires ?
