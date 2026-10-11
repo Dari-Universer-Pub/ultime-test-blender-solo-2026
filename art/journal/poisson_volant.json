@@ -113,6 +113,27 @@
         "marge droite serrée (environ 3 px) : à surveiller après pixelisation",
         "amplitude de nage faible : à travailler en animation"
       ]
+    },
+    {
+      "changement": "pixelisation du poisson au nouveau cadrage (1,8, décalée de -0,20) : nage 8, attaque 4, mort 6 dans une feuille à 3 étiquettes",
+      "image": "boards/poisson_volant_pixel_3.png",
+      "image_sha256": "2d195e5c2fdc87107e05e7aa5a82b3ba476234ca133649873c15c5785906eed7",
+      "controle": {
+        "silhouette": "Le poisson se lit avec son aile haute, sa queue orange et son œil ; l'attaque le fait plonger en diagonale et la mort le couche en bâton.",
+        "couleurs": "Corps argent-bleu, dessus crème, queue orange et aile cyan restent dans la palette.",
+        "cadrage": "Le poisson tient la case : queue entière, aile sous le haut de la case, marge réduite à droite (environ 2 px).",
+        "taille": "Mesure (tools/mesure/mesurer.py) : hauteur 31 à 37 px, largeur 58 à 60 px ; le maximum de 37 px atteint le minimum de 36 px.",
+        "details": "L'œil et la queue fourchue sont lisibles ; l'aile pâle occupe presque la moitié de la silhouette et écrase le corps.",
+        "coherence_base": "Même pipeline et même palette que les autres créatures du biome.",
+        "pixels_parasites": "Liseré clair marqué sur le contour de l'aile et du dos."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "aile trop grande et trop pâle : à réduire ou assombrir en finition",
+        "mort 4 à 6 : le poisson devient un bâton vertical, à rendre plus lisible",
+        "amplitude de nage faible (0,298) : animation à renforcer",
+        "liseré clair à atténuer"
+      ]
     }
   ]
 }
