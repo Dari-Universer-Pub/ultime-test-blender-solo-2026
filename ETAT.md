@@ -1,7 +1,7 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
 ## Phase courante
-M0 : troisième vague de corrections (casque, silhouette de métier, respiration, nage, retouches Aseprite) faite. Contrôle SUCCES dans le dépôt de travail ; contrôle dans le clone neuf : voir la section « Dernier contrôle ». EN ATTENTE de validation visuelle de Julien. Ne pas passer à M1.
+M1 (univers complet en données, aucun code de jeu). M0 VALIDÉE par Julien. Travail en cours : données `data/*.json` et `BIBLE.md`, puis `python tools/gate.py M1` (SUCCES requis).
 
 ## Dernier contrôle
 - Dépôt de travail (avant commit) : `python tools/gate.py M0` → SUCCES (gate.py SHA-256 55d6fbef1065ba7afcaf4f11922e1f57d6f56ed22d0fea591e7ed6b4a6c8beeb).
@@ -75,10 +75,17 @@ Aucun blocage ouvert. Hypothèses testées sur le liseré du hublot (annulées, 
 ## Export Windows (A TESTER EN M2)
 `Image.load_from_file` sur `res://` : fonctionne dans l'éditeur et depuis un clone neuf (vérifié en M0), mais HYPOTHÈSE NON VÉRIFIÉE dans l'export .exe : les PNG non importés ne sont pas forcément dans le PCK. Le journal Godot affiche déjà l'avertissement « this will not work on export ». À tester en M2, avec une solution qui marche aussi depuis un clone neuf.
 
+## Retouches obligatoires (à traiter AVANT la phase M3)
+Demandées par Julien à la validation de M0. Ne pas les traiter pendant M1 (phase séparée). Statut à tenir à jour.
+1. Hublot : cadre continu d'1 px (clair ou sombre, contrasté) autour de la vitre cyan. Deux tentatives de liseré ont échoué (journal 60, 64) : essayer une forme de hublot plus grande dans Blender. Statut : À FAIRE.
+2. Silhouette de métier : un tuyau d'air ou des valves lisibles à ×1 (2 px minimum, fort contraste), sans dépasser 40 px. Statut : À FAIRE (la lampe seule ne suffit pas).
+3. Relief du corps : plus de volumes lisibles sur le torse et les jambes (3 à 4 tons par matière). Statut : À FAIRE.
+4. Export : tester `Image.load_from_file` sur res:// dans un .exe exporté (en M2) ; trouver une solution qui marche aussi depuis un clone neuf. Statut : À FAIRE en M2.
+5. Planches `boards/plongeur_base.png` et `boards/plongeur_modifie.png` : périmées (première vague), à régénérer. Statut : À FAIRE.
+Acquis à garder à chaque retouche : taille 32-40 px sur chaque image, amplitude nage >= 0,45, amplitude idle >= 0,10, clone neuf SUCCES.
+
 ## Besoin de Julien
-- Valider M0 : `boards/plongeur_reference.png` (références + rendu final), `boards/iterations/` (it2, it3, it4), capture `shots/m0_plongeur_godot.png`.
-- Décider du hublot : le cadre clair ou sombre continu ne tient pas à x1 avec la forme actuelle. Accepter tel quel, ou demander une forme de hublot plus grosse dans Blender (autre passe).
-- Les références sont inspiration seulement.
+Rien pour M1 (M0 validée par Julien). Les retouches obligatoires ci-dessus restent à faire avant M3.
 
 ## Prochaine étape
-Attendre la validation de Julien. Après « M0 validé » : M1.
+M1 : écrire data/*.json et BIBLE.md, puis `python tools/gate.py M1`.
