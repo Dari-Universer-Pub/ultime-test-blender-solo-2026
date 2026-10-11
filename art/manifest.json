@@ -162,6 +162,98 @@
         "iterations": []
       },
       "note": "PROVISOIRE (M2) : rendu Blender pixelisé, remplacé par le décor final de M3."
+    },
+    {
+      "id": "poisson_volant",
+      "data_id": "poisson_volant",
+      "type": "vivant",
+      "filiere": "construit",
+      "script": "art/source/blender/poisson_volant.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/poisson_volant.blend",
+      "aseprite": "art/source/aseprite/poisson_volant.aseprite",
+      "sheet": "assets/sprites/poisson_volant/poisson_volant.png",
+      "data": "assets/sprites/poisson_volant/poisson_volant.json",
+      "planches": {
+        "base": "boards/poisson_volant_pixel_1.png",
+        "modifie": "boards/poisson_volant_pixel_5.png",
+        "iterations": [
+          "boards/iterations/poisson_volant_it2.png",
+          "boards/iterations/poisson_volant_it3.png",
+          "boards/iterations/poisson_volant_it4.png"
+        ]
+      }
+    },
+    {
+      "id": "carangue_rayee",
+      "data_id": "carangue_rayee",
+      "type": "vivant",
+      "filiere": "construit",
+      "script": "art/source/blender/carangue_rayee.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/carangue_rayee.blend",
+      "aseprite": "art/source/aseprite/carangue_rayee.aseprite",
+      "sheet": "assets/sprites/carangue_rayee/carangue_rayee.png",
+      "data": "assets/sprites/carangue_rayee/carangue_rayee.json",
+      "planches": {
+        "base": "boards/carangue_rayee_pixel_1.png",
+        "modifie": "boards/carangue_rayee_pixel_4.png",
+        "iterations": [
+          "boards/iterations/carangue_rayee_it2.png",
+          "boards/iterations/carangue_rayee_it3.png",
+          "boards/iterations/carangue_rayee_it4.png"
+        ]
+      }
+    },
+    {
+      "id": "oursin_bombe",
+      "data_id": "oursin_bombe",
+      "type": "vivant",
+      "filiere": "construit",
+      "script": "art/source/blender/oursin_bombe.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/oursin_bombe.blend",
+      "aseprite": "art/source/aseprite/oursin_bombe.aseprite",
+      "sheet": "assets/sprites/oursin_bombe/oursin_bombe.png",
+      "data": "assets/sprites/oursin_bombe/oursin_bombe.json",
+      "planches": {
+        "base": "boards/oursin_bombe_pixel_1.png",
+        "modifie": "boards/oursin_bombe_pixel_2.png",
+        "iterations": [
+          "boards/iterations/oursin_bombe_it2.png",
+          "boards/iterations/oursin_bombe_it3.png",
+          "boards/iterations/oursin_bombe_it4.png"
+        ]
+      }
+    },
+    {
+      "id": "tortue_de_corail",
+      "data_id": "tortue_de_corail",
+      "type": "vivant",
+      "filiere": "construit",
+      "script": "art/source/blender/tortue_de_corail.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/tortue_de_corail.blend",
+      "aseprite": "art/source/aseprite/tortue_de_corail.aseprite",
+      "sheet": "assets/sprites/tortue_de_corail/tortue_de_corail.png",
+      "data": "assets/sprites/tortue_de_corail/tortue_de_corail.json",
+      "planches": {
+        "base": "boards/journal/tortue_de_corail_1.png",
+        "modifie": "boards/tortue_de_corail_pixel_2.png",
+        "iterations": [
+          "boards/iterations/tortue_de_corail_it2.png",
+          "boards/iterations/tortue_de_corail_it3.png",
+          "boards/iterations/tortue_de_corail_it4.png"
+        ]
+      }
     }
   ]
 }
