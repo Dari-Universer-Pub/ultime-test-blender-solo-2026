@@ -1,0 +1,41 @@
+{
+  "entrees": [
+    {
+      "changement": "aile : disque pâle remplacé par une feuille (sphère aplatie) tournée vers l'arrière, bulle foncé 0-3 au lieu de 1-4",
+      "image": "boards/journal/poisson_volant_1.png",
+      "image_sha256": "d26dd0bd15d2b707d6afeac6d7c56d339f86f2247825622e2237ce6712ed3c05",
+      "controle": {
+        "silhouette": "La nageoire pectorale se lit comme une nageoire balayée vers l'arrière, et non plus comme un ballon collé au dos.",
+        "couleurs": "Le corps argent-bleu et la queue orange sont conservés ; la nageoire passe du blanc-cyan au cyan clair, plus visible sur eau sombre.",
+        "cadrage": "Le poisson reste dans la case : environ 41 px de large sur 64, le haut de la nageoire ne sort pas du cadre.",
+        "taille": "Pas encore mesurable : rendu Blender 512 px ; la hauteur sera contrôlée après pixelisation (cible 36 à 46 px).",
+        "details": "Queue fourchue et œil restent lisibles ; l'aileron dorsal sombre reste trop grand (corrigé à part).",
+        "coherence_base": "Toutes les couleurs viennent de art/palette.json (rampes metal, bulle, palmes, caoutchouc).",
+        "pixels_parasites": "Aucun pixel parasite visible à ce stade du rendu."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "aileron dorsal trop haut et pointu",
+        "corps lisse : une seule transition de ton sur le dessus"
+      ]
+    },
+    {
+      "changement": "aileron dorsal : cône de 0,38 de haut et 0,16 de rayon réduit à 0,24 de haut et 0,10 de rayon, déplacé vers l'avant",
+      "image": "boards/journal/poisson_volant_2.png",
+      "image_sha256": "958225456f296fbc30b0835791f3f3039ad918e06b4e9a839848df34677ed6e8",
+      "controle": {
+        "silhouette": "La nageoire pectorale domine désormais la silhouette ; l'aileron dorsal ne détourne plus le regard du corps.",
+        "couleurs": "Couleurs inchangées ; l'aileron reste sombre (caoutchouc), ce qui le sépare du corps argenté.",
+        "cadrage": "Le sommet de l'aileron baisse nettement sur la planche ; le poisson reste entièrement dans la case.",
+        "taille": "Pas encore mesurable en pixels ; la hauteur sera contrôlée après pixelisation.",
+        "details": "La queue fourchue, l'œil et la nageoire restent lisibles ; l'aileron ne cache plus l'aile.",
+        "coherence_base": "Même palette caoutchouc que la version précédente ; aucune couleur nouvelle.",
+        "pixels_parasites": "Aucun pixel parasite visible à ce stade du rendu."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "corps : une seule transition de ton sur le dessus, à traiter en finition Aseprite"
+      ]
+    }
+  ]
+}

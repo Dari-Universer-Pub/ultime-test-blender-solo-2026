@@ -302,12 +302,123 @@ def pose_idle(sq, f, t):
         poser(sq, f, f"pied_{c_}", rot=(0.0, 0.18 * s(t + dephase), 0.0))
 
 
+# Animations ajoutées en M3 : images 15 à 41, à la fin de la feuille (les images 1 à 14 ne bougent pas).
+ANIMATIONS_M3 = [("creusage", 6), ("attaque", 6), ("saut", 4), ("degats", 3), ("mort", 8)]
+
+
+def pose_creusage(sq, f, k, n):
+    """Creusage : corps couché comme en nage, le bras droit frappe devant par va-et-vient."""
+    t = 2 * math.pi * k / n
+    s = math.sin
+    poser(sq, f, "hanche", rot=(0.0, 1.30, 0.0), loc=(0.0, 0.0, 0.0))
+    poser(sq, f, "buste", rot=(0.0, 0.10 * s(t), 0.0))
+    poser(sq, f, "tete", rot=(0.0, -0.10, 0.0))
+    poser(sq, f, "bras_d_1", rot=(0.0, 0.9 + 0.5 * s(t), 0.0))
+    poser(sq, f, "bras_d_2", rot=(0.0, 0.5 + 0.35 * s(t + 0.4), 0.0))
+    poser(sq, f, "bras_g_1", rot=(0.0, 0.8, 0.0))
+    poser(sq, f, "bras_g_2", rot=(0.0, 0.3, 0.0))
+    for c_, sg in (("g", 1.0), ("d", -1.0)):
+        poser(sq, f, f"jambe_{c_}_1", rot=(0.0, sg * 0.35, 0.0))
+        poser(sq, f, f"jambe_{c_}_2", rot=(0.0, sg * 0.25, 0.0))
+        poser(sq, f, f"pied_{c_}", rot=(0.0, sg * 0.2, 0.0))
+
+
+ATTAQUE_BRAS = [-0.6, -0.2, 1.6, 2.0, 1.2, 0.5]   # préparation (bras en arrière), frappe, retour
+
+
+def pose_attaque(sq, f, k, n):
+    """Attaque : préparation (bras en arrière, avertissement), frappe vers l'avant, retour."""
+    poser(sq, f, "hanche", rot=(0.0, 1.30, 0.0), loc=(0.0, 0.0, 0.0))
+    poser(sq, f, "buste", rot=(0.0, 0.25 * math.sin(math.pi * k / n), 0.0))
+    poser(sq, f, "tete", rot=(0.0, -0.10, 0.0))
+    poser(sq, f, "bras_d_1", rot=(0.0, ATTAQUE_BRAS[k], 0.0))
+    poser(sq, f, "bras_d_2", rot=(0.0, 0.3 + 0.4 * (ATTAQUE_BRAS[k] / 2.0), 0.0))
+    poser(sq, f, "bras_g_1", rot=(0.0, 0.8, 0.0))
+    poser(sq, f, "bras_g_2", rot=(0.0, 0.3, 0.0))
+    for c_, sg in (("g", 1.0), ("d", -1.0)):
+        poser(sq, f, f"jambe_{c_}_1", rot=(0.0, sg * (0.9 if k in (2, 3) else 0.3), 0.0))
+        poser(sq, f, f"jambe_{c_}_2", rot=(0.0, sg * 0.4, 0.0))
+        poser(sq, f, f"pied_{c_}", rot=(0.0, sg * 0.2, 0.0))
+
+
+SAUT_POSES = [0.9, -1.2, 0.4, 1.0]   # accroupi, poussée bras levés, apogée bras ouverts, réception
+
+
+def pose_saut(sq, f, k, n):
+    """Saut hors de l'eau : accroupi, poussée, apogée (corps étiré), réception accroupie."""
+    hauteur = [-0.05, 0.12, 0.20, -0.08][k]
+    poser(sq, f, "hanche", rot=(0.0, 0.05 * [1, 0, -1, 0][k], 0.0), loc=(0.0, 0.0, hauteur))
+    poser(sq, f, "buste", rot=(0.0, 0.10 * [1, -1, 0, 1][k], 0.0))
+    poser(sq, f, "tete", rot=(0.0, -0.05, 0.0))
+    for c_ in ("g", "d"):
+        poser(sq, f, f"bras_{c_}_1", rot=(0.0, SAUT_POSES[k] if c_ == "g" else SAUT_POSES[k] * 0.8, 0.0))
+        poser(sq, f, f"bras_{c_}_2", rot=(0.0, 0.2, 0.0))
+    genou = [1.0, 0.5, 0.1, 0.9][k]
+    for c_, sg in (("g", 1.0), ("d", -1.0)):
+        poser(sq, f, f"jambe_{c_}_1", rot=(0.0, sg * genou, 0.0))
+        poser(sq, f, f"jambe_{c_}_2", rot=(0.0, sg * genou * 0.8, 0.0))
+        poser(sq, f, f"pied_{c_}", rot=(0.0, sg * 0.2, 0.0))
+
+
+def pose_degats(sq, f, k, n):
+    """Dégâts : recul du buste et des bras, puis retour à la nage."""
+    recul = [-0.45, -0.20, 0.0][k]
+    poser(sq, f, "hanche", rot=(0.0, 1.30 + recul * 0.3, 0.0), loc=(0.0, 0.0, 0.0))
+    poser(sq, f, "buste", rot=(0.0, recul, 0.0))
+    poser(sq, f, "tete", rot=(0.0, -recul * 0.6, 0.0))
+    for c_ in ("g", "d"):
+        poser(sq, f, f"bras_{c_}_1", rot=(0.0, 1.4 + recul, 0.0))
+        poser(sq, f, f"bras_{c_}_2", rot=(0.0, 0.5, 0.0))
+    for c_, sg in (("g", 1.0), ("d", -1.0)):
+        poser(sq, f, f"jambe_{c_}_1", rot=(0.0, sg * 0.4, 0.0))
+        poser(sq, f, f"jambe_{c_}_2", rot=(0.0, sg * 0.3, 0.0))
+        poser(sq, f, f"pied_{c_}", rot=(0.0, sg * 0.2, 0.0))
+
+
+def pose_mort(sq, f, k, n):
+    """Mort : le corps bascule et s'affaisse, les bras et les jambes pendent."""
+    u = k / (n - 1)
+    poser(sq, f, "hanche", rot=(0.0, 1.30 + 0.9 * u, 0.0), loc=(0.0, 0.0, -0.12 * u))
+    poser(sq, f, "buste", rot=(0.0, -0.20 + 0.5 * u, 0.0))
+    poser(sq, f, "tete", rot=(0.0, 0.2 * u, 0.0))
+    for c_ in ("g", "d"):
+        poser(sq, f, f"bras_{c_}_1", rot=(0.0, 1.5 - 0.7 * u, 0.0))
+        poser(sq, f, f"bras_{c_}_2", rot=(0.0, 0.4 - 0.2 * u, 0.0))
+    for c_, sg in (("g", 1.0), ("d", -1.0)):
+        poser(sq, f, f"jambe_{c_}_1", rot=(0.0, sg * 0.25, 0.0))
+        poser(sq, f, f"jambe_{c_}_2", rot=(0.0, sg * 0.15, 0.0))
+        poser(sq, f, f"pied_{c_}", rot=(0.0, sg * 0.1, 0.0))
+
+
+POSES_M3 = {"creusage": pose_creusage, "attaque": pose_attaque, "saut": pose_saut,
+            "degats": pose_degats, "mort": pose_mort}
+
+
 def animer(sq):
     for f in range(1, NAGE + 1):
         pose_nage(sq, f, 2 * math.pi * (f - 1) / NAGE)
     for f in range(NAGE + 1, NAGE + IDLE + 1):
         pose_idle(sq, f, 2 * math.pi * (f - NAGE - 1) / IDLE)
-    return NAGE + IDLE
+    f = NAGE + IDLE
+    for nom, n in ANIMATIONS_M3:
+        for k in range(n):
+            f += 1
+            POSES_M3[nom](sq, f, k, n)
+    return f
+
+
+def nom_image(f):
+    """Nom de fichier d'une image de la feuille : nage_01 .. idle_06 .. creusage_01 .. mort_08."""
+    if f <= NAGE:
+        return f"nage_{f:02d}"
+    if f <= NAGE + IDLE:
+        return f"idle_{f - NAGE:02d}"
+    f2 = f - NAGE - IDLE
+    for nom, n in ANIMATIONS_M3:
+        if f2 <= n:
+            return f"{nom}_{f2:02d}"
+        f2 -= n
+    return f"image_{f:02d}"
 
 
 def animer_bulle():
@@ -316,8 +427,8 @@ def animer_bulle():
     m = materiau("bulle_air", "bulle", 3, 0.2)
     b = sphere((-0.20, 0.0, 0.98), 0.08, m)
     b.name = "bulle_respiration"
-    for f in range(1, NAGE + IDLE + 1):
-        if f <= NAGE:
+    for f in range(1, NAGE + IDLE + 1 + sum(n for _, n in ANIMATIONS_M3)):
+        if f <= NAGE or f > NAGE + IDLE:
             b.scale = (0.001, 0.001, 0.001)
             b.location = (-0.20, 0.0, 0.98)
         else:
@@ -400,7 +511,7 @@ def main():
     for f in range(1, dernier + 1):
         if APERCU and f not in APERCU:
             continue
-        nom = f"nage_{f:02d}" if f <= NAGE else f"idle_{f - NAGE:02d}"
+        nom = nom_image(f)
         chemin = os.path.join(SORTIE, nom + ".png")
         if os.path.exists(chemin):
             os.remove(chemin)

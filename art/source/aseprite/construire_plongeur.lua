@@ -7,9 +7,15 @@ local sortie = app.params["sortie"]
 local feuille = app.params["feuille"]
 local donnees = app.params["donnees"]
 
+-- Ordre des images et étiquettes (M3) : nage 8, idle 6, puis creusage 6, attaque 6, saut 4, dégâts 3, mort 8.
+local ETIQUETTES = { {"nage", 8}, {"idle", 6}, {"creusage", 6}, {"attaque", 6}, {"saut", 4}, {"degats", 3}, {"mort", 8} }
 local ordre = {}
-for i = 1, 8 do table.insert(ordre, string.format("%s/nage_%02d.png", entree, i)) end
-for i = 1, 6 do table.insert(ordre, string.format("%s/idle_%02d.png", entree, i)) end
+local etiquettes = {}
+for _, e in ipairs(ETIQUETTES) do
+  local debut = #ordre + 1
+  for i = 1, e[2] do table.insert(ordre, string.format("%s/%s_%02d.png", entree, e[1], i)) end
+  table.insert(etiquettes, { nom = e[1], debut = debut, fin = #ordre })
+end
 
 local spr = Sprite(64, 64, ColorMode.RGB)
 local couche = spr.layers[1]
@@ -24,10 +30,10 @@ for i, chemin in ipairs(ordre) do
     spr:newCel(couche, i, im, Point(0, 0))
   end
 end
-local t1 = spr:newTag(1, 8)
-t1.name = "nage"
-local t2 = spr:newTag(9, 14)
-t2.name = "idle"
+for _, e in ipairs(etiquettes) do
+  local t = spr:newTag(e.debut, e.fin)
+  t.name = e.nom
+end
 spr:saveAs(sortie)
 
 app.command.ExportSpriteSheet{ ui = false, type = SpriteSheetType.HORIZONTAL,

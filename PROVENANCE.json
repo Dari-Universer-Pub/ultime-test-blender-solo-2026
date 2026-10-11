@@ -1,1 +1,94 @@
-{"sources": []}
+{
+  "sources": [
+    {
+      "id": "son_bulle",
+      "type": "son",
+      "url": "https://freesound.org/people/KolbyRFX/sounds/852478/",
+      "licence": "CC0",
+      "auteur": "KolbyRFX",
+      "fichier": "assets/sources/son_bulle/underwater_bubble_flow_loop_KolbyRFX_852478_preview.mp3",
+      "sha256": "2042d28150a528774278343ca749cc10a9441216e036031dbd6c95e17b71d7e4",
+      "page_licence": "assets/sources/son_bulle/licence.html"
+    },
+    {
+      "id": "son_creusage",
+      "type": "son",
+      "url": "https://freesound.org/people/NikoletB/sounds/846434/",
+      "licence": "CC0",
+      "auteur": "NikoletB",
+      "fichier": "assets/sources/son_creusage/rock_scrape_deep_NikoletB_846434_preview.mp3",
+      "sha256": "571af210c6a3468873c46029e5be70a2c8f0c759e059acd98eaa73aa39610a88",
+      "page_licence": "assets/sources/son_creusage/licence.html"
+    },
+    {
+      "id": "son_impact",
+      "type": "son",
+      "url": "https://opengameart.org/content/mining-pick",
+      "licence": "CC-BY-3.0",
+      "auteur": "spookymodem",
+      "fichier": "assets/sources/son_impact/pick_hitting_rock_spookymodem.wav",
+      "sha256": "cd3c7f1944c1922ed56798aa93c9b227991db5bf9ea80bd4ecc2ce7f8987276c",
+      "page_licence": "assets/sources/son_impact/licence.html"
+    },
+    {
+      "id": "son_eclaboussure",
+      "type": "son",
+      "url": "https://opengameart.org/content/ocean-splash",
+      "licence": "CC0",
+      "auteur": "Thimras",
+      "fichier": "assets/sources/son_eclaboussure/ocean_splash_Thimras_cannon_miss.ogg",
+      "sha256": "d91a1effc2964673033fa9f8d22093029fa0b500aea0bafb86724738c0e89fe3",
+      "page_licence": "assets/sources/son_eclaboussure/licence.html"
+    },
+    {
+      "id": "son_coup_creature",
+      "type": "son",
+      "url": "https://freesound.org/people/insanity54/sounds/276600/",
+      "licence": "CC0",
+      "auteur": "insanity54",
+      "fichier": "assets/sources/son_coup_creature/body_hit_insanity54_276600_preview.mp3",
+      "sha256": "81f5997c3dc672d5a5dd259044ba16f8012da0fc402b6903ef42dc27bcaa36fb",
+      "page_licence": "assets/sources/son_coup_creature/licence.html"
+    },
+    {
+      "id": "son_degats_plongeur",
+      "type": "son",
+      "url": "https://freesound.org/people/kentspublicdomain/sounds/344682/",
+      "licence": "CC0",
+      "auteur": "kentspublicdomain",
+      "fichier": "assets/sources/son_degats_plongeur/male_groan_pain1_kentspublicdomain_344682_preview.mp3",
+      "sha256": "532214d61d6c5b5f3862b51f77e5219773bf1c7751321422f384e4b1f523a82b",
+      "page_licence": "assets/sources/son_degats_plongeur/licence.html"
+    },
+    {
+      "id": "son_mort",
+      "type": "son",
+      "url": "https://freesound.org/people/leonelmail/sounds/504626/",
+      "licence": "CC0",
+      "auteur": "leonelmail",
+      "fichier": "assets/sources/son_mort/body_fall_dirt_leonelmail_504626_preview.mp3",
+      "sha256": "336a44d95279173764073a9b2d4d7e12f4167cfb0c1ad5c58e316895e129c6bb",
+      "page_licence": "assets/sources/son_mort/licence.html"
+    },
+    {
+      "id": "son_bois_radeau",
+      "type": "son",
+      "url": "https://freesound.org/people/EugeneEverett/sounds/596484/",
+      "licence": "CC0",
+      "auteur": "EugeneEverett",
+      "fichier": "assets/sources/son_bois_radeau/planks_dropped_EugeneEverett_596484_preview.mp3",
+      "sha256": "1c412efe2b02aaaf0971fec2465f288e286f813febad315a0930905fd1622b69",
+      "page_licence": "assets/sources/son_bois_radeau/licence.html"
+    },
+    {
+      "id": "musique_ambiance",
+      "type": "musique",
+      "url": "https://opengameart.org/content/underwater-ambient-pad",
+      "licence": "CC0",
+      "auteur": "isaiah658",
+      "fichier": "assets/sources/musique_ambiance/underwater_ambient_pad_isaiah658.wav",
+      "sha256": "803fc7f2640e62bd2e433af2f7014bc6ba75f4c1991cdf16dce40b907a3c2f13",
+      "page_licence": "assets/sources/musique_ambiance/licence.html"
+    }
+  ]
+}

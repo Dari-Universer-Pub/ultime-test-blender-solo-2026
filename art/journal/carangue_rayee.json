@@ -1,0 +1,79 @@
+{
+  "entrees": [
+    {
+      "changement": "corps : ellipsoïde ramené de 0,84 à 0,64 en hauteur (largeur 1,15) pour l'aplatir",
+      "image": "boards/journal/carangue_rayee_1.png",
+      "image_sha256": "3a5bb968f5af0e7a31d4c1aa36fb640fd1e19091f5a0de26e60a0dacf841e126",
+      "controle": {
+        "silhouette": "Le corps perd environ un quart de sa hauteur : il s'éloigne de la fiche qui demande un corps haut et comprimé, sans gain de lisibilité.",
+        "couleurs": "Couleurs inchangées (argent-bleu, bandes sombres, queue jaune).",
+        "cadrage": "Le poisson reste dans la case ; le cadrage ne change pas.",
+        "taille": "Pas encore mesurable en pixels ; hauteur à contrôler après pixelisation (cible 36 à 46 px).",
+        "details": "Les trois bandes et la queue restent lisibles, mais le corps plus bas réduit la place de la dorsale.",
+        "coherence_base": "La fiche (corps haut et comprimé) demande l'inverse de ce changement.",
+        "pixels_parasites": "Aucun pixel parasite visible à ce stade du rendu."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "bandes presque noires et trop épaisses en bas",
+        "dorsale jaune en forme de disque plat, à redessiner"
+      ]
+    },
+    {
+      "changement": "bandes : matière caoutchouc des tons 0-3 (presque noir) remplacée par les tons 1-4 (violet-gris)",
+      "image": "boards/journal/carangue_rayee_2.png",
+      "image_sha256": "7a6756007074ad47b0d4a71bfe17a727280e5b65df19748b85c9aa1c9d0123b0",
+      "controle": {
+        "silhouette": "Les trois bandes restent à la même place ; la silhouette ne change pas.",
+        "couleurs": "Les bandes passent du quasi-noir à un violet-gris de la rampe caoutchouc : elles restent sombres sur le corps argenté.",
+        "cadrage": "Le cadrage ne change pas : le poisson reste dans la case.",
+        "taille": "Pas encore mesurable en pixels ; à contrôler après pixelisation.",
+        "details": "Les bandes se détachent mieux du corps ; la lecture des trois lignes verticales est plus nette à l'œil.",
+        "coherence_base": "La rampe caoutchouc est déjà utilisée sur le poisson volant : même matière, cohérence entre créatures du biome.",
+        "pixels_parasites": "Aucun pixel parasite visible à ce stade du rendu."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "bandes encore trop longues et fines en bas",
+        "dorsale jaune en disque plat, à redessiner"
+      ]
+    },
+    {
+      "changement": "bandes : hauteur ramenée de 0,80 à 0,62 pour qu'elles restent à l'intérieur du corps",
+      "image": "boards/journal/carangue_rayee_3.png",
+      "image_sha256": "c4caa4a1cf0b6477e9f627cbd380f736403d02c2b3308ffa24781fd40fb94c5a",
+      "controle": {
+        "silhouette": "Les bandes ne débordent plus du dos ni du ventre : le corps garde son contour net.",
+        "couleurs": "Couleurs inchangées (violet-gris sur argent-bleu).",
+        "cadrage": "Le cadrage ne change pas.",
+        "taille": "Pas encore mesurable en pixels ; à contrôler après pixelisation.",
+        "details": "Les trois bandes se lisent comme des rayures et non plus comme des traits noirs.",
+        "coherence_base": "Même rampe caoutchouc que la version précédente.",
+        "pixels_parasites": "Aucun pixel parasite visible à ce stade du rendu."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "dorsale jaune en disque plat, à redessiner"
+      ]
+    },
+    {
+      "changement": "nageoire dorsale : disque jaune de 0,62 x 0,42 remplacé par une nageoire longue et basse (0,85 x 0,24) posée sur le dos",
+      "image": "boards/journal/carangue_rayee_4.png",
+      "image_sha256": "7c763169849237791077d376cea03e588bec72378b51cf1da1bc6201d642bd46",
+      "controle": {
+        "silhouette": "La dorsale est longue et basse, comme une nageoire de carangue ; elle ne forme plus une bosse ronde au-dessus du corps.",
+        "couleurs": "Le jaune de la rampe lampe reste celui des nageoires, en accord avec la queue.",
+        "cadrage": "La dorsale dépasse un peu du dos sans sortir de la case.",
+        "taille": "Pas encore mesurable en pixels ; à contrôler après pixelisation.",
+        "details": "La dorsale se détache du corps par sa forme effilée ; elle reste lisible à l'œil.",
+        "coherence_base": "Même rampe lampe que la queue : les nageoires du poisson forment un ensemble.",
+        "pixels_parasites": "Aucun pixel parasite visible à ce stade du rendu."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "queue jaune encore trop large par rapport au corps",
+        "œil invisible sur la planche"
+      ]
+    }
+  ]
+}
