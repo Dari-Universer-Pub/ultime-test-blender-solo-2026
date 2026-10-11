@@ -1,1 +1,27 @@
-{"sprites": []}
+{
+  "sprites": [
+    {
+      "id": "plongeur",
+      "data_id": "plongeur",
+      "type": "vivant",
+      "filiere": "construit",
+      "script": "art/source/blender/plongeur.py",
+      "biome": null,
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/plongeur.blend",
+      "aseprite": "art/source/aseprite/plongeur.aseprite",
+      "sheet": "assets/sprites/plongeur/plongeur.png",
+      "data": "assets/sprites/plongeur/plongeur.json",
+      "planches": {
+        "base": "boards/plongeur_base.png",
+        "modifie": "boards/plongeur_modifie.png",
+        "iterations": [
+          "boards/iterations/plongeur_it1.png",
+          "boards/iterations/plongeur_it2.png",
+          "boards/iterations/plongeur_it3.png"
+        ]
+      }
+    }
+  ]
+}
