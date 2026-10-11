@@ -10,19 +10,19 @@
       "nom": "plonger",
       "ok": true,
       "capture": "shots/robot/plonger.png",
-      "detail": "le plongeur est entré dans l'eau en [105.8, 13.6]"
+      "detail": "le plongeur est entré dans l'eau en [109.0, 13.6]"
     },
     {
       "nom": "nager",
       "ok": true,
       "capture": "shots/robot/nager.png",
-      "detail": "déplacement de 108 px dans l'eau"
+      "detail": "déplacement de 109 px dans l'eau"
     },
     {
       "nom": "oxygene",
       "ok": true,
       "capture": "shots/robot/oxygene.png",
-      "detail": "air : 35.6 -> 30.4 sur 40.0"
+      "detail": "air : 35.6 -> 30.3 sur 40.0"
     },
     {
       "nom": "lampe",
@@ -58,7 +58,7 @@
       "nom": "sortir_eau_radeau",
       "ok": true,
       "capture": "shots/robot/sortir_eau_radeau.png",
-      "detail": "le plongeur est monté sur le radeau (position [4.5, -24.0])"
+      "detail": "le plongeur est monté sur le radeau (position [-4.9, -24.0])"
     },
     {
       "nom": "sauvegarder",
@@ -70,7 +70,7 @@
       "nom": "recharger",
       "ok": true,
       "capture": "shots/robot/recharger.png",
-      "detail": "après déplacement [61.6, -4.7], après F9 [4.5, -24.0], sauvegardée [4.5, -24.0]"
+      "detail": "après déplacement [48.2, -14.9], après F9 [-4.9, -24.0], sauvegardée [-4.9, -24.0]"
     }
   ]
 }

@@ -85,13 +85,14 @@ Aucun blocage ouvert. Hypothèses testées sur le liseré du hublot (annulées, 
 `Image.load_from_file` sur `res://` : fonctionne dans l'éditeur et depuis un clone neuf (vérifié en M0), mais HYPOTHÈSE NON VÉRIFIÉE dans l'export .exe : les PNG non importés ne sont pas forcément dans le PCK. Le journal Godot affiche déjà l'avertissement « this will not work on export ». À tester en M2, avec une solution qui marche aussi depuis un clone neuf.
 
 ## Retouches obligatoires (à traiter AVANT la phase M3)
-Demandées par Julien à la validation de M0. Ne pas les traiter pendant M1 (phase séparée). Statut à tenir à jour.
-1. Hublot : cadre continu d'1 px (clair ou sombre, contrasté) autour de la vitre cyan. Deux tentatives de liseré ont échoué (journal 60, 64) : essayer une forme de hublot plus grande dans Blender. Statut : À FAIRE.
-2. Silhouette de métier : un tuyau d'air ou des valves lisibles à ×1 (2 px minimum, fort contraste), sans dépasser 40 px. Statut : À FAIRE (la lampe seule ne suffit pas).
-3. Relief du corps : plus de volumes lisibles sur le torse et les jambes (3 à 4 tons par matière). Statut : À FAIRE.
-4. Export : tester le chargement dans un export. Statut : FAIT en M2. Constat : `Image.load_from_file` ne marche PAS dans l'export (les PNG bruts ne sont pas exportés). Solution : images importées par Godot et chargées avec `load()`, cache d'import (.import et .godot/imported/) versionné pour la clone neuve, données JSON lues par FileAccess. Test : tests/export/verifier_pck.sh. Le .exe lui-même reste à lancer sur Windows.
-5. Planches `boards/plongeur_base.png` et `boards/plongeur_modifie.png` : périmées (première vague), à régénérer. Statut : À FAIRE.
-Acquis à garder à chaque retouche : taille 32-40 px sur chaque image, amplitude nage >= 0,45, amplitude idle >= 0,10, clone neuf SUCCES.
+Demandées par Julien à la validation de M0. Statut à tenir à jour (journal : art/journal/plongeur.json, entrées 65 à 78).
+1. Hublot : FAIT EN PARTIE. Vitre agrandie (rayon 0,19 -> 0,24 ; entrée 65) et anneau métallique continu, 2 px, posé devant le casque (entrées 66 et 67). Le cadre est continu sur tout le pourtour. Limite : le bleu acier se perd un peu sur eau sombre (à juger par Julien). Les deux tentatives de liseré Aseprite restent annulées (entrées 60, 64) : le cadre est maintenant géométrique, dans Blender.
+2. Silhouette de métier : FAIT (entrée 73, gardée). Tuyau d'air crème de 2 à 3 px, du bas du casque à la taille, devant le torse. Quatre tentatives annulées avant (entrées 68 à 72) : anse au-dessus du casque, trajet caché par les bouteilles en nage, manomètre caché par le bras. Possiblement lu comme une bretelle : à confirmer par Julien. La lampe (entrée 55) reste en détail complémentaire.
+3. Relief du corps : PARTIEL. Combinaison à quatre tons (2 à 5) et seuils de lumière répartis (entrées 74 à 75). Casque et bulle gagnent du volume ; torse et jambes restent faiblement marqués. À reprendre si Julien le juge insuffisant.
+4. Export : FAIT en M2. Constat : `Image.load_from_file` ne marche PAS dans l'export (les PNG bruts ne sont pas exportés). Solution : images importées par Godot et chargées avec `load()`, cache d'import versionné pour la clone neuve, données JSON lues par FileAccess. Test : tests/export/verifier_pck.sh (SUCCES). Le .exe Windows lui-même reste à lancer sur Windows.
+5. Planches périmées : FAIT. `boards/plongeur_base.png` = pixelisation brute du rendu Blender (avant retouches Aseprite) ; `boards/plongeur_modifie.png` = version actuelle (feuille finale). La toute première planche de M0 n'existe plus : la base est donc la pixelisation brute actuelle.
+Retouches Aseprite rejouées sur les images finales : itération 2 (vitre cyan, entrée 76), 3 (reflet, entrée 77), 4 (ombre sous le casque, entrée 78). Itération 1 remplacée par le cadre dans Blender.
+Acquis vérifiés après ces retouches : nage 37 à 39 px, idle 37 à 39 px ; amplitude nage 0,575 (>= 0,45) ; amplitude idle 0,371 (>= 0,10) ; contrôle M2 SUCCES dans le dépôt (robot 12/12).
 
 ## Besoin de Julien
 Rien pour M1 (M0 validée par Julien). Les retouches obligatoires ci-dessus restent à faire avant M3.

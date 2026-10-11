@@ -329,6 +329,9 @@ def scenario(rapport):
 
     def sauvegarder():
         global POSITION_SAUVEGARDEE
+        # on ne sauvegarde qu'une fois posé sur le radeau (pas en plein saut)
+        attendre(lambda e: e["sur_radeau"] is True and abs(e["position"][1] + 24) < 3, 4.0)
+        time.sleep(0.4)
         e = etat()
         POSITION_SAUVEGARDEE = e["position"]
         CLAVIER.frapper("F5", 0.1)

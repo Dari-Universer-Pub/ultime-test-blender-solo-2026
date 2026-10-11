@@ -69,7 +69,7 @@ def materiau(nom, rampe, i, rugosite=0.55, emission=0.0, bandes=(1, 2, 3, 4)):
     el = paliers.color_ramp.elements
     while len(el) > 1:
         el.remove(el[-1])
-    positions = ([0.0, 0.18, 0.42] if len(bandes) == 3 else [0.0, 0.10, 0.22, 0.38])[:len(bandes)]   # seuils : 3 tons remontes pour que le clair ne domine pas
+    positions = ([0.0, 0.18, 0.42] if len(bandes) == 3 else [0.0, 0.16, 0.34, 0.56])[:len(bandes)]   # seuils : 4 tons répartis sur la lumière (retouche 3)
     for k, (pos, idx) in enumerate(zip(positions, bandes)):
         c = couleur_lin(rampe, idx)
         if k == 0:
@@ -135,7 +135,7 @@ for _c, _s in (("g", -1.0), ("d", 1.0)):
 
 
 def construire_modele():
-    m_comb = materiau("combinaison", "combinaison", 4, 0.5, bandes=(3, 4, 5))   # trois tons oranges : ombre, base, lumiere
+    m_comb = materiau("combinaison", "combinaison", 4, 0.5, bandes=(2, 3, 4, 5))   # quatre tons (retouche 3) : ombre, demi-ombre, base, lumiere
     m_comb_ombre = materiau("combinaison_ombre", "combinaison", 2, 0.6, bandes=(2, 3, 4))   # cote lointain : trois tons, plus sombres
     m_verre = materiau("hublot_verre", "verre", 3, 0.08, bandes=(2, 3, 4, 5))   # verre clair : le hublot se lit a 37 px
     m_metal = materiau("metal", "metal", 3, 0.35)
@@ -147,8 +147,13 @@ def construire_modele():
     pieces = []
     # casque, hublot cercle, bague de col
     pieces.append(sphere((0.02, 0.0, 0.62), 0.30, m_comb))
-    pieces.append(sphere((0.36, 0.0, 0.66), 0.19, m_verre))   # bulle de verre en saillie : depasse le casque de ~4 px (profil), haute de ~6 px
+    pieces.append(sphere((0.36, 0.0, 0.66), 0.24, m_verre))   # hublot plus grand (retouche 1) : vitre de ~6 px de large
     pieces.append(anneau((0.02, 0.0, 0.30), 0.25, 0.045, m_metal))
+    # cadre continu autour de la vitre (retouche 1) : anneau métallique dans le plan de profil, rayon 0,06 = 2 px
+    m_cadre = materiau("cadre_hublot", "metal", 1, 0.3)
+    cadre = anneau((0.36, -0.2, 0.66), 0.265, 0.06, m_cadre)   # devant le casque : visible sur tout le tour de la vitre
+    cadre.rotation_euler = (math.pi / 2, 0.0, 0.0)
+    pieces.append(cadre)
     # torse
     pieces.append(sphere((0.0, 0.0, 0.02), 0.30, m_comb, (0.75, 0.62, 0.95)))
     # bouteilles de dos
@@ -156,6 +161,11 @@ def construire_modele():
         pieces.append(tube((-0.27, s, -0.25), (-0.27, s, 0.45), 0.10, m_bout))
     # ceinture
     pieces.append(anneau((0.0, 0.0, -0.22), 0.30, 0.05, m_caout, (0.8, 0.62, 1.0)))
+    # tuyau d'air (retouche 2) : tube clair (metal 5), rayon 0,11 = 2 px, qui sort du casque et passe à l'arrière
+    m_tuyau = materiau("tuyau_air", "metal", 5, 0.4, bandes=(3, 4, 5))
+    # tuyau d'air (retouche 2) : tube crème, rayon 0,10 (2 px), qui sort du casque et descend à l'extérieur des bouteilles
+    for a_, b_ in (((0.00, -0.27, 0.36), (-0.10, -0.30, 0.10)), ((-0.10, -0.30, 0.10), (-0.16, -0.30, -0.10))):
+        pieces.append(tube(a_, b_, 0.09, m_tuyau))
     # sangles : une diagonale et une horizontale sur le cote proche du torse (rayon 0,06 = 2 px)
     for a_, b_ in (((0.16, -0.19, 0.30), (-0.14, -0.19, -0.30)), ((0.05, -0.19, 0.06), (-0.22, -0.19, 0.06))):
         pieces.append(tube(a_, b_, 0.06, m_caout))

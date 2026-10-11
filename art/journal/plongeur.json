@@ -1277,6 +1277,269 @@
         "liseré du hublot non continu (1 a 3 pixels par image)",
         "un liseré lisible demande un changement de forme du hublot (Blender), pas seulement de couleur"
       ]
+    },
+    {
+      "changement": "retouche 1 (hublot) : vitre agrandie de 0,19 à 0,24 unité (rayon de la sphère de verre), avant-après sans Aseprite",
+      "image": "boards/journal/plongeur_65.png",
+      "image_sha256": "c0c79433c417c10b29f65d22d7ad67cb09e7f31a648f215edabf3bd48d5a076c",
+      "controle": {
+        "silhouette": "A x1 la bulle de verre est plus grosse et sort davantage du casque ; la silhouette de nage garde sa forme.",
+        "couleurs": "Le cyan du hublot occupe une zone plus large ; il reste le même ton (rampe verre) et contraste avec l'orange du casque.",
+        "cadrage": "Le plongeur reste dans sa case, la taille ne change pas de façon visible.",
+        "taille": "Mesure : nage 37 a 39 px, idle 37 a 39 px ; amplitudes nage 0,575, idle 0,371.",
+        "details": "Le hublot est plus grand, mais le contour clair ne forme pas encore un cadre continu autour de la vitre.",
+        "coherence_base": "La forme reste dans le style du plongeur : même ton de verre, même éclairage.",
+        "pixels_parasites": "Aucun pixel isolé nouveau."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "cadre continu absent autour de la vitre (étape suivante : anneau métallique)",
+        "tuyau ou valves absents (retouche 2)"
+      ]
+    },
+    {
+      "changement": "retouche 1 (hublot) : anneau métallique sombre (rayon 0,265, section 0,06 = 2 px) posé dans le plan de profil autour de la vitre",
+      "image": "boards/journal/plongeur_66.png",
+      "image_sha256": "5f1627d4284783ad8af660417fd14ba3c7a29fce2820c0153d753db77990e006",
+      "controle": {
+        "silhouette": "A x1 un contour sombre entoure la vitre à droite et en bas ; la silhouette de nage garde sa forme.",
+        "couleurs": "Le contour est le ton metal 1 (bleu acier) : il sépare le cyan de l'orange du casque et de l'eau.",
+        "cadrage": "Le plongeur reste dans sa case, aucune taille ne change de façon visible.",
+        "taille": "Mesure : nage 37 a 39 px, idle 37 a 39 px ; amplitudes nage 0,575, idle 0,371.",
+        "details": "Le cadre se lit sur trois côtés, mais il est caché en haut à gauche, là où la vitre touche le casque.",
+        "coherence_base": "Le ton vient de la rampe metal, comme le cadre du casque et les ferrures.",
+        "pixels_parasites": "Aucun pixel isolé nouveau."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "cadre interrompu en haut à gauche (anneau dans le casque, à avancer devant)",
+        "tuyau ou valves absents (retouche 2)"
+      ]
+    },
+    {
+      "changement": "retouche 1 (hublot) : anneau métallique avancé devant le casque (y = -0,2) pour qu'il soit visible sur tout le tour de la vitre",
+      "image": "boards/journal/plongeur_67.png",
+      "image_sha256": "3de89af740b8a70d820709b0a20b698c946720892fedab5d87e64e48ae53fd30",
+      "controle": {
+        "silhouette": "A x1 la vitre a un contour sombre sur tout son pourtour, du haut à gauche jusqu'en bas à droite ; la silhouette ne change pas.",
+        "couleurs": "Le cadre est le bleu acier de la rampe metal : il contraste avec le cyan et l'orange, mais se perd un peu sur l'eau sombre.",
+        "cadrage": "Le plongeur reste dans sa case, aucune taille ne change de façon visible.",
+        "taille": "Mesure : nage 37 a 39 px, idle 37 a 39 px ; amplitudes nage 0,575, idle 0,371.",
+        "details": "Le hublot se lit maintenant comme un hublot cerclé : vitre cyan et cadre continu sur les deux fonds.",
+        "coherence_base": "Le cadre utilise la même rampe metal que les ferrures du casque : cohérent.",
+        "pixels_parasites": "Aucun pixel isolé nouveau."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "cadre peu contrasté sur eau sombre (teinte acier)",
+        "tuyau ou valves absents (retouche 2)"
+      ]
+    },
+    {
+      "changement": "retouche 2 (tuyau d'air), tentative 1 : tube clair de rayon 0,11 du haut du casque jusqu'au sommet des bouteilles",
+      "image": "boards/journal/plongeur_68.png",
+      "image_sha256": "66c2b1b5bcd7039b8cc33af721f382c7b1c1cd2c49a4e9070970119e7dedd6d5",
+      "controle": {
+        "silhouette": "A x1 le tuyau se confond avec le haut des bouteilles : la silhouette ne montre pas de tuyau qui sort du dos.",
+        "couleurs": "Le crème du tuyau contraste fortement avec le turquoise des bouteilles, mais on lit une calotte claire et non un tuyau.",
+        "cadrage": "Le plongeur reste dans sa case, aucune taille ne change de façon visible.",
+        "taille": "Mesure : nage 37 a 39 px, idle 37 a 39 px ; le tuyau reste dans la silhouette.",
+        "details": "A x1 le tuyau ne se lit pas comme un tuyau : il est posé sur le dos, sans chemin visible hors de la silhouette.",
+        "coherence_base": "Le ton vient de la rampe metal (ton 5), comme les ferrures : cohérent.",
+        "pixels_parasites": "Aucun pixel isolé nouveau."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "tuyau d'air non lisible : doit sortir de la silhouette, du casque vers l'arrière",
+        "a refaire avec un trajet hors du dos"
+      ]
+    },
+    {
+      "changement": "retouche 2 (tuyau d'air), tentative 2 : tube clair qui part du haut du casque, passe par-dessus et redescend derrière",
+      "image": "boards/journal/plongeur_69.png",
+      "image_sha256": "fccf1b706f8aff3adc78aa9dc38f9161ac877c00adcba815685826da802593da",
+      "controle": {
+        "silhouette": "A x1 le tuyau forme une anse au-dessus du casque, ce qui change la silhouette mais ne ressemble pas à un tuyau d'air.",
+        "couleurs": "Le crème contraste fortement avec l'orange et le turquoise, la lecture est nette.",
+        "cadrage": "Le sommet de la case monte : le plongeur gagne 5 px en haut, il reste dans la case.",
+        "taille": "Mesure : nage bbox 18 a 47 en hauteur, soit 30 px pour la partie du corps ; plus grande dimension 37 a 39 px (zone de nage).",
+        "details": "L'anse se lit à x1, mais elle évoque une poignée ou une anse et non un tuyau relié au dos.",
+        "coherence_base": "Même ton metal 5 que le cadre et les ferrures : cohérent.",
+        "pixels_parasites": "Aucun pixel isolé nouveau."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "tuyau au-dessus du casque : mauvais trajet",
+        "essai suivant : tuyau du casque vers le dos et les bouteilles"
+      ]
+    },
+    {
+      "changement": "retouche 2 (tuyau d'air), tentative 3 : tube clair du bas du casque vers les bouteilles, rayon 0,10",
+      "image": "boards/journal/plongeur_70.png",
+      "image_sha256": "e3ce3c68e5a854173183d059b82e41e65c7c409db88c928340d1889e8c49c5b0",
+      "controle": {
+        "silhouette": "A x1 le tuyau est caché derrière le haut des bouteilles : la silhouette ne change presque pas.",
+        "couleurs": "Le crème est contrasté, mais il ne reste qu'une petite tache claire en haut du dos.",
+        "cadrage": "Le plongeur reste dans sa case, aucune taille ne change de façon visible.",
+        "taille": "Mesure : nage 37 a 39 px, idle 37 a 39 px ; amplitudes nage 0,575, idle 0,371.",
+        "details": "Le tuyau ne se lit pas : il passe dans les bouteilles et sa partie visible est une tache.",
+        "coherence_base": "Même ton metal 5 : cohérent, mais le trajet est mauvais.",
+        "pixels_parasites": "Aucun pixel isolé nouveau."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "trajet du tuyau caché par les bouteilles en nage",
+        "essai suivant : manomètre crème sur le torse, face à la caméra"
+      ]
+    },
+    {
+      "changement": "retouche 2 (silhouette de métier), tentative 4 : manomètre crème sur le torse, rayon 0,075, face à la caméra",
+      "image": "boards/journal/plongeur_71.png",
+      "image_sha256": "a7ea252e29a5a02c65cedff739fc56f6d389f1eac12a61d4a0a02800b5326384",
+      "controle": {
+        "silhouette": "A x1 la silhouette ne change pas : le manomètre est caché par le bras devant le torse.",
+        "couleurs": "Le crème aurait un fort contraste sur l'orange, mais il n'apparaît pas sur les images.",
+        "cadrage": "Le plongeur reste dans sa case, aucune taille ne change de façon visible.",
+        "taille": "Mesure : nage 37 a 39 px, idle 37 a 39 px ; amplitudes nage 0,575, idle 0,371.",
+        "details": "Le manomètre n'est pas visible à x1 ni en nage ni en idle : il est dans le bras ou sous le torse.",
+        "coherence_base": "Même ton metal 5 que le reste du tuyau d'essai.",
+        "pixels_parasites": "Aucun pixel isolé nouveau."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "manomètre caché par le bras : mauvais emplacement",
+        "essai suivant : tuyau à l'extérieur des bouteilles, visible dans les deux poses"
+      ]
+    },
+    {
+      "changement": "retouche 2 (tuyau d'air), tentative 5 : tube crème du casque vers l'arrière, en bordure des bouteilles (rayon 0,10)",
+      "image": "boards/journal/plongeur_72.png",
+      "image_sha256": "b3a521985af65805a0349f17cd12d31d2c20c9afcf5e12ccbb4a32c66478b0a0",
+      "controle": {
+        "silhouette": "A x1 la silhouette ne montre qu'une calotte claire sur les bouteilles : aucun tuyau ne sort du dos.",
+        "couleurs": "Le crème contraste avec le turquoise des bouteilles, mais se confond avec un reflet.",
+        "cadrage": "Le plongeur reste dans sa case, aucune taille ne change de façon visible.",
+        "taille": "Mesure : nage 37 a 39 px, idle 37 a 39 px ; amplitudes nage 0,575, idle 0,371.",
+        "details": "Le tuyau reste posé sur le haut des bouteilles en nage : pas de trajet lisible.",
+        "coherence_base": "Même ton metal 5 : cohérent, mais le trajet est mauvais.",
+        "pixels_parasites": "Aucun pixel isolé nouveau."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "dans le dos, le tuyau se confond avec le haut des bouteilles en nage",
+        "essai suivant : tuyau devant le torso, du col vers la taille"
+      ]
+    },
+    {
+      "changement": "retouche 2 (silhouette de métier) : tuyau d'air crème (rayon 0,09 = 2 à 3 px) du bas du casque jusqu'à la taille, devant le torse",
+      "image": "boards/journal/plongeur_73.png",
+      "image_sha256": "997d5ab47b2f7562b90d6c579d376e34e64e1df70e20cd2b6ca7d7ade5325836",
+      "controle": {
+        "silhouette": "A x1 le tuyau traverse le torse en diagonale en nage et en vertical en idle : la silhouette gagne un détail de métier.",
+        "couleurs": "Le crème (ton 5 de la rampe metal) contraste fortement avec l'orange de la combinaison, sur les deux fonds.",
+        "cadrage": "Le plongeur reste dans sa case ; la hauteur reste dans 37 à 39 px.",
+        "taille": "Mesure : nage 37 a 39 px, idle 37 a 39 px ; amplitudes nage 0,575, idle 0,371.",
+        "details": "Le tuyau fait 2 à 3 px de large et se lit à x1 ; il ressemble aussi à une bretelle, à confirmer par Julien.",
+        "coherence_base": "Ton metal 5, comme les ferrures et le cadre du hublot : cohérent.",
+        "pixels_parasites": "Aucun pixel isolé nouveau."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "tuyau possiblement lu comme une bretelle",
+        "les bouteilles n'ont pas de valve lisible"
+      ]
+    },
+    {
+      "changement": "retouche 3 (relief du corps), tentative 1 : combinaison en quatre tons (2, 3, 4, 5) au lieu de trois, seuils inchangés",
+      "image": "boards/journal/plongeur_74.png",
+      "image_sha256": "f21bc851df0496d0a9635ae6cccfef6bf8ea45c35bbd4b087ed1009de8943d33",
+      "controle": {
+        "silhouette": "A x1 la silhouette ne change pas ; le tronc et les cuisses gardent leur forme.",
+        "couleurs": "Quatre tons oranges sont utilisés ; le ton 2 (rouge sombre) gagne un peu de place sur le dos et la cuisse.",
+        "cadrage": "Le plongeur reste dans sa case, aucune taille ne change.",
+        "taille": "Mesure : nage 37 a 39 px, idle 37 a 39 px ; amplitudes nage 0,575, idle 0,371.",
+        "details": "Le volume du torse ne se lit pas mieux : le tronc reste plat, l'ombre se confond avec le fond.",
+        "coherence_base": "Les tons restent ceux de la rampe combinaison : cohérent.",
+        "pixels_parasites": "Aucun pixel isolé nouveau."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "volume du torse et des jambes peu marqué",
+        "essai suivant : seuils de lumière répartis sur les quatre tons"
+      ]
+    },
+    {
+      "changement": "retouche 3 (relief) tentative 2 : seuils de lumière des matières à quatre tons répartis (0 ; 0,16 ; 0,34 ; 0,56)",
+      "image": "boards/journal/plongeur_75.png",
+      "image_sha256": "0481b0e0ded022751d07eea382c8df34806947030161b2abe6e3902e219e6f64",
+      "controle": {
+        "silhouette": "A x1 la silhouette ne change pas : le casque, le dos et les jambes gardent leur forme.",
+        "couleurs": "Quatre tons par matière sont utilisés ; le casque et la bulle gagnent une ombre en bas à droite et une lumière en haut à gauche.",
+        "cadrage": "Le plongeur reste dans sa case ; la hauteur reste dans 37 à 39 px.",
+        "taille": "Mesure : nage 37 a 39 px, idle 37 a 39 px ; amplitudes nage 0,575, idle 0,371.",
+        "details": "Le volume se lit mieux sur le casque et la bulle ; le torse et les jambes restent peu marqués.",
+        "coherence_base": "Les tons restent ceux des rampes du projet : cohérent avec les autres matières.",
+        "pixels_parasites": "Aucun pixel isolé nouveau."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "volume du torse encore faible",
+        "jambes : ombre à peine plus marquée"
+      ]
+    },
+    {
+      "changement": "retouche 1 (Aseprite, itération 2) : vitre pâle #9af0ea remplacée par le cyan franc #5cc8d0 sur les 14 images (remplacement de couleur, 84 pixels sur l'image 1)",
+      "image": "boards/journal/plongeur_76.png",
+      "image_sha256": "8046fce84eb71850ae458616bfb9bbc82eec75757d98d1852cfb758526235240",
+      "controle": {
+        "silhouette": "Inchangée : le hublot garde sa place et sa forme sur les deux fonds.",
+        "couleurs": "La vitre passe du cyan pâle au cyan franc #5cc8d0 (ton 3 de la rampe verre) ; le cadre clair ne bouge pas.",
+        "cadrage": "Le cadrage ne change pas : le plongeur reste dans sa case.",
+        "taille": "Mesure : nage 37 a 39 px, idle 37 a 39 px ; le remplacement ne touche que les pixels de la vitre.",
+        "details": "La vitre est plus saturée ; la différence reste subtile à x1 sur eau claire et sombre.",
+        "coherence_base": "Le cyan vient de la rampe verre du projet.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "la vitre cyan reste proche du bleu de l'eau sur fond sombre"
+      ]
+    },
+    {
+      "changement": "retouche 1 (Aseprite, itération 3) : reflet blanc #e6fff8 ramené aux 3 pixels en haut à gauche de la vitre, autres pixels blancs remis en cyan (règle appliquée sur chaque image)",
+      "image": "boards/journal/plongeur_77.png",
+      "image_sha256": "4f70a165d55fbc0d732c99a87deb5ecd43ea37806243599f203825915442c73b",
+      "controle": {
+        "silhouette": "Inchangée : la forme du hublot ne change pas.",
+        "couleurs": "Le reflet blanc est en haut à gauche et le reste de la vitre est cyan #5cc8d0.",
+        "cadrage": "Le cadrage ne change pas : le plongeur reste dans sa case.",
+        "taille": "Mesure : nage 37 a 39 px, idle 37 a 39 px ; 3 à 4 pixels blancs par image dans la vitre.",
+        "details": "Le reflet se lit à x1 comme une petite tache claire ; il est peu marqué, surtout en nage.",
+        "coherence_base": "Le blanc vient de la rampe verre (ton 5), comme les autres reflets.",
+        "pixels_parasites": "Aucun pixel isolé nouveau."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "reflet peu marqué en nage"
+      ]
+    },
+    {
+      "changement": "retouche 1 (Aseprite, itération 4) : ombre sous le casque : les pixels du corps juste sous le bord inférieur du casque passent au ton #8f2f2e",
+      "image": "boards/journal/plongeur_78.png",
+      "image_sha256": "0085810e861ec7d2dfc54fba502b46888bb09854123c8eef0b0738085f78e179",
+      "controle": {
+        "silhouette": "Inchangée : seul le ton du corps change, la forme reste la même.",
+        "couleurs": "Le ton sombre #8f2f2e (ton 2 de la rampe combinaison) apparaît sous le casque sur chaque image.",
+        "cadrage": "Le cadrage ne change pas : le plongeur reste dans sa case.",
+        "taille": "Mesure : nage 37 a 39 px, idle 37 a 39 px ; environ 6 pixels par image touchés sous le casque.",
+        "details": "Le casque se détache du cou : la lecture de l'ombre est nette sur l'image idle.",
+        "coherence_base": "Le ton vient de la rampe combinaison, déjà utilisée sur le corps.",
+        "pixels_parasites": "Aucun pixel isolé nouveau."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "ombre sur la nage moins visible que sur l'idle"
+      ]
     }
   ]
 }
