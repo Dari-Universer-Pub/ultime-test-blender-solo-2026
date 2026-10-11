@@ -273,7 +273,7 @@
       "image_sha256": "f0618d48f9c05290c0d7b417a1f4fbb812062f4fe3ef20e96022f68ff69e4efb",
       "controle": {
         "silhouette": "Le corps est plus haut, la carangue a une vraie silhouette de poisson haut et comprimé.",
-        "couleurs": "Inchangées.",
+        "couleurs": "Non réévalué par ce changement : voir la comparaison jointe pour ce critère.",
         "cadrage": "La queue et le museau restent dans la case, avec une marge faible à gauche (queue).",
         "taille": "Hauteur de la silhouette à 36 px sur les images testées (contre 35 avant) ; largeur inchangée (61 à 63 px) : mesure complète à faire après le rendu.",
         "details": "Les rayures et l'œil ne changent pas ; le dos plus haut donne plus de masse à la dorsale épineuse.",
@@ -313,7 +313,7 @@
       "controle": {
         "silhouette": "Inchangée : seule la lisière de la tête change de teinte.",
         "couleurs": "#7aa0a8 est dans la rampe metal, comme le corps bleu-gris ; le glaçage cyan disparaît.",
-        "cadrage": "Inchangé.",
+        "cadrage": "Inchangé par ce changement : le cadre reste celui de l'entrée précédente.",
         "taille": "Inchangée (mêmes pixels).",
         "details": "Le museau et l'avant du corps sont plus doux ; les rayures et l'œil ne changent pas.",
         "coherence_base": "Même rampe metal que le ventre.",
@@ -329,8 +329,8 @@
       "controle": {
         "silhouette": "Inchangée : la pectorale garde sa forme en trait diagonal.",
         "couleurs": "#f8c850 est dans la rampe lampe, la même que la queue : le jaune contraste avec le crème du corps.",
-        "cadrage": "Inchangé.",
-        "taille": "Inchangée.",
+        "cadrage": "Inchangé par ce changement : le cadre reste celui de l'entrée précédente.",
+        "taille": "Non mesurée à ce stade (rendu brut) : la hauteur se mesure après pixelisation.",
         "details": "La pectorale se lit mieux sur le crème (vérifié en comparaison zoomée et sur la planche).",
         "coherence_base": "Même rampe lampe que la queue et la dorsale.",
         "pixels_parasites": "Aucun pixel ajouté."
@@ -345,8 +345,8 @@
       "controle": {
         "silhouette": "Inchangée : même contour, le bas du corps est plus clair.",
         "couleurs": "#4a7088 est dans la rampe metal ; le bas du corps se détache du fond bleu-noir.",
-        "cadrage": "Inchangé.",
-        "taille": "Inchangée.",
+        "cadrage": "Inchangé par ce changement : le cadre reste celui de l'entrée précédente.",
+        "taille": "Non mesurée à ce stade (rendu brut) : la hauteur se mesure après pixelisation.",
         "details": "Le ventre se lit sur les trois animations de la planche it4 (nage, attaque, mort).",
         "coherence_base": "Même rampe metal que le corps.",
         "pixels_parasites": "Aucun pixel ajouté, les teintes restent dans la palette."

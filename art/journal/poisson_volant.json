@@ -78,8 +78,8 @@
     },
     {
       "changement": "pixelisation du poisson avec l'aile haute (0,52) : nage 8, attaque 4, mort 6 dans une feuille à 3 étiquettes, cadre encore à 2,2 unités",
-      "image": "boards/poisson_volant_pixel_2.png",
-      "image_sha256": "5654507510cac63cbc83dd29982a372c97ca3c2e460089e5a0bd52d8b4953d6b",
+      "image": "boards/journal/poisson_volant_entree5.png",
+      "image_sha256": "0a16c06c07d3df0f7fa55425716328dca41ec6c6d8c383a5d050ab71e1700c44",
       "controle": {
         "silhouette": "Le poisson se lit avec son aile haute, sa queue fourchue et son œil ; en mort il roule et reste reconnaissable.",
         "couleurs": "Corps argent-bleu, dessus crème, queue orange et aile cyan restent dans la palette.",
@@ -234,7 +234,7 @@
       "image_sha256": "8b3d6be048b77565d9be42bc301485bbf0c177e547d9d43a9806631afc80d931",
       "controle": {
         "silhouette": "Le corps est plus épais : le poisson gagne en hauteur mais devient plus lourd, presque une bulle.",
-        "couleurs": "Inchangées.",
+        "couleurs": "Non réévalué par ce changement : voir la comparaison jointe pour ce critère.",
         "cadrage": "Le ventre descend ; le poisson reste dans la case.",
         "taille": "Gagne environ 2 à 3 px ; mesure complète à faire (cible 36 px).",
         "details": "La bande argentée du ventre se décolle du dos : une fine ligne sombre apparaît dessous.",
@@ -267,8 +267,8 @@
     },
     {
       "changement": "pixelisation du poisson au rendu final (corps 0,70, aileron 0,46, pectorale fine, mort horizontale) : nage 8, attaque 4, mort 6 dans une feuille à 3 étiquettes",
-      "image": "boards/poisson_volant_pixel_2.png",
-      "image_sha256": "0a16c06c07d3df0f7fa55425716328dca41ec6c6d8c383a5d050ab71e1700c44",
+      "image": "boards/journal/poisson_volant_entree15.png",
+      "image_sha256": "2d195e5c2fdc87107e05e7aa5a82b3ba476234ca133649873c15c5785906eed7",
       "controle": {
         "silhouette": "Le poisson se lit : aileron haut, queue orange, ventre argenté ; l'attaque le fait plonger ; la mort reste horizontale.",
         "couleurs": "Dos violet, ventre argenté, queue orange : palette conforme.",
@@ -347,7 +347,7 @@
       "controle": {
         "silhouette": "Inchangée : seules des nuances de la pectorale changent, aucun contour bougé.",
         "couleurs": "#c8f4e8 est dans la rampe bulle ; la pectorale est plus claire sur le violet.",
-        "cadrage": "Inchangé.",
+        "cadrage": "Inchangé par ce changement : le cadre reste celui de l'entrée précédente.",
         "taille": "Inchangée (mêmes pixels, mêmes dimensions).",
         "details": "Changement SUBTIL : visible en zoom sur la comparaison, à peine sur la planche à 64 px ; gardé parce qu'il est vérifié aux pixels et ne dégrade rien.",
         "coherence_base": "Même rampe bulle que l'aileron.",
@@ -365,8 +365,8 @@
       "controle": {
         "silhouette": "Inchangée : même forme d'aileron, seule sa teinte change.",
         "couleurs": "#5e4a80 est le violet clair du caoutchouc, déjà utilisé sur le dos ; l'aileron se détache un peu plus du fond sombre.",
-        "cadrage": "Inchangé.",
-        "taille": "Inchangée.",
+        "cadrage": "Inchangé par ce changement : le cadre reste celui de l'entrée précédente.",
+        "taille": "Non mesurée à ce stade (rendu brut) : la hauteur se mesure après pixelisation.",
         "details": "Changement SUBTIL (11 pixels) : vérifié sur la comparaison zoomée ; la lecture de l'aileron gagne légèrement.",
         "coherence_base": "Même rampe caoutchouc que le dos.",
         "pixels_parasites": "Aucun pixel ajouté."

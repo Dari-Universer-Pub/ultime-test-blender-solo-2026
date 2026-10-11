@@ -123,8 +123,8 @@
       "controle": {
         "silhouette": "Inchangée : le contour de la sphère et des piquants est le même.",
         "couleurs": "#b88a6a est dans la rampe cuivre, comme le corps ; le glaçage cyan disparaît du côté droit.",
-        "cadrage": "Inchangé.",
-        "taille": "Inchangée.",
+        "cadrage": "Inchangé par ce changement : le cadre reste celui de l'entrée précédente.",
+        "taille": "Non mesurée à ce stade (rendu brut) : la hauteur se mesure après pixelisation.",
         "details": "Le côté éclairé se lit mieux ; l'œil n'est pas touché.",
         "coherence_base": "Même rampe cuivre que le corps.",
         "pixels_parasites": "Aucun pixel ajouté."
@@ -139,8 +139,8 @@
       "controle": {
         "silhouette": "Inchangée : même contour, le liseré est moins brillant.",
         "couleurs": "#7aa0a8 est dans la rampe metal ; le contour reste bleuté mais ne brille plus.",
-        "cadrage": "Inchangé.",
-        "taille": "Inchangée.",
+        "cadrage": "Inchangé par ce changement : le cadre reste celui de l'entrée précédente.",
+        "taille": "Non mesurée à ce stade (rendu brut) : la hauteur se mesure après pixelisation.",
         "details": "Une première version (piquants éclaircis) a été annulée : elle aplatissait le dégradé brun du corps. Celle-ci garde le volume.",
         "coherence_base": "Même famille bulle que la carangue, cohérence du biome.",
         "pixels_parasites": "Aucun pixel ajouté."
@@ -153,10 +153,10 @@
       "image": "boards/journal/oursin_bombe_8.png",
       "image_sha256": "84553c02521de3d3f070cb55a267208f1ae98de48af94e67a13abf86d18a4062",
       "controle": {
-        "silhouette": "Inchangée.",
+        "silhouette": "Non réévalué par ce changement : voir la comparaison jointe pour ce critère.",
         "couleurs": "#8e5a3a est dans la rampe cuivre ; le bas se détache du fond bleu-noir.",
-        "cadrage": "Inchangé.",
-        "taille": "Inchangée.",
+        "cadrage": "Inchangé par ce changement : le cadre reste celui de l'entrée précédente.",
+        "taille": "Non mesurée à ce stade (rendu brut) : la hauteur se mesure après pixelisation.",
         "details": "Le bas du corps reste plus sombre que le haut : le volume se lit toujours.",
         "coherence_base": "Même rampe cuivre.",
         "pixels_parasites": "Aucun pixel ajouté."

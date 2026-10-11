@@ -26,7 +26,7 @@
       "image_sha256": "a0ae29e2ff06e6e60892577b8e8cedfc66f0eac3fb7166fe29f1019dc36d0867",
       "controle": {
         "silhouette": "La tortue est un seul animal : coraux sur le dos, tête dans le prolongement du corps, queue au bout.",
-        "couleurs": "Inchangées.",
+        "couleurs": "Non réévalué par ce changement : voir la comparaison jointe pour ce critère.",
         "cadrage": "La tortue est plus petite dans la case qu'avant : la hauteur est à contrôler après pixelisation.",
         "taille": "Pas mesurée ici ; à mesurer (cible 36 à 46 px : probablement trop petite, cadre à revoir).",
         "details": "Œil et bec restent lisibles sur la tête, palmes distinctes.",
@@ -64,7 +64,7 @@
       "image_sha256": "e6aa8aa490348fa21d1958ba44a789723c4027f232342334a4a94e0d2f2126d5",
       "controle": {
         "silhouette": "La tortue est plus grande dans la case : carapace, coraux et palmes se lisent mieux.",
-        "couleurs": "Inchangées.",
+        "couleurs": "Non réévalué par ce changement : voir la comparaison jointe pour ce critère.",
         "cadrage": "La tête touche le bord droit dans plusieurs images : le cadrage est refusé tel quel.",
         "taille": "Hauteur nettement augmentée ; la mesure réelle se fera après la pixelisation.",
         "details": "La tête est coupée à droite : l'œil et le bec ne se lisent plus entièrement.",
@@ -82,7 +82,7 @@
       "image_sha256": "8b7958e582844787265b144dd66ef97e05c3830439a2809188b0ac0b8dcbd15d",
       "controle": {
         "silhouette": "La tortue est entière : queue, carapace, coraux, tête et palmes.",
-        "couleurs": "Inchangées.",
+        "couleurs": "Non réévalué par ce changement : voir la comparaison jointe pour ce critère.",
         "cadrage": "La tête a une marge d'environ 40 px sur 666 à droite, la queue environ 70 px à gauche : la tortue tient la case.",
         "taille": "Hauteur nettement plus grande qu'à la première version ; mesure complète à faire après la pixelisation.",
         "details": "Œil, bec, coraux et palmes restent lisibles.",
@@ -119,8 +119,8 @@
       "image_sha256": "08ba9bce4eea92b8393a1c7e9b809aa64fce0a53181ec26d23e54c6e25638703",
       "controle": {
         "silhouette": "Les coraux paraissent plus petits : la partie visible au-dessus de la carapace a diminué au lieu d'augmenter.",
-        "couleurs": "Inchangées.",
-        "cadrage": "Inchangé.",
+        "couleurs": "Non réévalué par ce changement : voir la comparaison jointe pour ce critère.",
+        "cadrage": "Inchangé par ce changement : le cadre reste celui de l'entrée précédente.",
         "taille": "Pas de gain de hauteur visible : la hauteur n'a pas augmenté.",
         "details": "Les coraux sont des pointes minuscules ; l'effet recherché n'est pas atteint.",
         "coherence_base": "Même matériau.",
@@ -155,7 +155,7 @@
       "image_sha256": "46a1f568a170d947783d040f2699942832900f01316f07a9796d01dcb234f223",
       "controle": {
         "silhouette": "Les coraux montent un peu plus : la silhouette gagne environ 1 px, sans changer la forme.",
-        "couleurs": "Inchangées.",
+        "couleurs": "Non réévalué par ce changement : voir la comparaison jointe pour ce critère.",
         "cadrage": "Les pointes restent dans la case.",
         "taille": "Gain attendu d'environ 1 px (non mesuré) ; la hauteur reste à mesurer après le rendu complet (cible 36 px).",
         "details": "Les coraux restent lisibles et bien attachés à la carapace.",
@@ -194,8 +194,8 @@
       "controle": {
         "silhouette": "Inchangée : même carapace, même contour.",
         "couleurs": "#6b3f6a est dans la rampe recif ; le dessous ne tranche plus avec le fond et reste dans la palette.",
-        "cadrage": "Inchangé.",
-        "taille": "Inchangée.",
+        "cadrage": "Inchangé par ce changement : le cadre reste celui de l'entrée précédente.",
+        "taille": "Non mesurée à ce stade (rendu brut) : la hauteur se mesure après pixelisation.",
         "details": "Le dessous se lit comme une ombre de la carapace, plus comme un trou noir.",
         "coherence_base": "Même rampe recif que le dos.",
         "pixels_parasites": "Aucun pixel ajouté."
@@ -208,10 +208,10 @@
       "image": "boards/journal/tortue_de_corail_11.png",
       "image_sha256": "82f2881baa521e248119a94bcaabd8e8eaec5582339bab9aca966dbebbf50760",
       "controle": {
-        "silhouette": "Inchangée.",
+        "silhouette": "Non réévalué par ce changement : voir la comparaison jointe pour ce critère.",
         "couleurs": "#8ac8a0 est dans la rampe bouteille, la même que la tête : palmes et tête forment un seul ensemble.",
-        "cadrage": "Inchangé.",
-        "taille": "Inchangée.",
+        "cadrage": "Inchangé par ce changement : le cadre reste celui de l'entrée précédente.",
+        "taille": "Non mesurée à ce stade (rendu brut) : la hauteur se mesure après pixelisation.",
         "details": "Les palmes restent distinctes de la carapace rose ; le cyan qui flottait n'est plus là.",
         "coherence_base": "Même rampe bouteille que la tête.",
         "pixels_parasites": "Aucun pixel ajouté."
@@ -224,10 +224,10 @@
       "image": "boards/journal/tortue_de_corail_12.png",
       "image_sha256": "d9b33b0cd4710653c4923499df7592566b94501c4b9ce69234e0b7908214cf7e",
       "controle": {
-        "silhouette": "Inchangée.",
+        "silhouette": "Non réévalué par ce changement : voir la comparaison jointe pour ce critère.",
         "couleurs": "#e6603a est dans la rampe palmes ; les coraux se fondent davantage dans le dos rose.",
-        "cadrage": "Inchangé.",
-        "taille": "Inchangée.",
+        "cadrage": "Inchangé par ce changement : le cadre reste celui de l'entrée précédente.",
+        "taille": "Non mesurée à ce stade (rendu brut) : la hauteur se mesure après pixelisation.",
         "details": "Les coraux restent visibles mais moins criards ; ils ne concurrencent plus l'œil.",
         "coherence_base": "Même rampe palmes que la queue de la carangue voisine.",
         "pixels_parasites": "Aucun pixel ajouté."
