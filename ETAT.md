@@ -5,7 +5,7 @@ M3 (biome 1 au niveau professionnel : radeau_surface et recif_peu_profond). M2 S
 
 ### Plan M3 (cases à cocher, mises à jour au fil du travail)
 - [x] plongeur : tags creusage 6, attaque 6, saut 4, degats 3, mort 8 (commit dbca5b1 ; feuille à 41 images, 7 étiquettes, nage 37-39 px, amplitude 0,569). Défauts notés au journal (entrée 79) : creusage et dégâts trop semblables d'une image à l'autre, saut 3 à revoir.
-- [ ] créatures du biome 1 (poisson_volant, carangue_rayee, oursin_bombe, tortue_de_corail) : nage 8, attaque 4 (geste d'avertissement), mort 6 ; chacune : script Blender, 6 entrées de journal, 3 planches d'itération. État : poisson_volant (2 entrées, rendu complet à faire), carangue_rayee (4 entrées, rendu complet à faire), oursin_bombe (1 entrée, rendu complet en cours), tortue_de_corail (pas commencée)
+- [ ] créatures du biome 1 (poisson_volant, carangue_rayee, oursin_bombe, tortue_de_corail) : nage 8, attaque 4, mort 6 ; chacune : script Blender, 6 entrées de journal, 3 planches d'itération. État au point d'arrêt : poisson_volant (rendu 18 images, pixel 31-37 px, feuille, 7 entrées ; finition Aseprite à faire) ; carangue_rayee (rendu 18 images, pixel 36-37 px, feuille, 8 entrées ; finition à faire) ; oursin_bombe (rendu 18 images, pixel 42 px, feuille, 2 entrées ; finition à faire) ; tortue_de_corail (pas commencée).
 - [ ] tuilesets 47 cases : radeau_surface, recif_peu_profond
 - [ ] fonds (parallaxe) : 4 par biome
 - [ ] props : 12 par biome
@@ -14,6 +14,16 @@ M3 (biome 1 au niveau professionnel : radeau_surface et recif_peu_profond). M2 S
 - [ ] jeu : créatures lues depuis data/creatures.json, combat (touche attaque), autotile, captures de profondeur (0, 30, 60, 100 m ; descente/remontée ; lampe/sans) et de biome
 - [ ] robot : étape « combattre » ajoutée
 - [ ] python3 tools/gate.py M3 → SUCCES, clone neuf, RAPPORT, commit, push
+
+## Point d'arrêt (fin de session)
+- M3 NON terminée : `python tools/gate.py M3` n'a pas été lancé et ne passera pas encore.
+- Fait et poussé : plongeur (41 images, 7 étiquettes), sons et musique vérifiés (PROVENANCE.json), scripts et rendus des 3 créatures du biome 1, pixelisation et feuilles de poisson_volant, carangue_rayee, oursin_bombe (poisson et carangue à 36 px et plus).
+- Journaux : plongeur 79 entrées ; poisson_volant 7 ; carangue_rayee 8 ; oursin_bombe 2. Les versions annulées restent dans le journal (à ne pas recommencer).
+- Reste pour les créatures : finition Aseprite (3 itérations chacune, avec planches et entrées), tortue_de_corail (script, rendu, pixel, feuille, journal), planches base et modifié, mesure finale, `art/manifest.json`.
+- Reste pour le biome 1 : tuilesets (`art/source/blender/tuileset_biome.py` pas encore exécuté, `materiau_matiere` ajouté), 4 fonds et 12 props par biome, 8 effets, intégration des sons, jeu (créatures depuis data/creatures.json, combat, autotile), 18 captures du jeu, étape robot `combattre`.
+- Limites connues : sons en aperçus MP3 128 kbps (originaux derrière un compte Freesound, non écoutés) ; `son_impact` CC-BY-3.0 à créditer ; le .exe n'est pas lancé (pas de Wine).
+- Incident : `/cycle3.sh` (fichier vide à la racine, hors dépôt) à supprimer à la main ; sa suppression a été bloquée par le contrôle de sécurité.
+- Commits de travail en cours (WIP) : les rendus complets des créatures sont commités au fur et à mesure.
 
 ## Feuille de route (validée par Julien)
 - M2 : jeu jouable branché sur data/*.json, robot en vraies touches (tests/robot/), export PCK testé.
