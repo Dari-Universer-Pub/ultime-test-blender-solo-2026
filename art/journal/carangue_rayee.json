@@ -131,6 +131,26 @@
         "attaque peu marquée : dorsale à redresser davantage",
         "liseré clair à atténuer en finition"
       ]
+    },
+    {
+      "changement": "pixelisation de la carangue au nouveau cadrage (1,8, décalée de -0,20) : nage 8, attaque 4, mort 6 dans une feuille à 3 étiquettes",
+      "image": "boards/carangue_rayee_pixel_2.png",
+      "image_sha256": "0188e5fa140925e36f5a63683050e5cc23a4489c2720385dd0c36096a0caf336",
+      "controle": {
+        "silhouette": "Corps rond rayé, dorsale jaune au-dessus et queue jaune en pointe : la carangue se reconnaît à ses rayures ; en mort elle roule et ses rayures deviennent diagonales.",
+        "couleurs": "Blanc crème, bleu-gris, violet des rayures et jaune de la dorsale et de la queue restent dans la palette.",
+        "cadrage": "Le poisson occupe la case : queue entière, dorsale sous le haut, marge régulière.",
+        "taille": "Mesure (tools/mesure/mesurer.py) : hauteur 36 à 37 px, largeur 55 à 57 px ; le minimum de 36 px est tenu.",
+        "details": "Les trois rayures et la queue sont lisibles ; l'attaque ne se distingue encore que par une dorsale un peu plus haute.",
+        "coherence_base": "Même pipeline et même palette que l'oursin et le poisson volant.",
+        "pixels_parasites": "Liseré clair sur le contour du corps et de la dorsale ; quelques pixels de queue détachés à 1 px."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "attaque trop peu marquée : dorsale à dresser davantage (finition ou animation)",
+        "liseré clair à atténuer en finition",
+        "pixels de queue détachés à 1 px : à relier en finition"
+      ]
     }
   ]
 }
