@@ -27,7 +27,7 @@ BLEND = os.path.join(ob.HERE, ID + ".blend")
 RES = 512
 ECHANTILLONS = int(os.environ.get("POISSON_ECHANTILLONS", "64"))
 APERCU = {int(v) for v in os.environ.get("POISSON_IMAGES", "").split(",") if v.strip()}
-LARGEUR_CADRE = 2.2     # unités de monde sur la largeur de l'image (64 px)
+LARGEUR_CADRE = 1.8     # unités de monde sur la largeur de l'image (64 px)
 
 # plan des images : (numéro d'image Blender, nom du fichier)
 PLAN = (
@@ -95,7 +95,7 @@ def main():
     p = construire(scene)
     animer(p)
     ob.eclairer(scene)
-    ob.camera(scene, LARGEUR_CADRE, centre=(0.0, 0.0, 0.0))
+    ob.camera(scene, LARGEUR_CADRE, centre=(-0.20, 0.0, 0.0))
     ob.reglages(scene, RES, echantillons=ECHANTILLONS)
     scene.frame_start = 1
     scene.frame_end = DERNIERE

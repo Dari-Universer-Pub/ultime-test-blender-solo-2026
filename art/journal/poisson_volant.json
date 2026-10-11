@@ -75,6 +75,44 @@
         "mort : posture à revoir après le nouveau rendu",
         "liseré clair à réduire en finition"
       ]
+    },
+    {
+      "changement": "pixelisation du poisson avec l'aile haute (0,52) : nage 8, attaque 4, mort 6 dans une feuille à 3 étiquettes, cadre encore à 2,2 unités",
+      "image": "boards/poisson_volant_pixel_2.png",
+      "image_sha256": "5654507510cac63cbc83dd29982a372c97ca3c2e460089e5a0bd52d8b4953d6b",
+      "controle": {
+        "silhouette": "Le poisson se lit avec son aile haute, sa queue fourchue et son œil ; en mort il roule et reste reconnaissable.",
+        "couleurs": "Corps argent-bleu, dessus crème, queue orange et aile cyan restent dans la palette.",
+        "cadrage": "Le poisson occupe 48 à 49 px de large : il tient la case mais reste bas et étroit.",
+        "taille": "Mesure (tools/mesure/mesurer.py) : hauteur 26 à 31 px en nage, largeur 48 à 49 px ; la cible de 36 px minimum n'est pas atteinte : échec.",
+        "details": "L'œil, la dorsale et la queue sont lisibles ; l'aile haute gagne quelques pixels mais reste claire.",
+        "coherence_base": "Même pipeline et même palette que l'oursin et la carangue.",
+        "pixels_parasites": "Liseré clair sur le contour de l'aile et du dos."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "hauteur 26 à 31 px : cadre à agrandir d'environ 15 % avec décalage vers la queue",
+        "nage : amplitude de queue faible (0,287)"
+      ]
+    },
+    {
+      "changement": "cadrage : largeur 2,2 -> 1,8 et caméra décalée de -0,20 vers la queue pour agrandir le poisson de 22 %",
+      "image": "boards/journal/poisson_volant_4.png",
+      "image_sha256": "ce2cfc86c48d4866bd7b8a4d44361ce31c26fd427d860c92091417361b0b9476",
+      "controle": {
+        "silhouette": "Le corps, la queue et l'aile grandissent ; la silhouette reste la même.",
+        "couleurs": "Couleurs inchangées.",
+        "cadrage": "La queue a une marge à gauche, l'aile reste sous le haut de la case et la tête a environ 3 px de marge à droite : le poisson est entier.",
+        "taille": "Hauteur attendue d'environ 36 à 38 px (31 px avant x 2,2 / 1,8) ; à mesurer après pixelisation.",
+        "details": "L'œil, la dorsale et la queue fourchue restent lisibles à cette taille.",
+        "coherence_base": "Même cadrage logique que la carangue : le cadre seul change.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "marge droite serrée (environ 3 px) : à surveiller après pixelisation",
+        "amplitude de nage faible : à travailler en animation"
+      ]
     }
   ]
 }
