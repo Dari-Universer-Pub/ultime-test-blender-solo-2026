@@ -1,4 +1,64 @@
-# RAPPORT.md — Phase M2 (jeu jouable branché sur les données)
+# RAPPORT.md — Phase M3 (biome 1 au niveau professionnel : radeau_surface et recif_peu_profond)
+
+## Fait (vérifié)
+- Créatures du biome 1 (poisson_volant, carangue_rayee, oursin_bombe, tortue_de_corail) : un script Blender chacune
+  (`art/source/blender/<id>.py`), 18 images (nage 8, attaque 4, mort 6), pixelisées, feuille Aseprite à 3 étiquettes,
+  3 itérations Aseprite avec planches (`boards/iterations/`). La tortue nage sur 8 images distinctes (vérifié sur pixels).
+- Journal visuel des créatures : poisson_volant 20 entrées, carangue_rayee, oursin_bombe, tortue_de_corail (voir
+  `art/journal/`). Entrée 15 du poisson réparée : son image pointait sur une copie de l'entrée 5 ; elle est remplacée
+  par un rendu réel de l'état annulé (œil à l'ancienne position), empreinte unique (commit 05ff2aa).
+- Combat dans le jeu : touche X, portée 26 px, 3 coups pour tuer le poisson volant ; étape robot `combattre` qui suit la
+  créature à 18 px (distance réelle, relue à chaque pas). Robot : 13 étapes sur 13 (vérifié, commits 5d5409e et suivants).
+- Fond d'eau et ciel en dégradé sur 300 m, teinte sous-marine plus claire. Mesure de la règle de capture (tools/mesure/
+  captures.py) : couleur dominante de 6 à 16 % (seuil 40 %), pixels sous luminance 0,05 de 17 à 22 % (seuil 35 %), sur les
+  18 captures. Planche avant/après : `boards/journal/captures_60m_descente_avant_apres.png` (entrée `art/journal/fond_eau.json`).
+- Sons : 9 fichiers dans `assets/sons/`, sources et licences dans `CREDITS.md` (son_impact CC-BY-3.0, crédit obligatoire).
+- Contrôle `python tools/gate.py M3` → SUCCES (commit c488e94, sortie complète ci-dessous).
+- Clone neuf de la branche (commit c488e94, `git clone` dans un dossier vide) : `python tools/gate.py M3` → SUCCES, code de sortie 0.
+
+## Non vérifié
+- Les 9 sons n'ont été analysés que par leurs métadonnées (durée, niveau) : personne ne les a écoutés. Julien doit juger.
+- Le crédit de son_impact n'est pas encore affiché dans le jeu (il est dans CREDITS.md seulement).
+- L'autotile des tuilesets (47 cases) n'est pas branché dans `scripts/monde.gd` : les tuilesets sont générés, pas utilisés.
+- Les fonds (8) sont des premières versions provisoires (`provisoire: true` dans le manifeste) ; les coques lointaines se lisent comme des boîtes.
+- Captures de profondeur : le libellé « Vous êtes sur le radeau » reste affiché à 60 m (état HUD figé pendant la capture).
+- Le .exe Windows n'est pas lancé (pas de Wine ici).
+
+## Limites
+- Les quatre changements du fond d'eau ont été faits ensemble, une seule planche avant/après : l'effet de chacun n'est pas
+  isolé (les captures intermédiaires ont été écrasées). Noté dans le journal `fond_eau`.
+- Le contrôle M3 ne juge pas la beauté : il vérifie des seuils (couleurs, tailles, journaux). Le niveau visuel reste en
+  deçà de Dead Cells : silhouettes de créatures lisibles mais pas raffinées, fonds simples.
+- Le robot dépend du timing (approche d'une créature qui bouge, remontées accidentelles) : deux corrections ont été
+  nécessaires pendant M3 (approche par distance réelle, reprise après remontée au radeau).
+
+## Écarts vers Dead Cells (par impact)
+1. Fonds et décor : aplats et dégradés simples, pas de parallaxe travaillée ni de détail de récif.
+2. Créatures : lisibles à x1, mais le poisson volant et la carangue manquent de finesse (nageoires, œil).
+3. Son : 9 sons non écoutés, crédit en jeu absent.
+4. Tuilesets : autotile non branché, donc pas de transitions de biome dans le jeu.
+
+## Ce que Julien doit juger lui-même
+- Les sons (écoute), le ressenti de l'eau sombre (teinte plus claire, est-ce le bon compromis ?), la lisibilité du poisson volant
+  et de la carangue à x1.
+
+gate.py SHA-256 : 55d6fbef1065ba7afcaf4f11922e1f57d6f56ed22d0fea591e7ed6b4a6c8beeb
+Phase controlee : M3 (et toutes les precedentes)
+
+Verifications reussies :
+  [ok] outil godot : 4.4.1.stable.official.49a5bc7b6
+  [ok] outil blender : Blender 5.2.1 LTS
+  [ok] outil aseprite : Aseprite 1.3.18.6-dev
+  [ok] recherche de dessin par code terminee
+  [ok] provenance : 9 sources lues
+  [ok] palette : 85 couleurs, 16 rampes
+  [ok] Godot : projet charge sans erreur de script
+  [ok] univers : 9 biomes, 66 objets, 45 recettes, 18 creatures, 3 boss, 21 quetes, 35 notes, 3 fins
+  [ok] robot : 13 etapes exigees
+
+==> M3 : SUCCES
+
+# Archive — RAPPORT de la phase M2 (jeu jouable branché sur les données)
 
 Commit testé dans le clone neuf : `15771fe` (branche `claude/cloches-varekh-dev-r716in`). Le commit suivant ne change que RAPPORT.md et ETAT.md.
 
