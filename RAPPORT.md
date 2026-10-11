@@ -1,4 +1,51 @@
-# RAPPORT.md — Phase M1 (univers complet en données)
+# RAPPORT.md — Phase M2 (jeu jouable branché sur les données)
+
+Commit testé dans le clone neuf : `15771fe` (branche `claude/cloches-varekh-dev-r716in`). Le commit suivant ne change que RAPPORT.md et ETAT.md.
+
+## Fait (vérifié)
+- `python tools/gate.py M2` : SUCCES dans le dépôt de travail et dans un clone neuf (sortie complète plus bas).
+- Robot de test (tests/robot/robot.py) : 12 étapes sur 12, avec de VRAIES touches envoyées au serveur X (XTest) dans la fenêtre du jeu. Captures prises à chaque étape pendant le lancement (shots/robot/). Le rapport est tests/robot_rapport.json.
+- Jeu : radeau de départ, plongée, nage, air (se vide sous l'eau, se remplit hors de l'eau), lampe, creusage d'une épave à l'aide de data/tuiles.json, ramassage, pose, fabrication depuis data/recipes.json (module de forge), sortie de l'eau sur le radeau, sauvegarde (F5) et chargement (F9).
+- Aucun objet, recette, station, biome ni tuile n'est codé en dur : tout est lu dans data/*.json.
+- Export (retouche 4) : tests/export/verifier_pck.sh → SUCCES. Le PCK est lancé avec le moteur (--main-pack), le radeau et les tuiles s'affichent, aucune erreur de script.
+- Images provisoires (décor, radeau) : rendus Blender pixelisés, marqués PROVISOIRE dans art/manifest.json.
+
+## Non vérifié
+- Le fichier .exe Windows lui-même : non lancé (pas de Wine dans l'environnement). Seul le PCK est testé, avec le moteur Linux.
+- Le plein écran, les touches configurables et les menus : prévus en M5.
+- Le monde par chunks : la fenêtre d'affichage et les modifications par tuile existent, mais pas encore de chargement de chunks sur disque.
+
+## Limites
+- Décor provisoire (roche, récif, cuivre, sable, bois, tôle) et radeau : rendus Blender simples, à remplacer en M3.
+- Pas de créatures, pas de combat (étape robot « combattre » : M3). La touche d'attaque n'a encore aucun effet.
+- Les 12 étapes du robot sont des tests de fonctionnement, pas une partie complète.
+- Les tuiles creusées dans l'épave sont les seules matières accessibles : la progression par palier n'est pas encore gardée dans le jeu (M3 et M4).
+- Fenêtre de tuiles de 48 × 32 : l'affichage se recalcule quand le plongeur change de chunk de 16 tuiles.
+
+## Sortie complète de `python tools/gate.py M2` (clone neuf, commit 15771fe)
+```
+gate.py SHA-256 : 55d6fbef1065ba7afcaf4f11922e1f57d6f56ed22d0fea591e7ed6b4a6c8beeb
+Phase controlee : M2 (et toutes les precedentes)
+
+Verifications reussies :
+  [ok] outil godot : 4.4.1.stable.official.49a5bc7b6
+  [ok] outil blender : Blender 5.2.1 LTS
+  [ok] outil aseprite : Aseprite 1.3.18.6-dev
+  [ok] recherche de dessin par code terminee
+  [ok] provenance : 0 sources lues
+  [ok] palette : 85 couleurs, 16 rampes
+  [ok] Godot : projet charge sans erreur de script
+  [ok] univers : 9 biomes, 66 objets, 45 recettes, 18 creatures, 3 boss, 21 quetes, 35 notes, 3 fins
+  [ok] robot : 12 etapes exigees
+
+==> M2 : SUCCES
+```
+
+---
+
+# Archive — RAPPORT de la phase M1
+
+## M1 (univers complet en données)
 
 Commit testé dans le clone neuf : `0b9f456` (branche `claude/cloches-varekh-dev-r716in`). Le commit suivant ne change que RAPPORT.md et ETAT.md.
 

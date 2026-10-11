@@ -13,7 +13,7 @@ M2 : contrôle `python tools/gate.py M2` en SUCCES dans le dépôt de travail (r
 
 ## Dernier contrôle
 - M2, dépôt de travail : `python tools/gate.py M2` → SUCCES (robot : 12 étapes sur 12, captures prises pendant ce lancement).
-- M2, clone neuf : voir RAPPORT.md (section M2).
+- M2, clone neuf (commit 15771fe, branche claude/cloches-varekh-dev-r716in) : SUCCES. Sortie complète dans RAPPORT.md (section M2).
 - Test d'export (retouche 4) : `bash tests/export/verifier_pck.sh` → SUCCES (PCK lancé avec le moteur, radeau et tuiles affichés, 0 erreur de script). Le .exe Windows n'est pas lancé (pas de Wine ici).
 
 ## Journal visuel
