@@ -95,6 +95,26 @@
         "piquants courts en mort : à rendre plus visiblement tombés en finition",
         "mesure après pixelisation"
       ]
+    },
+    {
+      "changement": "pixelisation de l'oursin au nouveau rendu (œil, piquants allongés en attaque, affaissement en mort) : nage 8, attaque 4, mort 6 dans une feuille à 3 étiquettes",
+      "image": "boards/oursin_bombe_pixel_2.png",
+      "image_sha256": "7940cffa4c00afbedf63c2cfe5a18e439afb4717a209250ad0352d3a885dd2c4",
+      "controle": {
+        "silhouette": "L'oursin se lit : œil sur la face, piquants qui jaillissent en attaque, galette et piquants courts en mort.",
+        "couleurs": "Bronze, brun et liseré clair de la rampe cuivre : palette conforme.",
+        "cadrage": "L'oursin tient la case avec une marge régulière ; les piquants les plus longs restent dans la case.",
+        "taille": "Mesure (tools/mesure/mesurer.py) : hauteur 41 à 42 px, largeur 41 à 42 px : dans la cible 36 à 46 px.",
+        "details": "L'œil est petit (environ 3 px) mais se distingue ; la pupille noire et le blanc sont lisibles.",
+        "coherence_base": "Même pipeline et même palette que les autres créatures.",
+        "pixels_parasites": "Liseré clair marqué sur les piquants ; quelques piquants à 1 px."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "œil petit (3 px) : à agrandir légèrement en finition",
+        "piquants fins à 1 px : à épaissir en finition",
+        "mort : galette lisible mais pas encore tombée"
+      ]
     }
   ]
 }
