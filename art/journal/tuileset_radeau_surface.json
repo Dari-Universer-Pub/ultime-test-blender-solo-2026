@@ -1,0 +1,23 @@
+{
+  "entrees": [
+    {
+      "changement": "premier tuileset autotile 47 cases du biome radeau_surface (rampe ocre, rendu 128 px, pixel 16 px, feuille de 47 cases)",
+      "image": "boards/props/tuileset_radeau_47.png",
+      "image_sha256": "8be1b2c27e54e3baced5504d1df0d6e2d77d9ff64f0285704616783a36b1b49e",
+      "controle": {
+        "silhouette": "Les 47 cases sont distinctes : coins, bords, angles intérieurs et extérieurs se lisent.",
+        "couleurs": "Brun-ocre de la rampe ocre, palette conforme.",
+        "cadrage": "Chaque case remplit sa case de 16 px ; les bords sont nets.",
+        "taille": "Case de 16 px (rendu 128 px, facteur 8) ; 47 cases dans la feuille.",
+        "details": "Lisière cyan sur le haut des dalles (même défaut que les créatures) ; quelques coupes diagonales irrégulières.",
+        "coherence_base": "Même rampe ocre que les props du radeau.",
+        "pixels_parasites": "Lisière cyan à atténuer ; pas de pixel isolé notable."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "lisière cyan sur le dessus des dalles à atténuer",
+        "quelques coupes diagonales à revoir"
+      ]
+    }
+  ]
+}

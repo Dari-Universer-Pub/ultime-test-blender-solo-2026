@@ -870,6 +870,25 @@
         "iterations": []
       },
       "note": "PREMIER JET : formes simples, à reprendre au niveau professionnel (M3)."
+    },
+    {
+      "id": "tuileset_radeau_surface",
+      "data_id": null,
+      "type": "tuileset",
+      "filiere": "construit",
+      "script": "art/source/blender/tuileset_biome.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/tuileset_radeau_surface.blend",
+      "aseprite": "art/source/aseprite/tuileset_radeau_surface.aseprite",
+      "sheet": "assets/sprites/tuileset_radeau_surface/tuileset_radeau_surface.png",
+      "data": "assets/sprites/tuileset_radeau_surface/tuileset_radeau_surface.json",
+      "planches": {
+        "base": "boards/props/tuileset_radeau_surface_base.png",
+        "modifie": "boards/props/tuileset_radeau_surface_modifie.png",
+        "iterations": []
+      }
     }
   ]
 }
