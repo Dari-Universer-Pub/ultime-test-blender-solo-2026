@@ -62,7 +62,7 @@ def construire(scene):
 
     # nageoire pectorale : un grand disque en éventail (plan XZ, face à la caméra), sur une charnière
     charniere_aile = ob.pivot(scene, "charniere_aile", (0.18, 0.0, 0.30), corps)
-    aile = ob.sphere((0.18, 0.0, 0.30), 0.5, m_aile, echelle=(0.80, 0.03, 0.36), nom="aile")
+    aile = ob.sphere((0.18, 0.0, 0.30), 0.5, m_aile, echelle=(0.80, 0.03, 0.52), nom="aile")
     aile.rotation_euler = (0.0, math.radians(-30), 0.0)
     ob.parent(aile, charniere_aile)
     return {"corps": corps, "queue": charniere_queue, "aile": charniere_aile}

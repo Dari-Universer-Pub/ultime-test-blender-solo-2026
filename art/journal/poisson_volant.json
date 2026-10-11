@@ -36,6 +36,45 @@
       "defauts_restants": [
         "corps : une seule transition de ton sur le dessus, à traiter en finition Aseprite"
       ]
+    },
+    {
+      "changement": "pixelisation du poisson à 64 px : nage 8, attaque 4, mort 6 dans une feuille à 3 étiquettes (version avec aile basse, avant agrandissement)",
+      "image": "boards/poisson_volant_pixel_1.png",
+      "image_sha256": "96247434127cf5c75a38554fd64b26259ce815d25d1a06c2a5f793192a2eaa56",
+      "controle": {
+        "silhouette": "Le poisson se lit comme un poisson, avec une aile claire au-dessus du corps et la queue orange ; en mort il devient un bâton vertical peu lisible.",
+        "couleurs": "Corps argent-bleu, dessus crème, queue orange et aile cyan restent dans la palette.",
+        "cadrage": "Le poisson mesure environ 27 px de haut sur 64 : insuffisant, le contrôle exige au moins 36 px pour une créature.",
+        "taille": "Mesure : 27 px de haut en nage (la hauteur maximale sur les 18 images) ; cible 36 à 46 px : échec.",
+        "details": "L'œil, la queue fourchue et l'aile sont lisibles en nage ; en mort 4 à 6 les détails se mêlent.",
+        "coherence_base": "Même pipeline que l'oursin et le plongeur ; palette conforme.",
+        "pixels_parasites": "Liseré clair marqué sur le contour de l'aile et du dos."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "taille insuffisante : aile trop basse pour atteindre 36 px",
+        "mort 4 à 6 : le poisson devient un bâton vertical peu lisible",
+        "liseré clair trop fort sur le contour"
+      ]
+    },
+    {
+      "changement": "aile : hauteur du disque passée de 0,36 à 0,52 (largeur inchangée) pour remonter la silhouette",
+      "image": "boards/journal/poisson_volant_3.png",
+      "image_sha256": "d1036e4b7b9175f0a369e525b11bf1d85258a90d8985321049d642f79181dea2",
+      "controle": {
+        "silhouette": "L'aile monte nettement au-dessus du dos : la silhouette gagne en hauteur sans s'élargir.",
+        "couleurs": "Couleurs inchangées (aile cyan, dorsale sombre, queue orange).",
+        "cadrage": "Le sommet de l'aile reste dans la case, la queue aussi ; le poisson ne touche pas le bord.",
+        "taille": "Pas encore mesurable : la mesure se fait après le nouveau rendu complet et la pixelisation (cible 36 à 46 px).",
+        "details": "L'œil, la dorsale et la queue fourchue restent lisibles ; l'aile domine moins la dorsale.",
+        "coherence_base": "Même matériau bulle que la version précédente.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "mort : posture à revoir après le nouveau rendu",
+        "liseré clair à réduire en finition"
+      ]
     }
   ]
 }
