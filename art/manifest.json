@@ -908,6 +908,158 @@
         "modifie": "boards/props/tuileset_recif_peu_profond_modifie.png",
         "iterations": []
       }
+    },
+    {
+      "id": "effet_bulle",
+      "data_id": null,
+      "type": "effet",
+      "filiere": "construit",
+      "script": "art/source/blender/effet_bulle.py",
+      "biome": null,
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/effet_bulle.blend",
+      "aseprite": "art/source/aseprite/effet_bulle.aseprite",
+      "sheet": "assets/sprites/effet_bulle/effet_bulle.png",
+      "data": "assets/sprites/effet_bulle/effet_bulle.json",
+      "planches": {
+        "base": "boards/props/effet_bulle_base.png",
+        "modifie": "boards/props/effet_bulle_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "effet_eclaboussure",
+      "data_id": null,
+      "type": "effet",
+      "filiere": "construit",
+      "script": "art/source/blender/effet_eclaboussure.py",
+      "biome": null,
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/effet_eclaboussure.blend",
+      "aseprite": "art/source/aseprite/effet_eclaboussure.aseprite",
+      "sheet": "assets/sprites/effet_eclaboussure/effet_eclaboussure.png",
+      "data": "assets/sprites/effet_eclaboussure/effet_eclaboussure.json",
+      "planches": {
+        "base": "boards/props/effet_eclaboussure_base.png",
+        "modifie": "boards/props/effet_eclaboussure_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "effet_poussiere_creusage",
+      "data_id": null,
+      "type": "effet",
+      "filiere": "construit",
+      "script": "art/source/blender/effet_poussiere_creusage.py",
+      "biome": null,
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/effet_poussiere_creusage.blend",
+      "aseprite": "art/source/aseprite/effet_poussiere_creusage.aseprite",
+      "sheet": "assets/sprites/effet_poussiere_creusage/effet_poussiere_creusage.png",
+      "data": "assets/sprites/effet_poussiere_creusage/effet_poussiere_creusage.json",
+      "planches": {
+        "base": "boards/props/effet_poussiere_creusage_base.png",
+        "modifie": "boards/props/effet_poussiere_creusage_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "effet_etincelle",
+      "data_id": null,
+      "type": "effet",
+      "filiere": "construit",
+      "script": "art/source/blender/effet_etincelle.py",
+      "biome": null,
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/effet_etincelle.blend",
+      "aseprite": "art/source/aseprite/effet_etincelle.aseprite",
+      "sheet": "assets/sprites/effet_etincelle/effet_etincelle.png",
+      "data": "assets/sprites/effet_etincelle/effet_etincelle.json",
+      "planches": {
+        "base": "boards/props/effet_etincelle_base.png",
+        "modifie": "boards/props/effet_etincelle_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "effet_nuage_encre",
+      "data_id": null,
+      "type": "effet",
+      "filiere": "construit",
+      "script": "art/source/blender/effet_nuage_encre.py",
+      "biome": null,
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/effet_nuage_encre.blend",
+      "aseprite": "art/source/aseprite/effet_nuage_encre.aseprite",
+      "sheet": "assets/sprites/effet_nuage_encre/effet_nuage_encre.png",
+      "data": "assets/sprites/effet_nuage_encre/effet_nuage_encre.json",
+      "planches": {
+        "base": "boards/props/effet_nuage_encre_base.png",
+        "modifie": "boards/props/effet_nuage_encre_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "effet_impact_coup",
+      "data_id": null,
+      "type": "effet",
+      "filiere": "construit",
+      "script": "art/source/blender/effet_impact_coup.py",
+      "biome": null,
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/effet_impact_coup.blend",
+      "aseprite": "art/source/aseprite/effet_impact_coup.aseprite",
+      "sheet": "assets/sprites/effet_impact_coup/effet_impact_coup.png",
+      "data": "assets/sprites/effet_impact_coup/effet_impact_coup.json",
+      "planches": {
+        "base": "boards/props/effet_impact_coup_base.png",
+        "modifie": "boards/props/effet_impact_coup_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "effet_onde_anneau",
+      "data_id": null,
+      "type": "effet",
+      "filiere": "construit",
+      "script": "art/source/blender/effet_onde_anneau.py",
+      "biome": null,
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/effet_onde_anneau.blend",
+      "aseprite": "art/source/aseprite/effet_onde_anneau.aseprite",
+      "sheet": "assets/sprites/effet_onde_anneau/effet_onde_anneau.png",
+      "data": "assets/sprites/effet_onde_anneau/effet_onde_anneau.json",
+      "planches": {
+        "base": "boards/props/effet_onde_anneau_base.png",
+        "modifie": "boards/props/effet_onde_anneau_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "effet_goutte",
+      "data_id": null,
+      "type": "effet",
+      "filiere": "construit",
+      "script": "art/source/blender/effet_goutte.py",
+      "biome": null,
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/effet_goutte.blend",
+      "aseprite": "art/source/aseprite/effet_goutte.aseprite",
+      "sheet": "assets/sprites/effet_goutte/effet_goutte.png",
+      "data": "assets/sprites/effet_goutte/effet_goutte.json",
+      "planches": {
+        "base": "boards/props/effet_goutte_base.png",
+        "modifie": "boards/props/effet_goutte_modifie.png",
+        "iterations": []
+      }
     }
   ]
 }
