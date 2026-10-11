@@ -1,0 +1,23 @@
+{
+  "entrees": [
+    {
+      "changement": "premier rendu du fond fond_algues_fond (640 x 360, pixel 320 x 180, planche de lot) : cinq tiges vertes",
+      "image": "boards/props/fonds_lot.png",
+      "image_sha256": "ac3153fb83af56ed806d518a19348fc7568cc4722b766c88458ed250b7273e86",
+      "controle": {
+        "silhouette": "Aplats géométriques sur fond sombre : tiges fines et isolées : manque de densité.",
+        "couleurs": "Couleurs des rampes du biome (bulle, verre, caoutchouc, recif, bouteille, roche) ; palette conforme.",
+        "cadrage": "Le motif occupe une bande de l'image ; le reste du cadre est vide.",
+        "taille": "Résolution 320 x 180, pixel facteur 2 ; pas de mesure de hauteur imposée au fond.",
+        "details": "Premier jet : formes simples, sans dégradé ni chevauchement ; à reprendre.",
+        "coherence_base": "Même palette et même biome que les props correspondants.",
+        "pixels_parasites": "Aucun pixel isolé notable."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "tiges fines et isolées : manque de densité",
+        "PREMIER JET PROVISOIRE, en dessous du niveau professionnel"
+      ]
+    }
+  ]
+}

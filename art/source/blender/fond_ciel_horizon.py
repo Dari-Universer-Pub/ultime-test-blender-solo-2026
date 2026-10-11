@@ -22,7 +22,7 @@ LARGEUR_CADRE = 8.0
 
 
 def construire():
-    m_ciel = ob.materiau("fond_ciel", "bulle", bandes=(0, 1, 2, 3), rugosite=0.9)
+    m_ciel = ob.materiau("fond_ciel", "verre", bandes=(1, 2, 3, 3), rugosite=0.9)
     ob.cube((0.0, 0.5, 1.4), 1.0, m_ciel, echelle=(10.0, 1.0, 1.0), nom="ciel")
     for k, x in enumerate((-2.4, 0.2, 2.6)):
         ob.sphere((x, 0.4, 1.0), 0.45, m_ciel, echelle=(2.0, 0.4, 0.5), nom=f"nuage_{k + 1}")

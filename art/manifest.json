@@ -710,6 +710,166 @@
         "modifie": "boards/props/conque_modifie.png",
         "iterations": []
       }
+    },
+    {
+      "id": "fond_ciel_horizon",
+      "data_id": null,
+      "type": "fond",
+      "filiere": "construit",
+      "script": "art/source/blender/fond_ciel_horizon.py",
+      "biome": "radeau_surface",
+      "provisoire": true,
+      "sources": [],
+      "blend": "art/source/blender/fond_ciel_horizon.blend",
+      "aseprite": "art/source/aseprite/fond_ciel_horizon.aseprite",
+      "sheet": "assets/sprites/fond_ciel_horizon/fond_ciel_horizon.png",
+      "data": "assets/sprites/fond_ciel_horizon/fond_ciel_horizon.json",
+      "planches": {
+        "base": "boards/props/fond_ciel_horizon_base.png",
+        "modifie": "boards/props/fond_ciel_horizon_modifie.png",
+        "iterations": []
+      },
+      "note": "PREMIER JET : formes simples, à reprendre au niveau professionnel (M3)."
+    },
+    {
+      "id": "fond_vagues",
+      "data_id": null,
+      "type": "fond",
+      "filiere": "construit",
+      "script": "art/source/blender/fond_vagues.py",
+      "biome": "radeau_surface",
+      "provisoire": true,
+      "sources": [],
+      "blend": "art/source/blender/fond_vagues.blend",
+      "aseprite": "art/source/aseprite/fond_vagues.aseprite",
+      "sheet": "assets/sprites/fond_vagues/fond_vagues.png",
+      "data": "assets/sprites/fond_vagues/fond_vagues.json",
+      "planches": {
+        "base": "boards/props/fond_vagues_base.png",
+        "modifie": "boards/props/fond_vagues_modifie.png",
+        "iterations": []
+      },
+      "note": "PREMIER JET : formes simples, à reprendre au niveau professionnel (M3)."
+    },
+    {
+      "id": "fond_brume",
+      "data_id": null,
+      "type": "fond",
+      "filiere": "construit",
+      "script": "art/source/blender/fond_brume.py",
+      "biome": "radeau_surface",
+      "provisoire": true,
+      "sources": [],
+      "blend": "art/source/blender/fond_brume.blend",
+      "aseprite": "art/source/aseprite/fond_brume.aseprite",
+      "sheet": "assets/sprites/fond_brume/fond_brume.png",
+      "data": "assets/sprites/fond_brume/fond_brume.json",
+      "planches": {
+        "base": "boards/props/fond_brume_base.png",
+        "modifie": "boards/props/fond_brume_modifie.png",
+        "iterations": []
+      },
+      "note": "PREMIER JET : formes simples, à reprendre au niveau professionnel (M3)."
+    },
+    {
+      "id": "fond_coques_loin",
+      "data_id": null,
+      "type": "fond",
+      "filiere": "construit",
+      "script": "art/source/blender/fond_coques_loin.py",
+      "biome": "radeau_surface",
+      "provisoire": true,
+      "sources": [],
+      "blend": "art/source/blender/fond_coques_loin.blend",
+      "aseprite": "art/source/aseprite/fond_coques_loin.aseprite",
+      "sheet": "assets/sprites/fond_coques_loin/fond_coques_loin.png",
+      "data": "assets/sprites/fond_coques_loin/fond_coques_loin.json",
+      "planches": {
+        "base": "boards/props/fond_coques_loin_base.png",
+        "modifie": "boards/props/fond_coques_loin_modifie.png",
+        "iterations": []
+      },
+      "note": "PREMIER JET : formes simples, à reprendre au niveau professionnel (M3)."
+    },
+    {
+      "id": "fond_recif_lointain",
+      "data_id": null,
+      "type": "fond",
+      "filiere": "construit",
+      "script": "art/source/blender/fond_recif_lointain.py",
+      "biome": "recif_peu_profond",
+      "provisoire": true,
+      "sources": [],
+      "blend": "art/source/blender/fond_recif_lointain.blend",
+      "aseprite": "art/source/aseprite/fond_recif_lointain.aseprite",
+      "sheet": "assets/sprites/fond_recif_lointain/fond_recif_lointain.png",
+      "data": "assets/sprites/fond_recif_lointain/fond_recif_lointain.json",
+      "planches": {
+        "base": "boards/props/fond_recif_lointain_base.png",
+        "modifie": "boards/props/fond_recif_lointain_modifie.png",
+        "iterations": []
+      },
+      "note": "PREMIER JET : formes simples, à reprendre au niveau professionnel (M3)."
+    },
+    {
+      "id": "fond_algues_fond",
+      "data_id": null,
+      "type": "fond",
+      "filiere": "construit",
+      "script": "art/source/blender/fond_algues_fond.py",
+      "biome": "recif_peu_profond",
+      "provisoire": true,
+      "sources": [],
+      "blend": "art/source/blender/fond_algues_fond.blend",
+      "aseprite": "art/source/aseprite/fond_algues_fond.aseprite",
+      "sheet": "assets/sprites/fond_algues_fond/fond_algues_fond.png",
+      "data": "assets/sprites/fond_algues_fond/fond_algues_fond.json",
+      "planches": {
+        "base": "boards/props/fond_algues_fond_base.png",
+        "modifie": "boards/props/fond_algues_fond_modifie.png",
+        "iterations": []
+      },
+      "note": "PREMIER JET : formes simples, à reprendre au niveau professionnel (M3)."
+    },
+    {
+      "id": "fond_rayons_lumiere",
+      "data_id": null,
+      "type": "fond",
+      "filiere": "construit",
+      "script": "art/source/blender/fond_rayons_lumiere.py",
+      "biome": "recif_peu_profond",
+      "provisoire": true,
+      "sources": [],
+      "blend": "art/source/blender/fond_rayons_lumiere.blend",
+      "aseprite": "art/source/aseprite/fond_rayons_lumiere.aseprite",
+      "sheet": "assets/sprites/fond_rayons_lumiere/fond_rayons_lumiere.png",
+      "data": "assets/sprites/fond_rayons_lumiere/fond_rayons_lumiere.json",
+      "planches": {
+        "base": "boards/props/fond_rayons_lumiere_base.png",
+        "modifie": "boards/props/fond_rayons_lumiere_modifie.png",
+        "iterations": []
+      },
+      "note": "PREMIER JET : formes simples, à reprendre au niveau professionnel (M3)."
+    },
+    {
+      "id": "fond_roche_fond",
+      "data_id": null,
+      "type": "fond",
+      "filiere": "construit",
+      "script": "art/source/blender/fond_roche_fond.py",
+      "biome": "recif_peu_profond",
+      "provisoire": true,
+      "sources": [],
+      "blend": "art/source/blender/fond_roche_fond.blend",
+      "aseprite": "art/source/aseprite/fond_roche_fond.aseprite",
+      "sheet": "assets/sprites/fond_roche_fond/fond_roche_fond.png",
+      "data": "assets/sprites/fond_roche_fond/fond_roche_fond.json",
+      "planches": {
+        "base": "boards/props/fond_roche_fond_base.png",
+        "modifie": "boards/props/fond_roche_fond_modifie.png",
+        "iterations": []
+      },
+      "note": "PREMIER JET : formes simples, à reprendre au niveau professionnel (M3)."
     }
   ]
 }
