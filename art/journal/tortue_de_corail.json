@@ -234,6 +234,25 @@
       },
       "verdict": "garde",
       "defauts_restants": []
+    },
+    {
+      "changement": "reconstruction de la tortue : corps oscillant de 0,05 en cosinus et palmes déphasées de 0,4 rad, pour que les huit images de nage soient distinctes (sinus nul à 0 et π donnait des doublons)",
+      "image": "boards/journal/tortue_de_corail_13.png",
+      "image_sha256": "f50cab3698470c01567875356c5c6af364f03bde54d3b36b76336b73250ec50a",
+      "controle": {
+        "silhouette": "Inchangée : la tortue garde sa carapace, ses coraux et sa tête ; seul le mouvement change.",
+        "couleurs": "Inchangées : rose recif, sable, vert bouteille, orange des coraux.",
+        "cadrage": "La tortue reste dans la case sur les 18 images de la planche it4.",
+        "taille": "Hauteur mesurée au pixel : 35 à 36 px sur les images de nage (cible 36 px, minimum tenu sur la plupart).",
+        "details": "Les palmes battent en alternance sur les huit images de nage, la lecture du mouvement est nette.",
+        "coherence_base": "Même pipeline et mêmes itérations 2 à 4 que la version précédente.",
+        "pixels_parasites": "Liseré cyan atténué par l'itération 3 ; aucun pixel isolé nouveau."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "hauteur 35 px sur certaines images : à porter à 36 px",
+        "queue fine (1 à 2 px)"
+      ]
     }
   ]
 }
