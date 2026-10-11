@@ -23,7 +23,7 @@ LARGEUR_CADRE = 2.0
 
 def construire():
     m_c = ob.materiau("pot_cuivre", "cuivre", bandes=(1, 2, 3, 4), rugosite=0.6)
-    ob.cylindre((0.0, 0.0, 0.0), 0.34, 0.5, m_c, nom="pot")
+    ob.sphere((0.0, 0.0, 0.0), 0.34, m_c, echelle=(1.0, 0.8, 0.9), nom="pot")
     ob.tore((-0.34, 0.0, 0.0), 0.12, 0.03, m_c, rotation=(0.0, math.pi / 2, 0.0), nom="anse_1")
     ob.tore((0.34, 0.0, 0.0), 0.12, 0.03, m_c, rotation=(0.0, math.pi / 2, 0.0), nom="anse_2")
 

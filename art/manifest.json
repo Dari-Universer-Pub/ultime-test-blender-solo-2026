@@ -482,6 +482,234 @@
         "modifie": "boards/props/bitte_amarrage_modifie.png",
         "iterations": []
       }
+    },
+    {
+      "id": "corail_branche",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/corail_branche.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/corail_branche.blend",
+      "aseprite": "art/source/aseprite/corail_branche.aseprite",
+      "sheet": "assets/sprites/corail_branche/corail_branche.png",
+      "data": "assets/sprites/corail_branche/corail_branche.json",
+      "planches": {
+        "base": "boards/props/corail_branche_base.png",
+        "modifie": "boards/props/corail_branche_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "anemone",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/anemone.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/anemone.blend",
+      "aseprite": "art/source/aseprite/anemone.aseprite",
+      "sheet": "assets/sprites/anemone/anemone.png",
+      "data": "assets/sprites/anemone/anemone.json",
+      "planches": {
+        "base": "boards/props/anemone_base.png",
+        "modifie": "boards/props/anemone_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "rocher_corail",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/rocher_corail.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/rocher_corail.blend",
+      "aseprite": "art/source/aseprite/rocher_corail.aseprite",
+      "sheet": "assets/sprites/rocher_corail/rocher_corail.png",
+      "data": "assets/sprites/rocher_corail/rocher_corail.json",
+      "planches": {
+        "base": "boards/props/rocher_corail_base.png",
+        "modifie": "boards/props/rocher_corail_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "coquillage",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/coquillage.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/coquillage.blend",
+      "aseprite": "art/source/aseprite/coquillage.aseprite",
+      "sheet": "assets/sprites/coquillage/coquillage.png",
+      "data": "assets/sprites/coquillage/coquillage.json",
+      "planches": {
+        "base": "boards/props/coquillage_base.png",
+        "modifie": "boards/props/coquillage_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "algue",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/algue.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/algue.blend",
+      "aseprite": "art/source/aseprite/algue.aseprite",
+      "sheet": "assets/sprites/algue/algue.png",
+      "data": "assets/sprites/algue/algue.json",
+      "planches": {
+        "base": "boards/props/algue_base.png",
+        "modifie": "boards/props/algue_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "epave_pot",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/epave_pot.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/epave_pot.blend",
+      "aseprite": "art/source/aseprite/epave_pot.aseprite",
+      "sheet": "assets/sprites/epave_pot/epave_pot.png",
+      "data": "assets/sprites/epave_pot/epave_pot.json",
+      "planches": {
+        "base": "boards/props/epave_pot_base.png",
+        "modifie": "boards/props/epave_pot_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "etoile_mer",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/etoile_mer.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/etoile_mer.blend",
+      "aseprite": "art/source/aseprite/etoile_mer.aseprite",
+      "sheet": "assets/sprites/etoile_mer/etoile_mer.png",
+      "data": "assets/sprites/etoile_mer/etoile_mer.json",
+      "planches": {
+        "base": "boards/props/etoile_mer_base.png",
+        "modifie": "boards/props/etoile_mer_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "eponge",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/eponge.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/eponge.blend",
+      "aseprite": "art/source/aseprite/eponge.aseprite",
+      "sheet": "assets/sprites/eponge/eponge.png",
+      "data": "assets/sprites/eponge/eponge.json",
+      "planches": {
+        "base": "boards/props/eponge_base.png",
+        "modifie": "boards/props/eponge_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "roche_plate",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/roche_plate.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/roche_plate.blend",
+      "aseprite": "art/source/aseprite/roche_plate.aseprite",
+      "sheet": "assets/sprites/roche_plate/roche_plate.png",
+      "data": "assets/sprites/roche_plate/roche_plate.json",
+      "planches": {
+        "base": "boards/props/roche_plate_base.png",
+        "modifie": "boards/props/roche_plate_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "tube_ver",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/tube_ver.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/tube_ver.blend",
+      "aseprite": "art/source/aseprite/tube_ver.aseprite",
+      "sheet": "assets/sprites/tube_ver/tube_ver.png",
+      "data": "assets/sprites/tube_ver/tube_ver.json",
+      "planches": {
+        "base": "boards/props/tube_ver_base.png",
+        "modifie": "boards/props/tube_ver_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "amphore",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/amphore.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/amphore.blend",
+      "aseprite": "art/source/aseprite/amphore.aseprite",
+      "sheet": "assets/sprites/amphore/amphore.png",
+      "data": "assets/sprites/amphore/amphore.json",
+      "planches": {
+        "base": "boards/props/amphore_base.png",
+        "modifie": "boards/props/amphore_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "conque",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/conque.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/conque.blend",
+      "aseprite": "art/source/aseprite/conque.aseprite",
+      "sheet": "assets/sprites/conque/conque.png",
+      "data": "assets/sprites/conque/conque.json",
+      "planches": {
+        "base": "boards/props/conque_base.png",
+        "modifie": "boards/props/conque_modifie.png",
+        "iterations": []
+      }
     }
   ]
 }
