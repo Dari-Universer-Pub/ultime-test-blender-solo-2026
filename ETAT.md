@@ -1,8 +1,50 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
 ## Phase courante
-M4 (biome 2 `fosse_sombre`, tranche 2 : raie_lanterne, anguille_ombre, meduse_cloche ; mini-boss gardien_cloche ;
-3 variantes de scaphandre ; 15 effets ; 14 sons). M3 SUCCES, vérifié dans le dépôt ET dans un clone neuf (commit c488e94).
+PAUSE sur M4, demandée par Julien (« STOP sur M3 ») : refonte du héros (plongeur) d'abord.
+Étape en cours : UNE pose fixe, idle_01, en 47 px dans une case de 80 px. ARRÊT en attente de la validation de Julien
+sur cette pose. Les 41 animations ne sont PAS refaites tant que Julien n'a pas validé.
+
+## Refonte du héros : état exact
+- Modèle : `art/source/blender/plongeur.py` réécrit en proportions de dessin animé (grosse tête laiton, tronc court,
+  bras et jambes courts et épais, gros gants et bottes bleu-violet très sombre, bouteilles de dos, tuyau d'air clair).
+  Dimensions écrites en pixels du rendu final (1 px = 0,0466 unité). Caméra : 80 px, `LARGEUR_CADRE = 4.12`, rendu 640 px.
+- Palette : rampes `laiton` (4 tons), `kaki` (3), `gant` (4) ajoutées à `art/palette.json` : 19 rampes, 96 couleurs, pas de noir pur.
+- Mesure de la pose idle_01 : hauteur de contenu 47 px dans une case de 80 px (59 %). Cible : 46 à 48 px.
+- Planches (référence | avant | après, ×4, eau claire et eau sombre) :
+  - `boards/journal/plongeur_pose_idle_v2b_laiton_avant_apres.png` (A, gardé)
+  - `boards/journal/plongeur_pose_idle_v2c_membres_avant_apres.png` (B, gardé)
+  - `boards/journal/plongeur_pose_idle_v2d_hublot_avant_apres.png` (C, gardé)
+  - `boards/journal/plongeur_pose_idle_v2e_tuyau_avant_apres.png` (D, annulé : tuyau fondu dans le bras clair)
+  - `boards/journal/plongeur_pose_idle_v2f_tuyau_arriere_avant_apres.png` (D2, gardé)
+  - Journal : `art/journal/plongeur.json`, 5 entrées ajoutées (entrées 80 à 84).
+- Outil de planche : `tools/planches/heros_pose.py` (assemblage seulement, Pillow).
+
+## Ce qui n'est PAS fait sur le héros (à juger par Julien)
+- Assets du jeu (`assets/sprites/plongeur/`) : toujours l'ancien héros de 37 px. Ils ne seront reconstruits qu'après validation.
+- Référence de Julien (« plongeur de dessin animé, casque en laiton ») : ANNONCÉE mais ABSENTE du dépôt et de `origin`
+  (`art/references/` ne contient que ref_03 et ref_05). Comparaison faite avec les deux photos seulement.
+- Tuyau d'air : lisible à l'arrière, mais son liseré clair se confond avec le contour pixelisé (journal entrée 84).
+- Cadre laiton du hublot peu contrasté avec le casque doré ; boulons non visibles à 47 px.
+- Membres du côté lointain trop sombres pour se lire seuls.
+- Tronc plus sombre que la référence (kaki médian ; la photo de 1951 a une combinaison plus claire).
+- Gate : le contrôle M3 était SUCCES avant cette refonte ; il n'a pas été relancé sur les nouveaux assets (ils ne sont pas construits).
+
+## Décisions attendues de Julien
+1. Valider ou corriger la pose idle_01 (planche v2f ci-dessus) : proportions, couleurs, hublot, tuyau.
+2. Fournir la référence cartoon (fichier dans `art/references/` et adresse dans SOURCES.md) ou confirmer de comparer avec ref_03 et ref_05.
+3. Après validation : les 41 animations (nage, idle, creusage, attaque, saut, dégâts, mort) avec bras et jambes qui bougent franchement.
+
+## Acquis de M3 (SUCCES, dépôt et clone neuf à c488e94)
+- `python tools/gate.py M3` → SUCCES (dépôt, puis clone neuf). Robot 13/13. Sortie complète dans RAPPORT.md.
+- Créatures du biome 1, fond d'eau sur 300 m, captures dans les seuils, journal poisson réparé.
+- Dettes de M3 restantes : sons non écoutés, crédit son_impact non affiché en jeu, autotile non branché, fonds provisoires,
+  libellé « radeau » figé dans les captures à 60 m.
+
+## Créatures de la fosse (M4) : raie_lanterne en pause
+- `art/source/blender/raie_lanterne.py` : 2 changements gardés (ventre fin, aile avant haussée), 1 en cours (aile arrière,
+  planche `boards/journal/raie_lanterne_avant_apres_3.png` non jugée). Pas dans le manifeste. Julien a demandé de ne pas toucher
+  aux créatures pendant la refonte du héros : elles seront remises à l'échelle du nouveau héros plus tard.
 
 ## Derniers résultats de contrôle
 - `python tools/gate.py M3` (dépôt, commit c488e94) → SUCCES. Sortie complète dans RAPPORT.md (section M3).

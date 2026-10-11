@@ -1560,6 +1560,101 @@
         "degats : les trois images sont presque identiques, la secousse n'est pas assez marquée",
         "saut 3 : posture verticale qui fait sauter la silhouette, à revoir"
       ]
+    },
+    {
+      "changement": "casque : laiton plus clair (base du ton 1 au ton 2, paliers 1 à 3) pour qu'il soit doré et non brun",
+      "image": "boards/journal/plongeur_pose_idle_v2b_laiton_avant_apres.png",
+      "image_sha256": "88c2a754994bf266bbe2455a33e703798e2619984d0a23dc568a8709eb9a1662",
+      "controle": {
+        "silhouette": "Le casque ressort en haut de la silhouette ; le corps reste derrière lui, et la tête se lit à x1 comme une grosse sphère.",
+        "couleurs": "Laiton doré sur le casque, contre le kaki du tronc : deux familles de tons nettement séparées.",
+        "cadrage": "Le plongeur tient la case de 80 px à 59 % de sa hauteur ; le cadre n'est pas serré contre le bord.",
+        "taille": "Hauteur 47 px dans la case de 80 px : dans la cible 46 à 48 px.",
+        "details": "Le casque doré se distingue du corps ; le hublot est encore petit, traité au changement suivant.",
+        "coherence_base": "Le casque en laiton rappelle la photo de 1951 (référence ref_03) ; la référence de dessin animé de Julien n'est pas dans le dépôt.",
+        "pixels_parasites": "Aucun pixel parasite visible sur le contour après pixelisation à 8 px."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "hublot encore trop petit pour se lire à x1",
+        "tuyau d'air invisible à ce stade"
+      ]
+    },
+    {
+      "changement": "bras et jambes du côté proche en kaki clair (ton 2), tronc gardé au ton 1 : les membres se séparent du corps",
+      "image": "boards/journal/plongeur_pose_idle_v2c_membres_avant_apres.png",
+      "image_sha256": "329d0c048d8f4600e75a74a92e01cd0196258fccc8e5578c0ae8ba5dee643224",
+      "controle": {
+        "silhouette": "Le bras et la jambe clairs se détachent du tronc sombre ; la silhouette lit une tête, un corps et des membres.",
+        "couleurs": "Kaki clair sur les membres, kaki médian sur le tronc, gants et bottes presque noirs : quatre tons séparés.",
+        "cadrage": "Cadrage inchangé : 47 px dans 80 px.",
+        "taille": "Bras et jambes de 4 à 5 px de large à x1 : au minimum demandé par Julien.",
+        "details": "Gants et bottes sombres se lisent sur eau claire comme sur eau sombre ; le bras du côté proche est une bande claire nette.",
+        "coherence_base": "Combinaison claire et gants sombres, comme sur la photo de 1951 ; le tronc reste plus sombre que la référence.",
+        "pixels_parasites": "Aucun pixel parasite ; le liseré du contour suit bien les membres."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "membres du côté lointain trop sombres pour se lire seuls",
+        "le tronc reste plus sombre que la référence"
+      ]
+    },
+    {
+      "changement": "hublot agrandi (rayon 4 à 5,5 px) et avancé vers l'avant du casque, cadre laiton élargi (rayon 7 px, 1,5 px d'épaisseur)",
+      "image": "boards/journal/plongeur_pose_idle_v2d_hublot_avant_apres.png",
+      "image_sha256": "96ea37ce86d3b3d6a160230417ed3b11005ec6fffcd75adf081174cb7c43be07",
+      "controle": {
+        "silhouette": "Le hublot forme un ovale clair sur le devant du casque : la silhouette gagne une face avant.",
+        "couleurs": "Verre cyan clair contre le laiton doré : contraste franc sur eau claire et sur eau sombre.",
+        "cadrage": "Cadrage inchangé.",
+        "taille": "Hublot d'environ 8 px de large, lisible à x1 sur les deux eaux.",
+        "details": "Le hublot se lit à x1 ; le cadre laiton se fond encore un peu dans le casque doré.",
+        "coherence_base": "Casque à hublot frontal, comme sur la photo de 1951.",
+        "pixels_parasites": "Aucun pixel parasite visible autour du hublot."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "cadre laiton peu contrasté avec le casque doré",
+        "boulons non visibles à 47 px"
+      ]
+    },
+    {
+      "changement": "tuyau d'air placé devant le tronc (côté caméra), depuis l'arrière du casque jusqu'à la taille",
+      "image": "boards/journal/plongeur_pose_idle_v2e_tuyau_avant_apres.png",
+      "image_sha256": "21a0e3554f244b24aea610d4f4db164b9c92415272e9617ccfb42928857af7e1",
+      "controle": {
+        "silhouette": "Le tuyau devant le tronc n'apparaît pas comme une ligne : il est porté par les bras clairs.",
+        "couleurs": "Tuyau crème (ton 5 de la rampe métal) contre kaki clair : contraste trop faible.",
+        "cadrage": "Cadrage inchangé.",
+        "taille": "Tuyau de 3 px de large, mais masqué par le bras clair au même plan.",
+        "details": "Le tuyau devant est invisible sur les deux eaux : il se fond dans le bras clair.",
+        "coherence_base": "Le détail de métier demandé par Julien n'est pas lu : rejeté.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "tuyau fondu dans le bras clair",
+        "détail de métier non lu à x1"
+      ]
+    },
+    {
+      "changement": "tuyau d'air à l'arrière, hors du corps (parcours de l'arrière du casque jusqu'à la bouteille), pour qu'il se détache sur l'eau",
+      "image": "boards/journal/plongeur_pose_idle_v2f_tuyau_arriere_avant_apres.png",
+      "image_sha256": "90ab917d556c2fa89985da52dac3bd4b305cb4133578ed4116dd8e36285449d4",
+      "controle": {
+        "silhouette": "Un liseré crème suit l'arrière du casque et descend vers les bouteilles : il se lit comme un tuyau.",
+        "couleurs": "Crème sur eau claire et sur eau sombre : contraste correct, comme demandé.",
+        "cadrage": "Cadrage inchangé : 47 px.",
+        "taille": "Tuyau d'environ 3 px de large, au minimum demandé.",
+        "details": "Le tuyau se lit à x1 à l'arrière ; son contour clair se confond un peu avec le liseré de la pixelisation.",
+        "coherence_base": "Tuyau arrière : à comparer avec la photo de 1970 (ref_05), dont le tuyau est peu lisible sur l'image.",
+        "pixels_parasites": "Le liseré clair du contour se mêle au tuyau sur le bord arrière : à retoucher."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "le tuyau se confond avec le liseré clair du contour",
+        "tuyau à retravailler pour qu'il ressorte franchement"
+      ]
     }
   ]
 }
