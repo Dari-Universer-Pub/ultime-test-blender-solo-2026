@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Blender 5.2.1 LTS (-b : rendu EEVEE/Workbench via EGL logiciel, sans ecran)
+source "$(dirname "$(readlink -f "$0")")/_env.sh" || exit $?
+case " $* " in *" -b "*|*" --background "*|*" --version "*|*" -v "*) ;; *) assurer_ecran ;; esac
+exec "$D/blender/blender" "$@"

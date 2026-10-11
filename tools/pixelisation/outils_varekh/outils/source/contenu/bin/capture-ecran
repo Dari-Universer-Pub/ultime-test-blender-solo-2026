@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Capture tout l'ecran virtuel (ou une fenetre) en PNG, pour que l'IA REGARDE l'image.
+# Usage : capture-ecran sortie.png [nom_de_fenetre]
+source "$(dirname "$(readlink -f "$0")")/_env.sh" || exit $?
+[ -n "${1:-}" ] || { echo "usage : capture-ecran sortie.png [nom_de_fenetre]" >&2; exit 2; }
+assurer_ecran
+tmp="$(mktemp /tmp/capture-XXXXXX.xwd)"
+if [ -n "${2:-}" ]; then "$R/bin/xwd" -silent -name "$2" -out "$tmp"
+else "$R/bin/xwd" -silent -root -out "$tmp"; fi || { rm -f "$tmp"; exit 1; }
+"$D/bin/python" "$D/bin/xwd2png.py" "$tmp" "$1"; c=$?; rm -f "$tmp"; exit $c

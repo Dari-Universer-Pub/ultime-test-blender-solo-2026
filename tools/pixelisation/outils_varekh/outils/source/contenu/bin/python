@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Python 3.13 embarque avec Blender (numpy inclus). Utile si la sandbox n'a pas de python.
+source "$(dirname "$(readlink -f "$0")")/_env.sh" || exit $?
+exec "$D/blender/5.2/python/bin/python3.13" "$@"

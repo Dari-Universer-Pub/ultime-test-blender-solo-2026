@@ -1,0 +1,6 @@
+{
+  "_note": "Outils Linux deja compiles (INSTALLER_OUTILS.sh du depot kit-outil-v2, dossier outils/). NE PAS MODIFIER, sauf ajouter la cle 'robot' en phase M2.",
+  "godot": ["/opt/outils-varekh/bin/godot"],
+  "blender": ["/opt/outils-varekh/bin/blender"],
+  "aseprite": ["/opt/outils-varekh/bin/aseprite"]
+}

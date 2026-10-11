@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Lance un projet Godot et enregistre les images rendues (Movie Maker de Godot) en PNG.
+# Usage : godot-capture <dossier_projet> <dossier_sortie> [nb_images=60] [res://scene.tscn] [-- args du jeu]
+# Les images sortent dans <dossier_sortie>/image00000000.png, image00000001.png, ...
+source "$(dirname "$(readlink -f "$0")")/_env.sh" || exit $?
+p="${1:?dossier projet}"; o="${2:?dossier sortie}"; n="${3:-60}"; s="${4:-}"
+shift $(( $# < 4 ? $# : 4 ))
+mkdir -p "$o"; o="$(cd "$o" && pwd)"
+assurer_ecran
+exec "$D/godot/godot" --path "$p" $s --audio-driver Dummy --write-movie "$o/image.png" \
+     --fixed-fps 30 --quit-after "$n" "$@"

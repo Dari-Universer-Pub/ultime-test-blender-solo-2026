@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Godot 4.4.1 (rendu OpenGL logiciel llvmpipe, ecran virtuel automatique)
+source "$(dirname "$(readlink -f "$0")")/_env.sh" || exit $?
+case " $* " in *" --headless "*) ;; *) assurer_ecran ;; esac
+exec "$D/godot/godot" "$@"

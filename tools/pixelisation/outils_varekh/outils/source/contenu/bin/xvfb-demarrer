@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Demarre (si besoin) l'ecran virtuel :99 et affiche  export DISPLAY=:99
+source "$(dirname "$(readlink -f "$0")")/_env.sh" || exit $?
+assurer_ecran && echo "export DISPLAY=$DISPLAY"
