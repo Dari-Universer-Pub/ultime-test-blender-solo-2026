@@ -47,6 +47,36 @@
       "ok": true,
       "capture": "shots/robot/ramasser.png",
       "detail": "planche_epave dans l'inventaire : 1"
+    },
+    {
+      "nom": "poser",
+      "ok": true,
+      "capture": "shots/robot/poser.png",
+      "detail": "poses : 0 -> 1 ; inventaire : {'couteau_de_plongee': 1, 'planche_epave': 2, 'radeau_de_fortune': 1, 'reservoir_oxygene': 1, 'tole_rouillee': 3}"
+    },
+    {
+      "nom": "fabriquer",
+      "ok": true,
+      "capture": "shots/robot/fabriquer.png",
+      "detail": "module de forge fabriqué (tôle et planches de l'épave) ; inventaire : {'couteau_de_plongee': 1, 'module_forge': 1, 'radeau_de_fortune': 1, 'reservoir_oxygene': 1}"
+    },
+    {
+      "nom": "sortir_eau_radeau",
+      "ok": true,
+      "capture": "shots/robot/sortir_eau_radeau.png",
+      "detail": "le plongeur est monté sur le radeau (position [-5.0, -24.0])"
+    },
+    {
+      "nom": "sauvegarder",
+      "ok": true,
+      "capture": "shots/robot/sauvegarder.png",
+      "detail": "sauvegarde écrite : /root/.local/share/godot/app_userdata/Les Cloches de Varekh/sauvegarde.json"
+    },
+    {
+      "nom": "recharger",
+      "ok": true,
+      "capture": "shots/robot/recharger.png",
+      "detail": "après déplacement [54.7, -8.2], après F9 [-5.0, -24.0], sauvegardée [-5.0, -24.0]"
     }
   ]
 }
