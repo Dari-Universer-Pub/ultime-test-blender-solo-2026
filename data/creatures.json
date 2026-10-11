@@ -1,0 +1,274 @@
+{
+  "creatures": [
+    {
+      "id": "poisson_volant",
+      "nom": "Poisson volant",
+      "biomes": [
+        "radeau_surface"
+      ],
+      "taille": "petite",
+      "danger": "inoffensif",
+      "comportement": "Bondit hors de l'eau en bancs serrés, plane quelques mètres sur ses nageoires déployées, puis replonge en éclaboussant le radeau.",
+      "silhouette": "corps fuselé, deux grandes nageoires pectorales en éventail, queue fourchue",
+      "description": "Petit poisson de surface aux nageoires immenses, qui glisse au ras des vagues pour échapper aux prédateurs. Il est la première créature que le joueur voit en quittant le radeau, et il annonce la mer ouverte.",
+      "butin": [
+        "algue_sechee"
+      ]
+    },
+    {
+      "id": "carangue_rayee",
+      "nom": "Carangue rayée",
+      "biomes": [
+        "recif_peu_profond"
+      ],
+      "taille": "moyenne",
+      "danger": "defensif",
+      "comportement": "Nage en banc autour des coraux et fuit à grande vitesse dès qu'on approche. Elle n'attaque que si on la coince contre la roche.",
+      "silhouette": "corps haut et comprimé, bandes sombres verticales, nageoire dorsale effilée",
+      "description": "Poisson argenté zébré de bandes noires, qui tourne en banc autour des coraux. Sa vitesse et son flanc comprimé en font une cible difficile pour le harpon de bois.",
+      "butin": [
+        "resine_de_corail"
+      ]
+    },
+    {
+      "id": "oursin_bombe",
+      "nom": "Oursin bombe",
+      "biomes": [
+        "recif_peu_profond"
+      ],
+      "taille": "petite",
+      "danger": "defensif",
+      "comportement": "Reste immobile sur la roche, hérissé de piquants. Il ne bouge pas, mais il se détache si le plongeur le frappe, et ses piquants blessent longtemps.",
+      "silhouette": "sphère épineuse couleur de bronze, piquants longs et fins en étoile",
+      "description": "Oursin de récif gonflé et hérissé, couleur de bronze vert. Ses piquants cassent la pointe des outils et laissent des plaies qui brûlent, mais il est lent et ne poursuit personne.",
+      "butin": [
+        "algue_sechee"
+      ]
+    },
+    {
+      "id": "tortue_de_corail",
+      "nom": "Tortue de corail",
+      "biomes": [
+        "recif_peu_profond"
+      ],
+      "taille": "grande",
+      "danger": "inoffensif",
+      "comportement": "Glisse lentement d'un rocher à l'autre en traînant une carapace couverte de coraux. Elle remonte respirer à intervalles réguliers et ne réagit qu'aux lampes trop vives.",
+      "silhouette": "carapace bombée couverte de coraux, pattes palmées larges, tête courte",
+      "description": "Grande tortue dont la carapace sert de jardin à des coraux blancs et à des éponges orange. Elle est pacifique et lente, et le plongeur peut la suivre longtemps sans qu'elle s'en inquiète.",
+      "butin": [
+        "resine_de_corail"
+      ]
+    },
+    {
+      "id": "raie_lanterne",
+      "nom": "Raie lanterne",
+      "biomes": [
+        "fosse_sombre"
+      ],
+      "taille": "grande",
+      "danger": "defensif",
+      "comportement": "Plane au-dessus du fond en battant lentement des ailes. Ses organes lumineux s'allument quand elle se sent menacée, et elle se laisse tomber vers le plongeur en guise d'avertissement.",
+      "silhouette": "disque plat très large, ailes arrondies, longue queue fine avec un organe lumineux",
+      "description": "Raie abyssale dont le dos porte une série de points lumineux qui servent de leurre. Son écaille translucide est prisée des plongeurs, et sa lumière sert de repère dans la fosse.",
+      "butin": [
+        "ecaille_de_raie"
+      ]
+    },
+    {
+      "id": "anguille_ombre",
+      "nom": "Anguille de l'ombre",
+      "biomes": [
+        "fosse_sombre"
+      ],
+      "taille": "grande",
+      "danger": "agressif",
+      "comportement": "Sort brusquement d'une fente de roche, mord, puis se retire dans le noir. Elle revient toujours par le même passage et attaque les lampes qui restent trop longtemps immobiles.",
+      "silhouette": "corps serpentin très long, mâchoire ouverte garnie de dents fines, nageoire dorsale continue",
+      "description": "Anguille de plus de deux mètres, à peau noire et à mâchoires pleines de dents courbes. Elle défend son territoire avec une vitesse surprenante, et ses morsures laissent des plaies difficiles à refermer.",
+      "butin": [
+        "fer_de_fond"
+      ]
+    },
+    {
+      "id": "meduse_cloche",
+      "nom": "Méduse cloche",
+      "biomes": [
+        "fosse_sombre"
+      ],
+      "taille": "moyenne",
+      "danger": "defensif",
+      "comportement": "Monte et descend en pulsant doucement. Ses tentacules traînent loin derrière elle et paralysent les petites proies, mais elle ne cherche jamais le contact avec un plongeur.",
+      "silhouette": "cloche translucide bombée, longs filaments qui pendent en dessous",
+      "description": "Méduse de la fosse, dont la cloche bleue luit faiblement à chaque pulsation. Ses filaments sont urticants, et les anciens disaient que son rythme suivait celui de la dernière cloche.",
+      "butin": [
+        "quartz_bleu"
+      ]
+    },
+    {
+      "id": "loutre_de_kelp",
+      "nom": "Loutre de kelp",
+      "biomes": [
+        "foret_de_kelp"
+      ],
+      "taille": "moyenne",
+      "danger": "inoffensif",
+      "comportement": "Joue entre les tiges de kelp, se roule dans les feuilles et casse des coquillages sur sa poitrine. Elle observe le plongeur avec curiosité et s'enfuit en sifflant si on la touche.",
+      "silhouette": "corps long et souple, pattes palmées courtes, queue épaisse et tête ronde",
+      "description": "Loutre marine habitant la forêt de kelp, au pelage brun foncé et aux moustaches très longues. Elle est joueuse et curieuse, et elle indique au plongeur où se cachent les coquillages.",
+      "butin": [
+        "algue_sechee"
+      ]
+    },
+    {
+      "id": "calmar_ruban",
+      "nom": "Calmar ruban",
+      "biomes": [
+        "foret_de_kelp"
+      ],
+      "taille": "grande",
+      "danger": "agressif",
+      "comportement": "Reste caché dans le feuillage, change de couleur pour se fondre dans le kelp, puis lance ses longs bras pour saisir la proie. Il se retire vite quand il est blessé.",
+      "silhouette": "manteau allongé en ruban, huit bras courts et deux tentacules fins, nageoires latérales",
+      "description": "Calmar long et plat, qui se confond avec les lames de kelp. Ses bras portent des ventouses qui collent à la combinaison, et sa peau contient une sève élastique qui intéresse les carillonneurs.",
+      "butin": [
+        "caoutchouc_brut"
+      ]
+    },
+    {
+      "id": "crabe_cristal",
+      "nom": "Crabe de cristal",
+      "biomes": [
+        "banc_de_verre"
+      ],
+      "taille": "moyenne",
+      "danger": "defensif",
+      "comportement": "Marche de côté sur le sable clair, et se fige quand une lumière le frappe. Il se défend avec ses pinces transparentes qui cassent les lampes mal protégées.",
+      "silhouette": "carapace plate et translucide, deux pinces larges, huit pattes fines en éventail",
+      "description": "Crabe dont la carapace est transparente, presque aussi dure que le verre de cloche. Il vit sur les bancs et se nourrit des débris des anciens ateliers, et sa couleur change avec la lumière.",
+      "butin": [
+        "verre_cloche"
+      ]
+    },
+    {
+      "id": "baleine_de_verre",
+      "nom": "Baleine de verre",
+      "biomes": [
+        "banc_de_verre"
+      ],
+      "taille": "colosse",
+      "danger": "inoffensif",
+      "comportement": "Glisse très lentement au-dessus du banc et souffle des bulles de cristal qui tintent en montant. Elle ne plonge jamais sous le plongeur et disparaît dans la brume des crêtes.",
+      "silhouette": "corps immense et lisse, nageoire caudale large et translucide, tête arrondie sans dents",
+      "description": "Baleine géante dont la peau semble faite de verre dépoli, et qui traverse le banc comme un navire. Elle est inoffensive, et son chant fait vibrer les conduits du banc sur des kilomètres.",
+      "butin": [
+        "argent_abyssal"
+      ]
+    },
+    {
+      "id": "ver_de_cheminee",
+      "nom": "Ver de cheminée",
+      "biomes": [
+        "cheminee_thermale"
+      ],
+      "taille": "grande",
+      "danger": "agressif",
+      "comportement": "Tend ses panaches rouges hors de son tube, aspire les particules et se rétracte violemment dès qu'on approche. Il attaque les plongeurs qui s'attardent près de sa cheminée.",
+      "silhouette": "tube rigide couleur de rouille, panache de filaments rouges, corps rayé en anneaux",
+      "description": "Ver géant qui vit dans les tubes de roche des cheminées thermales. Ses filaments rouges portent des bactéries qui brillent, et son attaque chauffe la peau au contact de la combinaison.",
+      "butin": [
+        "soufre_thermal"
+      ]
+    },
+    {
+      "id": "crabe_de_fer",
+      "nom": "Crabe de fer",
+      "biomes": [
+        "cheminee_thermale"
+      ],
+      "taille": "moyenne",
+      "danger": "defensif",
+      "comportement": "Ronge les parois métalliques de l'ancienne station d'accordage, se réfugie dans les tubes quand il est menacé et revient aussitôt quand le danger passe.",
+      "silhouette": "carapace rectangulaire couverte de plaques de métal, pinces asymétriques, pattes courtes et robustes",
+      "description": "Crabe dont la carapace est recouverte de rouille et de plaques de tôle qu'il a arrachées aux anciens murs. Il est coriace, lent à se retourner, et il laisse parfois tomber un morceau de fer.",
+      "butin": [
+        "fer_de_fond"
+      ]
+    },
+    {
+      "id": "poulpe_abyssal",
+      "nom": "Poulpe abyssal",
+      "biomes": [
+        "plaine_abyssale"
+      ],
+      "taille": "grande",
+      "danger": "agressif",
+      "comportement": "Glisse d'une sphère lumineuse à l'autre, éteint sa lumière et frappe de ses bras en surgissant de la vase. Il se retire dans un nuage d'encre quand il est touché.",
+      "silhouette": "manteau bulbeux, huit bras longs et ondulants, deux yeux énormes et fixes",
+      "description": "Poulpe des plaines, à peau pâle et veinée de bleu, qui vit dans la vase fine. Ses yeux géants repèrent les lampes à plus de cent mètres, et son encre luit faiblement.",
+      "butin": [
+        "vase_bioluminescente"
+      ]
+    },
+    {
+      "id": "sebaste_obscur",
+      "nom": "Sébaste obscur",
+      "biomes": [
+        "plaine_abyssale"
+      ],
+      "taille": "petite",
+      "danger": "inoffensif",
+      "comportement": "Se pose sur la vase et se confond avec elle. Il ouvre la bouche quand une proie passe, et il s'enfonce quand on le touche.",
+      "silhouette": "corps trapu et épineux, nageoires pectorales en éventail, tête large et couverte de crêtes",
+      "description": "Poisson de fond brun-noir, couvert de petites épines, qui se camoufle dans la vase. Il est sans danger, et on le trouve souvent collé à des nodules de manganèse.",
+      "butin": [
+        "nodule_manganese"
+      ]
+    },
+    {
+      "id": "garde_de_cite",
+      "nom": "Garde de la cité",
+      "biomes": [
+        "cite_engloutie"
+      ],
+      "taille": "grande",
+      "danger": "agressif",
+      "comportement": "Patrouille les places en suivant un tracé fixe, réagit au bruit des pas et frappe avec son bras de métal. Quand il perd son lien avec la cité, il devient plus dangereux.",
+      "silhouette": "silhouette humanoïde raide, bras de métal long terminé par une lame, casque ovale sans visage",
+      "description": "Automate vivant, né des vieux mécanismes de la cité, qui garde encore les places de Varekh. Son corps est fait de titane et de bronze, et il ne parle pas, il frappe quand un intrus s'approche des portes.",
+      "butin": [
+        "titane_de_cite"
+      ]
+    },
+    {
+      "id": "lampadaire_vivant",
+      "nom": "Lampadaire vivant",
+      "biomes": [
+        "cite_engloutie"
+      ],
+      "taille": "petite",
+      "danger": "inoffensif",
+      "comportement": "Reste fixé au sommet des colonnes de la cité et s'allume quand un plongeur passe à sa portée. Il glisse à peine quand on l'approche, puis retourne à sa colonne.",
+      "silhouette": "tige haute et fine, globe lumineux au sommet, petits filaments qui pendent à la base",
+      "description": "Organisme qui vit sur les colonnes de la cité, et qui ressemble à un lampadaire de verre. Sa lumière bleu-blanc éclaire les rues, et les carillonneurs l'appelaient la veilleuse.",
+      "butin": [
+        "eclat_de_signal"
+      ]
+    },
+    {
+      "id": "sirene_du_fond",
+      "nom": "Sirène du fond",
+      "biomes": [
+        "fond_du_signal"
+      ],
+      "taille": "grande",
+      "danger": "agressif",
+      "comportement": "Tourne autour de l'autel en chantant à la note du signal. Elle se rapproche du plongeur en suivant le rythme de la cloche, et elle frappe quand le chant se brise.",
+      "silhouette": "corps élancé, nageoires de voile qui se déploient, tête à longue chevelure de filaments",
+      "description": "Créature du fond du signal, à mi-chemin entre le poisson et la femme, qui chante à la même note que la cloche. Son chant fait vibrer le corps et brouille les sens du plongeur.",
+      "butin": [
+        "eclat_de_signal"
+      ]
+    }
+  ]
+}

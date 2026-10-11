@@ -1,11 +1,11 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
 ## Phase courante
-M1 (univers complet en données, aucun code de jeu). M0 VALIDÉE par Julien. Travail en cours : données `data/*.json` et `BIBLE.md`, puis `python tools/gate.py M1` (SUCCES requis).
+M1 (univers complet en données, aucun code de jeu) : contrôle `python tools/gate.py M1` en SUCCES dans le dépôt de travail. Contrôle dans le clone neuf : voir « Dernier contrôle ». M0 validée par Julien. M2 NON commencée (Julien a demandé de s'arrêter après M1).
 
 ## Dernier contrôle
-- Dépôt de travail (avant commit) : `python tools/gate.py M0` → SUCCES (gate.py SHA-256 55d6fbef1065ba7afcaf4f11922e1f57d6f56ed22d0fea591e7ed6b4a6c8beeb).
-- Clone neuf (commit e9ec6c6, branche claude/cloches-varekh-dev-r716in) : SUCCES. Sortie complète dans RAPPORT.md (section « Sortie complète »).
+- M1, dépôt de travail : `python tools/gate.py M1` → SUCCES. Univers : 9 biomes (tranche 1 : radeau_surface, recif_peu_profond ; tranche 2 : fosse_sombre ; 6 biomes hors échantillon), 66 objets, 45 recettes, 5 stations, 18 créatures (dont le colosse inoffensif baleine_de_verre), 3 boss (gardien_cloche = mini-boss de la fosse), 21 quêtes, 35 notes, 3 fins. Simulation de progression : tous les objets, biomes et quêtes atteignables depuis le radeau.
+- M1, clone neuf : voir RAPPORT.md (section M1, sortie complète).
 
 ## Journal visuel
 64 entrées : 47 gardées, 17 annulées. 64 images distinctes, SHA-256 vérifiés, 7 critères remplis par entrée.
@@ -88,4 +88,4 @@ Acquis à garder à chaque retouche : taille 32-40 px sur chaque image, amplitud
 Rien pour M1 (M0 validée par Julien). Les retouches obligatoires ci-dessus restent à faire avant M3.
 
 ## Prochaine étape
-M1 : écrire data/*.json et BIBLE.md, puis `python tools/gate.py M1`.
+Rien à lancer : M1 terminée, Julien décide de la suite. Les retouches obligatoires ci-dessus restent à faire avant M3.

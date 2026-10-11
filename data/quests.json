@@ -1,0 +1,468 @@
+{
+  "quests": [
+    {
+      "id": "q_premiere_plongee",
+      "nom": "Première plongée",
+      "biome": "radeau_surface",
+      "description": "Le plongeur quitte le radeau avec son couteau et descend pour la première fois sous la ligne d'eau. La mer lui apprend la pression, le souffle et le retour : sans cette leçon, rien d'autre ne tient.",
+      "objectifs": [
+        "Descendre à dix mètres avec le couteau de plongée",
+        "Remonter sur le radeau sans perdre d'oxygène"
+      ],
+      "prerequis": [],
+      "objets_requis": [
+        "couteau_de_plongee"
+      ],
+      "recompenses": [
+        "ration_algue"
+      ],
+      "notes_liees": [
+        "n_radeau_1"
+      ]
+    },
+    {
+      "id": "q_etablir_le_radeau",
+      "nom": "Établir le radeau",
+      "biome": "radeau_surface",
+      "description": "Le radeau est trop faible pour porter une forge. Le plongeur doit monter le module de forge sur les planches et les tôles de la surface, puis ranger les caisses avant la prochaine tempête.",
+      "objectifs": [
+        "Monter le module de forge sur le radeau",
+        "Installer une caisse de stockage"
+      ],
+      "prerequis": [
+        "q_premiere_plongee"
+      ],
+      "objets_requis": [
+        "module_forge"
+      ],
+      "recompenses": [
+        "caisse_de_stockage"
+      ],
+      "notes_liees": [
+        "n_radeau_2"
+      ]
+    },
+    {
+      "id": "q_les_cloches_du_recif",
+      "nom": "Les cloches du récif",
+      "biome": "recif_peu_profond",
+      "description": "Au pied du récif, une cloche couchée donne sa première note. Le plongeur doit rapporter du cuivre brut de la galerie de bronze, première matière de la forge et de tous les fils qui suivront.",
+      "objectifs": [
+        "Trouver du cuivre brut dans le récif",
+        "Rapporter le cuivre sur le radeau"
+      ],
+      "prerequis": [
+        "q_premiere_plongee"
+      ],
+      "objets_requis": [
+        "cuivre_brut"
+      ],
+      "recompenses": [
+        "filet_de_peche"
+      ],
+      "notes_liees": [
+        "n_recif_1"
+      ]
+    },
+    {
+      "id": "q_premier_scaphandre",
+      "nom": "Premier scaphandre",
+      "biome": "radeau_surface",
+      "description": "La toile seule ne suffit pas à descendre longtemps. Le plongeur coud un scaphandre de toile goudronnée à l'établi, ce qui lui ouvre la fosse et les premières profondeurs réelles.",
+      "objectifs": [
+        "Coudre un scaphandre de toile à l'établi",
+        "Garder le scaphandre sur soi pendant une descente"
+      ],
+      "prerequis": [
+        "q_etablir_le_radeau"
+      ],
+      "objets_requis": [
+        "scaphandre_toile"
+      ],
+      "recompenses": [
+        "palmes_de_toile"
+      ],
+      "notes_liees": [
+        "n_radeau_3"
+      ]
+    },
+    {
+      "id": "q_le_fil_du_cuivre",
+      "nom": "Le fil du cuivre",
+      "biome": "recif_peu_profond",
+      "description": "Le cuivre doit être étiré en fil avant de servir à la forge. Le plongeur tire un fil avec l'établi et vérifie que la note de la cloche voisine répond à son travail.",
+      "objectifs": [
+        "Étirer un fil de cuivre à l'établi",
+        "Tendre le fil sur une cloche couchée"
+      ],
+      "prerequis": [
+        "q_les_cloches_du_recif"
+      ],
+      "objets_requis": [
+        "fil_de_cuivre"
+      ],
+      "recompenses": [
+        "pioche_de_recif"
+      ],
+      "notes_liees": [
+        "n_recif_2"
+      ]
+    },
+    {
+      "id": "q_gardien_de_la_fosse",
+      "nom": "Le gardien de la fosse",
+      "biome": "fosse_sombre",
+      "description": "Le gardien de la chapelle veille sur le sanctuaire de la fosse. Le plongeur doit le battre sans frapper trop fort, puis rapporter le médaillon qui donne accès aux profondeurs suivantes.",
+      "objectifs": [
+        "Battre le gardien de la cloche",
+        "Rapporter le médaillon au radeau"
+      ],
+      "prerequis": [
+        "q_premier_scaphandre"
+      ],
+      "objets_requis": [
+        "medaillon_gardien"
+      ],
+      "recompenses": [
+        "lampe_frontale"
+      ],
+      "notes_liees": [
+        "n_fosse_1"
+      ]
+    },
+    {
+      "id": "q_scaphandre_de_cuivre",
+      "nom": "Scaphandre de cuivre",
+      "biome": "fosse_sombre",
+      "description": "La toile ne tient pas la pression de la fosse. Le plongeur monte un scaphandre de cuivre à la forge, avec du cuivre, du fil et de la toile. Ce scaphandre ouvre les profondeurs de la forêt de kelp.",
+      "objectifs": [
+        "Monter un scaphandre de cuivre à la forge",
+        "Descendre dans la fosse avec le scaphandre"
+      ],
+      "prerequis": [
+        "q_le_fil_du_cuivre"
+      ],
+      "objets_requis": [
+        "scaphandre_cuivre"
+      ],
+      "recompenses": [
+        "ceinture_de_plomb"
+      ],
+      "notes_liees": [
+        "n_fosse_2"
+      ]
+    },
+    {
+      "id": "q_la_foret_de_kelp",
+      "nom": "La forêt de kelp",
+      "biome": "foret_de_kelp",
+      "description": "Le kelp pousse entre deux murs de roche. Le plongeur doit récolter le caoutchouc brut dans la sève des tiges, la matière première des combinaisons et des joints.",
+      "objectifs": [
+        "Entrer dans la forêt de kelp",
+        "Récolter du caoutchouc brut"
+      ],
+      "prerequis": [
+        "q_scaphandre_de_cuivre"
+      ],
+      "objets_requis": [
+        "caoutchouc_brut"
+      ],
+      "recompenses": [
+        "harpon_de_cuivre"
+      ],
+      "notes_liees": [
+        "n_foret_1"
+      ]
+    },
+    {
+      "id": "q_la_carte_des_cloches",
+      "nom": "La carte des cloches",
+      "biome": "foret_de_kelp",
+      "description": "Une carte partielle est gravée sur une plaque accrochée au kelp. Le plongeur doit la trouver, la lire à la lampe et la rapporter pour recouper les routes vers le banc et la cheminée.",
+      "objectifs": [
+        "Trouver la carte des cloches dans la forêt",
+        "Lire la carte au radeau"
+      ],
+      "prerequis": [
+        "q_la_foret_de_kelp"
+      ],
+      "objets_requis": [
+        "carte_des_cloches"
+      ],
+      "recompenses": [
+        "sonar_de_poche"
+      ],
+      "notes_liees": [
+        "n_foret_2",
+        "n_foret_4"
+      ]
+    },
+    {
+      "id": "q_combinaison_caoutchouc",
+      "nom": "Combinaison de caoutchouc",
+      "biome": "foret_de_kelp",
+      "description": "Le caoutchouc permet de fabriquer une combinaison souple qui tient jusqu'à trois cents mètres. Le plongeur doit la monter à la forge et apprendre à remonter palier après palier.",
+      "objectifs": [
+        "Monter une combinaison de caoutchouc à la forge",
+        "Remonter sans à-coup d'un palier à l'autre"
+      ],
+      "prerequis": [
+        "q_la_foret_de_kelp"
+      ],
+      "objets_requis": [
+        "combinaison_caoutchouc"
+      ],
+      "recompenses": [
+        "lunettes_de_nuit"
+      ],
+      "notes_liees": [
+        "n_foret_3"
+      ]
+    },
+    {
+      "id": "q_le_banc_de_verre",
+      "nom": "Le banc de verre",
+      "biome": "banc_de_verre",
+      "description": "Le banc est couvert de verre de cloche et de sable clair. Le plongeur doit y récupérer du verre épais, la matière de tous les casques de cloche et des lentilles de laboratoire.",
+      "objectifs": [
+        "Atteindre le banc de verre",
+        "Rapporter du verre de cloche"
+      ],
+      "prerequis": [
+        "q_combinaison_caoutchouc"
+      ],
+      "objets_requis": [
+        "verre_cloche"
+      ],
+      "recompenses": [
+        "fusil_a_air_comprime"
+      ],
+      "notes_liees": [
+        "n_banc_1"
+      ]
+    },
+    {
+      "id": "q_la_cloche_de_verre",
+      "nom": "La cloche de verre",
+      "biome": "banc_de_verre",
+      "description": "Un casque de cloche de verre permet de voir loin dans les bancs. Le plongeur doit le monter au laboratoire, où la lampe et le verre tiennent la pression sans se fendre.",
+      "objectifs": [
+        "Monter un casque de cloche de verre au laboratoire",
+        "Éclairer une paroi à plus de dix mètres"
+      ],
+      "prerequis": [
+        "q_le_banc_de_verre"
+      ],
+      "objets_requis": [
+        "cloche_de_verre"
+      ],
+      "recompenses": [
+        "bouee_de_signal"
+      ],
+      "notes_liees": [
+        "n_banc_2",
+        "n_banc_4"
+      ]
+    },
+    {
+      "id": "q_la_cheminee",
+      "nom": "La cheminée thermale",
+      "biome": "cheminee_thermale",
+      "description": "Les cheminées thermales crachent du soufre et de la chaleur. Le plongeur doit y prélever du soufre thermal sans se brûler, en utilisant les pastilles qui protègent du froid comme de la chaleur.",
+      "objectifs": [
+        "Atteindre la cheminée thermale",
+        "Rapporter du soufre thermal"
+      ],
+      "prerequis": [
+        "q_la_cloche_de_verre"
+      ],
+      "objets_requis": [
+        "soufre_thermal"
+      ],
+      "recompenses": [
+        "pastille_thermique"
+      ],
+      "notes_liees": [
+        "n_cheminee_1",
+        "n_cheminee_4"
+      ]
+    },
+    {
+      "id": "q_la_sentinelle",
+      "nom": "La sentinelle des cheminées",
+      "biome": "cheminee_thermale",
+      "description": "La sentinelle protège l'atelier du carillonneur. Le plongeur doit fabriquer une pince hydraulique au laboratoire, puis tenir la sentinelle à distance assez longtemps pour ouvrir son tube.",
+      "objectifs": [
+        "Fabriquer une pince hydraulique",
+        "Vaincre la sentinelle des cheminées"
+      ],
+      "prerequis": [
+        "q_la_cheminee"
+      ],
+      "objets_requis": [
+        "pince_hydraulique"
+      ],
+      "recompenses": [
+        "antidote_sel"
+      ],
+      "notes_liees": [
+        "n_cheminee_2",
+        "n_cheminee_3"
+      ]
+    },
+    {
+      "id": "q_la_plaine_des_vases",
+      "nom": "La plaine des vases",
+      "biome": "plaine_abyssale",
+      "description": "La plaine est couverte de vase bioluminescente. Le plongeur doit y récolter la vase et comprendre que chaque sphère répond à une note. Le recycleur thermique y est indispensable.",
+      "objectifs": [
+        "Atteindre la plaine abyssale",
+        "Rapporter de la vase bioluminescente"
+      ],
+      "prerequis": [
+        "q_la_sentinelle"
+      ],
+      "objets_requis": [
+        "vase_bioluminescente"
+      ],
+      "recompenses": [
+        "biscuit_marin"
+      ],
+      "notes_liees": [
+        "n_plaine_1",
+        "n_plaine_4"
+      ]
+    },
+    {
+      "id": "q_la_cite_engloutie",
+      "nom": "La cité engloutie",
+      "biome": "cite_engloutie",
+      "description": "Varekh gît sous la plaine, couchée sur sa falaise. Le plongeur doit trouver l'éclat de signal qui vibre dans les rues, ce qui prouve qu'il a atteint le cœur de la cité.",
+      "objectifs": [
+        "Entrer dans la cité engloutie",
+        "Rapporter un éclat de signal"
+      ],
+      "prerequis": [
+        "q_la_plaine_des_vases"
+      ],
+      "objets_requis": [
+        "eclat_de_signal"
+      ],
+      "recompenses": [
+        "cle_de_la_cite"
+      ],
+      "notes_liees": [
+        "n_cite_1",
+        "n_cite_4"
+      ]
+    },
+    {
+      "id": "q_les_archives",
+      "nom": "Les archives de la cité",
+      "biome": "cite_engloutie",
+      "description": "La bibliothèque des plaques est fermée par une armoire scellée. Le plongeur doit y trouver le mécanisme d'horloge qui règle la marée des cloches, et comprendre que la gamme haute était un vote, pas une nécessité.",
+      "objectifs": [
+        "Ouvrir la bibliothèque des plaques",
+        "Rapporter le mécanisme d'horloge"
+      ],
+      "prerequis": [
+        "q_la_cite_engloutie"
+      ],
+      "objets_requis": [
+        "mecanisme_horloge"
+      ],
+      "recompenses": [
+        "foret_abyssal"
+      ],
+      "notes_liees": [
+        "n_cite_2"
+      ]
+    },
+    {
+      "id": "q_le_chant_du_fond",
+      "nom": "Le chant du fond",
+      "biome": "fond_du_signal",
+      "description": "Au fond du golfe, la cloche du Miroir sonne sans relâche. Le plongeur doit battre le Chant, l'accordeuse qui chante sur l'autel, et récupérer le cristal qu'elle laisse derrière elle.",
+      "objectifs": [
+        "Atteindre le fond du signal",
+        "Battre le Chant du fond",
+        "Rapporter le cristal du signal"
+      ],
+      "prerequis": [
+        "q_les_archives"
+      ],
+      "objets_requis": [
+        "cristal_du_signal"
+      ],
+      "recompenses": [
+        "sceau_des_cloches"
+      ],
+      "notes_liees": [
+        "n_fond_1"
+      ]
+    },
+    {
+      "id": "q_le_grand_navire",
+      "nom": "Le grand navire",
+      "biome": "fond_du_signal",
+      "description": "Le sous-marin géant de la guilde attend depuis trois siècles au fond du golfe. Le plongeur doit le monter au chantier, avec un résonateur et de l'exo de pression, pour remonter vers l'horizon.",
+      "objectifs": [
+        "Monter le sous-marin géant au chantier",
+        "Faire sortir le sous-marin du fond"
+      ],
+      "prerequis": [
+        "q_le_chant_du_fond"
+      ],
+      "objets_requis": [
+        "sous_marin_geant"
+      ],
+      "recompenses": [
+        "fusee_de_detresse"
+      ],
+      "notes_liees": [
+        "n_fond_2"
+      ]
+    },
+    {
+      "id": "q_la_cloche_muette",
+      "nom": "La cloche muette",
+      "biome": "fond_du_signal",
+      "description": "Pour faire taire le signal, il faut casser les conduits et la cloche elle-même. Le plongeur doit rassembler le cristal du signal et le sceau des cloches, puis les déposer sur l'autel.",
+      "objectifs": [
+        "Rassembler le cristal du signal et le sceau des cloches",
+        "Déposer le sceau sur l'autel du signal"
+      ],
+      "prerequis": [
+        "q_le_chant_du_fond"
+      ],
+      "objets_requis": [
+        "cristal_du_signal",
+        "sceau_des_cloches"
+      ],
+      "recompenses": [],
+      "notes_liees": [
+        "n_fond_4"
+      ]
+    },
+    {
+      "id": "q_la_voix_du_signal",
+      "nom": "La voix du signal",
+      "biome": "fond_du_signal",
+      "description": "Pour rendre la voix à la cloche, il faut accepter la quatrième note du Chant. Le plongeur doit revenir avec le sceau et le sous-marin pour accorder la cloche du Miroir une dernière fois.",
+      "objectifs": [
+        "Rapporter le sceau des cloches au fond",
+        "Accorder la cloche du Miroir"
+      ],
+      "prerequis": [
+        "q_le_grand_navire"
+      ],
+      "objets_requis": [
+        "sceau_des_cloches"
+      ],
+      "recompenses": [],
+      "notes_liees": [
+        "n_fond_3"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "endings": [
+    {
+      "id": "fin_resonance",
+      "nom": "La cloche retrouve sa voix",
+      "condition": "Battre le Chant du fond, accepter la quatrième note et accorder la cloche du Miroir avec le sceau des cloches, après avoir lu les notes de la cité et du fond.",
+      "description": "La cloche du Miroir sonne enfin deux accords au lieu d'une note seule. Les courants se détendent, les tubes de verre se remettent à chanter et les sirènes du fond se taisent une à une. Le plongeur reste au fond, accroché à l'autel, et écoute la mer respirer pour la première fois depuis trois siècles. Le radeau de surface voit la houle s'adoucir, les pêcheurs reprennent la mer et les plaques de cuivre des archives recommencent à se lire. Le signal ne s'éteint pas : il devient une invitation à écouter, et la mer est de nouveau accordée.",
+      "notes_requises": [
+        "n_fond_3",
+        "n_cite_2"
+      ],
+      "quete_finale": "q_la_voix_du_signal"
+    },
+    {
+      "id": "fin_silence",
+      "nom": "Le silence scellé",
+      "condition": "Rassembler le cristal du signal et le sceau des cloches, puis faire taire la cloche du Miroir, en ayant compris les notes de la cité et de l'Ordre.",
+      "description": "Le plongeur dépose le sceau sur l'autel et casse la cloche du Miroir. La note s'éteint d'un coup, et le golfe tombe dans un silence total qui ressemble à la paix. Les courants s'arrêtent, les radeaux peuvent enfin sortir en mer sans peur, et l'Ordre du Silence dit qu'il a gagné. Mais les sirènes du fond se taisent aussi, et aucune plaque ne chantera plus. Le plongeur remonte seul, avec l'impression que la mer a cessé de lui parler, et qu'il a choisi ce silence à la place de ceux qui ne l'ont pas entendu.",
+      "notes_requises": [
+        "n_cite_3",
+        "n_plaine_3"
+      ],
+      "quete_finale": "q_la_cloche_muette"
+    },
+    {
+      "id": "fin_horizon",
+      "nom": "Le navire vers l'horizon",
+      "condition": "Monter le sous-marin géant au chantier et le faire sortir du fond, après avoir compris le projet de la guilde et la mémoire du radeau.",
+      "description": "Le sous-marin géant remonte lentement le golfe, éclairé par les lampes des cités englouties qui s'allument une à une sur son passage. La note du signal reste un bourdonnement lointain, qu'on n'entend plus qu'en rêve. Le navire atteint la surface claire au nord du golfe, là où la mer devient bleue. Le radeau de la Compagnie est loin derrière, mais le plongeur le voit encore, petit point de planches au milieu des vagues. Le monde s'ouvre enfin, et il reste à savoir ce qu'il y a au-delà de l'horizon.",
+      "notes_requises": [
+        "n_fond_2",
+        "n_radeau_3"
+      ],
+      "quete_finale": "q_le_grand_navire"
+    }
+  ]
+}
