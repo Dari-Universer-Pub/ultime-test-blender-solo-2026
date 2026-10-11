@@ -18,13 +18,13 @@ SORTIE = os.path.join(ob.ROOT, "art", "rendu", ID)
 BLEND = os.path.join(ob.HERE, ID + ".blend")
 RES_X, RES_Y = 640, 360
 ECHANTILLONS = int(os.environ.get("FOND_ECHANTILLONS", "32"))
-LARGEUR_CADRE = 8.0
+LARGEUR_CADRE = 4.0
 
 
 def construire():
     m_bois = ob.materiau("fond_coque", "ocre", bandes=(0, 0, 1, 1), rugosite=0.8)
     for k, x in enumerate((-2.2, 0.0, 2.2)):
-        ob.cube((x, 2.0, -1.0), 1.0, m_bois, echelle=(0.5, 0.1, 0.15), nom=f"coque_{k + 1}")
+        ob.cube((x, 2.0, -1.0), 1.0, m_bois, echelle=(0.9, 0.25, 0.3), nom=f"coque_{k + 1}")
 
 
 

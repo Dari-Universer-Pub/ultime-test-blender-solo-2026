@@ -18,13 +18,13 @@ SORTIE = os.path.join(ob.ROOT, "art", "rendu", ID)
 BLEND = os.path.join(ob.HERE, ID + ".blend")
 RES_X, RES_Y = 640, 360
 ECHANTILLONS = int(os.environ.get("FOND_ECHANTILLONS", "32"))
-LARGEUR_CADRE = 8.0
+LARGEUR_CADRE = 5.0
 
 
 def construire():
     m_alg = ob.materiau("fond_algue", "bouteille", bandes=(0, 1, 2, 3), rugosite=0.5)
     for k, x in enumerate((-3.2, -1.6, 0.0, 1.6, 3.2)):
-        ob.cylindre((x, 1.0, -0.2), 0.06, 2.4, m_alg, rotation=(0.0, math.radians(4 * (k - 2)), 0.0), nom=f"tige_{k + 1}")
+        ob.cylindre((x, 1.0, -0.2), 0.12, 2.4, m_alg, rotation=(0.0, math.radians(4 * (k - 2)), 0.0), nom=f"tige_{k + 1}")
 
 
 

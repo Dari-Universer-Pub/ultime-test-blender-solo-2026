@@ -18,7 +18,7 @@ SORTIE = os.path.join(ob.ROOT, "art", "rendu", ID)
 BLEND = os.path.join(ob.HERE, ID + ".blend")
 RES = 512
 ECHANTILLONS = int(os.environ.get("PROP_ECHANTILLONS", "48"))
-LARGEUR_CADRE = 2.0
+LARGEUR_CADRE = 1.2
 
 
 def construire():
