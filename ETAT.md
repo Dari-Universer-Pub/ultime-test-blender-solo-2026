@@ -4,7 +4,8 @@
 M0 : corrections de Julien (2e vague) faites, contrôle SUCCES dans le clone neuf. EN ATTENTE de validation visuelle de Julien. Ne pas passer à M1.
 
 ## Dernier contrôle
-(mis à jour après le contrôle dans le clone neuf, voir RAPPORT.md)
+2026-10-11 12:40:14 M0 SUCCES erreurs=0 gate_sha256=55d6fbef1065ba7afcaf4f11922e1f57d6f56ed22d0fea591e7ed6b4a6c8beeb
+(clone neuf, commit baa695f)
 
 ## Journal visuel
 46 entrées : 36 gardées, 10 annulées. Images distinctes, SHA-256 vérifiés. Itérations Aseprite rejouées sur les images finales (planches boards/iterations/ it1 à it3).
