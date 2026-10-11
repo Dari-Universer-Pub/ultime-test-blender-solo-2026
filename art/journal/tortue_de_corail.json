@@ -186,6 +186,54 @@
         "plastron violet sous la carapace : à éclaircir en finition",
         "attaque peu marquée : tête à tendre davantage"
       ]
+    },
+    {
+      "changement": "itération Aseprite 2 : dessous violet foncé #241a44 (hors rampe recif) passé au violet recif #6b3f6a (1515 px)",
+      "image": "boards/journal/tortue_de_corail_10.png",
+      "image_sha256": "d6c41b8380ccb32981c4ea11a89a691016e2d264ff783b5934cfbdd7f2c9814e",
+      "controle": {
+        "silhouette": "Inchangée : même carapace, même contour.",
+        "couleurs": "#6b3f6a est dans la rampe recif ; le dessous ne tranche plus avec le fond et reste dans la palette.",
+        "cadrage": "Inchangé.",
+        "taille": "Inchangée.",
+        "details": "Le dessous se lit comme une ombre de la carapace, plus comme un trou noir.",
+        "coherence_base": "Même rampe recif que le dos.",
+        "pixels_parasites": "Aucun pixel ajouté."
+      },
+      "verdict": "garde",
+      "defauts_restants": []
+    },
+    {
+      "changement": "itération Aseprite 3 : palmes cyan #8ad8d0 passées au vert de la tête #8ac8a0 (1424 px)",
+      "image": "boards/journal/tortue_de_corail_11.png",
+      "image_sha256": "82f2881baa521e248119a94bcaabd8e8eaec5582339bab9aca966dbebbf50760",
+      "controle": {
+        "silhouette": "Inchangée.",
+        "couleurs": "#8ac8a0 est dans la rampe bouteille, la même que la tête : palmes et tête forment un seul ensemble.",
+        "cadrage": "Inchangé.",
+        "taille": "Inchangée.",
+        "details": "Les palmes restent distinctes de la carapace rose ; le cyan qui flottait n'est plus là.",
+        "coherence_base": "Même rampe bouteille que la tête.",
+        "pixels_parasites": "Aucun pixel ajouté."
+      },
+      "verdict": "garde",
+      "defauts_restants": []
+    },
+    {
+      "changement": "itération Aseprite 4 : coraux orange vif #ff9a5a passés au corail moyen #e6603a (254 px, zone x 8-24, y 10-26)",
+      "image": "boards/journal/tortue_de_corail_12.png",
+      "image_sha256": "d9b33b0cd4710653c4923499df7592566b94501c4b9ce69234e0b7908214cf7e",
+      "controle": {
+        "silhouette": "Inchangée.",
+        "couleurs": "#e6603a est dans la rampe palmes ; les coraux se fondent davantage dans le dos rose.",
+        "cadrage": "Inchangé.",
+        "taille": "Inchangée.",
+        "details": "Les coraux restent visibles mais moins criards ; ils ne concurrencent plus l'œil.",
+        "coherence_base": "Même rampe palmes que la queue de la carangue voisine.",
+        "pixels_parasites": "Aucun pixel ajouté."
+      },
+      "verdict": "garde",
+      "defauts_restants": []
     }
   ]
 }
