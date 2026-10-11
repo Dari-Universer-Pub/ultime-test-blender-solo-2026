@@ -1,6 +1,53 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
-## Phase courante (mise à jour)
+## Phase courante : NOUVEAU MODÈLE DU HÉROS (vue de trois quarts), étape 1 = pose idle, EN ATTENTE DE VALIDATION
+Julien a demandé un modèle refait de zéro, pensé pour être lu de trois quarts : `art/source/blender/plongeur_v3.py`.
+Ancien modèle (profil) archivé : `art/source/blender/archive/plongeur_profil_v2.py` (non réutilisé).
+`art/source/blender/plongeur.py` est revenu à son état commité : aucune retouche d'angle n'y reste.
+
+### Étape 1 faite (à valider par Julien) : pose idle_01 à 06
+- Planche : `boards/journal/plongeur_v3_idle_base.png` (référence | idle 1 | idle 4, eau claire et eau sombre, x4).
+- Journal : `art/journal/plongeur_v3.json`, entrée 1, verdict garde, SHA-256 `c9d55302e85b...`.
+- Silhouette 48 px de haut (cible 46-48), largeur 42 px, case 80 px, caméra azimut 35°, élévation 15°.
+- Mesure par carte d'identité (`tools/mesure/membres.py <dossier> --groupe idle --cote-proche d`) :
+
+| image | bras proche | bras lointain | jambe proche | jambe lointaine | verdict |
+|---|---|---|---|---|---|
+| idle_01 | 119 px / 95 % | 110 px / 90 % | 83 px / 91 % | 83 px / 81 % | OK |
+| idle_02 | 114 px / 93 % | 103 px / 89 % | 74 px / 85 % | 84 px / 81 % | OK |
+| idle_03 | 114 px / 93 % | 103 px / 89 % | 74 px / 85 % | 84 px / 81 % | OK |
+| idle_04 | 119 px / 95 % | 110 px / 90 % | 83 px / 91 % | 83 px / 81 % | OK |
+| idle_05 | 117 px / 92 % | 114 px / 90 % | 82 px / 85 % | 81 px / 81 % | OK |
+| idle_06 | 117 px / 92 % | 114 px / 90 % | 82 px / 85 % | 81 px / 81 % | OK |
+
+- Conception : symétrique, tête grosse (casque 18 px), tronc plus étroit que les épaules (12 px contre 17 px),
+  bras écartés en A, jambes écartées (au moins 3,6 px de vide entre elles), gants et bottes presque noirs, tuyau de corde
+  devant (visible), bouteilles dans le dos. Couleurs : tronc kaki médian, manches kaki le plus clair, jambes kaki foncé.
+- Défauts notés (journal) : bassin en bloc rectangulaire ; jambes un peu courtes ; contour interne entre parties pas encore
+  fait (demandé : trait sombre de 1 px aux frontières, calculé sur la carte d'identité) ; boulons et cadre du hublot peu lisibles.
+
+### Méthode de mesure (changée cette étape)
+- `tools/mesure/membres.py` réduit désormais par BLOC MAJORITAIRE (8 x 8 px du rendu 640) au lieu d'une pixelisation moyenne.
+  La pixelisation moyenne créait des parties fantômes sur les bords et faisait dépasser 100 % (corrigé).
+- Options : `--groupe nage|idle`, `--cote-proche g|d` (modèle v3, noms bras_g, bras_d, ...).
+
+### Essais d'angle sur l'ANCIEN modèle (profil) : résultats à lire avec précaution
+- Premiers essais (azimut 30/40/50°) faits avec une caméra mal orientée (axe haut incliné de 45° à 30°) : mesures INVALIDES.
+- Caméra corrigée (axe haut = Y), mesures valides sur idle, élévation 15° : bras lointain 42-54 % (30°), 27-52 % (40°),
+  18-43 % (50°). Le bras lointain et la jambe lointaine restent cachés par le tronc, les bouteilles, le tuyau et le casque :
+  c'est la raison du nouveau modèle, construit pour la face.
+- Le bug de caméra est corrigé dans les deux scripts (`camera()` : `to_track_quat("-Z", "Y")`).
+
+### Ce qui attend Julien
+1. Valider ou corriger la pose idle du nouveau modèle (planche ci-dessus).
+2. Référence cartoon : toujours ABSENTE de `art/references/` et de `origin` à cette étape. Comparé à ref_03 et ref_05.
+
+### Ce qui n'est PAS fait (ordre demandé)
+- Contour interne (1 px) calculé sur la carte d'identité ; nage (4 membres à chaque image) ; autres animations ;
+  feuille, manifeste, jeu (miroir horizontal : le jeu le fait déjà, `scripts/plongeur.gd` ligne 112 `flip_h = direction < 0`),
+  captures, robot, `gate.py M3` en clone neuf. Aucun de ces éléments n'est reconstruit pour le nouveau modèle.
+
+
 Animations du plongeur : NAGE EN COURS, NON VALIDÉE. ARRÊT : décision de Julien demandée (voir ci-dessous).
 Idle et creusage : code restauré à la version validée (HEAD) ; les tentatives faites avant validation sont annulées dans le journal.
 

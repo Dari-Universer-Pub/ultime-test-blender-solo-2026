@@ -1,0 +1,27 @@
+{
+  "id": "plongeur_v3",
+  "entrees": [
+    {
+      "changement": "modèle de base v3 (face d'abord, symétrique) : casque laiton avec hublot, tronc court plus étroit que les épaules, bras écartés en A, jambes écartées (écart >= 4 px), gants et bottes presque noirs, tuyau de corde devant ; caméra azimut 35°, élévation 15°, cadre 46-48 px",
+      "image": "boards/journal/plongeur_v3_idle_base.png",
+      "image_sha256": "c9d55302e85ba69a5bcff6d9e72d92e31179a29418d35e37413fb8dcc9501551",
+      "controle": {
+        "silhouette": "De trois quarts, le casque, les bras écartés avec leurs gants et les deux jambes se lisent ; le bassin en bloc rectangulaire alourdit le bas du corps.",
+        "couleurs": "Cinq tons distincts : casque laiton, manches crème, tronc kaki médian, jambes kaki foncé, gants et bottes presque noirs ; pas de noir pur.",
+        "cadrage": "Silhouette de 48 px de haut dans une case de 80 px, centrée ; le plongeur tient la case.",
+        "taille": "Hauteur 48 px (cible 46 à 48), largeur 42 px ; contrôlé sur les 6 images de l'idle.",
+        "details": "Hublot cyan lisible, tuyau de corde visible, deux jambes séparées ; boulons du casque et cadre du hublot trop peu contrastés.",
+        "coherence_base": "Même personnage que le modèle de profil (casque laiton, kaki, gants sombres, tuyau de corde) ; référence cartoon de Julien absente du dépôt, comparé à ref_03.",
+        "pixels_parasites": "Contour clair sur la silhouette ; pas encore de contour interne entre les parties (étape suivante)."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "bassin en bloc rectangulaire : à arrondir",
+        "jambes courtes : à allonger légèrement pour un meilleur équilibre",
+        "contour interne entre parties absent : à ajouter à la pixelisation (carte d'identité)",
+        "boulons et cadre du hublot peu lisibles à 48 px"
+      ],
+      "mesure_membres": "idle 1 à 6 : bras proche 110-119 px / 90-95 %, bras lointain 103-114 px / 89-90 %, jambe proche 74-83 px / 85-91 %, jambe lointaine 81-84 px / 81 % : tous OK (seuil 20 px et 60 %)"
+    }
+  ]
+}
