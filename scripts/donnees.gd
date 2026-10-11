@@ -9,6 +9,7 @@ const FICHIERS := {
 	"biomes": "res://data/biomes.json",
 	"depart": "res://data/depart.json",
 	"tuiles": "res://data/tuiles.json",
+	"creatures": "res://data/creatures.json",
 }
 
 var items := {}          # id -> dictionnaire d'objet
@@ -16,6 +17,7 @@ var recettes: Array = []
 var stations := {}       # id -> dictionnaire de station
 var biomes: Array = []
 var depart := {}
+var creatures: Array = []   # espèces (data/creatures.json)
 var tuiles: Array = []   # une entrée par tuile, dans l'ordre de l'atlas (index = numéro de tuile)
 
 
@@ -30,6 +32,7 @@ func _ready() -> void:
 	biomes = lire(FICHIERS["biomes"])["biomes"]
 	depart = lire(FICHIERS["depart"])
 	tuiles = lire(FICHIERS["tuiles"])["tuiles"]
+	creatures = lire(FICHIERS["creatures"])["creatures"]
 
 
 func lire(chemin: String) -> Dictionary:

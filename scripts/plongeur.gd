@@ -23,6 +23,7 @@ var creusage_cible := Vector2i(999999, 999999)
 var creusage_temps := 0.0
 var bond_restant := 0.0
 var anim: AnimatedSprite2D
+var attaque_restante := 0.0      # durée restante du geste d'attaque (l'animation ne doit pas être écrasée)
 var lampe: PointLight2D
 
 
@@ -109,7 +110,10 @@ func _physics_process(delta: float) -> void:
 			velocity.y = IMPULSION_SAUT
 	move_and_slide()
 	anim.flip_h = direction < 0
-	anim.animation = "nage" if dans_eau() else "idle"
+	if attaque_restante > 0.0:
+		attaque_restante -= delta
+	else:
+		anim.animation = "nage" if dans_eau() else "idle"
 	_oxygene(delta)
 	_creuser(delta)
 
@@ -152,6 +156,7 @@ func _creuser(delta: float) -> void:
 	var t := monde.tuile(cible.x, cible.y)
 	if creusage_temps >= monde.duree_creusage(t):
 		monde.poser_tuile(cible.x, cible.y, Monde.PAS_SOL)
+		jeu.jouer("creusage")
 		var depot: String = monde.depot_creusage(t)
 		if depot != "":
 			monde.faire_tomber(Vector2(cible * Monde.TAILLE) + Vector2(8, 8), depot, t)
@@ -176,3 +181,12 @@ func ramasser() -> void:
 			objet.queue_free()
 			return
 	message.emit("Rien à ramasser ici.")
+
+
+# Geste d'attaque (touche X) : l'animation « attaque » joue, puis le plongeur reprend la nage.
+func attaquer() -> void:
+	if anim == null or not anim.sprite_frames.has_animation("attaque"):
+		return
+	anim.play("attaque")
+	attaque_restante = 0.5
+

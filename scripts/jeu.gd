@@ -2,6 +2,7 @@ extends Node2D
 const Monde := preload("res://scripts/monde.gd")
 const Plongeur := preload("res://scripts/plongeur.gd")
 const Hud := preload("res://scripts/hud.gd")
+const Creature := preload("res://scripts/creature.gd")
 # Scène principale : assemble le monde, le plongeur, le radeau, la lumière et l'interface.
 # Touches : définies ici (codes physiques, donc ZQSD sur AZERTY), à regrouper dans un fichier de config en M5.
 # Argument --etat-robot=CHEMIN : écrit l'état du jeu dans ce fichier (lu par le robot de test).
@@ -25,6 +26,21 @@ var chemin_etat := ""
 var temps_etat := 0.0
 var compte_poses := 0
 var compte_creusages := 0
+var creatures: Array = []             # créatures vivantes du biome (scripts/creature.gd)
+var etait_dans_eau := false
+
+# Sons libres (voir CREDITS.md). Chaque événement joue un lecteur temporaire.
+const SONS := {
+	"creusage": "res://assets/sons/son_creusage.mp3",
+	"impact": "res://assets/sons/son_impact.wav",
+	"eclaboussure": "res://assets/sons/son_eclaboussure.ogg",
+	"coup_creature": "res://assets/sons/son_coup_creature.mp3",
+	"mort": "res://assets/sons/son_mort.mp3",
+	"bois": "res://assets/sons/son_bois_radeau.mp3",
+	"degats": "res://assets/sons/son_degats_plongeur.mp3",
+	"bulle": "res://assets/sons/son_bulle.mp3",
+	"ambiance": "res://assets/sons/musique_ambiance.wav",
+}
 
 
 func _ready() -> void:
@@ -38,6 +54,8 @@ func _ready() -> void:
 	barre.resize(EMPLACEMENTS)
 	barre.fill("")
 	construire_scene()
+	apparaitre_creatures()
+	lancer_ambiance()
 	for depart in Donnees.depart["inventaire"]:
 		ajouter(depart["item"], int(depart["qte"]))
 	plongeur.global_position = POSITION_RADEAU
@@ -118,6 +136,14 @@ func materiau_eau() -> ShaderMaterial:
 
 func _process(delta: float) -> void:
 	monde.actualiser_fenetre(_centre_de_chunk(plongeur.cellule()))
+	for c in creatures:
+		if is_instance_valid(c) and c.defensive and c.global_position.distance_to(plongeur.global_position) < 60.0:
+			c.avertir()
+	if plongeur.dans_eau() != etait_dans_eau:
+		etait_dans_eau = plongeur.dans_eau()
+		jouer("eclaboussure")
+	if Input.is_action_just_pressed("attaque") and panneau == "":
+		attaquer()
 	modulation.color = Color(1, 1, 1).lerp(Color(0.45, 0.55, 0.78), clampf(plongeur.global_position.y / 200.0, 0.0, 1.0))
 	if Input.is_action_just_pressed("pause"):
 		basculer_panneau("pause")
@@ -230,6 +256,7 @@ func utiliser_pour_poser(cible: Vector2i) -> void:
 		monde.poser_tuile(cible.x, cible.y, tuile)
 		retirer(item, 1)
 		compte_poses += 1
+		jouer("bois")
 		hud.message("Posé : %s" % Donnees.nom_objet(item))
 	elif Donnees.est_station_installable(item):
 		var station: String = Donnees.items[item]["effets"]["station"]
@@ -345,8 +372,74 @@ func ecrire_etat() -> void:
 		"regarde": plongeur.direction,
 		"case_visee": [plongeur.case_visee().x, plongeur.case_visee().y],
 		"case_visee_solide": monde.est_solide(plongeur.case_visee().x, plongeur.case_visee().y),
+		"creatures": _etat_creatures(),
 	}
 	var f := FileAccess.open(chemin_etat, FileAccess.WRITE)
 	if f:
 		f.store_string(JSON.stringify(etat))
 		f.close()
+
+
+# Créatures du biome 1 : une par espèce, placée dans la bande de profondeur de son biome (1 m = 16 px).
+const PLACES_CREATURES := {
+	"poisson_volant": Vector2(-40, 60),
+	"carangue_rayee": Vector2(-30, 260),
+	"oursin_bombe": Vector2(40, 400),
+	"tortue_de_corail": Vector2(90, 240),
+}
+
+
+func apparaitre_creatures() -> void:
+	for espece in Donnees.creatures:
+		var id: String = espece["id"]
+		if not PLACES_CREATURES.has(id):
+			continue
+		var c := Creature.new()
+		add_child(c)
+		c.setup(id, PLACES_CREATURES[id], String(espece["danger"]))
+		creatures.append(c)
+
+
+func attaquer() -> void:
+	plongeur.attaquer()
+	for c in creatures:
+		if is_instance_valid(c) and c.est_a_portee(plongeur.global_position):
+			c.encaisser(1)
+			jouer("mort" if c.morte else "coup_creature")
+			hud.message("Coup porté.")
+			return
+
+
+func _etat_creatures() -> Array:
+	var liste: Array = []
+	for c in creatures:
+		if is_instance_valid(c):
+			liste.append({"id": c.id_creature, "x": snappedf(c.global_position.x, 0.1),
+				"y": snappedf(c.global_position.y, 0.1), "vie": c.vie, "morte": c.morte})
+	return liste
+
+
+func jouer(nom: String, volume := -6.0) -> void:
+	var chemin: String = SONS.get(nom, "")
+	if chemin == "" or not ResourceLoader.exists(chemin):
+		return
+	var lecteur := AudioStreamPlayer.new()
+	lecteur.stream = load(chemin)
+	lecteur.volume_db = volume
+	add_child(lecteur)
+	lecteur.play()
+	lecteur.finished.connect(lecteur.queue_free)
+
+
+# Musique d'ambiance en boucle (WAV : boucle forcée dans le flux).
+func lancer_ambiance() -> void:
+	if not ResourceLoader.exists(SONS["ambiance"]):
+		return
+	var musique: AudioStreamWAV = load(SONS["ambiance"])
+	musique.loop_mode = AudioStreamWAV.LOOP_FORWARD
+	var lecteur := AudioStreamPlayer.new()
+	lecteur.stream = musique
+	lecteur.volume_db = -16.0
+	add_child(lecteur)
+	lecteur.play()
+

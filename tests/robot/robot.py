@@ -28,7 +28,7 @@ RAPPORT = RACINE / "tests" / "robot_rapport.json"
 CAPTURES = RACINE / "shots" / "robot"
 JOURNAL = RACINE / "tests" / "robot_godot.log"
 
-ETAPES = ["demarrer_radeau", "plonger", "nager", "oxygene", "lampe", "creuser", "poser", "ramasser",
+ETAPES = ["demarrer_radeau", "plonger", "nager", "combattre", "oxygene", "lampe", "creuser", "poser", "ramasser",
           "fabriquer", "sortir_eau_radeau", "sauvegarder", "recharger"]
 
 # ----------------------------------------------------------------- X11 / XTest : vrais événements
@@ -237,6 +237,32 @@ def scenario(rapport):
         return dist >= 40 and etat()["dans_eau"] is True, f"déplacement de {dist:.0f} px dans l'eau"
     if not etape("nager", nager):
         return
+
+    def combattre():
+        # Le poisson volant du radeau : le robot s'en approche avec les vraies touches, puis frappe avec X
+        # jusqu'à ce qu'il meure (3 coups). L'état écrit par le jeu donne sa position et sa vie.
+        def cible():
+            return next((c for c in etat().get("creatures", []) if c["id"] == "poisson_volant" and not c["morte"]), None)
+        if cible() is None:
+            return False, "aucune créature poisson_volant vivante dans l'état du jeu"
+        depart_combat = etat()["position"]     # le robot revient ici : les étapes suivantes en dépendent
+        coups = 0
+        for _ in range(30):
+            c = cible()
+            if c is None:
+                break
+            x, y = etat()["position"]
+            if ((c["x"] - x) ** 2 + (c["y"] - y) ** 2) ** 0.5 > 20:
+                aller_vers(c["x"], c["y"], tolerance=16, delai=6.0)
+                continue
+            CLAVIER.frapper("x", 0.1)
+            coups += 1
+            time.sleep(0.6)
+        c = next((c for c in etat().get("creatures", []) if c["id"] == "poisson_volant"), None)
+        ok = c is not None and c["morte"] is True
+        aller_vers(depart_combat[0], depart_combat[1], tolerance=12, delai=15.0)
+        return ok, f"poisson_volant {'morte' if ok else 'toujours vivante'} après {coups} coups ; retour à {depart_combat}"
+    etape("combattre", combattre)
 
     def oxygene():
         o0 = float(etat()["oxygene"])
