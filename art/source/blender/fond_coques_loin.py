@@ -23,8 +23,8 @@ LARGEUR_CADRE = 4.0
 
 def construire():
     m_bois = ob.materiau("fond_coque", "ocre", bandes=(0, 0, 1, 1), rugosite=0.8)
-    for k, x in enumerate((-2.2, 0.0, 2.2)):
-        ob.cube((x, 2.0, -1.0), 1.0, m_bois, echelle=(0.9, 0.25, 0.3), nom=f"coque_{k + 1}")
+    for k, x in enumerate((-1.2, 0.0, 1.2)):
+        ob.cube((x, 2.0, 0.1), 1.0, m_bois, echelle=(1.0, 0.3, 0.35), nom=f"coque_{k + 1}")
 
 
 

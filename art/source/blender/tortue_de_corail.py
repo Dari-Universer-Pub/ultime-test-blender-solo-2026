@@ -90,7 +90,7 @@ def animer(p):
         t = 2.0 * math.pi * (f - 1) / 8.0
         ob.cle(pa, f, rot=(0.0, 0.55 * math.sin(t), 0.0))
         ob.cle(par, f, rot=(0.0, 0.55 * math.sin(t + math.pi), 0.0))
-        ob.cle(corps, f, rot=(0.0, 0.0, 0.0), loc=(0.0, 0.0, 0.02 + 0.015 * math.sin(t)))
+        ob.cle(corps, f, rot=(0.0, 0.0, 0.0), loc=(0.0, 0.0, 0.02 + 0.05 * math.sin(t)))
         ob.cle(tete, f, rot=(0.0, 0.0, 0.0))
     # attaque : la tête se relève et s'avance, les palmes avant s'écartent
     for f, rt, ra in ((9, -0.25, -0.45), (10, -0.45, -0.75), (11, -0.40, -0.70), (12, -0.20, -0.40)):
