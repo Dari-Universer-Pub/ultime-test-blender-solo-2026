@@ -475,6 +475,184 @@
         "palmes minces",
         "bras de nage peu lisibles (caches)"
       ]
+    },
+    {
+      "changement": "hublot en verre clair (paliers de verre 2 a 5) : tentative 1",
+      "image": "boards/journal/plongeur_24.png",
+      "image_sha256": "2c42fb96aafb5a633be2b1ea1c165ae6909e17a4165cd218bece7718c1614b3d",
+      "controle": {
+        "silhouette": "Pas de changement visible a x1 : l'avant du casque reste orange, la bande du hublot ne change pas.",
+        "couleurs": "Le verre devient plus clair mais la bande ne fait que 1 a 2 px : la nuance ne se voit pas a cote de l'orange.",
+        "cadrage": "Le cadrage ne change pas : 37 a 39 px.",
+        "taille": "Hauteur idle 37 px, longueur nage 37 a 39 px.",
+        "details": "Le hublot reste invisible : il est trop petit en surface, la couleur seule ne suffit pas.",
+        "coherence_base": "Le verre reste dans la rampe verre de la palette.",
+        "pixels_parasites": "Aucun pixel parasite ajoute."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "hublot trop petit : 1 a 2 px de large a 37 px",
+        "casque sans personnalite"
+      ]
+    },
+    {
+      "changement": "hublot en dome de verre plus grand (rayon 0,25, centre x 0,27, echelle x 0,55) au lieu d'une lamelle",
+      "image": "boards/journal/plongeur_25.png",
+      "image_sha256": "0a593db123a42b5c2bb8a1cfbc5bb8bcb90811b0d173bb5e47fd07312d873380",
+      "controle": {
+        "silhouette": "La silhouette de nage gagne une zone de verre a l'avant du casque ; l'idle change peu, le hublot reste discret de face.",
+        "couleurs": "Le cyan du verre est maintenant une vraie zone et non une bande d'un pixel, il contraste avec l'orange du casque.",
+        "cadrage": "Le cadrage ne change pas : 37 a 39 px.",
+        "taille": "Hauteur idle 37 px, longueur nage 37 a 39 px, amplitude nage 0,529.",
+        "details": "Le hublot se lit en nage, mais il reste sans cadre et sans reflet : defauts a traiter par retouche Aseprite et par le modele.",
+        "coherence_base": "Le verre reste dans la rampe verre de la palette.",
+        "pixels_parasites": "Aucun pixel isole nouveau."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "hublot sans cadre ni reflet lisible de face",
+        "tuyau d'air absent",
+        "sangles absentes",
+        "palmes minces"
+      ]
+    },
+    {
+      "changement": "tuyau d'air en caoutchouc sombre (rayon 0,04) de l'arriere du casque a la valve des bouteilles : tentative 1",
+      "image": "boards/journal/plongeur_26.png",
+      "image_sha256": "35e15452e97df9002e6c005a75799c5561385a48b0f03a4fdf8e96b0d29e0572",
+      "controle": {
+        "silhouette": "Le tuyau ne change pas la silhouette visible a x1 : il est au meme endroit que le contour sombre.",
+        "couleurs": "Le caoutchouc sombre se confond avec le contour violet : aucune couleur ne ressort.",
+        "cadrage": "Le cadrage ne change pas : 37 a 39 px.",
+        "taille": "Hauteur idle 37 px, longueur nage 37 a 39 px, amplitude nage 0,529.",
+        "details": "Le tuyau est invisible a 37 px : son contraste est trop faible, il faut une teinte claire.",
+        "coherence_base": "Le caoutchouc vient de la rampe caoutchouc de la palette.",
+        "pixels_parasites": "Aucun pixel parasite ajoute."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "tuyau d'air invisible (contraste)",
+        "sangles absentes",
+        "palmes minces"
+      ]
+    },
+    {
+      "changement": "tuyau d'air en caoutchouc clair (bulle ton 3, rayon 0,04) : tentative 2",
+      "image": "boards/journal/plongeur_27.png",
+      "image_sha256": "a2578c26b7cf35794c40bcd6467eb7c7bbd6a012f4535cb7a4a4085b8792f69e",
+      "controle": {
+        "silhouette": "Pas de changement lisible a x1 : le tuyau reste trop fin pour se detacher du casque.",
+        "couleurs": "Le ton clair ne ressort pas sur les 1 a 2 pixels du tuyau, il se fond avec le haut du dos.",
+        "cadrage": "Le cadrage ne change pas : 37 a 39 px.",
+        "taille": "Hauteur idle 37 px, longueur nage 37 a 39 px.",
+        "details": "Le tuyau reste invisible : un element de 0,8 a 1,4 px ne se lit pas dans une image de 37 px.",
+        "coherence_base": "Le ton vient de la rampe bulle de la palette.",
+        "pixels_parasites": "Aucun pixel parasite ajoute."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "tuyau d'air trop fin pour etre lisible a 37 px (limite du format)",
+        "sangles absentes",
+        "palmes minces"
+      ]
+    },
+    {
+      "changement": "sangles de harnais : une diagonale et une horizontale en caoutchouc sombre (rayon 0,06 = 2 px) sur le cote proche du torse",
+      "image": "boards/journal/plongeur_28.png",
+      "image_sha256": "6d63ec4d90f440d6ebb0cf59bd349e6e6723800c0d1b7a7bd1b12eb24dfdfaf4",
+      "controle": {
+        "silhouette": "La silhouette ne change pas : les sangles sont dans le torse, le contour reste le meme.",
+        "couleurs": "Les sangles sombres sur l'orange du torse marquent un volume d'equipement ; la couleur de base du torse est gardee.",
+        "cadrage": "Le cadrage ne change pas : 37 a 39 px.",
+        "taille": "Hauteur idle 37 px, longueur nage 37 a 39 px, amplitude nage 0,527.",
+        "details": "Les sangles se lisent sur le torse en idle et en nage : on voit un harnais, sans detail de boucle.",
+        "coherence_base": "Le caoutchouc vient de la rampe caoutchouc, comme la ceinture.",
+        "pixels_parasites": "Aucun pixel isole nouveau : les bandes sont reliees au torse."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "palmes minces",
+        "bras de nage peu lisibles",
+        "bouteilles : une simple barre sans valve"
+      ]
+    },
+    {
+      "changement": "palmes plus epaisses et plus grandes (echelle 1,5 x 0,9 x 0,42 au lieu de 1,3 x 0,8 x 0,28)",
+      "image": "boards/journal/plongeur_29.png",
+      "image_sha256": "335d2c08b71a778c8afea93ca312a5233b8c051cd78c2b276717c0b627ebfb3e",
+      "controle": {
+        "silhouette": "Les palmes se lisent comme des palmes au bout des pieds, en nage comme en idle.",
+        "couleurs": "Les palmes gardent l'orange-rouge de la rampe palmes, avec un ton sombre dessous.",
+        "cadrage": "Le cadrage ne change pas : 37 a 39 px.",
+        "taille": "Hauteur idle 37 a 38 px, longueur nage 37 a 39 px, amplitude nage 0,533.",
+        "details": "Les pieds et les palmes forment une masse plus lisible, mais les orteils ne sont pas dessines a cette taille.",
+        "coherence_base": "Les palmes restent dans la rampe palmes de la palette.",
+        "pixels_parasites": "Aucun pixel isole nouveau."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "bras de nage peu lisibles (caches derriere le torse)",
+        "bouteilles : une simple barre sans valve",
+        "casque : cadre et boulons non lisibles (limite de 2 px)"
+      ]
+    },
+    {
+      "changement": "Aseprite iteration 1 : reflet blanc #e6fff8 sur le haut du hublot et second reflet #9af0ea dessous, 19 pixels sur les 13 images ou le hublot est visible",
+      "image": "boards/journal/plongeur_30.png",
+      "image_sha256": "1c25f8ba825ef77a62fc89263f3d224896742e0084d00e521d8897ef2b423983",
+      "controle": {
+        "silhouette": "La silhouette ne change pas a x1 : les reflets restent dans le hublot.",
+        "couleurs": "Le reflet blanc et le cyan clair sont les tons les plus clairs du verre, ils lisent le hublot comme une vitre.",
+        "cadrage": "Le cadrage ne change pas : 37 a 38 px.",
+        "taille": "Hauteur idle 37 px, dans la plage.",
+        "details": "Le hublot a un reflet de 2 pixels en haut ; le reste du hublot reste plus sombre, ce qui donne un volume.",
+        "coherence_base": "Les reflets viennent des tons verre de la palette, comme le reste du casque.",
+        "pixels_parasites": "Aucun pixel isole : chaque reflet est relie au hublot."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "bras de nage caches",
+        "bouteilles : une barre sans valve",
+        "casque : cadre non lisible"
+      ]
+    },
+    {
+      "changement": "Aseprite iteration 2 : eclaircissement de 5 pixels de lampe (#f8c850 vers #fff2a8) autour du sommet : tentative, annulee",
+      "image": "boards/journal/plongeur_31.png",
+      "image_sha256": "bc6cacd94bec50a74a04ddb089b7c6f2c9e572ac7572dfaaa4017a2c2b3d77ff",
+      "controle": {
+        "silhouette": "La silhouette ne change pas a x1.",
+        "couleurs": "Les 5 pixels passent au blanc chaud, mais la lampe reste jaune a l'oeil : la difference est trop faible.",
+        "cadrage": "Le cadrage ne change pas : 37 px.",
+        "taille": "Hauteur idle 37 px, dans la plage.",
+        "details": "Aucun detail utile ajoute : la lampe n'est pas plus lisible qu'avant.",
+        "coherence_base": "Le blanc chaud vient de la rampe lampe de la palette.",
+        "pixels_parasites": "Aucun pixel isole."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "lampe : eclaircissement trop faible pour se voir a 37 px"
+      ]
+    },
+    {
+      "changement": "Aseprite iteration 3 : reflet clair #c8ecbc sur le bord superieur de la bouteille arriere (4 pixels sur les images 2, 5, 10 et 14)",
+      "image": "boards/journal/plongeur_32.png",
+      "image_sha256": "bc6cacd94bec50a74a04ddb089b7c6f2c9e572ac7572dfaaa4017a2c2b3d77ff",
+      "controle": {
+        "silhouette": "La silhouette ne change pas a x1 : les reflets sont sur le bord de la bouteille, dans sa forme.",
+        "couleurs": "Le ton #c8ecbc est le plus clair de la rampe bouteille ; l'effet reste faible a 37 px, un bord un peu plus clair sur la bouteille.",
+        "cadrage": "Le cadrage ne change pas : 37 px.",
+        "taille": "Hauteur idle 37 px, dans la plage.",
+        "details": "La bouteille gagne un bord de lumiere, mais la valve et les sangles restent absentes : l'effet est discret.",
+        "coherence_base": "Le ton vient de la rampe bouteille de la palette.",
+        "pixels_parasites": "Aucun pixel isole : 4 pixels reliés au bord de la bouteille."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "bras de nage caches",
+        "bouteilles : pas de valve, effet de lumiere faible",
+        "casque : cadre non lisible (limite de 2 px)"
+      ]
     }
   ]
 }

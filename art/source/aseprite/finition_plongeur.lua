@@ -9,41 +9,46 @@ local iteration = app.params["iteration"] or "0"
 -- Retouches : { image_index (base 1), x, y, "#rrggbb" ou "" }
 local RETOUCHES = {
   ["1"] = {
-    -- Iteration 1 : reflet blanc (#e6fff8) sur le haut du hublot, dans chaque image ou le hublot est visible.
-    {1, 49, 37, "#e6fff8"},
-    {2, 50, 37, "#e6fff8"},
-    {3, 51, 36, "#e6fff8"},
-    {4, 50, 35, "#e6fff8"},
-    {5, 50, 34, "#e6fff8"},
-    {6, 48, 35, "#e6fff8"},
-    {8, 49, 36, "#e6fff8"},
-    {9, 38, 14, "#e6fff8"},
-    {10, 39, 14, "#e6fff8"},
-    {11, 38, 14, "#e6fff8"},
-    {12, 37, 14, "#e6fff8"},
-    {13, 37, 13, "#e6fff8"},
-    {14, 37, 14, "#e6fff8"},
+    -- Iteration 1 : reflet blanc (#e6fff8) sur le haut du hublot, et second reflet (#9af0ea) dessous.
+    {1, 43, 37, "#e6fff8"},
+    {2, 47, 36, "#e6fff8"},
+    {3, 48, 34, "#e6fff8"},
+    {4, 50, 31, "#e6fff8"},
+    {5, 49, 30, "#e6fff8"},
+    {6, 48, 31, "#e6fff8"},
+    {7, 48, 33, "#e6fff8"},
+    {8, 48, 35, "#e6fff8"},
+    {9, 37, 16, "#e6fff8"},
+    {9, 37, 17, "#9af0ea"},
+    {10, 37, 16, "#e6fff8"},
+    {11, 37, 16, "#e6fff8"},
+    {11, 37, 17, "#9af0ea"},
+    {12, 36, 16, "#e6fff8"},
+    {12, 36, 17, "#9af0ea"},
+    {13, 36, 16, "#e6fff8"},
+    {13, 36, 17, "#9af0ea"},
+    {14, 36, 16, "#e6fff8"},
+    {14, 36, 17, "#9af0ea"},
   },
   ["2"] = {
-    -- Iteration 2 : second pixel de reflet (#9af0ea) sous le reflet blanc, sur les images idle ou le hublot a 2 pixels de haut.
-    {9, 38, 15, "#9af0ea"},
-    {10, 39, 15, "#9af0ea"},
-    {11, 38, 15, "#9af0ea"},
-    {12, 37, 15, "#9af0ea"},
-    {13, 37, 14, "#9af0ea"},
+    -- Iteration 2 : pixels de lampe voisins du sommet passent du jaune #f8c850 au blanc chaud #fff2a8.
+    {1, 51, 40, "#fff2a8"},
+    {2, 52, 39, "#fff2a8"},
+    {4, 52, 34, "#fff2a8"},
+    {4, 53, 33, "#fff2a8"},
+    {6, 52, 33, "#fff2a8"},
+  },
+  ["3"] = {
+    -- Iteration 3 : reflet clair (#c8ecbc) sur le bord superieur de la bouteille, ton 4 #8ac8a0 remplace par le ton 5.
+    {2, 51, 38, "#c8ecbc"},
+    {5, 52, 31, "#c8ecbc"},
+    {10, 39, 15, "#c8ecbc"},
+    {14, 37, 14, "#c8ecbc"},
   },
 }
 
--- Iteration 3 : la quantification avait envoye les ombres de la combinaison vers des bruns (rampe ocre).
--- Chaque brun de la combinaison devient le ton de meme rang de la rampe "combinaison" (plus clair -> plus clair).
-local REMAP = {
-  ["3"] = {
-    ["#c08040"] = "#f08a3a",
-    ["#9a5a2a"] = "#c95a2a",
-    ["#6a3a2a"] = "#8f2f2e",
-    ["#3a2a2a"] = "#5a2440",
-  },
-}
+-- Remplacements de couleur globaux (vide : plus de brun a remplacer depuis la palette sans ocre)
+local REMAP = {}
 
 local spr = app.open(sortie)
 local couche = spr.layers[1]

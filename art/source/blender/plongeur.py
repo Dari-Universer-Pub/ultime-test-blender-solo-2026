@@ -137,7 +137,7 @@ for _c, _s in (("g", -1.0), ("d", 1.0)):
 def construire_modele():
     m_comb = materiau("combinaison", "combinaison", 4, 0.5, bandes=(1, 3, 4, 5))   # orange vif, ombre violette
     m_comb_ombre = materiau("combinaison_ombre", "combinaison", 2, 0.6)
-    m_verre = materiau("hublot_verre", "verre", 3, 0.08)
+    m_verre = materiau("hublot_verre", "verre", 3, 0.08, bandes=(2, 3, 4, 5))   # verre clair : le hublot se lit a 37 px
     m_metal = materiau("metal", "metal", 3, 0.35)
     m_caout = materiau("caoutchouc", "caoutchouc", 2, 0.7)
     m_palme = materiau("palmes", "palmes", 3, 0.45)
@@ -147,7 +147,7 @@ def construire_modele():
     pieces = []
     # casque, hublot cercle, bague de col
     pieces.append(sphere((0.02, 0.0, 0.62), 0.30, m_comb))
-    pieces.append(sphere((0.33, 0.0, 0.66), 0.21, m_verre, (0.45, 1.0, 1.0)))
+    pieces.append(sphere((0.27, 0.0, 0.66), 0.25, m_verre, (0.55, 1.0, 1.0)))   # dome de verre : grand hublot sur l'avant du casque
     pieces.append(anneau((0.02, 0.0, 0.30), 0.25, 0.045, m_metal))
     # torse
     pieces.append(sphere((0.0, 0.0, 0.02), 0.30, m_comb, (0.75, 0.62, 0.95)))
@@ -156,6 +156,9 @@ def construire_modele():
         pieces.append(tube((-0.27, s, -0.25), (-0.27, s, 0.45), 0.10, m_bout))
     # ceinture
     pieces.append(anneau((0.0, 0.0, -0.22), 0.30, 0.05, m_caout, (0.8, 0.62, 1.0)))
+    # sangles : une diagonale et une horizontale sur le cote proche du torse (rayon 0,06 = 2 px)
+    for a_, b_ in (((0.16, -0.19, 0.30), (-0.14, -0.19, -0.30)), ((0.05, -0.19, 0.06), (-0.22, -0.19, 0.06))):
+        pieces.append(tube(a_, b_, 0.06, m_caout))
     # lampe de casque
     pieces.append(tube((0.28, 0.0, 0.95), (0.42, 0.0, 0.95), 0.035, m_metal))
     pieces.append(sphere((0.44, 0.0, 0.95), 0.07, m_lampe))
@@ -172,7 +175,7 @@ def construire_modele():
         pieces.append(tube(OS_REPOS[f"jambe_{c}_2"][0], OS_REPOS[f"jambe_{c}_2"][1], 0.09, ep))
         pieces.append(sphere(OS_REPOS[f"jambe_{c}_1"][1], 0.10, ep))
         pieces.append(sphere(OS_REPOS[f"jambe_{c}_2"][1], 0.11, m_caout))
-        pieces.append(sphere((0.20, s * 0.12, -1.0), 0.16, m_palme, (1.3, 0.8, 0.28)))
+        pieces.append(sphere((0.20, s * 0.12, -1.0), 0.16, m_palme, (1.5, 0.9, 0.42)))   # palmes epaisses (2 a 3 px)
 
     bpy.ops.object.select_all(action="DESELECT")
     for p in pieces:
