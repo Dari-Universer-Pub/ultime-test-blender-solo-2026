@@ -131,14 +131,15 @@ def P(*v):
 # Nom de matériau -> (groupe de la carte, couleur plate). Un groupe = une partie mesurable.
 GROUPES_ID = {
     "tronc": ("tronc", "#ff0000"), "tete": ("tete", "#ffd400"), "cadre": ("tete", "#ffd400"),
-    "hublot_verre": ("tete", "#ffd400"), "ceinture": ("ceinture", "#7a3cff"), "tuyau": ("tuyau", "#00e0ff"),
+    "hublot_verre": ("tete", "#ffd400"), "collerette": ("collerette", "#40ffb0"),
+    "ceinture": ("ceinture", "#7a3cff"), "tuyau": ("tuyau", "#00e0ff"),
     "bouteilles": ("bouteilles", "#ff7f00"), "palmes": ("palmes", "#ff00c8"),
     "bras_g": ("bras_g", "#00ff00"), "bras_d": ("bras_d", "#005000"),
     "jambe_g": ("jambe_g", "#0000ff"), "jambe_d": ("jambe_d", "#000090"),
     "gant_g": ("gant_g", "#a0ff00"), "gant_d": ("gant_d", "#00a070"),
     "botte_g": ("botte_g", "#ff0080"), "botte_d": ("botte_d", "#ff80c0"),
 }
-GROUPES = ["tronc", "tete", "ceinture", "tuyau", "bouteilles", "palmes",
+GROUPES = ["tronc", "tete", "collerette", "ceinture", "tuyau", "bouteilles", "palmes",
            "bras_g", "bras_d", "jambe_g", "jambe_d", "gant_g", "gant_d", "botte_g", "botte_d"]
 
 
@@ -281,7 +282,11 @@ def construire_modele():
     pieces.append(cadre)
     for b in ((-7.6, -3.6, 38), (7.6, -3.6, 38), (0, -8.4, 46)):
         pieces.append(sphere(P(*b), 1.1 * PX, m_cadre))
-    pieces.append(anneau(P(0, 0, 30.5), 6.2 * PX, 1.4 * PX, m_laiton))
+    # collerette en laiton clair entre casque et tronc : bande de 3 px, avec trois boulons sur le devant
+    m_collerette = materiau("collerette", "laiton", 3, 0.25, bandes=(2, 3, 3, 3))
+    pieces.append(tube(P(0, 0, 29.2), P(0, 0, 32.2), 6.9 * PX, m_collerette, cotes=24))
+    for b in ((-4.0, -5.7, 30.7), (0.0, -7.0, 30.7), (4.0, -5.7, 30.7)):
+        pieces.append(sphere(P(*b), 1.2 * PX, m_cadre))
     # tronc court et bassin (plus étroits que les épaules)
     pieces.append(sphere(P(0, 0, 23), 7 * PX, m_tronc, (0.89, 0.65, 1.0)))
     pieces.append(sphere(P(0, 0, 14.5), 5.6 * PX, m_tronc, (1.0, 0.75, 0.6)))

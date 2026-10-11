@@ -22,6 +22,61 @@
         "boulons et cadre du hublot peu lisibles à 48 px"
       ],
       "mesure_membres": "idle 1 à 6 : bras proche 110-119 px / 90-95 %, bras lointain 103-114 px / 89-90 %, jambe proche 74-83 px / 85-91 %, jambe lointaine 81-84 px / 81 % : tous OK (seuil 20 px et 60 %)"
+    },
+    {
+      "changement": "étape 1, essai A : collerette laiton de 2 px (rayon 6,4 px, z 29,6 à 31,8) entre casque et tronc, boulons de 0,9 px enfoncés dans la surface",
+      "image": "boards/journal/plongeur_v3_2.png",
+      "image_sha256": "016e67ff0e7f22b4077f4b6d4a14aa2104e54d4d72e598e1e1cd9e34ba67a9d9",
+      "controle": {
+        "silhouette": "Inchangée : la collerette reste sous le casque et ne déborde pas de la silhouette.",
+        "couleurs": "La bande laiton se confond avec le bas du casque ; aucune couleur de la base perdue.",
+        "cadrage": "Inchangé, plongeur centré dans la case de 80 px.",
+        "taille": "Hauteur 48 px, largeur 42 px, inchangées.",
+        "details": "Collerette presque invisible à x1 et à x6 ; boulons absents du rendu pixelisé.",
+        "coherence_base": "Même personnage que la base.",
+        "pixels_parasites": "Aucun pixel parasite nouveau."
+      },
+      "verdict": "annule",
+      "suite": "remplacé par l'essai B (même changement, collerette plus haute et qui dépasse le casque)",
+      "mesure_membres": "idle 1 à 6 (essai A) : bras proche 111-119 px / 91-95 %, bras lointain 104-115 px / 90-91 %, jambe proche 74-83 px / 85-91 %, jambe lointaine 81-84 px / 81 % : tous OK"
+    },
+    {
+      "changement": "étape 1, essai B : collerette laiton de 3 px (rayon 6,9 px, z 29,2 à 32,2), qui dépasse le casque d'environ 1 px ; boulons encore à l'intérieur du cylindre",
+      "image": "boards/journal/plongeur_v3_3.png",
+      "image_sha256": "28736b0354ac79b57a60392f95af0357336e40201a3c7a1108482f51f702d817",
+      "controle": {
+        "silhouette": "Une bande claire sous le casque élargit légèrement le haut du corps ; la silhouette reste lisible à x1.",
+        "couleurs": "La collerette laiton clair se distingue du casque doré et du tronc kaki ; base conservée.",
+        "cadrage": "Inchangé, plongeur centré dans la case de 80 px.",
+        "taille": "Hauteur 48 px, largeur 42 px, inchangées.",
+        "details": "La bande de collerette se lit comme une pièce à part ; les boulons ne se lisent pas encore à x1 (à peine un pixel).",
+        "coherence_base": "Collerette cohérente avec le casque laiton du modèle de profil.",
+        "pixels_parasites": "Aucun pixel parasite ; le bord sous le casque est net."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "boulons de la collerette à peine visibles : traités à l'essai C"
+      ],
+      "mesure_membres": "idle 1 à 6 (essai B) : bras proche 114-119 px / 92-95 %, bras lointain 103-115 px / 89-91 %, jambe proche 74-83 px / 85-91 %, jambe lointaine 81-84 px / 81 % : tous OK"
+    },
+    {
+      "changement": "étape 1, essai C : boulons posés sur la surface de la collerette (rayon 1,2 px, trois positions à mi-hauteur) ; le boulon droit reste caché par le tuyau de corde (sera déplacé à l'étape 6)",
+      "image": "boards/journal/plongeur_v3_4.png",
+      "image_sha256": "9ae8be83a3c6abc95e5ec71ce6a36ac40710d7a2133669db68599300ab18fd34",
+      "controle": {
+        "silhouette": "Inchangée par rapport à l'essai B.",
+        "couleurs": "Boulons en bronze sombre (même matériau que le cadre) sur le laiton clair ; pas de noir pur.",
+        "cadrage": "Inchangé, plongeur centré dans la case de 80 px.",
+        "taille": "Hauteur 48 px, largeur 42 px, inchangées.",
+        "details": "Boulon gauche visible en pixel sombre à x10, centre incertain, boulon droit caché par le tuyau : détail encore faible à 48 px.",
+        "coherence_base": "Même langage de pièces que le hublot et le cadre.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "boulon droit caché par le tuyau : à revérifier à l'étape 6 (tuyau déplacé au-dessus de la tête)"
+      ],
+      "mesure_membres": "idle 1 à 6 (essai C) : bras proche 114-119 px / 92-95 %, bras lointain 103-114 px / 89-90 %, jambe proche 74-83 px / 85-91 %, jambe lointaine 81-84 px / 81 % : tous OK"
     }
   ]
 }

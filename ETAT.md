@@ -26,6 +26,13 @@ Ancien modèle (profil) archivé : `art/source/blender/archive/plongeur_profil_v
 - Défauts notés (journal) : bassin en bloc rectangulaire ; jambes un peu courtes ; contour interne entre parties pas encore
   fait (demandé : trait sombre de 1 px aux frontières, calculé sur la carte d'identité) ; boulons et cadre du hublot peu lisibles.
 
+### Amélioration idle vers le héros de référence (un changement à la fois)
+| étape | changement | essai | verdict | journal |
+|---|---|---|---|---|
+| 1 | collerette laiton + boulons | A : 2 px, boulons enfoncés | annulé (invisible) | entrée 2 |
+| 1 | collerette | B : 3 px, dépasse le casque de 1 px | garde | entrée 3 |
+| 1 | boulons | C : sur la surface, rayon 1,2 px | garde ; boulon gauche et centre à peine lisibles, droit caché par le tuyau (étape 6) | entrée 4 |
+
 ### Méthode de mesure (changée cette étape)
 - `tools/mesure/membres.py` réduit désormais par BLOC MAJORITAIRE (8 x 8 px du rendu 640) au lieu d'une pixelisation moyenne.
   La pixelisation moyenne créait des parties fantômes sur les bords et faisait dépasser 100 % (corrigé).
