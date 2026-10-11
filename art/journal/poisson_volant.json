@@ -301,6 +301,25 @@
       "defauts_restants": [
         "relancer le rendu complet avec le nouvel œil (la feuille actuelle est annulée)"
       ]
+    },
+    {
+      "changement": "pixelisation du poisson au rendu avec l'œil de surface : nage 8, attaque 4, mort 6 dans une feuille à 3 étiquettes",
+      "image": "boards/poisson_volant_pixel_5.png",
+      "image_sha256": "d1645e5cc6af8d1f663e054a675410e2f9a14bbdb6ae7be0094f9f14d62ecac9",
+      "controle": {
+        "silhouette": "Le poisson se lit : œil blanc à pupille noire sur la tête, aileron haut, queue orange ; l'attaque le fait plonger, la mort reste horizontale.",
+        "couleurs": "Dos violet, ventre argenté, queue orange, œil blanc : palette conforme.",
+        "cadrage": "Le poisson tient la case ; queue et museau ont une marge.",
+        "taille": "Mesure (tools/mesure/mesurer.py) : nage 35 à 37 px (la plus haute 37), attaque jusqu'à 47 px, mort 35 à 36 px.",
+        "details": "L'œil se lit à 64 px (anneau blanc, pupille noire) ; la pectorale reste peu lisible.",
+        "coherence_base": "Même pipeline et même palette que les autres créatures.",
+        "pixels_parasites": "Liseré clair sur le contour du dos et de l'aileron."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "pectorale peu lisible à 64 px",
+        "liseré clair à atténuer en finition"
+      ]
     }
   ]
 }
