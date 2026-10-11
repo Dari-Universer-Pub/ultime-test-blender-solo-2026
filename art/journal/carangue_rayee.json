@@ -246,6 +246,45 @@
         "dorsale molle en tache jaune arrondie : à affiner en finition",
         "marge droite de 1 px : à vérifier après pixelisation"
       ]
+    },
+    {
+      "changement": "pixelisation de la carangue au nouveau rendu complet (tête, museau, dorsales, pectorale, queue fourchue) : nage 8, attaque 4, mort 6 dans une feuille à 3 étiquettes",
+      "image": "boards/carangue_rayee_pixel_3.png",
+      "image_sha256": "b4ebfba538e2b04cbf7e3a0a9c229686fa34a962cae426adb7d8872db4c37951",
+      "controle": {
+        "silhouette": "Le poisson se lit comme une carangue : museau pointu, œil, dorsale épineuse, queue fourchue ; en mort il roule sur le flanc.",
+        "couleurs": "Blanc crème, bleu-gris, violet des rayures et jaune des nageoires : palette conforme.",
+        "cadrage": "La queue touche le bord gauche de la case dans plusieurs images (largeur 61 à 63 px sur 64) : cadrage refusé.",
+        "taille": "Mesure (tools/mesure/mesurer.py) : hauteur 35 à 36 px (la plus haute 36), largeur 61 à 63 px ; hauteur limite, largeur trop grande.",
+        "details": "L'œil, la pectorale et les rayures se lisent ; la tête pâle se détache peu du corps.",
+        "coherence_base": "Même pipeline et même palette que l'oursin, la tortue et le poisson.",
+        "pixels_parasites": "Liseré clair sur le contour ; pas de pixel isolé visible sur la planche."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "largeur 63 px : queue au bord de la case, à raccourcir ou à réduire",
+        "hauteur juste à 36 px : corps à rendre plus haut",
+        "museau : petit, à élargir en tête"
+      ]
+    },
+    {
+      "changement": "corps : hauteur de l'ellipsoïde portée de 0,84 à 0,92 (corps plus haut, comme la fiche le demande)",
+      "image": "boards/journal/carangue_rayee_13.png",
+      "image_sha256": "f0618d48f9c05290c0d7b417a1f4fbb812062f4fe3ef20e96022f68ff69e4efb",
+      "controle": {
+        "silhouette": "Le corps est plus haut, la carangue a une vraie silhouette de poisson haut et comprimé.",
+        "couleurs": "Inchangées.",
+        "cadrage": "La queue et le museau restent dans la case, avec une marge faible à gauche (queue).",
+        "taille": "Hauteur de la silhouette à 36 px sur les images testées (contre 35 avant) ; largeur inchangée (61 à 63 px) : mesure complète à faire après le rendu.",
+        "details": "Les rayures et l'œil ne changent pas ; le dos plus haut donne plus de masse à la dorsale épineuse.",
+        "coherence_base": "Même matériau et même ossature que la version précédente.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "largeur encore juste : queue à 1 à 2 px du bord gauche",
+        "museau petit (à élargir en tête, non traité)"
+      ]
     }
   ]
 }

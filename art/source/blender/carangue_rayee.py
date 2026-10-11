@@ -45,7 +45,7 @@ def construire(scene):
     m_rayure = ob.materiau("carangue_rayure", "caoutchouc", bandes=(1, 2, 3, 4), rugosite=0.45)
     m_nageoire = ob.materiau("carangue_nageoire", "lampe", bandes=(1, 2, 3, 4), rugosite=0.5)
 
-    corps = ob.sphere((0.0, 0.0, 0.0), 0.5, m_corps, echelle=(1.10, 0.50, 0.84), nom="corps")
+    corps = ob.sphere((0.0, 0.0, 0.0), 0.5, m_corps, echelle=(1.10, 0.50, 0.92), nom="corps")
 
     # museau : petit cône pointé vers l'avant, avec une bouche sombre à son extrémité
     museau = ob.cone((0.60, 0.0, -0.02), 0.15, 0.24, m_corps, rotation=(0.0, math.radians(90), 0.0), nom="museau")
