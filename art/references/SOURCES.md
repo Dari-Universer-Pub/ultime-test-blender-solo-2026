@@ -13,3 +13,11 @@ Références prévues mais non obtenues à ce jour (Wikimedia répond 429, limit
 |---|---|---|
 | plongeur en scaphandre de 1870 | https://commons.wikimedia.org/wiki/File:1870s-deep-sea-diver.jpg | Domaine public (États-Unis, publié avant 1931) |
 | casque de plongée NSW | https://commons.wikimedia.org/wiki/File:Hard_hat_diver_(3639845159).jpg | CC BY 2.0 (attribution : State Archives and Records Authority of New South Wales, Flickr 3639845159) |
+
+## Ajouts (session finale M0)
+
+| Fichier | Adresse exacte | Auteur / source | Licence (lue sur la page) | SHA-256 |
+|---|---|---|---|---|
+| `ref_05_plongeur_nage_combinaison_1970.jpg` | https://digitalcommons.usf.edu/gandy/3629 (aperçu : https://digitalcommons.usf.edu/gandy/4628/preview.jpg) | George Skip Gandy IV, photographie de 1970, « Underwater Diver in White Star Gear », collection Gandy Photographs, Université de Floride du Sud | « This work is licensed under a Creative Commons Attribution 3.0 License » (lien : creativecommons.org/licenses/by/3.0). Incohérence signalée : un badge de la page évoque cc-by-nc-sa-3.0. Attribution requise. | 134fbd37de152da69793a7643a9b0c40c3918e9dd4f8c7964334af47ba14cf94 |
+
+Références tentées sans succès : une photo de plongeur de 1870 (Wikimedia, 429), un casque de plongée (Wikimedia, 429), une photo de la marine américaine et une photo de plongeur sur un site d'archives (403 au client).

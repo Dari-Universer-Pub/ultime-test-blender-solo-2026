@@ -653,6 +653,285 @@
         "bouteilles : pas de valve, effet de lumiere faible",
         "casque : cadre non lisible (limite de 2 px)"
       ]
+    },
+    {
+      "changement": "seuils des paliers d'ombrage 0 / 0,25 / 0,5 / 0,75 -> 0 / 0,10 / 0,22 / 0,38 : les membres sortent du ton le plus sombre",
+      "image": "boards/journal/plongeur_33.png",
+      "image_sha256": "17bd1ef36a8ab9a87b852ece222cc304954aa94add1fbd7884ded84a062bcdeb",
+      "controle": {
+        "silhouette": "La silhouette ne change pas a x1 : memes membres, memes positions.",
+        "couleurs": "Les jambes et le torse repassent en orange clair avec un vrai degrade : le ton le plus sombre tombe de 61 % a 31 % des pixels de combinaison en nage (mesure tools/mesure/tons.py).",
+        "cadrage": "Le cadrage ne change pas : 37 a 39 px.",
+        "taille": "Mesure : nage 37 a 39 px, idle 37 a 38 px, dans la plage 32 a 40 px.",
+        "details": "Les bras restent caches derriere le torse ; les jambes se lisent mieux, mais les palmes ont le meme rouge que le pantalon.",
+        "coherence_base": "Tous les tons restent ceux de la rampe combinaison de la palette.",
+        "pixels_parasites": "Aucun pixel isole nouveau."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "bras de nage caches derriere le torse (regression)",
+        "palmes meme teinte que le pantalon",
+        "casque : hublot pas assez contraste"
+      ]
+    },
+    {
+      "changement": "bras de nage : brassee sous le torse (rotation de 0,5 a 1,5 rad autour de l'axe Z de l'os) au lieu du balayage en profondeur qui cachait les bras",
+      "image": "boards/journal/plongeur_34.png",
+      "image_sha256": "012698f8a2ca5b96982eaec0254ee19780092d391d8ba3bc89ae58c5ebe30160",
+      "controle": {
+        "silhouette": "Les bras sortent du corps : ils passent sous le torse en nage, visibles a x1, et la silhouette de nage se lit comme un nageur.",
+        "couleurs": "Les bras ont l'orange clair de la combinaison, qui contraste avec le turquoise des bouteilles et le violet du contour.",
+        "cadrage": "Le cadrage ne change pas : 37 a 39 px.",
+        "taille": "Mesure : nage 37 a 39 px, idle 37 a 38 px ; amplitude nage 0,554 (cible 0,45), idle 0,230 (cible 0,10).",
+        "details": "Chaque bras se lit comme un membre distinct, avec la main au bout ; la brassee est visible sur les images 1, 3 et 6.",
+        "coherence_base": "Les bras gardent les tons de la combinaison, dans le meme repere que les jambes.",
+        "pixels_parasites": "Aucun pixel isole nouveau."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "casque : hublot pas assez contraste",
+        "animation sans anticipation ni temps de glisse",
+        "idle : respiration peu visible"
+      ]
+    },
+    {
+      "changement": "hublot en verre cyan franc (paliers de verre 1 a 4, plus sature) au lieu du verre clair (2 a 5)",
+      "image": "boards/journal/plongeur_35.png",
+      "image_sha256": "0186eb888ac1c8575dc5e5222a2b150c123571a082d0ffd72c5414413cf278af",
+      "controle": {
+        "silhouette": "La silhouette ne change pas a x1 : le dome reste au meme endroit.",
+        "couleurs": "Le verre devient un peu plus sature, mais le bas du dome tire vers le bleu sombre et le haut reste tres proche de l'orange : pas de contraste franc.",
+        "cadrage": "Le cadrage ne change pas : 37 a 39 px.",
+        "taille": "Mesure : nage 37 a 39 px, idle 37 a 38 px.",
+        "details": "Le hublot ne se lit pas davantage a x1 qu'avant ; la variante est annulee.",
+        "coherence_base": "Le verre reste dans la rampe verre de la palette.",
+        "pixels_parasites": "Aucun pixel isole nouveau."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "hublot sans contraste franc a x1",
+        "casque : cadre et reflet absents"
+      ]
+    },
+    {
+      "changement": "Aseprite iteration 1 : cadre clair #f2f4e0 (1 px) sur les pixels du hublot qui touchent le casque (20 pixels sur les 14 images)",
+      "image": "boards/journal/plongeur_36.png",
+      "image_sha256": "b8a485de3703447bda6f283a5858a863690008e01ffeeec98b1f9b6c704bfe7b",
+      "controle": {
+        "silhouette": "La silhouette ne change pas a x1 : le cadre reste dans le hublot, il ne depasse pas du casque.",
+        "couleurs": "Le cadre clair (#f2f4e0) contraste franchement avec le cyan du verre et l'orange du casque sur les trois fonds.",
+        "cadrage": "Le cadrage ne change pas : 37 a 39 px.",
+        "taille": "Mesure : nage 37 a 39 px, idle 37 a 38 px.",
+        "details": "Le bord du hublot se lit comme un cadre : sur l'idle la ligne claire separe le verre du casque, sur la nage elle suit le bord avant.",
+        "coherence_base": "Le ton vient de la rampe metal de la palette, comme les autres pieces metalliques.",
+        "pixels_parasites": "Aucun pixel isole : chaque pixel de cadre touche le hublot."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "reflet du hublot insuffisant (1 pixel)",
+        "bouteilles : pas de valve",
+        "animation sans anticipation ni temps de glisse",
+        "idle : respiration peu visible"
+      ]
+    },
+    {
+      "changement": "Aseprite iteration 2 : reflet blanc #e6fff8 sur les 2 pixels du haut du hublot (17 pixels modifies sur les 14 images, ceux touchant le cadre inclus)",
+      "image": "boards/journal/plongeur_37.png",
+      "image_sha256": "3a8724f4190b7a9b21d23941453ed631597fb439357ee4de6ce14be8ae453786",
+      "controle": {
+        "silhouette": "La silhouette ne change pas a x1 : le reflet reste dans le haut du hublot.",
+        "couleurs": "Le blanc #e6fff8 est le ton le plus clair du verre : il ressort sur le cadre clair et le cyan, sans sortir de la palette.",
+        "cadrage": "Le cadrage ne change pas : 37 a 39 px.",
+        "taille": "Mesure : nage 37 a 39 px, idle 37 a 38 px.",
+        "details": "Le hublot a maintenant un reflet de 2 pixels en haut ; il se voit surtout sur l'idle, a x1 il reste discret.",
+        "coherence_base": "Le reflet suit la lumiere haut-gauche comme le reste du modele.",
+        "pixels_parasites": "Aucun pixel isole : les reflets touchent le cadre ou le verre."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "reflet discret a x1",
+        "bouteilles : pas de valve",
+        "animation sans anticipation ni temps de glisse",
+        "idle : respiration peu visible"
+      ]
+    },
+    {
+      "changement": "Aseprite iteration 3 : reflet clair #c8ecbc sur le bord superieur de la bouteille arriere (9 pixels modifies sur les images 2, 5, 10, 14 et autres)",
+      "image": "boards/journal/plongeur_38.png",
+      "image_sha256": "1800edaee9cc78d44461f53dae439862509329ce1bc70088283aea5d56a1568a",
+      "controle": {
+        "silhouette": "La silhouette ne change pas a x1 : le reflet est sur le bord de la bouteille.",
+        "couleurs": "Le ton #c8ecbc est le plus clair de la rampe bouteille ; l'effet est tres faible sur la planche, un bord un peu plus clair sur le reservoir.",
+        "cadrage": "Le cadrage ne change pas : 37 a 39 px.",
+        "taille": "Mesure : nage 37 a 39 px, idle 37 a 38 px.",
+        "details": "Le reservoir gagne un bord de lumiere a peine visible ; les sangles et la valve restent ce qu'elles etaient.",
+        "coherence_base": "Le ton vient de la rampe bouteille de la palette.",
+        "pixels_parasites": "Aucun pixel isole : les reflets touchent le bord du reservoir."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "reflet de bouteille tres faible",
+        "bouteilles : pas de valve",
+        "animation sans anticipation ni temps de glisse",
+        "idle : respiration peu visible"
+      ]
+    },
+    {
+      "changement": "respiration idle : buste 0,04 -> 0,10 rad et montee-descente du corps 0,03 -> 0,05 (la cage thoracique et le casque bougent)",
+      "image": "boards/journal/plongeur_39.png",
+      "image_sha256": "d9d04a9cb6800c5d77d6b045e6b626451921418fd07e0731b815e4d21d658b17",
+      "controle": {
+        "silhouette": "La silhouette idle ne change pas : meme plongeur debout, le haut du corps bouge d'un pixel.",
+        "couleurs": "Les couleurs ne changent pas.",
+        "cadrage": "Le cadrage ne change pas : 36 a 38 px.",
+        "taille": "Mesure : idle 36 a 38 px (dans la plage 32 a 40), amplitude idle 0,304 (cible 0,10).",
+        "details": "La respiration se lit faiblement : le casque et les epaules bougent d'un pixel ; sans bulles ni effet, l'idle reste discret.",
+        "coherence_base": "La respiration suit le repere du buste, comme la nage.",
+        "pixels_parasites": "Aucun pixel isole nouveau."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "respiration encore faible (1 px)",
+        "nage sans anticipation ni temps de glisse",
+        "bouteilles : pas de valve"
+      ]
+    },
+    {
+      "changement": "nage a table : preparation (image 1, bras replies sous le torse, jambes repliees) et glisse (images 5 et 6, bras allonges, jambes calmes) ; battement table au lieu de la sinusoide",
+      "image": "boards/journal/plongeur_40.png",
+      "image_sha256": "618875e14975462d4fc3677599527c5bfb2835549923f298c02e99cda470404e",
+      "controle": {
+        "silhouette": "La preparation se lit : bras replies, jambes rapprochees ; la glisse montre les bras allonges. La nage a des temps differents.",
+        "couleurs": "Les couleurs ne changent pas.",
+        "cadrage": "Le cadrage ne change pas, mais la plus grande dimension atteint 40 px sur une image (limite haute de la plage).",
+        "taille": "Mesure : nage 37 a 40 px (limite haute atteinte), idle 36 a 38 px ; amplitude nage 0,590 (cible 0,45), idle 0,304 (cible 0,10).",
+        "details": "Les jambes battent avec des amplitudes differentes d'une image a l'autre ; la glisse est lisible sur l'image 5.",
+        "coherence_base": "Le cycle reste sur le meme repere que la brassee sous le torse.",
+        "pixels_parasites": "Aucun pixel isole nouveau."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "jambes trois tons oranges a faire (encore plum)",
+        "palmes meme teinte que le pantalon",
+        "taille nage au bord de la plage (40 px)"
+      ]
+    },
+    {
+      "changement": "combinaison a trois tons oranges (bandes 3, 4, 5 ; seuils 0 / 0,10 / 0,22) : tentative 1",
+      "image": "boards/journal/plongeur_41.png",
+      "image_sha256": "72d1bf2be1aedd85e40645f137789166431c057d864e1984e69db373c4d8c28b",
+      "controle": {
+        "silhouette": "La silhouette ne change pas a x1.",
+        "couleurs": "Le corps devient jaune-orange pale : le ton le plus clair (#ffc070) occupe 52 % des pixels de nage et 64 % en idle ; l'ombre orange disparait.",
+        "cadrage": "Le cadrage ne change pas : 37 a 40 px.",
+        "taille": "Mesure : nage 37 a 40 px, idle 36 a 38 px ; amplitudes nage 0,590, idle 0,304.",
+        "details": "Le volume est plat : sans ombre orange, bras et jambes se confondent avec le torse.",
+        "coherence_base": "Les tons restent dans la rampe combinaison, mais le dosage est mauvais.",
+        "pixels_parasites": "Aucun pixel isole nouveau."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "combinaison trop pale : seuils a remonter",
+        "ombre orange absente"
+      ]
+    },
+    {
+      "changement": "combinaison a trois tons oranges, seuils des paliers remontes a 0 / 0,18 / 0,42 : tentative 2 (gardee)",
+      "image": "boards/journal/plongeur_42.png",
+      "image_sha256": "d8fb06935e592db41bfe4f5f4af5b9427d0ea6af01d13123fcfaac82529570e6",
+      "controle": {
+        "silhouette": "La silhouette ne change pas a x1 : bras, jambes et torse gardent leur forme.",
+        "couleurs": "Le corps est orange avec un vrai degrade : ton de base #f08a3a 50 %, ombre #c95a2a 31 %, lumiere #ffc070 12 % en nage (tools/mesure/tons.py).",
+        "cadrage": "Le cadrage ne change pas : 37 a 40 px.",
+        "taille": "Mesure : nage 37 a 40 px, idle 36 a 38 px ; amplitudes nage 0,590, idle 0,304.",
+        "details": "Les jambes et les bras se lisent comme des membres separes grace aux trois oranges ; le plum a disparu.",
+        "coherence_base": "Les trois tons sont dans la rampe combinaison de la palette.",
+        "pixels_parasites": "Aucun pixel isole nouveau."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "palmes meme teinte que le pantalon",
+        "ombre la plus sombre quasi absente (7 %)",
+        "casque : reflets a revoir apres re-rendu"
+      ]
+    },
+    {
+      "changement": "palmes en rampe bouteille (turquoise-vert) au lieu de la rampe palmes (rouge-orange)",
+      "image": "boards/journal/plongeur_43.png",
+      "image_sha256": "1b865df4c3c0c547dd74e3662fb5f2a86e5de3634643afa58ef1002c42a2e9ac",
+      "controle": {
+        "silhouette": "La silhouette ne change pas a x1 : les palmes gardent leur forme et leur place.",
+        "couleurs": "Les palmes sont turquoise-vert, une teinte differente du pantalon orange : elles ressortent au bout des jambes.",
+        "cadrage": "Le cadrage ne change pas : 37 a 40 px.",
+        "taille": "Mesure : nage 37 a 40 px, idle 36 a 38 px ; amplitudes nage 0,590, idle 0,304.",
+        "details": "Les palmes se lisent comme un equipement distinct des jambes, en nage comme en idle.",
+        "coherence_base": "La rampe bouteille est deja utilisee pour les bouteilles : les palmes et le materiel partagent la meme famille turquoise.",
+        "pixels_parasites": "Aucun pixel isole nouveau."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "casque : reflets a revoir apres re-rendu",
+        "iterations Aseprite a rejouer sur les images finales",
+        "references 2 et 3 a ajouter"
+      ]
+    },
+    {
+      "changement": "Aseprite iteration 1 rejouee sur les images finales : cadre clair #f2f4e0 (1 px) sur le bord du hublot qui touche le casque (24 pixels modifies)",
+      "image": "boards/journal/plongeur_44.png",
+      "image_sha256": "e2a737098ec341be1c8a857c00ec224e907db774c66cf389ee105bba9d0db1dd",
+      "controle": {
+        "silhouette": "La silhouette ne change pas a x1 : le cadre reste dans le hublot.",
+        "couleurs": "Le cadre clair separe le verre du casque ; l'effet reste petit a 37 px (3 a 6 pixels par image).",
+        "cadrage": "Le cadrage ne change pas : 36 a 40 px.",
+        "taille": "Mesure apres retouche : idle 36 a 38 px, nage 37 a 40 px.",
+        "details": "Le bord du hublot est un peu plus net sur l'idle ; sur la nage le cadre est trop petit pour peser.",
+        "coherence_base": "Le ton vient de la rampe metal de la palette.",
+        "pixels_parasites": "Aucun pixel isole."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "effet du cadre tres petit a 37 px",
+        "reflets du hublot a revoir",
+        "references 2 et 3 a ajouter"
+      ]
+    },
+    {
+      "changement": "Aseprite iteration 2 rejouee sur les images finales : reflet blanc #e6fff8 sur les 2 pixels du haut du hublot (17 pixels modifies)",
+      "image": "boards/journal/plongeur_45.png",
+      "image_sha256": "4f79d56c8aff60a9df65f97f9098f42bf87acd7764332858419c46a912d08a5a",
+      "controle": {
+        "silhouette": "La silhouette ne change pas a x1 : le reflet reste dans le haut du hublot.",
+        "couleurs": "Le blanc #e6fff8 ressort sur le cyan du verre ; l'effet est discret, 2 pixels par image.",
+        "cadrage": "Le cadrage ne change pas : 36 a 40 px.",
+        "taille": "Mesure apres retouche : idle 36 a 38 px, nage 37 a 40 px.",
+        "details": "Le hublot a un reflet de 2 pixels sur les images 1, 2 et 7 ; a x1 il reste discret.",
+        "coherence_base": "Le reflet suit la lumiere haut-gauche.",
+        "pixels_parasites": "Aucun pixel isole."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "reflet discret a x1",
+        "references 2 et 3 a ajouter"
+      ]
+    },
+    {
+      "changement": "Aseprite iteration 3 rejouee sur les images finales : reflet clair #c8ecbc sur le bord superieur de la bouteille arriere (8 pixels modifies)",
+      "image": "boards/journal/plongeur_46.png",
+      "image_sha256": "5c64aa6c6e22358624dcc25419d7af57f117c83bf8f1822542b80cc4bbfd176f",
+      "controle": {
+        "silhouette": "La silhouette ne change pas a x1.",
+        "couleurs": "Le ton #c8ecbc est le plus clair de la rampe bouteille ; l'effet tient en un pixel par image.",
+        "cadrage": "Le cadrage ne change pas : 36 a 40 px.",
+        "taille": "Mesure apres retouche : idle 36 a 38 px, nage 37 a 40 px.",
+        "details": "Le reservoir a un bord de lumiere d'un pixel ; invisible a x1, il est juste perceptible sur la planche agrandie.",
+        "coherence_base": "Le ton vient de la rampe bouteille.",
+        "pixels_parasites": "Aucun pixel isole."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "effet de lumiere d'un pixel seulement",
+        "references 2 et 3 a ajouter"
+      ]
     }
   ]
 }

@@ -23,7 +23,7 @@ from mathutils import Vector
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", "..", ".."))
-SORTIE = os.path.join(ROOT, "art", "rendu", "plongeur")
+SORTIE = os.environ.get("PLONGEUR_SORTIE", os.path.join(ROOT, "art", "rendu", "plongeur"))   # test : autre dossier de sortie
 BLEND = os.path.join(HERE, "plongeur.blend")
 
 RES = int(os.environ.get("PLONGEUR_RES", "512"))            # 512 = 8 x 64 px
@@ -69,7 +69,7 @@ def materiau(nom, rampe, i, rugosite=0.55, emission=0.0, bandes=(1, 2, 3, 4)):
     el = paliers.color_ramp.elements
     while len(el) > 1:
         el.remove(el[-1])
-    positions = [0.0, 0.25, 0.5, 0.75][:len(bandes)]
+    positions = ([0.0, 0.18, 0.42] if len(bandes) == 3 else [0.0, 0.10, 0.22, 0.38])[:len(bandes)]   # seuils : 3 tons remontes pour que le clair ne domine pas
     for k, (pos, idx) in enumerate(zip(positions, bandes)):
         c = couleur_lin(rampe, idx)
         if k == 0:
@@ -135,12 +135,12 @@ for _c, _s in (("g", -1.0), ("d", 1.0)):
 
 
 def construire_modele():
-    m_comb = materiau("combinaison", "combinaison", 4, 0.5, bandes=(1, 3, 4, 5))   # orange vif, ombre violette
-    m_comb_ombre = materiau("combinaison_ombre", "combinaison", 2, 0.6)
+    m_comb = materiau("combinaison", "combinaison", 4, 0.5, bandes=(3, 4, 5))   # trois tons oranges : ombre, base, lumiere
+    m_comb_ombre = materiau("combinaison_ombre", "combinaison", 2, 0.6, bandes=(2, 3, 4))   # cote lointain : trois tons, plus sombres
     m_verre = materiau("hublot_verre", "verre", 3, 0.08, bandes=(2, 3, 4, 5))   # verre clair : le hublot se lit a 37 px
     m_metal = materiau("metal", "metal", 3, 0.35)
     m_caout = materiau("caoutchouc", "caoutchouc", 2, 0.7)
-    m_palme = materiau("palmes", "palmes", 3, 0.45)
+    m_palme = materiau("palmes", "bouteille", 3, 0.45, bandes=(1, 2, 3, 4))   # palmes turquoise-vert : teinte differente du pantalon orange
     m_bout = materiau("bouteilles", "bouteille", 3, 0.4)
     m_lampe = materiau("lampe", "lampe", 3, 0.3, emission=2.0)
 
@@ -255,26 +255,34 @@ def poser_profondeur(sq, f, nom, angle):
     pb.keyframe_insert("rotation_euler", frame=f)
 
 
+# Cycle de nage en 8 images. Index 0 = preparation (bras ramenes sous le torse, jambes repliees),
+# index 4 = glisse (bras allonges, jambes calmes). Table : elle donne l'anticipation et le temps de glisse.
+BRAS_NAGE = [1.5, 1.3, 1.0, 0.7, 0.5, 0.6, 1.0, 1.4]     # rotation des bras (rad), sous le torse
+JAMBES_NAGE = [0.15, 0.45, 0.60, 0.35, 0.10, 0.20, 0.50, 0.60]   # amplitude du battement (rad)
+
+
 def pose_nage(sq, f, t):
-    """Nage de profil : corps couche, tete vers +X, bras en brasse, jambes qui battent."""
-    s, c = math.sin, math.cos
+    """Nage de profil : corps couche, tete vers +X ; bras et jambes suivent la table du cycle."""
+    s = math.sin
+    idx = int(round(t / (2 * math.pi / NAGE))) % NAGE
     poser(sq, f, "hanche", rot=(0.0, 1.30 + 0.06 * s(t), 0.0), loc=(0.0, 0.0, 0.0))
     poser(sq, f, "buste", rot=(0.0, 0.22 * s(t + math.pi / 2), 0.0))
     poser(sq, f, "tete", rot=(0.0, -0.06 * s(t), 0.0))
-    for c_, dephase in (("g", 0.0), ("d", math.pi)):
-        phi = math.pi / 2 + (math.pi / 2) * s(t + dephase)     # 0 = bras le long du corps, pi = bras devant
-        poser_profondeur(sq, f, f"bras_{c_}_1", phi)
-        poser_profondeur(sq, f, f"bras_{c_}_2", 0.35 * s(t + dephase - 0.6))
-        poser(sq, f, f"jambe_{c_}_1", rot=(0.0, 0.60 * s(t + dephase + math.pi), 0.0))
-        poser(sq, f, f"jambe_{c_}_2", rot=(0.0, 0.50 * s(t + dephase + math.pi / 2), 0.0))
-        poser(sq, f, f"pied_{c_}", rot=(0.0, 0.50 * s(t + dephase), 0.0))
+    for c_, decal, signe in (("g", 0, 1.0), ("d", NAGE // 2, -1.0)):
+        k = (idx + decal) % NAGE
+        poser(sq, f, f"bras_{c_}_1", rot=(0.0, BRAS_NAGE[k], 0.0))
+        poser(sq, f, f"bras_{c_}_2", rot=(0.0, 0.3 + 0.2 * s(t + decal * math.pi / 4), 0.0))
+        poser(sq, f, f"jambe_{c_}_1", rot=(0.0, signe * JAMBES_NAGE[k], 0.0))
+        poser(sq, f, f"jambe_{c_}_2", rot=(0.0, signe * 0.8 * JAMBES_NAGE[k], 0.0))
+        poser(sq, f, f"pied_{c_}", rot=(0.0, signe * 0.8 * JAMBES_NAGE[k], 0.0))
 
 
 def pose_idle(sq, f, t):
     """Flottement debout : bascule lente, bras qui se balancent, palmes qui frissonnent."""
     s = math.sin
-    poser(sq, f, "hanche", rot=(0.0, 0.05 * s(t), 0.0), loc=(0.0, 0.0, 0.03 * s(t)))
-    poser(sq, f, "buste", rot=(0.0, 0.04 * s(t + 0.8), 0.0))
+    # respiration : la cage thoracique se souleve (buste 0,10 rad) et le corps monte-descend de 0,05
+    poser(sq, f, "hanche", rot=(0.0, 0.05 * s(t), 0.0), loc=(0.0, 0.0, 0.05 * s(t)))
+    poser(sq, f, "buste", rot=(0.0, 0.10 * s(t + 0.8), 0.0))
     poser(sq, f, "tete", rot=(0.0, -0.03 * s(t), 0.0))
     for c_, dephase in (("g", 0.0), ("d", math.pi)):
         poser(sq, f, f"bras_{c_}_1", rot=(0.0, 0.45 + 0.10 * s(t + dephase), 0.0))
