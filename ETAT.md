@@ -16,7 +16,10 @@ M0 terminé, en attente de validation visuelle (Julien regarde les planches avan
 - Silhouette de nage : bras et palmes à retravailler, lisibilité à ×1 correcte mais perfectible.
 
 ## Blocage en cours
-(aucun) — voir la section « Besoin de Julien » pour les références.
+Clone neuf : `python tools/gate.py M0` donne ECHEC (Godot : « Failed loading resource ... .godot/imported/plongeur.png-....ctex »).
+- H1 (confirmée par le message « Make sure resources have been imported ») : `.godot/` est ignoré par git, donc le cache d'import n'existe pas dans un clone.
+- H2 (à tester) : le `.import` versionné ne sert à rien sans son cache. Test : les `.import` sont-ils nécessaires ?
+- Solution retenue : `scripts/m0_plongeur.gd` charge le PNG avec `Image.load_from_file` (pas de `load()`), donc aucun cache n'est nécessaire.
 
 Historique des blocages résolus pendant M0 (une ligne par hypothèse) :
 - Plongeur qui reste debout en nage : les os Blender tournent autour de leur axe Y (longueur de l'os). Flexion sur l'axe Z local : résolu.

@@ -41,7 +41,8 @@ func materiau_eau() -> ShaderMaterial:
 
 
 func construire_images() -> SpriteFrames:
-	var feuille := load(FEUILLE) as Texture2D
+	# Chargement direct du PNG : pas besoin du cache d'import (.godot/ n'est pas versionne).
+	var feuille := ImageTexture.create_from_image(Image.load_from_file(FEUILLE))
 	var donnees: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(DONNEES))
 	var cadres: Array = donnees["frames"]
 	var sf := SpriteFrames.new()
