@@ -10,31 +10,73 @@
       "nom": "plonger",
       "ok": true,
       "capture": "shots/robot/plonger.png",
-      "detail": "le plongeur est entré dans l'eau en [107.4, 13.6]"
+      "detail": "le plongeur est entré dans l'eau en [105.8, 13.6]"
     },
     {
       "nom": "nager",
       "ok": true,
       "capture": "shots/robot/nager.png",
-      "detail": "déplacement de 111 px dans l'eau"
+      "detail": "déplacement de 127 px dans l'eau"
     },
     {
       "nom": "combattre",
-      "ok": false,
+      "ok": true,
       "capture": "shots/robot/combattre.png",
-      "detail": "poisson_volant toujours vivante après 0 coups ; retour à [8.9, 91.3]"
+      "detail": "poisson_volant morte après 3 coups (3 approches) ; retour à [5.5, 89.7]"
     },
     {
       "nom": "oxygene",
       "ok": true,
       "capture": "shots/robot/oxygene.png",
-      "detail": "air : 33.5 -> 28.7 sur 40.0"
+      "detail": "air : 27.9 -> 23.1 sur 40.0"
     },
     {
       "nom": "lampe",
       "ok": true,
       "capture": "shots/robot/lampe.png",
       "detail": "la lampe frontale est allumée"
+    },
+    {
+      "nom": "creuser",
+      "ok": true,
+      "capture": "shots/robot/creuser.png",
+      "detail": "une case de planche creusée (un morceau tombe au sol)"
+    },
+    {
+      "nom": "ramasser",
+      "ok": true,
+      "capture": "shots/robot/ramasser.png",
+      "detail": "planche_epave dans l'inventaire : 1"
+    },
+    {
+      "nom": "poser",
+      "ok": true,
+      "capture": "shots/robot/poser.png",
+      "detail": "poses : 0 -> 1 ; inventaire : {'couteau_de_plongee': 1, 'planche_epave': 2, 'radeau_de_fortune': 1, 'reservoir_oxygene': 1, 'tole_rouillee': 3}"
+    },
+    {
+      "nom": "fabriquer",
+      "ok": true,
+      "capture": "shots/robot/fabriquer.png",
+      "detail": "module de forge fabriqué (tôle et planches de l'épave) ; inventaire : {'couteau_de_plongee': 1, 'module_forge': 1, 'radeau_de_fortune': 1, 'reservoir_oxygene': 1}"
+    },
+    {
+      "nom": "sortir_eau_radeau",
+      "ok": true,
+      "capture": "shots/robot/sortir_eau_radeau.png",
+      "detail": "le plongeur est monté sur le radeau (position [-12.9, -24.0])"
+    },
+    {
+      "nom": "sauvegarder",
+      "ok": true,
+      "capture": "shots/robot/sauvegarder.png",
+      "detail": "sauvegarde écrite : /root/.local/share/godot/app_userdata/Les Cloches de Varekh/sauvegarde.json"
+    },
+    {
+      "nom": "recharger",
+      "ok": true,
+      "capture": "shots/robot/recharger.png",
+      "detail": "après déplacement [37.5, -22.9], après F9 [-12.9, -24.0], sauvegardée [-12.9, -24.0]"
     }
   ]
 }

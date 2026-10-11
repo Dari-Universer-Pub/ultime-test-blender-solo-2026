@@ -149,6 +149,35 @@ def aller_vers(x, y, tolerance=5, delai=30.0):
     return False
 
 
+def approcher(cible, portee=18.0, delai=6.0):
+    """Suit une créature qui bouge, avec les vraies touches, jusqu'à une distance réelle (euclidienne) de
+    `portee` px. La position de la cible et du plongeur est relue à chaque pas. La portée du jeu est de 26 px,
+    donc 18 px laisse de la marge. Renvoie True dès que la distance est atteinte."""
+    fin = time.time() + delai
+    while time.time() < fin:
+        c = cible()
+        if c is None:
+            break
+        px, py = etat()["position"]
+        dx, dy = c["x"] - px, c["y"] - py
+        if (dx * dx + dy * dy) ** 0.5 <= portee:
+            CLAVIER.relacher()
+            return True
+        touches = []
+        if dx < -4:
+            touches.append("a")
+        if dx > 4:
+            touches.append("d")
+        if dy < -4:
+            touches.append("w")
+        if dy > 4:
+            touches.append("s")
+        CLAVIER.tenir(touches)
+        time.sleep(0.05)
+    CLAVIER.relacher()
+    return False
+
+
 def cellule_vers_px(cx, cy):
     return cx * 16 + 8, cy * 16 + 8
 
@@ -239,29 +268,32 @@ def scenario(rapport):
         return
 
     def combattre():
-        # Le poisson volant du radeau : le robot s'en approche avec les vraies touches, puis frappe avec X
-        # jusqu'à ce qu'il meure (3 coups). L'état écrit par le jeu donne sa position et sa vie.
+        # Le poisson volant du radeau : le robot le suit avec les vraies touches jusqu'à 18 px (distance réelle),
+        # puis frappe avec X jusqu'à ce qu'il meure (3 coups). L'état écrit par le jeu donne sa position et sa vie.
+        def poisson():
+            return next((c for c in etat().get("creatures", []) if c["id"] == "poisson_volant"), None)
+
         def cible():
-            return next((c for c in etat().get("creatures", []) if c["id"] == "poisson_volant" and not c["morte"]), None)
+            c = poisson()
+            return c if c is not None and not c["morte"] else None
         if cible() is None:
             return False, "aucune créature poisson_volant vivante dans l'état du jeu"
         depart_combat = etat()["position"]     # le robot revient ici : les étapes suivantes en dépendent
         coups = 0
-        for _ in range(30):
-            c = cible()
-            if c is None:
-                break
-            x, y = etat()["position"]
-            if ((c["x"] - x) ** 2 + (c["y"] - y) ** 2) ** 0.5 > 20:
-                aller_vers(c["x"], c["y"], tolerance=16, delai=6.0)
-                continue
+        essais = 0
+        while cible() is not None and essais < 24:
+            essais += 1
+            if not approcher(cible, portee=18.0, delai=6.0):
+                continue                        # la créature a bougé pendant l'approche : on la rattrape
             CLAVIER.frapper("x", 0.1)
             coups += 1
             time.sleep(0.6)
-        c = next((c for c in etat().get("creatures", []) if c["id"] == "poisson_volant"), None)
-        ok = c is not None and c["morte"] is True
+        # la créature morte reste dans l'état deux secondes avant de disparaître
+        ok = attendre(lambda e: any(c["id"] == "poisson_volant" and c["morte"] is True
+                                    for c in e.get("creatures", [])), 2.0)
         aller_vers(depart_combat[0], depart_combat[1], tolerance=12, delai=15.0)
-        return ok, f"poisson_volant {'morte' if ok else 'toujours vivante'} après {coups} coups ; retour à {depart_combat}"
+        return ok, (f"poisson_volant {'morte' if ok else 'toujours vivante'} après {coups} coups "
+                    f"({essais} approches) ; retour à {depart_combat}")
     etape("combattre", combattre)
 
     def oxygene():
