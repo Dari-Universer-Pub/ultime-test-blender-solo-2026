@@ -31,7 +31,7 @@ ECHANTILLONS = int(os.environ.get("PLONGEUR_ECHANTILLONS", "64"))
 # Apercu : PLONGEUR_IMAGES="1,9" ne rend que ces images (le rendu final rend toutes les images)
 APERCU = {int(v) for v in os.environ.get("PLONGEUR_IMAGES", "").split(",") if v.strip()}
 NAGE, IDLE = 8, 6
-LARGEUR_CADRE = 3.8     # unites de monde couvertes par la largeur de l image (64 px) : plongeur 37 px
+LARGEUR_CADRE = 3.95    # unites de monde couvertes par la largeur de l image (64 px) : plongeur 37 a 39 px
 SOUPLESSE = 0.14        # largeur de la transition des poids entre deux os (unites de monde)
 
 PAL = json.load(open(os.path.join(ROOT, "art", "palette.json"), encoding="utf-8"))["rampes"]
@@ -147,7 +147,7 @@ def construire_modele():
     pieces = []
     # casque, hublot cercle, bague de col
     pieces.append(sphere((0.02, 0.0, 0.62), 0.30, m_comb))
-    pieces.append(sphere((0.27, 0.0, 0.66), 0.25, m_verre, (0.55, 1.0, 1.0)))   # dome de verre : grand hublot sur l'avant du casque
+    pieces.append(sphere((0.36, 0.0, 0.66), 0.19, m_verre))   # bulle de verre en saillie : depasse le casque de ~4 px (profil), haute de ~6 px
     pieces.append(anneau((0.02, 0.0, 0.30), 0.25, 0.045, m_metal))
     # torse
     pieces.append(sphere((0.0, 0.0, 0.02), 0.30, m_comb, (0.75, 0.62, 0.95)))
@@ -161,7 +161,7 @@ def construire_modele():
         pieces.append(tube(a_, b_, 0.06, m_caout))
     # lampe de casque
     pieces.append(tube((0.28, 0.0, 0.95), (0.42, 0.0, 0.95), 0.035, m_metal))
-    pieces.append(sphere((0.44, 0.0, 0.95), 0.07, m_lampe))
+    pieces.append(sphere((0.44, 0.0, 0.95), 0.11, m_lampe))   # lampe agrandie (rayon 0,11 = 2 px) : detail de metier, jaune sur eau bleue
     # bras, jambes, gants, bottes, palmes
     for c, s in (("g", -1.0), ("d", 1.0)):
         ep = m_comb if c == "g" else m_comb_ombre
@@ -280,9 +280,9 @@ def pose_nage(sq, f, t):
 def pose_idle(sq, f, t):
     """Flottement debout : bascule lente, bras qui se balancent, palmes qui frissonnent."""
     s = math.sin
-    # respiration : la cage thoracique se souleve (buste 0,10 rad) et le corps monte-descend de 0,05
-    poser(sq, f, "hanche", rot=(0.0, 0.05 * s(t), 0.0), loc=(0.0, 0.0, 0.05 * s(t)))
-    poser(sq, f, "buste", rot=(0.0, 0.10 * s(t + 0.8), 0.0))
+    # respiration : la cage thoracique se souleve (buste 0,16 rad) et le corps monte-descend de 0,07 (2 px p-p a 0,062 u/px)
+    poser(sq, f, "hanche", rot=(0.0, 0.05 * s(t), 0.0), loc=(0.0, 0.0, 0.07 * s(t)))
+    poser(sq, f, "buste", rot=(0.0, 0.16 * s(t + 0.8), 0.0))
     poser(sq, f, "tete", rot=(0.0, -0.03 * s(t), 0.0))
     for c_, dephase in (("g", 0.0), ("d", math.pi)):
         poser(sq, f, f"bras_{c_}_1", rot=(0.0, 0.45 + 0.10 * s(t + dephase), 0.0))
@@ -298,6 +298,25 @@ def animer(sq):
     for f in range(NAGE + 1, NAGE + IDLE + 1):
         pose_idle(sq, f, 2 * math.pi * (f - NAGE - 1) / IDLE)
     return NAGE + IDLE
+
+
+def animer_bulle():
+    """Bulle de respiration : sort de l'arriere du casque (au-dessus, loin de la visiere) et monte
+    de 0,18 pendant les images idle ; elle est invisible en nage."""
+    m = materiau("bulle_air", "bulle", 3, 0.2)
+    b = sphere((-0.20, 0.0, 0.98), 0.08, m)
+    b.name = "bulle_respiration"
+    for f in range(1, NAGE + IDLE + 1):
+        if f <= NAGE:
+            b.scale = (0.001, 0.001, 0.001)
+            b.location = (-0.20, 0.0, 0.98)
+        else:
+            t = (f - NAGE - 1) / IDLE
+            b.scale = (1.0, 1.0, 1.0)
+            b.location = (-0.20, 0.0, 0.98 + 0.18 * t)
+        b.keyframe_insert("scale", frame=f)
+        b.keyframe_insert("location", frame=f)
+    return b
 
 
 # ------------------------------------------------------------------ scene
@@ -360,6 +379,7 @@ def main():
     sq = construire_squelette()
     poids_par_distance(corps, sq)
     dernier = animer(sq)
+    animer_bulle()
     eclairer(scene)
     camera(scene)
     reglages_rendu(scene)

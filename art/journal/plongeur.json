@@ -932,6 +932,351 @@
         "effet de lumiere d'un pixel seulement",
         "references 2 et 3 a ajouter"
       ]
+    },
+    {
+      "changement": "hublot en bulle de verre en saillie : sphere de rayon 0,19 centree a x=0,36 (au lieu d'une lamelle aplatie a x=0,27) ; depasse le casque d'environ 4 px de profil",
+      "image": "boards/journal/plongeur_47.png",
+      "image_sha256": "c5c2d98cf1dfcb83fd9fd39204466a40408146b3e425aa77a79bab648b527c51",
+      "controle": {
+        "silhouette": "A x1 la bosse de verre se voit sur le front du casque, en idle comme en nage : le casque n'est plus une boule sans face.",
+        "couleurs": "Le verre est presque blanc-cyan et se confond avec la lumiere du haut : le contraste avec l'orange reste faible, il faudra un cadre et une vitre plus franche.",
+        "cadrage": "Le cadrage ne change pas : 37 a 40 px.",
+        "taille": "Mesure : nage 37 a 40 px (limite haute), idle 36 a 38 px ; amplitudes nage 0,579, idle 0,296.",
+        "details": "La bulle se detache du casque, mais elle n'a pas de bord : on ne sait pas encore ou finit le verre.",
+        "coherence_base": "Le verre reste dans la rampe verre de la palette.",
+        "pixels_parasites": "Aucun pixel isole nouveau."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "pas de cadre autour de la bulle",
+        "verre trop pale, peu contrasté",
+        "casque : reflet a refaire"
+      ]
+    },
+    {
+      "changement": "rebord metallique clair (paliers 3-5 de la rampe metal, rayon 0,20, tube 0,035) a la base de la bulle de verre : tentative 1",
+      "image": "boards/journal/plongeur_48.png",
+      "image_sha256": "69a427dc298c38296a746840fd350f1a0b5c9b533991263cea49e1202ad39249",
+      "controle": {
+        "silhouette": "A x1 la silhouette ne change pas : le rebord n'apparait pas sur la planche.",
+        "couleurs": "Le rebord clair se fond dans le verre presque blanc : aucun contraste, la bulle reste sans bord.",
+        "cadrage": "Le cadrage ne change pas : 37 a 40 px.",
+        "taille": "Mesure : nage 37 a 40 px, idle 36 a 38 px ; amplitudes nage 0,577, idle 0,297.",
+        "details": "Le rebord de 0,035 de rayon fait moins d'un pixel : il est invisible a 37 px.",
+        "coherence_base": "Le metal vient de la rampe metal de la palette.",
+        "pixels_parasites": "Aucun pixel isole nouveau."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "bulle de verre sans bord visible",
+        "rebord trop fin (moins d'un pixel)"
+      ]
+    },
+    {
+      "changement": "rebord sombre epais (paliers 0-2 de la rampe metal, rayon 0,20, tube 0,06) a la base de la bulle : tentative 2",
+      "image": "boards/journal/plongeur_49.png",
+      "image_sha256": "c3284e325f43bdcbb72acfa43a9876cb6710351f7fc41e2ac34656218993853b",
+      "controle": {
+        "silhouette": "A x1 la silhouette ne change pas : le rebord sombre n'est pas lisible a cote de la bulle.",
+        "couleurs": "Le metal sombre est a peine plus fonce que le bord du casque ; le verre pale ne contraste pas avec lui.",
+        "cadrage": "Le cadrage ne change pas : 37 a 40 px.",
+        "taille": "Mesure : nage 37 a 40 px, idle 36 a 38 px ; amplitudes nage 0,575, idle 0,294.",
+        "details": "Le rebord ne se distingue pas du casque a 37 px : quatre tentatives de rebord dans le modele sont annulees.",
+        "coherence_base": "Le metal vient de la rampe metal de la palette.",
+        "pixels_parasites": "Aucun pixel isole nouveau."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "rebord invisible dans le modele (4 tentatives)",
+        "bulle sans bord"
+      ]
+    },
+    {
+      "changement": "Aseprite iteration 1 : cadre sombre #2e4a66 (1 px) sur les pixels de la bulle qui touchent le casque (17 pixels sur 14 images)",
+      "image": "boards/journal/plongeur_50.png",
+      "image_sha256": "f05cdb6e61c667cd7fd9f34d54d896a821f6052ba245c731525b26c4d70177f2",
+      "controle": {
+        "silhouette": "A x1 la bulle se detache du casque par une ligne sombre sur son bord : la forme du casque est lisible.",
+        "couleurs": "Le bord sombre contraste avec le verre pale et avec l'orange ; la couleur de base du verre est gardee.",
+        "cadrage": "Le cadrage ne change pas : 36 a 40 px.",
+        "taille": "Mesure : nage 37 a 40 px, idle 36 a 38 px, dans la plage 32 a 40 px.",
+        "details": "L'image idle 1 montre la bulle encadree ; sur la nage la ligne est moins visible. Le verre reste trop pale pour se lire comme une vitre.",
+        "coherence_base": "Le metal sombre vient de la rampe metal de la palette.",
+        "pixels_parasites": "Aucun pixel isole : chaque pixel du cadre touche le hublot."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "verre trop pale",
+        "reflet a refaire"
+      ]
+    },
+    {
+      "changement": "Aseprite iteration 2 : vitre cyan franc #5cc8d0 a la place du verre pale #9af0ea / #e6fff8 (158 pixels sur les 14 images)",
+      "image": "boards/journal/plongeur_51.png",
+      "image_sha256": "cf969767e5d844b6899f0cdf7ad51d40f2a1391ff0c35d769bea6d2666ff07f9",
+      "controle": {
+        "silhouette": "A x1 la bulle se lit comme une vitre cyan au bord sombre, sur l'idle comme sur la nage.",
+        "couleurs": "Le cyan moyen contraste avec l'orange du casque et avec le cadre sombre ; on ne confond plus la vitre avec le fond clair.",
+        "cadrage": "Le cadrage ne change pas : 36 a 40 px.",
+        "taille": "Mesure inchangee : nage 37 a 40 px, idle 36 a 38 px.",
+        "details": "Le hublot est une zone cyan encadree : il se lit comme un hublot de plongeur, mais le reflet blanc manque encore.",
+        "coherence_base": "Le cyan vient de la rampe verre de la palette, ton moyen.",
+        "pixels_parasites": "Aucun pixel isole."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "reflet blanc a ajouter",
+        "ombre sous le casque a ajouter"
+      ]
+    },
+    {
+      "changement": "Aseprite iteration 3 : reflet blanc franc #e6fff8, 3 pixels en haut a gauche de la vitre (42 pixels sur 14 images)",
+      "image": "boards/journal/plongeur_52.png",
+      "image_sha256": "40b94f26913cf48b6e2a600fc26d965304ddb06893d15203d8ddc3a48dec229a",
+      "controle": {
+        "silhouette": "A x1 le reflet blanc marque le haut du hublot : la bulle semble bombee et lumineuse.",
+        "couleurs": "Le blanc #e6fff8 est le ton le plus clair de la palette verre ; il ressort sur le cyan et reste dans la palette.",
+        "cadrage": "Le cadrage ne change pas : 36 a 40 px.",
+        "taille": "Mesure inchangee : nage 37 a 40 px, idle 36 a 38 px.",
+        "details": "Le reflet est petit (3 pixels) mais il se voit sur la planche agrandie et a x1 il marque le haut de la vitre.",
+        "coherence_base": "Le reflet suit la lumiere haut-gauche, comme le reste du modele.",
+        "pixels_parasites": "Aucun pixel isole : les 3 pixels touchent la vitre."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "ombre sous le casque a ajouter",
+        "tuyau d'air a ajouter (silhouette de metier)"
+      ]
+    },
+    {
+      "changement": "tuyau d'air clair (rayon 0,065 = 2 px) du casque a la valve des bouteilles : tentative 1",
+      "image": "boards/journal/plongeur_53.png",
+      "image_sha256": "40063447a7c2f0cf1476c4bb2ff92e6f6f59353d3ee5aa3092a33eddeb4716fc",
+      "controle": {
+        "silhouette": "A x1 le tuyau ne se voit pas : il se confond avec le casque et le dos, la silhouette ne change pas.",
+        "couleurs": "Le ton bulle clair est trop proche du cyan du hublot et des bouteilles turquoise ; il ne se detache pas.",
+        "cadrage": "Le cadrage ne change pas : 36 a 40 px.",
+        "taille": "Mesure : nage 37 a 40 px, idle 36 a 38 px ; amplitudes nage 0,579, idle 0,294.",
+        "details": "Le tuyau passe sous le bord de la bouteille et le casque ; aucun detail lisible a x1.",
+        "coherence_base": "Le ton vient de la rampe bulle de la palette.",
+        "pixels_parasites": "Aucun pixel isole nouveau."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "tuyau invisible : teinte trop proche du cyan",
+        "valve de bouteille absente"
+      ]
+    },
+    {
+      "changement": "deux valves de metal clair (rayon 0,06 = 1 px) sur le haut des bouteilles de dos : tentative 1 du detail de metier",
+      "image": "boards/journal/plongeur_54.png",
+      "image_sha256": "c8ea31c67ee1280529066d6dd1041e71d170e36c9599758d6f5764c1d2d275c2",
+      "controle": {
+        "silhouette": "A x1 les valves ne changent pas la silhouette : 12 pixels differents sur nage_01 et 8 sur idle_01, tous au bord arriere du casque.",
+        "couleurs": "Le metal clair se confond avec le turquoise des bouteilles, il n'y a aucun contraste sur la planche.",
+        "cadrage": "Le cadrage ne change pas : le plongeur reste entre 36 et 40 px.",
+        "taille": "Mesure : nage 37 a 40 px, idle 36 a 38 px ; amplitudes nage 0,578, idle 0,294.",
+        "details": "Les valves de 1 px sont invisibles a x1 : on ne les voit pas sur les trois fonds.",
+        "coherence_base": "La rampe metal est celle du cadre du casque, le ton est coherent avec le reste.",
+        "pixels_parasites": "Aucun pixel isole nouveau."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "valves invisibles a x1 (1 px, au bord arriere du casque)",
+        "silhouette de metier encore absente"
+      ]
+    },
+    {
+      "changement": "lampe de casque agrandie (rayon 0,07 -> 0,11, soit 2 px) : detail de metier a x1 ; valves retirees (entree 54, annulees)",
+      "image": "boards/journal/plongeur_55.png",
+      "image_sha256": "156468cf54474068916f85bc9b28b3c3cad6d4209e5b35b154dc466ce7bda276",
+      "controle": {
+        "silhouette": "La lampe jaune ajoute une pointe nette de 3 a 4 px a droite du hublot, visible a x1 sur les deux fonds de la planche.",
+        "couleurs": "Le jaune (ton 4 de la rampe lampe) contraste fortement avec le cyan du hublot et avec l'eau sombre ; les couleurs de base sont conservees.",
+        "cadrage": "Le cadrage se degrade : le plongeur en nage atteint 41 px, au-dessus de la limite de 40 px ; a corriger au changement suivant.",
+        "taille": "Mesure : nage 37 a 41 px (41 hors limite), idle 37 a 38 px ; amplitudes nage 0,588, idle 0,300.",
+        "details": "La lampe se lit comme un point jaune net ; le hublot cyan et son reflet restent lisibles.",
+        "coherence_base": "La rampe lampe du projet fournit le jaune ; la lampe reste dans la palette.",
+        "pixels_parasites": "Aucun pixel isole nouveau."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "nage a 41 px : hors limite 32-40, cadrage a reduire",
+        "valves invisibles a x1 : retirees",
+        "hublot : toujours peu contraste sur l'eau sombre"
+      ]
+    },
+    {
+      "changement": "cadrage : largeur de la scene 3,80 -> 3,95 unites (plongeur de nage ramene de 41 a 37-39 px)",
+      "image": "boards/journal/plongeur_56.png",
+      "image_sha256": "29ebac506d90544b6ae3c0afde2777269237501aed6b5d13046ef4f4d1ef58dd",
+      "controle": {
+        "silhouette": "A x1 nage_04 garde sa forme : les palmes, les bras, la bouteille, le casque et la lampe jaune restent dans la meme silhouette, un peu plus compacte.",
+        "couleurs": "Les tons orange de la combinaison, turquoise des palmes et cyan du hublot sont ceux de la palette ; le changement de cadrage ne touche pas aux couleurs.",
+        "cadrage": "Le plongeur occupe 39 px sur 64 : marge de 16 px a gauche et de 9 px a droite, centre verticalement (24 px en haut, 16 en bas).",
+        "taille": "Mesure : nage 37 a 39 px (maximum 39, dans 32-40), idle 36 a 38 px ; amplitudes nage 0,591, idle 0,304.",
+        "details": "La lampe jaune et la bulle cyan restent lisibles a x1 ; le hublot n'a pas perdu de detail a la reduction.",
+        "coherence_base": "La scene garde la meme camera orthographique et la meme palette que les autres images.",
+        "pixels_parasites": "Aucun pixel parasite visible sur cette image ; le nettoyage des pixels isoles de pixeliser.py reste actif."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "hublot : toujours peu contraste sur l'eau sombre",
+        "respiration idle encore faible (1 px)",
+        "pas encore de bulle de respiration"
+      ]
+    },
+    {
+      "changement": "respiration idle : corps monte-descend de 0,05 a 0,07 unite (2 px) et cage thoracique 0,10 a 0,16 rad",
+      "image": "boards/journal/plongeur_57.png",
+      "image_sha256": "645e448658bf1f231ae712c23b03d2a04df770391597dfa3d0ed5dadce190194",
+      "controle": {
+        "silhouette": "A x1 le casque et la lampe montent de 2 px entre idle_01 (haut 14) et idle_04 (haut 12) ; la silhouette reste celle du plongeur debout.",
+        "couleurs": "Les tons ne changent pas : le mouvement ne cree aucune couleur nouvelle.",
+        "cadrage": "Le plongeur reste dans la case : haut entre 12 et 14 px, bas a 50 px sur les six images.",
+        "taille": "Mesure : idle 35 a 38 px (amplitude 0,369, contre 0,304 avant), nage 37 a 39 px (amplitude 0,591).",
+        "details": "Le mouvement se lit a x1 sur le casque et la lampe ; le buste bouge peu et les palmes restent fixes.",
+        "coherence_base": "Le mouvement reste dans le cycle d'idle de 6 images, avec les memes tons de la palette.",
+        "pixels_parasites": "Aucun pixel parasite nouveau."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "buste : le soulevement se voit peu, surtout sur le casque",
+        "pas encore de bulle de respiration qui quitte le casque"
+      ]
+    },
+    {
+      "changement": "bulle de respiration qui sort de la visiere (rayon 0,08, montee de 0,30 pendant idle) : tentative 1",
+      "image": "boards/journal/plongeur_58.png",
+      "image_sha256": "83498dd46504f6f86b4d247848413ad08f59f7767358b6c26a0985e03a45b3c3",
+      "controle": {
+        "silhouette": "A x1 la bulle sort de la visiere et se fond avec le hublot cyan et la lampe : la silhouette devient plus haute, sans bulle distincte.",
+        "couleurs": "Le ton bulle pale (ton 3 de la rampe bulle) est trop proche du cyan du hublot : il n'y a aucun contraste entre la bulle et le verre.",
+        "cadrage": "Le sommet de l'image monte d'environ 2 px, le plongeur n'est plus centre verticalement.",
+        "taille": "Mesure : idle 37 a 41 px, dont 41 px a idle_06 : hors de la limite 32-40 ; nage 37 a 39 px, amplitudes nage 0,591, idle 0,369.",
+        "details": "La bulle ne se lit pas comme une bulle a x1 : elle ressemble a une pointe de la visiere.",
+        "coherence_base": "Le ton vient de la rampe bulle, deja utilisee pour le liseré clair ; la palette est respectee.",
+        "pixels_parasites": "Aucun pixel isole nouveau."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "bulle confondue avec la visiere",
+        "idle a 41 px : hors limite"
+      ]
+    },
+    {
+      "changement": "bulle de respiration qui sort de l'arriere du casque (x -0,20, rayon 0,08, montee de 0,18 pendant idle) : tentative 2 apres l'annulation de la tentative 1",
+      "image": "boards/journal/plongeur_59.png",
+      "image_sha256": "944e32243634d0ccfc4137ab6820be75148b48aecbec81aa47c469987480f07d",
+      "controle": {
+        "silhouette": "A x1 une petite bulle pale de 2 a 3 px se detache au-dessus de l'arriere du casque, separee du dome par un espace d'eau.",
+        "couleurs": "La bulle est pale (ton 3 de la rampe bulle) : elle contraste avec l'eau claire et l'eau sombre, et ne se confond pas avec le cyan de la visiere.",
+        "cadrage": "Le sommet reste dans la case (haut 11 a 13 px) et le plongeur reste centre verticalement.",
+        "taille": "Mesure : idle 37 a 39 px (contre 41 pour la tentative 1), nage 37 a 39 px ; amplitudes idle 0,366, nage 0,591.",
+        "details": "La bulle est un point pale de 2 a 3 px, lisible a x1 sur les deux fonds ; elle reste petite.",
+        "coherence_base": "Le ton vient de la rampe bulle, comme le liseré clair ; la bulle reste dans la palette.",
+        "pixels_parasites": "Aucun pixel isole nouveau."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "bulle petite : elle ne monte que d'environ 3 px",
+        "silhouette de metier encore faible (lampe seulement)"
+      ]
+    },
+    {
+      "changement": "Aseprite iteration 1 : cadre sombre #2e4a66 sur 11 pixels du hublot qui touchent le casque (liseré du hublot)",
+      "image": "boards/journal/plongeur_60.png",
+      "image_sha256": "86e1ce4764e1a08dc2dfd44b8b39bdf5833c4b7baed2df6a3e4f9f7710311b13",
+      "controle": {
+        "silhouette": "A x1 le contour du hublot ne change pas : seulement deux pixels sombres changent sur l'image idle_03 et le hublot a le meme contour.",
+        "couleurs": "Le metal sombre (#2e4a66, ton 1 de la rampe metal) est dans la palette ; les autres couleurs ne bougent pas.",
+        "cadrage": "Inchange : le plongeur occupe la meme case.",
+        "taille": "Inchangee : idle 37 a 39 px, nage 37 a 39 px.",
+        "details": "Le liseré n'est pas lisible a x1 : deux pixels sur une dizaine de pixels du hublot ne forment pas un contour.",
+        "coherence_base": "Le ton vient de la rampe metal, deja utilisee pour le cadre du casque.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "liseré du hublot absent a x1 (deux pixels seulement)",
+        "a retenter avec un liseré continu le long du bord du casque"
+      ]
+    },
+    {
+      "changement": "Aseprite iteration 2 : vitre cyan franc, le verre pale #9af0ea devient #5cc8d0 sur les 14 images (remplacement de couleur limite au hublot)",
+      "image": "boards/journal/plongeur_61.png",
+      "image_sha256": "42ebc15ba5f1f1cac6f2a0af205afa0b1b66de9d14328ac04372eead4d1c74f6",
+      "controle": {
+        "silhouette": "Inchangee : le hublot garde sa place et sa forme sur les deux fonds.",
+        "couleurs": "Le verre passe du cyan pale au cyan franc (#5cc8d0, ton 3 de la rampe verre) ; le liseré #8ad8d0 reste voisin, le contraste est faible a gauche.",
+        "cadrage": "Le cadrage ne change pas : le plongeur reste dans la meme case, sur les memes pixels, de 37 a 39 px.",
+        "taille": "Inchangee : idle 37 a 39 px, nage 37 a 39 px ; le remplacement ne touche que les pixels du hublot.",
+        "details": "Le hublot passe d'un bleu-blanc a un cyan net, lisible a x1 sur eau claire et eau sombre ; le reflet blanc reste visible.",
+        "coherence_base": "Le cyan vient de la rampe verre du projet : meme couleur que le reste du hublot.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "liseré clair voisin du cyan : contraste faible a gauche du hublot",
+        "reflet blanc a renforcer (iteration 3)"
+      ]
+    },
+    {
+      "changement": "Aseprite iteration 3 : reflet franc #e6fff8 ramene a 3 pixels en haut a gauche du hublot, les autres pixels blancs passent au cyan #5cc8d0 (47 pixels, 14 images)",
+      "image": "boards/journal/plongeur_62.png",
+      "image_sha256": "73589cd12007f853b85a45188264070b5216dd46d22d91d94e82d0985f807ac2",
+      "controle": {
+        "silhouette": "Inchangee : le hublot garde sa forme sur les deux fonds.",
+        "couleurs": "Le blanc du reflet passe de 6 a 8 pixels selon l'image a 3 pixels ; le reste du verre est cyan #5cc8d0 (ton 3 de la rampe verre).",
+        "cadrage": "Le cadrage ne change pas : le plongeur reste dans la meme case, sans deplacement de la silhouette.",
+        "taille": "Inchangee : idle 37 a 39 px, nage 37 a 39 px.",
+        "details": "Le reflet blanc en haut a gauche se lit a x1 comme une tache de lumiere de 3 px ; il ne deborde pas sur le casque.",
+        "coherence_base": "Le blanc vient de la rampe verre du projet (ton 5), comme les autres reflets.",
+        "pixels_parasites": "Aucun pixel isole nouveau."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "reflet de 2 px seulement sur nage_01, nage_03 et nage_05 : a verifier",
+        "ombre sous le casque : pas encore faite (iteration 4)"
+      ]
+    },
+    {
+      "changement": "Aseprite iteration 4 : ombre sous le casque, 3 a 7 pixels du haut du corps juste sous le bord du casque passent au ton sombre #8f2f2e (71 pixels, 14 images)",
+      "image": "boards/journal/plongeur_63.png",
+      "image_sha256": "93b11c8b12cfbee06d1c815c574cd4498a42f572e2d8c8e94af970d1edc99c86",
+      "controle": {
+        "silhouette": "Inchangee : seul le ton du corps change, la forme du plongeur reste la meme.",
+        "couleurs": "Le ton #8f2f2e (ton 2 de la rampe combinaison) assombrit 3 a 7 pixels sous le casque par image ; le reste de la combinaison ne change pas.",
+        "cadrage": "Le cadrage ne change pas : le plongeur occupe la meme case que l'image precedente.",
+        "taille": "Inchangee : idle 37 a 39 px, nage 37 a 39 px.",
+        "details": "L'ombre separe le casque du corps et se lit a x1 sur les deux fonds : le casque ne semble plus colle au torse.",
+        "coherence_base": "Le ton vient de la rampe combinaison, deja utilisee sur le corps.",
+        "pixels_parasites": "Aucun pixel isole nouveau."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "ombre plus marquee sur les nage que sur les idle",
+        "les seuls details de metier restent la lampe et la bulle"
+      ]
+    },
+    {
+      "changement": "Aseprite iteration 1, tentative 2 (liseré du hublot) : 20 pixels du liseré pale #8ad8d0 qui touchent le verre passent au cadre sombre #2e4a66",
+      "image": "boards/journal/plongeur_64.png",
+      "image_sha256": "b44f4664988fbb9f52f5818c4a0f2d85dcea136775c21e1adf8f00e1824cb89a",
+      "controle": {
+        "silhouette": "Inchangee : seuls des pixels du bord du hublot changent, la silhouette est la meme.",
+        "couleurs": "Le cadre sombre #2e4a66 (ton 1 de la rampe metal) est dans la palette, mais il ne forme pas un contour continu : 1 a 3 pixels par image.",
+        "cadrage": "Le cadrage ne change pas : le plongeur occupe la meme case, aucun pixel ne sort du cadre.",
+        "taille": "Inchangee : idle 37 a 39 px, nage 37 a 39 px.",
+        "details": "Le cadre sombre n'est pas lisible a x1 comme un liseré : le bord du hublot a encore du clair par endroits et le cadre est discontinu.",
+        "coherence_base": "Le ton vient de la rampe metal, deja utilisee pour le cadre du casque.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "liseré du hublot non continu (1 a 3 pixels par image)",
+        "un liseré lisible demande un changement de forme du hublot (Blender), pas seulement de couleur"
+      ]
     }
   ]
 }

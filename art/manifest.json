@@ -17,9 +17,9 @@
         "base": "boards/plongeur_base.png",
         "modifie": "boards/plongeur_modifie.png",
         "iterations": [
-          "boards/iterations/plongeur_it1.png",
           "boards/iterations/plongeur_it2.png",
-          "boards/iterations/plongeur_it3.png"
+          "boards/iterations/plongeur_it3.png",
+          "boards/iterations/plongeur_it4.png"
         ]
       }
     }
