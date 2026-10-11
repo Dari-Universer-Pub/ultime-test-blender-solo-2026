@@ -246,6 +246,24 @@
         "bande argentée du ventre décollée : à recoller (z du ventre à -0,26)",
         "mesure complète à faire"
       ]
+    },
+    {
+      "changement": "aileron dorsal : hauteur de 0,34 à 0,46 et centre descendu à 0,42 (base sur le dos)",
+      "image": "boards/journal/poisson_volant_11.png",
+      "image_sha256": "c4794b50b59e48c32687dabae37e089b8a82a2e2d1818d476a8c88fb1f16c490",
+      "controle": {
+        "silhouette": "L'aileron dorsal est plus long : la silhouette est plus haute, le poisson garde son profil.",
+        "couleurs": "Inchangées (aileron violet sombre).",
+        "cadrage": "L'aileron reste dans la case, sous le haut.",
+        "taille": "Gain d'environ 3 px ; nage attendue à 35 px, mesure complète à faire.",
+        "details": "L'aileron se détache du dos ; il reste lisible.",
+        "coherence_base": "Même matériau que le dos.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "mesure complète à faire (cible 36 px)"
+      ]
     }
   ]
 }

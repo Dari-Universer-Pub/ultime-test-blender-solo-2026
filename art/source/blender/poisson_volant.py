@@ -61,7 +61,7 @@ def construire(scene):
     ob.oeil((0.36, -0.22, 0.10), 0.085, corps, pupille=0.62, nom="oeil")
 
     # aileron dorsal court
-    dos = ob.cone((0.08, 0.0, 0.36), 0.10, 0.34, m_dos, nom="nageoire_dorsale")
+    dos = ob.cone((0.08, 0.0, 0.42), 0.10, 0.46, m_dos, nom="nageoire_dorsale")
     ob.parent(dos, corps)
 
     # queue fourchue : deux lobes dont la base est sur la charnière arrière du corps

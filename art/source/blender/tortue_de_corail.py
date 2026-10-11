@@ -37,7 +37,7 @@ PLAN = (
 DERNIERE = 18
 
 # coraux de la carapace : (x, z, rotation Y en radians) ; ils pointent vers le haut et vers l'extérieur
-CORAUX = ((-0.30, 0.25, -0.5), (-0.10, 0.27, -0.2), (0.10, 0.27, 0.1), (0.28, 0.24, 0.45))
+CORAUX = ((-0.30, 0.27, -0.5), (-0.10, 0.29, -0.2), (0.10, 0.29, 0.1), (0.28, 0.26, 0.45))
 
 
 def construire(scene):

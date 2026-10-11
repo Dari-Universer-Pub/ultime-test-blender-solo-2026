@@ -148,6 +148,24 @@
       "defauts_restants": [
         "mesure complète à faire (cible 36 px)"
       ]
+    },
+    {
+      "changement": "coraux : centres remontés de 0,02 supplémentaire (0,27 à 0,29) pour gagner 1 px de hauteur",
+      "image": "boards/journal/tortue_de_corail_9.png",
+      "image_sha256": "46a1f568a170d947783d040f2699942832900f01316f07a9796d01dcb234f223",
+      "controle": {
+        "silhouette": "Les coraux montent un peu plus : la silhouette gagne environ 1 px, sans changer la forme.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Les pointes restent dans la case.",
+        "taille": "Gain attendu d'environ 1 px (non mesuré) ; la hauteur reste à mesurer après le rendu complet (cible 36 px).",
+        "details": "Les coraux restent lisibles et bien attachés à la carapace.",
+        "coherence_base": "Même forme de corail.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "mesure complète à faire (cible 36 px)"
+      ]
     }
   ]
 }
