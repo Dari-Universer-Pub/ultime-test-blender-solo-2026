@@ -223,6 +223,16 @@ def ramasser_objet(objet):
     return attendre_inventaire(objet, avant, 2.0)
 
 
+def revenir_sous_l_eau():
+    """Si le plongeur est remonté sur le radeau, il replonge comme à l'étape « plonger » (marche vers la droite)."""
+    if etat()["dans_eau"] is True:
+        return True
+    CLAVIER.tenir(["d"])
+    time.sleep(1.2)
+    CLAVIER.relacher()
+    return attendre(lambda e: e["dans_eau"] is True, 4.0)
+
+
 # ----------------------------------------------------------------- scénario
 def scenario(rapport):
     def etape(nom, fonction):
@@ -329,7 +339,11 @@ def scenario(rapport):
     # Récolte du reste pour la forge : une planche de plus, quatre morceaux de tôle.
     for cx, cy, objet in ((-14, 18, "planche_epave"), (-14, 20, "tole_rouillee"), (-14, 21, "tole_rouillee"),
                           (-14, 22, "tole_rouillee"), (-14, 23, "tole_rouillee")):
-        if not creuser_tuile(cx, cy):
+        # le plongeur peut remonter sur le radeau pendant une manœuvre : il replonge, puis on réessaie la case
+        for _ in range(3):
+            if revenir_sous_l_eau() and creuser_tuile(cx, cy):
+                break
+        else:
             e = etat()
             raise RuntimeError(f"la case {cx},{cy} ne se creuse pas (position {e['position']}, "
                                f"case visée {e['case_visee']}, regarde {e['regarde']})")
