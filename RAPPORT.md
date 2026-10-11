@@ -1,107 +1,53 @@
-# RAPPORT.md — Phase M0 (plongeur), deuxième vague de corrections
+# RAPPORT.md — Phase M0 (plongeur), troisième vague de corrections
 
-Statut : **M0 en attente de validation visuelle de Julien.** M0 n'est pas validée. Aucune phase suivante n'est lancée.
-
-Contrôle : `python tools/gate.py M0` dans un **clone neuf** de la branche (dossier vide, sans `.godot/`), au commit `baa695f` : **SUCCES**. La sortie complète est ci-dessous.
-
-## Corrections demandées (2e vague), état honnête
-
-1. **Nage illisible** — corrigé. Les bras passent sous le torse (brassée entre 0,5 et 1,5 rad), hors du corps, en orange clair. Chaque jambe a trois tons oranges (ombre, base, lumière). Palmes en turquoise-vert, teinte différente du pantalon.
-2. **Couleurs des membres** — corrigé. Les seuils des paliers ont été remontés : le ton sombre ne domine plus. Mesure (tools/mesure/tons.py) : base 50 %, ombre 31 %, lumière 12 % des pixels de combinaison en nage.
-3. **Casque** — partiel. Dôme de verre plus grand, cadre clair de 1 px, reflet blanc de 2 pixels, reflet de 1 pixel sur la bouteille. **Le hublot reste la zone la plus faible du sprite à x1.** Le hublot cyan franc a été essayé puis annulé (entrée 35).
-4. **Références** — deux sources libres, avec adresses et licences dans `art/references/SOURCES.md` : une photo de 1970 (CC BY 3.0, avec une incohérence de licence signalée) et une photo de 1951 (« no known copyright restrictions »). Les autres tentatives échouent (429 ou 403).
-5. **Export Windows** — noté dans ETAT.md, à tester en M2 : `Image.load_from_file` sur `res://` n'est pas vérifié dans un export `.exe`.
-6. **Animation** — nage avec une image de préparation (bras repliés) et deux images de glisse (bras allongés). Idle : respiration visible mais faible (1 px), sans bulles.
-
-Acquis vérifiés à chaque changement : taille 32-40 px sur chaque image, amplitude nage >= 0,45, amplitude idle >= 0,10.
-
-## Journal visuel
-
-46 entrées : 36 gardées, 10 annulées. Chaque entrée a une image distincte et son SHA-256 vérifié. Les itérations Aseprite ont été rejouées sur les images finales (planches `boards/iterations/`).
-
-## Mesures
-
-```
-## nage (8 images)
-| image | largeur | hauteur | plus grande dimension |
-|---|---|---|---|
-| nage_01.png | 37 | 22 | 37 |
-| nage_02.png | 38 | 23 | 38 |
-| nage_03.png | 40 | 24 | 40 |
-| nage_04.png | 39 | 25 | 39 |
-| nage_05.png | 39 | 24 | 39 |
-| nage_06.png | 40 | 25 | 40 |
-| nage_07.png | 40 | 25 | 40 |
-| nage_08.png | 39 | 24 | 39 |
-plus grande dimension : min 37, max 40
-amplitude nage : 0.590
-
-## idle (6 images)
-| image | largeur | hauteur | plus grande dimension |
-|---|---|---|---|
-| idle_01.png | 18 | 36 | 36 |
-| idle_02.png | 19 | 37 | 37 |
-| idle_03.png | 18 | 38 | 38 |
-| idle_04.png | 16 | 37 | 37 |
-| idle_05.png | 17 | 38 | 38 |
-| idle_06.png | 17 | 37 | 37 |
-plus grande dimension : min 36, max 38
-amplitude idle : 0.304
-```
-
-```
-## nage : pixels de combinaison 1128
-  ton1   #5a2440 :   1.2 %
-  ton2   #8f2f2e :  18.8 %
-  ton3   #c95a2a :  26.8 %
-  ton4   #f08a3a :  32.4 %
-  ton5   #ffc070 :  20.7 %
-  tons utilises : 5 ; le plus sombre utilise est majoritaire : non
-## idle : pixels de combinaison 782
-  ton1   #5a2440 :   0.4 %
-  ton2   #8f2f2e :   4.2 %
-  ton3   #c95a2a :  31.6 %
-  ton4   #f08a3a :  51.8 %
-  ton5   #ffc070 :  12.0 %
-  tons utilises : 5 ; le plus sombre utilise est majoritaire : non
-```
+Commit testé dans le clone neuf : `e9ec6c6` (branche `claude/cloches-varekh-dev-r716in`). Le commit suivant ne change que RAPPORT.md et ETAT.md.
 
 ## Fait (vérifié)
-
-- Journal visuel `art/journal/plongeur.json` : 46 entrées, empreintes vérifiées.
-- Planche finale : `boards/plongeur_reference.png` (deux références à gauche, idle et deux nages agrandis ×4 à droite).
-- Capture Godot : `shots/m0_plongeur_godot.png` (nage en scène minimale).
-- Clone neuf : contrôle SUCCES.
+- Contrôle M0 dans un clone neuf du commit e9ec6c6 : SUCCES (sortie complète plus bas).
+- Journal visuel : 64 entrées (47 gardées, 17 annulées), 64 images distinctes, 7 critères remplis par entrée (`art/journal/plongeur.json`).
+- Taille : nage 37 à 39 px, idle 37 à 39 px (tools/mesure/mesurer.py) ; plage 32 à 40 respectée.
+- Amplitudes : nage 0,591 (≥ 0,45), idle 0,366 (≥ 0,10).
+- Nage : toutes les images à 39 px au plus (la vague précédente avait des images à 40 px ; corrigé par le cadrage 3,95).
+- Respiration idle : le haut du casque varie de 2 px entre idle_01 (haut 13) et idle_05 (haut 11). Les bras suivent le buste.
+- Bulle de respiration : sort de l'arrière du casque, monte de 0,18 unité pendant idle (journal 59, gardée).
+- Silhouette de métier : lampe de casque agrandie (rayon 0,11 = 2 px), jaune sur l'eau bleue (journal 55, gardée).
+- Retouches Aseprite gardées, chacune avec sa planche et son entrée, rejouées dans l'ordre sur les images finales :
+  - it2 : vitre cyan franc, #9af0ea → #5cc8d0 (`boards/iterations/plongeur_it2.png`, journal 61) ;
+  - it3 : reflet blanc ramené à 3 pixels en haut à gauche du hublot (`boards/iterations/plongeur_it3.png`, journal 62) ;
+  - it4 : ombre sous le casque, 3 à 7 pixels par image passés à #8f2f2e (`boards/iterations/plongeur_it4.png`, journal 63).
+- Planche finale : `boards/plongeur_reference.png` (références ref_03 et ref_05 à gauche, idle_01, idle_04, nage_01, nage_05 ×4 à droite, issus de la feuille finale).
+- Capture Godot du jeu lancé : `shots/m0_plongeur_godot.png` (CAPTURE_OK).
+- Manifeste `art/manifest.json` : les planches d'itération pointent vers it2, it3, it4.
+- Export Windows : la note « à tester en M2 » reste dans ETAT.md ; le journal Godot affiche l'avertissement « this will not work on export » pour `Image.load_from_file` sur res://.
 
 ## Non vérifié
-
-- La qualité « niveau professionnel » n'est pas démontrée. Les critères sont un jugement visuel de l'agent sur des planches.
-- L'animation n'a pas été jouée : seulement des images fixes.
-- Le hublot à x1 n'est pas assez contrasté pour être jugé lisible ; un test de lisibilité par Julien est nécessaire.
+- Le hublot à x1 sur eau sombre : jugé sur les planches, pas validé par Julien.
+- Le cadre du hublot (liseré) : non obtenu. Deux tentatives annulées (journal 60 et 64).
+- Le tuyau d'air et les valves : annulés (journal 53 et 54), invisibles à x1.
+- L'export Windows (`Image.load_from_file` dans un .exe) : à tester en M2.
+- Les planches `boards/plongeur_base.png` et `boards/plongeur_modifie.png` datent de la première vague et ne sont pas à jour.
 
 ## Limites
-
-- Format : à 32-40 px de haut, les détails de moins de 2 px ne se lisent pas. Le casque (cadre, boulons, tuyau) est limité par ce format. Décision prise : rester à 32-40 px.
-- Références : deux sources seulement, dont une sous licence CC BY 3.0 avec une incohérence signalée. Inspiration seulement.
-- Godot : `art/`, `boards/`, `shots/`, `tests/`, `tools/` ont un `.gdignore`. Le PNG est chargé à l'exécution : à tester en export (M2).
+- Le hublot fait environ 5 × 5 px sur les images idle et n'a pas de cadre continu : le critère « un inconnu doit dire un plongeur avec un hublot » n'est pas atteint de façon sûre sur eau sombre.
+- La silhouette de métier repose sur la seule lampe.
+- La bulle de respiration est petite (2 à 3 px) et monte peu (environ 3 px).
+- Les palmes restent plus petites que les jambes.
+- Les retouches Aseprite sont des pixels choisis sur les images (pas de dessin par code) ; elles sont à refaire si le rendu Blender change.
 
 ## Écarts vers Dead Cells (par impact)
-
-1. Silhouette générique : le plongeur ne se distingue pas encore par une personnalité ni un équipement lisible à 37 px.
-2. Hublot : contraste et reflet insuffisants à x1.
-3. Animation : anticipation et temps de glisse à travailler au-delà d'une image.
-4. Respiration idle : 1 px, pas de bulles.
-5. Pixel art : finition minimale (trois itérations, à faible effet).
+1. Hublot et tête : un vrai dôme de verre avec cadre net et reflet, à x1. Actuellement un bloc cyan de 5 × 5 px.
+2. Silhouette de métier : plusieurs détails (tuyau, valves, lampe) qui se lisent à x1. Actuellement la lampe seule.
+3. Animation : anticipation plus travaillée ; la respiration est faible (2 px) et la bulle est petite.
+4. Palmes : taille et forme plus marquées.
+5. Ombrage : la combinaison reste en aplats ; peu de sensation de volume.
 
 ## Ce que Julien doit juger lui-même
+- `boards/plongeur_reference.png` : le plongeur est-il reconnaissable comme plongeur avec un hublot, à ×4 et à x1 ?
+- `boards/journal/plongeur_61.png`, `plongeur_62.png`, `plongeur_63.png` : les trois retouches gardées sont-elles visibles à x1 ?
+- `shots/m0_plongeur_godot.png` : la capture dans le jeu lancé.
+- Décision sur le hublot : accepter tel quel, ou demander une forme plus grosse dans Blender (autre passe).
 
-- Le hublot : est-il lisible à x1 pour toi ?
-- Le style général (planche finale et capture Godot).
-- La nage en mouvement (à voir en jeu, pas sur des images).
-- L'acceptation de la limite de 32-40 px pour les détails du casque.
-
-## Sortie complète de `python tools/gate.py M0` (clone neuf, commit baa695f)
-
+## Sortie complète de `python tools/gate.py M0` (clone neuf, commit e9ec6c6)
 ```
 gate.py SHA-256 : 55d6fbef1065ba7afcaf4f11922e1f57d6f56ed22d0fea591e7ed6b4a6c8beeb
 Phase controlee : M0 (et toutes les precedentes)

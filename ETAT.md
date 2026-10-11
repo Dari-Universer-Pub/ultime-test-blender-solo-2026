@@ -5,7 +5,7 @@ M0 : troisième vague de corrections (casque, silhouette de métier, respiration
 
 ## Dernier contrôle
 - Dépôt de travail (avant commit) : `python tools/gate.py M0` → SUCCES (gate.py SHA-256 55d6fbef1065ba7afcaf4f11922e1f57d6f56ed22d0fea591e7ed6b4a6c8beeb).
-- Clone neuf : résultat et sortie complète dans RAPPORT.md (section « Sortie complète »).
+- Clone neuf (commit e9ec6c6, branche claude/cloches-varekh-dev-r716in) : SUCCES. Sortie complète dans RAPPORT.md (section « Sortie complète »).
 
 ## Journal visuel
 64 entrées : 47 gardées, 17 annulées. 64 images distinctes, SHA-256 vérifiés, 7 critères remplis par entrée.
