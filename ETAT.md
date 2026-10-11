@@ -5,7 +5,7 @@ M1 (univers complet en données, aucun code de jeu) : contrôle `python tools/ga
 
 ## Dernier contrôle
 - M1, dépôt de travail : `python tools/gate.py M1` → SUCCES. Univers : 9 biomes (tranche 1 : radeau_surface, recif_peu_profond ; tranche 2 : fosse_sombre ; 6 biomes hors échantillon), 66 objets, 45 recettes, 5 stations, 18 créatures (dont le colosse inoffensif baleine_de_verre), 3 boss (gardien_cloche = mini-boss de la fosse), 21 quêtes, 35 notes, 3 fins. Simulation de progression : tous les objets, biomes et quêtes atteignables depuis le radeau.
-- M1, clone neuf : voir RAPPORT.md (section M1, sortie complète).
+- M1, clone neuf (commit 0b9f456, branche claude/cloches-varekh-dev-r716in) : SUCCES. Sortie complète dans RAPPORT.md (section M1).
 
 ## Journal visuel
 64 entrées : 47 gardées, 17 annulées. 64 images distinctes, SHA-256 vérifiés, 7 critères remplis par entrée.

@@ -1,4 +1,49 @@
-# RAPPORT.md — Phase M0 (plongeur), troisième vague de corrections
+# RAPPORT.md — Phase M1 (univers complet en données)
+
+Commit testé dans le clone neuf : `0b9f456` (branche `claude/cloches-varekh-dev-r716in`). Le commit suivant ne change que RAPPORT.md et ETAT.md.
+
+## Fait (vérifié)
+- `python tools/gate.py M1` : SUCCES dans le dépôt de travail et dans un clone neuf (sortie complète plus bas).
+- Univers en JSON : `data/lore.json`, `biomes.json` (9), `items.json` (66), `stations.json` (5), `recipes.json` (45), `creatures.json` (18), `bosses.json` (3), `quests.json` (21), `notes.json` (35), `endings.json` (3), `depart.json`.
+- Progression simulée par le contrôle depuis le radeau : chaque objet est obtenable, chaque biome est accessible, chaque quête est faisable.
+- Tranche verticale du jeu : radeau_surface et recif_peu_profond (tranche 1), fosse_sombre (tranche 2) avec le mini-boss gardien_cloche.
+- `BIBLE.md` : concept, boucle, univers, progression (tableau des paliers 0 à 7), ton, références de qualité.
+- Aucun code de jeu dans cette phase : Godot n'est pas modifié.
+
+## Non vérifié
+- La qualité d'écriture et la cohérence narrative : un contrôle humain ou un sous-agent relecteur est prévu en M6, il n'a pas été fait.
+- L'équilibrage (quantités, coûts, durée de chaque palier) : non mesuré, seule la faisabilité est vérifiée.
+- La lisibilité en jeu des noms et des descriptions : rien n'est encore affiché.
+
+## Limites
+- Les six biomes hors échantillon (foret_de_kelp, banc_de_verre, cheminee_thermale, plaine_abyssale, cite_engloutie, fond_du_signal) sont décrits en données mais ne sont pas construits en assets : leur construction est prévue en M3 et M4.
+- Le champ `palier` des objets et des recettes est une indication : le contrôle ne vérifie que la simulation, et non la cohérence de chaque palier affiché avec `donne_palier`.
+- Un seul mini-boss (gardien_cloche). Les deux autres boss sont des boss normaux.
+- Les quêtes donnent des récompenses qui ouvrent parfois un outil avant son palier (par exemple le foret abyssal en récompense de la cité) : à rééquilibrer après les tests de jeu.
+
+## Sortie complète de `python tools/gate.py M1` (clone neuf, commit 0b9f456)
+```
+gate.py SHA-256 : 55d6fbef1065ba7afcaf4f11922e1f57d6f56ed22d0fea591e7ed6b4a6c8beeb
+Phase controlee : M1 (et toutes les precedentes)
+
+Verifications reussies :
+  [ok] outil godot : 4.4.1.stable.official.49a5bc7b6
+  [ok] outil blender : Blender 5.2.1 LTS
+  [ok] outil aseprite : Aseprite 1.3.18.6-dev
+  [ok] recherche de dessin par code terminee
+  [ok] provenance : 0 sources lues
+  [ok] palette : 70 couleurs, 13 rampes
+  [ok] Godot : projet charge sans erreur de script
+  [ok] univers : 9 biomes, 66 objets, 45 recettes, 18 creatures, 3 boss, 21 quetes, 35 notes, 3 fins
+
+==> M1 : SUCCES
+```
+
+---
+
+# Archive — RAPPORT de la phase M0
+
+## M0 (plongeur), troisième vague de corrections
 
 Commit testé dans le clone neuf : `e9ec6c6` (branche `claude/cloches-varekh-dev-r716in`). Le commit suivant ne change que RAPPORT.md et ETAT.md.
 
