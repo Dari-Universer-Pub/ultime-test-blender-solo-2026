@@ -1540,6 +1540,26 @@
       "defauts_restants": [
         "ombre sur la nage moins visible que sur l'idle"
       ]
+    },
+    {
+      "changement": "animations M3 du plongeur : creusage 6, attaque 6, saut 4, degats 3, mort 8 rendues en 41 images, pixelisées et assemblées (tags dans la feuille)",
+      "image": "boards/plongeur_animations_m3.png",
+      "image_sha256": "11383e0871fc7b33d73aed5a193753068cdceca9408c6fd0d684950344f5259f",
+      "controle": {
+        "silhouette": "Attaque (images 3 et 4, bras tendu vers l'avant) et mort (roulement sur 8 images) se lisent ; le saut suit un arc net de l'accroupi à la réception.",
+        "couleurs": "Les teintes du corps, du casque et des bouteilles sont celles des images nage et idle ; aucune couleur nouvelle n'apparaît sur la planche.",
+        "cadrage": "Le plongeur reste dans sa case sur toutes les images de la planche, sans sortir du bord.",
+        "taille": "Mesuré par tools/mesure/mesurer.py pour nage et idle seulement (37 à 39 px) ; les autres tags ne sont pas encore mesurés.",
+        "details": "Le casque et les bras restent lisibles en attaque et en mort ; en dégâts et creusage les trois ou six images sont presque identiques.",
+        "coherence_base": "Même ossature et même palette que nage et idle : le jeu de tags reprend les mêmes matériaux.",
+        "pixels_parasites": "Pas de contrôle des pixels isolés sur les nouvelles images avant le contrôle de phase (tools/gate.py)."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "creusage : les six images sont presque identiques, le mouvement de pioche est trop faible",
+        "degats : les trois images sont presque identiques, la secousse n'est pas assez marquée",
+        "saut 3 : posture verticale qui fait sauter la silhouette, à revoir"
+      ]
     }
   ]
 }
