@@ -320,6 +320,61 @@
         "pectorale peu lisible à 64 px",
         "liseré clair à atténuer en finition"
       ]
+    },
+    {
+      "changement": "itération Aseprite 2 : lisière claire du dos (zone x 26-46, y 16-23, 379 pixels) passée au violet du corps #433462",
+      "image": "boards/journal/poisson_volant_13.png",
+      "image_sha256": "ad711d5a62b5a38d98c8629086037f9527fca3b65558dd87fd511d34d9b4009a",
+      "controle": {
+        "silhouette": "Le dos n'a plus de contour cyan clair : le haut du poisson est d'un seul violet, la silhouette se lit par le contraste avec le fond.",
+        "couleurs": "Violet du corps #433462 déjà dans la palette ; le cyan reste sur la pectorale et l'aileron.",
+        "cadrage": "Inchangé : pixels recolorés seulement, aucun pixel ajouté ou retiré.",
+        "taille": "Inchangée : mêmes 36 à 37 px en nage.",
+        "details": "La pectorale cyan reste distincte ; l'œil n'est pas touché.",
+        "coherence_base": "Couleur tirée de la rampe caoutchouc, comme le corps.",
+        "pixels_parasites": "Aucun pixel isolé ajouté ; le contour du dos est plus propre."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "pectorale encore peu lisible (itération 3)",
+        "aileron à éclaircir (itération 4)"
+      ]
+    },
+    {
+      "changement": "itération Aseprite 3 : 122 pixels de la pectorale passés de #8ad8d0 à #c8f4e8 (zone x 47-57, y 17-23) pour qu'elle se détache du violet",
+      "image": "boards/journal/poisson_volant_14.png",
+      "image_sha256": "1d1b1d3ceeadb72084cc8958feb96f71ec8aa146969810e0aa77a36441037489",
+      "controle": {
+        "silhouette": "Inchangée : seules des nuances de la pectorale changent, aucun contour bougé.",
+        "couleurs": "#c8f4e8 est dans la rampe bulle ; la pectorale est plus claire sur le violet.",
+        "cadrage": "Inchangé.",
+        "taille": "Inchangée (mêmes pixels, mêmes dimensions).",
+        "details": "Changement SUBTIL : visible en zoom sur la comparaison, à peine sur la planche à 64 px ; gardé parce qu'il est vérifié aux pixels et ne dégrade rien.",
+        "coherence_base": "Même rampe bulle que l'aileron.",
+        "pixels_parasites": "Aucun pixel ajouté."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "aileron encore à éclaircir (itération 4)"
+      ]
+    },
+    {
+      "changement": "itération Aseprite 4 : 11 pixels de l'aileron dorsal passés de #433462 à #5e4a80 (x 40-42, y 10-16)",
+      "image": "boards/journal/poisson_volant_15.png",
+      "image_sha256": "1714342594f3482a5ca602bca0227e2a1cf00b50bd61419c0495025e9e972358",
+      "controle": {
+        "silhouette": "Inchangée : même forme d'aileron, seule sa teinte change.",
+        "couleurs": "#5e4a80 est le violet clair du caoutchouc, déjà utilisé sur le dos ; l'aileron se détache un peu plus du fond sombre.",
+        "cadrage": "Inchangé.",
+        "taille": "Inchangée.",
+        "details": "Changement SUBTIL (11 pixels) : vérifié sur la comparaison zoomée ; la lecture de l'aileron gagne légèrement.",
+        "coherence_base": "Même rampe caoutchouc que le dos.",
+        "pixels_parasites": "Aucun pixel ajouté."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "mesure finale des planches d'itération à vérifier (couleurs distinctes)"
+      ]
     }
   ]
 }
