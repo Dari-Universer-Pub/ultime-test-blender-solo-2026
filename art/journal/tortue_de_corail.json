@@ -38,6 +38,62 @@
         "hauteur probablement trop faible : cadre à resserrer après mesure",
         "queue encore légèrement en retrait"
       ]
+    },
+    {
+      "changement": "carapace : hauteur de l'ellipsoïde portée de 0,42 à 0,62 (dôme plus haut)",
+      "image": "boards/journal/tortue_de_corail_3.png",
+      "image_sha256": "68d4ccccddc17cfbb40c36e5ec3ff79c239096a175f91c485911b962df32df19",
+      "controle": {
+        "silhouette": "La carapace forme un dôme et la tortue se lit mieux comme une tortue.",
+        "couleurs": "Carapace rose-recif sur le dessus ; la partie basse, sous le plastron, prend un violet sombre qui ne fait pas partie de la palette recif choisie.",
+        "cadrage": "La tortue tient la case mais reste petite : hauteur à mesurer après le rendu complet.",
+        "taille": "Hauteur environ 2 fois plus grande qu'avant sur les images testées ; mesure complète à faire.",
+        "details": "Coraux, tête, œil et palmes restent lisibles.",
+        "coherence_base": "Même matériau recif ; la partie basse sombre vient de la même rampe.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "partie basse de la carapace violette sous le plastron : à recouvrir par le plastron ou à éclaircir",
+        "tortue encore petite dans la case : cadre à resserrer"
+      ]
+    },
+    {
+      "changement": "cadrage : largeur du cadre de 2,0 à 1,3 unités pour agrandir la tortue",
+      "image": "boards/journal/tortue_de_corail_4.png",
+      "image_sha256": "e6aa8aa490348fa21d1958ba44a789723c4027f232342334a4a94e0d2f2126d5",
+      "controle": {
+        "silhouette": "La tortue est plus grande dans la case : carapace, coraux et palmes se lisent mieux.",
+        "couleurs": "Inchangées.",
+        "cadrage": "La tête touche le bord droit dans plusieurs images : le cadrage est refusé tel quel.",
+        "taille": "Hauteur nettement augmentée ; la mesure réelle se fera après la pixelisation.",
+        "details": "La tête est coupée à droite : l'œil et le bec ne se lisent plus entièrement.",
+        "coherence_base": "Même cadre logique que les autres créatures, mais décalé.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "tête coupée à droite : à recentrer vers la tête"
+      ]
+    },
+    {
+      "changement": "cadrage : centre de la caméra déplacé de -0,10 à +0,05 pour recentrer la tortue sur la tête (cadre 1,3 conservé)",
+      "image": "boards/journal/tortue_de_corail_5.png",
+      "image_sha256": "8b7958e582844787265b144dd66ef97e05c3830439a2809188b0ac0b8dcbd15d",
+      "controle": {
+        "silhouette": "La tortue est entière : queue, carapace, coraux, tête et palmes.",
+        "couleurs": "Inchangées.",
+        "cadrage": "La tête a une marge d'environ 40 px sur 666 à droite, la queue environ 70 px à gauche : la tortue tient la case.",
+        "taille": "Hauteur nettement plus grande qu'à la première version ; mesure complète à faire après la pixelisation.",
+        "details": "Œil, bec, coraux et palmes restent lisibles.",
+        "coherence_base": "Même cadre logique que les autres créatures.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "partie basse violette de la carapace sous le plastron : à traiter",
+        "mesure complète à faire"
+      ]
     }
   ]
 }

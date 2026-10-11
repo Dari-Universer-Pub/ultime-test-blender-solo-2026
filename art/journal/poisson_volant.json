@@ -190,6 +190,43 @@
       "defauts_restants": [
         "mesure après pixelisation (hauteur et largeur)"
       ]
+    },
+    {
+      "changement": "corps : hauteur de l'ellipsoïde portée de 0,50 à 0,60 (corps plus haut, nageoire et œil relus)",
+      "image": "boards/journal/poisson_volant_8.png",
+      "image_sha256": "0cdc3346ea0e6468173dec7001d417faf53943774f8cfb7f05a00eab42d924a0",
+      "controle": {
+        "silhouette": "Le corps est plus haut et moins plat : le poisson se lit mieux comme un poisson, pas comme une pirogue.",
+        "couleurs": "Inchangées : dos violet, ventre argenté, queue orange.",
+        "cadrage": "Le poisson reste dans la case ; le ventre descend d'environ 2 px.",
+        "taille": "Pas encore suffisante : hauteur de silhouette à mesurer après le rendu complet (cible 36 px).",
+        "details": "L'œil est plus net dans le dos plus haut ; la pectorale reste lisible.",
+        "coherence_base": "Même matériau et même forme générale qu'avant.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "hauteur encore sous 36 px : aileron dorsal à allonger",
+        "mesure complète à faire"
+      ]
+    },
+    {
+      "changement": "aileron dorsal : hauteur de 0,22 à 0,34 et centre remonté de 0,30 à 0,36, pour que le sommet du poisson gagne en hauteur",
+      "image": "boards/journal/poisson_volant_9.png",
+      "image_sha256": "a4c91e6ae619395fb12564e0e6af6791bfedec771601c820f0b9fa6a97f33282",
+      "controle": {
+        "silhouette": "L'aileron dorsal dépasse nettement le dos : le poisson est plus haut et l'aileron se lit comme une nageoire.",
+        "couleurs": "Inchangées : aileron violet sombre sur le dos violet.",
+        "cadrage": "L'aileron reste dans la case, environ 4 px sous le haut.",
+        "taille": "Gagne environ 5 px de hauteur ; la mesure complète est à faire après le rendu (cible 36 px).",
+        "details": "L'aileron, l'œil et la pectorale restent distincts.",
+        "coherence_base": "Même matériau que le dos.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "mesure complète à faire (cible 36 px)"
+      ]
     }
   ]
 }

@@ -26,8 +26,8 @@ BLEND = os.path.join(ob.HERE, ID + ".blend")
 RES = 512
 ECHANTILLONS = int(os.environ.get("TORTUE_ECHANTILLONS", "64"))
 APERCU = {int(v) for v in os.environ.get("TORTUE_IMAGES", "").split(",") if v.strip()}
-LARGEUR_CADRE = 2.0     # unités de monde sur la largeur de l'image (64 px)
-CENTRE_CADRE_X = -0.10
+LARGEUR_CADRE = 1.3     # unités de monde sur la largeur de l'image (64 px)
+CENTRE_CADRE_X = 0.05
 
 PLAN = (
     [(f, f"nage_{f:02d}") for f in range(1, 9)]
@@ -49,7 +49,7 @@ def construire(scene):
     m_tete = ob.materiau("tortue_tete", "bouteille", bandes=(1, 2, 3, 4), rugosite=0.5)
     m_bec = ob.materiau("tortue_bec", "caoutchouc", bandes=(1, 2, 3, 3), rugosite=0.5)
 
-    corps = ob.sphere((0.0, 0.0, 0.02), 0.5, m_carapace, echelle=(0.72, 0.52, 0.42), nom="carapace")
+    corps = ob.sphere((0.0, 0.0, 0.02), 0.5, m_carapace, echelle=(0.72, 0.52, 0.62), nom="carapace")
     plastron = ob.sphere((0.0, 0.0, -0.14), 0.5, m_plastron, echelle=(0.64, 0.46, 0.14), nom="plastron")
     ob.parent(plastron, corps)
 
