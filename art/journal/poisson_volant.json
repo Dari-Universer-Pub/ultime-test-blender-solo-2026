@@ -267,8 +267,8 @@
     },
     {
       "changement": "pixelisation du poisson au rendu final (corps 0,70, aileron 0,46, pectorale fine, mort horizontale) : nage 8, attaque 4, mort 6 dans une feuille à 3 étiquettes",
-      "image": "boards/journal/poisson_volant_entree15_pixel2.png",
-      "image_sha256": "0a16c06c07d3df0f7fa55425716328dca41ec6c6d8c383a5d050ab71e1700c44",
+      "image": "boards/journal/poisson_volant_entree15_oeil_ancien.png",
+      "image_sha256": "c2ab9b11ec7cac67c076cf20f61f43e6316a491babc7e97ebf47d278f18d4eae",
       "controle": {
         "silhouette": "Le poisson se lit : aileron haut, queue orange, ventre argenté ; l'attaque le fait plonger ; la mort reste horizontale.",
         "couleurs": "Dos violet, ventre argenté, queue orange : palette conforme.",
