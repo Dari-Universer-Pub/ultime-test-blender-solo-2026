@@ -1,5 +1,5 @@
 {
-  "_note": "Palette du projet. 19 rampes de 3 a 6 tons, du plus sombre au plus clair. Ombres vers le bleu-violet, lumieres vers le jaune chaud. Pas de noir pur. Ajout M4 (plongeur) : laiton (casque), kaki (combinaison), gant (gants et bottes).",
+  "_note": "Palette du projet. 19 rampes de 3 a 6 tons, du plus sombre au plus clair. Ombres vers le bleu-violet, lumieres vers le jaune chaud. Pas de noir pur. Ajout M4 (plongeur) : laiton (casque, 4 tons), kaki (combinaison, 4 tons), gant (gants et bottes, 3 tons). 96 couleurs.",
   "rampes": {
     "contour_sombre": [
       "#170f2e",
@@ -127,11 +127,11 @@
     "kaki": [
       "#3a3426",
       "#8a7e58",
+      "#b8ad84",
       "#d8cca0"
     ],
     "gant": [
       "#15102e",
-      "#211a44",
       "#34295e",
       "#4e3e7a"
     ]

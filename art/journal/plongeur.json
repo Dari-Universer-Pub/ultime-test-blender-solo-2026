@@ -1655,6 +1655,153 @@
         "le tuyau se confond avec le liseré clair du contour",
         "tuyau à retravailler pour qu'il ressorte franchement"
       ]
+    },
+    {
+      "changement": "jambes : pas écarté, jambe proche en avant (genou x+3, cheville x+4), lointaine en arrière ; bottes séparées (x+7 et x-4), palmes suivent",
+      "image": "boards/journal/plongeur_idle_jambes.png",
+      "image_sha256": "49c2a7b4b82c6217399f50b1e9acac07f84a0618c59efe8e74b41cc27d9a4842",
+      "controle": {
+        "silhouette": "Deux jambes se lisent maintenant, séparées par le pas ; la jambe proche part en avant.",
+        "couleurs": "Couleurs : la jambe proche est claire, la lointaine reste très sombre (corrigé à l'étape suivante).",
+        "cadrage": "Cadrage inchangé : 46 px dans 80 px.",
+        "taille": "Taille : 46 px de haut, dans la cible 46 à 48 px.",
+        "details": "Les deux bottes sont séparées ; le genou ne se lit pas encore.",
+        "coherence_base": "Même pipeline et même palette.",
+        "pixels_parasites": "Aucun pixel parasite visible."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "genou pas lisible",
+        "jambe lointaine presque noire"
+      ]
+    },
+    {
+      "changement": "membres lointains : kaki du côté lointain passé du ton 0 (quasi noir) au ton 1 (médian), lisible seul",
+      "image": "boards/journal/plongeur_idle_membres_lointains.png",
+      "image_sha256": "09cd2123bde363518613ee887d70db925a8f04acff22b947978c899db0dce84b",
+      "controle": {
+        "silhouette": "La jambe lointaine se lit en kaki médian, distincte de la botte sombre.",
+        "couleurs": "Kaki médian sur la jambe lointaine, bottes sombres : deux tons séparés.",
+        "cadrage": "Cadrage inchangé.",
+        "taille": "Taille inchangée.",
+        "details": "Le bras lointain reste caché derrière le tronc.",
+        "coherence_base": "Même rampe kaki, pas de nouvelle couleur.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "bras lointain encore caché"
+      ]
+    },
+    {
+      "changement": "bras : coude et poignet vers l'avant (proche : coude x+3, poignet x+6 ; lointain : x-2 et x-3), gant sombre au poignet",
+      "image": "boards/journal/plongeur_idle_bras.png",
+      "image_sha256": "63c2e44574746e22cacb0b9b23eb791c42d896760cc48c26ee9314245c058e1b",
+      "controle": {
+        "silhouette": "Le bras proche sort du tronc vers l'avant, et le gant sombre se lit au bout.",
+        "couleurs": "Bras clair sur le gant sombre : deux familles de tons nettes.",
+        "cadrage": "Cadrage inchangé.",
+        "taille": "Bras de 4 à 5 px de large à x1, conforme au minimum demandé.",
+        "details": "Le bras clair se confond avec la jambe claire (même kaki clair).",
+        "coherence_base": "Même pipeline et même palette.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "bras et jambe proches du même kaki clair",
+        "bras lointain peu lisible"
+      ]
+    },
+    {
+      "changement": "tuyau d'air : corde beige-brun (rampe cuivre, ton 3), 3,6 px d'épaisseur, courbe de l'arrière du casque vers la bouteille",
+      "image": "boards/journal/plongeur_idle_tuyau_corde.png",
+      "image_sha256": "02c63b47bed6915fcdd5665320dbb5c3703563d317f41e2d7e444696d3d190df",
+      "controle": {
+        "silhouette": "Le tuyau se lit comme un tuyau : une courbe nette de 3 à 4 px, à l'arrière du casque.",
+        "couleurs": "Beige-brun sur les bouteilles turquoise et sur l'eau : contraste franc sur les deux eaux.",
+        "cadrage": "Cadrage inchangé.",
+        "taille": "Tuyau de 3 à 4 px d'épaisseur, conforme au minimum demandé par Julien.",
+        "details": "Le tuyau part du haut du casque et descend vers la bouteille.",
+        "coherence_base": "Référence : détail de métier traité comme demandé.",
+        "pixels_parasites": "Liseré clair du contour à peine visible sur le bord du tuyau."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "le tuyau touche le contour sombre sur un côté"
+      ]
+    },
+    {
+      "changement": "tronc : kaki intermédiaire ajouté à la palette (ton 2 #b8ad84), tronc passé du ton 1 au ton 2 ; gants et bottes au ton 1 de la rampe gant ; 96 couleurs",
+      "image": "boards/journal/plongeur_idle_tronc_eclaire.png",
+      "image_sha256": "91cda876e49f054314d6c68d5729408d8266941e4f86f0492a08ee0b430a432e",
+      "controle": {
+        "silhouette": "Le tronc est plus clair qu'avant, sans ressembler au bras.",
+        "couleurs": "Tronc beige plus clair que le kaki précédent ; bras et jambe proches restent plus clairs.",
+        "cadrage": "Cadrage inchangé.",
+        "taille": "Taille inchangée : 46 px.",
+        "details": "Le tronc paraît encore étroit : bouteilles et bras le couvrent à ce cadrage.",
+        "coherence_base": "Le kaki intermédiaire tient dans la rampe, pas de noir pur.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "contraste bras et tronc faible",
+        "tronc paraît étroit"
+      ]
+    },
+    {
+      "changement": "tronc arrondi : rayon 7 à 7,5 px et profondeur ×0,92",
+      "image": "boards/journal/plongeur_idle_tronc_arrondi.png",
+      "image_sha256": "c42b9c9bcde85035dd6b9febe4ad2bbc67a636dbf817661267364b8488209761",
+      "controle": {
+        "silhouette": "Aucun changement lisible sur la silhouette (moins d'un pixel).",
+        "couleurs": "Couleurs inchangées.",
+        "cadrage": "Cadrage inchangé.",
+        "taille": "Taille inchangée.",
+        "details": "Le tronc ne paraît pas plus large : le changement est trop petit pour être lu.",
+        "coherence_base": "Même palette.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "changement invisible à x1 : retour à l'étape précédente"
+      ]
+    },
+    {
+      "changement": "hublot : anneau du cadre en bronze sombre (ton 0 du laiton) au lieu du laiton clair",
+      "image": "boards/journal/plongeur_idle_hublot_anneau.png",
+      "image_sha256": "0a5dc46927924c5fb68a27462337fe29954cbae483af0b2c58e83dc5085c6656",
+      "controle": {
+        "silhouette": "Le bord sombre se détache à droite du hublot ; la vitre cyan se détache mieux du casque doré.",
+        "couleurs": "Bronze sombre sur le cadre, cyan sur la vitre, doré sur le casque : trois tons nets.",
+        "cadrage": "Cadrage inchangé.",
+        "taille": "Hublot de 8 px, lisible à x1 sur les deux eaux.",
+        "details": "Le bord gauche et bas du hublot se fond encore dans le casque.",
+        "coherence_base": "Même rampe laiton.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "bord gauche et bas du hublot peu lisibles"
+      ]
+    },
+    {
+      "changement": "grille du hublot : deux barres de 1 px (rayon 0,5 px) en bronze sombre sur la vitre",
+      "image": "boards/journal/plongeur_idle_hublot_grille.png",
+      "image_sha256": "7f306cb94b98723a8f824d06a23ede73de334c29a0136cfec9bd55e1c97a1f12",
+      "controle": {
+        "silhouette": "Les barres de grille se perdent dans la vitre : elles ne se lisent pas à x1.",
+        "couleurs": "Bronze sombre sur cyan : contraste trop faible sur 1 px.",
+        "cadrage": "Cadrage inchangé.",
+        "taille": "Taille inchangée.",
+        "details": "La grille ne se lit pas à x1, donc elle n'apporte rien.",
+        "coherence_base": "Même rampe.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "barres de 1 px illisibles à x1 : retirées"
+      ]
     }
   ]
 }

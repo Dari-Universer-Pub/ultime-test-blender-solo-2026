@@ -129,12 +129,14 @@ OS_REPOS_PX = {
     "tete":     ((0, 0, 9), (1, 0, 18), "buste"),
 }
 for _c, _s in (("g", -1.0), ("d", 1.0)):
+    _kx, _ax = (3, 4) if _c == "g" else (-2, -3)   # pas écarté : jambe proche en avant, lointaine en arrière
+    _ex, _wx = (3, 6) if _c == "g" else (-2, -3)   # bras : coude et poignet vers l'avant (proche) ou l'arrière (lointain)
     OS_REPOS_PX.update({
-        f"bras_{_c}_1": ((0, _s * 6, 6), (1, _s * 7, -3), "buste"),
-        f"bras_{_c}_2": ((1, _s * 7, -3), (3, _s * 7, -11), f"bras_{_c}_1"),
-        f"jambe_{_c}_1": ((0, _s * 3.5, -6), (1, _s * 3.5, -14), "hanche"),
-        f"jambe_{_c}_2": ((1, _s * 3.5, -14), (1, _s * 3.5, -19), f"jambe_{_c}_1"),
-        f"pied_{_c}": ((1, _s * 3.5, -19), (5, _s * 3.5, -20), f"jambe_{_c}_2"),
+        f"bras_{_c}_1": ((0, _s * 6, 6), (_ex, _s * 7, -3), "buste"),
+        f"bras_{_c}_2": ((_ex, _s * 7, -3), (_wx, _s * 7, -10), f"bras_{_c}_1"),
+        f"jambe_{_c}_1": ((0, _s * 3.5, -6), (_kx, _s * 3.5, -14), "hanche"),
+        f"jambe_{_c}_2": ((_kx, _s * 3.5, -14), (_ax, _s * 3.5, -19), f"jambe_{_c}_1"),
+        f"pied_{_c}": ((_ax, _s * 3.5, -19), (_ax + 4, _s * 3.5, -20), f"jambe_{_c}_2"),
     })
 OS_REPOS = {nom: (tuple(v * PX for v in a), tuple(v * PX for v in b), parent)
             for nom, (a, b, parent) in OS_REPOS_PX.items()}
@@ -146,15 +148,15 @@ def P(*v):
 
 
 def construire_modele():
-    m_kaki = materiau("combinaison", "kaki", 1, 0.5, bandes=(0, 1, 2))           # combinaison beige-kaki, 3 tons
-    m_kaki_ombre = materiau("combinaison_ombre", "kaki", 0, 0.6, bandes=(0, 1, 1))   # côté lointain, plus sombre
-    m_kaki_clair = materiau("combinaison_claire", "kaki", 2, 0.5, bandes=(1, 2, 2))   # bras et jambes du côté proche : plus clairs que le tronc
+    m_kaki = materiau("combinaison", "kaki", 2, 0.5, bandes=(1, 2, 3))           # combinaison beige-kaki, 3 tons
+    m_kaki_ombre = materiau("combinaison_ombre", "kaki", 1, 0.6, bandes=(0, 1, 1))   # côté lointain : kaki plus foncé, mais lisible seul
+    m_kaki_clair = materiau("combinaison_claire", "kaki", 3, 0.5, bandes=(2, 3, 3))   # bras et jambes du côté proche : plus clairs que le tronc
     m_laiton = materiau("laiton", "laiton", 2, 0.25, bandes=(1, 2, 3, 3))        # casque laiton doré, 4 tons
     m_verre = materiau("hublot_verre", "verre", 4, 0.08, bandes=(2, 3, 4, 5))    # hublot clair, lisible à x1
-    m_gant = materiau("gant", "gant", 2, 0.6, bandes=(0, 1, 2, 3))               # gants et bottes : bleu-violet très sombre
+    m_gant = materiau("gant", "gant", 1, 0.6, bandes=(0, 1, 2))               # gants et bottes : bleu-violet très sombre
     m_caout = materiau("caoutchouc", "gant", 1, 0.7, bandes=(0, 1, 2))            # ceinture de lest
     m_metal = materiau("metal", "metal", 3, 0.35)
-    m_tuyau = materiau("tuyau_air", "metal", 5, 0.4, bandes=(3, 4, 5))            # tuyau d'air clair (détail de métier)
+    m_tuyau = materiau("tuyau_air", "cuivre", 3, 0.5, bandes=(1, 2, 3, 4))       # tuyau d'air : corde beige-brun, contraste avec les bouteilles
     m_bout = materiau("bouteilles", "bouteille", 2, 0.4, bandes=(1, 2, 3, 4))    # bouteilles de dos, teinte à part
     m_palme = materiau("palmes", "bouteille", 3, 0.45, bandes=(1, 2, 3, 4))
     m_lampe = materiau("lampe", "lampe", 3, 0.3, emission=2.0)
@@ -163,7 +165,7 @@ def construire_modele():
     # casque en laiton : grosse sphère, hublot clair, cadre laiton face caméra, boulons, anneau de cou
     pieces.append(sphere(P(1, 0, 18), 9 * PX, m_laiton))
     pieces.append(sphere(P(7, 0, 19), 5.5 * PX, m_verre))
-    cadre = anneau(P(7, -1, 19), 7 * PX, 1.5 * PX, materiau("cadre_hublot", "laiton", 3, 0.3, bandes=(0, 1, 2, 3)))
+    cadre = anneau(P(7, -1, 19), 7 * PX, 1.5 * PX, materiau("cadre_hublot", "laiton", 0, 0.3, bandes=(0, 0, 1, 1)))   # anneau de bronze sombre
     cadre.rotation_euler = (math.pi / 2, 0.0, 0.0)
     pieces.append(cadre)
     for b in ((1, -8, 26), (5, -8, 12), (-4, -7, 19)):
@@ -176,8 +178,8 @@ def construire_modele():
     # bouteilles de dos (teinte à part) et tuyau d'air clair qui sort du casque
     for s in (-1.0, 1.0):
         pieces.append(tube(P(-6, s * 3, -4), P(-6, s * 3, 12), 2.5 * PX, m_bout))
-    for a_, b_ in ((P(-7, 0, 21), P(-12, 0, 12)), (P(-12, 0, 12), P(-11, 0, -2)), (P(-11, 0, -2), P(-8, 0, -6))):   # à l'arrière, hors du corps : se lit sur l'eau
-        pieces.append(tube(a_, b_, 1.6 * PX, m_tuyau))
+    for a_, b_ in ((P(-5, 0, 24), P(-11, 0, 20)), (P(-11, 0, 20), P(-13, 0, 10)), (P(-13, 0, 10), P(-10, 0, -2)), (P(-10, 0, -2), P(-8, 0, -6))):   # courbe à l'arrière, 3,6 px
+        pieces.append(tube(a_, b_, 1.8 * PX, m_tuyau))
     # lampe de casque, jaune et allumée
     pieces.append(tube(P(9, 0, 25), P(12, 0, 25), 0.8 * PX, m_metal))
     pieces.append(sphere(P(13, 0, 25), 2 * PX, m_lampe))
@@ -195,8 +197,8 @@ def construire_modele():
         pieces.append(tube(P(*a1), P(*b1), 3.2 * PX, ep))
         pieces.append(tube(P(*a2), P(*b2), 3.0 * PX, ep))
         pieces.append(sphere(P(*b1), 3.2 * PX, ep))
-        pieces.append(sphere(P(4, s * 3.5, -19.5), 4.5 * PX, m_gant, (1.5, 1.0, 0.7)))   # botte
-        pieces.append(sphere(P(6, s * 3.5, -21), 3 * PX, m_palme, (1.6, 0.9, 0.36)))     # palme
+        pieces.append(sphere(P(7 if c == "g" else -4, s * 3.5, -19), 4 * PX, m_gant, (1.4, 1.0, 0.75)))   # botte
+        pieces.append(sphere(P(10 if c == "g" else -1, s * 3.5, -21), 3 * PX, m_palme, (1.6, 0.9, 0.36)))  # palme
 
     bpy.ops.object.select_all(action="DESELECT")
     for p in pieces:
