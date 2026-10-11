@@ -617,15 +617,15 @@
       ]
     },
     {
-      "changement": "Aseprite iteration 2 : eclaircissement de 5 pixels de lampe (#f8c850 vers #fff2a8) autour du sommet : tentative, annulee",
+      "changement": "Aseprite iteration 2 : eclaircissement de 5 pixels de lampe (#f8c850 vers #fff2a8) sur les images 1, 2, 4 et 6 : tentative, annulee",
       "image": "boards/journal/plongeur_31.png",
-      "image_sha256": "bc6cacd94bec50a74a04ddb089b7c6f2c9e572ac7572dfaaa4017a2c2b3d77ff",
+      "image_sha256": "6e8384f0df38b3d7686bf3c012e5d50a3bcd6fb0d1387cc6491213d40b9c2cfc",
       "controle": {
-        "silhouette": "La silhouette ne change pas a x1.",
-        "couleurs": "Les 5 pixels passent au blanc chaud, mais la lampe reste jaune a l'oeil : la difference est trop faible.",
-        "cadrage": "Le cadrage ne change pas : 37 px.",
-        "taille": "Hauteur idle 37 px, dans la plage.",
-        "details": "Aucun detail utile ajoute : la lampe n'est pas plus lisible qu'avant.",
+        "silhouette": "La silhouette ne change pas a x1 : les 5 pixels sont au sommet de la lampe, a l'interieur du contour.",
+        "couleurs": "Sur les images 1, 2 et 4 la pointe de la lampe passe au blanc chaud, mais le jaune reste lisible a l'oeil : l'effet est trop faible.",
+        "cadrage": "Le cadrage ne change pas : 37 a 38 px.",
+        "taille": "Hauteur inchangee, dans la plage 32 a 40 px.",
+        "details": "Aucun detail utile ajoute : la lampe n'est pas plus lisible qu'avant sur la planche.",
         "coherence_base": "Le blanc chaud vient de la rampe lampe de la palette.",
         "pixels_parasites": "Aucun pixel isole."
       },
@@ -637,15 +637,15 @@
     {
       "changement": "Aseprite iteration 3 : reflet clair #c8ecbc sur le bord superieur de la bouteille arriere (4 pixels sur les images 2, 5, 10 et 14)",
       "image": "boards/journal/plongeur_32.png",
-      "image_sha256": "bc6cacd94bec50a74a04ddb089b7c6f2c9e572ac7572dfaaa4017a2c2b3d77ff",
+      "image_sha256": "8f482a057cbd9868af9a1f3d1fe68fd469865cac2881820a7c5471878caff388",
       "controle": {
         "silhouette": "La silhouette ne change pas a x1 : les reflets sont sur le bord de la bouteille, dans sa forme.",
-        "couleurs": "Le ton #c8ecbc est le plus clair de la rampe bouteille ; l'effet reste faible a 37 px, un bord un peu plus clair sur la bouteille.",
-        "cadrage": "Le cadrage ne change pas : 37 px.",
+        "couleurs": "Le ton #c8ecbc est le plus clair de la rampe bouteille ; l'effet est tres faible sur la planche, un bord un peu plus clair sur le reservoir.",
+        "cadrage": "Le cadrage ne change pas : 37 a 38 px.",
         "taille": "Hauteur idle 37 px, dans la plage.",
-        "details": "La bouteille gagne un bord de lumiere, mais la valve et les sangles restent absentes : l'effet est discret.",
+        "details": "Le reservoir gagne un bord de lumiere a peine visible ; la valve et les sangles ne changent pas.",
         "coherence_base": "Le ton vient de la rampe bouteille de la palette.",
-        "pixels_parasites": "Aucun pixel isole : 4 pixels reliés au bord de la bouteille."
+        "pixels_parasites": "Aucun pixel isole : 4 pixels relies au bord du reservoir."
       },
       "verdict": "garde",
       "defauts_restants": [
