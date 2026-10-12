@@ -1,5 +1,12 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
+## Dettes (phase de polissage, plus tard — ne pas traiter maintenant)
+Creusage VALIDÉ par Julien tel quel (commit 8689ca8). Points notés pour plus tard :
+1. Poids du corps absent : torse et casque identiques sur les huit images (seul un décalage de 1 à 3 px, pas de respiration ni de transfert de poids).
+2. Tête de pioche fine et sans reflet (14 x 4 px, deux tons d'acier, pas de reflet clair).
+3. Ombrage de la pièce torse non corrigé (37 px sur 208 de la zone poitrine diffèrent de l'ancre, voir la section creusage).
+4. Arc de mouvement et particules d'impact non intégrés à la feuille (effets séparés, dans effets/).
+
 ## Phase courante : CREUSAGE, méthode 2D par pièces — LOT : huit images, décisions A, B, C de Julien appliquées
 
 Lot : `art/pixel/plongeur_v6/creusage/lot/` (fiche.json, poses/ 01 à 08, sortie/, controles/, boards/, feuille/creusage.png + .json, effets/, planche_finale.png). Journal : `art/journal/plongeur_creusage.json` (dix entrées : huit images, arc, particules).
