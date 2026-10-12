@@ -126,54 +126,50 @@ Tout ce qu'il faut pour reprendre est dans `ETAT.md` et `git log`. Mets `ETAT.md
 
 ## RÈGLE ANIMATION (permanente, pour tout lot : creusage, attaque, saut, dégâts, mort)
 
-Julien ne demande plus d'image pour appliquer cette règle : elle s'applique à chaque lot.
+Méthode actuelle, dans cet ordre. Aucune validation humaine intermédiaire : l'arrêt humain est uniquement
+la fin de la phase indiquée dans `PLAN.md`.
 
-A. **Table de poses d'abord.** Avant de poser quoi que ce soit, une ligne par image dans
-   `art/pixel/plongeur_v6/<lot>/TABLE_POSES.md` : nom, angle du manche ou de l'arme (plan x-z
-   et inclinaison 3D par rapport à la verticale), point d'impact ou position de l'outil, inclinaison
-   du buste, position des deux mains, ce qui doit se lire en silhouette.
+1. **Fiche d'animation écrite** (`art/pixel/<perso>/<lot>/FICHE.md` + `fiche.json`) : rôle du lot, pose de
+   chaque image, durée (en images), points de prise de l'outil, pointe de l'outil, cible (ce que la pointe
+   touche), ordre des calques par image, chevauchements autorisés ou interdits par paire de parties, moment
+   d'impact, visibilité déclarée de chaque bras par image.
+2. **Pièces plates** rendues à la taille finale (112 px) par la même chaîne que l'ancre, une pièce seule
+   par rendu (`tools/` et `art/source/blender/`). Les pièces articulées ont des extrémités fermées ou une
+   pièce de recouvrement à chaque articulation. Le bloc main + outil est UNE seule pièce : le gant tient le
+   manche, il n'est jamais animé à part.
+3. **Assemblage par fichier de pose** : chaque image est un fichier de pose (pièce, variante d'angle,
+   pivot entier, ORDRE D'AFFICHAGE EXPLICITE de bas en haut). La profondeur par pixel ne sert qu'au test de
+   remontage de l'ancre ; pour les poses, c'est l'ordre écrit qui décide (un gant peut passer devant ou
+   derrière le casque, jamais le mélanger avec lui).
+4. **Quatre poses clés d'abord** (armement, frappe en pleine descente, impact, retour). Boucle rapide :
+   une dizaine d'essais par pose, chaque essai rendu et contrôlé. Puis les images intermédiaires.
+5. **Arc de mouvement** : traînée claire dessinée, effet séparé (3 à 4 images, sans contour), qui suggère la
+   trajectoire sans que la pioche contourne le casque.
+6. **Images dessinées** : pour les poses qui résistent à l'assemblage, remplacer la pièce par une image
+   dédiée (torse et bras ensemble à l'impact, gant avec sa prise). Retouche Aseprite autorisée, annoncée
+   dans le journal.
+7. **Export de la feuille** avec tags (nom de l'animation) et durées (en images).
 
-B. **Cible 3D haute qualité.** Pose le modèle 3D d'après la table et rends chaque pose en haute
-   qualité (plus grande que 112 px, même caméra, même modèle). C'est la planche « cible » du lot :
-   Julien la valide EN PREMIER. Tant que la planche cible n'est pas validée, pas de pixel art.
+Contrôles (sur les masques de pixels visibles à la taille finale, masques par partie rendus avec la couleur ;
+un échec = on corrige et on recommence ; on ne modifie jamais un contrôle ni une tolérance pour passer) :
+- politique par paire de parties déclarée dans la fiche : interdit (pioche et casque, tolérance 1 à 2 px) ;
+  contact requis (main et pioche, au moins 6 px de recouvrement) ; légal si passage derrière déclaré ;
+  la visibilité d'un bras est déclarée image par image (ce n'est plus un seuil de pourcentage) ;
+- prise gant-poignée à 1 px au plus ; pointe de la pioche à 1 px au plus de la cible sur l'image de contact ;
+  0 pixel d'outil dans le hublot ; aucun trou transparent aux articulations ;
+- confinement du mouvement : les pixels qui changent entre deux images restent dans la zone attendue ;
+- zéro pixel isolé ; images toutes différentes ; palette respectée ; canevas 112 x 112 fixe ; pivots entiers ;
+  hauteur 72 px au plus, outil compris ; tête d'acier d'au moins 12 px de large et 4 px de haut ;
+  boucle fermée (première et dernière pose proches de l'ancre).
 
-C. **Contrôles automatiques sur chaque pose, dans la scène 3D, avant le rendu :**
-   1. les deux mains touchent l'outil (distance main-manche proche de zéro, les deux mains) ;
-   2. l'outil est relié au corps (jamais flottant) ;
-   3. les deux bras visibles : bras proche au moins 45 %, bras lointain au moins 40 % (carte
-      d'identité) ;
-   4. angle de l'outil différent d'au moins 40 degrés de l'image précédente quand le geste l'exige ;
-   5. hauteur du sprite finale dans la plage de l'ancre (70 à 72 px, outil compris) ;
-   6. zéro pixel isolé, images distinctes (hash), aucun contour (au moment du pixel art).
-   Si un contrôle échoue, change la pose (épaule, buste, position de l'outil). Ne jamais lâcher
-   l'outil, ni cacher un bras, pour passer un test. Si aucune pose ne passe, dis-le à Julien avec
-   les chiffres au lieu de rendre une pose qui triche.
+Contrôle visuel : pour chaque pose clé puis pour la séquence, regarde en ×4 et ×1, juge les 7 critères de la
+règle de l'œil, plus « la silhouette seule raconte-t-elle le geste de la fiche ? ». Verdict garde ou annule,
+écrit dans le journal. Quand la séquence est complète, un sous-agent relecteur indépendant reçoit la planche
+de contrôle ; les défauts qu'il liste sont corrigés et il est relancé jusqu'à ce qu'il n'en reste aucun.
 
-D. **Outil (pioche ou autre)** : modélisé comme une vraie pièce. Manche 3 px minimum. Tête de
-   pioche de mineur courbée, une pointe de chaque côté, 12 à 14 px de large quand elle est de profil
-   (au moins 10 px à l'impact), mesurée à ×1 et notée dans le fichier de mesures.
+Si une pose te paraît impossible, ne dis jamais « impossible » sans rapport chiffré : quelle contrainte est
+violée, de combien de pixels.
 
-E. **Présentation puis arrêt.** Planche cible 3D d'abord, puis planche pixel à côté de l'ancre
-   (×4 et ×1), avec le tableau des contrôles (OK ou échec pour chaque image), les mesures de tête et
-   de hauteur, les écarts annoncés tels quels. Arrêt pour validation après chaque lot.
-
-A bis. **Planche d'intention (avant toute 3D).** Pour chaque lot, une planche en deux dimensions, en
-   coordonnées écran : l'ancre estompée en fond, et par-dessus, pour chaque image, un squelette à plat
-   (tête, buste, épaules, coudes, deux mains, hanches, pieds) et l'outil (manche et tête, avec ses deux
-   extrémités). Images numérotées. Sous chaque image, une ligne : angle de l'outil (degrés depuis la
-   verticale basse, sens horaire), inclinaison du buste, ce que la silhouette doit raconter. La table de
-   l'intention est dans le JSON du lot. Julien valide ou corrige cette planche avant tout passage à la 3D.
-
-B bis. **Triche caméra déclarée.** Pour atteindre les positions de la planche d'intention, pose par pose,
-   tu peux : étirer un bras jusqu'à +40 % de sa longueur, décaler une épaule, tourner le buste, déplacer
-   l'outil. Seule la silhouette à l'écran compte. Interdits : cacher un bras, laisser l'outil flotter sans
-   main, faire traverser le torse par le manche, changer la caméra, la lumière ou le style de l'ancre.
-   Chaque triche est notée dans `TABLE_POSES.md` (valeur par image).
-
-C bis. **Contrôles.** Ils remplacent le contrôle 3 de C pour la portée des bras : deux mains sur le manche
-   (distance en pixels écran proche de zéro, les deux mains) ; deux bras visibles (bras proche au moins 45 %,
-   lointain au moins 40 %) ; hauteur 70 à 72 px outil compris ; tête d'acier 12 à 14 px (10 minimum à
-   l'impact) ; angle entre images successives d'au moins 40 degrés ; zéro pixel isolé (au pixel art).
-   La portée physique des bras n'est plus un contrôle : c'est la triche déclarée de B bis qui la remplace.
-
-Ordre imposé : planche d'intention (A bis), validée par Julien → cible 3D (B) → pixel art.
+Fin de lot : planche finale à côté de l'ancre (×4 et ×1), tableau des contrôles (OK ou échec par image), liste
+honnête des écarts restants et des exceptions dessinées, commit, ETAT.md. Puis le lot suivant avec la même
+méthode.
