@@ -1,0 +1,14 @@
+NAGE V2 (carte d'identité 112 px ; proche = +X ; repères proche >= 45 %, lointain >= 40 %)
+image 1 : bras proche 166 px / 75 % ; bras lointain 163 px / 77 % ; jambe proche 214 px / 62 % ; jambe lointaine 151 px / 55 % ; hauteur 58 px
+image 2 : 201 px / 86 % ; 196 px / 83 % ; 168 px / 53 % ; 217 px / 64 % ; hauteur 63 px
+image 3 : 173 px / 76 % ; 193 px / 85 % ; 179 px / 56 % ; 206 px / 60 % ; hauteur 64 px
+image 4 : 100 px / 43 % KO ; 173 px / 78 % ; 144 px / 44 % KO ; 161 px / 53 % ; hauteur 59 px
+image 5 : 167 px / 75 % ; 193 px / 85 % ; 189 px / 57 % ; 193 px / 57 % ; hauteur 63 px
+image 6 : 190 px / 81 % ; 195 px / 83 % ; 165 px / 53 % ; 224 px / 65 % ; hauteur 68 px
+image 7 : 200 px / 81 % ; 193 px / 83 % ; 161 px / 53 % ; 224 px / 65 % ; hauteur 68 px
+image 8 : 194 px / 84 % ; 187 px / 83 % ; 175 px / 53 % ; 212 px / 63 % ; hauteur 56 px
+GLOBAL : hauteur 56 a 68 px (cible 56 a 80) OK ; 0 pixel isolé ; 8 images distinctes ; 7 images sur 8 dans les repères
+SYMETRIE (pixels differents entre images en miroir) : 2/8 37 % ; 3/7 52 % ; 4/6 52 % (v1 : 7 a 11 %)
+ECART 1 (image 4) : bras proche 43 % et jambe proche 44 %, sous le repere : meme defaut que la v1 (image 5), deplace
+ECART 2 (corde) : la corde flottante n'est pas lisible a x1, elle reste cachee derriere le tronc
+TROIS POINTS FAIBLES : 1) image 4 bras et jambe proches sous le repere ; 2) corde flottante peu lisible ; 3) jambes proches 53 a 57 % (pres du repere)

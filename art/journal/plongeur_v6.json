@@ -444,6 +444,49 @@
         "cycle presque symétrique : images 2/8, 3/7 et 4/6 se lisent comme un aller-retour (7 à 11 % de pixels différents)",
         "amplitude 0,452 à la limite du seuil, et jambes proches entre 53 et 62 % (proches du repère)"
       ]
+    },
+    {
+      "essai": "nage v2 (correction demandée par Julien, non validée) : corde qui flotte derrière le dos vers les pieds, cycle non symétrique (partie paire de la phase ajoutée) ; les huit images r03 validées restent intactes dans art/pixel/plongeur_v6/nage/",
+      "planche": "art/pixel/plongeur_v6/nage_v2/planche_nage_v2.png",
+      "planche_sha256": "166bab8adc63b9ae9fe077628f7000ebba045eafc500b63f8e790680c993abc3",
+      "images": "art/pixel/plongeur_v6/nage_v2/nage_01.png à nage_08.png (112 x 112, nettoyées, 0 pixel isolé)",
+      "verdict": "7 images sur 8 dans les repères ; image 4 SOUS le repère (bras proche 43 %, jambe proche 44 %) ; cycle non symétrique (37 à 52 % de pixels différents entre images en miroir, contre 7 à 11 % en v1) ; corde flottante peu lisible à x1",
+      "hauteur": "56 à 68 px (cible 56 à 80) OK",
+      "isoles": 0,
+      "points_faibles": [
+        "image 4 : bras proche 43 % et jambe proche 44 %, sous le repère (même défaut que la v1, image 5)",
+        "corde flottante peu lisible à x1 (cachée derrière le tronc)",
+        "jambes proches 53 à 57 % (près du repère)"
+      ]
+    }
+  ],
+  "idle_anime": [
+    {
+      "lot": "LOT 1 : idle animé, six images ; image 1 = ancre validée ; respiration de 2 px (buste, cou, épaules, bras, moitié de la taille) ; bulle qui sort du casque sur les images 2 à 5 ; même caméra, même lumière, plis de l'idle gardés",
+      "planche": "art/pixel/plongeur_v6/idle_anime/planche_idle_anime.png",
+      "planche_sha256": "21a36fa20fa8951772d6a601eaa5c00529032a240203c4f3099b2f7321ad95de",
+      "images": "art/pixel/plongeur_v6/idle_anime/idle_01.png à idle_06.png (112 x 112, nettoyées, 0 pixel isolé)",
+      "criteres": {
+        "silhouette_a_x1": "oui : la respiration de 2 px ne change pas la silhouette ; l'image 1 est l'ancre",
+        "couleurs_de_base": "oui : mêmes tons ; la bulle prend le ton acier de la palette",
+        "cadrage": "oui : base fixe (bas 0 px), figure dans sa case",
+        "taille_finale": "72 à 75 px ; image 5 à 75 px bulle comprise, au-dessus de la cible 70 à 74",
+        "details": "casque, hublot et gants lisibles sur les six images",
+        "coherence_ancre": "même modelé, plis conservés ; bulle trop petite pour être lue à x1",
+        "pixels_parasites": "0 pixel isolé après nettoyage ; la bulle est voulue, pas un parasite"
+      },
+      "verdict": "garde, avec écarts : respiration faible à x1 ; bulle trop petite à x1 ; image 5 à 75 px ; à valider par Julien",
+      "mesures": {
+        "hauteur": "72 à 75 px",
+        "bas": "0 px sur les six images",
+        "ecart_ancre": "325 à 896 px (la respiration déplace presque tous les bords)",
+        "images_distinctes": "6 sur 6"
+      },
+      "points_faibles": [
+        "bulle trop petite pour être lue à x1",
+        "respiration à peine visible à x1",
+        "la bulle disparaît d'un coup entre les images 5 et 6"
+      ]
     }
   ]
 }

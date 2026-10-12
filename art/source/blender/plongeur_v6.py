@@ -344,6 +344,11 @@ SQUELETTE = {
     "cheville_d": ((0.26, 0.0, 0.16), (0.20, 0.20)),
 }
 POSE = {}              # surcharge des positions du squelette (nage) ; vide = pose idle validée
+GARDER_PLIS = False      # idle animé : garde les plis fixes de l'idle quand la pose change (petits décalages)
+HAUT_DZ = 0.0            # idle animé : buste, épaules et casque montent de HAUT_DZ (respiration), 0 = idle validée
+BULLE = None             # idle animé : (centre, rayon) d'une bulle qui sort du casque, None = pas de bulle
+VERSION_NAGE = 1         # 1 = nage r03 validée ; 2 = corrigée (corde qui flotte derrière, cycle asymétrique)
+ROTATION_CORDE = 0.0     # nage v2 : battement de la corde flottante (phase, en radians)
 INCLINAISON = 0.0        # nage : élévation de la tête au-dessus de l'horizontale, en degrés (0 = pas de nage, idle)
 OMBRE_BRAS = False       # nage : ombre portée des bras sur le tronc (séparation par l'ombre, pas par la couleur)
 PIVOT_NAGE = (0.0, 0.0, 0.92)   # centre de rotation du corps incliné (les hanches)
@@ -534,8 +539,8 @@ def construire(scene):
         plier(torse, lambda p, sg=sg: p.y < -0.20 and 0.84 < p.z < 1.32 and abs(p.x - sg * 0.07) < 0.075)
     for cote, sg in (("d", 1.0), ("g", -1.0)):
         plier_manche(parties["bras_" + cote], pose_de("epaule_" + cote), pose_de("coude_" + cote), 0.21)
-    if not POSE:
-        # plis fixes de l'idle (validée) ; en nage ils ne suivent pas la pose et sont omis
+    if GARDER_PLIS or not POSE:
+        # plis fixes de l'idle (validée) ; en nage ils ne suivent pas la pose et sont omis (sauf idle animé)
         plier(parties["bras_d"], lambda p: 0.36 < p.x < 0.56 and p.y < -0.08 and 1.19 < p.z < 1.235)
         coude = pose_de("coude_d")
         plier(parties["bras_d"], lambda p: abs((p - coude).length - 0.17) < 0.02 and p.y < -0.02)
@@ -599,9 +604,22 @@ def construire(scene):
     objets["valve"] = cylindre((-0.92, 0.12, 1.74), 0.045, 0.10, m["laiton"], "valve")
 
     # --- corde torsadée : tube unique, une boucle courte du casque vers la valve
-    tuyau = corde_torsadee([(0.0, 0.02, 2.44), (0.02, 0.22, 2.62), (-0.36, 0.42, 2.66), (-0.78, 0.40, 2.38),
-                            (-0.92, 0.13, 1.80)], 0.065, scene, m["corde"], "tuyau", cotes=6)
+    chemin_corde = [(0.0, 0.02, 2.44), (0.02, 0.22, 2.62), (-0.36, 0.42, 2.66), (-0.78, 0.40, 2.38),
+                    (-0.92, 0.13, 1.80)]
+    if VERSION_NAGE == 2 and POSE:
+        # nage v2 : la corde part de la valve et flotte derrière le dos, vers les pieds (côté opposé à la direction)
+        ondule = 0.06 * math.sin(ROTATION_CORDE)
+        chemin_corde += [(-0.98 + ondule, 0.36, 1.30), (-1.06 - ondule, 0.52, 0.80), (-1.10 + ondule, 0.58, 0.30)]
+    chemin_corde = [(x, y, z + HAUT_DZ) for x, y, z in chemin_corde]
+    tuyau = corde_torsadee(chemin_corde, 0.065, scene, m["corde"], "tuyau", cotes=6)
     objets["tuyau"] = tuyau
+    # idle animé : la tête, le hublot, la collerette et la valve montent avec le buste (respiration)
+    for nom in ("casque", "hublot_verre", "cadre_hublot", "collerette", "bouteille", "valve"):
+        objets[nom].location.z += HAUT_DZ
+    if BULLE is not None:
+        centre, rayon = BULLE
+        objets["bulle"] = ellipsoide((centre[0], centre[1], centre[2] + HAUT_DZ), rayon, (1.0, 1.0, 1.0),
+                                     m["acier"], "bulle", niveau=1)
 
     # --- scène
     for o in objets.values():
@@ -659,7 +677,8 @@ def reglages(scene):
 
 # ------------------------------------------------------------------ nage (huit images, plan de l'écran)
 CRAWL = {"centre": 0.5, "amplitude": 0.35, "coude": 0.5, "phase_glisse": 0.35,
-         "jambe_centre": 0.15, "jambe": 0.25}   # nage retenue : r03 (bras latéraux), jambes d'origine
+         "jambe_centre": 0.15, "jambe": 0.25,   # nage retenue : r03 (bras latéraux), jambes d'origine
+         "asymetrie": 0.35}                      # nage v2 seulement : brise la symétrie aller-retour du cycle
 
 
 def pose_crawl(k, n=8, roulis=70.0):
@@ -670,8 +689,13 @@ def pose_crawl(k, n=8, roulis=70.0):
     les huit images sont toutes différentes."""
     global INCLINAISON
     INCLINAISON = roulis
+    global ROTATION_CORDE
     phi = 2.0 * math.pi * k / n
     warp = phi + CRAWL["phase_glisse"] * math.sin(phi)
+    if VERSION_NAGE == 2:
+        # partie paire de la phase : image k et image n-k ne sont plus des miroirs (cycle non symétrique)
+        warp += CRAWL["asymetrie"] * (1.0 - math.cos(phi))
+        ROTATION_CORDE = phi + 0.8
     pose = {}
     for cote, s_, decal in (("d", 1.0, 0.0), ("g", -1.0, math.pi)):
         p = warp + decal
@@ -685,7 +709,7 @@ def pose_crawl(k, n=8, roulis=70.0):
         pose["coude_" + cote] = tuple(coude)
         pose["poignet_" + cote] = tuple(poignet)
     for cote, s_, decal in (("d", 1.0, 0.0), ("g", -1.0, math.pi)):
-        q = 2.0 * phi + decal                                                      # deux battements par cycle
+        q = (2.0 * warp if VERSION_NAGE == 2 else 2.0 * phi) + decal              # deux battements par cycle
         gamma = math.pi * (CRAWL["jambe_centre"] + CRAWL["jambe"] * math.cos(q))  # écart latéral des jambes
         flex = 0.25 * (1.0 + math.cos(q)) * 0.5                                    # genou plié quand la jambe monte
         hanche = Vector(SQUELETTE["hanche_" + cote][0])
@@ -734,8 +758,45 @@ def rendre_nage_images(dossier, n=8, incl=70.0, identite=False, images=None, rap
     INCLINAISON = 0.0
 
 
+# ------------------------------------------------------------------ idle animé (six images, même caméra)
+RESPIRATION = 0.08      # m : 2 px à l'échelle du cadre (4,5 m sur 112 px) ; buste et épaules montent
+BULLES_IDLE = {1: ((0.00, -0.14, 2.56), 0.05), 2: ((0.02, -0.18, 2.66), 0.06),
+               3: ((0.05, -0.22, 2.78), 0.07), 4: ((0.08, -0.26, 2.91), 0.08)}   # images 2 à 5 (k = 1 à 4)
+
+
+def pose_idle(k, n=6):
+    """Image k de l'idle animé. k = 0 : la pose idle validée, sans rien changer (c'est l'ancre).
+    Sinon : buste, cou, épaules et bras montent de off = RESPIRATION (1 - cos) / 2, de 0 à 2 px, la taille de
+    la moitié ; bassin et jambes restent. Une bulle sort du casque sur les images 2 à 5. Les plis de l'idle
+    restent (GARDER_PLIS) pour que les images gardent le même modelé que l'ancre."""
+    global GARDER_PLIS, HAUT_DZ, BULLE
+    if k == 0:
+        GARDER_PLIS, HAUT_DZ, BULLE = False, 0.0, None
+        return {}
+    off = RESPIRATION * (1.0 - math.cos(2.0 * math.pi * k / n)) / 2.0
+    GARDER_PLIS, HAUT_DZ, BULLE = True, off, BULLES_IDLE.get(k)
+    pose = {}
+    for nom in ("poitrine", "cou", "epaule_g", "epaule_d", "coude_g", "coude_d", "poignet_g", "poignet_d"):
+        pose[nom] = tuple(Vector(SQUELETTE[nom][0]) + Vector((0.0, 0.0, off)))
+    pose["taille"] = tuple(Vector(SQUELETTE["taille"][0]) + Vector((0.0, 0.0, off * 0.5)))
+    return pose
+
+
+def rendre_idle_images(dossier, n=6):
+    """Rend les six images de l'idle animé (couleur brute) : idle_01.png ... idle_06.png."""
+    global GARDER_PLIS, HAUT_DZ, BULLE
+    os.makedirs(dossier, exist_ok=True)
+    for k in range(n):
+        POSE.clear()
+        POSE.update(pose_idle(k, n))
+        scene = construire_tout()
+        rendre_fichier(scene, os.path.join(dossier, "idle_%02d.png" % (k + 1)))
+    POSE.clear()
+    GARDER_PLIS, HAUT_DZ, BULLE = False, 0.0, None
+
+
 # ------------------------------------------------------------------ cartes d'identité
-GROUPE_COULEUR = {"tete": "#ffd400", "collerette": "#40ffb0", "tronc": "#ff0000", "tuyau": "#00e0ff",
+GROUPE_COULEUR ={"tete": "#ffd400", "collerette": "#40ffb0", "tronc": "#ff0000", "tuyau": "#00e0ff",
                   "bouteille": "#ff7f00", "bras_g": "#00ff00", "bras_d": "#005000", "gant_g": "#a0ff00",
                   "gant_d": "#00a070", "jambe_g": "#0000ff", "jambe_d": "#000090", "botte_g": "#ff0080",
                   "botte_d": "#ff80c0"}

@@ -1,6 +1,25 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
-## Phase courante : NAGE r03 (huit images définitives) — ARRÊT POUR VALIDATION DE JULIEN
+## Phase courante : ANIMATIONS (lot 1 idle animé fait, nage v2 corrigée) — ARRÊT POUR VALIDATION DE JULIEN
+Julien a validé la nage r03 : ses huit images restent la référence (`art/pixel/plongeur_v6/nage/`, commit `0d78542`), non régénérées.
+
+Corrections demandées par Julien (non bloquantes), en fichiers séparés `art/pixel/plongeur_v6/nage_v2/` (planche `planche_nage_v2.png`) :
+- Cycle non symétrique : images en miroir différentes de 37 à 52 % des pixels (v1 : 7 à 11 %).
+- Corde qui flotte derrière le dos vers les pieds : implémentée, peu lisible à x1.
+- RÉGRESSION : image 4 sous le repère (bras proche 43 %, jambe proche 44 %), même défaut que la v1 image 5. Julien décide : garder la v1 validée ou la v2.
+
+Lot 1 : IDLE ANIMÉ (six images, arrêt) : `art/pixel/plongeur_v6/idle_anime/` (planche `planche_idle_anime.png`, mesures `mesures_idle_anime.txt`).
+- Image 1 = ancre validée (0 px d'écart, sprite identique à `art/pixel/plongeur_v6/idle_01.png`).
+- Respiration de 2 px (buste, cou, épaules, bras, moitié de la taille) ; bas fixe ; bulle qui sort du casque sur les images 2 à 5.
+- Écarts : respiration faible à x1 ; bulle de 3 px trop petite à x1 ; image 5 à 75 px (bulle comprise, cible 70 à 74) ; la bulle disparaît d'un coup entre les images 5 et 6.
+
+Code : `art/source/blender/plongeur_v6.py` : drapeaux `GARDER_PLIS`, `HAUT_DZ`, `BULLE`, `VERSION_NAGE` (défaut 1), `pose_idle`, `rendre_idle_images`. Non-régression vérifiée : idle image 1 = `art/rendu/plongeur_v6/dc_base.png` (0 px), nage v1 image 1 = rendu validé (0 px).
+Outils : `tools/mesure/animation.py` (nouveau, mesure seule), `tools/planches/planche_nage.py` (options `--motif`, `--libelle`, `--titre`).
+
+Lots restants, un par un, arrêt après chacun : 2 creusage (6 images), 3 attaque (6), 4 saut (4), 5 dégâts (3) et mort (8). Puis feuille, manifeste, jeu, tuiles 24 px, robot, `gate.py M3` dans un clone neuf.
+Blocage : aucun.
+
+## Ancienne phase : NAGE r03 (huit images validées par Julien)
 Roulis de 70° du squelette entier autour de l'axe de profondeur (tête à droite, visage et hublot vers la caméra). Caméra, lumière et orientation de l'ancre inchangées. Bras latéraux r03 comme base de la nage. Essai unique de jambes latérales (r04) : rejeté (jambes lointaines 39 à 65 %, image 1 à 54 px de haut, sous 56 px).
 
 Mesures par carte d'identité (`python3 tools/mesure/membres_nage.py DOSSIER --proche d`, repères : proche >= 45 %, lointain >= 40 %, sortie vérifiée image par image) :
