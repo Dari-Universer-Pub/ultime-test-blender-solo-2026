@@ -1,6 +1,20 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
-## Phase courante : LOT 2 CREUSAGE (six images) — ARRÊT POUR VALIDATION DE JULIEN
+## Phase courante : LOT 2 CREUSAGE v2 — ARRÊT POUR VALIDATION DE JULIEN
+Julien a rejeté le creusage v1 (pioche presque invisible, plongeur debout, anticipation, frappe et impact quasi identiques). Refait en v2 : même caméra, même style, idle et nage inchangés.
+
+- Geste vers la DROITE : pioche levée derrière l'épaule droite (image 3), horizontale à mi-hauteur (4), diagonale vers le bas à droite (5), relevée devant à droite (6). Image 2 (prête) : pioche basse devant le ventre (écart).
+- Pioche : manche bois clair (famille « bois » ajoutée à la palette, 3 tons), tête acier à deux pointes ; longueur nominale 1,7 unité, soit ~42 px (partiellement cachée par le corps sur certaines images). Hauteur du sprite 72 px.
+- Repères (proche 45 %, lointain 40 %) : 4 images sur 6 ; images 3 (bras gauche 31 %) et 6 (35 %) sous le repère.
+- Non-régression : image 1 brute de l'idle identique à la version validée (après ajout de la famille bois).
+- Trois points faibles : 1) bras gauche caché sur les images 3 et 6 ; 2) prête devant le ventre ; 3) tête de pioche nominale, non mesurée au pixel à x1.
+- Planche : `art/pixel/plongeur_v6/creusage/planche_creusage.png` ; mesures : `mesures_creusage.txt`.
+- Code : `art/source/blender/plongeur_v6.py` : `CREUSAGE`, `PIOCHE_LONGUEUR`, `pose_creusage` (dx = haut du corps décalé à droite, `HAUT_DX`), `fer_pioche`, `tube_entre`, palette `bois`.
+
+Lots restants, un par un, arrêt après chacun : attaque (6 images), saut (4), dégâts (3) et mort (8). Puis feuille, manifeste, jeu, tuiles 24 px, robot, `gate.py M3` dans un clone neuf.
+Blocage : aucun.
+
+## Ancienne phase : LOT 2 CREUSAGE v1 (rejeté par Julien)
 Julien a validé l'idle animé (c91fb54). Référence de nage : `art/pixel/plongeur_v6/nage_v2/` ; la v1 reste intacte dans `art/pixel/plongeur_v6/nage/` (archive).
 
 Retouche idle (demandée, faite) : bulle de 3 à 4 px (cible 4 à 5 : atteinte au bas de la plage), montée sur les images 2 à 6 puis dissoute ; image 1 = ancre inchangée. Planche v1 de l'idle dans l'historique (`c91fb54`).

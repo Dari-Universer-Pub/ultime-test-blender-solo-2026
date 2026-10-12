@@ -527,6 +527,34 @@
         "frappe et impact peu marqués : la pioche reste presque horizontale devant le torse",
         "tête de pioche petite sur les images 2, 5 et 6"
       ]
+    },
+    {
+      "lot": "LOT 2 v2 (refait après rejet de la v1 par Julien) : creusage vers la droite ; pioche sortie de la silhouette sur les images 3 à 6 ; manche bois clair (famille bois ajoutée à la palette, 3 tons), tête acier à deux pointes ; mains écartées ; corps penché à droite à l'impact",
+      "planche": "art/pixel/plongeur_v6/creusage/planche_creusage.png",
+      "planche_sha256": "004f2c723f5c637a5b4aa92c47dcd15a3d1a1d4c770152396cca8d855e954c77",
+      "images": "art/pixel/plongeur_v6/creusage/creusage_01.png à creusage_06.png (112 x 112, nettoyées, 0 pixel isolé, 6 images distinctes)",
+      "criteres": {
+        "silhouette_a_x1": "geste lisible sur les images 3 à 6 (pioche hors de la silhouette) ; la prête est peu lisible",
+        "couleurs_de_base": "oui : combinaison, ceinture et idle inchangés ; le manche bois clair est une famille ajoutée",
+        "cadrage": "oui : base fixe, figure dans sa case",
+        "taille_finale": "72 px, pioche comprise",
+        "details": "hublot visible, gants lisibles ; tête de pioche petite à x1",
+        "coherence_ancre": "même caméra, lumière et style ; plis du torse conservés",
+        "pixels_parasites": "0 pixel isolé après nettoyage"
+      },
+      "verdict": "à valider par Julien : geste et pioche nettement meilleurs que la v1 ; 4 images sur 6 dans les repères ; bras gauche caché sur les images 3 et 6 ; la prête tient la pioche devant le ventre",
+      "mesures": {
+        "hauteur": "72 px",
+        "largeur": "36 à 54 px (ancre 45 px)",
+        "reperes": "4 images sur 6 ; images 3 (31 %) et 6 (35 %) KO sur le bras lointain",
+        "images_distinctes": "6 sur 6",
+        "non_regression": "image 1 brute identique à la version validée de l'idle (après ajout de la famille bois)"
+      },
+      "points_faibles": [
+        "bras gauche caché sur les images 3 et 6 (casque et pioche)",
+        "image 2 (prête) : pioche tenue devant le ventre, contraire au brief",
+        "tête de pioche nominale (barre de 10 px plus pointes), non mesurée au pixel à x1"
+      ]
     }
   ]
 }
