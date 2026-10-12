@@ -78,7 +78,7 @@
      "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
     }
    },
-   "hash": "0cec3c66eb92ff2f"
+   "hash": "9e8e3601f034b24f"
   },
   {
    "n": 3,
@@ -146,8 +146,8 @@
      "ok": true
     },
     "tete_acier_px": {
-     "largeur": 9,
-     "hauteur": 15,
+     "largeur": 8,
+     "hauteur": 16,
      "ok": true,
      "applicable": false,
      "note": "tête vue de profil : critère non applicable (géométrie, décision Julien)"
@@ -162,7 +162,7 @@
      "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
     }
    },
-   "hash": "445a78011f9a57fe"
+   "hash": "3833818f301f6ce4"
   },
   {
    "n": 5,
@@ -188,11 +188,9 @@
      "ok": true
     },
     "tete_acier_px": {
-     "largeur": 9,
-     "hauteur": 15,
-     "ok": true,
-     "applicable": false,
-     "note": "tête vue de profil : critère non applicable (géométrie, décision Julien)"
+     "largeur": 14,
+     "hauteur": 10,
+     "ok": true
     },
     "pixels_isoles": {
      "valeur": 0,
@@ -204,12 +202,12 @@
      "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
     },
     "cible_impact_px": {
-     "ecart": 0.72,
+     "ecart": 0.69,
      "tolerance": 2,
      "ok": true
     }
    },
-   "hash": "2081e672e2e5da39"
+   "hash": "7d33f609b2e75dca"
   },
   {
    "n": 6,
@@ -235,8 +233,8 @@
      "ok": true
     },
     "tete_acier_px": {
-     "largeur": 12,
-     "hauteur": 12,
+     "largeur": 11,
+     "hauteur": 13,
      "ok": true,
      "applicable": false,
      "note": "tête vue de profil : critère non applicable (géométrie, décision Julien)"
@@ -251,7 +249,7 @@
      "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
     }
    },
-   "hash": "ab68b6ab00938433"
+   "hash": "15f316084fd0d20f"
   },
   {
    "n": 7,
@@ -277,8 +275,8 @@
      "ok": true
     },
     "tete_acier_px": {
-     "largeur": 12,
-     "hauteur": 12,
+     "largeur": 9,
+     "hauteur": 15,
      "ok": true,
      "applicable": false,
      "note": "tête vue de profil : critère non applicable (géométrie, décision Julien)"
@@ -293,7 +291,7 @@
      "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
     }
    },
-   "hash": "f46108a8b5b8576b"
+   "hash": "9acd01b486f22e4c"
   },
   {
    "n": 8,
@@ -343,13 +341,13 @@
    "ok": true
   },
   "changements_px_entre_images": [
-   1067,
-   1587,
-   1300,
-   1806,
-   1150,
-   1827,
-   1198
+   1021,
+   1597,
+   1288,
+   1782,
+   1063,
+   1785,
+   1197
   ],
   "boucle": {
    "premiere_vs_ancre_px_differents": 1122,

@@ -1,6 +1,6 @@
 {
  "nom": "04_accel2",
- "phi_deg": 75,
+ "phi_deg": 90,
  "calques": [
   "jambes",
   "torse",
@@ -33,7 +33,7 @@
    "haut": 90,
    "avant": 45
   },
-  "bloc_main_d": 75
+  "bloc_main_d": 90
  },
  "angle_pioche_fiche_deg": null,
  "bloc_dossier": "bloc_main_d_attaque"

@@ -21,11 +21,11 @@
   "cible": {
     "nom": "bloc de roche à droite",
     "tete_au_contact_px": [
-      104,
-      72
+      92,
+      80
     ],
     "tolerance_px": 2,
-    "note": "à hauteur des hanches, devant et à droite du corps"
+    "note": "à hauteur des hanches et de la cuisse, devant et à droite du corps (la frappe part vers le bas-droit)"
   },
   "images": [
     {
@@ -57,9 +57,9 @@
       "nom": "recul",
       "duree_images": 4,
       "phi_deg": 0,
-      "pose": "anticipation : buste recule de 3 px, casque recule de 2 px, pioche ramenée derrière l'épaule et levée",
+      "pose": "anticipation : buste recule de 3 px, casque de 2 px, pioche levée et armée, bras gauche pendu",
       "bras_d": "levé en arrière, visible",
-      "bras_g": "projeté vers l'arrière-gauche pour l'équilibre (tenu à l'écart du corps)",
+      "bras_g": "pendu le long du corps, légèrement à l'écart (jamais levé dans le vide)",
       "calques": [
         "torse",
         "jambes",
@@ -73,7 +73,7 @@
       "bloc_main_d": {
         "angle_deg": 0
       },
-      "chevauchements": "pioche à côté du casque (0 px) ; critère de largeur appliqué (vue de face)",
+      "chevauchements": "pioche à côté du casque (0 px) ; critère de largeur appliqué (vue de face) ; bras gauche pendu, légèrement à l'écart",
       "critere_tete": true
     },
     {
@@ -104,7 +104,7 @@
       "n": 4,
       "nom": "accel2",
       "duree_images": 2,
-      "phi_deg": 75,
+      "phi_deg": 90,
       "pose": "accélération fin : pioche presque horizontale vers la droite, bras presque tendu",
       "bras_d": "tendu, visible",
       "bras_g": "avancé devant le ventre",
@@ -121,15 +121,15 @@
       "bloc_main_d": {
         "angle_deg": 75
       },
-      "chevauchements": "manche à droite du casque (0 px) ; critère non appliqué",
+      "chevauchements": "manche à droite du casque (0 px) ; tête vue en biais (9 x 15 px) : critère non appliqué (pioche qui passe de la frappe au retour)",
       "critere_tete": false
     },
     {
       "n": 5,
       "nom": "impact",
       "duree_images": 3,
-      "phi_deg": 105,
-      "pose": "impact tenu : tête de pioche sur la cible à droite (hanches), buste penché de 4 px, casque baissé de 2 px",
+      "phi_deg": 150,
+      "pose": "impact tenu : tête de pioche sur la cible à droite (hanches et cuisse), la frappe part vers le bas-droit ; buste penché de 4 px, casque baissé de 2 px",
       "bras_d": "bras presque tendu, visible",
       "bras_g": "avancé devant le ventre, pendu",
       "calques": [
@@ -143,17 +143,17 @@
         "bloc_main_d"
       ],
       "bloc_main_d": {
-        "angle_deg": 105
+        "angle_deg": 150
       },
-      "chevauchements": "manche à droite du casque (0 px) ; tête de pioche sur la cible ; critère non appliqué",
-      "critere_tete": false,
+      "chevauchements": "manche à droite du casque (0 px) ; tête de pioche sur la cible ; critère de largeur appliqué (vue presque de face)",
+      "critere_tete": true,
       "evenement": "impact"
     },
     {
       "n": 6,
       "nom": "suivi",
       "duree_images": 2,
-      "phi_deg": 135,
+      "phi_deg": 120,
       "pose": "suivi : la pioche continue vers le bas-droit, buste reste penché",
       "bras_d": "tendu vers le bas-droit, visible",
       "bras_g": "avancé",
@@ -168,7 +168,7 @@
         "bloc_main_d"
       ],
       "bloc_main_d": {
-        "angle_deg": 135
+        "angle_deg": 120
       },
       "chevauchements": "manche sous le casque, à droite du torse (0 px) ; critère non appliqué",
       "critere_tete": false
@@ -177,8 +177,8 @@
       "n": 7,
       "nom": "retour",
       "duree_images": 2,
-      "phi_deg": 90,
-      "pose": "retour : la pioche remonte en oblique vers la droite (45 degrés, tête visible), buste qui se redresse",
+      "phi_deg": 75,
+      "pose": "retour : la pioche remonte en oblique vers la droite (75 degrés), buste qui se redresse",
       "bras_d": "replié, visible",
       "bras_g": "pendu le long du corps",
       "calques": [
@@ -192,7 +192,7 @@
         "bloc_main_d"
       ],
       "bloc_main_d": {
-        "angle_deg": 90
+        "angle_deg": 75
       },
       "chevauchements": "manche sous le casque (0 px) ; critère non appliqué",
       "critere_tete": false
@@ -232,7 +232,8 @@
   "mouvement": {
     "gant_pas_max_px": 10,
     "bras_gauche": "pendu, ou avancé devant le ventre pour accompagner le geste ; jamais levé dans le vide",
-    "epaules": "les épaules suivent le torse (option epaules_suivent_buste) : le recul et la penche déplacent les bras"
+    "epaules": "les épaules suivent le torse (option epaules_suivent_buste) : le recul et la penche déplacent les bras",
+    "angles": "la pioche tourne au plus de 60 degrés entre deux images (0, -15, 45, 90, 150, 120, 75, 30) : la tête se déplace au plus d'environ 25 px"
   },
   "boucle": "la première (garde) et la dernière (fin) sont proches (9,6 px de déplacement du gant)",
   "effets_separes": "arc de mouvement et particules d'impact : effets séparés, à faire après les images"

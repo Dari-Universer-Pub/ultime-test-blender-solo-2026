@@ -12,7 +12,7 @@
   "torse<cap_epaule_d": 76,
   "torse<bras_d_avant": 8,
   "torse<casque": 126,
-  "torse<bloc_main_d": 4,
+  "torse<bloc_main_d": 7,
   "bras_g_haut<bras_g_avant": 63,
   "bras_g_haut<cap_coude_g": 61,
   "bras_g_haut<cap_epaule_g": 52,
@@ -23,19 +23,20 @@
   "bras_d_haut<bras_d_avant": 68,
   "bras_d_haut<cap_coude_d": 53,
   "bras_d_haut<casque": 21,
-  "bras_d_haut<bloc_main_d": 28,
+  "bras_d_haut<bloc_main_d": 31,
   "cap_epaule_d<bras_d_avant": 12,
   "cap_epaule_d<cap_coude_d": 3,
   "cap_epaule_d<casque": 25,
-  "cap_epaule_d<bloc_main_d": 3,
+  "cap_epaule_d<bloc_main_d": 11,
   "bras_d_avant<cap_coude_d": 63,
   "bras_d_avant<casque": 5,
-  "bras_d_avant<bloc_main_d": 10,
-  "cap_coude_d<casque": 5
+  "bras_d_avant<bloc_main_d": 23,
+  "cap_coude_d<casque": 5,
+  "cap_coude_d<bloc_main_d": 5
  },
  "hauteur_px": 72,
  "pixels_isoles": 0,
- "image_sha256": "445a78011f9a57fe",
+ "image_sha256": "3833818f301f6ce4",
  "pieces": [
   "jambes",
   "torse",
@@ -63,6 +64,6 @@
   "bras_d_avant": 89,
   "cap_coude_d": 69,
   "casque": 923,
-  "bloc_main_d": 262
+  "bloc_main_d": 256
  }
 }

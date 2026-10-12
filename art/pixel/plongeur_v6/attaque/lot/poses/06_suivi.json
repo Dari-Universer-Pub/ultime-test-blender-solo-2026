@@ -1,6 +1,6 @@
 {
  "nom": "06_suivi",
- "phi_deg": 135,
+ "phi_deg": 120,
  "calques": [
   "jambes",
   "torse",
@@ -31,9 +31,9 @@
   },
   "bras_d": {
    "haut": 15,
-   "avant": 60
+   "avant": 75
   },
-  "bloc_main_d": 135
+  "bloc_main_d": 120
  },
  "angle_pioche_fiche_deg": null,
  "bloc_dossier": "bloc_main_d_attaque"

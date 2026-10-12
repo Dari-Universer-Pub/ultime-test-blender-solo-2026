@@ -1,6 +1,6 @@
 {
  "nom": "05_impact",
- "phi_deg": 105,
+ "phi_deg": 150,
  "calques": [
   "jambes",
   "torse",
@@ -30,10 +30,10 @@
    "avant": 75
   },
   "bras_d": {
-   "haut": 75,
-   "avant": 30
+   "haut": 15,
+   "avant": 120
   },
-  "bloc_main_d": 105
+  "bloc_main_d": 150
  },
  "angle_pioche_fiche_deg": null,
  "bloc_dossier": "bloc_main_d_attaque"
