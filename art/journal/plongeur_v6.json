@@ -555,6 +555,36 @@
         "image 2 (prête) : pioche tenue devant le ventre, contraire au brief",
         "tête de pioche nominale (barre de 10 px plus pointes), non mesurée au pixel à x1"
       ]
+    },
+    {
+      "lot": "LOT 2 v3 (refait après retour de Julien sur la v2) : arc vertical (pioche haute derrière l'épaule droite, coup vers l'avant-droite, impact bas buste penché, remontée) ; prête sur le côté droit ; une main pour prête et anticipation, deux mains pour frappe, impact, retour ; main gauche de l'image 6 retouchée pour dégager le bras lointain",
+      "planche": "art/pixel/plongeur_v6/creusage/planche_creusage.png",
+      "planche_sha256": "d4576036d56560026aefe638ad2591189cc387afcc983b0a186b2b621288a2f0",
+      "images": "art/pixel/plongeur_v6/creusage/creusage_01.png à creusage_06.png (112 x 112, nettoyées, 0 pixel isolé, 6 images distinctes par hash SHA-256)",
+      "criteres": {
+        "silhouette_a_x1": "arc lisible en silhouette : pioche levée, abaissée en diagonale, remontée ; frappe (image 4) lue comme une barre devant le torse",
+        "couleurs_de_base": "oui : combinaison, ceinture, casque, hublot et palette de l'ancre ; manche bois clair (famille bois, 3 tons)",
+        "cadrage": "oui : base fixe, 72 px, figure dans sa case",
+        "taille_finale": "72 px, pioche comprise (cible 70 à 80)",
+        "details": "hublot visible sur les six images ; gants lisibles ; tête de pioche de 13 px vue de profil (image 4), 5 à 6 px vue de biais",
+        "coherence_ancre": "même caméra, lumière et style, sans contour",
+        "pixels_parasites": "0 pixel isolé après nettoyage"
+      },
+      "verdict": "à valider par Julien : arc et angles conformes au brief (écarts de 43 à 113 degrés, arc de 45 px) ; 6 images sur 6 dans les repères ; frappe encore lue comme une barre",
+      "mesures": {
+        "hauteur": "72 px",
+        "largeur": "39 à 49 px (ancre 45 px)",
+        "angles_pioche_xz": "-53, 60, 6, -37, 28 degrés ; écarts 113, 54, 43, 65 degrés",
+        "arc": "sommet à z = 2,38, impact à z = 0,55 : 45 px d'écart vertical",
+        "tete_a_x1": "barre de 13 px de profil (image 4), 5 à 6 px de biais (images 3 et 6), 2 à 5 px sur les autres",
+        "reperes": "6 images sur 6 (bras proche 63 à 77 %, bras lointain 49 à 73 %, jambes 53 à 88 %)",
+        "non_regression": "image 1 brute identique à la version validée de l'idle"
+      },
+      "points_faibles": [
+        "frappe (image 4) lue comme une barre devant le torse, pas comme un coup vers l'avant-droite",
+        "pioche de l'anticipation petite (tête de 6 x 7 px vue de biais)",
+        "main gauche de l'image 6 plus basse et plus avancée que sur les autres images"
+      ]
     }
   ]
 }

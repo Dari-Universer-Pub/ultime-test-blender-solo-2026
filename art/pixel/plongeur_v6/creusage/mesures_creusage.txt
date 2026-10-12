@@ -1,11 +1,14 @@
-CREUSAGE v2 (carte d'identite 112 px ; proche = bras droit ; reperes proche >= 45 %, lointain >= 40 %)
+CREUSAGE v3 (carte d'identite 112 px ; proche = bras droit ; reperes proche >= 45 %, lointain >= 40 %)
 image 1 (ancre, sans pioche) : bras proche 94 % ; bras lointain 69 % ; jambe proche 85 % ; jambe lointaine 59 % ; hauteur 72 px
-image 2 (prete, pioche basse devant le ventre) : bras proche 68 % ; bras lointain 53 % ; jambe proche 83 % ; jambe lointaine 54 % ; hauteur 72 px
-image 3 (anticipation, pioche levee derriere l'epaule droite) : bras proche 55 % ; bras lointain 31 % KO ; jambe proche 86 % ; jambe lointaine 56 % ; hauteur 72 px
-image 4 (frappe, bras tendus, tete a droite) : bras proche 60 % ; bras lointain 48 % ; jambe proche 87 % ; jambe lointaine 59 % ; hauteur 72 px
-image 5 (impact, corps penche a droite) : bras proche 77 % ; bras lointain 60 % ; jambe proche 75 % ; jambe lointaine 57 % ; hauteur 72 px
-image 6 (retour, pioche relevee devant a droite) : bras proche 68 % ; bras lointain 35 % KO ; jambe proche 87 % ; jambe lointaine 59 % ; hauteur 72 px
-GLOBAL : hauteur 72 px (cible 70 a 80, pioche comprise) ; 0 pixel isole ; 6 images distinctes ; 4 images sur 6 dans les reperes (images 3 et 6 : bras gauche cache)
-ECARTS AVEC L'ANCRE : bras tendus, coudes sortis, largeur 36 a 54 px contre 45 ; pioche hors de la silhouette sur les images 3 a 6 ; la prete garde la pioche devant le ventre (contraire au brief)
-ECART DU GESTE : frappe et impact se lisent (pioche horizontale puis diagonale vers le bas a droite) ; anticipation et retour montent la pioche derriere et devant l'epaule droite
-TROIS POINTS FAIBLES : 1) bras gauche cache sur les images 3 et 6 (casque et pioche) ; 2) prete devant le ventre, en travers du torse ; 3) tete de pioche nominale (barre de 10 px plus pointes), non mesuree au pixel a x1
+image 2 (prete, pioche sur le cote droit, pointe vers le bas) : bras proche 68 % ; bras lointain 66 % ; jambe proche 88 % ; jambe lointaine 59 % ; hauteur 72 px
+image 3 (anticipation, pioche levee derriere l'epaule droite) : bras proche 63 % ; bras lointain 73 % ; jambe proche 86 % ; jambe lointaine 57 % ; hauteur 72 px
+image 4 (frappe, bras tendus, tete a droite a mi-hauteur) : bras proche 64 % ; bras lointain 49 % ; jambe proche 87 % ; jambe lointaine 59 % ; hauteur 72 px
+image 5 (impact, buste penche a droite) : bras proche 77 % ; bras lointain 58 % ; jambe proche 65 % ; jambe lointaine 57 % ; hauteur 72 px
+image 6 (retour, pioche relevee devant a droite ; main gauche retouchee) : bras proche 70 % ; bras lointain 53 % ; jambe proche 87 % ; jambe lointaine 58 % ; hauteur 72 px
+GLOBAL : 6 images sur 6 dans les reperes ; hauteur 72 px (cible 70 a 80, pioche comprise) ; 0 pixel isole ; 6 images distinctes (hash SHA-256)
+ANGLE DE LA PIOCHE (plan x-z) : -53, 60, 6, -37, 28 degres ; ecart entre images successives 113, 54, 43, 65 degres (cible >= 40)
+ARC : sommet de la pioche (image 3) a z = 2,38 ; impact (image 5) a z = 0,55 : 45 px d'ecart vertical (cible >= 30 px)
+TETE DE PIOCHE A X1 (mesure sur le rendu) : barre de 13 px vue de profil (image 4), 5 a 6 px vue de biais (images 3 et 6), 2 a 5 px sur les autres
+ECARTS AVEC L'ANCRE : bras tendus, largeur 39 a 49 px contre 45 ; pioche hors de la silhouette sur les images 2 a 6 ; manche bois clair (famille bois, 3 tons) ; camera, lumiere, casque, hublot et palette inchanges
+ECART DU GESTE : la frappe (image 4) est une barre horizontale devant le torse, sa poignee depasse a gauche
+TROIS POINTS FAIBLES : 1) frappe (image 4) lue comme une barre devant le torse, pas comme un coup vers l'avant-droite ; 2) pioche de l'anticipation petite (tete de 6 x 7 px vue de biais) ; 3) main gauche retouchee sur l'image 6, plus basse et plus avancee que sur les autres images

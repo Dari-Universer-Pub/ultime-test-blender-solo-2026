@@ -700,12 +700,18 @@ def construire(scene):
         objets["bulle"] = ellipsoide((centre[0] + HAUT_DX, centre[1], centre[2] + HAUT_DZ), rayon, (1.0, 1.0, 1.0),
                                      m["acier"], "bulle", niveau=1)
 
-    # --- pioche (creusage) : manche clair tenu par les deux gants, tête en acier à deux pointes
+    # --- pioche (creusage) : manche clair, tête en acier à deux pointes ; une main (prête, anticipation)
+    # ou deux mains sur le manche (frappe, impact, retour)
     if PIOCHE is not None:
-        R, L = Vector(PIOCHE[0]), Vector(PIOCHE[1])
-        u = (R - L).normalized()
-        H = R + u * PIOCHE_LONGUEUR[1]                       # tête au-delà de la main droite
-        objets["pioche_manche"] = tube_entre(L - u * PIOCHE_LONGUEUR[0], H, 0.05, m["bois"], "pioche_manche")
+        R = Vector(PIOCHE[0])
+        if PIOCHE[1] is not None:
+            L = Vector(PIOCHE[1])
+            u = (R - L).normalized()
+        else:
+            u = Vector(PIOCHE[2]).normalized()
+            L = R - u * 0.75                                 # point de prise virtuel : pioche tenue d'une main
+        H = R + u * PIOCHE_TETE                               # tête au-delà de la main droite
+        objets["pioche_manche"] = tube_entre(L - u * PIOCHE_BOUT, H, 0.05, m["bois"], "pioche_manche")
         w = u.cross(Vector((0.0, 1.0, 0.0))).normalized()
         v = u.cross(w).normalized()
         objets["pioche_tete"] = fer_pioche(H, (u, v, w), m["acier"], "pioche_tete")
@@ -891,13 +897,14 @@ def rendre_idle_images(dossier, n=6):
 # Image 1 = ancre idle sans pioche. 2 prête (pioche basse à droite), 3 anticipation (levée derrière l'épaule droite,
 # au-dessus du casque), 4 frappe (bras tendus, tête à droite à mi-hauteur), 5 impact (corps penché à droite, pioche au
 # bout du bras), 6 retour (la pioche revient en arrière).
-PIOCHE_LONGUEUR = (0.45, 0.75)   # m : manche derrière la main gauche, tête au-delà de la main droite (40 à 50 px)
-CREUSAGE = {
-    1: {"L": (-0.05, -0.40, 1.00), "R": (0.40, -0.50, 1.02), "dx": 0.00, "penche": 0.00},
-    2: {"L": (-0.05, -0.05, 1.50), "R": (0.42, 0.30, 1.85), "dx": -0.02, "penche": 0.04},
-    3: {"L": (0.05, -0.45, 1.22), "R": (0.60, -0.50, 1.25), "dx": 0.03, "penche": -0.03},
-    4: {"L": (0.10, -0.45, 1.10), "R": (0.68, -0.45, 0.98), "dx": 0.08, "penche": -0.08},
-    5: {"L": (-0.05, -0.35, 1.45), "R": (0.45, -0.25, 1.70), "dx": 0.00, "penche": 0.00},
+PIOCHE_BOUT = 0.40   # m : manche derrière le point de prise (longueur totale ~42 à 49 px)
+PIOCHE_TETE = 0.55   # m : tête au-delà de la main droite
+CREUSAGE = {  # une main (1 : prête sur l'épaule droite, 2 : anticipation, pioche levée) puis deux mains (3 à 5)
+    1: {"R": (0.48, 0.05, 1.45), "u": (0.60, 0.00, -0.80), "dx": 0.00, "penche": 0.00},
+    2: {"R": (0.45, 0.20, 1.90), "u": (0.50, 0.05, 0.87), "dx": -0.02, "penche": 0.04},
+    3: {"R": (0.55, -0.45, 1.35), "L": (-0.40, -0.55, 1.25), "dx": 0.03, "penche": -0.03},
+    4: {"R": (0.62, -0.48, 0.88), "L": (-0.20, -0.55, 1.50), "dx": 0.08, "penche": -0.08},
+    5: {"R": (0.50, -0.20, 1.75), "L": (-0.42, -0.50, 1.25), "dx": 0.02, "penche": 0.02},
 }
 
 
@@ -918,22 +925,26 @@ def bras_vers(S, cible, pole):
 
 
 def pose_creusage(k):
-    """Image k du creusage (k = 0 : l'ancre idle, sans pioche). Les mains tiennent le manche ; le haut du corps
-    se décale de dx (buste penché à droite) et entraîne la tête, le hublot et la corde (HAUT_DX)."""
+    """Image k du creusage (k = 0 : l'ancre idle, sans pioche). Une main (prête, anticipation) ou deux mains
+    (frappe, impact, retour). Le haut du corps se décale de dx (buste penché à droite) et entraîne la tête, le
+    hublot et la corde (HAUT_DX). Le bras non tenant la pioche reste au repos."""
     global PIOCHE, HAUT_DX
     if k == 0:
         PIOCHE, HAUT_DX = None, 0.0
         return {}
     c = CREUSAGE[k]
-    PIOCHE = (c["R"], c["L"])
     dx, p = c["dx"], c["penche"]
     HAUT_DX = dx
+    PIOCHE = (c["R"], c.get("L"), c.get("u"))
     pose = {}
     for nom in ("poitrine", "cou", "epaule_g", "epaule_d"):
         x, y, z = SQUELETTE[nom][0]
         pose[nom] = (x + dx, y + p, z)
     pose["taille"] = (dx * 0.5, 0.5 * p, 1.06)
-    for cote, cle, pole in (("d", "R", (0.5, -0.8, -0.2)), ("g", "L", (-0.5, -0.8, -0.2))):
+    cotes = [("d", "R", (0.5, -0.8, -0.2))]
+    if c.get("L") is not None:
+        cotes.append(("g", "L", (-0.5, -0.8, -0.2)))
+    for cote, cle, pole in cotes:
         coude, poignet = bras_vers(Vector(pose["epaule_" + cote]), c[cle], pole)
         pose["coude_" + cote] = tuple(coude)
         pose["poignet_" + cote] = tuple(poignet)

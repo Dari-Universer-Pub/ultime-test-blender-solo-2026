@@ -1,6 +1,20 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
-## Phase courante : LOT 2 CREUSAGE v2 — ARRÊT POUR VALIDATION DE JULIEN
+## Phase courante : LOT 2 CREUSAGE v3 — ARRÊT POUR VALIDATION DE JULIEN
+Julien a validé le personnage et le style de la v2 mais pas le geste. La v3 reprend le geste seul ; caméra, lumière, casque, hublot et palette inchangés.
+
+- Arc : pioche levée derrière l'épaule droite (image 3), frappe vers l'avant-droite (4), impact bas buste penché (5), remontée devant à droite (6). Prête (2) : pioche sur le côté droit, hors du ventre.
+- Angles de la pioche (plan x-z) : -53, 60, 6, -37, 28 degrés ; écarts successifs 113, 54, 43, 65 degrés. Arc de 45 px entre le sommet et l'impact.
+- Repères : 6 images sur 6. Image 6 : main gauche retouchée pour dégager le bras lointain (de 35 % à 53 %).
+- Tête de pioche à ×1 : barre de 13 px de profil (image 4), 5 à 6 px de biais.
+- Points faibles : 1) frappe (image 4) lue comme une barre devant le torse ; 2) pioche de l'anticipation petite ; 3) main gauche de l'image 6 plus basse.
+- Planche : `art/pixel/plongeur_v6/creusage/planche_creusage.png` ; mesures : `mesures_creusage.txt`.
+- Non-régression : image 1 brute de l'idle identique à la version validée.
+
+Lots restants, un par un, arrêt après chacun : attaque, saut, dégâts et mort. Ne pas commencer l'attaque sans l'accord de Julien.
+Blocage : aucun.
+
+## Ancienne phase : LOT 2 CREUSAGE v2 (non validée, remplacée)
 Julien a rejeté le creusage v1 (pioche presque invisible, plongeur debout, anticipation, frappe et impact quasi identiques). Refait en v2 : même caméra, même style, idle et nage inchangés.
 
 - Geste vers la DROITE : pioche levée derrière l'épaule droite (image 3), horizontale à mi-hauteur (4), diagonale vers le bas à droite (5), relevée devant à droite (6). Image 2 (prête) : pioche basse devant le ventre (écart).
