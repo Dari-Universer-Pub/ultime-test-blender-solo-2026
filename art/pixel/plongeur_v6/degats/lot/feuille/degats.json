@@ -1,0 +1,32 @@
+{
+ "tag": "degats",
+ "canevas": [
+  112,
+  112
+ ],
+ "images": [
+  {
+   "index": 0,
+   "nom": "01_choc",
+   "duree_images": 2
+  },
+  {
+   "index": 1,
+   "nom": "02_recul",
+   "duree_images": 3
+  },
+  {
+   "index": 2,
+   "nom": "03_reprise",
+   "duree_images": 3
+  }
+ ],
+ "tags": {
+  "degats": {
+   "debut": 0,
+   "fin": 2,
+   "boucle": true
+  }
+ },
+ "total_duree_images": 8
+}

@@ -1,0 +1,266 @@
+{
+  "biomes": [
+    {
+      "id": "radeau_surface",
+      "nom": "Le radeau et la surface",
+      "profondeur_min": 0,
+      "profondeur_max": 10,
+      "palier_requis": 0,
+      "tranche": 1,
+      "description": "La surface est le seul endroit où le joueur peut respirer sans compter son air. Un radeau de planches d'épave flotte sur une mer grise et houleuse, entouré de débris de voiles, de cordages et de bidons rouillés. Les vagues font grincer la coque, les mouettes tournent au-dessus des filets, et le ciel reste toujours trop clair pour ce qui se passe sous les planches.",
+      "ambiance": "Vent, clapotis contre le bois, cris lointains des mouettes ; lumière blanche et dure qui vire au vert à un mètre sous la ligne d'eau.",
+      "couleurs": [
+        "#7fb6c8",
+        "#c9dfe4",
+        "#3f6e7e",
+        "#e8b15c"
+      ],
+      "ressources": [
+        "toile_voile",
+        "corde_chanvre",
+        "planche_epave",
+        "tole_rouillee"
+      ],
+      "creatures": [
+        "poisson_volant"
+      ],
+      "points_interet": [
+        "épave du chalutier Aurore, couchée à moitié sous la ligne de flottaison",
+        "bouée de signal rouillée qui sonne seule quand la houle monte"
+      ]
+    },
+    {
+      "id": "recif_peu_profond",
+      "nom": "Récif peu profond",
+      "profondeur_min": 10,
+      "profondeur_max": 120,
+      "palier_requis": 0,
+      "tranche": 1,
+      "description": "Sous les premiers mètres, la lumière se teinte de turquoise et le fond se couvre de coraux blancs, d'éponges orange et de rochers percés de galeries. Des bancs de poissons passent comme des nuages. Les premières cloches de la civilisation dorment ici, couchées sur leurs socles, et leurs bronzes verts donnent déjà la première note aux plongeurs attentifs.",
+      "ambiance": "Bruit de bulles qui montent, cliquetis des crevettes dans les anfractuosités, léger bourdonnement de la cloche couchée ; lumière turquoise qui s'éteint lentement avec la profondeur.",
+      "couleurs": [
+        "#2a9d9a",
+        "#7fd6c8",
+        "#e9f7f0",
+        "#f0a060"
+      ],
+      "ressources": [
+        "cuivre_brut",
+        "resine_de_corail",
+        "algue_sechee"
+      ],
+      "creatures": [
+        "carangue_rayee",
+        "oursin_bombe",
+        "tortue_de_corail"
+      ],
+      "points_interet": [
+        "jardin de corail blanc qui entoure une cloche couchée",
+        "galerie de bronze où le plongeur entend la note du récif"
+      ]
+    },
+    {
+      "id": "fosse_sombre",
+      "nom": "Fosse sombre",
+      "profondeur_min": 120,
+      "profondeur_max": 260,
+      "palier_requis": 1,
+      "tranche": 2,
+      "description": "Au-delà du récif, la lumière disparaît presque. Seule la lampe du plongeur éclaire des parois couvertes de sédiments, des tubes de cuivre qui pendent comme des lianes et des bancs de créatures qui ne craignent pas la pression. C'est ici que l'on trouve le fer de fond et les premiers verres de conduit, et ici qu'un gardien veille sur un sanctuaire que la Compagnie n'a jamais réussi à piller.",
+      "ambiance": "Silence presque complet, claquements sourds de la pression, grincement lointain des tubes de cuivre ; obscurité bleue-violette qui avale la lampe au-delà de quelques mètres.",
+      "couleurs": [
+        "#1d2a4a",
+        "#3a2f63",
+        "#6b4f8a",
+        "#c9a0e0"
+      ],
+      "ressources": [
+        "fer_de_fond",
+        "quartz_bleu",
+        "ecaille_de_raie"
+      ],
+      "creatures": [
+        "raie_lanterne",
+        "anguille_ombre",
+        "meduse_cloche"
+      ],
+      "points_interet": [
+        "sanctuaire du gardien, une chapelle taillée dans la paroi",
+        "pont de plaques de cuivre suspendu au-dessus d'un gouffre"
+      ]
+    },
+    {
+      "id": "foret_de_kelp",
+      "nom": "Forêt de kelp",
+      "profondeur_min": 260,
+      "profondeur_max": 360,
+      "palier_requis": 2,
+      "tranche": 0,
+      "description": "Des lianes brunes montent du fond jusqu'à la lumière perdue, formant une forêt verticale où le plongeur se faufile entre des tiges souples et des feuilles qui claquent. Le kelp produit une sève élastique que les anciens utilisaient déjà pour colmater leurs conduits. Les loutres de kelp jouent entre les tiges, et les calmars rubanés se cachent dans les creux.",
+      "ambiance": "Frottement continu des tiges, sifflements aigus des loutres, bruits de sève qui goutte ; lumière verte qui filtre par touches et qui change selon le courant.",
+      "couleurs": [
+        "#1f5a3a",
+        "#3f8f5a",
+        "#9bd17a",
+        "#d6e88a"
+      ],
+      "ressources": [
+        "caoutchouc_brut",
+        "nodule_manganese",
+        "algue_sechee"
+      ],
+      "creatures": [
+        "loutre_de_kelp",
+        "calmar_ruban"
+      ],
+      "points_interet": [
+        "arche de verre couverte de kelp, qui fut un pont de conduit",
+        "plaque de notes accrochée à une tige, où la carte des cloches est gravée"
+      ]
+    },
+    {
+      "id": "banc_de_verre",
+      "nom": "Banc de verre",
+      "profondeur_min": 360,
+      "profondeur_max": 480,
+      "palier_requis": 3,
+      "tranche": 0,
+      "description": "Le fond s'élève ici en crêtes de verre et de sable clair, traversées de conduits cristallins qui vibrent au moindre choc. Les ateliers de la guilde du verre sont enfouis sous les dunes, et leurs fours encore tièdes attirent les crabes de cristal. Une baleine de verre, immense et lente, glisse parfois au-dessus du banc sans jamais inquiéter personne.",
+      "ambiance": "Tintements légers et continus des conduits, craquements du sable qui se tasse, grand souffle lent de la baleine ; lumière blanche et froide qui se réfracte partout.",
+      "couleurs": [
+        "#7ad8e0",
+        "#c8f4e8",
+        "#4a7088",
+        "#f2d890"
+      ],
+      "ressources": [
+        "verre_cloche",
+        "argent_abyssal",
+        "quartz_bleu"
+      ],
+      "creatures": [
+        "crabe_cristal",
+        "baleine_de_verre"
+      ],
+      "points_interet": [
+        "forge engloutie avec ses fours encore tièdes",
+        "conduit de cristal intact qui chante quand on le frappe"
+      ]
+    },
+    {
+      "id": "cheminee_thermale",
+      "nom": "Cheminée thermale",
+      "profondeur_min": 480,
+      "profondeur_max": 600,
+      "palier_requis": 4,
+      "tranche": 0,
+      "description": "Des cheminées de roche sombre crachent une eau chaude et chargée de soufre. Autour, la vie s'est organisée en colonies de tubes rouges et de bactéries qui brillent. Les vers de cheminée tendent leurs panaches, et les crabes de fer rongent les parois métalliques d'une ancienne station d'accordage. La chaleur déforme l'air de l'eau, et l'oxygène s'use plus vite.",
+      "ambiance": "Gargouillis constants, sifflements de vapeur, bourdonnement des vers ; lumière rouge-orangée qui pulse avec les cheminées, chaleur sensible dans la combinaison.",
+      "couleurs": [
+        "#4a1f2a",
+        "#a0402a",
+        "#f08a3a",
+        "#ffd0a0"
+      ],
+      "ressources": [
+        "soufre_thermal",
+        "fer_de_fond",
+        "nodule_manganese"
+      ],
+      "creatures": [
+        "ver_de_cheminee",
+        "crabe_de_fer"
+      ],
+      "points_interet": [
+        "cheminée d'accordage où les carillonneurs réglaient la chaleur des cloches",
+        "atelier du carillonneur, avec ses plaques de notes fondues à moitié"
+      ]
+    },
+    {
+      "id": "plaine_abyssale",
+      "nom": "Plaine abyssale",
+      "profondeur_min": 600,
+      "profondeur_max": 800,
+      "palier_requis": 5,
+      "tranche": 0,
+      "description": "Une plaine immense de vase fine s'étend à perte de vue, piquée de sphères lumineuses posées sur des tiges. Le plancton y forme des nuages qui s'allument au moindre mouvement. Les poulpes abyssaux se déplacent lentement d'une lueur à l'autre, et les sébastes obscurs se confondent avec la vase. Une épave de sous-marin de l'Ordre repose au milieu du champ, portes ouvertes.",
+      "ambiance": "Presque aucun son ; un battement de cœur lent venu du fond, et le frottement feutré de la vase quand on s'approche des sphères.",
+      "couleurs": [
+        "#0f2a40",
+        "#2a6a8a",
+        "#8ad8d0",
+        "#c8f4e8"
+      ],
+      "ressources": [
+        "vase_bioluminescente",
+        "nodule_manganese",
+        "fer_de_fond"
+      ],
+      "creatures": [
+        "poulpe_abyssal",
+        "sebaste_obscur"
+      ],
+      "points_interet": [
+        "champ de sphères lumineuses plantées sur leurs tiges",
+        "épave d'un sous-marin de l'Ordre, portes ouvertes sur un silence noir"
+      ]
+    },
+    {
+      "id": "cite_engloutie",
+      "nom": "Cité engloutie",
+      "profondeur_min": 800,
+      "profondeur_max": 1000,
+      "palier_requis": 6,
+      "tranche": 0,
+      "description": "Varekh gît ici, couchée sur sa falaise. Les terrasses blanches sont couvertes de sédiments mais leurs escaliers se devinent encore, et les portes des maisons restent ouvertes sur des salles pleines d'objets. Les gardes de la cité sont des créatures mécaniques vivantes, nées des vieux automates, qui surveillent encore les places. Le titane des carillonneurs y affleure partout.",
+      "ambiance": "Un chant grave et continu, comme un orgue qui n'est jamais tout à fait arrêté ; craquements des portes, lueurs bleu-blanc des lampadaires vivants.",
+      "couleurs": [
+        "#2a3a5a",
+        "#7aa0a8",
+        "#c8ecbc",
+        "#f2f4e0"
+      ],
+      "ressources": [
+        "titane_de_cite",
+        "eclat_de_signal",
+        "verre_cloche"
+      ],
+      "creatures": [
+        "garde_de_cite",
+        "lampadaire_vivant"
+      ],
+      "points_interet": [
+        "place des carillonneurs, avec sa cloche de pierre fendue",
+        "bibliothèque de plaques de cuivre, classées par note"
+      ]
+    },
+    {
+      "id": "fond_du_signal",
+      "nom": "Fond du signal",
+      "profondeur_min": 1000,
+      "profondeur_max": 1200,
+      "palier_requis": 7,
+      "tranche": 0,
+      "description": "Au fond du golfe, le signal se fait entendre sans relâche. La dernière cloche, la cloche du Miroir, repose sur un autel de pierre entouré de tubes de verre brisés. Une sirène du fond tourne autour de l'autel, attirée par la note, et le plongeur sent la pression changer à chaque battement. C'est ici que se décide la fin de l'histoire.",
+      "ambiance": "La note du signal, lente et pleine, revient toutes les quelques secondes et fait vibrer le corps ; le reste disparaît sous ce son.",
+      "couleurs": [
+        "#120a2a",
+        "#4a2a78",
+        "#b070e0",
+        "#f0e0ff"
+      ],
+      "ressources": [
+        "eclat_de_signal",
+        "titane_de_cite",
+        "argent_abyssal"
+      ],
+      "creatures": [
+        "sirene_du_fond"
+      ],
+      "points_interet": [
+        "la cloche du Miroir, couchée sur son autel",
+        "autel du signal, où les notes gravées se lisent à la lampe"
+      ]
+    }
+  ]
+}

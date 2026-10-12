@@ -1,0 +1,40 @@
+{
+ "nom": "02_recul",
+ "phi_deg": 0,
+ "calques": [
+  "jambes",
+  "torse",
+  "bras_g_haut",
+  "bras_g_avant",
+  "cap_coude_g",
+  "cap_epaule_g",
+  "bras_d_haut",
+  "cap_epaule_d",
+  "bras_d_avant",
+  "cap_coude_d",
+  "casque",
+  "bloc_main_d"
+ ],
+ "epaules_suivent_buste": true,
+ "chaine": {
+  "buste": [
+   -3,
+   0
+  ],
+  "casque": [
+   -2,
+   0
+  ],
+  "bras_g": {
+   "haut": -15,
+   "avant": -15
+  },
+  "bras_d": {
+   "haut": 90,
+   "avant": 135
+  },
+  "bloc_main_d": 0
+ },
+ "angle_pioche_fiche_deg": null,
+ "bloc_dossier": "bloc_main_d_attaque"
+}

@@ -61,9 +61,10 @@ il est bon parce que tu l'as REGARDÉ et qu'il est beau.
    `python tools/planches/comparer.py AVANT.png APRES.png boards/journal/<id>_<n>.png [--case x,y,w,h]`.
 3. **Ouvre et REGARDE l'image** (lis le fichier image, pas son nom). Puis juge-la avec ces 7 critères,
    chacun en une phrase précise : silhouette lisible à ×1 ? couleurs de la base conservées ?
-   cadrage (personnage qui remplit sa case) ? taille finale (plongeur 32 à 40 px de haut) ?
-   détails (casque, hublot, mains) lisibles ? cohérence avec les références et le reste du jeu ?
-   pixels parasites ou bords sales ?
+   cadrage (personnage qui remplit sa case) ? taille finale (héros 70 à 74 px de haut, case 112 x 112) ?
+   détails (casque, hublot, mains) lisibles ? cohérence avec l'ancre (`art/references/ancre_plongeur_v6.png`)
+   et le reste du jeu ? pixels parasites ou bords sales ? Style peint doux, SANS contour : la forme tient à la
+   valeur et à l'ombrage (on regarde aussi en niveaux de gris et sur eau sombre).
 4. **Décide** : `garde` si c'est mieux, `annule` si ce n'est pas mieux (tu reviens en arrière).
 5. **Écris l'entrée** dans `art/journal/<id>.json` : l'image, son SHA-256 (affiché par comparer.py), les 7 critères
    et le verdict (format dans `PLAN.md`). Une entrée laissée vide fait échouer le contrôle. Le contrôle vérifie ce journal : une entrée par changement, une image
@@ -101,9 +102,12 @@ qui doit afficher `SUCCES`.
 - Python avec numpy si la sandbox n'en a pas : `/opt/outils-varekh/bin/python`
 - **Assets** : Blender en ligne de commande, `/opt/outils-varekh/bin/blender -b --python <script.py>`. Tu écris
   toi-même toute la chaîne : construction du modèle, rig, animation, rendu (caméra orthographique fixe, mêmes réglages
-  pour tous les assets), puis pixelisation (réduction, quantification à la palette, contour) dans `tools/pixelisation/`,
-  et finition dans Aseprite. Garde un style commun : écris tes réglages (lumière, caméra, taille en px, contour) une
-  fois dans `STYLE.md` et réutilise-les pour tous les assets.
+  pour tous les assets), rendu DIRECT à la taille finale (pas de réduction après coup), quantification PAR MATIÈRE
+  dans `tools/pixelisation/`, nettoyage des pixels isolés, et finition dans Aseprite. Garde un style commun : écris
+  tes réglages (lumière, caméra, taille en px) une fois dans `STYLE.md` et réutilise-les pour tous les assets.
+  Décision de Julien du 12/10 (voir `DECISIONS.md`) : héros 70 à 74 px de haut dans une case 112 x 112, trois quarts
+  de face, style peint doux SANS contour, une seule lumière en haut à gauche. L'ancre est le sprite
+  `art/references/ancre_plongeur_v6.png` (rendus x6 à côté) : chaque nouvel asset du héros doit la respecter.
 - Vision : `bin/godot` ouvre tout seul un écran virtuel avec OpenGL, donc `get_viewport().get_texture().get_image().save_png()`
   marche. `bin/godot-capture <projet> <dossier> <nb_images> [scène]` filme le jeu image par image en PNG.
   `bin/capture-ecran sortie.png` capture tout l'écran pendant que le jeu tourne. Ensuite tu REGARDES le PNG.
@@ -119,3 +123,53 @@ Une sandbox réinitialisée perd les outils installés, pas le travail commité 
 
 Tout ce qu'il faut pour reprendre est dans `ETAT.md` et `git log`. Mets `ETAT.md` à jour à chaque
 étape importante, pas seulement à la fin.
+
+## RÈGLE ANIMATION (permanente, pour tout lot : creusage, attaque, saut, dégâts, mort)
+
+Méthode actuelle, dans cet ordre. Aucune validation humaine intermédiaire : l'arrêt humain est uniquement
+la fin de la phase indiquée dans `PLAN.md`.
+
+1. **Fiche d'animation écrite** (`art/pixel/<perso>/<lot>/FICHE.md` + `fiche.json`) : rôle du lot, pose de
+   chaque image, durée (en images), points de prise de l'outil, pointe de l'outil, cible (ce que la pointe
+   touche), ordre des calques par image, chevauchements autorisés ou interdits par paire de parties, moment
+   d'impact, visibilité déclarée de chaque bras par image.
+2. **Pièces plates** rendues à la taille finale (112 px) par la même chaîne que l'ancre, une pièce seule
+   par rendu (`tools/` et `art/source/blender/`). Les pièces articulées ont des extrémités fermées ou une
+   pièce de recouvrement à chaque articulation. Le bloc main + outil est UNE seule pièce : le gant tient le
+   manche, il n'est jamais animé à part.
+3. **Assemblage par fichier de pose** : chaque image est un fichier de pose (pièce, variante d'angle,
+   pivot entier, ORDRE D'AFFICHAGE EXPLICITE de bas en haut). La profondeur par pixel ne sert qu'au test de
+   remontage de l'ancre ; pour les poses, c'est l'ordre écrit qui décide (un gant peut passer devant ou
+   derrière le casque, jamais le mélanger avec lui).
+4. **Quatre poses clés d'abord** (armement, frappe en pleine descente, impact, retour). Boucle rapide :
+   une dizaine d'essais par pose, chaque essai rendu et contrôlé. Puis les images intermédiaires.
+5. **Arc de mouvement** : traînée claire dessinée, effet séparé (3 à 4 images, sans contour), qui suggère la
+   trajectoire sans que la pioche contourne le casque.
+6. **Images dessinées** : pour les poses qui résistent à l'assemblage, remplacer la pièce par une image
+   dédiée (torse et bras ensemble à l'impact, gant avec sa prise). Retouche Aseprite autorisée, annoncée
+   dans le journal.
+7. **Export de la feuille** avec tags (nom de l'animation) et durées (en images).
+
+Contrôles (sur les masques de pixels visibles à la taille finale, masques par partie rendus avec la couleur ;
+un échec = on corrige et on recommence ; on ne modifie jamais un contrôle ni une tolérance pour passer) :
+- politique par paire de parties déclarée dans la fiche : interdit (pioche et casque, tolérance 1 à 2 px) ;
+  contact requis (main et pioche, au moins 6 px de recouvrement) ; légal si passage derrière déclaré ;
+  la visibilité d'un bras est déclarée image par image (ce n'est plus un seuil de pourcentage) ;
+- prise gant-poignée à 1 px au plus ; pointe de la pioche à 1 px au plus de la cible sur l'image de contact ;
+  0 pixel d'outil dans le hublot ; aucun trou transparent aux articulations ;
+- confinement du mouvement : les pixels qui changent entre deux images restent dans la zone attendue ;
+- zéro pixel isolé ; images toutes différentes ; palette respectée ; canevas 112 x 112 fixe ; pivots entiers ;
+  hauteur 72 px au plus, outil compris ; tête d'acier d'au moins 12 px de large et 4 px de haut ;
+  boucle fermée (première et dernière pose proches de l'ancre).
+
+Contrôle visuel : pour chaque pose clé puis pour la séquence, regarde en ×4 et ×1, juge les 7 critères de la
+règle de l'œil, plus « la silhouette seule raconte-t-elle le geste de la fiche ? ». Verdict garde ou annule,
+écrit dans le journal. Quand la séquence est complète, un sous-agent relecteur indépendant reçoit la planche
+de contrôle ; les défauts qu'il liste sont corrigés et il est relancé jusqu'à ce qu'il n'en reste aucun.
+
+Si une pose te paraît impossible, ne dis jamais « impossible » sans rapport chiffré : quelle contrainte est
+violée, de combien de pixels.
+
+Fin de lot : planche finale à côté de l'ancre (×4 et ×1), tableau des contrôles (OK ou échec par image), liste
+honnête des écarts restants et des exceptions dessinées, commit, ETAT.md. Puis le lot suivant avec la même
+méthode.

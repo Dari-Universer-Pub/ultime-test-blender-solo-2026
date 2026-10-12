@@ -1,0 +1,15 @@
+MESURES PAR IMAGE (carte d'identite, 112 px ; proche = +X, face a la camera ; repere : proche >= 45 %, lointain >= 40 % ; px visibles)
+image 1 : bras proche 166 px / 75 % ; bras lointain 163 px / 77 % ; jambe proche 214 px / 62 % ; jambe lointaine 151 px / 55 % ; hauteur 58 px
+image 2 : 205 px / 88 % ; 193 px / 82 % ; 180 px / 54 % ; 199 px / 61 % ; hauteur 61 px
+image 3 : 191 px / 80 % ; 192 px / 82 % ; 156 px / 53 % ; 227 px / 66 % ; hauteur 68 px
+image 4 : 152 px / 72 % ; 183 px / 82 % ; 184 px / 58 % ; 201 px / 59 % ; hauteur 60 px
+image 5 : 99 px / 43 % (SOUS LE REPERE) ; 171 px / 77 % ; 145 px / 45 % ; 160 px / 53 % ; hauteur 59 px
+image 6 : 152 px / 72 % ; 191 px / 83 % ; 184 px / 58 % ; 201 px / 59 % ; hauteur 62 px
+image 7 : 197 px / 82 % ; 188 px / 83 % ; 156 px / 53 % ; 228 px / 66 % ; hauteur 69 px
+image 8 : 202 px / 87 % ; 192 px / 82 % ; 180 px / 54 % ; 199 px / 61 % ; hauteur 57 px
+GLOBAL : hauteur 57 a 69 px (56 a 80) OK ; amplitude poignet 0,45 (>= 0,45) juste ; 0 pixel isole apres nettoyage ; 8 images distinctes
+ECART 1 (image 5) : bras proche recouvert par le tronc et la collerette au moment ou il tire vers le bas ; jambe proche a 45 %
+ECART 2 (jambes) : jambes proches entre 53 et 62 % dans six images : elles restent dans l'axe du corps
+ECART 3 (ancre) : corps roule de 70 degres (pose, pas la camera) : la figure est plus large (61 a 64 px) que l'ancre (45 px)
+ECART 4 (style) : couleurs, ombrages et absence de contour identiques a l'ancre ; manches non assombries
+LES TROIS POINTS LES PLUS FAIBLES : 1) image 5, bras proche cache ; 2) jambes proches sous 60 % (proches du repere) ; 3) amplitude a 0,45, a la limite

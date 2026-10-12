@@ -1,0 +1,37 @@
+{
+ "tag": "saut",
+ "canevas": [
+  112,
+  112
+ ],
+ "images": [
+  {
+   "index": 0,
+   "nom": "01_accroupi",
+   "duree_images": 3
+  },
+  {
+   "index": 1,
+   "nom": "02_decollage",
+   "duree_images": 2
+  },
+  {
+   "index": 2,
+   "nom": "03_apex",
+   "duree_images": 3
+  },
+  {
+   "index": 3,
+   "nom": "04_reception",
+   "duree_images": 3
+  }
+ ],
+ "tags": {
+  "saut": {
+   "debut": 0,
+   "fin": 3,
+   "boucle": true
+  }
+ },
+ "total_duree_images": 11
+}

@@ -1,0 +1,45 @@
+{
+  "id": "raie_lanterne",
+  "entrees": [
+    {
+      "changement": "ventre pâle réduit en bande fine sous le disque (échelle 0,70 x 0,26 -> 0,56 x 0,12, centre descendu à -0,14) : le plat blanc ne domine plus la silhouette",
+      "image": "boards/journal/raie_lanterne_avant_apres_1.png",
+      "image_sha256": "207642a2ba569b199e61d29722a25d25e21bebf3b83a66777cce519ac3d67509",
+      "controle": {
+        "silhouette": "Encore un galet avec une queue : les ailes ne dépassent pas du disque, la silhouette de raie n'est pas lue.",
+        "couleurs": "Dos violet caoutchouc, ventre pâle plus fin, organe jaune : rampes de la palette respectées.",
+        "cadrage": "Le corps et la queue tiennent la case, avec une marge à droite pour l'organe lumineux.",
+        "taille": "Aperçu non pixelisé : la mesure à 64 px se fera sur la feuille finale.",
+        "details": "L'œil se lit (blanc et pupille noire) ; le ventre est moins dominant qu'avant.",
+        "coherence_base": "Même pipeline Blender et même palette que les autres créatures.",
+        "pixels_parasites": "Aucun pixel parasite visible sur l'aperçu ; le contrôle à 64 px reste à faire."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "ailes sans envergure : elles restent à l'intérieur du disque, la silhouette de raie n'est pas lue",
+        "queue trop fine à 64 px, risque de disparaître à x1",
+        "contrôle à 64 px pas encore fait (aperçu non pixelisé)"
+      ]
+    },
+    {
+      "changement": "aile avant élargie et haussée (centre (0,48 ; 0 ; 0,04), échelle 0,42 x 0,14 x 0,72) : une nageoire pectorale dépasse le disque",
+      "image": "boards/journal/raie_lanterne_avant_apres_2.png",
+      "image_sha256": "99c253266b55a35842618e2ba135123a952b1f1e887eae938982cee8c178e59f",
+      "controle": {
+        "silhouette": "La nageoire avant dépasse du corps et donne une silhouette de raie ; l'aile arrière reste sous le disque, donc asymétrique.",
+        "couleurs": "Dos violet caoutchouc sur la nageoire, même rampe que le corps : palette respectée.",
+        "cadrage": "La nageoire tient dans la case à droite ; l'organe lumineux touche le bord de la nageoire.",
+        "taille": "Aperçu non pixelisé : la mesure à 64 px se fera sur la feuille finale.",
+        "details": "L'œil est collé au bord de la nageoire mais reste lisible (blanc et pupille noire).",
+        "coherence_base": "Même pipeline Blender et même palette que les autres créatures.",
+        "pixels_parasites": "Aucun pixel parasite sur l'aperçu ; contrôle à 64 px à faire."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "aile arrière trop petite : la silhouette est asymétrique",
+        "œil coincé contre le bord de la nageoire avant",
+        "organe lumineux qui se confond avec le bord de la nageoire"
+      ]
+    }
+  ]
+}

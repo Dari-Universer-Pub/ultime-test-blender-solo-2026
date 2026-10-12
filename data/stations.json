@@ -1,0 +1,34 @@
+{
+  "stations": [
+    {
+      "id": "etabli_radeau",
+      "nom": "Établi du radeau",
+      "description": "Établi de planches et de tôle, posé dès le premier jour sur le radeau. On y coud la toile, on y tord les cordes et on y forge les premiers outils de bois.",
+      "debloque_par": null
+    },
+    {
+      "id": "forge_radeau",
+      "nom": "Forge du radeau",
+      "description": "Petite forge à soufflet installée sur le radeau une fois le module de forge monté. Elle étire le fil de cuivre et sert à monter les pièces de scaphandre.",
+      "debloque_par": "module_forge"
+    },
+    {
+      "id": "laboratoire_cloche",
+      "nom": "Laboratoire de la cloche",
+      "description": "Table de verre et de fioles, réservée aux pièces de cristal, aux lentilles et aux remèdes. Elle ne fonctionne qu'avec le laboratoire portable monté sur le radeau.",
+      "debloque_par": "module_laboratoire"
+    },
+    {
+      "id": "chantier_sous_marin",
+      "nom": "Chantier sous-marin",
+      "description": "Cale de montage pour les véhicules sous-marins. Elle tient les coques pendant la soudure, et on n'y construit rien sans le module de chantier.",
+      "debloque_par": "module_chantier"
+    },
+    {
+      "id": "cuve_de_conservation",
+      "nom": "Cuve de conservation",
+      "description": "Cuve de bois goudronné qui garde les vivres au sec. Elle sert à cuire les biscuits et à presser les rations, à condition d'en avoir monté le module.",
+      "debloque_par": "module_cuve"
+    }
+  ]
+}

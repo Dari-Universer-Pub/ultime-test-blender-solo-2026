@@ -1,0 +1,17 @@
+{
+  "palier": 0,
+  "inventaire": [
+    {
+      "item": "radeau_de_fortune",
+      "qte": 1
+    },
+    {
+      "item": "couteau_de_plongee",
+      "qte": 1
+    },
+    {
+      "item": "reservoir_oxygene",
+      "qte": 1
+    }
+  ]
+}

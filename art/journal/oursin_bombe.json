@@ -1,0 +1,168 @@
+{
+  "entrees": [
+    {
+      "changement": "premier rendu de l'oursin : sphère cuivre et 14 piquants radiaux, animations nage, attaque et mort (rendu 512 px, pas encore pixelisé)",
+      "image": "boards/journal/oursin_bombe_1.png",
+      "image_sha256": "cfc230c901f60453850be37841cd2440a6a79fd9c8e6a6c9856d364946c9f466",
+      "controle": {
+        "silhouette": "Sphère épineuse en étoile : le contour reste rond et hérissé, reconnaissable d'un coup d'œil.",
+        "couleurs": "Le bronze de la rampe cuivre domine ; le côté ombré passe au brun foncé, sans couleur hors rampe.",
+        "cadrage": "L'oursin tient la case avec une marge de quelques pixels de chaque côté ; environ 47 px de haut sur 64 à ce stade.",
+        "taille": "Mesure à faire après pixelisation (cible 36 à 46 px) ; le rendu brut dépasse un peu la cible.",
+        "details": "Les piquants se détachent du corps ; en attaque ils s'allongent nettement, en mort ils se raccourcissent et le corps s'affaisse.",
+        "coherence_base": "Même rampe cuivre que les autres objets de bronze du biome ; palette conforme.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "bande claire plate sur le dessus : palier de lumière trop net",
+        "piquants fins : risque de disparaître à 64 px, à épaissir à la pixelisation"
+      ]
+    },
+    {
+      "changement": "pixelisation de l'oursin à 64 px (facteur 8, palette du projet) : nage 8, attaque 4, mort 6 rassemblés dans une feuille à 3 étiquettes",
+      "image": "boards/oursin_bombe_pixel_1.png",
+      "image_sha256": "ef1e6fc1aab0e991c11d1cbd08b1d4cc72dfc5cbd6d041054d9aabd85b644ad1",
+      "controle": {
+        "silhouette": "La sphère épineuse se lit à 64 px : le contour hérissé reste reconnaissable à l'œil nu.",
+        "couleurs": "Les tons de la rampe cuivre sont conservés (clair, moyen, brun) ; les piquants prennent le ton clair du bronze.",
+        "cadrage": "L'oursin occupe environ 42 px sur 64 : il remplit sa case avec une marge régulière.",
+        "taille": "Mesure : 42 px de haut au repos ; la cible 36 à 46 px est tenue sur les trois animations.",
+        "details": "Les piquants sont fins et parfois coupés à 1 px ; l'attaque les allonge bien, la mort les raccourcit.",
+        "coherence_base": "Même pipeline et même palette que le plongeur et les autres créatures du biome.",
+        "pixels_parasites": "Un liseré clair très marqué entoure les piquants et le haut du corps ; une petite tache sombre reste au centre-gauche."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "piquants fins et coupés à 1 px : à épaissir en finition",
+        "liseré clair trop fort sur le contour : à atténuer en finition",
+        "tache sombre centre-gauche : à retirer ou à rendre plus nette"
+      ]
+    },
+    {
+      "changement": "œil : globe blanc de 0,075 et pupille noire de 0,6 du rayon, posés côté caméra sur la face visible (0,12 ; -0,36 ; 0,12)",
+      "image": "boards/journal/oursin_bombe_3.png",
+      "image_sha256": "660cd901f7c518733466ae699805196d0488163c5cd97d829c0d40c1244ab95f",
+      "controle": {
+        "silhouette": "Un œil apparaît sur la face avant : l'oursin a maintenant une tête lisible.",
+        "couleurs": "Blanc et noir de la rampe metal et caoutchouc, contraste fort sur le bronze.",
+        "cadrage": "L'œil reste dans le contour de la sphère ; le cadre ne change pas.",
+        "taille": "Globe d'environ 0,15 unité, soit environ 5 px sur 64 : au-dessus du minimum de 2 px.",
+        "details": "La pupille noire se détache nettement du blanc et du bronze.",
+        "coherence_base": "Même outil d'œil que la carangue et le poisson volant.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "attaque : piques encore trop courts pour se voir",
+        "mort : affaissement à rendre visible"
+      ]
+    },
+    {
+      "changement": "attaque : échelle des piquants en attaque portée de 1,25-1,45 à 1,70-2,30 (sommet à l'image 10) ; le corps reste gonflé de 1,04 à 1,08",
+      "image": "boards/journal/oursin_bombe_4.png",
+      "image_sha256": "5fdc564609145368d42906c05a825da8a38234b5eadc3f286d73ca3bbeb3b4ee",
+      "controle": {
+        "silhouette": "L'oursin se hérisse : les piquants sortent nettement de la sphère, l'attaque se voit d'un coup d'œil.",
+        "couleurs": "Bronze et brun de la rampe cuivre inchangés.",
+        "cadrage": "Les piquants les plus longs restent dans la case (marge d'environ 2 px en haut).",
+        "taille": "Pas mesurée ici : rendu brut 512 px ; à mesurer après pixelisation.",
+        "details": "Les piquants allongés se détachent de l'œil et du corps ; le geste d'avertissement est lisible.",
+        "coherence_base": "Même pipeline que la version précédente.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "mort : affaissement et chute des piquants à rendre visibles",
+        "cadrage à vérifier après pixelisation (piquants hauts)"
+      ]
+    },
+    {
+      "changement": "mort : le corps s'aplatit (z x 0,55) et s'enfonce de 0,12 ; les piquants raccourcissent jusqu'à 0,4 et pendent sur le côté",
+      "image": "boards/journal/oursin_bombe_5.png",
+      "image_sha256": "11998e6018f24699f11ec01d2ad6f99fac9aa6881bf69c5ec243c27646f1364f",
+      "controle": {
+        "silhouette": "L'oursin s'affaisse en galette et ses piquants ne sont plus dressés : la mort se lit.",
+        "couleurs": "Bronze et brun inchangés.",
+        "cadrage": "L'oursin reste dans la case ; la galette est plus large qu'avant mais reste dans le cadre.",
+        "taille": "Pas mesurée ici : rendu brut 512 px.",
+        "details": "Les piquants courts sont visibles sur les côtés ; l'œil reste lisible.",
+        "coherence_base": "Même pipeline ; la galette est dans la même palette.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "piquants courts en mort : à rendre plus visiblement tombés en finition",
+        "mesure après pixelisation"
+      ]
+    },
+    {
+      "changement": "pixelisation de l'oursin au nouveau rendu (œil, piquants allongés en attaque, affaissement en mort) : nage 8, attaque 4, mort 6 dans une feuille à 3 étiquettes",
+      "image": "boards/oursin_bombe_pixel_2.png",
+      "image_sha256": "7940cffa4c00afbedf63c2cfe5a18e439afb4717a209250ad0352d3a885dd2c4",
+      "controle": {
+        "silhouette": "L'oursin se lit : œil sur la face, piquants qui jaillissent en attaque, galette et piquants courts en mort.",
+        "couleurs": "Bronze, brun et liseré clair de la rampe cuivre : palette conforme.",
+        "cadrage": "L'oursin tient la case avec une marge régulière ; les piquants les plus longs restent dans la case.",
+        "taille": "Mesure (tools/mesure/mesurer.py) : hauteur 41 à 42 px, largeur 41 à 42 px : dans la cible 36 à 46 px.",
+        "details": "L'œil est petit (environ 3 px) mais se distingue ; la pupille noire et le blanc sont lisibles.",
+        "coherence_base": "Même pipeline et même palette que les autres créatures.",
+        "pixels_parasites": "Liseré clair marqué sur les piquants ; quelques piquants à 1 px."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "œil petit (3 px) : à agrandir légèrement en finition",
+        "piquants fins à 1 px : à épaissir en finition",
+        "mort : galette lisible mais pas encore tombée"
+      ]
+    },
+    {
+      "changement": "itération Aseprite 2 : lisière cyan du côté droit (x 30-48, y 19-40, 294 px) passée au brun clair #b88a6a",
+      "image": "boards/journal/oursin_bombe_6.png",
+      "image_sha256": "c6ed0ed0d169328fe2f792ac508984b98a08f32120d1d02dbef74148dda7bbaf",
+      "controle": {
+        "silhouette": "Inchangée : le contour de la sphère et des piquants est le même.",
+        "couleurs": "#b88a6a est dans la rampe cuivre, comme le corps ; le glaçage cyan disparaît du côté droit.",
+        "cadrage": "Inchangé par ce changement : le cadre reste celui de l'entrée précédente.",
+        "taille": "Non mesurée à ce stade (rendu brut) : la hauteur se mesure après pixelisation.",
+        "details": "Le côté éclairé se lit mieux ; l'œil n'est pas touché.",
+        "coherence_base": "Même rampe cuivre que le corps.",
+        "pixels_parasites": "Aucun pixel ajouté."
+      },
+      "verdict": "garde",
+      "defauts_restants": []
+    },
+    {
+      "changement": "itération Aseprite 3 : contour cyan restant de tout le pourtour (x 10-56, y 4-50) passé au cyan atténué #7aa0a8 (1449 px, avec piquants)",
+      "image": "boards/journal/oursin_bombe_7.png",
+      "image_sha256": "a0ce28715b1816c6c71f99ad85b756979effcb3b40e24b96cb2b7510e318dc08",
+      "controle": {
+        "silhouette": "Inchangée : même contour, le liseré est moins brillant.",
+        "couleurs": "#7aa0a8 est dans la rampe metal ; le contour reste bleuté mais ne brille plus.",
+        "cadrage": "Inchangé par ce changement : le cadre reste celui de l'entrée précédente.",
+        "taille": "Non mesurée à ce stade (rendu brut) : la hauteur se mesure après pixelisation.",
+        "details": "Une première version (piquants éclaircis) a été annulée : elle aplatissait le dégradé brun du corps. Celle-ci garde le volume.",
+        "coherence_base": "Même famille bulle que la carangue, cohérence du biome.",
+        "pixels_parasites": "Aucun pixel ajouté."
+      },
+      "verdict": "garde",
+      "defauts_restants": []
+    },
+    {
+      "changement": "itération Aseprite 4 : ventre brun-rouge #5e3a3a passé au brun moyen #8e5a3a (x 14-40, y 36-46, 455 px)",
+      "image": "boards/journal/oursin_bombe_8.png",
+      "image_sha256": "84553c02521de3d3f070cb55a267208f1ae98de48af94e67a13abf86d18a4062",
+      "controle": {
+        "silhouette": "Non réévalué par ce changement : voir la comparaison jointe pour ce critère.",
+        "couleurs": "#8e5a3a est dans la rampe cuivre ; le bas se détache du fond bleu-noir.",
+        "cadrage": "Inchangé par ce changement : le cadre reste celui de l'entrée précédente.",
+        "taille": "Non mesurée à ce stade (rendu brut) : la hauteur se mesure après pixelisation.",
+        "details": "Le bas du corps reste plus sombre que le haut : le volume se lit toujours.",
+        "coherence_base": "Même rampe cuivre.",
+        "pixels_parasites": "Aucun pixel ajouté."
+      },
+      "verdict": "garde",
+      "defauts_restants": []
+    }
+  ]
+}

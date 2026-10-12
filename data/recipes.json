@@ -1,0 +1,841 @@
+{
+  "recipes": [
+    {
+      "id": "r_module_forge",
+      "resultat": "module_forge",
+      "quantite": 1,
+      "station": "etabli_radeau",
+      "palier": 0,
+      "ingredients": [
+        {
+          "item": "tole_rouillee",
+          "qte": 3
+        },
+        {
+          "item": "planche_epave",
+          "qte": 2
+        }
+      ]
+    },
+    {
+      "id": "r_module_cuve",
+      "resultat": "module_cuve",
+      "quantite": 1,
+      "station": "etabli_radeau",
+      "palier": 0,
+      "ingredients": [
+        {
+          "item": "planche_epave",
+          "qte": 2
+        },
+        {
+          "item": "tole_rouillee",
+          "qte": 2
+        }
+      ]
+    },
+    {
+      "id": "r_caisse_de_stockage",
+      "resultat": "caisse_de_stockage",
+      "quantite": 1,
+      "station": "etabli_radeau",
+      "palier": 0,
+      "ingredients": [
+        {
+          "item": "planche_epave",
+          "qte": 3
+        },
+        {
+          "item": "corde_chanvre",
+          "qte": 2
+        }
+      ]
+    },
+    {
+      "id": "r_pioche_de_recif",
+      "resultat": "pioche_de_recif",
+      "quantite": 1,
+      "station": "etabli_radeau",
+      "palier": 0,
+      "ingredients": [
+        {
+          "item": "tole_rouillee",
+          "qte": 2
+        },
+        {
+          "item": "planche_epave",
+          "qte": 1
+        },
+        {
+          "item": "corde_chanvre",
+          "qte": 1
+        }
+      ]
+    },
+    {
+      "id": "r_filet_de_peche",
+      "resultat": "filet_de_peche",
+      "quantite": 1,
+      "station": "etabli_radeau",
+      "palier": 0,
+      "ingredients": [
+        {
+          "item": "corde_chanvre",
+          "qte": 2
+        },
+        {
+          "item": "toile_voile",
+          "qte": 1
+        }
+      ]
+    },
+    {
+      "id": "r_harpon_de_bois",
+      "resultat": "harpon_de_bois",
+      "quantite": 1,
+      "station": "etabli_radeau",
+      "palier": 0,
+      "ingredients": [
+        {
+          "item": "planche_epave",
+          "qte": 2
+        },
+        {
+          "item": "corde_chanvre",
+          "qte": 1
+        }
+      ]
+    },
+    {
+      "id": "r_scaphandre_toile",
+      "resultat": "scaphandre_toile",
+      "quantite": 1,
+      "station": "etabli_radeau",
+      "palier": 0,
+      "ingredients": [
+        {
+          "item": "toile_voile",
+          "qte": 3
+        },
+        {
+          "item": "corde_chanvre",
+          "qte": 2
+        }
+      ]
+    },
+    {
+      "id": "r_lampe_frontale",
+      "resultat": "lampe_frontale",
+      "quantite": 1,
+      "station": "etabli_radeau",
+      "palier": 0,
+      "ingredients": [
+        {
+          "item": "tole_rouillee",
+          "qte": 2
+        },
+        {
+          "item": "resine_de_corail",
+          "qte": 1
+        }
+      ]
+    },
+    {
+      "id": "r_palmes_de_toile",
+      "resultat": "palmes_de_toile",
+      "quantite": 1,
+      "station": "etabli_radeau",
+      "palier": 0,
+      "ingredients": [
+        {
+          "item": "toile_voile",
+          "qte": 2
+        },
+        {
+          "item": "corde_chanvre",
+          "qte": 1
+        }
+      ]
+    },
+    {
+      "id": "r_ration_algue",
+      "resultat": "ration_algue",
+      "quantite": 1,
+      "station": "etabli_radeau",
+      "palier": 0,
+      "ingredients": [
+        {
+          "item": "algue_sechee",
+          "qte": 3
+        }
+      ]
+    },
+    {
+      "id": "r_biscuit_marin",
+      "resultat": "biscuit_marin",
+      "quantite": 1,
+      "station": "cuve_de_conservation",
+      "palier": 0,
+      "ingredients": [
+        {
+          "item": "algue_sechee",
+          "qte": 2
+        },
+        {
+          "item": "toile_voile",
+          "qte": 1
+        }
+      ]
+    },
+    {
+      "id": "r_gants_de_recif",
+      "resultat": "gants_de_recif",
+      "quantite": 1,
+      "station": "etabli_radeau",
+      "palier": 1,
+      "ingredients": [
+        {
+          "item": "toile_voile",
+          "qte": 2
+        },
+        {
+          "item": "corde_chanvre",
+          "qte": 2
+        },
+        {
+          "item": "resine_de_corail",
+          "qte": 1
+        }
+      ]
+    },
+    {
+      "id": "r_ceinture_de_plomb",
+      "resultat": "ceinture_de_plomb",
+      "quantite": 1,
+      "station": "etabli_radeau",
+      "palier": 1,
+      "ingredients": [
+        {
+          "item": "fer_de_fond",
+          "qte": 2
+        },
+        {
+          "item": "corde_chanvre",
+          "qte": 1
+        }
+      ]
+    },
+    {
+      "id": "r_fusee_de_detresse",
+      "resultat": "fusee_de_detresse",
+      "quantite": 1,
+      "station": "etabli_radeau",
+      "palier": 1,
+      "ingredients": [
+        {
+          "item": "tole_rouillee",
+          "qte": 1
+        },
+        {
+          "item": "resine_de_corail",
+          "qte": 1
+        },
+        {
+          "item": "algue_sechee",
+          "qte": 1
+        }
+      ]
+    },
+    {
+      "id": "r_bouee_de_signal",
+      "resultat": "bouee_de_signal",
+      "quantite": 1,
+      "station": "etabli_radeau",
+      "palier": 1,
+      "ingredients": [
+        {
+          "item": "tole_rouillee",
+          "qte": 2
+        },
+        {
+          "item": "corde_chanvre",
+          "qte": 1
+        },
+        {
+          "item": "fil_de_cuivre",
+          "qte": 1
+        }
+      ]
+    },
+    {
+      "id": "r_capsule_oxygene",
+      "resultat": "capsule_oxygene",
+      "quantite": 1,
+      "station": "etabli_radeau",
+      "palier": 1,
+      "ingredients": [
+        {
+          "item": "algue_sechee",
+          "qte": 2
+        },
+        {
+          "item": "resine_de_corail",
+          "qte": 1
+        }
+      ]
+    },
+    {
+      "id": "r_fil_de_cuivre",
+      "resultat": "fil_de_cuivre",
+      "quantite": 1,
+      "station": "forge_radeau",
+      "palier": 1,
+      "ingredients": [
+        {
+          "item": "cuivre_brut",
+          "qte": 2
+        }
+      ]
+    },
+    {
+      "id": "r_module_laboratoire",
+      "resultat": "module_laboratoire",
+      "quantite": 1,
+      "station": "forge_radeau",
+      "palier": 1,
+      "ingredients": [
+        {
+          "item": "fil_de_cuivre",
+          "qte": 2
+        },
+        {
+          "item": "quartz_bleu",
+          "qte": 1
+        },
+        {
+          "item": "tole_rouillee",
+          "qte": 2
+        }
+      ]
+    },
+    {
+      "id": "r_scaphandre_cuivre",
+      "resultat": "scaphandre_cuivre",
+      "quantite": 1,
+      "station": "forge_radeau",
+      "palier": 1,
+      "ingredients": [
+        {
+          "item": "cuivre_brut",
+          "qte": 4
+        },
+        {
+          "item": "fil_de_cuivre",
+          "qte": 3
+        },
+        {
+          "item": "toile_voile",
+          "qte": 3
+        }
+      ]
+    },
+    {
+      "id": "r_module_chantier",
+      "resultat": "module_chantier",
+      "quantite": 1,
+      "station": "forge_radeau",
+      "palier": 2,
+      "ingredients": [
+        {
+          "item": "cuivre_brut",
+          "qte": 4
+        },
+        {
+          "item": "planche_epave",
+          "qte": 3
+        },
+        {
+          "item": "fil_de_cuivre",
+          "qte": 2
+        }
+      ]
+    },
+    {
+      "id": "r_pioche_de_cuivre",
+      "resultat": "pioche_de_cuivre",
+      "quantite": 1,
+      "station": "forge_radeau",
+      "palier": 2,
+      "ingredients": [
+        {
+          "item": "cuivre_brut",
+          "qte": 2
+        },
+        {
+          "item": "fil_de_cuivre",
+          "qte": 1
+        }
+      ]
+    },
+    {
+      "id": "r_harpon_de_cuivre",
+      "resultat": "harpon_de_cuivre",
+      "quantite": 1,
+      "station": "forge_radeau",
+      "palier": 2,
+      "ingredients": [
+        {
+          "item": "cuivre_brut",
+          "qte": 3
+        },
+        {
+          "item": "fil_de_cuivre",
+          "qte": 1
+        },
+        {
+          "item": "planche_epave",
+          "qte": 1
+        }
+      ]
+    },
+    {
+      "id": "r_combinaison_caoutchouc",
+      "resultat": "combinaison_caoutchouc",
+      "quantite": 1,
+      "station": "forge_radeau",
+      "palier": 2,
+      "ingredients": [
+        {
+          "item": "caoutchouc_brut",
+          "qte": 4
+        },
+        {
+          "item": "fil_de_cuivre",
+          "qte": 2
+        },
+        {
+          "item": "ecaille_de_raie",
+          "qte": 2
+        }
+      ]
+    },
+    {
+      "id": "r_antidote_sel",
+      "resultat": "antidote_sel",
+      "quantite": 1,
+      "station": "laboratoire_cloche",
+      "palier": 2,
+      "ingredients": [
+        {
+          "item": "algue_sechee",
+          "qte": 2
+        },
+        {
+          "item": "quartz_bleu",
+          "qte": 1
+        }
+      ]
+    },
+    {
+      "id": "r_sonar_de_poche",
+      "resultat": "sonar_de_poche",
+      "quantite": 1,
+      "station": "laboratoire_cloche",
+      "palier": 2,
+      "ingredients": [
+        {
+          "item": "quartz_bleu",
+          "qte": 2
+        },
+        {
+          "item": "fil_de_cuivre",
+          "qte": 1
+        },
+        {
+          "item": "tole_rouillee",
+          "qte": 1
+        }
+      ]
+    },
+    {
+      "id": "r_lunettes_de_nuit",
+      "resultat": "lunettes_de_nuit",
+      "quantite": 1,
+      "station": "laboratoire_cloche",
+      "palier": 3,
+      "ingredients": [
+        {
+          "item": "verre_cloche",
+          "qte": 1
+        },
+        {
+          "item": "quartz_bleu",
+          "qte": 1
+        }
+      ]
+    },
+    {
+      "id": "r_bathyscaphe_leger",
+      "resultat": "bathyscaphe_leger",
+      "quantite": 1,
+      "station": "chantier_sous_marin",
+      "palier": 3,
+      "ingredients": [
+        {
+          "item": "fer_de_fond",
+          "qte": 6
+        },
+        {
+          "item": "verre_cloche",
+          "qte": 3
+        },
+        {
+          "item": "caoutchouc_brut",
+          "qte": 3
+        }
+      ]
+    },
+    {
+      "id": "r_cloche_de_verre",
+      "resultat": "cloche_de_verre",
+      "quantite": 1,
+      "station": "laboratoire_cloche",
+      "palier": 3,
+      "ingredients": [
+        {
+          "item": "verre_cloche",
+          "qte": 4
+        },
+        {
+          "item": "fer_de_fond",
+          "qte": 2
+        },
+        {
+          "item": "caoutchouc_brut",
+          "qte": 1
+        }
+      ]
+    },
+    {
+      "id": "r_pince_hydraulique",
+      "resultat": "pince_hydraulique",
+      "quantite": 1,
+      "station": "laboratoire_cloche",
+      "palier": 4,
+      "ingredients": [
+        {
+          "item": "fer_de_fond",
+          "qte": 2
+        },
+        {
+          "item": "fil_de_cuivre",
+          "qte": 2
+        },
+        {
+          "item": "caoutchouc_brut",
+          "qte": 1
+        }
+      ]
+    },
+    {
+      "id": "r_fusil_a_air_comprime",
+      "resultat": "fusil_a_air_comprime",
+      "quantite": 1,
+      "station": "laboratoire_cloche",
+      "palier": 4,
+      "ingredients": [
+        {
+          "item": "verre_cloche",
+          "qte": 2
+        },
+        {
+          "item": "fer_de_fond",
+          "qte": 3
+        },
+        {
+          "item": "caoutchouc_brut",
+          "qte": 1
+        }
+      ]
+    },
+    {
+      "id": "r_recycleur_thermique",
+      "resultat": "recycleur_thermique",
+      "quantite": 1,
+      "station": "laboratoire_cloche",
+      "palier": 4,
+      "ingredients": [
+        {
+          "item": "soufre_thermal",
+          "qte": 3
+        },
+        {
+          "item": "verre_cloche",
+          "qte": 2
+        },
+        {
+          "item": "fer_de_fond",
+          "qte": 2
+        }
+      ]
+    },
+    {
+      "id": "r_pastille_thermique",
+      "resultat": "pastille_thermique",
+      "quantite": 1,
+      "station": "laboratoire_cloche",
+      "palier": 4,
+      "ingredients": [
+        {
+          "item": "soufre_thermal",
+          "qte": 1
+        },
+        {
+          "item": "algue_sechee",
+          "qte": 2
+        }
+      ]
+    },
+    {
+      "id": "r_exo_pression",
+      "resultat": "exo_pression",
+      "quantite": 1,
+      "station": "laboratoire_cloche",
+      "palier": 5,
+      "ingredients": [
+        {
+          "item": "fer_de_fond",
+          "qte": 4
+        },
+        {
+          "item": "nodule_manganese",
+          "qte": 3
+        },
+        {
+          "item": "caoutchouc_brut",
+          "qte": 2
+        }
+      ]
+    },
+    {
+      "id": "r_sous_marin_de_poche",
+      "resultat": "sous_marin_de_poche",
+      "quantite": 1,
+      "station": "chantier_sous_marin",
+      "palier": 5,
+      "ingredients": [
+        {
+          "item": "fer_de_fond",
+          "qte": 8
+        },
+        {
+          "item": "nodule_manganese",
+          "qte": 4
+        },
+        {
+          "item": "verre_cloche",
+          "qte": 4
+        }
+      ]
+    },
+    {
+      "id": "r_foret_abyssal",
+      "resultat": "foret_abyssal",
+      "quantite": 1,
+      "station": "laboratoire_cloche",
+      "palier": 6,
+      "ingredients": [
+        {
+          "item": "titane_de_cite",
+          "qte": 2
+        },
+        {
+          "item": "fer_de_fond",
+          "qte": 3
+        }
+      ]
+    },
+    {
+      "id": "r_lance_de_cite",
+      "resultat": "lance_de_cite",
+      "quantite": 1,
+      "station": "laboratoire_cloche",
+      "palier": 6,
+      "ingredients": [
+        {
+          "item": "titane_de_cite",
+          "qte": 2
+        },
+        {
+          "item": "eclat_de_signal",
+          "qte": 2
+        }
+      ]
+    },
+    {
+      "id": "r_resonateur_abyssal",
+      "resultat": "resonateur_abyssal",
+      "quantite": 1,
+      "station": "laboratoire_cloche",
+      "palier": 6,
+      "ingredients": [
+        {
+          "item": "argent_abyssal",
+          "qte": 3
+        },
+        {
+          "item": "eclat_de_signal",
+          "qte": 2
+        },
+        {
+          "item": "titane_de_cite",
+          "qte": 1
+        }
+      ]
+    },
+    {
+      "id": "r_sous_marin_geant",
+      "resultat": "sous_marin_geant",
+      "quantite": 1,
+      "station": "chantier_sous_marin",
+      "palier": 7,
+      "ingredients": [
+        {
+          "item": "titane_de_cite",
+          "qte": 6
+        },
+        {
+          "item": "eclat_de_signal",
+          "qte": 4
+        },
+        {
+          "item": "exo_pression",
+          "qte": 1
+        },
+        {
+          "item": "resonateur_abyssal",
+          "qte": 1
+        }
+      ]
+    },
+    {
+      "id": "r_fil_de_cuivre_etabli",
+      "resultat": "fil_de_cuivre",
+      "quantite": 2,
+      "station": "etabli_radeau",
+      "palier": 0,
+      "ingredients": [
+        {
+          "item": "cuivre_brut",
+          "qte": 2
+        }
+      ]
+    },
+    {
+      "id": "r_ration_algue_cuve",
+      "resultat": "ration_algue",
+      "quantite": 3,
+      "station": "cuve_de_conservation",
+      "palier": 0,
+      "ingredients": [
+        {
+          "item": "algue_sechee",
+          "qte": 3
+        }
+      ]
+    },
+    {
+      "id": "r_capsule_oxygene_labo",
+      "resultat": "capsule_oxygene",
+      "quantite": 2,
+      "station": "laboratoire_cloche",
+      "palier": 2,
+      "ingredients": [
+        {
+          "item": "algue_sechee",
+          "qte": 2
+        },
+        {
+          "item": "caoutchouc_brut",
+          "qte": 1
+        }
+      ]
+    },
+    {
+      "id": "r_caisse_de_stockage_forge",
+      "resultat": "caisse_de_stockage",
+      "quantite": 1,
+      "station": "forge_radeau",
+      "palier": 1,
+      "ingredients": [
+        {
+          "item": "planche_epave",
+          "qte": 2
+        },
+        {
+          "item": "tole_rouillee",
+          "qte": 2
+        }
+      ]
+    },
+    {
+      "id": "r_pioche_de_recif_forge",
+      "resultat": "pioche_de_recif",
+      "quantite": 1,
+      "station": "forge_radeau",
+      "palier": 1,
+      "ingredients": [
+        {
+          "item": "tole_rouillee",
+          "qte": 2
+        },
+        {
+          "item": "planche_epave",
+          "qte": 1
+        },
+        {
+          "item": "cuivre_brut",
+          "qte": 1
+        }
+      ]
+    },
+    {
+      "id": "r_palmes_de_toile_forge",
+      "resultat": "palmes_de_toile",
+      "quantite": 1,
+      "station": "forge_radeau",
+      "palier": 1,
+      "ingredients": [
+        {
+          "item": "toile_voile",
+          "qte": 3
+        },
+        {
+          "item": "corde_chanvre",
+          "qte": 1
+        }
+      ]
+    },
+    {
+      "id": "r_lampe_frontale_labo",
+      "resultat": "lampe_frontale",
+      "quantite": 1,
+      "station": "laboratoire_cloche",
+      "palier": 2,
+      "ingredients": [
+        {
+          "item": "tole_rouillee",
+          "qte": 1
+        },
+        {
+          "item": "quartz_bleu",
+          "qte": 1
+        },
+        {
+          "item": "fil_de_cuivre",
+          "qte": 1
+        }
+      ]
+    }
+  ]
+}

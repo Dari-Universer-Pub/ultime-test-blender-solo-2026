@@ -1,0 +1,42 @@
+{
+ "nom": "01_accroupi",
+ "phi_deg": 0,
+ "calques": [
+  "jambes",
+  "torse",
+  "bras_g_haut",
+  "bras_g_avant",
+  "cap_coude_g",
+  "cap_epaule_g",
+  "bras_d_haut",
+  "cap_epaule_d",
+  "bras_d_avant",
+  "cap_coude_d",
+  "casque",
+  "gant_d"
+ ],
+ "epaules_suivent_buste": true,
+ "chaine": {
+  "buste": [
+   0,
+   4
+  ],
+  "casque": [
+   0,
+   4
+  ],
+  "jambes": [
+   0,
+   0
+  ],
+  "bras_g": {
+   "haut": -15,
+   "avant": -15
+  },
+  "bras_d": {
+   "haut": -15,
+   "avant": -15
+  }
+ },
+ "angle_pioche_fiche_deg": null
+}

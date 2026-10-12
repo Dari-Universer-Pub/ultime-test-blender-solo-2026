@@ -1,0 +1,1104 @@
+{
+  "items": [
+    {
+      "id": "toile_voile",
+      "nom": "Toile de voile",
+      "categorie": "materiau",
+      "palier": 0,
+      "description": "Toile de voile épaisse, cirée et raidie par le sel. On la découpe pour les vêtements, les voiles de fortune et les pansements.",
+      "effets": {},
+      "obtention": [
+        {
+          "type": "biome",
+          "ref": "radeau_surface"
+        }
+      ]
+    },
+    {
+      "id": "corde_chanvre",
+      "nom": "Corde de chanvre",
+      "categorie": "materiau",
+      "palier": 0,
+      "description": "Cordage tressé en chanvre, gonflé d'eau mais solide. Indispensable pour lier les planches et remonter une charge depuis le fond.",
+      "effets": {},
+      "obtention": [
+        {
+          "type": "biome",
+          "ref": "radeau_surface"
+        }
+      ]
+    },
+    {
+      "id": "planche_epave",
+      "nom": "Planche d'épave",
+      "categorie": "materiau",
+      "palier": 0,
+      "description": "Planche de chêne arrachée à une épave, grise de sel et percée de vers. Elle flotte encore assez pour servir de base au radeau.",
+      "effets": {},
+      "obtention": [
+        {
+          "type": "biome",
+          "ref": "radeau_surface"
+        }
+      ]
+    },
+    {
+      "id": "tole_rouillee",
+      "nom": "Tôle rouillée",
+      "categorie": "materiau",
+      "palier": 0,
+      "description": "Plaque de tôle prélevée sur une coque. Rouillée sur les bords, elle reste assez saine pour renforcer un bâti ou fermer une ouverture.",
+      "effets": {},
+      "obtention": [
+        {
+          "type": "biome",
+          "ref": "radeau_surface"
+        }
+      ]
+    },
+    {
+      "id": "resine_de_corail",
+      "nom": "Résine de corail",
+      "categorie": "materiau",
+      "palier": 0,
+      "description": "Résine blanche sécrétée par certains coraux. Collante, elle tient sous l'eau et sert de colle aux plongeurs qui réparent leur matériel.",
+      "effets": {},
+      "obtention": [
+        {
+          "type": "biome",
+          "ref": "recif_peu_profond"
+        }
+      ]
+    },
+    {
+      "id": "algue_sechee",
+      "nom": "Algue séchée",
+      "categorie": "materiau",
+      "palier": 0,
+      "description": "Lanières d'algue pressées et séchées. Peu goûteuses, elles nourrissent, se conservent longtemps et servent de bourrage.",
+      "effets": {},
+      "obtention": [
+        {
+          "type": "biome",
+          "ref": "recif_peu_profond"
+        },
+        {
+          "type": "biome",
+          "ref": "foret_de_kelp"
+        }
+      ]
+    },
+    {
+      "id": "fil_de_cuivre",
+      "nom": "Fil de cuivre",
+      "categorie": "materiau",
+      "palier": 1,
+      "description": "Fil de cuivre étiré à la main, souple et conducteur. Il relie les lampes, les conduits et les capteurs des cloches.",
+      "effets": {},
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_fil_de_cuivre"
+        },
+        {
+          "type": "recette",
+          "ref": "r_fil_de_cuivre_etabli"
+        }
+      ]
+    },
+    {
+      "id": "ecaille_de_raie",
+      "nom": "Écaille de raie",
+      "categorie": "materiau",
+      "palier": 1,
+      "description": "Écaille translucide de raie lanterne, dure comme de la corne. Elle protège les coutures et s'use peu sous la pression.",
+      "effets": {},
+      "obtention": [
+        {
+          "type": "biome",
+          "ref": "fosse_sombre"
+        },
+        {
+          "type": "butin",
+          "ref": "raie_lanterne"
+        }
+      ]
+    },
+    {
+      "id": "caoutchouc_brut",
+      "nom": "Caoutchouc brut",
+      "categorie": "materiau",
+      "palier": 2,
+      "description": "Latex brut tiré de la sève du kelp, souple et résistant à la pression. Il sert aux joints, aux tuyaux et aux combinaisons.",
+      "effets": {},
+      "obtention": [
+        {
+          "type": "biome",
+          "ref": "foret_de_kelp"
+        },
+        {
+          "type": "butin",
+          "ref": "calmar_ruban"
+        }
+      ]
+    },
+    {
+      "id": "verre_cloche",
+      "nom": "Verre de cloche",
+      "categorie": "materiau",
+      "palier": 3,
+      "description": "Verre épais des anciens conduits, teinté de bleu et sonore au toucher. Il résiste à la pression profonde et fait de bonnes vitres.",
+      "effets": {},
+      "obtention": [
+        {
+          "type": "biome",
+          "ref": "banc_de_verre"
+        },
+        {
+          "type": "butin",
+          "ref": "crabe_cristal"
+        }
+      ]
+    },
+    {
+      "id": "vase_bioluminescente",
+      "nom": "Vase bioluminescente",
+      "categorie": "materiau",
+      "palier": 5,
+      "description": "Vase qui s'allume quand on la touche. Elle donne une lumière froide, lisible à travers l'eau, et sert aux lunettes et aux sphères.",
+      "effets": {},
+      "obtention": [
+        {
+          "type": "biome",
+          "ref": "plaine_abyssale"
+        },
+        {
+          "type": "butin",
+          "ref": "poulpe_abyssal"
+        }
+      ]
+    },
+    {
+      "id": "eclat_de_signal",
+      "nom": "Éclat de signal",
+      "categorie": "materiau",
+      "palier": 6,
+      "description": "Fragment de cristal qui vibre à la note du signal. Il garde la trace du chant et se charge au contact des cloches.",
+      "effets": {},
+      "obtention": [
+        {
+          "type": "biome",
+          "ref": "cite_engloutie"
+        },
+        {
+          "type": "biome",
+          "ref": "fond_du_signal"
+        }
+      ]
+    },
+    {
+      "id": "cuivre_brut",
+      "nom": "Cuivre brut",
+      "categorie": "minerai",
+      "palier": 0,
+      "description": "Minerai de cuivre arraché au bronze des cloches couchées. Il se fond et s'étire facilement, et il conduit le son comme aucun autre métal.",
+      "effets": {},
+      "obtention": [
+        {
+          "type": "biome",
+          "ref": "recif_peu_profond"
+        }
+      ]
+    },
+    {
+      "id": "fer_de_fond",
+      "nom": "Fer de fond",
+      "categorie": "minerai",
+      "palier": 1,
+      "description": "Minerai de fer riche, gris-brun, qu'on trouve dans la vase des fosses. Lourd, il fait un bon lest et un bon outil.",
+      "effets": {},
+      "obtention": [
+        {
+          "type": "biome",
+          "ref": "fosse_sombre"
+        },
+        {
+          "type": "butin",
+          "ref": "crabe_de_fer"
+        }
+      ]
+    },
+    {
+      "id": "quartz_bleu",
+      "nom": "Quartz bleu",
+      "categorie": "minerai",
+      "palier": 1,
+      "description": "Cristal de quartz bleu extrait des parois de la fosse. Il entre dans les lentilles, les capteurs et les remèdes du carillonneur.",
+      "effets": {},
+      "obtention": [
+        {
+          "type": "biome",
+          "ref": "fosse_sombre"
+        },
+        {
+          "type": "butin",
+          "ref": "meduse_cloche"
+        }
+      ]
+    },
+    {
+      "id": "nodule_manganese",
+      "nom": "Nodule de manganèse",
+      "categorie": "minerai",
+      "palier": 2,
+      "description": "Nodule noir et rond posé sur le fond. Riche en métal, il se fond en alliage souple, très utile pour les structures sous pression.",
+      "effets": {},
+      "obtention": [
+        {
+          "type": "biome",
+          "ref": "foret_de_kelp"
+        },
+        {
+          "type": "biome",
+          "ref": "plaine_abyssale"
+        }
+      ]
+    },
+    {
+      "id": "argent_abyssal",
+      "nom": "Argent abyssal",
+      "categorie": "minerai",
+      "palier": 3,
+      "description": "Métal pâle et doux, extrait des bancs de verre. Il conduit le courant des lampes et sert dans les résonateurs.",
+      "effets": {},
+      "obtention": [
+        {
+          "type": "biome",
+          "ref": "banc_de_verre"
+        },
+        {
+          "type": "biome",
+          "ref": "fond_du_signal"
+        }
+      ]
+    },
+    {
+      "id": "soufre_thermal",
+      "nom": "Soufre thermal",
+      "categorie": "minerai",
+      "palier": 4,
+      "description": "Cristal jaune déposé par les cheminées thermales. Il brûle en vapeur acide, il chauffe, et il entre dans les pastilles de chaleur.",
+      "effets": {},
+      "obtention": [
+        {
+          "type": "biome",
+          "ref": "cheminee_thermale"
+        },
+        {
+          "type": "butin",
+          "ref": "ver_de_cheminee"
+        }
+      ]
+    },
+    {
+      "id": "titane_de_cite",
+      "nom": "Titane de cité",
+      "categorie": "minerai",
+      "palier": 6,
+      "description": "Métal gris et très léger, trouvé dans les murs de la cité. Il résiste à presque tout et ne rouille jamais.",
+      "effets": {},
+      "obtention": [
+        {
+          "type": "biome",
+          "ref": "cite_engloutie"
+        },
+        {
+          "type": "butin",
+          "ref": "garde_de_cite"
+        }
+      ]
+    },
+    {
+      "id": "couteau_de_plongee",
+      "nom": "Couteau de plongée",
+      "categorie": "outil",
+      "palier": 0,
+      "description": "Lame courte et solide, fixée à la ceinture. Elle coupe les algues, gratte les coquillages et sert à creuser les premiers terrains.",
+      "effets": {
+        "creusage": 1,
+        "degats": 1
+      },
+      "obtention": [
+        {
+          "type": "depart"
+        }
+      ]
+    },
+    {
+      "id": "pioche_de_recif",
+      "nom": "Pioche de récif",
+      "categorie": "outil",
+      "palier": 0,
+      "description": "Pioche faite de tôle et de bois, tenue par une corde. Elle entame le corail et la roche tendre, lentement mais sûrement.",
+      "effets": {
+        "creusage": 2
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_pioche_de_recif"
+        },
+        {
+          "type": "recette",
+          "ref": "r_pioche_de_recif_forge"
+        }
+      ]
+    },
+    {
+      "id": "pioche_de_cuivre",
+      "nom": "Pioche de cuivre",
+      "categorie": "outil",
+      "palier": 2,
+      "description": "Pioche à tête de cuivre, plus dure et plus rapide que la pioche de récif. Elle entame la roche des fosses sans trop trembler.",
+      "effets": {
+        "creusage": 3
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_pioche_de_cuivre"
+        }
+      ]
+    },
+    {
+      "id": "filet_de_peche",
+      "nom": "Filet de pêche",
+      "categorie": "outil",
+      "palier": 0,
+      "description": "Filet léger tendu sur un cadre de bois. Il attrape les petits poissons et les crabes qu'on ne peut pas prendre à la main.",
+      "effets": {
+        "capture": 1
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_filet_de_peche"
+        }
+      ]
+    },
+    {
+      "id": "pince_hydraulique",
+      "nom": "Pince hydraulique",
+      "categorie": "outil",
+      "palier": 4,
+      "description": "Grande pince à ressort et à piston, capable de tenir une plaque de cuivre ou une créature rétive. Elle se manie à deux mains.",
+      "effets": {
+        "prise": 3
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_pince_hydraulique"
+        }
+      ]
+    },
+    {
+      "id": "sonar_de_poche",
+      "nom": "Sonar de poche",
+      "categorie": "outil",
+      "palier": 2,
+      "description": "Petit émetteur de sons qui renvoie l'écho des parois. Il révèle les cavités et les créatures cachées derrière la roche.",
+      "effets": {
+        "portee_sonar": 40
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_sonar_de_poche"
+        }
+      ]
+    },
+    {
+      "id": "foret_abyssal",
+      "nom": "Foret abyssal",
+      "categorie": "outil",
+      "palier": 6,
+      "description": "Foret à tête de titane, lent à mettre en route, qui perce les murs de la cité et les parois des cheminées sans s'user.",
+      "effets": {
+        "creusage": 5
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_foret_abyssal"
+        }
+      ]
+    },
+    {
+      "id": "harpon_de_bois",
+      "nom": "Harpon de bois",
+      "categorie": "arme",
+      "palier": 0,
+      "description": "Lance de bois au bout durci au feu, munie d'une pointe de tôle. Elle ne tue pas toujours, mais elle tient les créatures à distance.",
+      "effets": {
+        "degats": 2
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_harpon_de_bois"
+        }
+      ]
+    },
+    {
+      "id": "harpon_de_cuivre",
+      "nom": "Harpon de cuivre",
+      "categorie": "arme",
+      "palier": 2,
+      "description": "Harpon à pointe de cuivre et ressort de rappel. Il perce une écaille de raie et revient d'un coup sec dans la main.",
+      "effets": {
+        "degats": 4
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_harpon_de_cuivre"
+        }
+      ]
+    },
+    {
+      "id": "fusil_a_air_comprime",
+      "nom": "Fusil à air comprimé",
+      "categorie": "arme",
+      "palier": 4,
+      "description": "Fusil à air comprimé qui tire des billes de fer. Il porte loin, mais il faut surveiller la pression du réservoir après chaque coup.",
+      "effets": {
+        "degats": 6,
+        "portee": 4
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_fusil_a_air_comprime"
+        }
+      ]
+    },
+    {
+      "id": "lance_de_cite",
+      "nom": "Lance de cité",
+      "categorie": "arme",
+      "palier": 6,
+      "description": "Lance de titane récupérée dans les casernes de la cité. Elle frappe fort, elle est légère, et elle garde son fil après des mois d'usage.",
+      "effets": {
+        "degats": 9
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_lance_de_cite"
+        }
+      ]
+    },
+    {
+      "id": "reservoir_oxygene",
+      "nom": "Réservoir d'oxygène",
+      "categorie": "equipement",
+      "palier": 0,
+      "description": "Réservoir d'air comprimé sur le dos, rempli à la surface. Il donne au plongeur le temps de descendre et de remonter.",
+      "effets": {
+        "oxygene_max": 40
+      },
+      "obtention": [
+        {
+          "type": "depart"
+        }
+      ]
+    },
+    {
+      "id": "scaphandre_toile",
+      "nom": "Scaphandre de toile",
+      "categorie": "equipement",
+      "palier": 0,
+      "donne_palier": 1,
+      "description": "Premier scaphandre : toile goudronnée, casque de tôle et joints de caoutchouc. Il laisse descendre jusqu'à la fosse, mais il s'use vite.",
+      "effets": {
+        "oxygene_max": 60,
+        "profondeur_max": 120
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_scaphandre_toile"
+        }
+      ]
+    },
+    {
+      "id": "lampe_frontale",
+      "nom": "Lampe frontale",
+      "categorie": "equipement",
+      "palier": 0,
+      "description": "Lampe à huile fixée sur le casque, dont le verre protège la flamme. Elle éclaire sans chaleur et tient une heure de descente.",
+      "effets": {
+        "lumiere": 3
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_lampe_frontale"
+        },
+        {
+          "type": "recette",
+          "ref": "r_lampe_frontale_labo"
+        }
+      ]
+    },
+    {
+      "id": "palmes_de_toile",
+      "nom": "Palmes de toile",
+      "categorie": "equipement",
+      "palier": 0,
+      "description": "Palmes de toile tendue sur des baguettes. Elles font avancer sans bruit, mais le clapotement reste audible à plusieurs mètres.",
+      "effets": {
+        "vitesse_nage": 1
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_palmes_de_toile"
+        },
+        {
+          "type": "recette",
+          "ref": "r_palmes_de_toile_forge"
+        }
+      ]
+    },
+    {
+      "id": "gants_de_recif",
+      "nom": "Gants de récif",
+      "categorie": "equipement",
+      "palier": 1,
+      "description": "Gants de toile renforcés de résine. Ils protègent les mains du corail, des oursins et des arêtes coupantes des parois.",
+      "effets": {
+        "prise": 1
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_gants_de_recif"
+        }
+      ]
+    },
+    {
+      "id": "ceinture_de_plomb",
+      "nom": "Ceinture de plomb",
+      "categorie": "equipement",
+      "palier": 1,
+      "description": "Ceinture chargée de lingots de fer, qui maintient le plongeur droit dans le courant. Elle est lourde à remonter.",
+      "effets": {
+        "stabilite": 2
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_ceinture_de_plomb"
+        }
+      ]
+    },
+    {
+      "id": "scaphandre_cuivre",
+      "nom": "Scaphandre de cuivre",
+      "categorie": "equipement",
+      "palier": 1,
+      "donne_palier": 2,
+      "description": "Scaphandre de cuivre étiré, avec un casque à hublot épais et des bagues de caoutchouc. Il tient mieux la pression que la toile.",
+      "effets": {
+        "oxygene_max": 120,
+        "profondeur_max": 260
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_scaphandre_cuivre"
+        }
+      ]
+    },
+    {
+      "id": "lunettes_de_nuit",
+      "nom": "Lunettes de nuit",
+      "categorie": "equipement",
+      "palier": 3,
+      "description": "Lunettes de verre bleu, cerclées de caoutchouc. Elles font ressortir les contours dans la pénombre des fosses.",
+      "effets": {
+        "vision_nuit": 1
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_lunettes_de_nuit"
+        }
+      ]
+    },
+    {
+      "id": "combinaison_caoutchouc",
+      "nom": "Combinaison de caoutchouc",
+      "categorie": "equipement",
+      "palier": 2,
+      "donne_palier": 3,
+      "description": "Combinaison de caoutchouc souple, renforcée de bandes de cuivre. Elle protège du froid et de la pression jusqu'à trois cents mètres.",
+      "effets": {
+        "oxygene_max": 180,
+        "profondeur_max": 360,
+        "resistance": 2
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_combinaison_caoutchouc"
+        }
+      ]
+    },
+    {
+      "id": "cloche_de_verre",
+      "nom": "Casque de cloche de verre",
+      "categorie": "equipement",
+      "palier": 3,
+      "donne_palier": 4,
+      "description": "Casque de verre à large hublot, équipé d'une lampe puissante. Il éclaire les parois à plus de dix mètres et tient la pression du banc.",
+      "effets": {
+        "oxygene_max": 220,
+        "profondeur_max": 480,
+        "lumiere": 4
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_cloche_de_verre"
+        }
+      ]
+    },
+    {
+      "id": "recycleur_thermique",
+      "nom": "Recycleur thermique",
+      "categorie": "equipement",
+      "palier": 4,
+      "donne_palier": 5,
+      "description": "Recycleur qui recapte l'air expiré et le réchauffe. Il prolonge l'oxygène des longues plongées dans les cheminées chaudes.",
+      "effets": {
+        "oxygene_max": 260,
+        "profondeur_max": 600
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_recycleur_thermique"
+        }
+      ]
+    },
+    {
+      "id": "exo_pression",
+      "nom": "Exo de pression",
+      "categorie": "equipement",
+      "palier": 5,
+      "donne_palier": 6,
+      "description": "Armure articulée de cuivre et de titane, qui encaisse la pression des plaines abyssales. Elle est lourde et lente, mais solide.",
+      "effets": {
+        "resistance": 4,
+        "profondeur_max": 800
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_exo_pression"
+        }
+      ]
+    },
+    {
+      "id": "resonateur_abyssal",
+      "nom": "Résonateur abyssal",
+      "categorie": "equipement",
+      "palier": 6,
+      "donne_palier": 7,
+      "description": "Caisson qui capte la note du signal et la renvoie sous forme de sonar. Il ouvre les profondeurs où la pression ne laisse plus passer personne.",
+      "effets": {
+        "profondeur_max": 1200,
+        "sonar": 2
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_resonateur_abyssal"
+        }
+      ]
+    },
+    {
+      "id": "ration_algue",
+      "nom": "Ration d'algue",
+      "categorie": "consommable",
+      "palier": 0,
+      "description": "Galette d'algue séchée, dure et salée. Elle se conserve des semaines et rassasie le plongeur après une longue remontée.",
+      "effets": {
+        "nourriture": 30
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_ration_algue"
+        },
+        {
+          "type": "recette",
+          "ref": "r_ration_algue_cuve"
+        }
+      ]
+    },
+    {
+      "id": "biscuit_marin",
+      "nom": "Biscuit marin",
+      "categorie": "consommable",
+      "palier": 0,
+      "description": "Biscuit de farine et d'algue, cuit dans la cuve de conservation. Plus nourrissant que la ration, il se mange à la surface.",
+      "effets": {
+        "nourriture": 25
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_biscuit_marin"
+        }
+      ]
+    },
+    {
+      "id": "capsule_oxygene",
+      "nom": "Capsule d'oxygène",
+      "categorie": "consommable",
+      "palier": 1,
+      "description": "Capsule scellée d'air comprimé. Il suffit de la percer au casque pour recharger le réservoir pendant une minute.",
+      "effets": {
+        "oxygene": 40
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_capsule_oxygene"
+        },
+        {
+          "type": "recette",
+          "ref": "r_capsule_oxygene_labo"
+        }
+      ]
+    },
+    {
+      "id": "fusee_de_detresse",
+      "nom": "Fusée de détresse",
+      "categorie": "consommable",
+      "palier": 1,
+      "description": "Fusée rouge qui perce l'eau et laisse une traînée de lumière. Elle attire les radeaux et les pêcheurs de la surface.",
+      "effets": {
+        "signal": 1
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_fusee_de_detresse"
+        }
+      ]
+    },
+    {
+      "id": "antidote_sel",
+      "nom": "Antidote au sel",
+      "categorie": "consommable",
+      "palier": 2,
+      "description": "Poudre de sel et de quartz qui soulage les vertiges de la remontée. Le carillonneur la prenait avant chaque plongée profonde.",
+      "effets": {
+        "soin_pression": 1
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_antidote_sel"
+        }
+      ]
+    },
+    {
+      "id": "pastille_thermique",
+      "nom": "Pastille thermique",
+      "categorie": "consommable",
+      "palier": 4,
+      "description": "Pastille qui chauffe au contact de l'eau. Elle protège le plongeur du froid des fonds, ou le réchauffe après une cheminée.",
+      "effets": {
+        "chaleur": 20
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_pastille_thermique"
+        }
+      ]
+    },
+    {
+      "id": "module_forge",
+      "nom": "Module de forge",
+      "categorie": "construction",
+      "palier": 0,
+      "description": "Module de forge, pièce à monter sur le radeau. Il permet de travailler le cuivre et d'étirer le fil.",
+      "effets": {
+        "station": "forge_radeau"
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_module_forge"
+        }
+      ]
+    },
+    {
+      "id": "module_cuve",
+      "nom": "Module de cuve",
+      "categorie": "construction",
+      "palier": 0,
+      "description": "Cuve de conservation, en bois goudronné et fermée par un couvercle de tôle. Elle garde la nourriture au sec et au frais.",
+      "effets": {
+        "station": "cuve_de_conservation"
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_module_cuve"
+        }
+      ]
+    },
+    {
+      "id": "caisse_de_stockage",
+      "nom": "Caisse de stockage",
+      "categorie": "construction",
+      "palier": 0,
+      "description": "Caisse en planches qui se ferme à clef. Elle garde les matériaux à la surface, loin de la mer.",
+      "effets": {
+        "stockage": 20
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_caisse_de_stockage"
+        },
+        {
+          "type": "recette",
+          "ref": "r_caisse_de_stockage_forge"
+        }
+      ]
+    },
+    {
+      "id": "module_laboratoire",
+      "nom": "Module de laboratoire",
+      "categorie": "construction",
+      "palier": 1,
+      "description": "Laboratoire portable de la guilde du verre : fioles, lentilles et creusets. On y prépare les pièces de verre et les remèdes.",
+      "effets": {
+        "station": "laboratoire_cloche"
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_module_laboratoire"
+        }
+      ]
+    },
+    {
+      "id": "bouee_de_signal",
+      "nom": "Bouée de signal",
+      "categorie": "construction",
+      "palier": 1,
+      "description": "Bouée rouge qui marque le radeau et envoie un signal sonore. On peut la voir de loin, même par temps gris.",
+      "effets": {
+        "portee_signal": 60
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_bouee_de_signal"
+        }
+      ]
+    },
+    {
+      "id": "module_chantier",
+      "nom": "Module de chantier",
+      "categorie": "construction",
+      "palier": 2,
+      "description": "Chantier de montage pour les véhicules sous-marins. Il tient les coques pendant la soudure et le calfatage.",
+      "effets": {
+        "station": "chantier_sous_marin"
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_module_chantier"
+        }
+      ]
+    },
+    {
+      "id": "radeau_de_fortune",
+      "nom": "Radeau de fortune",
+      "categorie": "vehicule",
+      "palier": 0,
+      "description": "Le radeau du départ. Il flotte grâce à quelques bidons, porte les caisses et sert de base à tout le reste.",
+      "effets": {
+        "stockage": 20,
+        "vitesse": 1
+      },
+      "obtention": [
+        {
+          "type": "depart"
+        }
+      ]
+    },
+    {
+      "id": "bathyscaphe_leger",
+      "nom": "Bathyscaphe léger",
+      "categorie": "vehicule",
+      "palier": 3,
+      "description": "Petite cloche de plongée à deux places, qui descend verticalement. Elle permet de descendre à trois cents mètres sans scaphandre.",
+      "effets": {
+        "profondeur_max": 360,
+        "oxygene_max": 200
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_bathyscaphe_leger"
+        }
+      ]
+    },
+    {
+      "id": "sous_marin_de_poche",
+      "nom": "Sous-marin de poche",
+      "categorie": "vehicule",
+      "palier": 5,
+      "description": "Sous-marin étroit, à une seule place, qui traverse les plaines abyssales. Ses hublots sont épais et son moteur est presque silencieux.",
+      "effets": {
+        "profondeur_max": 800,
+        "oxygene_max": 400
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_sous_marin_de_poche"
+        }
+      ]
+    },
+    {
+      "id": "sous_marin_geant",
+      "nom": "Sous-marin géant",
+      "categorie": "vehicule",
+      "palier": 7,
+      "description": "Sous-marin géant de la guilde, long comme une rue de Varekh. Il traverse le fond du signal et ouvre la dernière profondeur.",
+      "effets": {
+        "profondeur_max": 1200,
+        "oxygene_max": 900,
+        "stockage": 60
+      },
+      "obtention": [
+        {
+          "type": "recette",
+          "ref": "r_sous_marin_geant"
+        }
+      ]
+    },
+    {
+      "id": "medaillon_gardien",
+      "nom": "Médaillon du gardien",
+      "categorie": "relique",
+      "palier": 1,
+      "description": "Médaillon de bronze frappé de la note juste. Le gardien le porte à la chaîne, et le rendre à la guilde ouvre bien des portes.",
+      "effets": {},
+      "obtention": [
+        {
+          "type": "butin",
+          "ref": "gardien_cloche"
+        }
+      ]
+    },
+    {
+      "id": "carte_des_cloches",
+      "nom": "Carte des cloches",
+      "categorie": "relique",
+      "palier": 2,
+      "description": "Carte gravée sur une plaque de cuivre, qui marque les cloches et leurs notes. Elle se lit à la lampe et révèle les anciens chemins.",
+      "effets": {},
+      "obtention": [
+        {
+          "type": "tresor",
+          "ref": "foret_de_kelp"
+        }
+      ]
+    },
+    {
+      "id": "mecanisme_horloge",
+      "nom": "Mécanisme d'horloge",
+      "categorie": "relique",
+      "palier": 6,
+      "description": "Mécanisme d'horloge de la cité, avec ses dents de bronze et son balancier. Il règle la marée des cloches et ne s'arrête jamais.",
+      "effets": {},
+      "obtention": [
+        {
+          "type": "tresor",
+          "ref": "cite_engloutie"
+        }
+      ]
+    },
+    {
+      "id": "cristal_du_signal",
+      "nom": "Cristal du signal",
+      "categorie": "relique",
+      "palier": 7,
+      "description": "Cristal taillé dans la dernière cloche. Il vibre à la note du signal et se fissure quand on le tient trop longtemps.",
+      "effets": {},
+      "obtention": [
+        {
+          "type": "butin",
+          "ref": "chant_du_fond"
+        }
+      ]
+    },
+    {
+      "id": "cle_du_banc",
+      "nom": "Clé du banc",
+      "categorie": "cle",
+      "palier": 3,
+      "description": "Clé de fer et de verre, gravée d'une vague. Elle ouvre les coffres de la guilde sur le banc de verre.",
+      "effets": {},
+      "obtention": [
+        {
+          "type": "tresor",
+          "ref": "banc_de_verre"
+        }
+      ]
+    },
+    {
+      "id": "cle_de_la_cite",
+      "nom": "Clé de la cité",
+      "categorie": "cle",
+      "palier": 6,
+      "description": "Clé de titane en forme de cloche, gravée du sigle de Varekh. Elle ouvre les portes de la cité engloutie.",
+      "effets": {},
+      "obtention": [
+        {
+          "type": "quete",
+          "ref": "q_la_cite_engloutie"
+        }
+      ]
+    },
+    {
+      "id": "sceau_des_cloches",
+      "nom": "Sceau des cloches",
+      "categorie": "cle",
+      "palier": 7,
+      "description": "Sceau de bronze qui porte la marque des carillonneurs. Il scelle la note juste et ferme le signal pour de bon.",
+      "effets": {},
+      "obtention": [
+        {
+          "type": "quete",
+          "ref": "q_le_chant_du_fond"
+        }
+      ]
+    }
+  ]
+}

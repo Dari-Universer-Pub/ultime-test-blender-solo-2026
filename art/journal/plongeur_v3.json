@@ -1,0 +1,299 @@
+{
+  "id": "plongeur_v3",
+  "entrees": [
+    {
+      "changement": "modèle de base v3 (face d'abord, symétrique) : casque laiton avec hublot, tronc court plus étroit que les épaules, bras écartés en A, jambes écartées (écart >= 4 px), gants et bottes presque noirs, tuyau de corde devant ; caméra azimut 35°, élévation 15°, cadre 46-48 px",
+      "image": "boards/journal/plongeur_v3_idle_base.png",
+      "image_sha256": "c9d55302e85ba69a5bcff6d9e72d92e31179a29418d35e37413fb8dcc9501551",
+      "controle": {
+        "silhouette": "De trois quarts, le casque, les bras écartés avec leurs gants et les deux jambes se lisent ; le bassin en bloc rectangulaire alourdit le bas du corps.",
+        "couleurs": "Cinq tons distincts : casque laiton, manches crème, tronc kaki médian, jambes kaki foncé, gants et bottes presque noirs ; pas de noir pur.",
+        "cadrage": "Silhouette de 48 px de haut dans une case de 80 px, centrée ; le plongeur tient la case.",
+        "taille": "Hauteur 48 px (cible 46 à 48), largeur 42 px ; contrôlé sur les 6 images de l'idle.",
+        "details": "Hublot cyan lisible, tuyau de corde visible, deux jambes séparées ; boulons du casque et cadre du hublot trop peu contrastés.",
+        "coherence_base": "Même personnage que le modèle de profil (casque laiton, kaki, gants sombres, tuyau de corde) ; référence cartoon de Julien absente du dépôt, comparé à ref_03.",
+        "pixels_parasites": "Contour clair sur la silhouette ; pas encore de contour interne entre les parties (étape suivante)."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "bassin en bloc rectangulaire : à arrondir",
+        "jambes courtes : à allonger légèrement pour un meilleur équilibre",
+        "contour interne entre parties absent : à ajouter à la pixelisation (carte d'identité)",
+        "boulons et cadre du hublot peu lisibles à 48 px"
+      ],
+      "mesure_membres": "idle 1 à 6 : bras proche 110-119 px / 90-95 %, bras lointain 103-114 px / 89-90 %, jambe proche 74-83 px / 85-91 %, jambe lointaine 81-84 px / 81 % : tous OK (seuil 20 px et 60 %)"
+    },
+    {
+      "changement": "étape 1, essai A : collerette laiton de 2 px (rayon 6,4 px, z 29,6 à 31,8) entre casque et tronc, boulons de 0,9 px enfoncés dans la surface",
+      "image": "boards/journal/plongeur_v3_2.png",
+      "image_sha256": "016e67ff0e7f22b4077f4b6d4a14aa2104e54d4d72e598e1e1cd9e34ba67a9d9",
+      "controle": {
+        "silhouette": "Inchangée : la collerette reste sous le casque et ne déborde pas de la silhouette.",
+        "couleurs": "La bande laiton se confond avec le bas du casque ; aucune couleur de la base perdue.",
+        "cadrage": "Inchangé, plongeur centré dans la case de 80 px.",
+        "taille": "Hauteur 48 px, largeur 42 px, inchangées.",
+        "details": "Collerette presque invisible à x1 et à x6 ; boulons absents du rendu pixelisé.",
+        "coherence_base": "Même personnage que la base.",
+        "pixels_parasites": "Aucun pixel parasite nouveau."
+      },
+      "verdict": "annule",
+      "suite": "remplacé par l'essai B (même changement, collerette plus haute et qui dépasse le casque)",
+      "mesure_membres": "idle 1 à 6 (essai A) : bras proche 111-119 px / 91-95 %, bras lointain 104-115 px / 90-91 %, jambe proche 74-83 px / 85-91 %, jambe lointaine 81-84 px / 81 % : tous OK"
+    },
+    {
+      "changement": "étape 1, essai B : collerette laiton de 3 px (rayon 6,9 px, z 29,2 à 32,2), qui dépasse le casque d'environ 1 px ; boulons encore à l'intérieur du cylindre",
+      "image": "boards/journal/plongeur_v3_3.png",
+      "image_sha256": "28736b0354ac79b57a60392f95af0357336e40201a3c7a1108482f51f702d817",
+      "controle": {
+        "silhouette": "Une bande claire sous le casque élargit légèrement le haut du corps ; la silhouette reste lisible à x1.",
+        "couleurs": "La collerette laiton clair se distingue du casque doré et du tronc kaki ; base conservée.",
+        "cadrage": "Inchangé, plongeur centré dans la case de 80 px.",
+        "taille": "Hauteur 48 px, largeur 42 px, inchangées.",
+        "details": "La bande de collerette se lit comme une pièce à part ; les boulons ne se lisent pas encore à x1 (à peine un pixel).",
+        "coherence_base": "Collerette cohérente avec le casque laiton du modèle de profil.",
+        "pixels_parasites": "Aucun pixel parasite ; le bord sous le casque est net."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "boulons de la collerette à peine visibles : traités à l'essai C"
+      ],
+      "mesure_membres": "idle 1 à 6 (essai B) : bras proche 114-119 px / 92-95 %, bras lointain 103-115 px / 89-91 %, jambe proche 74-83 px / 85-91 %, jambe lointaine 81-84 px / 81 % : tous OK"
+    },
+    {
+      "changement": "étape 1, essai C : boulons posés sur la surface de la collerette (rayon 1,2 px, trois positions à mi-hauteur) ; le boulon droit reste caché par le tuyau de corde (sera déplacé à l'étape 6)",
+      "image": "boards/journal/plongeur_v3_4.png",
+      "image_sha256": "9ae8be83a3c6abc95e5ec71ce6a36ac40710d7a2133669db68599300ab18fd34",
+      "controle": {
+        "silhouette": "Inchangée par rapport à l'essai B.",
+        "couleurs": "Boulons en bronze sombre (même matériau que le cadre) sur le laiton clair ; pas de noir pur.",
+        "cadrage": "Inchangé, plongeur centré dans la case de 80 px.",
+        "taille": "Hauteur 48 px, largeur 42 px, inchangées.",
+        "details": "Boulon gauche visible en pixel sombre à x10, centre incertain, boulon droit caché par le tuyau : détail encore faible à 48 px.",
+        "coherence_base": "Même langage de pièces que le hublot et le cadre.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "boulon droit caché par le tuyau : à revérifier à l'étape 6 (tuyau déplacé au-dessus de la tête)"
+      ],
+      "mesure_membres": "idle 1 à 6 (essai C) : bras proche 114-119 px / 92-95 %, bras lointain 103-114 px / 89-90 %, jambe proche 74-83 px / 85-91 %, jambe lointaine 81-84 px / 81 % : tous OK"
+    },
+    {
+      "changement": "étape 2 : grand hublot (verre de rayon 5 px au lieu de 4,4), verre cyan sombre, cadre épais gris-bleu (anneau de 3 px), reflet clair en haut à gauche",
+      "image": "boards/journal/plongeur_v3_5.png",
+      "image_sha256": "e8a28e750e2ab93491007c8e462e2035f6c525fd898ac6af5bbbfdb1b302bbb1",
+      "controle": {
+        "silhouette": "Le hublot déborde d'environ 1 px à gauche de la calotte du casque ; la silhouette reste lisible à x1.",
+        "couleurs": "Verre cyan sombre, cadre gris-bleu, reflet blanc-cyan ; le laiton du casque est conservé à droite.",
+        "cadrage": "Inchangé, plongeur centré dans la case de 80 px.",
+        "taille": "Hauteur 48 px, largeur 42 px, inchangées.",
+        "details": "Hublot, cadre et reflet se lisent à x6 et à x10 ; le cadre se distingue du verre par sa couleur plus claire.",
+        "coherence_base": "Hublot plus grand, comme demandé ; le verre reste dans la famille du verre de la palette.",
+        "pixels_parasites": "Bord clair de contour autour du hublot, net ; pas de pixel isolé."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "hublot qui déborde du casque d'1 px à gauche : à revoir avec le contour interne (étape 7)"
+      ],
+      "mesure_membres": "idle 1 à 6 : bras proche 114-119 px / 92-95 %, bras lointain 103-113 px / 89-90 %, jambe proche 74-83 px / 85-91 %, jambe lointaine 81-84 px / 81 % : tous OK"
+    },
+    {
+      "changement": "étape 3 (ceinture) : ceinture brune (cuivre, rampe foncée) au lieu de la ceinture presque noire, avec une boucle laiton devant (sphère de 1,4 px enfoncée dans la ceinture)",
+      "image": "boards/journal/plongeur_v3_6.png",
+      "image_sha256": "6a386ec150ed191327e336a37fb758824902c0b122dfc1790d228dd12b1c8796",
+      "controle": {
+        "silhouette": "Inchangée ; la ceinture coupe bien le tronc au-dessus du bassin.",
+        "couleurs": "Brun-rouge sombre, distinct du kaki du bassin et des manches ; le tuyau reste plus clair.",
+        "cadrage": "Inchangé, plongeur centré dans la case de 80 px.",
+        "taille": "Hauteur 48 px, largeur 42 px, inchangées.",
+        "details": "La ceinture brune se lit à x6 et x10 ; la boucle laiton n'apparaît pas : elle est presque entièrement dans le tube de la ceinture.",
+        "coherence_base": "Ceinture de plongeur brune, comme demandé.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "boucle invisible : elle reste dans le tube de la ceinture ; à sortir du tube à l'étape suivante"
+      ],
+      "mesure_membres": "idle 1 à 6 : bras proche 114-119 px / 92-95 %, bras lointain 103-113 px / 89-90 %, jambe proche 74-83 px / 85-91 %, jambe lointaine 81-84 px / 81 % : tous OK"
+    },
+    {
+      "changement": "étape 3 (boucle) : boucle laiton sortie du tube de la ceinture (sphère de 1,6 px, aplatie) pour qu'elle se voie devant",
+      "image": "boards/journal/plongeur_v3_7.png",
+      "image_sha256": "37061f10651ae9ba4ee2d2126721159473e091becbebff99ee280b42a8e632f3",
+      "controle": {
+        "silhouette": "Inchangée ; la boucle ne déborde pas de la silhouette du tronc.",
+        "couleurs": "Laiton clair sur la ceinture brune : contraste net ; base conservée.",
+        "cadrage": "Inchangé, plongeur centré dans la case de 80 px.",
+        "taille": "Hauteur 48 px, largeur 42 px, inchangées.",
+        "details": "La boucle se lit comme une petite pièce jaune sur la ceinture à x6 et à x10.",
+        "coherence_base": "Boucle de ceinture, comme demandé.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "pelvis en bloc kaki rectangulaire sous la ceinture : à arrondir (défaut noté à l'entrée 1)"
+      ],
+      "mesure_membres": "idle 1 à 6 : bras proche 114-119 px / 92-95 %, bras lointain 103-113 px / 89-90 %, jambe proche 74-83 px / 85-91 %, jambe lointaine 81-84 px / 81 % : tous OK"
+    },
+    {
+      "changement": "étape 3 (manchettes) : manchette sombre en tube de 2,7 px à la sortie de la manche, à la place de l'anneau de 0,9 px ; code annulé après essai",
+      "image": "boards/journal/plongeur_v3_8.png",
+      "image_sha256": "a8407e0b93101e3018cedc0b0b81cc6326b4211424a7175b819cbbbbd58db839",
+      "controle": {
+        "silhouette": "Inchangée à x1 : la manchette se fond dans le gant, presque noir comme elle.",
+        "couleurs": "Manchette et gant ont la même couleur sombre : aucun contraste utile, la base est conservée.",
+        "cadrage": "Inchangé, plongeur centré dans la case de 80 px.",
+        "taille": "Hauteur 48 px, largeur 42 px, inchangées.",
+        "details": "Aucun détail nouveau lisible à x6 : la limite manche-gant ne se voit pas.",
+        "coherence_base": "Sans gain : le contraste viendra de gants plus petits (étape 4), pas de la manchette.",
+        "pixels_parasites": "Aucun pixel parasite nouveau."
+      },
+      "verdict": "annule",
+      "suite": "code revenu à l'anneau d'origine ; manchettes à reprendre avec les gants plus petits (étape 4)",
+      "mesure_membres": "essai : idle 1 à 6 : bras proche 114-119 px / 92-95 %, bras lointain 103-113 px / 89-90 %, jambe proche 74-83 px / 85-91 %, jambe lointaine 81-84 px / 81 % : tous OK"
+    },
+    {
+      "changement": "étape 3 (genouillères) : sphère sombre (même matériau que les bottes) devant chaque genou, pour marquer les genouillères",
+      "image": "boards/journal/plongeur_v3_9.png",
+      "image_sha256": "5261481e0b35c32ec71c48f6813e90a97931124f5445fcb5c2432aca5af783fa",
+      "controle": {
+        "silhouette": "Les jambes deviennent une masse sombre continue jusqu'aux bottes : le genou ne se lit plus.",
+        "couleurs": "Le kaki des jambes disparaît devant les genouillères ; les bottes et les genouillères se confondent.",
+        "cadrage": "Inchangé, plongeur centré dans la case de 80 px.",
+        "taille": "Hauteur 48 px, largeur 42 px, inchangées.",
+        "details": "Le genou n'est pas lisible ; les jambes perdent leur couleur kaki, qui doit rester plus claire que les bottes.",
+        "coherence_base": "Contraire à la consigne : les jambes doivent rester kaki, plus claires que les bottes.",
+        "pixels_parasites": "Le bord du bassin se découpe en encoche sous la ceinture."
+      },
+      "verdict": "annule",
+      "suite": "code revenu sans genouillère ; à reprendre à l'étape 5 avec une forme plus petite et une couleur qui ne tue pas le kaki",
+      "mesure_membres": "essai : idle 1 à 6 : bras proche 114-119 px / 92-95 %, bras lointain 103-113 px / 89-90 %, jambe proche 75-85 px / 83-91 %, jambe lointaine 80-84 px / 78-80 % : tous OK"
+    },
+    {
+      "changement": "étape 4 (gants) : moufles plus petites (sphère de 3,4 px au lieu de 4,0, légèrement aplatie) ; la sortie de la manche se voit mieux",
+      "image": "boards/journal/plongeur_v3_10.png",
+      "image_sha256": "7a4c1deeb5290dd94f6ac62284c230d463116c2934faafad14397c40a4d89926",
+      "controle": {
+        "silhouette": "Les bras finissent par des moufles plus petites ; la silhouette reste lisible à x1.",
+        "couleurs": "Gants sombres conservés, sortie de manche crème bien visible au-dessus du gant.",
+        "cadrage": "Inchangé, plongeur centré dans la case de 80 px.",
+        "taille": "Hauteur 48 px, largeur 42 px, inchangées ; bras proche 103-105 px, bras lointain 88-98 px, tous au-dessus du seuil de 20 px.",
+        "details": "La moufle se lit comme un gant de travail arrondi à x6 ; le pouce n'est pas dessiné.",
+        "coherence_base": "Gants plus petits, comme demandé.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "bottes séparées par un bracelet : pas encore fait (contraste nul entre bracelet et botte)"
+      ],
+      "mesure_membres": "idle 1 à 6 : bras proche 103-105 px / 93-95 %, bras lointain 88-98 px / 89-92 %, jambe proche 74-83 px / 85-91 %, jambe lointaine 80-83 px / 80-81 % : tous OK"
+    },
+    {
+      "changement": "étape 4 (bracelets de bottes) : bracelet clair violet-gris de 1 px à la cheville, à la place de l'anneau sombre",
+      "image": "boards/journal/plongeur_v3_11.png",
+      "image_sha256": "2a24ab58582beb389608595333050a8e16407473ec250ab61fa4640ae8863459",
+      "controle": {
+        "silhouette": "Inchangée.",
+        "couleurs": "Le bracelet clair ne se voit pas : il est entièrement recouvert par la sphère de la botte.",
+        "cadrage": "Inchangé, plongeur centré dans la case de 80 px.",
+        "taille": "Hauteur 48 px, largeur 42 px, inchangées.",
+        "details": "Aucune séparation botte-jambe lisible à x6 et x9.",
+        "coherence_base": "Sans effet visible.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "annule",
+      "suite": "code revenu à l'anneau sombre d'origine ; séparation botte-jambe à reprendre avec la jambe (étape 5), car la sphère de la botte monte jusqu'à z 7,2 px",
+      "mesure_membres": "essai : idle 1 à 6 : bras proche 103-105 px / 93-95 %, bras lointain 88-98 px / 89-92 %, jambe proche 73-83 px / 85-91 %, jambe lointaine 81-84 px / 79-82 % : tous OK"
+    },
+    {
+      "changement": "étape 5 (jambes) : jambes allongées de 1 px (genou à z 7,6 au lieu de 8,5, cheville à z 3,4 au lieu de 4,5), bottes descendues d'autant",
+      "image": "boards/journal/plongeur_v3_12.png",
+      "image_sha256": "fe481d6c7567e63b43b382be0857715473e0e9a63bba9bfd0142dfb1b6f0c843",
+      "controle": {
+        "silhouette": "Les jambes sortent nettement sous le bassin ; la silhouette se lit mieux à x1.",
+        "couleurs": "Le kaki des jambes reste plus clair que les bottes sombres, comme demandé.",
+        "cadrage": "Inchangé, plongeur centré dans la case de 80 px.",
+        "taille": "Hauteur 48 px, largeur 42 px, inchangées (contrôle sur les 6 images).",
+        "details": "Le genou ne se détache pas : les jambes restent d'un seul tenant, sans articulation lisible à x6.",
+        "coherence_base": "Jambes plus longues, comme demandé.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "genou pas encore lisible : à marquer avec une légère variation de kaki sur la jointure (étape suivante, à essayer seul)",
+        "bracelet de botte absent : à reprendre (voir entrée 11)"
+      ],
+      "mesure_membres": "idle 1 à 6 : bras proche 103-105 px / 93-95 %, bras lointain 88-98 px / 89-92 %, jambe proche 75-83 px / 84-89 %, jambe lointaine 78-83 px / 79-84 % : tous OK"
+    },
+    {
+      "changement": "étape 6 (tuyau) : tuyau de corde épais (rayon 1,9 px) qui monte devant, fait une boucle au-dessus du casque et redescend derrière l'épaule gauche ; sommet à z 48 px",
+      "image": "boards/journal/plongeur_v3_13.png",
+      "image_sha256": "fbf7f59b9df4edec35762a1c7043e73e07c999611f0f972db2024438f9aab597",
+      "controle": {
+        "silhouette": "Le sommet du casque garde la même hauteur, mais la boucle n'est pas visible au-dessus de la tête : elle reste dans le volume du casque.",
+        "couleurs": "Une bande brun-orange couvre le côté droit du casque et paraît une tache, pas une corde.",
+        "cadrage": "Inchangé, plongeur centré dans la case de 80 px.",
+        "taille": "Hauteur 48 px, largeur 42 px ; pas de dépassement du casque.",
+        "details": "La boucle au-dessus de la tête ne se lit pas à x6 ni à x8 ; le tuyau épais se confond avec le casque.",
+        "coherence_base": "Contraire à la consigne : la boucle doit se voir au-dessus de la tête.",
+        "pixels_parasites": "Pas de pixel isolé, mais une bande brune parasite sur le casque."
+      },
+      "verdict": "annule",
+      "suite": "code revenu aux deux tubes fins d'origine. Blocage de conception : une boucle visible au-dessus de la tête dépasse 48 px avec ce casque (sommet à z 48) ; à trancher par Julien (voir ETAT.md)",
+      "mesure_membres": "essai : idle 1 à 6 : bras proche 103-105 px / 93-95 %, bras lointain 87-98 px / 88-92 %, jambe proche 75-83 px / 84-89 %, jambe lointaine 78-83 px / 79-84 % : tous OK"
+    },
+    {
+      "changement": "étape 6 (bouteille) : bouteille violet-foncé unique derrière l'épaule lointaine (x -6, y 4,2) à la place des deux bouteilles teal",
+      "image": "boards/journal/plongeur_v3_14.png",
+      "image_sha256": "c0976d337fc163d95f83f2c50b89db943fe16f90d56ed8a50f5eebfb5177cc95",
+      "controle": {
+        "silhouette": "Inchangée : la bouteille est cachée par le bras lointain et le tronc.",
+        "couleurs": "Violet-foncé, mais invisible : aucun gain de couleur lisible.",
+        "cadrage": "Inchangé, plongeur centré dans la case de 80 px.",
+        "taille": "Hauteur 48 px, largeur 42 px, inchangées.",
+        "details": "La bouteille ne se voit pas à x6 ni à x8 : pas de détail gagné.",
+        "coherence_base": "Sans effet visible.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "annule",
+      "suite": "essai de placement plus à l'extérieur (x -9, y 6) à juger seul",
+      "mesure_membres": "essai : idle 1 à 6 : bras proche 103-105 px / 93-95 %, bras lointain 88-98 px / 89-92 %, jambe proche 75-83 px / 84-89 %, jambe lointaine 78-83 px / 79-84 % : tous OK"
+    },
+    {
+      "changement": "étape 6 (bouteille, essai 2) : bouteille violet-foncé unique plus à l'extérieur (x -9, y 6)",
+      "image": "boards/journal/plongeur_v3_15.png",
+      "image_sha256": "0f1e6625c63828a8568053b94315aa412c14ebdeeda89de67b56343ba8578fb2",
+      "controle": {
+        "silhouette": "Inchangée : aucune bouteille visible à gauche du bras lointain.",
+        "couleurs": "Aucune couleur de bouteille visible.",
+        "cadrage": "Inchangé, plongeur centré dans la case de 80 px.",
+        "taille": "Hauteur 48 px, largeur 42 px, inchangées.",
+        "details": "La bouteille reste invisible à x6 : elle est cachée derrière le bras lointain et le tronc dans cette vue.",
+        "coherence_base": "Sans effet visible.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "annule",
+      "suite": "bouteilles d'origine (deux teal) rétablies. Bouteille visible seulement si elle dépasse le bras lointain : à trancher avec Julien (voir ETAT.md)",
+      "mesure_membres": "essai : idle 1 à 6 : bras proche 103-105 px / 93-95 %, bras lointain 88-98 px / 89-92 %, jambe proche 75-83 px / 84-89 %, jambe lointaine 78-83 px / 79-84 % : tous OK"
+    },
+    {
+      "changement": "étape 7 : trait interne sombre d'1 px entre parties, calculé depuis la carte d'identité (outil tools/pixelisation/contour_interne.py, rampe contour_sombre ton 2, sur la partie gauche/haute de chaque frontière)",
+      "image": "boards/journal/plongeur_v3_16.png",
+      "image_sha256": "481d62f0f5c9efd61fbaa922db41810470a140885211e0066641974dd7b885b9",
+      "controle": {
+        "silhouette": "Inchangée à x1 : le trait ne change pas le contour extérieur.",
+        "couleurs": "Trait violet-foncé de la rampe contour_sombre, jamais noir pur ; couleurs de base conservées.",
+        "cadrage": "Inchangé, plongeur centré dans la case de 80 px.",
+        "taille": "Hauteur 48 px, largeur 42 px, inchangées.",
+        "details": "Le cadre du hublot, le col, les bras et les jambes se séparent mieux du corps à x6 ; la ceinture et le bassin se chargent de traits en pointillé.",
+        "coherence_base": "Même langage de contour que le reste de la pixelisation du projet.",
+        "pixels_parasites": "Traits en pointillé autour de la ceinture et du bassin : bruit à réduire (voir défauts)."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "bruit de contour sous la ceinture et autour du bassin : à réduire (trait parasite entre bassin et ceinture)"
+      ],
+      "mesure_membres": "idle 1 à 6 : bras proche 103-105 px / 93-95 %, bras lointain 88-98 px / 89-92 %, jambe proche 75-83 px / 84-89 %, jambe lointaine 78-83 px / 79-84 % : tous OK (la mesure porte sur la carte d'identité, inchangée)"
+    }
+  ]
+}

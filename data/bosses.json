@@ -1,0 +1,65 @@
+{
+  "bosses": [
+    {
+      "id": "gardien_cloche",
+      "nom": "Le Gardien de la cloche",
+      "biome": "fosse_sombre",
+      "mini": true,
+      "description": "Gardien de pierre et de bronze, dressé devant le sanctuaire de la fosse depuis la fondation de l'ordre. Il ne se réveille que lorsqu'un plongeur approche de la chapelle avec une lampe trop vive. Son corps est une cloche à moitié enfouie, dont le battant bat la mesure et dont les tubes de cuivre se hérissent d'épines. Il est le premier test de la profondeur : celui qui le bat prouve qu'il sait écouter la pression, et son médaillon ouvre la voie vers les bancs plus bas.",
+      "phases": [
+        {
+          "nom": "Le Battant",
+          "description": "Le gardien frappe le sol avec son battant de bronze, par trois coups lents qui créent une onde de pression. Entre chaque coup, il s'arrête et fait vibrer les tubes, et c'est là qu'il faut frapper."
+        },
+        {
+          "nom": "Le Silence",
+          "description": "Quand la moitié de sa vie est perdue, le gardien libère une encre sombre qui éteint les lampes et rend la fosse aveugle. Il attaque alors au son : il faut couper la vue et suivre le battement du battant."
+        }
+      ],
+      "butin": [
+        "medaillon_gardien",
+        "quartz_bleu"
+      ]
+    },
+    {
+      "id": "sentinelle_des_cheminees",
+      "nom": "La Sentinelle des cheminées",
+      "biome": "cheminee_thermale",
+      "mini": false,
+      "description": "Créature mécanique et vivante, bâtie par les carillonneurs pour surveiller les cheminées d'accordage. Elle a survécu à la chute en se nourrissant de la chaleur des fumées. Son corps est un tube de fonte rouillée qui pivote sur un axe, avec des bras de vapeur qui déchirent l'eau. Elle défend l'accès à l'atelier du carillonneur et ne laisse passer personne qui n'a pas de pastille thermique.",
+      "phases": [
+        {
+          "nom": "Le Panache",
+          "description": "La sentinelle tourne sur son axe et crache des jets de vapeur acide en arc. Le plongeur doit se placer dans les creux entre les jets et frapper le tube quand il s'ouvre."
+        },
+        {
+          "nom": "La Surchauffe",
+          "description": "Le tube rougeoie et la sentinelle libère un nuage de soufre qui brûle la combinaison. Elle devient plus rapide et attaque en charge : il faut l'esquiver et la faire heurter une paroi."
+        }
+      ],
+      "butin": [
+        "soufre_thermal"
+      ]
+    },
+    {
+      "id": "chant_du_fond",
+      "nom": "Le Chant du fond",
+      "biome": "fond_du_signal",
+      "mini": false,
+      "description": "Gardienne du signal, cette forme est tout ce qui reste de la dernière accordeuse de Varekh. Elle a choisi de rester avec la cloche du Miroir et de chanter la note juste jusqu'à ce que quelqu'un la remplace. Elle apparaît au centre de l'autel comme une silhouette de verre et de chant, et son corps se brise en éclats qui tintent. Battre le Chant ne tue pas la note : il faut décider ce que devient la cloche.",
+      "phases": [
+        {
+          "nom": "La Note",
+          "description": "Le Chant lance des vagues de son qui forcent le plongeur à se protéger derrière les éclats de verre. Il faut frapper entre deux vagues, quand le cristal vibre à l'unisson."
+        },
+        {
+          "nom": "L'Accord",
+          "description": "Le Chant se fragmente en trois voix qui tournent autour de l'autel. Chaque voix attaque à son tour, et la quatrième note, celle qui manque, n'apparaît qu'en cassant la voix la plus haute."
+        }
+      ],
+      "butin": [
+        "cristal_du_signal"
+      ]
+    }
+  ]
+}

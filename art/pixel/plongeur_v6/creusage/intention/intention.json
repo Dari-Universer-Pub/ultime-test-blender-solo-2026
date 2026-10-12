@@ -1,0 +1,160 @@
+{
+  "titre": "creusage a la pioche, style Stardew (fiche)",
+  "source_fiche": "dictee exacte, fiche d'animation creusage (Julien)",
+  "frames": [
+    {
+      "n": 1,
+      "nom": "prete",
+      "duree": "longue",
+      "phi": -50,
+      "head": [
+        40.2,
+        31.5
+      ],
+      "f": {
+        "R": 0.0
+      },
+      "buste": [
+        0,
+        0
+      ],
+      "casque": [
+        0,
+        0
+      ],
+      "conforme": "phi -50 ; pioche posee sur l'epaule droite, main droite au bout du manche sur l'epaule ; manche et tete derriere le casque (profondeur) ; main gauche libre le long du corps ; buste droit, pieds comme l'ancre.",
+      "ecart": "une seule main sur le manche (propose : deux mains bloquent les mains dans le casque). La main gauche ne tient pas la pioche. Le manche recouvre le casque en 2D : il passe derriere (profondeur), jamais a travers.",
+      "libre": [
+        35.0,
+        69.9
+      ],
+      "derriere": true
+    },
+    {
+      "n": 2,
+      "nom": "armement",
+      "duree": "longue",
+      "phi": -10,
+      "head": [
+        76.0,
+        22.0
+      ],
+      "f": {
+        "R": 0.2
+      },
+      "buste": [
+        -2.5,
+        0
+      ],
+      "casque": [
+        -1.5,
+        0
+      ],
+      "conforme": "phi -10 ; outil au-dessus et a droite du casque, haut de la tete a 20 px ; main droite sur le manche, a l'exterieur du dome ; bras gauche leve, coude ecarte ; buste recule de 2,5 px, casque de 1,5 px ; pieds fixes.",
+      "ecart": "une seule main sur le manche (deux mains impossibles sans que les mains entrent dans le casque, portee des bras). Manche decale a droite du casque (pour que la main reste hors du dome).",
+      "libre": [
+        35.0,
+        42.0
+      ]
+    },
+    {
+      "n": 3,
+      "nom": "sommet",
+      "duree": "tres courte",
+      "phi": 35,
+      "head": [
+        82.0,
+        28.0
+      ],
+      "f": {
+        "R": 0.4
+      },
+      "buste": [
+        1,
+        0
+      ],
+      "casque": [
+        1,
+        0
+      ],
+      "conforme": "phi +35 ; outil au-dessus du casque, penche vers l'avant ; main droite sur le manche, a l'exterieur du dome ; bras gauche tendu vers le haut et l'avant, coude devant ; buste revient a la verticale puis s'avance ; pieds fixes.",
+      "ecart": "une seule main sur le manche (deux mains entraient dans le casque). Bras gauche libre, sans prise.",
+      "libre": [
+        30.5,
+        49.3
+      ]
+    },
+    {
+      "n": 4,
+      "nom": "descente",
+      "duree": "tres courte",
+      "phi": 110,
+      "head": [
+        98.9,
+        72.0
+      ],
+      "f": {
+        "L": 0.05,
+        "R": 0.25
+      },
+      "buste": [
+        3,
+        0.5
+      ],
+      "casque": [
+        3,
+        2
+      ],
+      "conforme": "phi +110 exact ; tete de pioche a hauteur des hanches (y 72, hanche a 68-69), a droite du corps ; bras descendent cote droit ; buste incline de 3 px vers l'avant (environ 9 deg) ; casque baisse de 2 px ; pieds fixes ; hublot loin (22 px).",
+      "ecart": "(1) « un peu devant le corps » : la profondeur ne se lit pas en 2D, rien n'est montre. (2) le bout du manche part de l'epaule droite, a 1.2 px du flanc du torse, et la tete est a 33 px a droite du bout : c'est la consequence de +110 deg, un manche plus court a droite ne peut pas eviter le torse. (3) ordre des mains inverse : a +110 deg le bout du manche est en haut a l'ecran, donc la main gauche le tient en haut (f 0.05) et la droite est plus bas (f 0.25) ; la main gauche ne peut pas aller plus loin sans depasser +25 %."
+    },
+    {
+      "n": 5,
+      "nom": "impact",
+      "duree": "longue",
+      "phi": 150,
+      "head": [
+        84.0,
+        88.75
+      ],
+      "f": {
+        "L": 0.2,
+        "R": 0.56
+      },
+      "buste": [
+        4,
+        1.5
+      ],
+      "casque": [
+        4,
+        5
+      ],
+      "conforme": "phi +150 exact (30 deg de la verticale) ; tete au sol (bas a 92.0 = sol de l'ancre), devant et a droite des pieds (x 84 contre 66 pour le pied droit) ; le manche ne traverse pas la jambe gauche (0 px) ; buste penche de 4 px vers l'avant, casque baisse de 5 px (dans 4 a 6) ; main gauche sur le manche au ventre cote droit (70,64.5) ; bras presque tendus (gauche +4 %, droit a 84 %) ; pieds fixes ; hublot non touche (18.8 px).",
+      "ecart": "(1) ordre des mains inverse et main droite pas devant le ventre : la main droite est en (76,75), a hauteur de la hanche, la gauche tient le haut du manche au ventre. Raison : le bras gauche part de son cote et ne peut pas tenir plus bas sans depasser +25 % ; le bout du manche est a x 66 au flanc droit, donc la main droite ne peut pas remonter sans bras trop plie. (2) bout du manche au flanc droit du torse (1 px). (3) genoux non flechis dans le squelette : a traiter en 3D, pas en planche."
+    },
+    {
+      "n": 6,
+      "nom": "retour",
+      "duree": "moyenne",
+      "phi": 60,
+      "head": [
+        97.0,
+        53.0
+      ],
+      "f": {
+        "L": 0.0,
+        "R": 0.25
+      },
+      "buste": [
+        0,
+        0
+      ],
+      "casque": [
+        0,
+        0
+      ],
+      "conforme": "phi +60 exact ; pioche qui se retire vers la droite (tete a 97,53) ; buste redresse (0) ; main droite qui remonte (74,66) au-dessus de la gauche au bout (67,70) ; pieds fixes ; hublot loin (33.7 px).",
+      "ecart": "bras gauche a +24 % d'etirement, limite +25 % : la main gauche est au bout du manche, au flanc droit, et c'est le point limite. Bout du manche a 0.5 px du flanc droit (negligeable)."
+    }
+  ]
+}

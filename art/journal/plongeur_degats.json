@@ -1,0 +1,63 @@
+{
+ "entrees": [
+  {
+   "changement": "dégâts image 1 (choc) : buste -4 px, casque -3 px, bras projetés",
+   "image": "art/pixel/plongeur_v6/degats/lot/boards/degats_1_01_choc.png",
+   "image_sha256": "7af1b220cb15896c66441a457b7d53db92104e40c2d54fe7e0f31326b03ab86a",
+   "controle": {
+    "silhouette": "oui : choc reçu lisible",
+    "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
+    "cadrage": "personnage dans la case",
+    "taille": "hauteur selon la pose (voir fiche)",
+    "details": "gant droit et gant gauche visibles, écartés (14 px au moins) ; choc lisible",
+    "coherence_base": "cohérent avec l'ancre",
+    "pixels_parasites": "0 pixel isolé après nettoyage"
+   },
+   "verdict": "garde",
+   "defauts_restants": "bras qui se croisent devant le ventre"
+  },
+  {
+   "changement": "dégâts image 2 (déséquilibre) : corps qui revient vers l'avant",
+   "image": "art/pixel/plongeur_v6/degats/lot/boards/degats_2_02_recul.png",
+   "image_sha256": "c0fab3ffc8be8f007cd16481646ccc6eeaa04599f7bed9884b43fdfe59070f74",
+   "controle": {
+    "silhouette": "oui : déséquilibre lisible",
+    "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
+    "cadrage": "personnage dans la case",
+    "taille": "hauteur selon la pose (voir fiche)",
+    "details": "gants écartés (25 px) : fusion au ventre corrigée",
+    "coherence_base": "cohérent avec l'ancre",
+    "pixels_parasites": "0 pixel isolé après nettoyage"
+   },
+   "verdict": "garde",
+   "defauts_restants": "—"
+  },
+  {
+   "changement": "dégâts image 3 (reprise) : retour au garde",
+   "image": "art/pixel/plongeur_v6/degats/lot/boards/degats_3_03_reprise.png",
+   "image_sha256": "4d5adac3e52132057d61935dacac04f3c152cf8d14e19285eca2142797791488",
+   "controle": {
+    "silhouette": "oui : reprise lisible",
+    "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
+    "cadrage": "personnage dans la case",
+    "taille": "hauteur selon la pose (voir fiche)",
+    "details": "bras au repos ; gant droit visible (gant seul ajouté)",
+    "coherence_base": "cohérent avec l'ancre",
+    "pixels_parasites": "0 pixel isolé après nettoyage"
+   },
+   "verdict": "garde",
+   "defauts_restants": "boucle reprise -> choc non exacte"
+  }
+ ],
+ "sequence": {
+  "changement": "dégâts : trois images, sans pioche",
+  "feuille": "art/pixel/plongeur_v6/degats/lot/feuille/degats.png",
+  "tag": "degats",
+  "durees": [
+   2,
+   3,
+   3
+  ],
+  "planche_finale": "art/pixel/plongeur_v6/degats/lot/planche_finale.png"
+ }
+}

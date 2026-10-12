@@ -1,0 +1,186 @@
+{
+ "images": [
+  {
+   "n": 1,
+   "nom": "accroupi",
+   "controles": {
+    "pioche_casque_px": {
+     "valeur": 0,
+     "tolerance": 2,
+     "ok": true
+    },
+    "outil_dans_hublot_px": {
+     "valeur": 0,
+     "ok": true
+    },
+    "bras_sur_casque_px": {
+     "valeur": 0,
+     "tolerance": 1,
+     "ok": true
+    },
+    "hauteur_px": {
+     "valeur": 68,
+     "max": 72,
+     "ok": true
+    },
+    "tete_acier_px": {
+     "largeur": 0,
+     "hauteur": 0,
+     "ok": true,
+     "applicable": false,
+     "note": "tête vue de profil : critère non applicable (géométrie, décision Julien)"
+    },
+    "pixels_isoles": {
+     "valeur": 0,
+     "ok": true
+    },
+    "palette_hors_ancre_couleurs": {
+     "valeur": 0,
+     "ok": true,
+     "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
+    }
+   },
+   "hash": "f8b930c274cf4872"
+  },
+  {
+   "n": 2,
+   "nom": "decollage",
+   "controles": {
+    "pioche_casque_px": {
+     "valeur": 0,
+     "tolerance": 2,
+     "ok": true
+    },
+    "outil_dans_hublot_px": {
+     "valeur": 0,
+     "ok": true
+    },
+    "bras_sur_casque_px": {
+     "valeur": 0,
+     "tolerance": 1,
+     "ok": true
+    },
+    "hauteur_px": {
+     "valeur": 72,
+     "max": 72,
+     "ok": true
+    },
+    "tete_acier_px": {
+     "largeur": 0,
+     "hauteur": 0,
+     "ok": true,
+     "applicable": false,
+     "note": "tête vue de profil : critère non applicable (géométrie, décision Julien)"
+    },
+    "pixels_isoles": {
+     "valeur": 0,
+     "ok": true
+    },
+    "palette_hors_ancre_couleurs": {
+     "valeur": 0,
+     "ok": true,
+     "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
+    }
+   },
+   "hash": "34d99caec1794ede"
+  },
+  {
+   "n": 3,
+   "nom": "apex",
+   "controles": {
+    "pioche_casque_px": {
+     "valeur": 0,
+     "tolerance": 2,
+     "ok": true
+    },
+    "outil_dans_hublot_px": {
+     "valeur": 0,
+     "ok": true
+    },
+    "bras_sur_casque_px": {
+     "valeur": 0,
+     "tolerance": 1,
+     "ok": true
+    },
+    "hauteur_px": {
+     "valeur": 72,
+     "max": 72,
+     "ok": true
+    },
+    "tete_acier_px": {
+     "largeur": 0,
+     "hauteur": 0,
+     "ok": true,
+     "applicable": false,
+     "note": "tête vue de profil : critère non applicable (géométrie, décision Julien)"
+    },
+    "pixels_isoles": {
+     "valeur": 0,
+     "ok": true
+    },
+    "palette_hors_ancre_couleurs": {
+     "valeur": 0,
+     "ok": true,
+     "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
+    }
+   },
+   "hash": "8407020cd2acfb21"
+  },
+  {
+   "n": 4,
+   "nom": "reception",
+   "controles": {
+    "pioche_casque_px": {
+     "valeur": 0,
+     "tolerance": 2,
+     "ok": true
+    },
+    "outil_dans_hublot_px": {
+     "valeur": 0,
+     "ok": true
+    },
+    "bras_sur_casque_px": {
+     "valeur": 0,
+     "tolerance": 1,
+     "ok": true
+    },
+    "hauteur_px": {
+     "valeur": 71,
+     "max": 72,
+     "ok": true
+    },
+    "tete_acier_px": {
+     "largeur": 0,
+     "hauteur": 0,
+     "ok": true,
+     "applicable": false,
+     "note": "tête vue de profil : critère non applicable (géométrie, décision Julien)"
+    },
+    "pixels_isoles": {
+     "valeur": 0,
+     "ok": true
+    },
+    "palette_hors_ancre_couleurs": {
+     "valeur": 0,
+     "ok": true,
+     "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
+    }
+   },
+   "hash": "2fde639279c656d2"
+  }
+ ],
+ "sequence": {
+  "images_distinctes": {
+   "ok": true
+  },
+  "changements_px_entre_images": [
+   2010,
+   1829,
+   2131
+  ],
+  "boucle": {
+   "premiere_vs_ancre_px_differents": 1389,
+   "derniere_vs_premiere_px_differents": 1361
+  }
+ }
+}

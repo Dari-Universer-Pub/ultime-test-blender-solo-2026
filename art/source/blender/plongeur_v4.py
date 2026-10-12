@@ -1,0 +1,616 @@
+"""
+plongeur_v4.py - scaphandrier de dessin animé, construit de zéro dans Blender (v4, refonte complète).
+
+Étape 1 (ce fichier) : rendu HAUTE RÉSOLUTION sans pixelisation, trois quarts de face (azimut 35°,
+élévation 15°), éclairage principal haut-gauche, contre-jour doux, fond transparent.
+Modélisation : sphères et cylindres ÉTIRÉS, biseautés (Bevel) et lissés (Subdivision), déplacement
+par bruit (plis de toile), tores pour les anneaux, boulons par instances (objets liés au même maillage),
+cordon torsadé par trois courbes hélicoïdales biseautées. Matériaux PBR (laiton métallique, toile mate,
+cuir, caoutchouc, verre). Aucun modèle ni rig téléchargé.
+
+    /opt/outils-varekh/bin/blender -b --factory-startup --python art/source/blender/plongeur_v4.py
+
+Variables : PLONGEUR_SORTIE (dossier de rendu), PLONGEUR_RES (défaut 768), PLONGEUR_ECHANTILLONS (défaut 64).
+"""
+import math
+import os
+import re
+import json
+import sys
+
+import bmesh
+import bpy
+from mathutils import Vector
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.abspath(os.path.join(HERE, "..", "..", ".."))
+ID = "plongeur_v4"
+SORTIE = os.environ.get("PLONGEUR_SORTIE", os.path.join(ROOT, "art", "rendu", ID))
+BLEND = os.path.join(HERE, ID + ".blend")
+RES = int(os.environ.get("PLONGEUR_RES", "768"))
+ECHANTILLONS = int(os.environ.get("PLONGEUR_ECHANTILLONS", "64"))
+AZIMUT = 35.0       # depuis la face vers +X
+ELEVATION = 15.0
+CIBLE = Vector((0.0, 0.1, 1.55))
+CADRE = float(os.environ.get("PLONGEUR_CADRE", "3.9"))   # largeur du cadre (unités) : tuyau au-dessus du casque
+IDENTITE = os.environ.get("PLONGEUR_IDENTITE") == "1"    # carte d'identité des membres (pixelisation)
+
+
+def srgb(hexa):
+    """Couleur hexadécimale sRGB -> linéaire (Blender travaille en linéaire) : fonction exacte de l'sRGB,
+    pour qu'une couleur plate ressorte à l'identique au rendu (la carte d'identité compare des couleurs exactes)."""
+    h = hexa.lstrip("#")
+    def lin(v):
+        v = v / 255.0
+        return v / 12.92 if v <= 0.04045 else ((v + 0.055) / 1.055) ** 2.4
+    return tuple(lin(int(h[k:k + 2], 16)) for k in (0, 2, 4))
+
+
+# ------------------------------------------------------------------ matériaux PBR
+def materiau(nom, hexa, metal=0.0, rugosite=0.6):
+    m = bpy.data.materials.new(nom)
+    m.use_nodes = True
+    b = m.node_tree.nodes["Principled BSDF"]
+    r, g, bl = srgb(hexa)
+    b.inputs["Base Color"].default_value = (r, g, bl, 1.0)
+    b.inputs["Metallic"].default_value = metal
+    b.inputs["Roughness"].default_value = rugosite
+    return m
+
+
+def materiaux():
+    return {
+        "laiton": materiau("laiton", "#c99a3a", metal=1.0, rugosite=0.26),
+        "acier": materiau("acier", "#7b8a92", metal=1.0, rugosite=0.34),
+        "verre": materiau("verre", "#0a2a3c", rugosite=0.03),   # vitre sombre bleutée
+        "reflet": materiau("reflet", "#eafcff", rugosite=0.05),  # reflet clair sur la vitre
+        "kaki": materiau("kaki", "#e0cc9e", rugosite=0.86),          # toile : beige clair chaud (lin)
+        "kaki_sombre": materiau("kaki_sombre", "#9c7e58", rugosite=0.86),  # ombres de toile : brun doux
+        "gant": materiau("gant", "#2b3170", rugosite=0.42),
+        "manchette": materiau("manchette", "#1c1830", rugosite=0.5),
+        "botte": materiau("botte", "#15122a", rugosite=0.5),
+        "genouillere": materiau("genouillere", "#1d1a33", rugosite=0.55),
+        "cuir": materiau("cuir", "#5a2f18", rugosite=0.5),
+        "corde": materiau("corde", "#cbb88c", rugosite=0.72),
+        "bouteille": materiau("bouteille", "#2e2c6a", rugosite=0.2),
+    }
+
+
+# ------------------------------------------------------------------ outils de forme
+def _appliquer(o):
+    bpy.ops.object.select_all(action="DESELECT")
+    o.select_set(True)
+    bpy.context.view_layer.objects.active = o
+    bpy.ops.object.transform_apply(location=False, rotation=True, scale=True)
+
+
+def _lisser(o):
+    for p in o.data.polygons:
+        p.use_smooth = True
+
+
+def _modifieurs(o, biseau=0.0, niveau=2, plis=0.0):
+    if biseau > 0.0:
+        b = o.modifiers.new("biseau", "BEVEL")
+        b.width = biseau
+        b.segments = 4
+    s = o.modifiers.new("lissage", "SUBSURF")
+    s.levels = 1
+    s.render_levels = niveau
+    if plis > 0.0:
+        t = bpy.data.textures.new(o.name + "_plis", "CLOUDS")
+        t.noise_scale = 0.22
+        d = o.modifiers.new("plis", "DISPLACE")
+        d.texture = t
+        d.strength = plis
+        d.mid_level = 0.5
+
+
+def ellipsoide(centre, rayon, echelle, mat, biseau=0.0, plis=0.0, nom="forme"):
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=rayon, segments=40, ring_count=20, location=centre)
+    o = bpy.context.object
+    o.name = nom
+    o.scale = echelle
+    _appliquer(o)
+    o.data.materials.append(mat)
+    _lisser(o)
+    _modifieurs(o, biseau, 2, plis)
+    return o
+
+
+def membre(points, rayons, mat, nom, nseg=14, cotes=28, plis=None):
+    """Membre continu : UNE surface balayée le long d'un chemin lisse (coude ou genou arrondi), rayon
+    interpolé entre les points de contrôle. Pas de sphère ni de jointure : une seule surface, puis subdivision."""
+    chemin = chemin_catmull(points, nseg)
+    n = len(chemin)
+    rayons_ech = []
+    for i in range(n):
+        j = min(i // nseg, len(points) - 2)
+        t = (i - j * nseg) / nseg
+        t = t * t * (3 - 2 * t)
+        rayons_ech.append(rayons[j] + (rayons[j + 1] - rayons[j]) * t)
+    rayons_ech[-1] = rayons[-1]
+    bm = bmesh.new()
+    anneaux = []
+    normale_prec = None
+    for i, p in enumerate(chemin):
+        a = chemin[max(i - 1, 0)]
+        b = chemin[min(i + 1, n - 1)]
+        tangente = (b - a).normalized()
+        if normale_prec is None:
+            nrm = tangente.cross(Vector((0.0, 0.0, 1.0)))
+            if nrm.length < 1e-4:
+                nrm = tangente.cross(Vector((1.0, 0.0, 0.0)))
+            nrm.normalize()
+        else:
+            nrm = normale_prec - tangente * normale_prec.dot(tangente)
+            nrm.normalize()
+        normale_prec = nrm
+        bn = tangente.cross(nrm).normalized()
+        r = rayons_ech[i]
+        anneau = []
+        for k in range(cotes):
+            th = 2.0 * math.pi * k / cotes
+            rk = r
+            if plis:
+                # plis de toile : creux doux et étroits, répartis autour de la section (pas de bosse)
+                nb, amp = plis[0], plis[1]
+                zones = plis[2] if len(plis) > 2 else None
+                if zones is None:
+                    g = 1.0
+                else:
+                    # plis localisés : seulement autour des positions données (fraction du chemin)
+                    u = i / max(n - 1, 1)
+                    g = max(math.exp(-((u - c) / 0.08) ** 2) for c in zones)
+                rk = r * (1.0 - amp * g * (0.5 + 0.5 * math.cos(nb * th)) ** 5)
+            anneau.append(bm.verts.new(p + rk * (math.cos(th) * nrm + math.sin(th) * bn)))
+        anneaux.append(anneau)
+    for i in range(n - 1):
+        A, B = anneaux[i], anneaux[i + 1]
+        for k in range(cotes):
+            bm.faces.new((A[k], A[(k + 1) % cotes], B[(k + 1) % cotes], B[k]))
+    bm.faces.new(anneaux[0][::-1])
+    bm.faces.new(anneaux[-1])
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces[:])
+    me = bpy.data.meshes.new(nom)
+    bm.to_mesh(me)
+    bm.free()
+    me.materials.append(mat)
+    o = bpy.data.objects.new(nom, me)
+    bpy.context.scene.collection.objects.link(o)
+    _lisser(o)
+    _modifieurs(o, 0.0, 2, 0.0)
+    return o
+
+
+def tore(centre, grand_r, petit_r, mat, rotation=(0.0, 0.0, 0.0), echelle=(1.0, 1.0, 1.0), nom="anneau"):
+    bpy.ops.mesh.primitive_torus_add(major_radius=grand_r, minor_radius=petit_r, major_segments=56,
+                                     minor_segments=16, location=centre, rotation=rotation)
+    o = bpy.context.object
+    o.name = nom
+    o.scale = echelle
+    _appliquer(o)
+    o.data.materials.append(mat)
+    _lisser(o)
+    _modifieurs(o, 0.0, 2, 0.0)
+    return o
+
+
+def boite(centre, taille, mat, biseau=0.04, rotation=(0.0, 0.0, 0.0), nom="boite"):
+    bpy.ops.mesh.primitive_cube_add(size=1.0, location=centre, rotation=rotation)
+    o = bpy.context.object
+    o.name = nom
+    o.scale = taille
+    _appliquer(o)
+    o.data.materials.append(mat)
+    _lisser(o)
+    _modifieurs(o, biseau, 2, 0.0)
+    return o
+
+
+def cylindre(centre, rayon, longueur, mat, rotation=(0.0, 0.0, 0.0), biseau=0.03, nom="tube"):
+    bpy.ops.mesh.primitive_cylinder_add(radius=rayon, depth=longueur, vertices=32, location=centre,
+                                        rotation=rotation)
+    o = bpy.context.object
+    o.name = nom
+    _appliquer(o)
+    o.data.materials.append(mat)
+    _lisser(o)
+    _modifieurs(o, biseau, 2, 0.0)
+    return o
+
+
+def orienter(o, direction):
+    """Aligne l'axe Z d'un objet (torus, cylindre) sur une direction."""
+    o.rotation_mode = "QUATERNION"
+    o.rotation_quaternion = Vector((0.0, 0.0, 1.0)).rotation_difference(Vector(direction).normalized())
+    return o
+
+
+def instancier(master, positions, scene, nom):
+    """Boulons par instances : chaque copie partage le même maillage (pas de duplication de géométrie)."""
+    objets = []
+    for k, p in enumerate(positions):
+        o = bpy.data.objects.new(f"{nom}_{k}", master.data)
+        o.location = p
+        scene.collection.objects.link(o)
+        objets.append(o)
+    return objets
+
+
+# ------------------------------------------------------------------ cordon torsadé
+def chemin_catmull(points, n_par_segment):
+    """Courbe lisse (Catmull-Rom) passant par les points de contrôle."""
+    pts = [Vector(p) for p in points]
+    pts = [pts[0]] + pts + [pts[-1]]
+    sortie = []
+    for i in range(1, len(pts) - 2):
+        p0, p1, p2, p3 = pts[i - 1], pts[i], pts[i + 1], pts[i + 2]
+        for k in range(n_par_segment):
+            t = k / n_par_segment
+            t2, t3 = t * t, t * t * t
+            sortie.append(0.5 * ((2 * p1) + (-p0 + p2) * t + (2 * p0 - 5 * p1 + 4 * p2 - p3) * t2
+                                 + (-p0 + 3 * p1 - 3 * p2 + p3) * t3))
+    sortie.append(Vector(pts[-2]))
+    return sortie
+
+
+def cordon(points, rayon_helice, rayon_fil, torsions, scene, mat, nom="cordon"):
+    """Trois brins en hélice autour du chemin : un cordon torsadé (courbes biseautées)."""
+    chemin = chemin_catmull(points, 24)
+    n = len(chemin)
+    objets = []
+    for k in range(3):
+        brin = []
+        for i, p in enumerate(chemin):
+            a = chemin[max(i - 1, 0)]
+            b = chemin[min(i + 1, n - 1)]
+            t = (b - a).normalized()
+            nrm = t.cross(Vector((0.0, 0.0, 1.0)))
+            if nrm.length < 1e-4:
+                nrm = t.cross(Vector((1.0, 0.0, 0.0)))
+            nrm.normalize()
+            bn = t.cross(nrm).normalized()
+            phi = 2.0 * math.pi * torsions * i / n + 2.0 * math.pi * k / 3.0
+            brin.append(p + rayon_helice * (math.cos(phi) * nrm + math.sin(phi) * bn))
+        c = bpy.data.curves.new(f"{nom}_{k}", "CURVE")
+        c.bevel_depth = rayon_fil
+        c.bevel_resolution = 3
+        c.use_fill_caps = True
+        s = c.splines.new("POLY")
+        s.points.add(len(brin) - 1)
+        for j, p in enumerate(brin):
+            s.points[j].co = (p.x, p.y, p.z, 1.0)
+        s.use_smooth = True
+        c.materials.append(mat)
+        o = bpy.data.objects.new(f"{nom}_{k}", c)
+        scene.collection.objects.link(o)
+        objets.append(o)
+    return objets
+
+
+# ------------------------------------------------------------------ construction du scaphandrier
+def construire(scene):
+    m = materiaux()
+    cadre_fer = m["acier"]
+
+    # --- casque : grande sphère laiton patiné, calotte légèrement aplatie sur le dessus
+    ellipsoide((0.0, 0.0, 1.86), 0.52, (1.0, 1.0, 1.0), m["laiton"], nom="casque")
+    ellipsoide((0.0, 0.0, 2.27), 0.20, (1.0, 1.0, 0.45), m["laiton"], nom="calotte")
+    cylindre((0.0, 0.02, 2.42), 0.085, 0.13, m["laiton"], nom="raccord_sommet")
+    # --- grand hublot avant : verre bleuté, cadre gris épais, grille de barres, boulons
+    # vitre posée DEVANT le casque (sa face avant dépasse celle du casque) : plus de casque qui perce le verre
+    ellipsoide((0.0, -0.50, 1.90), 0.30, (1.0, 0.2, 1.0), m["verre"], nom="hublot_verre")
+    tore((0.0, -0.56, 1.90), 0.315, 0.05, cadre_fer, rotation=(math.pi / 2, 0.0, 0.0), nom="hublot_cadre")
+    # reflet : petite tache claire en haut à gauche de la vitre, posée juste devant elle
+    ellipsoide((-0.13, -0.555, 2.05), 0.05, (1.0, 0.25, 0.9), m["reflet"], nom="reflet_vitre")
+    for x in (-0.12, 0.12):
+        cylindre((x, -0.60, 1.90), 0.018, 0.52, cadre_fer, biseau=0.0, nom="barre_v")
+    cylindre((0.0, -0.60, 1.90), 0.018, 0.52, cadre_fer, rotation=(0.0, math.pi / 2, 0.0), biseau=0.0,
+             nom="barre_h")
+    boulon = ellipsoide((0.0, 0.0, 0.0), 0.028, (1.0, 1.0, 0.7), m["acier"], nom="boulon_modele")
+    boulon.location = (0.0, 0.0, -10.0)
+    # boulons posés sur la face avant du cadre (le centre du tore est à -0,47, son rayon de tube 0,05)
+    cercle_hublot = [(0.315 * math.cos(k * math.pi / 4), -0.605, 1.90 + 0.315 * math.sin(k * math.pi / 4))
+                     for k in range(8)]
+    instancier(boulon, cercle_hublot, scene, "boulon_hublot")
+    # --- petit hublot rond sur le côté : cadre laiton
+    tore((0.49, -0.18, 1.82), 0.12, 0.03, m["laiton"], rotation=(0.0, math.pi / 2, 0.0), nom="hublot_cote_cadre")
+    cylindre((0.485, -0.18, 1.82), 0.10, 0.03, m["verre"], rotation=(0.0, math.pi / 2, 0.0), biseau=0.0,
+             nom="hublot_cote_verre")
+    cercle_cote = [(0.49, -0.18 + 0.15 * math.cos(k * math.pi / 3), 1.82 + 0.15 * math.sin(k * math.pi / 3))
+                   for k in range(6)]
+    instancier(boulon, cercle_cote, scene, "boulon_cote")
+    # --- collerette laiton avec rangée de boulons, entre casque et combinaison
+    tore((0.0, 0.0, 1.36), 0.47, 0.075, m["laiton"], nom="collerette")
+    anneau_boulons = [(0.47 * math.cos(k * 2 * math.pi / 12), 0.47 * math.sin(k * 2 * math.pi / 12), 1.435)
+                      for k in range(12)]
+    instancier(boulon, anneau_boulons, scene, "boulon_collerette")
+
+    # --- torse court et arrondi, toile kaki avec plis, fermeture centrale, bassin
+    # tonneau plein et lisse : une seule surface (bassin, ventre, poitrine), section élargie en X
+    torse = membre([(0.0, 0.0, 0.74), (0.0, 0.0, 1.04), (0.0, 0.0, 1.34)], [0.46, 0.62, 0.44], m["kaki"],
+                   "torse", nseg=10, cotes=40, plis=(7, 0.09))
+    torse.scale = (1.15, 0.84, 1.0)
+    _appliquer(torse)
+    boite((0.0, -0.51, 1.04), (0.035, 0.03, 0.56), cadre_fer, biseau=0.0, nom="fermeture")
+    # coutures de part et d'autre de la fermeture
+    for x in (-0.07, 0.07):
+        boite((x, -0.49, 1.04), (0.010, 0.012, 0.50), m["kaki_sombre"], biseau=0.0, nom="couture_fermeture")
+    # coutures horizontales fines, sur la toile
+    tore((0.0, 0.0, 1.24), 0.56, 0.012, m["kaki_sombre"], echelle=(1.0, 0.84, 1.0), nom="couture")
+    # --- ceinture de cuir brun, boucle métallique
+    # ceinture de cuir plus large (bande de 0,14), coutures sur ses bords, boucle métallique
+    tore((0.0, 0.0, 1.0), 0.66, 0.05, m["cuir"], echelle=(1.07, 0.84, 1.4), nom="ceinture")
+    for z in (0.94, 1.06):
+        tore((0.0, 0.0, z), 0.68, 0.009, m["kaki_sombre"], echelle=(1.07, 0.84, 1.0), nom="couture_ceinture")
+    boite((0.0, -0.60, 1.0), (0.17, 0.05, 0.15), m["laiton"], biseau=0.015, nom="boucle")
+
+    # --- bras courts et épais, manchettes sombres, gros gants caoutchouc avec pouce
+    for s in (-1.0, 1.0):
+        epaule = (0.52 * s, 0.0, 1.18)
+        coude = (0.82 * s, -0.12, 0.96)
+        poignet = (0.88 * s, -0.15, 0.74)
+        # bras : plus longs et arrondis, plis de toile à l'épaule et au coude, manche qui s'évase vers le poignet
+        membre([epaule, coude, poignet], [0.22, 0.19, 0.20], m["kaki"], "bras", nseg=12,
+               plis=(5, 0.18, [0.10, 0.52]))
+        d = (Vector(poignet) - Vector(coude)).normalized()
+        # manchette de toile : la fin de la manche, avec une bande sombre ; elle prolonge le bras
+        membre([Vector(poignet) - d * 0.14, Vector(poignet) + d * 0.02], [0.205, 0.215],
+               m["manchette"], "manchette", nseg=2)
+        # gant en mitaine : l'éllipsoïde part du poignet, son bord recouvre le bord de la manchette
+        gant_c = Vector(poignet) + d * 0.12
+        gant = ellipsoide(gant_c, 0.19, (1.0, 0.92, 1.22), m["gant"], biseau=0.02, nom="gant")
+        gant.rotation_mode = "QUATERNION"
+        gant.rotation_quaternion = Vector((0.0, 0.0, 1.0)).rotation_difference(d)
+        # couture de manche juste au-dessus de la manchette
+        couture = tore(Vector(poignet) - d * 0.09, 0.207, 0.009, m["kaki_sombre"], nom="couture_manche")
+        orienter(couture, d)
+        # pouce : un petit doigt du côté intérieur et devant, qui fait la mitaine
+        pouce_c = gant_c + Vector((-0.13 * s, -0.11, 0.02))
+        ellipsoide(pouce_c, 0.075, (0.9, 1.15, 0.8), m["gant"], nom="pouce")
+
+    # --- jambes courtes, genouillères sombres, grosses bottes lourdes
+    for s in (-1.0, 1.0):
+        hanche = (0.22 * s, 0.0, 0.78)
+        genou = (0.25 * s, -0.02, 0.46)
+        cheville = (0.27 * s, 0.0, 0.22)
+        membre([hanche, genou, cheville], [0.25, 0.21, 0.19], m["kaki"], "jambe")
+        # genouillère : plaque arrondie collée à l'avant du genou (enfoncée de 2 cm dans la jambe)
+        # genouillère : plaque bombée, enfoncée dans le genou (son bord rentre dans la jambe)
+        ellipsoide((genou[0], -0.20, genou[2]), 0.15, (0.93, 0.46, 1.0), m["genouillere"],
+                   biseau=0.03, nom="genouillere")
+        ellipsoide((0.28 * s, -0.07, 0.11), 0.22, (1.0, 1.35, 0.7), m["botte"], biseau=0.03, nom="botte")
+
+    # --- bouteille de plongée violet-bleu, derrière l'épaule gauche (lointaine)
+    # bouteille : dépasse derrière l'épaule lointaine (gauche), penchée vers l'arrière ; son col reçoit la corde
+    cylindre((-0.98, 0.50, 1.60), 0.16, 0.72, m["bouteille"], rotation=(0.0, -0.22, 0.0), biseau=0.06,
+             nom="bouteille")
+    cylindre((-1.07, 0.50, 2.01), 0.06, 0.12, m["bouteille"], rotation=(0.0, -0.22, 0.0), biseau=0.02,
+             nom="col_bouteille")
+    # valve en laiton au col : la corde s'y raccorde
+    cylindre((-1.09, 0.50, 2.10), 0.045, 0.09, m["laiton"], rotation=(0.0, -0.22, 0.0), biseau=0.015,
+             nom="valve")
+
+    # --- tuyau d'air en corde torsadée, sortant du sommet du casque, grande boucle vers l'arrière
+    # une seule corde épaisse : sort du sommet du casque, monte, fait une grande boucle lisse vers l'arrière,
+    # puis redescend jusqu'au col de la bouteille (derrière l'épaule lointaine). Trois brins serrés.
+    cordon([(0.0, 0.00, 2.40), (0.0, 0.25, 2.74), (0.0, 0.70, 2.86), (0.0, 1.00, 2.56), (-0.14, 1.04, 2.30),
+            (-0.46, 0.92, 2.08), (-0.84, 0.66, 2.00), (-1.04, 0.50, 2.06)],
+           rayon_helice=0.095, rayon_fil=0.085, torsions=7.0, scene=scene, mat=m["corde"], nom="tuyau_air")
+
+
+# ------------------------------------------------------------------ scène
+def eclairer(scene):
+    """Clé douce haut-gauche (grande source, reflets du laiton en haut à gauche) et lumière de contour
+    douce côté opposé. Les sources sont des surfaces carrées : ombres et reflets doux, pas de tranchant."""
+    def surface(nom, direction_vers_lumiere, distance, taille, energie, teinte):
+        l = bpy.data.lights.new(nom, "AREA")
+        l.energy = energie
+        l.color = teinte
+        l.shape = "SQUARE"
+        l.size = taille
+        o = bpy.data.objects.new(nom, l)
+        scene.collection.objects.link(o)
+        d = Vector(direction_vers_lumiere).normalized()
+        o.location = CIBLE + d * distance
+        o.rotation_mode = "QUATERNION"
+        # une surface émet le long de son -Z : on la tourne vers le centre de la scène
+        o.rotation_quaternion = Vector((0.0, 0.0, -1.0)).rotation_difference(-d)
+    surface("clef_haut_gauche", (-0.50, -0.40, 1.00), 6.0, 3.0, 260.0, (1.0, 0.93, 0.80))
+    surface("contour_doux", (0.6, 0.7, 0.45), 6.0, 4.0, 70.0, (0.66, 0.82, 1.0))
+    monde = bpy.data.worlds.new("monde")
+    monde.use_nodes = True
+    fond = monde.node_tree.nodes["Background"]
+    fond.inputs["Color"].default_value = (0.42, 0.46, 0.50, 1.0)
+    fond.inputs["Strength"].default_value = 0.7
+    scene.world = monde
+
+
+def camera(scene):
+    cam = bpy.data.cameras.new("Camera")
+    cam.type = "ORTHO"
+    cam.ortho_scale = CADRE
+    o = bpy.data.objects.new("Camera", cam)
+    scene.collection.objects.link(o)
+    az, el = math.radians(AZIMUT), math.radians(ELEVATION)
+    d = Vector((math.sin(az) * math.cos(el), -math.cos(az) * math.cos(el), math.sin(el)))
+    o.location = CIBLE + d * 10.0
+    o.rotation_mode = "QUATERNION"
+    o.rotation_quaternion = (-d).normalized().to_track_quat("-Z", "Y")
+    scene.camera = o
+
+
+def reglages(scene):
+    scene.render.engine = "BLENDER_EEVEE"
+    scene.render.resolution_x = RES
+    scene.render.resolution_y = RES
+    scene.render.resolution_percentage = 100
+    scene.render.film_transparent = True
+    scene.render.image_settings.file_format = "PNG"
+    scene.render.image_settings.color_mode = "RGBA"
+    scene.view_settings.view_transform = "Standard"
+    scene.view_settings.look = "None"
+    scene.eevee.taa_render_samples = ECHANTILLONS
+
+
+# ------------------------------------------------------------------ carte d'identité (pixelisation)
+GROUPE_COULEUR = {"tete": "#ffd400", "collerette": "#40ffb0", "tronc": "#ff0000", "tuyau": "#00e0ff",
+                  "bouteille": "#ff7f00", "bras_g": "#00ff00", "bras_d": "#005000", "gant_g": "#a0ff00",
+                  "gant_d": "#00a070", "jambe_g": "#0000ff", "jambe_d": "#000090", "botte_g": "#ff0080",
+                  "botte_d": "#ff80c0"}
+
+
+def groupe_objet(o):
+    """Groupe de la carte d'identité d'un objet, d'après son nom (et son côté X pour les membres)."""
+    base = re.sub(r"\.\d+$", "", o.name)
+    if base.startswith(("boulon_modele",)):
+        return None
+    if base.startswith(("boulon_hublot", "boulon_cote", "casque", "calotte", "raccord", "hublot", "barre")):
+        return "tete"
+    if base.startswith(("boulon_collerette", "collerette")):
+        return "collerette"
+    if base.startswith(("torse", "fermeture", "couture_fermeture", "couture_ceinture", "couture", "ceinture", "boucle")):
+        return "tronc"
+    if base.startswith(("tuyau_air",)):
+        return "tuyau"
+    if base.startswith(("bouteille", "col_bouteille", "valve")):
+        return "bouteille"
+    membre_groupe = None
+    for prefixe, g in (("couture_manche", "bras"), ("manchette", "bras"), ("bras", "bras"),
+                       ("gant", "gant"), ("pouce", "gant"), ("jambe", "jambe"), ("genouillere", "jambe"),
+                       ("botte", "botte")):
+        if base.startswith(prefixe):
+            membre_groupe = g
+            break
+    if membre_groupe is None:
+        return None
+    # côté : moyenne X des sommets dans le monde (négatif = gauche, positif = droite)
+    xs = [(o.matrix_world @ v.co).x for v in o.data.vertices]
+    cote = "g" if sum(xs) / len(xs) < 0 else "d"
+    return f"{membre_groupe}_{cote}"
+
+
+def materiau_plat(nom, hexa):
+    """Couleur plate (émission) : la carte d'identité relit une couleur exacte par partie."""
+    m = bpy.data.materials.new("id_" + nom)
+    m.use_nodes = True
+    arbre = m.node_tree
+    arbre.nodes.clear()
+    sortie = arbre.nodes.new("ShaderNodeOutputMaterial")
+    em = arbre.nodes.new("ShaderNodeEmission")
+    em.inputs["Color"].default_value = (*srgb(hexa), 1.0)
+    em.inputs["Strength"].default_value = 1.0
+    arbre.links.new(em.outputs["Emission"], sortie.inputs["Surface"])
+    return m
+
+
+def rendre_fichier(scene, chemin):
+    if os.path.exists(chemin):
+        os.remove(chemin)
+    scene.render.filepath = chemin
+    bpy.ops.render.render(write_still=True)
+    if not os.path.exists(chemin):
+        sys.exit("rendu absent : " + chemin)
+
+
+MATIERE_COULEUR = {"laiton": "#ffd400", "acier": "#00b4ff", "verre": "#ff2bd6", "toile": "#00ff80",
+                   "cuir": "#ff6a00", "caoutchouc": "#3a00ff", "corde": "#f0f0f0", "bouteille": "#9400ff"}
+
+
+def matiere_objet(o):
+    """Matière de chaque partie (laiton, acier, verre, toile, cuir, caoutchouc, corde, bouteille)."""
+    base = re.sub(r"\.\d+$", "", o.name)
+    if base == "boulon_modele":
+        return None
+    if base.startswith(("reflet", "hublot_verre", "hublot_cote_verre")):
+        return "verre"
+    if base.startswith(("casque", "calotte", "raccord", "collerette", "boulon_collerette", "boucle", "valve",
+                        "hublot_cote_cadre")):
+        return "laiton"
+    if base.startswith(("hublot_cadre", "barre", "boulon_hublot", "boulon_cote", "fermeture")):
+        return "acier"
+    if base.startswith(("torse", "bras", "jambe", "couture")):
+        return "toile"
+    if base.startswith("ceinture"):
+        return "cuir"
+    if base.startswith(("gant", "pouce", "manchette", "genouillere", "botte")):
+        return "caoutchouc"
+    if base.startswith("tuyau_air"):
+        return "corde"
+    if base.startswith(("bouteille", "col_bouteille")):
+        return "bouteille"
+    return None
+
+
+def passe_couleurs(objets, classer, couleurs):
+    """Une couleur plate par classe : remplace les matériaux des parties. Renvoie {objet: classe}."""
+    etiquettes = {}
+    for o in objets:
+        c = classer(o)
+        if c is None:
+            o.hide_render = True
+            continue
+        etiquettes[o] = c
+        if o.data.users > 1:
+            o.data = o.data.copy()
+        o.data.materials.clear()
+        o.data.materials.append(materiau_plat(c, couleurs[c]))
+    return etiquettes
+
+
+def rendre_identite(scene):
+    """Deux cartes d'identité en couleurs plates : par MATIÈRE (quantification) et par GROUPE (membres)."""
+    objets = [o for o in scene.objects if o.type in ("MESH", "CURVE")]
+    # 1) matières
+    dossier_m = os.path.join(SORTIE, "matiere")
+    os.makedirs(dossier_m, exist_ok=True)
+    passe_couleurs(objets, matiere_objet, MATIERE_COULEUR)
+    with open(os.path.join(SORTIE, "matiere_palette.json"), "w", encoding="utf-8") as fichier:
+        json.dump({"rampes": {g: [h] for g, h in MATIERE_COULEUR.items()}}, fichier, indent=1)
+    rendre_fichier(scene, os.path.join(dossier_m, "idle_01.png"))
+    # 2) groupes (membres) : image complète puis une image par groupe
+    dossier = os.path.join(SORTIE, "identite")
+    os.makedirs(dossier, exist_ok=True)
+    groupes = passe_couleurs(objets, groupe_objet, GROUPE_COULEUR)
+    with open(os.path.join(SORTIE, "identite_palette.json"), "w", encoding="utf-8") as fichier:
+        json.dump({"rampes": {g: [h] for g, h in GROUPE_COULEUR.items()}}, fichier, indent=1)
+    rendre_fichier(scene, os.path.join(dossier, "idle_01.png"))
+    for g in sorted(set(groupes.values())):
+        for o in objets:
+            if o in groupes:
+                o.hide_render = groupes[o] != g
+        dossier_g = os.path.join(SORTIE, "parties", g)
+        os.makedirs(dossier_g, exist_ok=True)
+        rendre_fichier(scene, os.path.join(dossier_g, "idle_01.png"))
+    for o in objets:
+        if o in groupes:
+            o.hide_render = False
+    print("IDENTITE_OK", len(set(groupes.values())), "groupes", len(MATIERE_COULEUR), "matieres", flush=True)
+
+
+def main():
+    bpy.ops.wm.read_factory_settings(use_empty=True)
+    scene = bpy.context.scene
+    construire(scene)
+    eclairer(scene)
+    camera(scene)
+    reglages(scene)
+    os.makedirs(SORTIE, exist_ok=True)
+    if IDENTITE:
+        # pas de tramage ni d'anticrénelage au fond : chaque partie garde sa couleur exacte
+        scene.render.dither_intensity = 0.0
+        rendre_identite(scene)
+        return
+    bpy.ops.wm.save_as_mainfile(filepath=BLEND)
+    chemin = os.path.join(SORTIE, "hd_base.png")
+    if os.path.exists(chemin):
+        os.remove(chemin)
+    scene.render.filepath = chemin
+    bpy.ops.render.render(write_still=True)
+    if not os.path.exists(chemin):
+        sys.exit("rendu absent : " + chemin)
+    print("RENDU", chemin, os.path.getsize(chemin), "octets", flush=True)
+
+
+main()

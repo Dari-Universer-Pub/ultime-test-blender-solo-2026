@@ -570,7 +570,7 @@ def boite(img, r):
     return max(xs) - min(xs) + 1, max(ys) - min(ys) + 1
 
 
-HAUTEUR_PLONGEUR = (28, 48)   # pixels, dans le sprite final
+HAUTEUR_PLONGEUR = (56, 80)   # pixels, dans le sprite final
 REMPLISSAGE_MIN = 0.55        # hauteur du personnage / hauteur de la case
 SATURATION_MIN = 0.12         # saturation moyenne (un rendu gris est refuse)
 COULEURS_MIN = 8              # couleurs differentes dans le sprite

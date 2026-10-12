@@ -1,0 +1,38 @@
+{
+ "nom": "06_impact",
+ "phi_deg": 165,
+ "calques": [
+  "jambes",
+  "torse",
+  "bras_g_haut",
+  "bras_g_avant",
+  "cap_coude_g",
+  "cap_epaule_g",
+  "bras_d_haut",
+  "cap_epaule_d",
+  "bras_d_avant",
+  "cap_coude_d",
+  "casque",
+  "bloc_main_d"
+ ],
+ "chaine": {
+  "buste": [
+   3,
+   1
+  ],
+  "casque": [
+   3,
+   4
+  ],
+  "bras_g": {
+   "haut": 0,
+   "avant": 0
+  },
+  "bras_d": {
+   "haut": 0,
+   "avant": 75
+  },
+  "bloc_main_d": 165
+ },
+ "angle_pioche_fiche_deg": null
+}

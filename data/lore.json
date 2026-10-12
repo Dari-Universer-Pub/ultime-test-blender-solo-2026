@@ -1,0 +1,115 @@
+{
+  "civilisation": {
+    "nom": "Les Carillonneurs de Varekh",
+    "description": "Avant la mer, il y avait Varekh, une cité de terrasses blanches construite sur une falaise de calcaire, au bord d'un golfe que ses habitants appelaient le Miroir. Les Carillonneurs y vivaient depuis onze générations. Leur savoir n'était ni celui des armes ni celui des machines : il tenait dans l'oreille. Ils avaient appris que la mer respire, qu'elle a des saisons de pression et de silence, et qu'un océan qui oublie de respirer finit par se briser. Pour l'accorder, ils fondirent des cloches. Non pas des cloches de tour, mais des cloches immenses, couchées au fond du golfe sur des socles de pierre taillée et reliées entre elles par des conduits de bronze et de verre. Chacune donnait une note. Ensemble, elles formaient un accord qui maintenait la surface calme et les profondeurs habitables. Les Carillonneurs ne régnaient pas : ils écoutaient, et ils entretenaient. La cité vivait de cette écoute, de ses ateliers de verre, de ses bibliothèques de sons notés sur des plaques de cuivre et de ses fêtes où l'on chantait avec les cloches pendant les marées basses.",
+    "chute": "La chute ne vint pas d'une guerre. Elle vint d'une dispute sur la note juste. Le conseil de Varekh voulut accorder les cloches sur une nouvelle gamme, plus haute, pour gagner en profondeur et en richesse. Les vieux accordeurs refusèrent : la mer avait toujours été accordée sur l'ancienne. Pendant trois saisons, les cloches sonnèrent deux accords à la fois. L'océan se déchira en courants qui tournaient sur eux-mêmes. Une nuit, la falaise de Varekh glissa dans le golfe, et la cité entière descendit avec ses cloches. La mer monta de dix mètres en une semaine, puis se referma sur le silence."
+  },
+  "signal": {
+    "description": "Le signal est la dernière cloche encore en état de sonner. Elle est enfouie sous la Cité Engloutie, plus bas que les ruines, et elle ne joue plus l'ancienne gamme mais une note seule, lente, qui revient toutes les quelques minutes et traverse l'eau sur des kilomètres. Les plongeurs l'entendent d'abord comme une pression douce dans la poitrine, avant de l'entendre vraiment. Elle ne demande rien en apparence. En réalité, elle attire vers le fond ceux qui ont assez d'oxygène et de courage, et elle rend les machines capricieuses à mesure qu'on s'approche. On ne sait pas si elle veut être entendue, réparée ou arrêtée. Les Gardiens disent qu'elle appelle un accordeur ; l'Ordre du Silence dit qu'elle appelle une catastrophe."
+  },
+  "chronologie": [
+    {
+      "epoque": "Trois siècles avant la chute",
+      "evenement": "Les premiers carillonneurs posent la cloche du Miroir sur son socle et découvrent que la mer répond à sa note par des courants plus doux, que les pêcheurs apprennent à suivre."
+    },
+    {
+      "epoque": "Deux siècles avant la chute",
+      "evenement": "La guilde du verre invente les conduits de cristal qui relient les cloches entre elles ; le golfe entier devient un instrument que l'on peut accorder comme une harpe."
+    },
+    {
+      "epoque": "Cent quatre-vingts ans avant la chute",
+      "evenement": "Les premiers radeaux de surface sont construits par des pêcheurs qui suivent le chant des cloches jusqu'aux bancs de poissons, et qui donnent à la mer des noms de notes."
+    },
+    {
+      "epoque": "Quatre-vingts ans avant la chute",
+      "evenement": "Le conseil fait tailler la falaise pour agrandir la cité ; les marteaux couvrent une note de la cloche du Nord, qui s'éteint durant un hiver et ne sonne plus jamais."
+    },
+    {
+      "epoque": "Soixante ans avant la chute",
+      "evenement": "Premier grand plongeon : des carillonneurs descendent dans des cloches de toile goudronnée, notent la gamme des profondeurs et rapportent les premières plaques de cuivre gravées."
+    },
+    {
+      "epoque": "Quarante ans avant la chute",
+      "evenement": "Les Gardiens de la cloche sont fondés pour veiller sur l'accord. Ils jurent de ne jamais toucher à la gamme, et leur serment sera longtemps respecté par toute la cité."
+    },
+    {
+      "epoque": "Trois ans avant la chute",
+      "evenement": "Le conseil vote l'accordage sur la nouvelle gamme haute. Les accordeurs anciens quittent Varekh en signe de refus et emportent avec eux les plaques où la vieille gamme est notée."
+    },
+    {
+      "epoque": "La dernière saison",
+      "evenement": "Les cloches sonnent deux accords à la fois. Les courants tournent sur eux-mêmes, les radeaux se brisent contre les écueils et les pêcheurs cessent de sortir en mer."
+    },
+    {
+      "epoque": "Le jour de la chute",
+      "evenement": "La falaise glisse dans le golfe. La cité descend avec ses cloches, et la mer se referme en quelques jours sur un silence sans écho qui dure depuis des siècles."
+    }
+  ],
+  "factions": [
+    {
+      "id": "gardiens_cloche",
+      "nom": "Les Gardiens de la cloche",
+      "description": "Ordre de veilleurs fondé après la fondation des premières cloches. Ils descendent en silence près du signal, notent chaque variation de la note et gardent les dernières plaques de la gamme ancienne. Ils croient que la mer peut encore être accordée si l'on retrouve la bonne oreille. Ils se méfient des machines et des pillards, mais ils accueillent les plongeurs qui leur rapportent des notes."
+    },
+    {
+      "id": "compagnie_du_radeau",
+      "nom": "La Compagnie du radeau",
+      "description": "Confrérie de survivants et de marchands qui vivent sur les radeaux de la surface. Ils vendent de l'air, de la toile et des outils aux plongeurs, et récupèrent tout ce qui remonte de la fosse. Pragmatiques, ils voient dans la cité engloutie une mine de richesses plus qu'un mystère, et ils paient bien les cartes et les plaques de cuivre."
+    },
+    {
+      "id": "ordre_du_silence",
+      "nom": "L'Ordre du Silence",
+      "description": "Secte née de la peur du signal. Ses membres pensent que la note qui revient depuis le fond est une dette que la mer réclame et que l'accord de Varekh a mal fini. Ils cherchent à éteindre la dernière cloche, quitte à déséquilibrer les profondeurs. Leurs adeptes portent des scaphandres noirs et se déplacent en silence, sans jamais répondre aux appels."
+    }
+  ],
+  "glossaire": [
+    {
+      "terme": "Carillonneur",
+      "definition": "Ancien membre de la caste qui accordait les cloches de Varekh. Le mot désigne aussi, aujourd'hui, toute personne qui sait écouter la mer."
+    },
+    {
+      "terme": "Cloche du Miroir",
+      "definition": "La plus grande cloche du golfe, posée au centre de l'accord. Elle donne la note de base dont toutes les autres dépendent."
+    },
+    {
+      "terme": "Gamme ancienne",
+      "definition": "L'accord d'origine des cloches, qui garde la surface calme et les profondeurs respirables. Les plaques qui la notent sont rares."
+    },
+    {
+      "terme": "Gamme haute",
+      "definition": "La nouvelle gamme votée par le conseil, cause de la chute. Elle donne plus de profondeur et plus de richesse, au prix de l'équilibre."
+    },
+    {
+      "terme": "Oxygène",
+      "definition": "Air comprimé que le plongeur emporte dans son réservoir. Sans lui, il remonte ou s'éteint. Les bulles qui sortent du casque sont comptées."
+    },
+    {
+      "terme": "Palier",
+      "definition": "Niveau d'équipement qui ouvre une nouvelle profondeur. Chaque palier donne accès à un biome plus bas et plus dangereux."
+    },
+    {
+      "terme": "Plaque de notes",
+      "definition": "Plaque de cuivre gravée par les carillonneurs. Elle contient une partition, une carte ou une légende, et se lit sous l'eau avec une lampe."
+    },
+    {
+      "terme": "Verre de conduit",
+      "definition": "Tube de cristal qui reliait les cloches entre elles. Les verres intacts conduisent encore le son, et leur reflet trahit leur âge."
+    },
+    {
+      "terme": "Marée morte",
+      "definition": "Période où la mer ne bouge plus. Les anciens disaient qu'elle précède toujours une note nouvelle, et les pêcheurs la redoutent."
+    },
+    {
+      "terme": "Cité engloutie",
+      "definition": "Varekh elle-même, descendue avec ses cloches. Ses terrasses blanches sont couvertes de sédiments, et ses rues restent pleines de ce qu'on n'a pas pu emporter."
+    },
+    {
+      "terme": "Radeau de fortune",
+      "definition": "Première embarcation du joueur, faite de planches d'épave et de toile. C'est le seul endroit où l'on peut respirer sans compter son air."
+    },
+    {
+      "terme": "Signal",
+      "definition": "La note seule qui revient depuis le fond. Ceux qui l'ont entendue de près ne parlent jamais de ce qu'ils ont vu, seulement de ce qu'ils ont ressenti."
+    }
+  ]
+}

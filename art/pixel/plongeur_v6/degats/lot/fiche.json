@@ -1,0 +1,88 @@
+{
+  "lot": "degats",
+  "perso": "plongeur_v6",
+  "canevas": [
+    112,
+    112
+  ],
+  "sol_px": 92,
+  "hauteur_max_px": 72,
+  "role": "dégâts (3 images) : choc reçu, déséquilibre, reprise ; le corps entier réagit (épaules, casque et jambes suivent le torse)",
+  "outil": {
+    "nom": "aucun",
+    "note": "pas de pioche : la main droite ne tient rien",
+    "gant": "le gant droit reste visible sans pioche (gant seul, angle de l'avant-bras)"
+  },
+  "images": [
+    {
+      "n": 1,
+      "nom": "choc",
+      "duree_images": 2,
+      "phi_deg": 0,
+      "pose": "choc reçu : buste et casque partent en arrière (4 et 3 px), bras projetés en arrière",
+      "bras_d": "projeté, visible",
+      "bras_g": "projeté, visible",
+      "calques": [
+        "torse",
+        "jambes",
+        "bras_g_haut",
+        "bras_g_avant",
+        "bras_d_haut",
+        "bras_d_avant",
+        "casque",
+        "gant_d"
+      ],
+      "chevauchements": "aucun passage devant le casque",
+      "critere_tete": false
+    },
+    {
+      "n": 2,
+      "nom": "recul",
+      "duree_images": 3,
+      "phi_deg": 0,
+      "pose": "déséquilibre : le corps revient vers l'avant, bras qui cherchent l'équilibre",
+      "bras_d": "projeté, visible",
+      "bras_g": "projeté, visible",
+      "calques": [
+        "torse",
+        "jambes",
+        "bras_g_haut",
+        "bras_g_avant",
+        "bras_d_haut",
+        "bras_d_avant",
+        "casque",
+        "gant_d"
+      ],
+      "chevauchements": "aucun passage devant le casque",
+      "critere_tete": false
+    },
+    {
+      "n": 3,
+      "nom": "reprise",
+      "duree_images": 3,
+      "phi_deg": 0,
+      "pose": "reprise : retour au garde, bras au repos",
+      "bras_d": "projeté, visible",
+      "bras_g": "projeté, visible",
+      "calques": [
+        "torse",
+        "jambes",
+        "bras_g_haut",
+        "bras_g_avant",
+        "bras_d_haut",
+        "bras_d_avant",
+        "casque",
+        "gant_d"
+      ],
+      "chevauchements": "aucun passage devant le casque",
+      "critere_tete": false
+    }
+  ],
+  "mouvement": {
+    "gant_pas_max_px": 10,
+    "epaules": "suivent le torse (epaules_suivent_buste)",
+    "jambes": "translation horizontale légère"
+  },
+  "boucle": "reprise -> choc : la boucle n'est pas exacte (voir ETAT.md)",
+  "effets_separes": "aucun pour les dégâts (à décider)"
+}

@@ -1,0 +1,8 @@
+{"tuiles": [
+ {"id": "roche", "creusage_s": 1.2, "depot": "", "pose_depuis": ""},
+ {"id": "recif", "creusage_s": 0.6, "depot": "resine_de_corail", "pose_depuis": "resine_de_corail"},
+ {"id": "cuivre", "creusage_s": 1.0, "depot": "cuivre_brut", "pose_depuis": "cuivre_brut"},
+ {"id": "sable", "creusage_s": 0.4, "depot": "", "pose_depuis": ""},
+ {"id": "bois", "creusage_s": 0.5, "depot": "planche_epave", "pose_depuis": "planche_epave"},
+ {"id": "tole", "creusage_s": 0.8, "depot": "tole_rouillee", "pose_depuis": "tole_rouillee"}
+]}

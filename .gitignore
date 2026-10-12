@@ -1,0 +1,13 @@
+# Godot : cache d'import et exports (regeneres par le moteur)
+.godot/*
+!.godot/imported/
+builds/
+# Fichiers temporaires Blender / Aseprite
+*.blend1
+*.aseprite.bak
+__pycache__/
+tests/robot_etat.json
+tests/robot_godot.log
+tests/export/etat_pck.json
+tests/export/godot_pck.log
+tests/export/export_pck.log

@@ -1,0 +1,79 @@
+{
+ "images": [
+  {
+   "nom": "01_debut",
+   "x": [
+    29,
+    73
+   ],
+   "bas_y": 91,
+   "h": 72
+  },
+  {
+   "nom": "02_vacille",
+   "x": [
+    27,
+    72
+   ],
+   "bas_y": 91,
+   "h": 71
+  },
+  {
+   "nom": "03_bascule",
+   "x": [
+    26,
+    78
+   ],
+   "bas_y": 90,
+   "h": 65
+  },
+  {
+   "nom": "04_chute",
+   "x": [
+    22,
+    84
+   ],
+   "bas_y": 91,
+   "h": 56
+  },
+  {
+   "nom": "05_tombe",
+   "x": [
+    17,
+    86
+   ],
+   "bas_y": 92,
+   "h": 48
+  },
+  {
+   "nom": "06_au_sol",
+   "x": [
+    13,
+    84
+   ],
+   "bas_y": 92,
+   "h": 45
+  },
+  {
+   "nom": "07_s_affale",
+   "x": [
+    11,
+    82
+   ],
+   "bas_y": 91,
+   "h": 46
+  },
+  {
+   "nom": "08_immobile",
+   "x": [
+    11,
+    82
+   ],
+   "bas_y": 91,
+   "h": 45
+  }
+ ],
+ "distinctes": true,
+ "bas_max": 92,
+ "exceptions": "contrôles de pioche, hublot, bras/casque, tête : non applicables (rendu direct sans masques)"
+}

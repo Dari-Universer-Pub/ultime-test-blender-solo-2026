@@ -1,0 +1,23 @@
+{
+  "entrees": [
+    {
+      "changement": "premier tuileset autotile 47 cases du biome recif_peu_profond (rampe recif, rendu 128 px, pixel 16 px, feuille de 47 cases)",
+      "image": "boards/props/tuileset_recif_47.png",
+      "image_sha256": "26293a2bb4cc448eb588acba7e7ee4206e549e6c4b89964277aa6164b5e89d9f",
+      "controle": {
+        "silhouette": "Les 47 cases sont distinctes : coins, bords, angles intérieurs et extérieurs se lisent.",
+        "couleurs": "Rose-recif de la rampe recif, palette conforme.",
+        "cadrage": "Chaque case remplit sa case de 16 px ; bords nets.",
+        "taille": "Case de 16 px ; 47 cases dans la feuille.",
+        "details": "Lisière cyan sur le dessus des dalles (même défaut que le radeau) ; quelques coupes diagonales irrégulières.",
+        "coherence_base": "Même logique autotile et même pipeline que le tileset du radeau.",
+        "pixels_parasites": "Lisière cyan à atténuer."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "lisière cyan sur le dessus des dalles à atténuer",
+        "quelques coupes diagonales à revoir"
+      ]
+    }
+  ]
+}

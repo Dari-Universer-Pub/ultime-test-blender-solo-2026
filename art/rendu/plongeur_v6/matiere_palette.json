@@ -1,0 +1,28 @@
+{
+ "rampes": {
+  "laiton": [
+   "#ffd400"
+  ],
+  "acier": [
+   "#00b4ff"
+  ],
+  "verre": [
+   "#ff2bd6"
+  ],
+  "toile": [
+   "#00ff80"
+  ],
+  "cuir": [
+   "#ff6a00"
+  ],
+  "caoutchouc": [
+   "#3a00ff"
+  ],
+  "corde": [
+   "#f0f0f0"
+  ],
+  "bouteille": [
+   "#9400ff"
+  ]
+ }
+}

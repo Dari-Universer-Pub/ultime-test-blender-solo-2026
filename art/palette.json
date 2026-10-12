@@ -1,0 +1,139 @@
+{
+  "_note": "Palette du projet. 19 rampes de 3 a 6 tons, du plus sombre au plus clair. Ombres vers le bleu-violet, lumieres vers le jaune chaud. Pas de noir pur. Ajout M4 (plongeur) : laiton (casque, 4 tons), kaki (combinaison, 4 tons), gant (gants et bottes, 3 tons). 96 couleurs.",
+  "rampes": {
+    "contour_sombre": [
+      "#170f2e",
+      "#241a44",
+      "#34285e",
+      "#4a3a6e",
+      "#7a4a78"
+    ],
+    "contour_chaud": [
+      "#3a2040",
+      "#4a2a4a",
+      "#7a3a52",
+      "#b06048",
+      "#e8966a"
+    ],
+    "peau": [
+      "#4a2a4e",
+      "#7a3f4f",
+      "#b65f4f",
+      "#e3917a",
+      "#ffc9a0"
+    ],
+    "combinaison": [
+      "#2a1a3d",
+      "#5a2440",
+      "#8f2f2e",
+      "#c95a2a",
+      "#f08a3a",
+      "#ffc070"
+    ],
+    "verre": [
+      "#0c2a4a",
+      "#1a5a7a",
+      "#2a8aa0",
+      "#5cc8d0",
+      "#9af0ea",
+      "#e6fff8"
+    ],
+    "metal": [
+      "#1e2a44",
+      "#2e4a66",
+      "#4a7088",
+      "#7aa0a8",
+      "#b0d0cc",
+      "#f2f4e0"
+    ],
+    "caoutchouc": [
+      "#171226",
+      "#2b2140",
+      "#433462",
+      "#5e4a80",
+      "#9a6f7e"
+    ],
+    "palmes": [
+      "#3a1530",
+      "#7a1f3a",
+      "#b8342e",
+      "#e6603a",
+      "#ff9a5a"
+    ],
+    "lampe": [
+      "#4a2a3a",
+      "#8a4a2a",
+      "#d89a30",
+      "#f8c850",
+      "#fff2a8"
+    ],
+    "bulle": [
+      "#2a6a8a",
+      "#4aa0b0",
+      "#8ad8d0",
+      "#c8f4e8",
+      "#f0fff8"
+    ],
+    "bouteille": [
+      "#14303a",
+      "#1f5258",
+      "#2f7a72",
+      "#54a08a",
+      "#8ac8a0",
+      "#c8ecbc"
+    ],
+    "ocre": [
+      "#3a2a2a",
+      "#6a3a2a",
+      "#9a5a2a",
+      "#c08040",
+      "#e8b870",
+      "#fff0c8"
+    ],
+    "sable": [
+      "#3e2c42",
+      "#7a5a5a",
+      "#b88a6a",
+      "#e6c08a",
+      "#fff0d0"
+    ],
+    "roche": [
+      "#2b2640",
+      "#46405e",
+      "#6a6172",
+      "#948a86",
+      "#c2b7a5"
+    ],
+    "recif": [
+      "#3c2a4a",
+      "#6b3f6a",
+      "#b05a7a",
+      "#e88a8a",
+      "#f8c8a8"
+    ],
+    "cuivre": [
+      "#2e2030",
+      "#5e3a3a",
+      "#8e5a3a",
+      "#c08a4a",
+      "#f0c890"
+    ],
+    "laiton": [
+      "#2a1e0c",
+      "#6a4e1c",
+      "#b08a2c",
+      "#f0d070"
+    ],
+    "kaki": [
+      "#8a7e58",
+      "#b8ad84",
+      "#d8cca0",
+      "#f2e8c4"
+    ],
+    "gant": [
+      "#15102e",
+      "#34295e",
+      "#4e3e7a"
+    ]
+  }
+}

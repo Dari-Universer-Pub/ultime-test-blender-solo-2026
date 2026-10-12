@@ -1,0 +1,35 @@
+{
+ "nom": "passe 5 : pixels isolés supprimés",
+ "pixels": [
+  {
+   "x": 56,
+   "y": 33,
+   "rgb": "#1f1714",
+   "raison": "pixel isolé supprimé"
+  },
+  {
+   "x": 42,
+   "y": 45,
+   "rgb": "#1f1714",
+   "raison": "pixel isolé supprimé"
+  },
+  {
+   "x": 31,
+   "y": 70,
+   "rgb": "#fbf4e0",
+   "raison": "pixel isolé supprimé"
+  },
+  {
+   "x": 35,
+   "y": 71,
+   "rgb": "#cdb48e",
+   "raison": "pixel isolé supprimé"
+  },
+  {
+   "x": 67,
+   "y": 78,
+   "rgb": "#fbf4e0",
+   "raison": "pixel isolé supprimé"
+  }
+ ]
+}

@@ -1,0 +1,38 @@
+{
+ "nom": "03_sommet",
+ "phi_deg": 15,
+ "calques": [
+  "jambes",
+  "torse",
+  "bras_g_haut",
+  "bras_g_avant",
+  "cap_coude_g",
+  "cap_epaule_g",
+  "bras_d_haut",
+  "cap_epaule_d",
+  "bras_d_avant",
+  "cap_coude_d",
+  "casque",
+  "bloc_main_d"
+ ],
+ "chaine": {
+  "buste": [
+   1,
+   0
+  ],
+  "casque": [
+   1,
+   0
+  ],
+  "bras_g": {
+   "haut": 0,
+   "avant": 0
+  },
+  "bras_d": {
+   "haut": 120,
+   "avant": 120
+  },
+  "bloc_main_d": 15
+ },
+ "angle_pioche_fiche_deg": null
+}

@@ -1,0 +1,109 @@
+{
+  "lot": "saut",
+  "perso": "plongeur_v6",
+  "canevas": [
+    112,
+    112
+  ],
+  "sol_px": 92,
+  "hauteur_max_px": 72,
+  "role": "saut (4 images) : accroupi, décollage, apex, réception ; le corps entier se déplace (épaules, casque et jambes suivent le torse)",
+  "outil": {
+    "nom": "aucun",
+    "note": "pas de pioche dans le saut : la main droite ne tient rien",
+    "gant": "le gant droit reste visible sans pioche (gant seul, angle de l'avant-bras)"
+  },
+  "images": [
+    {
+      "n": 1,
+      "nom": "accroupi",
+      "duree_images": 3,
+      "phi_deg": 0,
+      "pose": "accroupi : le corps descend de 2 px, les jambes se compriment, les bras reculent",
+      "bras_d": "en équilibre (pas de pioche, la main ne tient rien)",
+      "bras_g": "en équilibre le long du corps ou devant",
+      "calques": [
+        "torse",
+        "jambes",
+        "bras_g_haut",
+        "bras_g_avant",
+        "bras_d_haut",
+        "bras_d_avant",
+        "casque",
+        "gant_d"
+      ],
+      "chevauchements": "aucun passage devant le casque",
+      "critere_tete": false
+    },
+    {
+      "n": 2,
+      "nom": "decollage",
+      "duree_images": 2,
+      "phi_deg": 0,
+      "pose": "décollage : le corps monte de 4 px, les pieds quittent le sol, bras droit levé en avant",
+      "bras_d": "en équilibre (pas de pioche, la main ne tient rien)",
+      "bras_g": "en équilibre le long du corps ou devant",
+      "calques": [
+        "torse",
+        "jambes",
+        "bras_g_haut",
+        "bras_g_avant",
+        "bras_d_haut",
+        "bras_d_avant",
+        "casque",
+        "gant_d"
+      ],
+      "chevauchements": "aucun passage devant le casque",
+      "critere_tete": false
+    },
+    {
+      "n": 3,
+      "nom": "apex",
+      "duree_images": 3,
+      "phi_deg": 0,
+      "pose": "apex : le corps est au plus haut (8 px), jambes repliées sous le buste, bras en équilibre",
+      "bras_d": "en équilibre (pas de pioche, la main ne tient rien)",
+      "bras_g": "en équilibre le long du corps ou devant",
+      "calques": [
+        "torse",
+        "jambes",
+        "bras_g_haut",
+        "bras_g_avant",
+        "bras_d_haut",
+        "bras_d_avant",
+        "casque",
+        "gant_d"
+      ],
+      "chevauchements": "aucun passage devant le casque",
+      "critere_tete": false
+    },
+    {
+      "n": 4,
+      "nom": "reception",
+      "duree_images": 3,
+      "phi_deg": 0,
+      "pose": "réception : retour au sol, buste légèrement bas (1 px), bras au repos",
+      "bras_d": "en équilibre (pas de pioche, la main ne tient rien)",
+      "bras_g": "en équilibre le long du corps ou devant",
+      "calques": [
+        "torse",
+        "jambes",
+        "bras_g_haut",
+        "bras_g_avant",
+        "bras_d_haut",
+        "bras_d_avant",
+        "casque",
+        "gant_d"
+      ],
+      "chevauchements": "aucun passage devant le casque",
+      "critere_tete": false
+    }
+  ],
+  "mouvement": {
+    "gant_pas_max_px": 10,
+    "epaules": "suivent le torse (option epaules_suivent_buste)",
+    "jambes": "translation verticale du corps entier (jambes rigides : pas de flexion de genou)"
+  },
+  "boucle": "réception -> accroupi (2 px de différence de buste) ; la boucle vers l'ancre (repos) n'est pas exacte : voir ETAT.md",
+  "effets_separes": "aucun pour le saut (à décider)"
+}

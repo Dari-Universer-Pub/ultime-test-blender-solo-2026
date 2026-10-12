@@ -1,0 +1,43 @@
+{
+ "rampes": {
+  "tete": [
+   "#ffd400"
+  ],
+  "collerette": [
+   "#40ffb0"
+  ],
+  "tronc": [
+   "#ff0000"
+  ],
+  "tuyau": [
+   "#00e0ff"
+  ],
+  "bouteille": [
+   "#ff7f00"
+  ],
+  "bras_g": [
+   "#00ff00"
+  ],
+  "bras_d": [
+   "#005000"
+  ],
+  "gant_g": [
+   "#a0ff00"
+  ],
+  "gant_d": [
+   "#00a070"
+  ],
+  "jambe_g": [
+   "#0000ff"
+  ],
+  "jambe_d": [
+   "#000090"
+  ],
+  "botte_g": [
+   "#ff0080"
+  ],
+  "botte_d": [
+   "#ff80c0"
+  ]
+ }
+}

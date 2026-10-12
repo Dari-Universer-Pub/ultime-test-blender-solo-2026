@@ -1,0 +1,358 @@
+{
+  "entrees": [
+    {
+      "changement": "corps : ellipsoïde ramené de 0,84 à 0,64 en hauteur (largeur 1,15) pour l'aplatir",
+      "image": "boards/journal/carangue_rayee_1.png",
+      "image_sha256": "3a5bb968f5af0e7a31d4c1aa36fb640fd1e19091f5a0de26e60a0dacf841e126",
+      "controle": {
+        "silhouette": "Le corps perd environ un quart de sa hauteur : il s'éloigne de la fiche qui demande un corps haut et comprimé, sans gain de lisibilité.",
+        "couleurs": "Couleurs inchangées (argent-bleu, bandes sombres, queue jaune).",
+        "cadrage": "Le poisson reste dans la case ; le cadrage ne change pas.",
+        "taille": "Pas encore mesurable en pixels ; hauteur à contrôler après pixelisation (cible 36 à 46 px).",
+        "details": "Les trois bandes et la queue restent lisibles, mais le corps plus bas réduit la place de la dorsale.",
+        "coherence_base": "La fiche (corps haut et comprimé) demande l'inverse de ce changement.",
+        "pixels_parasites": "Aucun pixel parasite visible à ce stade du rendu."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "bandes presque noires et trop épaisses en bas",
+        "dorsale jaune en forme de disque plat, à redessiner"
+      ]
+    },
+    {
+      "changement": "bandes : matière caoutchouc des tons 0-3 (presque noir) remplacée par les tons 1-4 (violet-gris)",
+      "image": "boards/journal/carangue_rayee_2.png",
+      "image_sha256": "7a6756007074ad47b0d4a71bfe17a727280e5b65df19748b85c9aa1c9d0123b0",
+      "controle": {
+        "silhouette": "Les trois bandes restent à la même place ; la silhouette ne change pas.",
+        "couleurs": "Les bandes passent du quasi-noir à un violet-gris de la rampe caoutchouc : elles restent sombres sur le corps argenté.",
+        "cadrage": "Le cadrage ne change pas : le poisson reste dans la case.",
+        "taille": "Pas encore mesurable en pixels ; à contrôler après pixelisation.",
+        "details": "Les bandes se détachent mieux du corps ; la lecture des trois lignes verticales est plus nette à l'œil.",
+        "coherence_base": "La rampe caoutchouc est déjà utilisée sur le poisson volant : même matière, cohérence entre créatures du biome.",
+        "pixels_parasites": "Aucun pixel parasite visible à ce stade du rendu."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "bandes encore trop longues et fines en bas",
+        "dorsale jaune en disque plat, à redessiner"
+      ]
+    },
+    {
+      "changement": "bandes : hauteur ramenée de 0,80 à 0,62 pour qu'elles restent à l'intérieur du corps",
+      "image": "boards/journal/carangue_rayee_3.png",
+      "image_sha256": "c4caa4a1cf0b6477e9f627cbd380f736403d02c2b3308ffa24781fd40fb94c5a",
+      "controle": {
+        "silhouette": "Les bandes ne débordent plus du dos ni du ventre : le corps garde son contour net.",
+        "couleurs": "Couleurs inchangées (violet-gris sur argent-bleu).",
+        "cadrage": "Le cadrage ne change pas.",
+        "taille": "Pas encore mesurable en pixels ; à contrôler après pixelisation.",
+        "details": "Les trois bandes se lisent comme des rayures et non plus comme des traits noirs.",
+        "coherence_base": "Même rampe caoutchouc que la version précédente.",
+        "pixels_parasites": "Aucun pixel parasite visible à ce stade du rendu."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "dorsale jaune en disque plat, à redessiner"
+      ]
+    },
+    {
+      "changement": "nageoire dorsale : disque jaune de 0,62 x 0,42 remplacé par une nageoire longue et basse (0,85 x 0,24) posée sur le dos",
+      "image": "boards/journal/carangue_rayee_4.png",
+      "image_sha256": "7c763169849237791077d376cea03e588bec72378b51cf1da1bc6201d642bd46",
+      "controle": {
+        "silhouette": "La dorsale est longue et basse, comme une nageoire de carangue ; elle ne forme plus une bosse ronde au-dessus du corps.",
+        "couleurs": "Le jaune de la rampe lampe reste celui des nageoires, en accord avec la queue.",
+        "cadrage": "La dorsale dépasse un peu du dos sans sortir de la case.",
+        "taille": "Pas encore mesurable en pixels ; à contrôler après pixelisation.",
+        "details": "La dorsale se détache du corps par sa forme effilée ; elle reste lisible à l'œil.",
+        "coherence_base": "Même rampe lampe que la queue : les nageoires du poisson forment un ensemble.",
+        "pixels_parasites": "Aucun pixel parasite visible à ce stade du rendu."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "queue jaune encore trop large par rapport au corps",
+        "œil invisible sur la planche"
+      ]
+    },
+    {
+      "changement": "pixelisation de la carangue à 64 px : nage 8, attaque 4, mort 6 dans une feuille à 3 étiquettes (cadrage encore à 2,0 unités)",
+      "image": "boards/carangue_rayee_pixel_1.png",
+      "image_sha256": "e19daa9fd8f7450f82f6a41225ec69125d5cf0ec0dabef02700832a3be11d470",
+      "controle": {
+        "silhouette": "Corps rond rayé, dorsale jaune au-dessus et queue jaune en pointe : la carangue se reconnaît à ses rayures, en mort elle roule sur le flanc.",
+        "couleurs": "Blanc crème, bleu-gris et violet des rayures et jaune de la dorsale/queue restent dans la palette.",
+        "cadrage": "Le corps occupe la case mais le plus haut pixel ne dépasse pas 33 px environ : trop petit pour le contrôle (36 px minimum).",
+        "taille": "Mesure : 33 px de haut sur les images de nage ; cible 36 à 46 px : échec, cadrage à agrandir.",
+        "details": "Les trois rayures sont lisibles en nage ; l'attaque ne se distingue presque pas du repos (dorsale seulement un peu plus haute).",
+        "coherence_base": "Même pipeline et même palette que les autres créatures du biome.",
+        "pixels_parasites": "Liseré clair sur le contour du corps et de la dorsale."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "taille insuffisante : cadrage à agrandir",
+        "attaque trop peu marquée : dorsale à redresser davantage",
+        "liseré clair à atténuer"
+      ]
+    },
+    {
+      "changement": "cadrage : largeur du cadre de 2,0 à 1,8 unités pour agrandir la carangue (corps et dorsale)",
+      "image": "boards/journal/carangue_rayee_6.png",
+      "image_sha256": "dc84f78615dc380bbf3ae823375ca59a6f243d635c99410d4550db7e4189f022",
+      "controle": {
+        "silhouette": "Le corps et la dorsale grandissent d'environ 11 % ; la silhouette reste la même.",
+        "couleurs": "Couleurs inchangées.",
+        "cadrage": "La queue touche le bord gauche de la case : le cadrage est coupé, ce changement est refusé.",
+        "taille": "Hauteur attendue d'environ 36 à 37 px ; la hauteur gagne bien, mais la queue sort de la case.",
+        "details": "Les rayures et l'œil restent lisibles ; la queue coupée se lit mal.",
+        "coherence_base": "Même pipeline ; le cadre seul change.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "queue coupée au bord gauche : il faut décaler le cadre vers l'arrière-plan"
+      ]
+    },
+    {
+      "changement": "cadrage : largeur 1,8 et caméra décalée de -0,20 vers la queue (la queue rentre dans la case, le corps reste grand)",
+      "image": "boards/journal/carangue_rayee_7.png",
+      "image_sha256": "c3bed6bf33677613d644e5bdc5b97ad4685bd02b450b5983a1e65b56e1185ea0",
+      "controle": {
+        "silhouette": "Le corps et la dorsale sont plus grands que la version précédente et la queue reste entière.",
+        "couleurs": "Couleurs inchangées (blanc crème, bleu-gris, rayures violettes, jaune de la dorsale et de la queue).",
+        "cadrage": "La queue a une marge d'environ 50 px sur 666 à gauche et la dorsale reste sous le haut de la case : le poisson est entier.",
+        "taille": "Hauteur attendue d'environ 36 à 37 px ; à mesurer après pixelisation.",
+        "details": "Les trois rayures et la queue restent lisibles à cette taille.",
+        "coherence_base": "Même pipeline ; le cadre seul change, les autres créatures seront cadrées de la même façon.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "attaque peu marquée : dorsale à redresser davantage",
+        "liseré clair à atténuer en finition"
+      ]
+    },
+    {
+      "changement": "pixelisation de la carangue au nouveau cadrage (1,8, décalée de -0,20) : nage 8, attaque 4, mort 6 dans une feuille à 3 étiquettes",
+      "image": "boards/carangue_rayee_pixel_2.png",
+      "image_sha256": "0188e5fa140925e36f5a63683050e5cc23a4489c2720385dd0c36096a0caf336",
+      "controle": {
+        "silhouette": "Corps rond rayé, dorsale jaune au-dessus et queue jaune en pointe : la carangue se reconnaît à ses rayures ; en mort elle roule et ses rayures deviennent diagonales.",
+        "couleurs": "Blanc crème, bleu-gris, violet des rayures et jaune de la dorsale et de la queue restent dans la palette.",
+        "cadrage": "Le poisson occupe la case : queue entière, dorsale sous le haut, marge régulière.",
+        "taille": "Mesure (tools/mesure/mesurer.py) : hauteur 36 à 37 px, largeur 55 à 57 px ; le minimum de 36 px est tenu.",
+        "details": "Les trois rayures et la queue sont lisibles ; l'attaque ne se distingue encore que par une dorsale un peu plus haute.",
+        "coherence_base": "Même pipeline et même palette que l'oursin et le poisson volant.",
+        "pixels_parasites": "Liseré clair sur le contour du corps et de la dorsale ; quelques pixels de queue détachés à 1 px."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "attaque trop peu marquée : dorsale à dresser davantage (finition ou animation)",
+        "liseré clair à atténuer en finition",
+        "pixels de queue détachés à 1 px : à relier en finition"
+      ]
+    },
+    {
+      "changement": "œil : globe blanc de 0,095 de rayon et pupille noire de 0,62 du rayon, posés côté caméra sur la tête (au lieu d'un globe de 0,085 et d'une pupille de 0,45)",
+      "image": "boards/journal/carangue_rayee_8.png",
+      "image_sha256": "78bd7d303b75cc8b604ad4bfe448264fa09677b0540c6635d11747c7cefad6e8",
+      "controle": {
+        "silhouette": "Le poisson se lit maintenant comme tête et corps : l'œil à l'avant pose la tête.",
+        "couleurs": "Blanc crème de la rampe metal et pupille noire de la rampe caoutchouc : contraste fort sur le corps argenté.",
+        "cadrage": "L'œil reste dans le contour de la tête ; le cadre ne change pas.",
+        "taille": "Diamètre du globe d'environ 0,19 unité, soit environ 6 px sur 64 : au-dessus du minimum de 2 px.",
+        "details": "La pupille noire se lit à l'œil nu ; avant, le globe pâle se confondait avec le corps.",
+        "coherence_base": "Même outil d'œil que les autres créatures (ob.oeil) : même blanc, même pupille.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "pectorale en pièce plate : à redessiner en nageoire fine",
+        "bouche qui dépasse du museau : à rentrer dans le contour",
+        "dorsale molle en tache jaune : à affiner"
+      ]
+    },
+    {
+      "changement": "pectorale : pièce plate de 0,20 x 0,11 remplacée par une nageoire fine de 0,30 x 0,05, inclinée à -38 degrés",
+      "image": "boards/journal/carangue_rayee_9.png",
+      "image_sha256": "2b9409c83f3fbf1e1e28180e4d52d6999c00e19e9d3851cda59486ca6f7677ad",
+      "controle": {
+        "silhouette": "La pectorale se lit comme une nageoire de poisson, fine et inclinée vers l'arrière, et non plus comme une pièce.",
+        "couleurs": "Jaune de la rampe lampe, comme la queue et les piquants : cohérence des nageoires.",
+        "cadrage": "La nageoire reste sur le flanc, sans sortir du contour.",
+        "taille": "Environ 0,30 unité de long, soit 10 px sur 64 : lisible sans dominer le corps.",
+        "details": "La pectorale se détache du corps et de la rayure voisine ; elle est lisible à 64 px.",
+        "coherence_base": "Même matériau lampe que les autres nageoires.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "museau coupé par le bord droit : cadrage à décaler",
+        "dorsale molle en tache jaune : à affiner"
+      ]
+    },
+    {
+      "changement": "cadrage : centre de la caméra déplacé de -0,20 à -0,14 pour que le museau ne soit plus coupé par le bord droit",
+      "image": "boards/journal/carangue_rayee_10.png",
+      "image_sha256": "8fdfb5074153e59ad9075ac60d2108916e56c7426e48071d46576aac47aeab8c",
+      "controle": {
+        "silhouette": "Le poisson est entier : museau, tête, corps, queue fourchue.",
+        "couleurs": "Couleurs inchangées.",
+        "cadrage": "Le museau ne touche plus le bord ; la queue a une marge d'environ 2 px à gauche et le museau d'environ 1 px à droite : serré mais entier.",
+        "taille": "Hauteur inchangée (environ 37 px après pixelisation) ; largeur d'environ 60 px sur 64.",
+        "details": "Œil, pectorale et dorsale restent lisibles à l'échelle.",
+        "coherence_base": "Même cadre que la version précédente, changé seulement d'un décalage.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "marge droite de 1 px : à surveiller après pixelisation",
+        "point sombre hors du museau : bouche à replacer"
+      ]
+    },
+    {
+      "changement": "bouche : petite ellipse sombre déplacée sous le museau (0,63 ; -0,10 ; -0,10), en fente de 0,14 x 0,05 x 0,03",
+      "image": "boards/journal/carangue_rayee_11.png",
+      "image_sha256": "0366327495a42b7e9c4eca598db7b86124c43fecc0eaa11e2d7425f3bdcf4096",
+      "controle": {
+        "silhouette": "La tache sombre reste hors du contour du museau et du ventre : elle se lit comme un point flottant, pas comme une bouche.",
+        "couleurs": "Le noir de la rampe caoutchouc tranche sur le bleu-gris du ventre, mais sans rapport avec la tête.",
+        "cadrage": "La tache se trouve à la limite du bord droit de la case.",
+        "taille": "Environ 3 px sur 64 : trop petit pour se lire comme une bouche.",
+        "details": "La bouche ne se lit pas ; le museau, pointu et clair, fait déjà office de museau.",
+        "coherence_base": "Même matériau que la version précédente.",
+        "pixels_parasites": "Rendu brut : le point flottant est un défaut visible, pas un pixel parasite."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "bouche flottante : à retirer, le museau suffit"
+      ]
+    },
+    {
+      "changement": "bouche retirée : la tache sombre flottante disparaît, le museau pointu sert de museau",
+      "image": "boards/journal/carangue_rayee_12.png",
+      "image_sha256": "14e195b2a82e5734b559c2c448175d965d7e08ccefbbd4df8f1ef7d8754c303f",
+      "controle": {
+        "silhouette": "Le poisson se lit comme une carangue : museau pointu, œil, dorsale épineuse, dorsale molle, anale, pectorale et queue fourchue.",
+        "couleurs": "Blanc crème, bleu-gris, rayures violettes et jaune des nageoires : aucune tache parasite.",
+        "cadrage": "Le poisson tient la case, museau et queue entiers ; la marge droite reste d'environ 1 px.",
+        "taille": "Hauteur d'environ 37 px après pixelisation (mesure à la pixelisation).",
+        "details": "L'œil et la pectorale restent lisibles ; la dorsale molle et l'anale sont distinctes des piquants.",
+        "coherence_base": "Même matériau et même œil que la version précédente.",
+        "pixels_parasites": "Aucune tache hors du corps sur le rendu brut."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "dorsale molle en tache jaune arrondie : à affiner en finition",
+        "marge droite de 1 px : à vérifier après pixelisation"
+      ]
+    },
+    {
+      "changement": "pixelisation de la carangue au nouveau rendu complet (tête, museau, dorsales, pectorale, queue fourchue) : nage 8, attaque 4, mort 6 dans une feuille à 3 étiquettes",
+      "image": "boards/carangue_rayee_pixel_3.png",
+      "image_sha256": "b4ebfba538e2b04cbf7e3a0a9c229686fa34a962cae426adb7d8872db4c37951",
+      "controle": {
+        "silhouette": "Le poisson se lit comme une carangue : museau pointu, œil, dorsale épineuse, queue fourchue ; en mort il roule sur le flanc.",
+        "couleurs": "Blanc crème, bleu-gris, violet des rayures et jaune des nageoires : palette conforme.",
+        "cadrage": "La queue touche le bord gauche de la case dans plusieurs images (largeur 61 à 63 px sur 64) : cadrage refusé.",
+        "taille": "Mesure (tools/mesure/mesurer.py) : hauteur 35 à 36 px (la plus haute 36), largeur 61 à 63 px ; hauteur limite, largeur trop grande.",
+        "details": "L'œil, la pectorale et les rayures se lisent ; la tête pâle se détache peu du corps.",
+        "coherence_base": "Même pipeline et même palette que l'oursin, la tortue et le poisson.",
+        "pixels_parasites": "Liseré clair sur le contour ; pas de pixel isolé visible sur la planche."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "largeur 63 px : queue au bord de la case, à raccourcir ou à réduire",
+        "hauteur juste à 36 px : corps à rendre plus haut",
+        "museau : petit, à élargir en tête"
+      ]
+    },
+    {
+      "changement": "corps : hauteur de l'ellipsoïde portée de 0,84 à 0,92 (corps plus haut, comme la fiche le demande)",
+      "image": "boards/journal/carangue_rayee_13.png",
+      "image_sha256": "f0618d48f9c05290c0d7b417a1f4fbb812062f4fe3ef20e96022f68ff69e4efb",
+      "controle": {
+        "silhouette": "Le corps est plus haut, la carangue a une vraie silhouette de poisson haut et comprimé.",
+        "couleurs": "Non réévalué par ce changement : voir la comparaison jointe pour ce critère.",
+        "cadrage": "La queue et le museau restent dans la case, avec une marge faible à gauche (queue).",
+        "taille": "Hauteur de la silhouette à 36 px sur les images testées (contre 35 avant) ; largeur inchangée (61 à 63 px) : mesure complète à faire après le rendu.",
+        "details": "Les rayures et l'œil ne changent pas ; le dos plus haut donne plus de masse à la dorsale épineuse.",
+        "coherence_base": "Même matériau et même ossature que la version précédente.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "largeur encore juste : queue à 1 à 2 px du bord gauche",
+        "museau petit (à élargir en tête, non traité)"
+      ]
+    },
+    {
+      "changement": "pixelisation de la carangue au nouveau rendu (corps 0,92, tête, dorsales, pectorale, queue fourchue) : nage 8, attaque 4, mort 6 dans une feuille à 3 étiquettes",
+      "image": "boards/carangue_rayee_pixel_4.png",
+      "image_sha256": "4ee8a0fb4e7437fae80ea930b1361d6a4967bde84d0c4bd9f223cf482aedc7a1",
+      "controle": {
+        "silhouette": "Le poisson se lit comme une carangue haute : tête, œil, dorsale épineuse, queue fourchue ; en mort il roule sur le flanc.",
+        "couleurs": "Blanc crème, bleu-gris, rayures violettes, jaune des nageoires : palette conforme.",
+        "cadrage": "La queue et le museau restent dans la case avec 1 à 2 px de marge.",
+        "taille": "Mesure (tools/mesure/mesurer.py) : hauteur 36 px sur les images les plus hautes (minimum atteint), largeur 61 à 63 px.",
+        "details": "L'œil, la pectorale et les rayures se lisent ; l'attaque se voit surtout par la dorsale plus haute.",
+        "coherence_base": "Même pipeline et même palette que les autres créatures.",
+        "pixels_parasites": "Liseré clair sur le contour ; pas de pixel isolé visible sur la planche."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "hauteur juste au minimum (36 px) : marge à gagner si possible",
+        "marges de 1 à 2 px sur les côtés : surveiller",
+        "attaque encore peu marquée"
+      ]
+    },
+    {
+      "changement": "itération Aseprite 2 : lisière cyan de l'avant du corps (x 47-60, y 17-31, 76 px) passée au cyan atténué #7aa0a8",
+      "image": "boards/journal/carangue_rayee_15.png",
+      "image_sha256": "ac7317c2e38e0de77c7b004c94122499db7d2c25831533ba3e81803df6eb749d",
+      "controle": {
+        "silhouette": "Inchangée : seule la lisière de la tête change de teinte.",
+        "couleurs": "#7aa0a8 est dans la rampe metal, comme le corps bleu-gris ; le glaçage cyan disparaît.",
+        "cadrage": "Inchangé par ce changement : le cadre reste celui de l'entrée précédente.",
+        "taille": "Inchangée (mêmes pixels).",
+        "details": "Le museau et l'avant du corps sont plus doux ; les rayures et l'œil ne changent pas.",
+        "coherence_base": "Même rampe metal que le ventre.",
+        "pixels_parasites": "Aucun pixel ajouté."
+      },
+      "verdict": "garde",
+      "defauts_restants": []
+    },
+    {
+      "changement": "itération Aseprite 3 : pectorale jaune pâle #fff2a8 passée au jaune soutenu #f8c850 (x 40-56, y 30-43, 96 px)",
+      "image": "boards/journal/carangue_rayee_16.png",
+      "image_sha256": "a065756ce9e24412e824bb8a1a8b57f1eb616e4f6d7b753ed1b60e111bf55f15",
+      "controle": {
+        "silhouette": "Inchangée : la pectorale garde sa forme en trait diagonal.",
+        "couleurs": "#f8c850 est dans la rampe lampe, la même que la queue : le jaune contraste avec le crème du corps.",
+        "cadrage": "Inchangé par ce changement : le cadre reste celui de l'entrée précédente.",
+        "taille": "Non mesurée à ce stade (rendu brut) : la hauteur se mesure après pixelisation.",
+        "details": "La pectorale se lit mieux sur le crème (vérifié en comparaison zoomée et sur la planche).",
+        "coherence_base": "Même rampe lampe que la queue et la dorsale.",
+        "pixels_parasites": "Aucun pixel ajouté."
+      },
+      "verdict": "garde",
+      "defauts_restants": []
+    },
+    {
+      "changement": "itération Aseprite 4 : ventre gris-bleu #2e4a66 passé au gris-bleu clair #4a7088 (x 30-52, y 36-43, 642 px)",
+      "image": "boards/journal/carangue_rayee_17.png",
+      "image_sha256": "fbb03221b979b8447857385d863c473a3803760eeb31f1e340773ce6dcc70e38",
+      "controle": {
+        "silhouette": "Inchangée : même contour, le bas du corps est plus clair.",
+        "couleurs": "#4a7088 est dans la rampe metal ; le bas du corps se détache du fond bleu-noir.",
+        "cadrage": "Inchangé par ce changement : le cadre reste celui de l'entrée précédente.",
+        "taille": "Non mesurée à ce stade (rendu brut) : la hauteur se mesure après pixelisation.",
+        "details": "Le ventre se lit sur les trois animations de la planche it4 (nage, attaque, mort).",
+        "coherence_base": "Même rampe metal que le corps.",
+        "pixels_parasites": "Aucun pixel ajouté, les teintes restent dans la palette."
+      },
+      "verdict": "garde",
+      "defauts_restants": []
+    }
+  ]
+}

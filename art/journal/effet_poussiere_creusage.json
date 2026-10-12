@@ -1,0 +1,22 @@
+{
+  "entrees": [
+    {
+      "changement": "premier rendu de l'effet effet_poussiere_creusage (rendu 512 px, pixel 64 px, planche de lot) : cinq grains de roche",
+      "image": "boards/props/effets_lot.png",
+      "image_sha256": "91bd6c82e593c082ee096cf86009515a851aa0d8e65620d8efcd80b1c9452a94",
+      "controle": {
+        "silhouette": "lisible ; grains un peu trop réguliers.",
+        "couleurs": "Couleurs des rampes bulle, roche, lampe, caoutchouc ; palette conforme.",
+        "cadrage": "L'effet est centré dans la case 64 px.",
+        "taille": "Pas de minimum imposé aux effets ; taille jugée sur la planche de lot.",
+        "details": "Forme principale lisible à 64 px.",
+        "coherence_base": "Même pipeline et mêmes rampes que les props et les créatures.",
+        "pixels_parasites": "Aucun pixel isolé notable."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "lisible ; grains un peu trop réguliers"
+      ]
+    }
+  ]
+}

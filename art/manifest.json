@@ -1,1 +1,1065 @@
-{"sprites": []}
+{
+  "sprites": [
+    {
+      "id": "plongeur",
+      "data_id": "plongeur",
+      "type": "vivant",
+      "filiere": "construit",
+      "script": "art/source/blender/plongeur.py",
+      "biome": null,
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/plongeur.blend",
+      "aseprite": "art/source/aseprite/plongeur.aseprite",
+      "sheet": "assets/sprites/plongeur/plongeur.png",
+      "data": "assets/sprites/plongeur/plongeur.json",
+      "planches": {
+        "base": "boards/plongeur_base.png",
+        "modifie": "boards/plongeur_modifie.png",
+        "iterations": [
+          "boards/iterations/plongeur_it2.png",
+          "boards/iterations/plongeur_it3.png",
+          "boards/iterations/plongeur_it4.png"
+        ]
+      }
+    },
+    {
+      "id": "decor_roche",
+      "data_id": null,
+      "type": "objet",
+      "filiere": "construit",
+      "script": "art/source/blender/decor_provisoire.py",
+      "biome": null,
+      "provisoire": true,
+      "sources": [],
+      "blend": null,
+      "aseprite": null,
+      "sheet": "assets/tuiles/roche.png",
+      "data": null,
+      "planches": {
+        "base": null,
+        "modifie": null,
+        "iterations": []
+      },
+      "note": "PROVISOIRE (M2) : rendu Blender pixelisé, remplacé par le décor final de M3."
+    },
+    {
+      "id": "decor_recif",
+      "data_id": null,
+      "type": "objet",
+      "filiere": "construit",
+      "script": "art/source/blender/decor_provisoire.py",
+      "biome": null,
+      "provisoire": true,
+      "sources": [],
+      "blend": null,
+      "aseprite": null,
+      "sheet": "assets/tuiles/recif.png",
+      "data": null,
+      "planches": {
+        "base": null,
+        "modifie": null,
+        "iterations": []
+      },
+      "note": "PROVISOIRE (M2) : rendu Blender pixelisé, remplacé par le décor final de M3."
+    },
+    {
+      "id": "decor_cuivre",
+      "data_id": null,
+      "type": "objet",
+      "filiere": "construit",
+      "script": "art/source/blender/decor_provisoire.py",
+      "biome": null,
+      "provisoire": true,
+      "sources": [],
+      "blend": null,
+      "aseprite": null,
+      "sheet": "assets/tuiles/cuivre.png",
+      "data": null,
+      "planches": {
+        "base": null,
+        "modifie": null,
+        "iterations": []
+      },
+      "note": "PROVISOIRE (M2) : rendu Blender pixelisé, remplacé par le décor final de M3."
+    },
+    {
+      "id": "decor_sable",
+      "data_id": null,
+      "type": "objet",
+      "filiere": "construit",
+      "script": "art/source/blender/decor_provisoire.py",
+      "biome": null,
+      "provisoire": true,
+      "sources": [],
+      "blend": null,
+      "aseprite": null,
+      "sheet": "assets/tuiles/sable.png",
+      "data": null,
+      "planches": {
+        "base": null,
+        "modifie": null,
+        "iterations": []
+      },
+      "note": "PROVISOIRE (M2) : rendu Blender pixelisé, remplacé par le décor final de M3."
+    },
+    {
+      "id": "decor_bois",
+      "data_id": null,
+      "type": "objet",
+      "filiere": "construit",
+      "script": "art/source/blender/decor_provisoire.py",
+      "biome": null,
+      "provisoire": true,
+      "sources": [],
+      "blend": null,
+      "aseprite": null,
+      "sheet": "assets/tuiles/bois.png",
+      "data": null,
+      "planches": {
+        "base": null,
+        "modifie": null,
+        "iterations": []
+      },
+      "note": "PROVISOIRE (M2) : rendu Blender pixelisé, remplacé par le décor final de M3."
+    },
+    {
+      "id": "decor_tole",
+      "data_id": null,
+      "type": "objet",
+      "filiere": "construit",
+      "script": "art/source/blender/decor_provisoire.py",
+      "biome": null,
+      "provisoire": true,
+      "sources": [],
+      "blend": null,
+      "aseprite": null,
+      "sheet": "assets/tuiles/tole.png",
+      "data": null,
+      "planches": {
+        "base": null,
+        "modifie": null,
+        "iterations": []
+      },
+      "note": "PROVISOIRE (M2) : rendu Blender pixelisé, remplacé par le décor final de M3."
+    },
+    {
+      "id": "decor_radeau",
+      "data_id": null,
+      "type": "objet",
+      "filiere": "construit",
+      "script": "art/source/blender/decor_provisoire.py",
+      "biome": null,
+      "provisoire": true,
+      "sources": [],
+      "blend": null,
+      "aseprite": null,
+      "sheet": "assets/objets/radeau.png",
+      "data": null,
+      "planches": {
+        "base": null,
+        "modifie": null,
+        "iterations": []
+      },
+      "note": "PROVISOIRE (M2) : rendu Blender pixelisé, remplacé par le décor final de M3."
+    },
+    {
+      "id": "poisson_volant",
+      "data_id": "poisson_volant",
+      "type": "vivant",
+      "filiere": "construit",
+      "script": "art/source/blender/poisson_volant.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/poisson_volant.blend",
+      "aseprite": "art/source/aseprite/poisson_volant.aseprite",
+      "sheet": "assets/sprites/poisson_volant/poisson_volant.png",
+      "data": "assets/sprites/poisson_volant/poisson_volant.json",
+      "planches": {
+        "base": "boards/poisson_volant_pixel_1.png",
+        "modifie": "boards/poisson_volant_pixel_5.png",
+        "iterations": [
+          "boards/iterations/poisson_volant_it2.png",
+          "boards/iterations/poisson_volant_it3.png",
+          "boards/iterations/poisson_volant_it4.png"
+        ]
+      }
+    },
+    {
+      "id": "carangue_rayee",
+      "data_id": "carangue_rayee",
+      "type": "vivant",
+      "filiere": "construit",
+      "script": "art/source/blender/carangue_rayee.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/carangue_rayee.blend",
+      "aseprite": "art/source/aseprite/carangue_rayee.aseprite",
+      "sheet": "assets/sprites/carangue_rayee/carangue_rayee.png",
+      "data": "assets/sprites/carangue_rayee/carangue_rayee.json",
+      "planches": {
+        "base": "boards/carangue_rayee_pixel_1.png",
+        "modifie": "boards/carangue_rayee_pixel_4.png",
+        "iterations": [
+          "boards/iterations/carangue_rayee_it2.png",
+          "boards/iterations/carangue_rayee_it3.png",
+          "boards/iterations/carangue_rayee_it4.png"
+        ]
+      }
+    },
+    {
+      "id": "oursin_bombe",
+      "data_id": "oursin_bombe",
+      "type": "vivant",
+      "filiere": "construit",
+      "script": "art/source/blender/oursin_bombe.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/oursin_bombe.blend",
+      "aseprite": "art/source/aseprite/oursin_bombe.aseprite",
+      "sheet": "assets/sprites/oursin_bombe/oursin_bombe.png",
+      "data": "assets/sprites/oursin_bombe/oursin_bombe.json",
+      "planches": {
+        "base": "boards/oursin_bombe_pixel_1.png",
+        "modifie": "boards/oursin_bombe_pixel_2.png",
+        "iterations": [
+          "boards/iterations/oursin_bombe_it2.png",
+          "boards/iterations/oursin_bombe_it3.png",
+          "boards/iterations/oursin_bombe_it4.png"
+        ]
+      }
+    },
+    {
+      "id": "tortue_de_corail",
+      "data_id": "tortue_de_corail",
+      "type": "vivant",
+      "filiere": "construit",
+      "script": "art/source/blender/tortue_de_corail.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/tortue_de_corail.blend",
+      "aseprite": "art/source/aseprite/tortue_de_corail.aseprite",
+      "sheet": "assets/sprites/tortue_de_corail/tortue_de_corail.png",
+      "data": "assets/sprites/tortue_de_corail/tortue_de_corail.json",
+      "planches": {
+        "base": "boards/journal/tortue_de_corail_1.png",
+        "modifie": "boards/tortue_de_corail_pixel_2.png",
+        "iterations": [
+          "boards/iterations/tortue_de_corail_it2.png",
+          "boards/iterations/tortue_de_corail_it3.png",
+          "boards/iterations/tortue_de_corail_it4.png"
+        ]
+      }
+    },
+    {
+      "id": "bidon_rouille",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/bidon_rouille.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/bidon_rouille.blend",
+      "aseprite": "art/source/aseprite/bidon_rouille.aseprite",
+      "sheet": "assets/sprites/bidon_rouille/bidon_rouille.png",
+      "data": "assets/sprites/bidon_rouille/bidon_rouille.json",
+      "planches": {
+        "base": "boards/props/bidon_rouille_base.png",
+        "modifie": "boards/props/bidon_rouille_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "caisse_bois",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/caisse_bois.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/caisse_bois.blend",
+      "aseprite": "art/source/aseprite/caisse_bois.aseprite",
+      "sheet": "assets/sprites/caisse_bois/caisse_bois.png",
+      "data": "assets/sprites/caisse_bois/caisse_bois.json",
+      "planches": {
+        "base": "boards/props/caisse_bois_base.png",
+        "modifie": "boards/props/caisse_bois_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "tonneau_bois",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/tonneau_bois.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/tonneau_bois.blend",
+      "aseprite": "art/source/aseprite/tonneau_bois.aseprite",
+      "sheet": "assets/sprites/tonneau_bois/tonneau_bois.png",
+      "data": "assets/sprites/tonneau_bois/tonneau_bois.json",
+      "planches": {
+        "base": "boards/props/tonneau_bois_base.png",
+        "modifie": "boards/props/tonneau_bois_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "ancre",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/ancre.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/ancre.blend",
+      "aseprite": "art/source/aseprite/ancre.aseprite",
+      "sheet": "assets/sprites/ancre/ancre.png",
+      "data": "assets/sprites/ancre/ancre.json",
+      "planches": {
+        "base": "boards/props/ancre_base.png",
+        "modifie": "boards/props/ancre_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "bouee",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/bouee.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/bouee.blend",
+      "aseprite": "art/source/aseprite/bouee.aseprite",
+      "sheet": "assets/sprites/bouee/bouee.png",
+      "data": "assets/sprites/bouee/bouee.json",
+      "planches": {
+        "base": "boards/props/bouee_base.png",
+        "modifie": "boards/props/bouee_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "cordage",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/cordage.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/cordage.blend",
+      "aseprite": "art/source/aseprite/cordage.aseprite",
+      "sheet": "assets/sprites/cordage/cordage.png",
+      "data": "assets/sprites/cordage/cordage.json",
+      "planches": {
+        "base": "boards/props/cordage_base.png",
+        "modifie": "boards/props/cordage_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "lanterne",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/lanterne.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/lanterne.blend",
+      "aseprite": "art/source/aseprite/lanterne.aseprite",
+      "sheet": "assets/sprites/lanterne/lanterne.png",
+      "data": "assets/sprites/lanterne/lanterne.json",
+      "planches": {
+        "base": "boards/props/lanterne_base.png",
+        "modifie": "boards/props/lanterne_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "planche_cassee",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/planche_cassee.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/planche_cassee.blend",
+      "aseprite": "art/source/aseprite/planche_cassee.aseprite",
+      "sheet": "assets/sprites/planche_cassee/planche_cassee.png",
+      "data": "assets/sprites/planche_cassee/planche_cassee.json",
+      "planches": {
+        "base": "boards/props/planche_cassee_base.png",
+        "modifie": "boards/props/planche_cassee_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "mat_court",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/mat_court.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/mat_court.blend",
+      "aseprite": "art/source/aseprite/mat_court.aseprite",
+      "sheet": "assets/sprites/mat_court/mat_court.png",
+      "data": "assets/sprites/mat_court/mat_court.json",
+      "planches": {
+        "base": "boards/props/mat_court_base.png",
+        "modifie": "boards/props/mat_court_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "gouvernail",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/gouvernail.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/gouvernail.blend",
+      "aseprite": "art/source/aseprite/gouvernail.aseprite",
+      "sheet": "assets/sprites/gouvernail/gouvernail.png",
+      "data": "assets/sprites/gouvernail/gouvernail.json",
+      "planches": {
+        "base": "boards/props/gouvernail_base.png",
+        "modifie": "boards/props/gouvernail_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "seau",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/seau.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/seau.blend",
+      "aseprite": "art/source/aseprite/seau.aseprite",
+      "sheet": "assets/sprites/seau/seau.png",
+      "data": "assets/sprites/seau/seau.json",
+      "planches": {
+        "base": "boards/props/seau_base.png",
+        "modifie": "boards/props/seau_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "bitte_amarrage",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/bitte_amarrage.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/bitte_amarrage.blend",
+      "aseprite": "art/source/aseprite/bitte_amarrage.aseprite",
+      "sheet": "assets/sprites/bitte_amarrage/bitte_amarrage.png",
+      "data": "assets/sprites/bitte_amarrage/bitte_amarrage.json",
+      "planches": {
+        "base": "boards/props/bitte_amarrage_base.png",
+        "modifie": "boards/props/bitte_amarrage_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "corail_branche",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/corail_branche.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/corail_branche.blend",
+      "aseprite": "art/source/aseprite/corail_branche.aseprite",
+      "sheet": "assets/sprites/corail_branche/corail_branche.png",
+      "data": "assets/sprites/corail_branche/corail_branche.json",
+      "planches": {
+        "base": "boards/props/corail_branche_base.png",
+        "modifie": "boards/props/corail_branche_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "anemone",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/anemone.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/anemone.blend",
+      "aseprite": "art/source/aseprite/anemone.aseprite",
+      "sheet": "assets/sprites/anemone/anemone.png",
+      "data": "assets/sprites/anemone/anemone.json",
+      "planches": {
+        "base": "boards/props/anemone_base.png",
+        "modifie": "boards/props/anemone_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "rocher_corail",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/rocher_corail.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/rocher_corail.blend",
+      "aseprite": "art/source/aseprite/rocher_corail.aseprite",
+      "sheet": "assets/sprites/rocher_corail/rocher_corail.png",
+      "data": "assets/sprites/rocher_corail/rocher_corail.json",
+      "planches": {
+        "base": "boards/props/rocher_corail_base.png",
+        "modifie": "boards/props/rocher_corail_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "coquillage",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/coquillage.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/coquillage.blend",
+      "aseprite": "art/source/aseprite/coquillage.aseprite",
+      "sheet": "assets/sprites/coquillage/coquillage.png",
+      "data": "assets/sprites/coquillage/coquillage.json",
+      "planches": {
+        "base": "boards/props/coquillage_base.png",
+        "modifie": "boards/props/coquillage_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "algue",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/algue.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/algue.blend",
+      "aseprite": "art/source/aseprite/algue.aseprite",
+      "sheet": "assets/sprites/algue/algue.png",
+      "data": "assets/sprites/algue/algue.json",
+      "planches": {
+        "base": "boards/props/algue_base.png",
+        "modifie": "boards/props/algue_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "epave_pot",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/epave_pot.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/epave_pot.blend",
+      "aseprite": "art/source/aseprite/epave_pot.aseprite",
+      "sheet": "assets/sprites/epave_pot/epave_pot.png",
+      "data": "assets/sprites/epave_pot/epave_pot.json",
+      "planches": {
+        "base": "boards/props/epave_pot_base.png",
+        "modifie": "boards/props/epave_pot_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "etoile_mer",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/etoile_mer.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/etoile_mer.blend",
+      "aseprite": "art/source/aseprite/etoile_mer.aseprite",
+      "sheet": "assets/sprites/etoile_mer/etoile_mer.png",
+      "data": "assets/sprites/etoile_mer/etoile_mer.json",
+      "planches": {
+        "base": "boards/props/etoile_mer_base.png",
+        "modifie": "boards/props/etoile_mer_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "eponge",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/eponge.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/eponge.blend",
+      "aseprite": "art/source/aseprite/eponge.aseprite",
+      "sheet": "assets/sprites/eponge/eponge.png",
+      "data": "assets/sprites/eponge/eponge.json",
+      "planches": {
+        "base": "boards/props/eponge_base.png",
+        "modifie": "boards/props/eponge_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "roche_plate",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/roche_plate.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/roche_plate.blend",
+      "aseprite": "art/source/aseprite/roche_plate.aseprite",
+      "sheet": "assets/sprites/roche_plate/roche_plate.png",
+      "data": "assets/sprites/roche_plate/roche_plate.json",
+      "planches": {
+        "base": "boards/props/roche_plate_base.png",
+        "modifie": "boards/props/roche_plate_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "tube_ver",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/tube_ver.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/tube_ver.blend",
+      "aseprite": "art/source/aseprite/tube_ver.aseprite",
+      "sheet": "assets/sprites/tube_ver/tube_ver.png",
+      "data": "assets/sprites/tube_ver/tube_ver.json",
+      "planches": {
+        "base": "boards/props/tube_ver_base.png",
+        "modifie": "boards/props/tube_ver_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "amphore",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/amphore.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/amphore.blend",
+      "aseprite": "art/source/aseprite/amphore.aseprite",
+      "sheet": "assets/sprites/amphore/amphore.png",
+      "data": "assets/sprites/amphore/amphore.json",
+      "planches": {
+        "base": "boards/props/amphore_base.png",
+        "modifie": "boards/props/amphore_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "conque",
+      "data_id": null,
+      "type": "prop",
+      "filiere": "construit",
+      "script": "art/source/blender/conque.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/conque.blend",
+      "aseprite": "art/source/aseprite/conque.aseprite",
+      "sheet": "assets/sprites/conque/conque.png",
+      "data": "assets/sprites/conque/conque.json",
+      "planches": {
+        "base": "boards/props/conque_base.png",
+        "modifie": "boards/props/conque_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "fond_ciel_horizon",
+      "data_id": null,
+      "type": "fond",
+      "filiere": "construit",
+      "script": "art/source/blender/fond_ciel_horizon.py",
+      "biome": "radeau_surface",
+      "provisoire": true,
+      "sources": [],
+      "blend": "art/source/blender/fond_ciel_horizon.blend",
+      "aseprite": "art/source/aseprite/fond_ciel_horizon.aseprite",
+      "sheet": "assets/sprites/fond_ciel_horizon/fond_ciel_horizon.png",
+      "data": "assets/sprites/fond_ciel_horizon/fond_ciel_horizon.json",
+      "planches": {
+        "base": "boards/props/fond_ciel_horizon_base.png",
+        "modifie": "boards/props/fond_ciel_horizon_modifie.png",
+        "iterations": []
+      },
+      "note": "PREMIER JET : formes simples, à reprendre au niveau professionnel (M3)."
+    },
+    {
+      "id": "fond_vagues",
+      "data_id": null,
+      "type": "fond",
+      "filiere": "construit",
+      "script": "art/source/blender/fond_vagues.py",
+      "biome": "radeau_surface",
+      "provisoire": true,
+      "sources": [],
+      "blend": "art/source/blender/fond_vagues.blend",
+      "aseprite": "art/source/aseprite/fond_vagues.aseprite",
+      "sheet": "assets/sprites/fond_vagues/fond_vagues.png",
+      "data": "assets/sprites/fond_vagues/fond_vagues.json",
+      "planches": {
+        "base": "boards/props/fond_vagues_base.png",
+        "modifie": "boards/props/fond_vagues_modifie.png",
+        "iterations": []
+      },
+      "note": "PREMIER JET : formes simples, à reprendre au niveau professionnel (M3)."
+    },
+    {
+      "id": "fond_brume",
+      "data_id": null,
+      "type": "fond",
+      "filiere": "construit",
+      "script": "art/source/blender/fond_brume.py",
+      "biome": "radeau_surface",
+      "provisoire": true,
+      "sources": [],
+      "blend": "art/source/blender/fond_brume.blend",
+      "aseprite": "art/source/aseprite/fond_brume.aseprite",
+      "sheet": "assets/sprites/fond_brume/fond_brume.png",
+      "data": "assets/sprites/fond_brume/fond_brume.json",
+      "planches": {
+        "base": "boards/props/fond_brume_base.png",
+        "modifie": "boards/props/fond_brume_modifie.png",
+        "iterations": []
+      },
+      "note": "PREMIER JET : formes simples, à reprendre au niveau professionnel (M3)."
+    },
+    {
+      "id": "fond_coques_loin",
+      "data_id": null,
+      "type": "fond",
+      "filiere": "construit",
+      "script": "art/source/blender/fond_coques_loin.py",
+      "biome": "radeau_surface",
+      "provisoire": true,
+      "sources": [],
+      "blend": "art/source/blender/fond_coques_loin.blend",
+      "aseprite": "art/source/aseprite/fond_coques_loin.aseprite",
+      "sheet": "assets/sprites/fond_coques_loin/fond_coques_loin.png",
+      "data": "assets/sprites/fond_coques_loin/fond_coques_loin.json",
+      "planches": {
+        "base": "boards/props/fond_coques_loin_base.png",
+        "modifie": "boards/props/fond_coques_loin_modifie.png",
+        "iterations": []
+      },
+      "note": "PREMIER JET : formes simples, à reprendre au niveau professionnel (M3)."
+    },
+    {
+      "id": "fond_recif_lointain",
+      "data_id": null,
+      "type": "fond",
+      "filiere": "construit",
+      "script": "art/source/blender/fond_recif_lointain.py",
+      "biome": "recif_peu_profond",
+      "provisoire": true,
+      "sources": [],
+      "blend": "art/source/blender/fond_recif_lointain.blend",
+      "aseprite": "art/source/aseprite/fond_recif_lointain.aseprite",
+      "sheet": "assets/sprites/fond_recif_lointain/fond_recif_lointain.png",
+      "data": "assets/sprites/fond_recif_lointain/fond_recif_lointain.json",
+      "planches": {
+        "base": "boards/props/fond_recif_lointain_base.png",
+        "modifie": "boards/props/fond_recif_lointain_modifie.png",
+        "iterations": []
+      },
+      "note": "PREMIER JET : formes simples, à reprendre au niveau professionnel (M3)."
+    },
+    {
+      "id": "fond_algues_fond",
+      "data_id": null,
+      "type": "fond",
+      "filiere": "construit",
+      "script": "art/source/blender/fond_algues_fond.py",
+      "biome": "recif_peu_profond",
+      "provisoire": true,
+      "sources": [],
+      "blend": "art/source/blender/fond_algues_fond.blend",
+      "aseprite": "art/source/aseprite/fond_algues_fond.aseprite",
+      "sheet": "assets/sprites/fond_algues_fond/fond_algues_fond.png",
+      "data": "assets/sprites/fond_algues_fond/fond_algues_fond.json",
+      "planches": {
+        "base": "boards/props/fond_algues_fond_base.png",
+        "modifie": "boards/props/fond_algues_fond_modifie.png",
+        "iterations": []
+      },
+      "note": "PREMIER JET : formes simples, à reprendre au niveau professionnel (M3)."
+    },
+    {
+      "id": "fond_rayons_lumiere",
+      "data_id": null,
+      "type": "fond",
+      "filiere": "construit",
+      "script": "art/source/blender/fond_rayons_lumiere.py",
+      "biome": "recif_peu_profond",
+      "provisoire": true,
+      "sources": [],
+      "blend": "art/source/blender/fond_rayons_lumiere.blend",
+      "aseprite": "art/source/aseprite/fond_rayons_lumiere.aseprite",
+      "sheet": "assets/sprites/fond_rayons_lumiere/fond_rayons_lumiere.png",
+      "data": "assets/sprites/fond_rayons_lumiere/fond_rayons_lumiere.json",
+      "planches": {
+        "base": "boards/props/fond_rayons_lumiere_base.png",
+        "modifie": "boards/props/fond_rayons_lumiere_modifie.png",
+        "iterations": []
+      },
+      "note": "PREMIER JET : formes simples, à reprendre au niveau professionnel (M3)."
+    },
+    {
+      "id": "fond_roche_fond",
+      "data_id": null,
+      "type": "fond",
+      "filiere": "construit",
+      "script": "art/source/blender/fond_roche_fond.py",
+      "biome": "recif_peu_profond",
+      "provisoire": true,
+      "sources": [],
+      "blend": "art/source/blender/fond_roche_fond.blend",
+      "aseprite": "art/source/aseprite/fond_roche_fond.aseprite",
+      "sheet": "assets/sprites/fond_roche_fond/fond_roche_fond.png",
+      "data": "assets/sprites/fond_roche_fond/fond_roche_fond.json",
+      "planches": {
+        "base": "boards/props/fond_roche_fond_base.png",
+        "modifie": "boards/props/fond_roche_fond_modifie.png",
+        "iterations": []
+      },
+      "note": "PREMIER JET : formes simples, à reprendre au niveau professionnel (M3)."
+    },
+    {
+      "id": "tuileset_radeau_surface",
+      "data_id": null,
+      "type": "tuileset",
+      "filiere": "construit",
+      "script": "art/source/blender/tuileset_biome.py",
+      "biome": "radeau_surface",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/tuileset_radeau_surface.blend",
+      "aseprite": "art/source/aseprite/tuileset_radeau_surface.aseprite",
+      "sheet": "assets/sprites/tuileset_radeau_surface/tuileset_radeau_surface.png",
+      "data": "assets/sprites/tuileset_radeau_surface/tuileset_radeau_surface.json",
+      "planches": {
+        "base": "boards/props/tuileset_radeau_surface_base.png",
+        "modifie": "boards/props/tuileset_radeau_surface_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "tuileset_recif_peu_profond",
+      "data_id": null,
+      "type": "tuileset",
+      "filiere": "construit",
+      "script": "art/source/blender/tuileset_biome.py",
+      "biome": "recif_peu_profond",
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/tuileset_recif_peu_profond.blend",
+      "aseprite": "art/source/aseprite/tuileset_recif_peu_profond.aseprite",
+      "sheet": "assets/sprites/tuileset_recif_peu_profond/tuileset_recif_peu_profond.png",
+      "data": "assets/sprites/tuileset_recif_peu_profond/tuileset_recif_peu_profond.json",
+      "planches": {
+        "base": "boards/props/tuileset_recif_peu_profond_base.png",
+        "modifie": "boards/props/tuileset_recif_peu_profond_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "effet_bulle",
+      "data_id": null,
+      "type": "effet",
+      "filiere": "construit",
+      "script": "art/source/blender/effet_bulle.py",
+      "biome": null,
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/effet_bulle.blend",
+      "aseprite": "art/source/aseprite/effet_bulle.aseprite",
+      "sheet": "assets/sprites/effet_bulle/effet_bulle.png",
+      "data": "assets/sprites/effet_bulle/effet_bulle.json",
+      "planches": {
+        "base": "boards/props/effet_bulle_base.png",
+        "modifie": "boards/props/effet_bulle_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "effet_eclaboussure",
+      "data_id": null,
+      "type": "effet",
+      "filiere": "construit",
+      "script": "art/source/blender/effet_eclaboussure.py",
+      "biome": null,
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/effet_eclaboussure.blend",
+      "aseprite": "art/source/aseprite/effet_eclaboussure.aseprite",
+      "sheet": "assets/sprites/effet_eclaboussure/effet_eclaboussure.png",
+      "data": "assets/sprites/effet_eclaboussure/effet_eclaboussure.json",
+      "planches": {
+        "base": "boards/props/effet_eclaboussure_base.png",
+        "modifie": "boards/props/effet_eclaboussure_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "effet_poussiere_creusage",
+      "data_id": null,
+      "type": "effet",
+      "filiere": "construit",
+      "script": "art/source/blender/effet_poussiere_creusage.py",
+      "biome": null,
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/effet_poussiere_creusage.blend",
+      "aseprite": "art/source/aseprite/effet_poussiere_creusage.aseprite",
+      "sheet": "assets/sprites/effet_poussiere_creusage/effet_poussiere_creusage.png",
+      "data": "assets/sprites/effet_poussiere_creusage/effet_poussiere_creusage.json",
+      "planches": {
+        "base": "boards/props/effet_poussiere_creusage_base.png",
+        "modifie": "boards/props/effet_poussiere_creusage_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "effet_etincelle",
+      "data_id": null,
+      "type": "effet",
+      "filiere": "construit",
+      "script": "art/source/blender/effet_etincelle.py",
+      "biome": null,
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/effet_etincelle.blend",
+      "aseprite": "art/source/aseprite/effet_etincelle.aseprite",
+      "sheet": "assets/sprites/effet_etincelle/effet_etincelle.png",
+      "data": "assets/sprites/effet_etincelle/effet_etincelle.json",
+      "planches": {
+        "base": "boards/props/effet_etincelle_base.png",
+        "modifie": "boards/props/effet_etincelle_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "effet_nuage_encre",
+      "data_id": null,
+      "type": "effet",
+      "filiere": "construit",
+      "script": "art/source/blender/effet_nuage_encre.py",
+      "biome": null,
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/effet_nuage_encre.blend",
+      "aseprite": "art/source/aseprite/effet_nuage_encre.aseprite",
+      "sheet": "assets/sprites/effet_nuage_encre/effet_nuage_encre.png",
+      "data": "assets/sprites/effet_nuage_encre/effet_nuage_encre.json",
+      "planches": {
+        "base": "boards/props/effet_nuage_encre_base.png",
+        "modifie": "boards/props/effet_nuage_encre_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "effet_impact_coup",
+      "data_id": null,
+      "type": "effet",
+      "filiere": "construit",
+      "script": "art/source/blender/effet_impact_coup.py",
+      "biome": null,
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/effet_impact_coup.blend",
+      "aseprite": "art/source/aseprite/effet_impact_coup.aseprite",
+      "sheet": "assets/sprites/effet_impact_coup/effet_impact_coup.png",
+      "data": "assets/sprites/effet_impact_coup/effet_impact_coup.json",
+      "planches": {
+        "base": "boards/props/effet_impact_coup_base.png",
+        "modifie": "boards/props/effet_impact_coup_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "effet_onde_anneau",
+      "data_id": null,
+      "type": "effet",
+      "filiere": "construit",
+      "script": "art/source/blender/effet_onde_anneau.py",
+      "biome": null,
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/effet_onde_anneau.blend",
+      "aseprite": "art/source/aseprite/effet_onde_anneau.aseprite",
+      "sheet": "assets/sprites/effet_onde_anneau/effet_onde_anneau.png",
+      "data": "assets/sprites/effet_onde_anneau/effet_onde_anneau.json",
+      "planches": {
+        "base": "boards/props/effet_onde_anneau_base.png",
+        "modifie": "boards/props/effet_onde_anneau_modifie.png",
+        "iterations": []
+      }
+    },
+    {
+      "id": "effet_goutte",
+      "data_id": null,
+      "type": "effet",
+      "filiere": "construit",
+      "script": "art/source/blender/effet_goutte.py",
+      "biome": null,
+      "provisoire": false,
+      "sources": [],
+      "blend": "art/source/blender/effet_goutte.blend",
+      "aseprite": "art/source/aseprite/effet_goutte.aseprite",
+      "sheet": "assets/sprites/effet_goutte/effet_goutte.png",
+      "data": "assets/sprites/effet_goutte/effet_goutte.json",
+      "planches": {
+        "base": "boards/props/effet_goutte_base.png",
+        "modifie": "boards/props/effet_goutte_modifie.png",
+        "iterations": []
+      }
+    }
+  ]
+}

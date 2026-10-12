@@ -1,0 +1,25 @@
+{
+  "id": "fond_eau",
+  "entrees": [
+    {
+      "changement": "fond d'eau et ciel en dégradé sur 300 m, teinte sous-marine plus claire (0,58 ; 0,70 ; 0,88 au lieu de 0,45 ; 0,55 ; 0,78) : quatre changements faits ensemble, une seule planche avant/après (captures intermédiaires écrasées)",
+      "image": "boards/journal/captures_60m_descente_avant_apres.png",
+      "image_sha256": "2d8a4aaa3206419b0a93f8c31bdca2ee868871a47017600cffc0241889b20597",
+      "controle": {
+        "silhouette": "Les tuiles, les objets au sol et le plongeur se lisent à 60 m sur la planche après, là où l'avant était presque noir.",
+        "couleurs": "Dégradé bleu nuit vers bleu sarcelle, sans aplat : la dominante passe de 49 % à 12 % des pixels.",
+        "cadrage": "Les captures gardent le cadre complet de la fenêtre, sans bande noire.",
+        "taille": "Sans objet : le changement touche le fond et l'éclairage, pas une taille de sprite.",
+        "details": "Les tuiles grises et violettes restent distinctes sur le fond ; la barre d'air et le texte HUD restent lisibles.",
+        "coherence_base": "Même rampe verre que l'eau existante ; teinte toujours bleue, donc toujours sous-marine.",
+        "pixels_parasites": "Aucun bord visible du rectangle d'eau dans le cadre ; la limite à 300 m n'apparaît pas dans les captures."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "une seule planche pour quatre changements : le contrôle ne peut pas montrer l'effet de chacun séparément",
+        "la capture à 0 m reste lumineuse en haut, le ciel est un simple dégradé sans nuages ni reflet",
+        "le libellé « Vous êtes sur le radeau » reste affiché à 60 m dans la capture de descente : état HUD figé pendant la capture, à corriger"
+      ]
+    }
+  ]
+}

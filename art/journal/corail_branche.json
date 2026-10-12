@@ -1,0 +1,22 @@
+{
+  "entrees": [
+    {
+      "changement": "premier rendu du prop corail_branche (rendu 512 px, pixel 64 px, planche de lot) : cinq branches coniques rayonnantes, corail rose",
+      "image": "boards/props/recif_lot.png",
+      "image_sha256": "d38e7b17348dc17225e929866874adfe03397fd58a2944f8d88085e72e409fc6",
+      "controle": {
+        "silhouette": "lisible : forme de corail.",
+        "couleurs": "Couleurs des rampes recif, roche, cuivre, palmes, bouteille, sable selon le prop ; palette conforme.",
+        "cadrage": "Le prop est centré dans la case 64 px, sans bord coupé.",
+        "taille": "Pas de minimum imposé aux props ; taille relative jugée sur la planche de lot.",
+        "details": "Détails principaux visibles à 64 px ; la finition des petits détails reste à faire.",
+        "coherence_base": "Même pipeline et mêmes rampes que les autres props du biome recif_peu_profond.",
+        "pixels_parasites": "Aucun pixel isolé notable sur la planche de lot."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "lisible : forme de corail"
+      ]
+    }
+  ]
+}

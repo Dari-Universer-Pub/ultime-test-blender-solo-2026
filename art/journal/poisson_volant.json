@@ -1,0 +1,380 @@
+{
+  "entrees": [
+    {
+      "changement": "aile : disque pâle remplacé par une feuille (sphère aplatie) tournée vers l'arrière, bulle foncé 0-3 au lieu de 1-4",
+      "image": "boards/journal/poisson_volant_1.png",
+      "image_sha256": "d26dd0bd15d2b707d6afeac6d7c56d339f86f2247825622e2237ce6712ed3c05",
+      "controle": {
+        "silhouette": "La nageoire pectorale se lit comme une nageoire balayée vers l'arrière, et non plus comme un ballon collé au dos.",
+        "couleurs": "Le corps argent-bleu et la queue orange sont conservés ; la nageoire passe du blanc-cyan au cyan clair, plus visible sur eau sombre.",
+        "cadrage": "Le poisson reste dans la case : environ 41 px de large sur 64, le haut de la nageoire ne sort pas du cadre.",
+        "taille": "Pas encore mesurable : rendu Blender 512 px ; la hauteur sera contrôlée après pixelisation (cible 36 à 46 px).",
+        "details": "Queue fourchue et œil restent lisibles ; l'aileron dorsal sombre reste trop grand (corrigé à part).",
+        "coherence_base": "Toutes les couleurs viennent de art/palette.json (rampes metal, bulle, palmes, caoutchouc).",
+        "pixels_parasites": "Aucun pixel parasite visible à ce stade du rendu."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "aileron dorsal trop haut et pointu",
+        "corps lisse : une seule transition de ton sur le dessus"
+      ]
+    },
+    {
+      "changement": "aileron dorsal : cône de 0,38 de haut et 0,16 de rayon réduit à 0,24 de haut et 0,10 de rayon, déplacé vers l'avant",
+      "image": "boards/journal/poisson_volant_2.png",
+      "image_sha256": "958225456f296fbc30b0835791f3f3039ad918e06b4e9a839848df34677ed6e8",
+      "controle": {
+        "silhouette": "La nageoire pectorale domine désormais la silhouette ; l'aileron dorsal ne détourne plus le regard du corps.",
+        "couleurs": "Couleurs inchangées ; l'aileron reste sombre (caoutchouc), ce qui le sépare du corps argenté.",
+        "cadrage": "Le sommet de l'aileron baisse nettement sur la planche ; le poisson reste entièrement dans la case.",
+        "taille": "Pas encore mesurable en pixels ; la hauteur sera contrôlée après pixelisation.",
+        "details": "La queue fourchue, l'œil et la nageoire restent lisibles ; l'aileron ne cache plus l'aile.",
+        "coherence_base": "Même palette caoutchouc que la version précédente ; aucune couleur nouvelle.",
+        "pixels_parasites": "Aucun pixel parasite visible à ce stade du rendu."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "corps : une seule transition de ton sur le dessus, à traiter en finition Aseprite"
+      ]
+    },
+    {
+      "changement": "pixelisation du poisson à 64 px : nage 8, attaque 4, mort 6 dans une feuille à 3 étiquettes (version avec aile basse, avant agrandissement)",
+      "image": "boards/poisson_volant_pixel_1.png",
+      "image_sha256": "96247434127cf5c75a38554fd64b26259ce815d25d1a06c2a5f793192a2eaa56",
+      "controle": {
+        "silhouette": "Le poisson se lit comme un poisson, avec une aile claire au-dessus du corps et la queue orange ; en mort il devient un bâton vertical peu lisible.",
+        "couleurs": "Corps argent-bleu, dessus crème, queue orange et aile cyan restent dans la palette.",
+        "cadrage": "Le poisson mesure environ 27 px de haut sur 64 : insuffisant, le contrôle exige au moins 36 px pour une créature.",
+        "taille": "Mesure : 27 px de haut en nage (la hauteur maximale sur les 18 images) ; cible 36 à 46 px : échec.",
+        "details": "L'œil, la queue fourchue et l'aile sont lisibles en nage ; en mort 4 à 6 les détails se mêlent.",
+        "coherence_base": "Même pipeline que l'oursin et le plongeur ; palette conforme.",
+        "pixels_parasites": "Liseré clair marqué sur le contour de l'aile et du dos."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "taille insuffisante : aile trop basse pour atteindre 36 px",
+        "mort 4 à 6 : le poisson devient un bâton vertical peu lisible",
+        "liseré clair trop fort sur le contour"
+      ]
+    },
+    {
+      "changement": "aile : hauteur du disque passée de 0,36 à 0,52 (largeur inchangée) pour remonter la silhouette",
+      "image": "boards/journal/poisson_volant_3.png",
+      "image_sha256": "d1036e4b7b9175f0a369e525b11bf1d85258a90d8985321049d642f79181dea2",
+      "controle": {
+        "silhouette": "L'aile monte nettement au-dessus du dos : la silhouette gagne en hauteur sans s'élargir.",
+        "couleurs": "Couleurs inchangées (aile cyan, dorsale sombre, queue orange).",
+        "cadrage": "Le sommet de l'aile reste dans la case, la queue aussi ; le poisson ne touche pas le bord.",
+        "taille": "Pas encore mesurable : la mesure se fait après le nouveau rendu complet et la pixelisation (cible 36 à 46 px).",
+        "details": "L'œil, la dorsale et la queue fourchue restent lisibles ; l'aile domine moins la dorsale.",
+        "coherence_base": "Même matériau bulle que la version précédente.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "mort : posture à revoir après le nouveau rendu",
+        "liseré clair à réduire en finition"
+      ]
+    },
+    {
+      "changement": "pixelisation du poisson avec l'aile haute (0,52) : nage 8, attaque 4, mort 6 dans une feuille à 3 étiquettes, cadre encore à 2,2 unités",
+      "image": "boards/journal/poisson_volant_entree5.png",
+      "image_sha256": "0a16c06c07d3df0f7fa55425716328dca41ec6c6d8c383a5d050ab71e1700c44",
+      "controle": {
+        "silhouette": "Le poisson se lit avec son aile haute, sa queue fourchue et son œil ; en mort il roule et reste reconnaissable.",
+        "couleurs": "Corps argent-bleu, dessus crème, queue orange et aile cyan restent dans la palette.",
+        "cadrage": "Le poisson occupe 48 à 49 px de large : il tient la case mais reste bas et étroit.",
+        "taille": "Mesure (tools/mesure/mesurer.py) : hauteur 26 à 31 px en nage, largeur 48 à 49 px ; la cible de 36 px minimum n'est pas atteinte : échec.",
+        "details": "L'œil, la dorsale et la queue sont lisibles ; l'aile haute gagne quelques pixels mais reste claire.",
+        "coherence_base": "Même pipeline et même palette que l'oursin et la carangue.",
+        "pixels_parasites": "Liseré clair sur le contour de l'aile et du dos."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "hauteur 26 à 31 px : cadre à agrandir d'environ 15 % avec décalage vers la queue",
+        "nage : amplitude de queue faible (0,287)"
+      ]
+    },
+    {
+      "changement": "cadrage : largeur 2,2 -> 1,8 et caméra décalée de -0,20 vers la queue pour agrandir le poisson de 22 %",
+      "image": "boards/journal/poisson_volant_4.png",
+      "image_sha256": "ce2cfc86c48d4866bd7b8a4d44361ce31c26fd427d860c92091417361b0b9476",
+      "controle": {
+        "silhouette": "Le corps, la queue et l'aile grandissent ; la silhouette reste la même.",
+        "couleurs": "Couleurs inchangées.",
+        "cadrage": "La queue a une marge à gauche, l'aile reste sous le haut de la case et la tête a environ 3 px de marge à droite : le poisson est entier.",
+        "taille": "Hauteur attendue d'environ 36 à 38 px (31 px avant x 2,2 / 1,8) ; à mesurer après pixelisation.",
+        "details": "L'œil, la dorsale et la queue fourchue restent lisibles à cette taille.",
+        "coherence_base": "Même cadrage logique que la carangue : le cadre seul change.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "marge droite serrée (environ 3 px) : à surveiller après pixelisation",
+        "amplitude de nage faible : à travailler en animation"
+      ]
+    },
+    {
+      "changement": "pixelisation du poisson au nouveau cadrage (1,8, décalée de -0,20) : nage 8, attaque 4, mort 6 dans une feuille à 3 étiquettes",
+      "image": "boards/poisson_volant_pixel_3.png",
+      "image_sha256": "2d195e5c2fdc87107e05e7aa5a82b3ba476234ca133649873c15c5785906eed7",
+      "controle": {
+        "silhouette": "Le poisson se lit avec son aile haute, sa queue orange et son œil ; l'attaque le fait plonger en diagonale et la mort le couche en bâton.",
+        "couleurs": "Corps argent-bleu, dessus crème, queue orange et aile cyan restent dans la palette.",
+        "cadrage": "Le poisson tient la case : queue entière, aile sous le haut de la case, marge réduite à droite (environ 2 px).",
+        "taille": "Mesure (tools/mesure/mesurer.py) : hauteur 31 à 37 px, largeur 58 à 60 px ; le maximum de 37 px atteint le minimum de 36 px.",
+        "details": "L'œil et la queue fourchue sont lisibles ; l'aile pâle occupe presque la moitié de la silhouette et écrase le corps.",
+        "coherence_base": "Même pipeline et même palette que les autres créatures du biome.",
+        "pixels_parasites": "Liseré clair marqué sur le contour de l'aile et du dos."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "aile trop grande et trop pâle : à réduire ou assombrir en finition",
+        "mort 4 à 6 : le poisson devient un bâton vertical, à rendre plus lisible",
+        "amplitude de nage faible (0,298) : animation à renforcer",
+        "liseré clair à atténuer"
+      ]
+    },
+    {
+      "changement": "GROUPÉ (contrevient à la règle d'un changement à la fois, reconnu) : corps sombre caoutchouc 0-3, ventre argenté, pectorale fine à 30 degrés, œil à pupille de 0,62, museau, mort horizontale qui coule",
+      "image": "boards/journal/poisson_volant_5.png",
+      "image_sha256": "8a0110f058e4a402b67b4238d95d518f5a926de52a9ced5983fbc2fd3ca1b5fc",
+      "controle": {
+        "silhouette": "Le corps est plus bas et plus sombre ; la pectorale fine se lit comme une nageoire ; la mort reste horizontale (plus de bâton vertical).",
+        "couleurs": "Le dos est presque noir : il avale la pupille et le museau ; le ventre argenté ressort bien.",
+        "cadrage": "Le poisson tient la case dans les trois images ; la mort ne sort pas du cadre.",
+        "taille": "Non mesurée ici : rendu brut 512 px, mesure après pixelisation.",
+        "details": "L'œil apparaît en croissant blanc, la pupille noire se confond avec le dos : défaut principal.",
+        "coherence_base": "Palette conforme ; même œil que la carangue.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "dos trop sombre : pupille perdue, à éclaircir (caoutchouc 1-4)",
+        "ventre en plaque qui dépasse : à amincir"
+      ]
+    },
+    {
+      "changement": "dos : caoutchouc 1-4 au lieu de 0-3 (violet au lieu de quasi noir) pour que la pupille noire se détache",
+      "image": "boards/journal/poisson_volant_6.png",
+      "image_sha256": "31d7bc8a50b0bed033682abc9a336b507e703dfc295693b724e37b24711048e0",
+      "controle": {
+        "silhouette": "Inchangée : le corps, la pectorale et l'aileron restent à leur place.",
+        "couleurs": "Le dos passe au violet-bleu de la rampe caoutchouc ; le ventre argenté et la queue orange gardent leur contraste.",
+        "cadrage": "Le cadre ne change pas.",
+        "taille": "Non mesurée ici : rendu brut 512 px.",
+        "details": "L'œil se lit maintenant : globe blanc et pupille noire visibles, au lieu d'un croissant blanc.",
+        "coherence_base": "Même rampe caoutchouc que la carangue (bandes) : cohérence du biome.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "ventre en plaque qui dépasse vers l'avant : à amincir",
+        "mesure à faire après pixelisation"
+      ]
+    },
+    {
+      "changement": "ventre : épaisseur de la calotte argentée ramenée de 0,22 à 0,14 et descendue de 0,02 ; largeur de 1,15 à 1,00",
+      "image": "boards/journal/poisson_volant_7.png",
+      "image_sha256": "3cf19cb27c8d7bfab26e436dcfbd78f9e5f41d3ddfee40fc76398146d45067f0",
+      "controle": {
+        "silhouette": "Le ventre argenté est une bande fine sous le corps, comme chez un poisson, et ne forme plus une plaque.",
+        "couleurs": "Dos violet, ventre argenté, queue orange : contraste net et cohérent.",
+        "cadrage": "Le cadre ne change pas ; le ventre ne dépasse plus le corps vers l'avant.",
+        "taille": "Non mesurée ici : rendu brut 512 px.",
+        "details": "La bande argentée est lisible sans dominer la silhouette.",
+        "coherence_base": "Même rampe metal que le ventre précédent, moins épaisse.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "mesure après pixelisation (hauteur et largeur)"
+      ]
+    },
+    {
+      "changement": "corps : hauteur de l'ellipsoïde portée de 0,50 à 0,60 (corps plus haut, nageoire et œil relus)",
+      "image": "boards/journal/poisson_volant_8.png",
+      "image_sha256": "0cdc3346ea0e6468173dec7001d417faf53943774f8cfb7f05a00eab42d924a0",
+      "controle": {
+        "silhouette": "Le corps est plus haut et moins plat : le poisson se lit mieux comme un poisson, pas comme une pirogue.",
+        "couleurs": "Inchangées : dos violet, ventre argenté, queue orange.",
+        "cadrage": "Le poisson reste dans la case ; le ventre descend d'environ 2 px.",
+        "taille": "Pas encore suffisante : hauteur de silhouette à mesurer après le rendu complet (cible 36 px).",
+        "details": "L'œil est plus net dans le dos plus haut ; la pectorale reste lisible.",
+        "coherence_base": "Même matériau et même forme générale qu'avant.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "hauteur encore sous 36 px : aileron dorsal à allonger",
+        "mesure complète à faire"
+      ]
+    },
+    {
+      "changement": "aileron dorsal : hauteur de 0,22 à 0,34 et centre remonté de 0,30 à 0,36, pour que le sommet du poisson gagne en hauteur",
+      "image": "boards/journal/poisson_volant_9.png",
+      "image_sha256": "a4c91e6ae619395fb12564e0e6af6791bfedec771601c820f0b9fa6a97f33282",
+      "controle": {
+        "silhouette": "L'aileron dorsal dépasse nettement le dos : le poisson est plus haut et l'aileron se lit comme une nageoire.",
+        "couleurs": "Inchangées : aileron violet sombre sur le dos violet.",
+        "cadrage": "L'aileron reste dans la case, environ 4 px sous le haut.",
+        "taille": "Gagne environ 5 px de hauteur ; la mesure complète est à faire après le rendu (cible 36 px).",
+        "details": "L'aileron, l'œil et la pectorale restent distincts.",
+        "coherence_base": "Même matériau que le dos.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "mesure complète à faire (cible 36 px)"
+      ]
+    },
+    {
+      "changement": "corps : hauteur de l'ellipsoïde portée de 0,60 à 0,70",
+      "image": "boards/journal/poisson_volant_10.png",
+      "image_sha256": "8b3d6be048b77565d9be42bc301485bbf0c177e547d9d43a9806631afc80d931",
+      "controle": {
+        "silhouette": "Le corps est plus épais : le poisson gagne en hauteur mais devient plus lourd, presque une bulle.",
+        "couleurs": "Non réévalué par ce changement : voir la comparaison jointe pour ce critère.",
+        "cadrage": "Le ventre descend ; le poisson reste dans la case.",
+        "taille": "Gagne environ 2 à 3 px ; mesure complète à faire (cible 36 px).",
+        "details": "La bande argentée du ventre se décolle du dos : une fine ligne sombre apparaît dessous.",
+        "coherence_base": "Même matériau.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "bande argentée du ventre décollée : à recoller (z du ventre à -0,26)",
+        "mesure complète à faire"
+      ]
+    },
+    {
+      "changement": "aileron dorsal : hauteur de 0,34 à 0,46 et centre descendu à 0,42 (base sur le dos)",
+      "image": "boards/journal/poisson_volant_11.png",
+      "image_sha256": "c4794b50b59e48c32687dabae37e089b8a82a2e2d1818d476a8c88fb1f16c490",
+      "controle": {
+        "silhouette": "L'aileron dorsal est plus long : la silhouette est plus haute, le poisson garde son profil.",
+        "couleurs": "Inchangées (aileron violet sombre).",
+        "cadrage": "L'aileron reste dans la case, sous le haut.",
+        "taille": "Gain d'environ 3 px ; nage attendue à 35 px, mesure complète à faire.",
+        "details": "L'aileron se détache du dos ; il reste lisible.",
+        "coherence_base": "Même matériau que le dos.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "mesure complète à faire (cible 36 px)"
+      ]
+    },
+    {
+      "changement": "pixelisation du poisson au rendu final (corps 0,70, aileron 0,46, pectorale fine, mort horizontale) : nage 8, attaque 4, mort 6 dans une feuille à 3 étiquettes",
+      "image": "boards/journal/poisson_volant_entree15_oeil_ancien.png",
+      "image_sha256": "c2ab9b11ec7cac67c076cf20f61f43e6316a491babc7e97ebf47d278f18d4eae",
+      "controle": {
+        "silhouette": "Le poisson se lit : aileron haut, queue orange, ventre argenté ; l'attaque le fait plonger ; la mort reste horizontale.",
+        "couleurs": "Dos violet, ventre argenté, queue orange : palette conforme.",
+        "cadrage": "Le poisson tient la case ; la queue et le museau ont une marge.",
+        "taille": "Mesure : nage 35 à 37 px, attaque jusqu'à 47 px, mort 35 à 36 px : minimum tenu.",
+        "details": "L'ŒIL NE SE LIT PAS : il est enfoncé dans le corps (son centre est à l'intérieur de la sphère), seul un liseré pâle dépasse. La pectorale ne se lit que par un contour clair.",
+        "coherence_base": "Même pipeline et même palette.",
+        "pixels_parasites": "Liseré clair marqué sur le contour du dos et de l'aileron."
+      },
+      "verdict": "annule",
+      "defauts_restants": [
+        "ŒIL invisible : centre à (0,36 ; -0,22 ; 0,10) à l'intérieur du corps ; le placer sur la surface (0,40 ; -0,32 ; 0,10)",
+        "pectorale peu lisible à 64 px"
+      ]
+    },
+    {
+      "changement": "œil : centre déplacé de (0,36 ; -0,22 ; 0,10) à (0,40 ; -0,32 ; 0,10) pour sortir de la sphère du corps (globe 0,085, pupille 0,62)",
+      "image": "boards/journal/poisson_volant_12.png",
+      "image_sha256": "73cb628e72af9379e5c8d8ceb27c0ece3ac46184415e7f0b3aaeb4ba3e26ccfe",
+      "controle": {
+        "silhouette": "Le poisson a maintenant un œil lisible sur la tête, qui fait lire la face.",
+        "couleurs": "Blanc crème de la rampe metal et pupille noire : contraste fort sur le violet.",
+        "cadrage": "L'œil reste dans le contour du corps ; le cadre ne change pas.",
+        "taille": "Globe d'environ 0,17 unité, soit environ 6 px sur 64 : au-dessus du minimum de 2 px.",
+        "details": "L'œil est net et distinct, la pupille noire se détache.",
+        "coherence_base": "Même outil d'œil que la carangue, l'oursin et la tortue.",
+        "pixels_parasites": "Rendu brut : les pixels parasites se mesurent après pixelisation."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "relancer le rendu complet avec le nouvel œil (la feuille actuelle est annulée)"
+      ]
+    },
+    {
+      "changement": "pixelisation du poisson au rendu avec l'œil de surface : nage 8, attaque 4, mort 6 dans une feuille à 3 étiquettes",
+      "image": "boards/poisson_volant_pixel_5.png",
+      "image_sha256": "d1645e5cc6af8d1f663e054a675410e2f9a14bbdb6ae7be0094f9f14d62ecac9",
+      "controle": {
+        "silhouette": "Le poisson se lit : œil blanc à pupille noire sur la tête, aileron haut, queue orange ; l'attaque le fait plonger, la mort reste horizontale.",
+        "couleurs": "Dos violet, ventre argenté, queue orange, œil blanc : palette conforme.",
+        "cadrage": "Le poisson tient la case ; queue et museau ont une marge.",
+        "taille": "Mesure (tools/mesure/mesurer.py) : nage 35 à 37 px (la plus haute 37), attaque jusqu'à 47 px, mort 35 à 36 px.",
+        "details": "L'œil se lit à 64 px (anneau blanc, pupille noire) ; la pectorale reste peu lisible.",
+        "coherence_base": "Même pipeline et même palette que les autres créatures.",
+        "pixels_parasites": "Liseré clair sur le contour du dos et de l'aileron."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "pectorale peu lisible à 64 px",
+        "liseré clair à atténuer en finition"
+      ]
+    },
+    {
+      "changement": "itération Aseprite 2 : lisière claire du dos (zone x 26-46, y 16-23, 379 pixels) passée au violet du corps #433462",
+      "image": "boards/journal/poisson_volant_13.png",
+      "image_sha256": "ad711d5a62b5a38d98c8629086037f9527fca3b65558dd87fd511d34d9b4009a",
+      "controle": {
+        "silhouette": "Le dos n'a plus de contour cyan clair : le haut du poisson est d'un seul violet, la silhouette se lit par le contraste avec le fond.",
+        "couleurs": "Violet du corps #433462 déjà dans la palette ; le cyan reste sur la pectorale et l'aileron.",
+        "cadrage": "Inchangé : pixels recolorés seulement, aucun pixel ajouté ou retiré.",
+        "taille": "Inchangée : mêmes 36 à 37 px en nage.",
+        "details": "La pectorale cyan reste distincte ; l'œil n'est pas touché.",
+        "coherence_base": "Couleur tirée de la rampe caoutchouc, comme le corps.",
+        "pixels_parasites": "Aucun pixel isolé ajouté ; le contour du dos est plus propre."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "pectorale encore peu lisible (itération 3)",
+        "aileron à éclaircir (itération 4)"
+      ]
+    },
+    {
+      "changement": "itération Aseprite 3 : 122 pixels de la pectorale passés de #8ad8d0 à #c8f4e8 (zone x 47-57, y 17-23) pour qu'elle se détache du violet",
+      "image": "boards/journal/poisson_volant_14.png",
+      "image_sha256": "1d1b1d3ceeadb72084cc8958feb96f71ec8aa146969810e0aa77a36441037489",
+      "controle": {
+        "silhouette": "Inchangée : seules des nuances de la pectorale changent, aucun contour bougé.",
+        "couleurs": "#c8f4e8 est dans la rampe bulle ; la pectorale est plus claire sur le violet.",
+        "cadrage": "Inchangé par ce changement : le cadre reste celui de l'entrée précédente.",
+        "taille": "Inchangée (mêmes pixels, mêmes dimensions).",
+        "details": "Changement SUBTIL : visible en zoom sur la comparaison, à peine sur la planche à 64 px ; gardé parce qu'il est vérifié aux pixels et ne dégrade rien.",
+        "coherence_base": "Même rampe bulle que l'aileron.",
+        "pixels_parasites": "Aucun pixel ajouté."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "aileron encore à éclaircir (itération 4)"
+      ]
+    },
+    {
+      "changement": "itération Aseprite 4 : 11 pixels de l'aileron dorsal passés de #433462 à #5e4a80 (x 40-42, y 10-16)",
+      "image": "boards/journal/poisson_volant_15.png",
+      "image_sha256": "1714342594f3482a5ca602bca0227e2a1cf00b50bd61419c0495025e9e972358",
+      "controle": {
+        "silhouette": "Inchangée : même forme d'aileron, seule sa teinte change.",
+        "couleurs": "#5e4a80 est le violet clair du caoutchouc, déjà utilisé sur le dos ; l'aileron se détache un peu plus du fond sombre.",
+        "cadrage": "Inchangé par ce changement : le cadre reste celui de l'entrée précédente.",
+        "taille": "Non mesurée à ce stade (rendu brut) : la hauteur se mesure après pixelisation.",
+        "details": "Changement SUBTIL (11 pixels) : vérifié sur la comparaison zoomée ; la lecture de l'aileron gagne légèrement.",
+        "coherence_base": "Même rampe caoutchouc que le dos.",
+        "pixels_parasites": "Aucun pixel ajouté."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "mesure finale des planches d'itération à vérifier (couleurs distinctes)"
+      ]
+    }
+  ]
+}

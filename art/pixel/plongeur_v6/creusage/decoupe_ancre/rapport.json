@@ -1,0 +1,17 @@
+{
+ "pixels_identiques_remontage_vs_rendu_complet_pct": 99.976,
+ "pixels_alpha_differents_vs_rendu": 0,
+ "pixels_identiques_remontage_vs_ancre_validee_pct": 99.681,
+ "pixels_alpha_differents_vs_ancre": 0,
+ "remontage_nettoye_vs_ancre_validee_pct": 99.976,
+ "pixels_alpha_differents_nettoye_vs_ancre": 0,
+ "ordre": [
+  "torse",
+  "jambes",
+  "bras_g_haut",
+  "bras_g_avant",
+  "bras_d_haut",
+  "bras_d_avant",
+  "casque"
+ ]
+}

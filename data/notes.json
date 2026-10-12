@@ -1,0 +1,384 @@
+{
+  "notes": [
+    {
+      "id": "n_radeau_1",
+      "titre": "Carnet du premier jour",
+      "biome": "radeau_surface",
+      "texte": "Je suis arrivé avec un couteau, deux bidons et l'air de la surface. Les marchands de la Compagnie disent que tout ce qui reste sous le radeau appartient à celui qui descend. Ils ne disent pas combien de plongeurs ne sont pas remontés. Ce matin, la houle a ramené une plaque de cuivre gravée de portées musicales. Je ne sais pas la lire, mais elle chante quand on la frappe.",
+      "sujets": [
+        "compagnie_du_radeau",
+        "chronologie"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_radeau_2",
+      "titre": "Avis de la Compagnie",
+      "biome": "radeau_surface",
+      "texte": "Les établis sont ouverts à tous les plongeurs qui paient leur place. Le module de forge se monte avec trois plaques de tôle et deux planches d'épave, et la cuve avec deux planches et deux tôles. Les caisses se ferment à clef, car les mouettes ouvrent tout ce qui n'est pas fermé. Pour toute question sur la surface, adressez-vous au bureau du radeau, le matin seulement.",
+      "sujets": [
+        "compagnie_du_radeau"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_radeau_3",
+      "titre": "Dernière lettre de la surface",
+      "biome": "radeau_surface",
+      "texte": "Si tu lis ceci depuis le radeau, c'est que la note est revenue. Elle se lève toujours avec la marée morte et elle descend par les fosses comme un fil. Les anciens disaient que Varekh n'est pas tombée : elle a seulement cessé de répondre. Si tu descends, prends une ration, une lampe et une fusée. Remonte avant que le signal ne te retienne.",
+      "sujets": [
+        "signal",
+        "compagnie_du_radeau"
+      ],
+      "indice_fin": "fin_horizon"
+    },
+    {
+      "id": "n_recif_1",
+      "titre": "Plaque du jardin blanc",
+      "biome": "recif_peu_profond",
+      "texte": "Les coraux blancs poussent autour d'une cloche couchée. Sur sa face, on lit la date de l'accord et une liste de noms de carillonneurs. Le plus récent a été gravé quelques jours avant la chute. Il dit simplement : la gamme haute ne tiendra pas. Personne n'a cherché à vérifier, car tout le monde préfère croire à la beauté du récif.",
+      "sujets": [
+        "civilisation",
+        "chronologie"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_recif_2",
+      "titre": "Notes sur un fil de cuivre",
+      "biome": "recif_peu_profond",
+      "texte": "Le cuivre du récif n'est pas un cuivre de mer : il a été fondu par les carillonneurs et laissé là. Quand on le frotte, il donne une note basse. Un fil étiré donne une note plus haute, et deux fils tendus sur un cadre donnent un accord. J'ai essayé avec un fil de cinq mètres et la cloche voisine a répondu. C'est la première fois que je comprends que nous ne sommes pas seuls sous l'eau.",
+      "sujets": [
+        "civilisation",
+        "signal"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_recif_3",
+      "titre": "Journal d'une tortue",
+      "biome": "recif_peu_profond",
+      "texte": "Je la suis depuis trois jours. Elle ne rentre jamais dans son rocher sans passer par la même galerie de bronze, et elle s'arrête toujours devant la cloche. Il y a quelque chose dans le son de la cloche qui la rassure. Les pêcheurs disent que les tortues sont les gardiennes de l'accord. Je ne sais pas si c'est vrai, mais j'ai cessé de la chasser.",
+      "sujets": [
+        "gardiens_cloche"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_fosse_1",
+      "titre": "Serment du gardien",
+      "biome": "fosse_sombre",
+      "texte": "Je jure de ne toucher ni la gamme ni la cloche. Nous descendons seuls dans la fosse, avec une lampe baissée et un battant prêt. Le gardien ne veut pas notre mort, il veut notre oreille. Celui qui sait écouter la pression passe la chapelle et prend le médaillon. Celui qui frappe trop fort ne revient pas. C'est la leçon la plus ancienne de l'ordre.",
+      "sujets": [
+        "gardiens_cloche",
+        "civilisation"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_fosse_2",
+      "titre": "Relevé des tubes",
+      "biome": "fosse_sombre",
+      "texte": "Les tubes de cuivre de la fosse forment un pont qui relie deux parois. Ils sont encore sonores : quand on les frappe, ils donnent la note de l'accord ancien. J'ai relevé quarante-deux tubes, dont huit sont brisés. Les brisés chantent faux. Je pense que la gamme haute a été accordée ici la première fois, et que les tubes ont gardé la mémoire du faux accord.",
+      "sujets": [
+        "chronologie",
+        "signal"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_fosse_3",
+      "titre": "La fosse n'est pas vide",
+      "biome": "fosse_sombre",
+      "texte": "Sous le sable de la fosse, il y a des bancs de raies lanternes qui n'ont jamais vu la surface. Elles suivent les vibrations des tubes et s'approchent des plongeurs qui frappent le métal. J'ai cru d'abord qu'elles étaient attirées par la lumière. Elles sont attirées par la note, comme nous. Elles pourraient devenir nos alliées si l'on savait leur parler.",
+      "sujets": [
+        "ordre_du_silence",
+        "signal"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_foret_1",
+      "titre": "Journal de la sève",
+      "biome": "foret_de_kelp",
+      "texte": "Le kelp de cette forêt pousse sur les restes d'un conduit. Sa sève se fige en un latex élastique qui tient à la pression. Les anciens l'appelaient la gomme des cloches, et elle servait à colmater les verres. J'ai goûté une goutte : elle a un goût de sel et de cuivre. Je m'en servirai pour la combinaison, si je survis aux calmars qui rôdent.",
+      "sujets": [
+        "civilisation"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_foret_2",
+      "titre": "Carte partielle",
+      "biome": "foret_de_kelp",
+      "texte": "Cette carte n'est pas complète. Elle marque les cloches encore sonores et les notes qui leur correspondent, mais il manque la cloche du Nord. La Compagnie la vend à prix d'or et ne sait pas ce qu'elle achète. Il faut la lire à la lampe, dans le sens du courant, pour que les notes s'alignent. Elle montre une route vers le banc de verre et une autre vers la cheminée.",
+      "sujets": [
+        "chronologie",
+        "civilisation"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_foret_3",
+      "titre": "Sur la souplesse",
+      "biome": "foret_de_kelp",
+      "texte": "La combinaison de caoutchouc a une faiblesse : elle se fend quand l'air se détend trop vite. Il faut remonter lentement, palier après palier, et ne jamais enfiler le casque sans vérifier les joints. Un vieux plongeur m'a dit que la mer ne pardonne pas la hâte, et que ce n'est pas la pression qui tue, c'est le moment où l'on oublie de s'arrêter.",
+      "sujets": [
+        "compagnie_du_radeau"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_banc_1",
+      "titre": "Dernier rapport de l'atelier",
+      "biome": "banc_de_verre",
+      "texte": "Le banc de verre était le lieu de la guilde. Les fours sont encore tièdes, les moules attendent les coulées et les lingots reposent dans leurs caisses. Le conseil y commandait les conduits de la gamme haute. Un contremaître a laissé une note : on ne fond pas le verre d'une cloche sans sa note juste. Personne n'a écouté. Les conduits ont cassé en chaîne.",
+      "sujets": [
+        "civilisation",
+        "chronologie"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_banc_2",
+      "titre": "Une baleine qui chante",
+      "biome": "banc_de_verre",
+      "texte": "La baleine de verre passe au-dessus du banc chaque nuit, et son chant fait vibrer les conduits. Les crabes de cristal s'arrêtent pour l'écouter. Je crois qu'elle est un des derniers êtres nés de l'accord ancien. Elle ne mord pas, ne fuit pas, et son souffle laisse des bulles qui se brisent en tintant. Quand elle est partie, le banc reste silencieux pendant une heure.",
+      "sujets": [
+        "gardiens_cloche",
+        "signal"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_banc_3",
+      "titre": "La clé du coffre",
+      "biome": "banc_de_verre",
+      "texte": "La clé du banc ouvre un coffre de la guilde qui contenait, selon l'inventaire, les plaques de la gamme ancienne. Le coffre est vide. Il ne reste qu'une plaque au fond, gravée d'une seule note et d'un nom : Oreste de Varekh, le dernier accordeur. C'est le seul nom que l'on cite encore dans les radeaux, et personne ne sait s'il est mort ou s'il a choisi de rester sous l'eau.",
+      "sujets": [
+        "civilisation",
+        "chronologie"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_cheminee_1",
+      "titre": "Ce que dit la chaleur",
+      "biome": "cheminee_thermale",
+      "texte": "Les cheminées thermales ne sont pas naturelles. Les carillonneurs les ont percées pour refroidir la gamme haute, et elles ont fini par chauffer le golfe entier. Au bout de chaque tube, il y a une plaque de cuivre où l'on lit les réglages : la température, la pression et la note. Le dernier réglage date du jour de la chute. Il est écrit en rouge, et il dit : ne pas couper.",
+      "sujets": [
+        "chronologie",
+        "signal"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_cheminee_2",
+      "titre": "Journal de la sentinelle",
+      "biome": "cheminee_thermale",
+      "texte": "La sentinelle ne bouge que quand la vapeur monte. Elle a été construite pour surveiller les cheminées et pour empêcher les pillards de les démonter. Elle se nourrit de chaleur, et elle n'a plus de maître depuis des siècles. Je pense qu'elle attend un ordre, un mot de l'accordeur. En attendant, elle défend l'atelier avec la même patience qu'une cloche.",
+      "sujets": [
+        "civilisation",
+        "gardiens_cloche"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_cheminee_3",
+      "titre": "Message de l'Ordre",
+      "biome": "cheminee_thermale",
+      "texte": "Nous avons coupé deux cheminées. Le signal s'est tu pendant une nuit entière, et les poissons de la fosse sont remontés en bancs. La Compagnie appelle cela une victoire. Nous l'appelons une correction. Le silence ne dure pas, il faut le garder. Si vous voyez la vapeur s'arrêter, ne venez pas voir : éteignez les cloches restantes et partez.",
+      "sujets": [
+        "ordre_du_silence",
+        "signal"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_plaine_1",
+      "titre": "Le champ des sphères",
+      "biome": "plaine_abyssale",
+      "texte": "Les sphères lumineuses de la plaine sont des balises. Elles ont été plantées par les carillonneurs pour indiquer les routes de la gamme. Chacune brille à une note différente, et quand on les écoute ensemble on entend l'accord de la cloche du Miroir. La vase qui les entoure est pleine de vase bioluminescente, qui prend la couleur des notes.",
+      "sujets": [
+        "civilisation",
+        "chronologie"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_plaine_2",
+      "titre": "L'épave de l'Ordre",
+      "biome": "plaine_abyssale",
+      "texte": "Le sous-marin de l'Ordre a été coulé ici. On y a trouvé des scaphandres noirs et des plaques de verre gravées d'un seul mot : silence. Les membres de l'Ordre ne descendent plus jamais seuls. Ils ont laissé leurs portes ouvertes, comme une invitation ou une mise en garde. Certains disent qu'ils sont devenus des poulpes.",
+      "sujets": [
+        "ordre_du_silence"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_plaine_3",
+      "titre": "Pour éteindre la note",
+      "biome": "plaine_abyssale",
+      "texte": "Pour éteindre le signal, il faut couper les conduits qui relient la cloche aux cheminées et aux sphères. Mais l'Ordre a découvert autre chose : les sphères ne font que répéter la note. La vraie cloche est ailleurs, au fond, et seule une lame de titane peut la faire taire. Nous avons l'outil, nous n'avons pas la permission.",
+      "sujets": [
+        "ordre_du_silence",
+        "signal"
+      ],
+      "indice_fin": "fin_silence"
+    },
+    {
+      "id": "n_cite_1",
+      "titre": "Place des carillonneurs",
+      "biome": "cite_engloutie",
+      "texte": "La place de Varekh garde une cloche fendue en son centre. La fente court du bronze jusqu'à la pierre. Les marches qui l'entourent portent les noms des accordeurs de chaque génération. Le dernier nom est encore lisible, et il est suivi d'un trait : celui qui a refusé de descendre avec la cité. Je ne sais pas s'il est mort ou s'il est resté au-dessus.",
+      "sujets": [
+        "civilisation",
+        "chronologie"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_cite_2",
+      "titre": "Bibliothèque des plaques",
+      "biome": "cite_engloutie",
+      "texte": "Les plaques de cuivre de la bibliothèque sont classées par note, et non par date. Chaque tiroir contient une gamme, et chaque gamme une liste de cloches et de sons. Les archives de la gamme haute sont rangées à part, dans une armoire scellée dont la clé est en titane. Elles disent que la gamme haute a été votée contre l'avis des anciens et qu'elle devait durer trois ans.",
+      "sujets": [
+        "civilisation",
+        "chronologie"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_cite_3",
+      "titre": "Un choix de silence",
+      "biome": "cite_engloutie",
+      "texte": "Les archivistes de Varekh savaient qu'une cloche qui sonne seule finit par s'user. Il existe une clé, un sceau, un mécanisme qui permettent de faire taire la dernière note. Ce choix a été prévu, puis oublié, puis redécouvert par l'Ordre. Celui qui le fait ne sauve pas la mer, il la laisse respirer sans personne pour l'entendre. Le silence est une décision, et elle pèse lourd.",
+      "sujets": [
+        "ordre_du_silence",
+        "civilisation"
+      ],
+      "indice_fin": "fin_silence"
+    },
+    {
+      "id": "n_fond_1",
+      "titre": "Le signal au plus près",
+      "biome": "fond_du_signal",
+      "texte": "Au fond du golfe, la note n'est plus une vibration, c'est un corps qui pèse sur la poitrine. La cloche du Miroir repose sur son autel, entourée de tubes brisés et de sirènes qui chantent sans jamais se taire. Elle a sonné la même note pendant trois siècles après la chute. Ce n'est pas de la mécanique : quelqu'un la maintient en vie, et ce quelqu'un a un visage.",
+      "sujets": [
+        "signal",
+        "chronologie"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_fond_2",
+      "titre": "Un navire pour l'horizon",
+      "biome": "fond_du_signal",
+      "texte": "Le sous-marin géant de la guilde devait traverser le fond pour rejoindre une autre cité, plus loin. Il n'est jamais parti, car la note a cassé ses hublots. Les plans de la guilde montrent une route vers le haut du golfe, là où la mer devient plus claire. Si la note se tait assez longtemps, le navire peut repartir, et le radeau reprendre la mer comme avant.",
+      "sujets": [
+        "compagnie_du_radeau",
+        "civilisation"
+      ],
+      "indice_fin": "fin_horizon"
+    },
+    {
+      "id": "n_fond_3",
+      "titre": "Ce que dit le Chant",
+      "biome": "fond_du_signal",
+      "texte": "Le Chant du fond n'est pas une ennemie. C'est l'accordeuse qui n'a jamais voulu descendre de l'autel. Elle chante la note juste, et sa voix dit qu'un accord peut encore se refaire, si quelqu'un accepte de frapper la voix la plus haute et d'écouter la quatrième note. Ce que l'on fait ensuite appartient à celui qui descend. La cloche attend une réponse, pas un silence.",
+      "sujets": [
+        "gardiens_cloche",
+        "signal"
+      ],
+      "indice_fin": "fin_resonance"
+    },
+    {
+      "id": "n_recif_4",
+      "titre": "Ce que disent les coquillages",
+      "biome": "recif_peu_profond",
+      "texte": "Les coquillages qui couvrent les socles des cloches sont tous tournés vers la même direction, vers le centre du golfe. Les pêcheurs ont remarqué que leurs coques vibrent à la même note que le bronze. Certains en font des colliers pour les enfants, pour qu'ils apprennent à écouter la mer avant de savoir nager.",
+      "sujets": [
+        "civilisation",
+        "gardiens_cloche"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_fosse_4",
+      "titre": "Le médaillon du gardien",
+      "biome": "fosse_sombre",
+      "texte": "Le médaillon porte une note gravée au revers, la note juste de l'accord ancien. Le gardien le donne à celui qui sait l'écouter sans frapper. La Compagnie l'achète au prix d'un bateau, sans savoir qu'il ouvre les archives de la fosse. Garder le médaillon, c'est garder la mémoire de la première cloche.",
+      "sujets": [
+        "gardiens_cloche",
+        "chronologie"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_foret_4",
+      "titre": "Les loutres et la carte",
+      "biome": "foret_de_kelp",
+      "texte": "Les loutres de kelp déplacent des coquillages pleins de notes gravées, et on en retrouve souvent dans les nids. Elles savent où sont les cloches sonores mieux que les cartes. Un plongeur de la Compagnie les suit depuis un an, et il a déjà retrouvé trois plaques qu'aucun atlas ne mentionne.",
+      "sujets": [
+        "compagnie_du_radeau",
+        "chronologie"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_banc_4",
+      "titre": "Les fours de la guilde",
+      "biome": "banc_de_verre",
+      "texte": "Les fours du banc ont été éteints d'un coup, un soir de tempête. Les moules sont restés pleins, et la coulée s'est figée en formes de cloches miniatures. Ce sont des jouets pour les enfants de la Compagnie, mais les plus âgés disent que ce sont des brouillons de la gamme haute.",
+      "sujets": [
+        "civilisation",
+        "chronologie"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_cheminee_4",
+      "titre": "Un atelier pour les notes",
+      "biome": "cheminee_thermale",
+      "texte": "L'atelier du carillonneur contient une table couverte de plaques fondues à moitié. On y voit la gamme haute écrite de la main d'un maître, puis raturée par une autre main. La seconde écriture reprend la gamme ancienne, comme si l'accordeur avait tenté de revenir en arrière.",
+      "sujets": [
+        "civilisation",
+        "signal"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_plaine_4",
+      "titre": "Les lueurs de la vase",
+      "biome": "plaine_abyssale",
+      "texte": "La vase bioluminescente prend la couleur de la note que l'on chante près d'elle. Un plongeur de la Compagnie a noté trois couleurs pour trois notes, puis il a cessé de chanter, par peur de ne plus pouvoir s'arrêter. Il dit que la plaine répond toujours.",
+      "sujets": [
+        "signal",
+        "compagnie_du_radeau"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_cite_4",
+      "titre": "Les lampadaires vivants",
+      "biome": "cite_engloutie",
+      "texte": "Les lampadaires vivants s'allument quand on les frôle, mais ils ne s'éteignent qu'après plusieurs minutes. Ils réagissent à la musique, et les archivistes en faisaient des signaux de rues. On dit qu'un lampadaire s'est allumé en rouge une seule fois, la nuit de la chute.",
+      "sujets": [
+        "civilisation",
+        "chronologie"
+      ],
+      "indice_fin": null
+    },
+    {
+      "id": "n_fond_4",
+      "titre": "La voix du sous-marin",
+      "biome": "fond_du_signal",
+      "texte": "Le sous-marin géant a une voix propre, une sirène grave qui répond au signal. Les techniciens de la guilde l'ont réglée pour qu'elle s'accorde à la cloche. Le jour où elle a sonné, la pression du fond a baissé d'un cran, et le plongeur qui était à côté a cru entendre une réponse.",
+      "sujets": [
+        "compagnie_du_radeau",
+        "signal"
+      ],
+      "indice_fin": null
+    }
+  ]
+}

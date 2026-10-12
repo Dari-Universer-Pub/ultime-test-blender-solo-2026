@@ -1,0 +1,706 @@
+{
+  "id": "plongeur_v6",
+  "note": "Héros v6 (scaphandrier dessin animé, méthode Dead Cells, pose idle). Règle : un changement compte s'il modifie au moins 5 % des pixels ET réduit un écart. Les changements sous le seuil sont marqués NON COMPTÉ et sont conservés comme exceptions à trancher par Julien. Les passes annulées sont listées à part.",
+  "entrees": [
+    {
+      "changement": "première version v6 : corps continu (Skin), pièces rigides, rampes par matière, détails peints par face",
+      "image": "boards/journal/plongeur_v6_1.png",
+      "image_sha256": "1dc052b67028f5d7e1f2080e19ff037cb1ceacc226733987d4faee8ce4aed71f",
+      "pixels_changes": "sans objet (première version)",
+      "verdict": "garde (première version)",
+      "controle": {
+        "silhouette": "Silhouette lisible à x1 : tête, tronc, bras, jambes séparés.",
+        "couleurs": "Rampes par matière, 24 couleurs de palette.",
+        "cadrage": "Héros 71 px dans la case 112.",
+        "taille": "71 px de haut.",
+        "details": "Casque laiton, hublot cerclé, reflet, collerette, ceinture, gants, bottes, bouteille, corde.",
+        "coherence_base": "Même design que v5, plus cartoon.",
+        "pixels_parasites": "Aucun pixel isolé après contour."
+      }
+    },
+    {
+      "changement": "bouteille violette déplacée derrière l'épaule gauche (essais 1 et 2)",
+      "image": "boards/journal/plongeur_v6_2.png",
+      "image_sha256": "36d89ee07534e5686dc3291b7deb32e6090b176c3e1fe4fa3510b28d62db1e86",
+      "pixels_changes": "10.6 % des pixels (mesuré entre les deux images)",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Bouteille visible à gauche, derrière l'épaule : oui.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Bouteille et valve lisibles ; corde reliée.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "Aucun."
+      }
+    },
+    {
+      "changement": "jambes courtes et épaisses, bottes plus lourdes (essai 3)",
+      "image": "boards/journal/plongeur_v6_3.png",
+      "image_sha256": "b3f034d55225c7a7e319a3827cfaeb823c23229efb5775c17032c38a711f019a",
+      "pixels_changes": "8.0 % des pixels (mesuré entre les deux images)",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Jambes plus courtes et plus épaisses.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Bottes plus lourdes, semelle en bande sombre.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "Aucun."
+      }
+    },
+    {
+      "changement": "tronc plus rond, bras plus épais (essai 4)",
+      "image": "boards/journal/plongeur_v6_4.png",
+      "image_sha256": "944a4de85adaec3d19714c67babf7451ba7117fc1cce2aaa55fb8e316cb68a95",
+      "pixels_changes": "6.3 % des pixels (mesuré entre les deux images)",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Tronc plus rond, bras plus épais.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Bras lisibles.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "Aucun."
+      }
+    },
+    {
+      "changement": "ceinture élargie (rayon 0,40 -> 0,45) (essai 5) : NON COMPTÉ (sous 5 %) : conservé, à trancher par Julien",
+      "image": "boards/journal/plongeur_v6_5.png",
+      "image_sha256": "6fb93a6fb2d1db2246328d6affeab848616665eb49485cc632109ce964ec8eed",
+      "pixels_changes": "2.4 % des pixels (mesuré entre les deux images)",
+      "verdict": "NON COMPTÉ (sous 5 %) : conservé, à trancher par Julien",
+      "controle": {
+        "silhouette": "Ceinture plus large, lisible à x1.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Ceinture cuir visible sur le tronc.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "Aucun."
+      }
+    },
+    {
+      "changement": "section ronde du Skin (essai 7), suivie d'un pli d'épaule déplacé (essai 6) : NON COMPTÉ (sous 5 %) : conservé, à trancher par Julien",
+      "image": "boards/journal/plongeur_v6_6.png",
+      "image_sha256": "2309be4c401e65e3fe8106591ebe6fd6d911801db757d7056a5d737ec912a62f",
+      "pixels_changes": "4.8 % des pixels (mesuré entre les deux images)",
+      "verdict": "NON COMPTÉ (sous 5 %) : conservé, à trancher par Julien",
+      "controle": {
+        "silhouette": "Non évalué (sous le seuil).",
+        "couleurs": "—",
+        "cadrage": "—",
+        "taille": "71 px.",
+        "details": "Pli d'épaule à peine visible.",
+        "coherence_base": "—",
+        "pixels_parasites": "—"
+      }
+    },
+    {
+      "changement": "profondeur du corps lissé x 1,3 (essai 8) : le tronc passe d'aplati à rond",
+      "image": "boards/journal/plongeur_v6_7.png",
+      "image_sha256": "9aa1789cad8b4b3623f398ba4962ca95cf188dbc3cedb25a790b051691c3a841",
+      "pixels_changes": "10.4 % des pixels (mesuré entre les deux images)",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Tronc passe d'un bloc aplati à un volume rond.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Ceinture et collerette mieux recouvertes.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "Aucun."
+      }
+    },
+    {
+      "changement": "plis élargis puis resserrés (essais 9 et 10) : NON COMPTÉ (sous 5 %) : conservé, à trancher par Julien",
+      "image": "boards/journal/plongeur_v6_8.png",
+      "image_sha256": "7cb38b65cbdbc84329bbc882fe4fcc182ef48a373bf64c73b4b35dc726165f2f",
+      "pixels_changes": "1.1 % des pixels (mesuré entre les deux images)",
+      "verdict": "NON COMPTÉ (sous 5 %) : conservé, à trancher par Julien",
+      "controle": {
+        "silhouette": "Plis presque inchangés.",
+        "couleurs": "—",
+        "cadrage": "—",
+        "taille": "71 px.",
+        "details": "Plis encore quasi absents.",
+        "coherence_base": "—",
+        "pixels_parasites": "—"
+      }
+    },
+    {
+      "changement": "bras lointain écarté vers l'extérieur (essai 13)",
+      "image": "boards/journal/plongeur_v6_9.png",
+      "image_sha256": "555229ba196ae04a2ca20f35e0590b1e149500f17da9c2a1c866706cf95f77eb",
+      "pixels_changes": "10.8 % des pixels (mesuré entre les deux images)",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Bras lointain sort du tronc.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Bras lointain visible à 59 %.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "Aucun."
+      }
+    },
+    {
+      "changement": "bras lointain : coude abaissé et avancé (essai 14)",
+      "image": "boards/journal/plongeur_v6_10.png",
+      "image_sha256": "735d2475fdc114d0d126f85ca125fb072726a1fc562eaf814b118264c303d6b2",
+      "pixels_changes": "5.5 % des pixels (mesuré entre les deux images)",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Bras lointain plus lisible.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Bras lointain à 63 %.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "Aucun."
+      }
+    },
+    {
+      "changement": "bras lointain : coude et poignet vers l'avant (essai 15)",
+      "image": "boards/journal/plongeur_v6_11.png",
+      "image_sha256": "6cc7de3363241eaeb2dbe5731310e836efad58b82d14cbfee21b20fa98f8379c",
+      "pixels_changes": "9.2 % des pixels (mesuré entre les deux images)",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Bras lointain plus lisible, en avant.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Pose plus raide.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "Aucun."
+      }
+    },
+    {
+      "changement": "bras lointain : pendant vers le bas (essai 16) : 63 % visible",
+      "image": "boards/journal/plongeur_v6_12.png",
+      "image_sha256": "b3d08b9e52755cdd583b5d4e786ec0b241210f8d939f50f05847d83657ad0937",
+      "pixels_changes": "10.4 % des pixels (mesuré entre les deux images)",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Bras lointain pendant, pose idle.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Bras lointain 63 %, quatre membres OK.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "Aucun."
+      }
+    },
+    {
+      "changement": "contour à deux couleurs depuis les cartes d'identité (ombre indigo très foncé, lumière indigo clair), amincissement des blocs 2 x 2 (3 restants), pixels isolés à 0",
+      "image": "boards/journal/plongeur_v6_14.png",
+      "image_sha256": "01c1e2f341e02bb6552ce2dbbd22900ae7956e020537a451bcfc9911df54172a",
+      "pixels_changes": "30.1 % des pixels (mesuré entre les deux images)",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Silhouette plus nette, trait sombre côté ombre et trait clair côté lumière.",
+        "couleurs": "24 couleurs ; contour indigo très foncé et indigo clair, jamais noir pur.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Bords internes entre bras, tronc, jambes, casque et verre.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "0 isolé ; 3 blocs 2 x 2 restants (écart)."
+      }
+    },
+    {
+      "changement": "15 : RETRAIT DU CONTOUR (demande de Julien). Le sprite devient le rendu couleur seul ; les 38 pixels isolés du rendu brut sont corrigés dans la même étape (nettoyage sans contour, tools/pixelisation/nettoyage.py). Le contour indigo est conservé dans l'historique git (commit cb8d19f).",
+      "image": "boards/journal/plongeur_v6_15.png",
+      "image_sha256": "bea0f9b22c4f5f5ee6ae606bd6086692982208b3838549babe97dd05b6e16805",
+      "pixels_changes": "29,8 % des pixels (mesuré entre le sprite avec contour et le sprite sans contour)",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Lisible sur eau claire ; sur eau sombre le bras lointain et la bouteille se fondent un peu.",
+        "couleurs": "Rampes par matière inchangées ; plus aucune couleur de contour.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Plus de trait autour du casque et des bras : la séparation tient à la couleur seule, et le bras et le tronc se confondent (même beige).",
+        "coherence_base": "Même modèle.",
+        "pixels_parasites": "38 pixels isolés corrigés, 0 restant."
+      },
+      "defauts_restants": [
+        "bras et tronc de même valeur",
+        "bouteille peu visible",
+        "vitre trop pâle",
+        "jambes peu séparées"
+      ]
+    },
+    {
+      "changement": "16 (retouche 2) : hublot : vitre bleu-noir (palette verre sombre) et reflet net de 2 px couleur claire (famille reflet), au lieu d'un bleu pâle plat",
+      "image": "boards/journal/plongeur_v6_16.png",
+      "image_sha256": "ec274760a0290ef316f942de33ec423d4232b22e613678041aafc52c05c6cba7",
+      "pixels_changes": "9,3 % des pixels",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Inchangée.",
+        "couleurs": "Vitre sur trois tons sombres ; reflet 1 ton clair ; 23 couleurs utilisées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Vitre lisible comme vitre ; reflet net sur le coin haut-gauche.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "0 isolé."
+      },
+      "defauts_restants": [
+        "bras proche et tronc de même valeur",
+        "bras lointain peu séparé du tronc",
+        "bouteille peu visible"
+      ]
+    },
+    {
+      "changement": "17 (retouche 3) : bras identiques (même longueur, même épaisseur, épaule arrondie, coude et poignet symétriques), manchette sombre et gant en mitaine ; découpe du corps par segment d'os le plus proche",
+      "image": "boards/journal/plongeur_v6_17.png",
+      "image_sha256": "9de39a6ff33e42895b60eac05b0d0fd20f09f9f7b9009a21613529a819841840",
+      "pixels_changes": "25,4 % des pixels",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Bras de même longueur ; les deux gants sont à la même hauteur.",
+        "couleurs": "23 couleurs ; inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Manchettes sombres visibles au poignet ; bras proche encore confondu avec le tronc (même beige).",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "0 isolé après nettoyage."
+      },
+      "mesures": {
+        "bras_proche": "265 px / 80 %",
+        "bras_lointain": "186 px / 62 %",
+        "jambe_proche": "250 px / 80 %",
+        "jambe_lointaine": "193 px / 58 % (échec, traité à la retouche 6)"
+      },
+      "defauts_restants": [
+        "bras proche et tronc de même valeur",
+        "jambe lointaine sous 60 %",
+        "ceinture trop épaisse (plus de 3 px)"
+      ]
+    },
+    {
+      "changement": "18 : ceinture seule, réduite à 3 px (rayon 0,06) : ANNULÉE (1,6 % des pixels, sous le seuil de 5 % par passe). Reprise dans la retouche 4 avec les plis.",
+      "image": "boards/journal/plongeur_v6_18.png",
+      "image_sha256": "dd54eb4c9dc7275e46c23605c43f604ddaf5698cd16d9e1a7c9aa6a3bb01b64c",
+      "pixels_changes": "1,6 % (mesuré contre l'étape 17)",
+      "verdict": "annulée (code conservé, reprise à 19)",
+      "controle": {
+        "silhouette": "Inchangée.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Ceinture plus fine, sans plis : trop peu de changement.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "Aucun."
+      }
+    },
+    {
+      "changement": "19 (retouche 4) : ceinture de cuir 3 px avec boucle laiton, et quatre plis nets (deux sur le devant du tronc, un sur le haut de chaque manche). Mesuré en un seul passage : ceinture et plis ensemble.",
+      "image": "boards/journal/plongeur_v6_19.png",
+      "image_sha256": "09c6d4253160c3dbabd590df8394913360668fdc95a90faf208ed3a14e640f04",
+      "pixels_changes": "5,0 % (95 pixels sur 1 900), contre l'étape 17",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Ceinture et manches mieux détachées du tronc.",
+        "couleurs": "23 couleurs ; inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Boucle laiton visible au centre de la ceinture ; plis visibles sur le devant du tronc, en deux tons.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "0 isolé."
+      },
+      "defauts_restants": [
+        "pli du tronc lu comme une coupure en deux tons, pas comme un pli",
+        "bras proche et tronc encore de même valeur",
+        "bouteille peu visible",
+        "jambe lointaine 58 %"
+      ]
+    },
+    {
+      "changement": "20 (retouche 5) : bouteille cylindrique à bords arrondis (biseau 0,07), plus grosse, derrière l'épaule gauche, valve laiton au col ; corde en tube à 6 faces pour que la torsion (bandes en hélice) se lise à 3 px, reliée à la valve",
+      "image": "boards/journal/plongeur_v6_20.png",
+      "image_sha256": "377bc686aa3619018f2cb6e473247588fee236c3eedd24b1883e8212e58f94f7",
+      "pixels_changes": "5,5 % (contre l'étape 19)",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Bouteille plus visible au-dessus de l'épaule gauche.",
+        "couleurs": "23 couleurs ; inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Bouteille arrondie et valve laiton visibles ; corde de 3 px reliée à la valve, torsion faible.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "0 isolé."
+      },
+      "defauts_restants": [
+        "torsion de la corde à peine lisible",
+        "bras proche et tronc de même valeur",
+        "jambe lointaine à vérifier"
+      ]
+    },
+    {
+      "changement": "21 (retouche 6) : jambes plus longues (genoux 0,06 plus bas, chevilles plus hautes, bottes 0,04 plus basses), genou plus rond (rayon 0,24)",
+      "image": "boards/journal/plongeur_v6_21.png",
+      "image_sha256": "0b49d4dd2053a9e1352d117981269a2965518c78ee56326078c1c5642d298906",
+      "pixels_changes": "7,0 % (contre l'étape 20)",
+      "verdict": "garde",
+      "mesures": {
+        "bras_proche": "227 px / 97 %",
+        "bras_lointain": "165 px / 73 %",
+        "jambe_proche": "246 px / 98 %",
+        "jambe_lointaine": "183 px / 68 %"
+      },
+      "controle": {
+        "silhouette": "Jambes plus longues, pieds plus bas, silhouette plus haute.",
+        "couleurs": "23 couleurs ; inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "72 px.",
+        "details": "Genou arrondi peu visible : même valeur que la cuisse.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "0 isolé."
+      },
+      "defauts_restants": [
+        "genou peu marqué (même valeur que la cuisse)",
+        "torsion de corde à peine visible",
+        "bras proche et tronc de même valeur"
+      ]
+    }
+  ],
+  "annulations": [
+    {
+      "changement": "retrait du pli du genou (test) : annulé, script restauré",
+      "mesure": "0,8 %"
+    },
+    {
+      "changement": "passe de finition 1 : majorité 3 x 3 casque et collerette (13 pixels proposés)",
+      "mesure": "0,7 %"
+    },
+    {
+      "changement": "passe de finition 2 : majorité 3 x 3 jambes et bottes (10 pixels proposés)",
+      "mesure": "0,5 %"
+    },
+    {
+      "changement": "passe de finition 3 : majorité 3 x 3 bras, gants, tronc, corde (24 pixels proposés)",
+      "mesure": "1,2 %"
+    },
+    {
+      "changement": "corde à rayon 0,085 (essai 11) : annulé, revenu à 0,065",
+      "mesure": "3,1 %"
+    }
+  ],
+  "nage": [
+    {
+      "essai": "nage essai 1 : pose de nage dans le plan visible (bras qui se lèvent et s'abaissent sur les côtés, jambes en ciseaux), huit images, sans contour",
+      "planche": "boards/plongeur_v6_nage_essai1.png",
+      "planche_sha256": "32d4919ff8176a9e17286c7d1273878db887aff9238f935b8c7a7951ed8c7003",
+      "verdict": "ÉCHEC : le trois quarts ne tient pas (bras lointain caché 8 images sur 8, 12 à 59 %) ; 5 poses distinctes sur 8 ; figure debout, pas de nage lisible",
+      "mesures_par_image": {
+        "1": "bras lointain 29 px / 12 %",
+        "2": "113 px / 50 %",
+        "3": "132 px / 59 %",
+        "4": "97 px / 43 %",
+        "5": "46 px / 22 %",
+        "6": "copie de 4",
+        "7": "copie de 3",
+        "8": "copie de 2"
+      },
+      "hauteur": "71 à 72 px (cible 56 à 80) OK",
+      "amplitude": "0,50 (cible >= 0,45) OK",
+      "isoles": 0
+    },
+    {
+      "essai": "nage r03 définitive : bras latéraux (r03), roulis de 70° du squelette entier autour de l'axe de profondeur (tête à droite, visage et hublot vers la caméra), caméra, lumière et orientation de l'ancre inchangées ; essai UNIQUE de jambes latérales (r04) : rejeté (jambes lointaines 39 à 65 %, image 1 à 54 px de haut, sous 56)",
+      "planche": "art/pixel/plongeur_v6/nage/planche_nage_r03.png",
+      "planche_sha256": "a10d9eef122d9e3bda93c1d946e7cc406fb1cf7fdf133a3b7ef43cdad9a3f629",
+      "images": "art/pixel/plongeur_v6/nage/nage_01.png à nage_08.png (112 x 112, 23 couleurs chacune, 8 images distinctes)",
+      "sha256_images": {
+        "nage_01": "a4075b9d24ef5fe5184919d4ee36c8d65be771bdd037112e6f6fd49ccfa03b95",
+        "nage_02": "2d6cc0901f12fe1444f7b63055caaf37aae2a0c33ab97d7ca7a58645551b82d8",
+        "nage_03": "f722d0100b0548e43864bb0c4beb41da221710fcca1cb0a7cbdd879e216f4fd2",
+        "nage_04": "8692cefc1ba0155e4b24248bb0e3de6bd07875de36bf644d02aecf645b4b4f89",
+        "nage_05": "b7b9399e6931193a2ea34f90fb6b466053e33638d82fd531b17ba60f77218050",
+        "nage_06": "af0fe724a0c707c8853c114ea4ec5b61895fe2759ad19e9d9642544bc36ca73c",
+        "nage_07": "3e2cb554be1c9a05c591eee7af48e633cc56a7d1c8911d64d9a38fa1433d1330",
+        "nage_08": "b3e4daae6887723f7b8ea494c2f0c14c6a4ebce96c5eeb1d2630ead0b185321c"
+      },
+      "verdict": "7 images sur 8 dans les repères (proche 45 %, lointain 40 %) ; image 5 SOUS le repère sur deux membres (bras proche 43 %, jambe proche 45 % KO, membres_nage code 1) ; hublot visible et figure non debout dans les 8 images (lecture à valider par Julien)",
+      "mesures_par_image": {
+        "1": "bras proche 166 px / 75 % ; bras lointain 163 px / 77 % ; jambe proche 214 px / 62 % ; jambe lointaine 151 px / 55 % ; hauteur 58",
+        "2": "205 px / 88 % ; 193 px / 82 % ; 180 px / 54 % ; 199 px / 61 % ; hauteur 61",
+        "3": "191 px / 80 % ; 192 px / 82 % ; 156 px / 53 % ; 227 px / 66 % ; hauteur 68",
+        "4": "152 px / 72 % ; 183 px / 82 % ; 184 px / 58 % ; 201 px / 59 % ; hauteur 60",
+        "5": "99 px / 43 % KO ; 171 px / 77 % ; 145 px / 45 % KO ; 160 px / 53 % ; hauteur 59",
+        "6": "152 px / 72 % ; 191 px / 83 % ; 184 px / 58 % ; 201 px / 59 % ; hauteur 62",
+        "7": "197 px / 82 % ; 188 px / 83 % ; 156 px / 53 % ; 228 px / 66 % ; hauteur 69",
+        "8": "202 px / 87 % ; 192 px / 82 % ; 180 px / 54 % ; 199 px / 61 % ; hauteur 57"
+      },
+      "hauteur": "57 à 69 px (cible 56 à 80) OK",
+      "amplitude": "0,452 (cible >= 0,45) OK, de justesse",
+      "isoles": 0,
+      "paires_quasi_symetriques": "2/8 : 9,9 % de pixels différents ; 3/7 : 11,4 % ; 4/6 : 7,0 % (cycle encore presque symétrique)",
+      "points_faibles": [
+        "image 5 : bras proche caché par le tronc et la collerette pendant le tirage (43 %), jambe proche à 45 % KO",
+        "cycle presque symétrique : images 2/8, 3/7 et 4/6 se lisent comme un aller-retour (7 à 11 % de pixels différents)",
+        "amplitude 0,452 à la limite du seuil, et jambes proches entre 53 et 62 % (proches du repère)"
+      ]
+    },
+    {
+      "essai": "nage v2 (correction demandée par Julien, non validée) : corde qui flotte derrière le dos vers les pieds, cycle non symétrique (partie paire de la phase ajoutée) ; les huit images r03 validées restent intactes dans art/pixel/plongeur_v6/nage/",
+      "planche": "art/pixel/plongeur_v6/nage_v2/planche_nage_v2.png",
+      "planche_sha256": "166bab8adc63b9ae9fe077628f7000ebba045eafc500b63f8e790680c993abc3",
+      "images": "art/pixel/plongeur_v6/nage_v2/nage_01.png à nage_08.png (112 x 112, nettoyées, 0 pixel isolé)",
+      "verdict": "7 images sur 8 dans les repères ; image 4 SOUS le repère (bras proche 43 %, jambe proche 44 %) ; cycle non symétrique (37 à 52 % de pixels différents entre images en miroir, contre 7 à 11 % en v1) ; corde flottante peu lisible à x1",
+      "hauteur": "56 à 68 px (cible 56 à 80) OK",
+      "isoles": 0,
+      "points_faibles": [
+        "image 4 : bras proche 43 % et jambe proche 44 %, sous le repère (même défaut que la v1, image 5)",
+        "corde flottante peu lisible à x1 (cachée derrière le tronc)",
+        "jambes proches 53 à 57 % (près du repère)"
+      ]
+    }
+  ],
+  "idle_anime": [
+    {
+      "lot": "LOT 1 : idle animé, six images ; image 1 = ancre validée ; respiration de 2 px (buste, cou, épaules, bras, moitié de la taille) ; bulle qui sort du casque sur les images 2 à 5 ; même caméra, même lumière, plis de l'idle gardés",
+      "planche": "art/pixel/plongeur_v6/idle_anime/planche_idle_anime.png",
+      "planche_sha256": "21a36fa20fa8951772d6a601eaa5c00529032a240203c4f3099b2f7321ad95de",
+      "images": "art/pixel/plongeur_v6/idle_anime/idle_01.png à idle_06.png (112 x 112, nettoyées, 0 pixel isolé)",
+      "criteres": {
+        "silhouette_a_x1": "oui : la respiration de 2 px ne change pas la silhouette ; l'image 1 est l'ancre",
+        "couleurs_de_base": "oui : mêmes tons ; la bulle prend le ton acier de la palette",
+        "cadrage": "oui : base fixe (bas 0 px), figure dans sa case",
+        "taille_finale": "72 à 75 px ; image 5 à 75 px bulle comprise, au-dessus de la cible 70 à 74",
+        "details": "casque, hublot et gants lisibles sur les six images",
+        "coherence_ancre": "même modelé, plis conservés ; bulle trop petite pour être lue à x1",
+        "pixels_parasites": "0 pixel isolé après nettoyage ; la bulle est voulue, pas un parasite"
+      },
+      "verdict": "garde, avec écarts : respiration faible à x1 ; bulle trop petite à x1 ; image 5 à 75 px ; à valider par Julien",
+      "mesures": {
+        "hauteur": "72 à 75 px",
+        "bas": "0 px sur les six images",
+        "ecart_ancre": "325 à 896 px (la respiration déplace presque tous les bords)",
+        "images_distinctes": "6 sur 6"
+      },
+      "points_faibles": [
+        "bulle trop petite pour être lue à x1",
+        "respiration à peine visible à x1",
+        "la bulle disparaît d'un coup entre les images 5 et 6"
+      ]
+    },
+    {
+      "lot": "LOT 1 v2 : bulle retouchée (demande de Julien, validé sur c91fb54 pour le reste) : 3 à 4 px, montée sur les images 2 à 6 puis dissoute ; image 1 inchangée (ancre). Remplace la planche v1 (historique : commit c91fb54)",
+      "planche": "art/pixel/plongeur_v6/idle_anime/planche_idle_anime.png",
+      "planche_sha256": "edffb5488aba6803463da650d7c6b4ecfa2f53473f20150bf3b02b41367bd071",
+      "verdict": "garde : bulle plus visible (3 à 4 px, contre 3 px) ; cible 4 à 5 px atteinte au bas de la plage ; 0 pixel isolé ; image 1 identique à l'ancre",
+      "points_faibles": [
+        "bulle à 4 px au maximum, à la limite de la cible",
+        "respiration peu visible à x1",
+        "transition 6 vers 1 (la bulle disparaît)"
+      ]
+    }
+  ],
+  "creusage": [
+    {
+      "lot": "LOT 2 : creusage, six images ; image 1 = ancre idle sans pioche ; pioche construite dans Blender (manche cuir, tête acier), tenue par les deux gants ; prête 2, anticipation 3, frappe 4, impact 5, retour 6 ; buste penché",
+      "planche": "art/pixel/plongeur_v6/creusage/planche_creusage.png",
+      "planche_sha256": "40f9ad327d2f1c7b1e4dd8bdac6b05519f724148531defc1bed0f29888e22217",
+      "images": "art/pixel/plongeur_v6/creusage/creusage_01.png à creusage_06.png (112 x 112, nettoyées, 0 pixel isolé)",
+      "criteres": {
+        "silhouette_a_x1": "bras et pioche lisibles à l'image 3 ; frappe et impact peu marqués",
+        "couleurs_de_base": "oui : mêmes tons ; manche cuir et tête acier de la palette",
+        "cadrage": "oui : base fixe, figure dans sa case",
+        "taille_finale": "72 px, pioche comprise, dans la cible 70 à 80",
+        "details": "tête de pioche petite (2 à 4 px) sur les images 2, 5 et 6 ; visible à l'image 3",
+        "coherence_ancre": "mêmes tons et lumière, plis du torse conservés ; bras plus tendus que l'ancre",
+        "pixels_parasites": "0 pixel isolé après nettoyage"
+      },
+      "verdict": "garde avec écarts, à valider par Julien : bras séparés du tronc, pioche lisible en partie ; image 3 SOUS le repère (bras lointain 22 %) ; frappe peu marquée",
+      "mesures": {
+        "hauteur": "72 px",
+        "largeur": "36 à 40 px (ancre 45 px)",
+        "images_distinctes": "6 sur 6",
+        "reperes": "5 images sur 6 ; image 3 KO sur le bras lointain"
+      },
+      "points_faibles": [
+        "image 3 : bras gauche caché à 22 % (casque et pioche)",
+        "frappe et impact peu marqués : la pioche reste presque horizontale devant le torse",
+        "tête de pioche petite sur les images 2, 5 et 6"
+      ]
+    },
+    {
+      "lot": "LOT 2 v2 (refait après rejet de la v1 par Julien) : creusage vers la droite ; pioche sortie de la silhouette sur les images 3 à 6 ; manche bois clair (famille bois ajoutée à la palette, 3 tons), tête acier à deux pointes ; mains écartées ; corps penché à droite à l'impact",
+      "planche": "art/pixel/plongeur_v6/creusage/planche_creusage.png",
+      "planche_sha256": "004f2c723f5c637a5b4aa92c47dcd15a3d1a1d4c770152396cca8d855e954c77",
+      "images": "art/pixel/plongeur_v6/creusage/creusage_01.png à creusage_06.png (112 x 112, nettoyées, 0 pixel isolé, 6 images distinctes)",
+      "criteres": {
+        "silhouette_a_x1": "geste lisible sur les images 3 à 6 (pioche hors de la silhouette) ; la prête est peu lisible",
+        "couleurs_de_base": "oui : combinaison, ceinture et idle inchangés ; le manche bois clair est une famille ajoutée",
+        "cadrage": "oui : base fixe, figure dans sa case",
+        "taille_finale": "72 px, pioche comprise",
+        "details": "hublot visible, gants lisibles ; tête de pioche petite à x1",
+        "coherence_ancre": "même caméra, lumière et style ; plis du torse conservés",
+        "pixels_parasites": "0 pixel isolé après nettoyage"
+      },
+      "verdict": "à valider par Julien : geste et pioche nettement meilleurs que la v1 ; 4 images sur 6 dans les repères ; bras gauche caché sur les images 3 et 6 ; la prête tient la pioche devant le ventre",
+      "mesures": {
+        "hauteur": "72 px",
+        "largeur": "36 à 54 px (ancre 45 px)",
+        "reperes": "4 images sur 6 ; images 3 (31 %) et 6 (35 %) KO sur le bras lointain",
+        "images_distinctes": "6 sur 6",
+        "non_regression": "image 1 brute identique à la version validée de l'idle (après ajout de la famille bois)"
+      },
+      "points_faibles": [
+        "bras gauche caché sur les images 3 et 6 (casque et pioche)",
+        "image 2 (prête) : pioche tenue devant le ventre, contraire au brief",
+        "tête de pioche nominale (barre de 10 px plus pointes), non mesurée au pixel à x1"
+      ]
+    },
+    {
+      "lot": "LOT 2 v3 (refait après retour de Julien sur la v2) : arc vertical (pioche haute derrière l'épaule droite, coup vers l'avant-droite, impact bas buste penché, remontée) ; prête sur le côté droit ; une main pour prête et anticipation, deux mains pour frappe, impact, retour ; main gauche de l'image 6 retouchée pour dégager le bras lointain",
+      "planche": "art/pixel/plongeur_v6/creusage/planche_creusage.png",
+      "planche_sha256": "d4576036d56560026aefe638ad2591189cc387afcc983b0a186b2b621288a2f0",
+      "images": "art/pixel/plongeur_v6/creusage/creusage_01.png à creusage_06.png (112 x 112, nettoyées, 0 pixel isolé, 6 images distinctes par hash SHA-256)",
+      "criteres": {
+        "silhouette_a_x1": "arc lisible en silhouette : pioche levée, abaissée en diagonale, remontée ; frappe (image 4) lue comme une barre devant le torse",
+        "couleurs_de_base": "oui : combinaison, ceinture, casque, hublot et palette de l'ancre ; manche bois clair (famille bois, 3 tons)",
+        "cadrage": "oui : base fixe, 72 px, figure dans sa case",
+        "taille_finale": "72 px, pioche comprise (cible 70 à 80)",
+        "details": "hublot visible sur les six images ; gants lisibles ; tête de pioche de 13 px vue de profil (image 4), 5 à 6 px vue de biais",
+        "coherence_ancre": "même caméra, lumière et style, sans contour",
+        "pixels_parasites": "0 pixel isolé après nettoyage"
+      },
+      "verdict": "à valider par Julien : arc et angles conformes au brief (écarts de 43 à 113 degrés, arc de 45 px) ; 6 images sur 6 dans les repères ; frappe encore lue comme une barre",
+      "mesures": {
+        "hauteur": "72 px",
+        "largeur": "39 à 49 px (ancre 45 px)",
+        "angles_pioche_xz": "-53, 60, 6, -37, 28 degrés ; écarts 113, 54, 43, 65 degrés",
+        "arc": "sommet à z = 2,38, impact à z = 0,55 : 45 px d'écart vertical",
+        "tete_a_x1": "barre de 13 px de profil (image 4), 5 à 6 px de biais (images 3 et 6), 2 à 5 px sur les autres",
+        "reperes": "6 images sur 6 (bras proche 63 à 77 %, bras lointain 49 à 73 %, jambes 53 à 88 %)",
+        "non_regression": "image 1 brute identique à la version validée de l'idle"
+      },
+      "points_faibles": [
+        "frappe (image 4) lue comme une barre devant le torse, pas comme un coup vers l'avant-droite",
+        "pioche de l'anticipation petite (tête de 6 x 7 px vue de biais)",
+        "main gauche de l'image 6 plus basse et plus avancée que sur les autres images"
+      ]
+    },
+    {
+      "lot": "LOT 2 v4 (Julien : images 1 à 3 bonnes, ne pas les toucher ; refaire 4, 5, 6) : frappe, impact et retour à une main, pioche sur le côté droit du corps ; impact avec buste penché et casque descendu de 4 px ; gants plus clairs (reflet) sur les images 4 à 6 seulement",
+      "planche": "art/pixel/plongeur_v6/creusage/planche_creusage.png",
+      "planche_sha256": "8d6ad08dc20582577f5911ed2b484358d76a1c93f70b2b3e3757e80b9e0febfe",
+      "images": "art/pixel/plongeur_v6/creusage/creusage_01.png à creusage_06.png (112 x 112, nettoyées, 0 pixel isolé, 6 images distinctes par hash). Images 1 à 3 pixel-identiques à la v3",
+      "criteres": {
+        "silhouette_a_x1": "frappe lisible en diagonale vers le bas à droite (image 4) ; impact lu comme un montant presque vertical (image 5) ; retour lisible à droite (image 6)",
+        "couleurs_de_base": "oui ; gants plus clairs (famille violet_clair ajoutée) sur les images 4 à 6 seulement",
+        "cadrage": "oui : base fixe, figure dans sa case",
+        "taille_finale": "70 à 72 px (image 5 à 70 px, limite basse)",
+        "details": "hublot visible ; tête de l'impact trop petite (6 x 3 px) ; tête de la frappe 10 x 13 px",
+        "coherence_ancre": "même caméra, lumière et palette ; gants clairs incohérents avec les images 1 à 3",
+        "pixels_parasites": "0 pixel isolé après nettoyage"
+      },
+      "verdict": "à valider par Julien : frappe et retour lisibles ; impact encore trop vertical et tête trop petite ; gants clairs à trancher",
+      "mesures": {
+        "reperes": "6 images sur 6 (bras proche 61 à 84 %, bras lointain 65 à 73 %, jambes 53 à 88 %)",
+        "tete_a_x1": "image 2 : 5 x 4 px ; image 3 : 6 x 7 px ; image 4 : 10 x 13 px ; image 5 : 6 x 3 px (SOUS 10 PX) ; image 6 : 12 x 8 px",
+        "arc": "sommet à z = 2,38 (image 3), impact à z = 0,14 (image 5) : environ 55 px d'écart vertical"
+      },
+      "points_faibles": [
+        "tête de l'impact trop petite (6 x 3 px vue de biais), sous les 10 px demandés",
+        "impact lu comme un montant presque vertical, pas comme une diagonale",
+        "gants clairs sur les images 4 à 6 seulement : à trancher par Julien"
+      ]
+    },
+    {
+      "lot": "LOT 2 v5 (passe d'outil seulement, demandée par Julien) : manche 3 px en bois clair, longueur d'outil 35 px, tête d'acier à deux pointes à barre face caméra, gants revenus à la teinte de l'ancre, bras gauche levé sur les images 4 à 6, impact avec la tête posée au sol devant les pieds",
+      "planche": "art/pixel/plongeur_v6/creusage/planche_creusage.png",
+      "planche_sha256": "9a762daf5f609703c1217b5bcd10909e1aeac48c155c6a721024a5d158f202b5",
+      "images": "art/pixel/plongeur_v6/creusage/creusage_01.png à creusage_06.png (112 x 112, nettoyées, 0 pixel isolé, 6 images distinctes par hash)",
+      "criteres": {
+        "silhouette_a_x1": "arc lisible (prête, lève, frappe, pose au sol, remontée) ; impact encore lu comme un montant vertical",
+        "couleurs_de_base": "oui : gants revenus à la teinte de l'ancre ; manche bois clair",
+        "cadrage": "oui : base fixe, figure dans sa case",
+        "taille_finale": "72 px sauf image 5 à 73 px (tête posée au sol, cible 70 à 72)",
+        "details": "tête d'acier 9 à 10 px (cible 12 à 14) ; à l'impact 5 x 2 px : non lisible",
+        "coherence_ancre": "même caméra, lumière et palette ; corps inchangé ; seuls l'outil et le bras gauche des images 4 à 6 changent",
+        "pixels_parasites": "0 pixel isolé après nettoyage"
+      },
+      "verdict": "à valider par Julien : manche et gants corrigés ; tête d'acier et impact NON conformes (tête trop petite, impact vertical, 73 px à l'impact)",
+      "mesures": {
+        "reperes": "6 images sur 6 (bras proche 57 à 89 %, bras lointain 49 à 73 %, jambes 53 à 88 %) ; image 4 bras lointain 49 %",
+        "tete_a_x1": "image 2 : 10 x 7 px ; image 3 : 10 x 9 px ; image 4 : 9 x 10 px ; image 5 : 5 x 2 px ; image 6 : 10 x 7 px",
+        "hauteur": "72 px, image 5 à 73 px"
+      },
+      "points_faibles": [
+        "tête d'acier sous la cible (9 à 10 px au lieu de 12 à 14) sur les images 2 à 6 ; 5 x 2 px à l'impact",
+        "impact presque vertical, lu comme un montant posé au sol",
+        "image 5 à 73 px (tête posée au sol)"
+      ]
+    },
+    {
+      "lot": "LOT 2 v6 (Julien : trois faiblesses à corriger sans toucher aux poses 1 à 4 et 6) : impact (image 5) : manche incliné vers l'avant (40° en 3D), tête au niveau des pieds, buste penché, épaule droite avancée, casque baissé ; tête d'acier 3D (barre courbée, pointe d'un côté, biseau de l'autre) ; image 5 remontée à 70 px",
+      "planche": "art/pixel/plongeur_v6/creusage/planche_creusage.png",
+      "planche_sha256": "864557b9b18df96942e94d995f480bcca97ac655c176cbc4dea2f9d125a28afe",
+      "images": "art/pixel/plongeur_v6/creusage/creusage_01.png à creusage_06.png (112 x 112, nettoyées, 0 pixel isolé, 6 images distinctes par hash)",
+      "controle_corps": "images 1, 2, 3, 4 et 6 identiques à la v5 pixel pour pixel (corps seul, pioche masquée) ; image 1 identique au pixel près ; image 5 : corps modifié (impact)",
+      "criteres": {
+        "silhouette_a_x1": "arc lisible (prête, lève, frappe, pose au sol, remontée) ; à l'impact le manche reste presque vertical à l'écran",
+        "couleurs_de_base": "oui : gants à la teinte de l'ancre ; manche bois clair ; acier 3D",
+        "cadrage": "oui : base fixe",
+        "taille_finale": "72 px sur 1, 2, 3, 4, 6 ; 70 px sur 5",
+        "details": "tête d'acier 11 x 5 px sur 2, 3, 4, 6 (cible 12 à 14) ; 2 x 1 px à l'impact (cible 10 x 4)",
+        "coherence_ancre": "même caméra, lumière et palette",
+        "pixels_parasites": "0 pixel isolé après nettoyage"
+      },
+      "verdict": "NON VALIDÉ par les critères : tête d'acier sous la cible sur 2 à 6 et invisible à l'impact ; impact presque vertical à l'écran (40° en 3D seulement) ; décision à prendre",
+      "mesures": {
+        "reperes": "6 images sur 6 (bras proche 57 à 79 %, bras lointain 49 à 73 %, jambes 53 à 88 %)",
+        "tete_a_x1": "images 2, 3, 4, 6 : 11 x 5 px ; image 5 : 2 x 1 px",
+        "angle_manche_xz": "-53, 60, -37, -80, 71 degrés ; écart image 4 vers 5 : 43 degrés",
+        "hauteur": "72, 72, 72, 72, 70, 72 px"
+      },
+      "points_faibles": [
+        "tête d'acier sous la cible (11 x 5 px au lieu de 12 à 14) sur les images 2 à 6, et invisible à l'impact",
+        "impact presque vertical à l'écran : l'inclinaison vers l'avant (40° en 3D) se projette presque à la verticale avec cette caméra, ce qui contredit l'écart de 40° avec la frappe",
+        "image 5 : tête à gauche du manche à l'écran"
+      ]
+    },
+    {
+      "lot": "CREUSAGE v7 : cible 3D (règle ANIMATION appliquée, sans pixel art) : deux mains sur la pioche sur les six images ; table TABLE_POSES.md ; contrôles automatiques dans la scène 3D",
+      "planche": "art/pixel/plongeur_v6/creusage/cible3d/planche_cible3d.png",
+      "controles": {
+        "C1_mains_sur_outil": "OK à 0 à 3 px près (écart gant-manche 0,003 à 0,117 unité)",
+        "C2_outil_relie": "OK",
+        "C3_bras": "bras proche 58 à 83 %, lointain 41 à 59 % : OK (marge de 1 point sur l'image 3)",
+        "C4_ecart_angle": "2→3 104°, 3→4 96°, 4→5 26° ÉCHEC, 5→6 100°",
+        "C5_hauteur": "72, 72, 72, 72, 69 ÉCHEC (impact), 72",
+        "C6_pixels": "non vérifié (pixel art non fait)"
+      },
+      "verdict": "NON VALIDÉ : impact en échec (manche à 28° au lieu de 35 à 45°, tête à 0,41 du sol, écart d'angle 26°, 69 px) ; manche de la frappe devant la poitrine ; tête d'acier non mesurable à 112 px ; impact à deux mains impossible sous les contraintes de portée (recherche exhaustive)",
+      "points_faibles": [
+        "impact : aucune pose à deux mains ne réunit tête au sol, manche à 35 à 45°, mains visibles",
+        "frappe (image 4) : manche visible devant la poitrine",
+        "image 5 à 69 px, sous la plage 70 à 72"
+      ]
+    },
+    {
+      "lot": "CREUSAGE v8 : planche d'intention 2D (RÈGLE ANIMATION A bis) avant toute 3D ; triche caméra déclarée (B bis) ; contrôles 2D (C bis)",
+      "planche": "art/pixel/plongeur_v6/creusage/intention/planche_intention.png",
+      "tables": "art/pixel/plongeur_v6/creusage/intention/TABLE_INTENTION.md ; intention.json",
+      "controles": {
+        "mains_espacees_8px": "OK sur 1 à 6",
+        "outil_hors_torse": "OK sur 2 à 6",
+        "ecarts_angle": "2→3 135°, 3→4 145°, 4→5 40° (limite), 5→6 90°",
+        "triche_bras": "max +36 % (image 6), sous le plafond de +40 %",
+        "tete_au_sol_impact": "bas à 90,2 px (sol 91,5) : OK"
+      },
+      "verdict": "PLANCHE D'INTENTION À VALIDER par Julien avant toute 3D ; points à juger : traversée du bras gauche sur 2, 4 et 5 ; manche de l'impact devant la jambe gauche ; écart de 40° pile entre frappe et impact",
+      "points_faibles": [
+        "traversée du bras gauche devant le torse pour tenir la pioche (triche +25 à +32 %)",
+        "impact : tête entre les pieds plutôt que devant et à droite (x = 56)",
+        "écart de 40° pile entre frappe (verticale) et impact : sans marge"
+      ]
+    }
+  ]
+}
