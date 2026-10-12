@@ -82,7 +82,7 @@
      "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
     }
    },
-   "hash": "0024fa6969bade25"
+   "hash": "34d99caec1794ede"
   },
   {
    "n": 3,
@@ -124,7 +124,7 @@
      "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
     }
    },
-   "hash": "7bd44fe9695782cb"
+   "hash": "8407020cd2acfb21"
   },
   {
    "n": 4,
@@ -166,7 +166,7 @@
      "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
     }
    },
-   "hash": "0998a86500df1052"
+   "hash": "2fde639279c656d2"
   }
  ],
  "sequence": {
@@ -174,13 +174,13 @@
    "ok": true
   },
   "changements_px_entre_images": [
-   2174,
-   1842,
-   2373
+   2010,
+   1829,
+   2131
   ],
   "boucle": {
    "premiere_vs_ancre_px_differents": 1389,
-   "derniere_vs_premiere_px_differents": 1286
+   "derniere_vs_premiere_px_differents": 1361
   }
  }
 }

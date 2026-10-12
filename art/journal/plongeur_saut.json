@@ -19,7 +19,7 @@
   {
    "changement": "saut image 2 (décollage) : corps monté de 4 px, pieds quittent le sol",
    "image": "art/pixel/plongeur_v6/saut/lot/boards/saut_2_02_decollage.png",
-   "image_sha256": "aeedb4aa02ca747f44c3f85a2bd204d2e5224adbb402e102ad122cee3c390644",
+   "image_sha256": "590ffaac9904863d61e6a46071f7c5f0b945f96cf93e12d5b643a645c57961aa",
    "controle": {
     "silhouette": "oui : décollage lisible",
     "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
@@ -35,23 +35,25 @@
   {
    "changement": "saut image 3 (apex) : corps au plus haut (8 px), bras en équilibre",
    "image": "art/pixel/plongeur_v6/saut/lot/boards/saut_3_03_apex.png",
-   "image_sha256": "6a015666c44f88b8461ade36ec32e3607abd4fc59cab418e7ef178de74bc7256",
+   "image_sha256": "3e4a553a3e115789cabf17508d8e6e3483c3c2cb37329873151dd5ed008630db",
    "controle": {
     "silhouette": "oui : apex lisible",
     "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
     "cadrage": "personnage dans la case",
     "taille": "hauteur selon la pose (voir fiche)",
-    "details": "bras en équilibre",
+    "details": "gants des deux côtés, pas de saut de plus de 9 px entre images (fiche : 10 px au plus)",
     "coherence_base": "cohérent avec l'ancre",
     "pixels_parasites": "0 pixel isolé après nettoyage"
    },
    "verdict": "garde",
-   "defauts_restants": "les jambes sont rigides (translation)"
+   "defauts_restants": [
+    "bras en équilibre : peu de mouvement pour éviter les sauts de gant"
+   ]
   },
   {
    "changement": "saut image 4 (réception) : retour au sol, buste bas de 1 px",
    "image": "art/pixel/plongeur_v6/saut/lot/boards/saut_4_04_reception.png",
-   "image_sha256": "2b7c95c57bca175f4dd400930f510ef1a4f9b918318a27bb9c30856677e9f570",
+   "image_sha256": "7e859730980b515fd2951edec778c9ad9aedfb172b3344d112815754e8a173e6",
    "controle": {
     "silhouette": "oui : réception lisible",
     "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",

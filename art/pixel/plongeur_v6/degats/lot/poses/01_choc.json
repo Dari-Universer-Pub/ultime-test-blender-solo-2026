@@ -31,10 +31,10 @@
   ],
   "bras_g": {
    "haut": 60,
-   "avant": 60
+   "avant": 45
   },
   "bras_d": {
-   "haut": -60,
+   "haut": 15,
    "avant": -60
   }
  },

@@ -30,12 +30,12 @@
    -8
   ],
   "bras_g": {
-   "haut": -30,
-   "avant": -30
+   "haut": -15,
+   "avant": -45
   },
   "bras_d": {
-   "haut": 45,
-   "avant": 60
+   "haut": -30,
+   "avant": -30
   }
  },
  "angle_pioche_fiche_deg": null

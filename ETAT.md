@@ -40,6 +40,12 @@ Lot : `art/pixel/plongeur_v6/attaque/lot/`. Journal : `art/journal/plongeur_atta
 - **Recul** : mouvement de la pioche faible (2 px) : le casque limite son relèvement (à -30 degrés, la pioche touche le casque).
 - **Teintes** : le torse garde des blocs crème à la poitrine (images 4 à 6) : dette d'ombrage du creusage. Un bord de 6 px #6a3e1e (manche) est une couleur de la palette bois.
 
+## Lots suivants (première version) : saut, dégâts, mort — relectures de contrôle
+
+- Relecture de contrôle (3 lots) : saut et dégâts avaient un bloquant chacun (gant droit absent en dégâts ; gants qui sautent de 23 px en saut). Corrigés : gant seul rendu (`PLONGEUR_GANT_SEUL=1`, calque `gant_d`) ; saut : angles de bras recherchés pour des pas de gant de 9,2 px au plus, boucle comprise ; dégâts : choc et déséquilibre recherchés pour des gants écartés (14 px au moins) et des pas de 9,5 px au plus, boucle comprise.
+- Mort : aucun bloquant ; pieds à 91-92 px (enfoncement corrigé) ; 1-2 px de la collerette jaune au bassin (images 4 à 6) et images 7-8 très proches (848 px) : non bloquants, notés.
+- Saut : accroupi à 4 px, pieds au sol ; décollage et apex peu marqués (bras en équilibre, mouvement limité par les pas de gant).
+
 ## Lots suivants (première version) : saut, dégâts, mort
 
 - **Saut** (4 images, sans pioche) : `art/pixel/plongeur_v6/saut/lot/`. Accroupi, décollage, apex, réception ; le corps entier se déplace (épaules, casque et jambes suivent le torse). Contrôles OK (hauteur 71 à 72 px). Écarts : jambes rigides (pas de flexion de genou, translation seulement) ; boucle vers l'ancre 1286 px ; à l'arrêt, l'assemblage diffère de l'ancre de 83 px d'alpha (silhouettes des pièces).

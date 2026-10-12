@@ -4,4 +4,4 @@
 | 2 recul | 0 | 0 | 0 | 71 | 0x0 | 0 | 0 | OK |
 | 3 reprise | 0 | 0 | 0 | 72 | 0x0 | 0 | 0 | OK |
 
-Séquence : images distinctes OK ; changements px entre images [1037, 1301] ; boucle {'premiere_vs_ancre_px_differents': 1387, 'derniere_vs_premiere_px_differents': 1362}
+Séquence : images distinctes OK ; changements px entre images [1090, 1327] ; boucle {'premiere_vs_ancre_px_differents': 1396, 'derniere_vs_premiere_px_differents': 1354}

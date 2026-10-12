@@ -3,13 +3,13 @@
   {
    "changement": "dégâts image 1 (choc) : buste -4 px, casque -3 px, bras projetés",
    "image": "art/pixel/plongeur_v6/degats/lot/boards/degats_1_01_choc.png",
-   "image_sha256": "28579554efe7af5fa6c5320b64bc6a71157e9ef02a08386a395e8e6c6143f479",
+   "image_sha256": "7af1b220cb15896c66441a457b7d53db92104e40c2d54fe7e0f31326b03ab86a",
    "controle": {
     "silhouette": "oui : choc reçu lisible",
     "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
     "cadrage": "personnage dans la case",
     "taille": "hauteur selon la pose (voir fiche)",
-    "details": "bras projetés devant le ventre, peu lisibles ; gant droit visible (gant seul ajouté)",
+    "details": "gant droit et gant gauche visibles, écartés (14 px au moins) ; choc lisible",
     "coherence_base": "cohérent avec l'ancre",
     "pixels_parasites": "0 pixel isolé après nettoyage"
    },
@@ -19,13 +19,13 @@
   {
    "changement": "dégâts image 2 (déséquilibre) : corps qui revient vers l'avant",
    "image": "art/pixel/plongeur_v6/degats/lot/boards/degats_2_02_recul.png",
-   "image_sha256": "45c248fdfff6c7d6d17a3433811680973e8dbacba9b4ac497ca033d5b924118c",
+   "image_sha256": "c0fab3ffc8be8f007cd16481646ccc6eeaa04599f7bed9884b43fdfe59070f74",
    "controle": {
     "silhouette": "oui : déséquilibre lisible",
     "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
     "cadrage": "personnage dans la case",
     "taille": "hauteur selon la pose (voir fiche)",
-    "details": "bras qui cherchent l'équilibre ; gant droit visible (gant seul ajouté)",
+    "details": "gants écartés (25 px) : fusion au ventre corrigée",
     "coherence_base": "cohérent avec l'ancre",
     "pixels_parasites": "0 pixel isolé après nettoyage"
    },

@@ -5,4 +5,4 @@
 | 3 apex | 0 | 0 | 0 | 72 | 0x0 | 0 | 0 | OK |
 | 4 reception | 0 | 0 | 0 | 71 | 0x0 | 0 | 0 | OK |
 
-Séquence : images distinctes OK ; changements px entre images [2174, 1842, 2373] ; boucle {'premiere_vs_ancre_px_differents': 1389, 'derniere_vs_premiere_px_differents': 1286}
+Séquence : images distinctes OK ; changements px entre images [2010, 1829, 2131] ; boucle {'premiere_vs_ancre_px_differents': 1389, 'derniere_vs_premiere_px_differents': 1361}
