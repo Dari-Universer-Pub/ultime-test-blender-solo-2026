@@ -1,0 +1,143 @@
+{
+ "images": [
+  {
+   "n": 1,
+   "nom": "choc",
+   "controles": {
+    "pioche_casque_px": {
+     "valeur": 0,
+     "tolerance": 2,
+     "ok": true
+    },
+    "outil_dans_hublot_px": {
+     "valeur": 0,
+     "ok": true
+    },
+    "bras_sur_casque_px": {
+     "valeur": 0,
+     "tolerance": 1,
+     "ok": true
+    },
+    "hauteur_px": {
+     "valeur": 72,
+     "max": 72,
+     "ok": true
+    },
+    "tete_acier_px": {
+     "largeur": 0,
+     "hauteur": 0,
+     "ok": true,
+     "applicable": false,
+     "note": "tête vue de profil : critère non applicable (géométrie, décision Julien)"
+    },
+    "pixels_isoles": {
+     "valeur": 0,
+     "ok": true
+    },
+    "palette_hors_ancre_couleurs": {
+     "valeur": 0,
+     "ok": true,
+     "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
+    }
+   },
+   "hash": "f3f49f0269c56a9c"
+  },
+  {
+   "n": 2,
+   "nom": "recul",
+   "controles": {
+    "pioche_casque_px": {
+     "valeur": 0,
+     "tolerance": 2,
+     "ok": true
+    },
+    "outil_dans_hublot_px": {
+     "valeur": 0,
+     "ok": true
+    },
+    "bras_sur_casque_px": {
+     "valeur": 0,
+     "tolerance": 1,
+     "ok": true
+    },
+    "hauteur_px": {
+     "valeur": 71,
+     "max": 72,
+     "ok": true
+    },
+    "tete_acier_px": {
+     "largeur": 0,
+     "hauteur": 0,
+     "ok": true,
+     "applicable": false,
+     "note": "tête vue de profil : critère non applicable (géométrie, décision Julien)"
+    },
+    "pixels_isoles": {
+     "valeur": 0,
+     "ok": true
+    },
+    "palette_hors_ancre_couleurs": {
+     "valeur": 0,
+     "ok": true,
+     "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
+    }
+   },
+   "hash": "5623421e86fd7540"
+  },
+  {
+   "n": 3,
+   "nom": "reprise",
+   "controles": {
+    "pioche_casque_px": {
+     "valeur": 0,
+     "tolerance": 2,
+     "ok": true
+    },
+    "outil_dans_hublot_px": {
+     "valeur": 0,
+     "ok": true
+    },
+    "bras_sur_casque_px": {
+     "valeur": 0,
+     "tolerance": 1,
+     "ok": true
+    },
+    "hauteur_px": {
+     "valeur": 72,
+     "max": 72,
+     "ok": true
+    },
+    "tete_acier_px": {
+     "largeur": 0,
+     "hauteur": 0,
+     "ok": true,
+     "applicable": false,
+     "note": "tête vue de profil : critère non applicable (géométrie, décision Julien)"
+    },
+    "pixels_isoles": {
+     "valeur": 0,
+     "ok": true
+    },
+    "palette_hors_ancre_couleurs": {
+     "valeur": 0,
+     "ok": true,
+     "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
+    }
+   },
+   "hash": "ebc7926f633e5625"
+  }
+ ],
+ "sequence": {
+  "images_distinctes": {
+   "ok": true
+  },
+  "changements_px_entre_images": [
+   974,
+   1202
+  ],
+  "boucle": {
+   "premiere_vs_ancre_px_differents": 1380,
+   "derniere_vs_premiere_px_differents": 1286
+  }
+ }
+}

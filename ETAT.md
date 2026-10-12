@@ -47,6 +47,14 @@ Séquence : images distinctes OK ; changements px entre images [1051, 1595, 1300
 - **Effets** : arc et particules non superposés aux images (effets séparés, comme demandé).
 - **Relecture** : pas encore lancée sur l'attaque (à faire après ce commit).
 
+## Lots suivants (première version) : saut, dégâts, mort
+
+- **Saut** (4 images, sans pioche) : `art/pixel/plongeur_v6/saut/lot/`. Accroupi, décollage, apex, réception ; le corps entier se déplace (épaules, casque et jambes suivent le torse). Contrôles OK (hauteur 71 à 72 px). Écarts : jambes rigides (pas de flexion de genou, translation seulement) ; boucle vers l'ancre 1286 px ; à l'arrêt, l'assemblage diffère de l'ancre de 83 px d'alpha (silhouettes des pièces).
+- **Dégâts** (3 images, sans pioche) : `art/pixel/plongeur_v6/degats/lot/`. Choc (buste -4, casque -3), déséquilibre, reprise. Contrôles OK. Écarts : bras qui se croisent devant le ventre au choc (peu lisible) ; boucle reprise -> choc non exacte (1380 px vs l'ancre).
+- **Mort** (8 images) : `art/pixel/plongeur_v6/mort/lot/`. Rendu direct du personnage entier dans Blender (`art/source/blender/plongeur_mort.py`) : rotation de 0 à -90 degrés autour des hanches, translation vers le sol, chute vers la gauche (éloignée de l'attaque). Images couchées de 45 à 56 px de haut (exception à la règle des 70 à 72 px, pour les images couchées seulement). Écarts : corps rigide (pas de pièces séparées pour la chute, donc pas de flexion) ; les images 6 et 7 touchent le sol à 93 et 94 px (92 attendu) ; contrôles de pioche et de bras non applicables (pas de masques).
+
+Lots : attaque (ci-dessus, relecture en cours), saut, dégâts, mort : feuille (tags et durées), planche finale et journal faits pour chacun.
+
 ## Lot validé : CREUSAGE (validé par Julien tel quel, commit 8689ca8)
 
 Lot : `art/pixel/plongeur_v6/creusage/lot/` (fiche.json, poses/ 01 à 08, sortie/, controles/, boards/, feuille/creusage.png + .json, effets/, planche_finale.png). Journal : `art/journal/plongeur_creusage.json` (dix entrées : huit images, arc, particules).

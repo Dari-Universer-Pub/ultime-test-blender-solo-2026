@@ -1,0 +1,57 @@
+{
+ "tag": "mort",
+ "canevas": [
+  112,
+  112
+ ],
+ "images": [
+  {
+   "index": 0,
+   "nom": "01_debut",
+   "duree_images": 2
+  },
+  {
+   "index": 1,
+   "nom": "02_vacille",
+   "duree_images": 2
+  },
+  {
+   "index": 2,
+   "nom": "03_bascule",
+   "duree_images": 2
+  },
+  {
+   "index": 3,
+   "nom": "04_chute",
+   "duree_images": 2
+  },
+  {
+   "index": 4,
+   "nom": "05_tombe",
+   "duree_images": 2
+  },
+  {
+   "index": 5,
+   "nom": "06_au_sol",
+   "duree_images": 3
+  },
+  {
+   "index": 6,
+   "nom": "07_s_affale",
+   "duree_images": 3
+  },
+  {
+   "index": 7,
+   "nom": "08_immobile",
+   "duree_images": 4
+  }
+ ],
+ "tags": {
+  "mort": {
+   "debut": 0,
+   "fin": 7,
+   "boucle": true
+  }
+ },
+ "total_duree_images": 20
+}

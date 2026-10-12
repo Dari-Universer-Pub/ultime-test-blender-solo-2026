@@ -1,0 +1,63 @@
+{
+ "entrees": [
+  {
+   "changement": "dégâts image 1 (choc) : buste -4 px, casque -3 px, bras projetés",
+   "image": "art/pixel/plongeur_v6/degats/lot/boards/degats_1_01_choc.png",
+   "image_sha256": "79c5b087c2848c18a4cab7740808ff49fcaa6c90ddccd390fd8e930c8ce514cf",
+   "controle": {
+    "silhouette": "oui : choc reçu lisible",
+    "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
+    "cadrage": "personnage dans la case",
+    "taille": "hauteur selon la pose (voir fiche)",
+    "details": "bras projetés devant le ventre, peu lisibles",
+    "coherence_base": "cohérent avec l'ancre",
+    "pixels_parasites": "0 pixel isolé après nettoyage"
+   },
+   "verdict": "garde",
+   "defauts_restants": "bras qui se croisent devant le ventre"
+  },
+  {
+   "changement": "dégâts image 2 (déséquilibre) : corps qui revient vers l'avant",
+   "image": "art/pixel/plongeur_v6/degats/lot/boards/degats_2_02_recul.png",
+   "image_sha256": "21c570f36f3a36857007383dce29e157b170bffed7d07d095d6c3a254d060b53",
+   "controle": {
+    "silhouette": "oui : déséquilibre lisible",
+    "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
+    "cadrage": "personnage dans la case",
+    "taille": "hauteur selon la pose (voir fiche)",
+    "details": "bras qui cherchent l'équilibre",
+    "coherence_base": "cohérent avec l'ancre",
+    "pixels_parasites": "0 pixel isolé après nettoyage"
+   },
+   "verdict": "garde",
+   "defauts_restants": "—"
+  },
+  {
+   "changement": "dégâts image 3 (reprise) : retour au garde",
+   "image": "art/pixel/plongeur_v6/degats/lot/boards/degats_3_03_reprise.png",
+   "image_sha256": "ce6e6c4632735a8c7ab278519b6a1034dc87883e0a98b27803e15b427b86bbc6",
+   "controle": {
+    "silhouette": "oui : reprise lisible",
+    "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
+    "cadrage": "personnage dans la case",
+    "taille": "hauteur selon la pose (voir fiche)",
+    "details": "bras au repos",
+    "coherence_base": "cohérent avec l'ancre",
+    "pixels_parasites": "0 pixel isolé après nettoyage"
+   },
+   "verdict": "garde",
+   "defauts_restants": "boucle reprise -> choc non exacte"
+  }
+ ],
+ "sequence": {
+  "changement": "dégâts : trois images, sans pioche",
+  "feuille": "art/pixel/plongeur_v6/degats/lot/feuille/degats.png",
+  "tag": "degats",
+  "durees": [
+   2,
+   3,
+   3
+  ],
+  "planche_finale": "art/pixel/plongeur_v6/degats/lot/planche_finale.png"
+ }
+}

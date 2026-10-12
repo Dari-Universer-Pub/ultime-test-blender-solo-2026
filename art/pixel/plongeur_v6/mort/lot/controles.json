@@ -1,0 +1,111 @@
+{
+ "images": [
+  {
+   "n": 1,
+   "nom": "01_debut",
+   "angle_deg": 0,
+   "x": [
+    29,
+    73
+   ],
+   "bas_y": 91,
+   "haut_y": 20,
+   "h": 72,
+   "isoles": 0
+  },
+  {
+   "n": 2,
+   "nom": "02_vacille",
+   "angle_deg": -15,
+   "x": [
+    27,
+    72
+   ],
+   "bas_y": 91,
+   "haut_y": 21,
+   "h": 71,
+   "isoles": 0
+  },
+  {
+   "n": 3,
+   "nom": "03_bascule",
+   "angle_deg": -35,
+   "x": [
+    26,
+    78
+   ],
+   "bas_y": 90,
+   "haut_y": 26,
+   "h": 65,
+   "isoles": 0
+  },
+  {
+   "n": 4,
+   "nom": "04_chute",
+   "angle_deg": -55,
+   "x": [
+    22,
+    84
+   ],
+   "bas_y": 91,
+   "haut_y": 36,
+   "h": 56,
+   "isoles": 0
+  },
+  {
+   "n": 5,
+   "nom": "05_tombe",
+   "angle_deg": -72,
+   "x": [
+    17,
+    86
+   ],
+   "bas_y": 92,
+   "haut_y": 45,
+   "h": 48,
+   "isoles": 0
+  },
+  {
+   "n": 6,
+   "nom": "06_au_sol",
+   "angle_deg": -84,
+   "x": [
+    13,
+    84
+   ],
+   "bas_y": 94,
+   "haut_y": 50,
+   "h": 45,
+   "isoles": 0
+  },
+  {
+   "n": 7,
+   "nom": "07_s_affale",
+   "angle_deg": -88,
+   "x": [
+    11,
+    82
+   ],
+   "bas_y": 93,
+   "haut_y": 48,
+   "h": 46,
+   "isoles": 0
+  },
+  {
+   "n": 8,
+   "nom": "08_immobile",
+   "angle_deg": -90,
+   "x": [
+    11,
+    82
+   ],
+   "bas_y": 92,
+   "haut_y": 48,
+   "h": 45,
+   "isoles": 0
+  }
+ ],
+ "distinctes": true,
+ "bas_max": 94,
+ "exceptions": "contrôles de pioche, hublot, bras/casque, tête : non applicables (rendu direct sans masques)"
+}

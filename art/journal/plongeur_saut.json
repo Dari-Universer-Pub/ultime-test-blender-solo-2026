@@ -1,0 +1,80 @@
+{
+ "entrees": [
+  {
+   "changement": "saut image 1 (accroupi) : corps bas de 2 px, jambes comprimées",
+   "image": "art/pixel/plongeur_v6/saut/lot/boards/saut_1_01_accroupi.png",
+   "image_sha256": "dcacfdbb36ac3f31e4193c187eb02add2e5c62555cc7365eee46f5fa44dea5bf",
+   "controle": {
+    "silhouette": "oui : accroupissement lisible",
+    "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
+    "cadrage": "personnage dans la case",
+    "taille": "hauteur selon la pose (voir fiche)",
+    "details": "bras en arrière, casque baissé",
+    "coherence_base": "cohérent avec l'ancre",
+    "pixels_parasites": "0 pixel isolé après nettoyage"
+   },
+   "verdict": "garde",
+   "defauts_restants": "la compression est une translation (pas de flexion de genou)"
+  },
+  {
+   "changement": "saut image 2 (décollage) : corps monté de 4 px, pieds quittent le sol",
+   "image": "art/pixel/plongeur_v6/saut/lot/boards/saut_2_02_decollage.png",
+   "image_sha256": "8dbaa6ab31a96afd245292b59ea7704c45773ce1150c9445230ba37773cc9e0b",
+   "controle": {
+    "silhouette": "oui : décollage lisible",
+    "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
+    "cadrage": "personnage dans la case",
+    "taille": "hauteur selon la pose (voir fiche)",
+    "details": "bras droit levé en avant",
+    "coherence_base": "cohérent avec l'ancre",
+    "pixels_parasites": "0 pixel isolé après nettoyage"
+   },
+   "verdict": "garde",
+   "defauts_restants": "les jambes sont rigides (translation)"
+  },
+  {
+   "changement": "saut image 3 (apex) : corps au plus haut (8 px), bras en équilibre",
+   "image": "art/pixel/plongeur_v6/saut/lot/boards/saut_3_03_apex.png",
+   "image_sha256": "e7f11a26b19550bd80799b17f07154a5473e0148cdb64480091fd81dc79e1f1f",
+   "controle": {
+    "silhouette": "oui : apex lisible",
+    "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
+    "cadrage": "personnage dans la case",
+    "taille": "hauteur selon la pose (voir fiche)",
+    "details": "bras en équilibre",
+    "coherence_base": "cohérent avec l'ancre",
+    "pixels_parasites": "0 pixel isolé après nettoyage"
+   },
+   "verdict": "garde",
+   "defauts_restants": "les jambes sont rigides (translation)"
+  },
+  {
+   "changement": "saut image 4 (réception) : retour au sol, buste bas de 1 px",
+   "image": "art/pixel/plongeur_v6/saut/lot/boards/saut_4_04_reception.png",
+   "image_sha256": "18194d6114739deac7106ddc75f27f491f00913e0499b848646dd1645bd7ca77",
+   "controle": {
+    "silhouette": "oui : réception lisible",
+    "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
+    "cadrage": "personnage dans la case",
+    "taille": "hauteur selon la pose (voir fiche)",
+    "details": "bras au repos",
+    "coherence_base": "cohérent avec l'ancre",
+    "pixels_parasites": "0 pixel isolé après nettoyage"
+   },
+   "verdict": "garde",
+   "defauts_restants": "boucle vers l'ancre : 1286 px d'écart (voir ETAT.md)"
+  }
+ ],
+ "sequence": {
+  "changement": "saut : quatre images, sans pioche",
+  "feuille": "art/pixel/plongeur_v6/saut/lot/feuille/saut.png",
+  "tag": "saut",
+  "durees": [
+   3,
+   2,
+   3,
+   3
+  ],
+  "planche_finale": "art/pixel/plongeur_v6/saut/lot/planche_finale.png"
+ }
+}

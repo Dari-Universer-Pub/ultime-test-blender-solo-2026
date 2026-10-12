@@ -1,0 +1,62 @@
+{
+  "lot": "mort",
+  "perso": "plongeur_v6",
+  "canevas": [
+    112,
+    112
+  ],
+  "sol_px": 92,
+  "role": "mort (8 images) : le corps entier tourne autour des hanches puis se pose au sol, vers la gauche (éloigné de l'attaque)",
+  "images": [
+    {
+      "n": 1,
+      "nom": "debut",
+      "duree_images": 2,
+      "angle_deg": 0
+    },
+    {
+      "n": 2,
+      "nom": "vacille",
+      "duree_images": 2,
+      "angle_deg": -15
+    },
+    {
+      "n": 3,
+      "nom": "bascule",
+      "duree_images": 2,
+      "angle_deg": -35
+    },
+    {
+      "n": 4,
+      "nom": "chute",
+      "duree_images": 2,
+      "angle_deg": -55
+    },
+    {
+      "n": 5,
+      "nom": "tombe",
+      "duree_images": 2,
+      "angle_deg": -72
+    },
+    {
+      "n": 6,
+      "nom": "au_sol",
+      "duree_images": 3,
+      "angle_deg": -84
+    },
+    {
+      "n": 7,
+      "nom": "s_affale",
+      "duree_images": 3,
+      "angle_deg": -88
+    },
+    {
+      "n": 8,
+      "nom": "immobile",
+      "duree_images": 4,
+      "angle_deg": -90
+    }
+  ],
+  "methode": "rendu direct du personnage entier dans Blender (art/source/blender/plongeur_mort.py) : rotation autour des hanches, translation vers le sol ; nettoyage des pixels isolés comme l'ancre",
+  "exception": "image lue couchée : hauteur 45 à 56 px (la règle des 70 à 72 px vaut pour les images debout)"
+}

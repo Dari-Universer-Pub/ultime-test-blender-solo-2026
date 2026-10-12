@@ -1,0 +1,148 @@
+{
+ "entrees": [
+  {
+   "changement": "mort image 1 (début) : corps debout",
+   "image": "art/pixel/plongeur_v6/mort/lot/boards/mort_1_01_debut.png",
+   "image_sha256": "e0cf69242530c687c14acce77a44a6202707a1cadf073947d1af9afb8fdb95f9",
+   "controle": {
+    "silhouette": "oui",
+    "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
+    "cadrage": "personnage dans la case",
+    "taille": "hauteur selon la pose (voir fiche)",
+    "details": "—",
+    "coherence_base": "cohérent avec l'ancre",
+    "pixels_parasites": "0 pixel isolé après nettoyage"
+   },
+   "verdict": "garde",
+   "defauts_restants": "—"
+  },
+  {
+   "changement": "mort image 2 (vacille) : rotation de -15 degrés autour des hanches",
+   "image": "art/pixel/plongeur_v6/mort/lot/boards/mort_2_02_vacille.png",
+   "image_sha256": "ce7f5253ae8e0052ef3d25f26bfab927bf0eec60d800ec6b2b9ede5620a58819",
+   "controle": {
+    "silhouette": "oui : léger déséquilibre",
+    "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
+    "cadrage": "personnage dans la case",
+    "taille": "hauteur selon la pose (voir fiche)",
+    "details": "—",
+    "coherence_base": "cohérent avec l'ancre",
+    "pixels_parasites": "0 pixel isolé après nettoyage"
+   },
+   "verdict": "garde",
+   "defauts_restants": "—"
+  },
+  {
+   "changement": "mort image 3 (bascule) : rotation de -35 degrés",
+   "image": "art/pixel/plongeur_v6/mort/lot/boards/mort_3_03_bascule.png",
+   "image_sha256": "4343e9589b7d043365d0ecd6f7d1a81a7c1fbeee850a9f0e0c0882bc4e7bae49",
+   "controle": {
+    "silhouette": "oui : bascule lisible",
+    "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
+    "cadrage": "personnage dans la case",
+    "taille": "hauteur selon la pose (voir fiche)",
+    "details": "—",
+    "coherence_base": "cohérent avec l'ancre",
+    "pixels_parasites": "0 pixel isolé après nettoyage"
+   },
+   "verdict": "garde",
+   "defauts_restants": "—"
+  },
+  {
+   "changement": "mort image 4 (chute) : rotation de -55 degrés",
+   "image": "art/pixel/plongeur_v6/mort/lot/boards/mort_4_04_chute.png",
+   "image_sha256": "ac9305729dd60bfec4f9e0732983341ad76aa97545230b6318b8871da8a4bac8",
+   "controle": {
+    "silhouette": "oui : chute lisible",
+    "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
+    "cadrage": "personnage dans la case",
+    "taille": "hauteur selon la pose (voir fiche)",
+    "details": "—",
+    "coherence_base": "cohérent avec l'ancre",
+    "pixels_parasites": "0 pixel isolé après nettoyage"
+   },
+   "verdict": "garde",
+   "defauts_restants": "—"
+  },
+  {
+   "changement": "mort image 5 (tombe) : rotation de -72 degrés",
+   "image": "art/pixel/plongeur_v6/mort/lot/boards/mort_5_05_tombe.png",
+   "image_sha256": "0a43c6c9ad9ce9af414710916da894b255836fd8c3dbf4226af6d101b5b68ab4",
+   "controle": {
+    "silhouette": "oui : chute lisible",
+    "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
+    "cadrage": "personnage dans la case",
+    "taille": "hauteur selon la pose (voir fiche)",
+    "details": "—",
+    "coherence_base": "cohérent avec l'ancre",
+    "pixels_parasites": "0 pixel isolé après nettoyage"
+   },
+   "verdict": "garde",
+   "defauts_restants": "hauteur 48 px (image couchée : exception)"
+  },
+  {
+   "changement": "mort image 6 (au sol) : -84 degrés, 2 px sous la ligne du sol",
+   "image": "art/pixel/plongeur_v6/mort/lot/boards/mort_6_06_au_sol.png",
+   "image_sha256": "7ddab280af74098c78ea40f44e38a2c5ad2ef6398b0097b0f16b930a084be0d2",
+   "controle": {
+    "silhouette": "oui : le corps est au sol",
+    "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
+    "cadrage": "personnage dans la case",
+    "taille": "hauteur selon la pose (voir fiche)",
+    "details": "—",
+    "coherence_base": "cohérent avec l'ancre",
+    "pixels_parasites": "0 pixel isolé après nettoyage"
+   },
+   "verdict": "garde",
+   "defauts_restants": "2 px sous la ligne du sol (92 px) : léger enfoncement"
+  },
+  {
+   "changement": "mort image 7 (s'affale) : -88 degrés",
+   "image": "art/pixel/plongeur_v6/mort/lot/boards/mort_7_07_s_affale.png",
+   "image_sha256": "fa693fc60b6cfae21bdcbd1ebb23e455c71fa9b5754658e43b3c33578f283b64",
+   "controle": {
+    "silhouette": "oui",
+    "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
+    "cadrage": "personnage dans la case",
+    "taille": "hauteur selon la pose (voir fiche)",
+    "details": "—",
+    "coherence_base": "cohérent avec l'ancre",
+    "pixels_parasites": "0 pixel isolé après nettoyage"
+   },
+   "verdict": "garde",
+   "defauts_restants": "1 px sous la ligne du sol"
+  },
+  {
+   "changement": "mort image 8 (immobile) : -90 degrés, sur le sol",
+   "image": "art/pixel/plongeur_v6/mort/lot/boards/mort_8_08_immobile.png",
+   "image_sha256": "1a71deb2424ed7d037f2a9b4f7f7dbd823ad89509a47dc49f0b2674c3a38af7b",
+   "controle": {
+    "silhouette": "oui : posé au sol",
+    "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
+    "cadrage": "personnage dans la case",
+    "taille": "hauteur selon la pose (voir fiche)",
+    "details": "—",
+    "coherence_base": "cohérent avec l'ancre",
+    "pixels_parasites": "0 pixel isolé après nettoyage"
+   },
+   "verdict": "garde",
+   "defauts_restants": "hauteur 45 px (couché : exception)"
+  }
+ ],
+ "sequence": {
+  "changement": "mort : huit images, rendu direct du personnage entier",
+  "feuille": "art/pixel/plongeur_v6/mort/lot/feuille/mort.png",
+  "tag": "mort",
+  "durees": [
+   2,
+   2,
+   2,
+   2,
+   2,
+   3,
+   3,
+   4
+  ],
+  "planche_finale": "art/pixel/plongeur_v6/mort/lot/planche_finale.png"
+ }
+}
