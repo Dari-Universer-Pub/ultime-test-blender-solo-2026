@@ -1,24 +1,150 @@
 {
-  "lot": "creusage",
-  "unite": "pixels écran, sprite 112 x 112, caméra de l'ancre (projection Blender)",
+  "titre": "creusage a la pioche, style Stardew (fiche)",
+  "source_fiche": "dictee exacte, fiche d'animation creusage (Julien)",
   "frames": [
-    {"n": 1, "nom": "ancre (sans outil)", "phi": null, "butt": null, "head": null,
-     "hands": {"L": [36.4, 68.0], "R": [69.0, 73.9]}, "dx": 0, "dy": 0,
-     "lire": "silhouette de l'ancre, bras au repos, rien en main"},
-    {"n": 2, "nom": "prête", "phi": 170, "butt": [70, 40], "head": [75.7, 72.5],
-     "hands": {"L": [71.7, 49.8], "R": [73.1, 59.5]}, "dx": 0, "dy": 0,
-     "lire": "outil tenu sur le côté droit, tête vers le bas-droit ; rien devant le ventre"},
-    {"n": 3, "nom": "anticipation", "phi": 35, "butt": [70, 58], "head": [88.9, 31],
-     "hands": {"L": [70.2, 57.3], "R": [78.5, 45.9]}, "dx": -1, "dy": 0,
-     "lire": "pioche levée vers le haut-droit, tête au-dessus de l'épaule droite, buste en léger recul"},
-    {"n": 4, "nom": "frappe", "phi": 180, "butt": [70, 56], "head": [70, 89],
-     "hands": {"L": [70, 64.9], "R": [70, 73.5]}, "dx": 0, "dy": 0,
-     "lire": "manche vertical sur le côté droit, tête en bas à droite, bras tendus vers le bas"},
-    {"n": 5, "nom": "impact", "phi": 140, "butt": [34.8, 60.7], "head": [56, 86],
-     "hands": {"L": [38.1, 67.6], "R": [47.5, 75.9]}, "dx": 3, "dy": 2,
-     "lire": "tête posée au sol entre les pieds, manche incliné de 40° vers le bas-droit, buste penché à droite, casque baissé de 2 px"},
-    {"n": 6, "nom": "retour", "phi": 50, "butt": [68, 72], "head": [93.3, 50.8],
-     "hands": {"L": [69.3, 70.9], "R": [78.1, 63.5]}, "dx": 0, "dy": 0,
-     "lire": "pioche remontée vers l'épaule droite, rien ne dépasse à gauche du corps"}
+    {
+      "n": 1,
+      "nom": "prete",
+      "duree": "longue",
+      "phi": -30,
+      "head": [
+        49.5,
+        33.0
+      ],
+      "f": {
+        "L": 0.15,
+        "R": 0.35
+      },
+      "buste": [
+        0,
+        0
+      ],
+      "casque": [
+        0,
+        0
+      ],
+      "conforme": "phi -30 exact ; pioche posee sur l'epaule droite, tete vers l'arriere-haut ; main droite sur le haut du manche, au-dessus de l'epaule ; main gauche sur le manche devant la poitrine ; outil a 7.7 px du hublot, hublot non traverse ; buste droit et pieds comme l'ancre ; etirement 0 %.",
+      "ecart": "(1) manche sur le haut du torse, 7.3 px : a -30 deg, le manche qui passe a droite du hublot (8 px minimum) descend forcement sur le haut de la poitrine, avec la main gauche devant elle. Alternative proposee : prete a -50 deg, tete (43,30), bout (69.8,52.5) : hublot a 8.1 px, manche dans le torse 0 px, etirement +5 %, et l'ecart 1 -> 2 passe a 40 deg. (2) ecart 1 -> 2 = 20 deg, sous les 40 deg de la regle (la fiche ne liste pas cette paire) : c'est le conflit avec armement -10 deg, fixe par la fiche. Non applique a la planche : a valider."
+    },
+    {
+      "n": 2,
+      "nom": "armement",
+      "duree": "longue",
+      "phi": -10,
+      "head": [
+        56.0,
+        22.0
+      ],
+      "f": {
+        "L": 0.3,
+        "R": 0.45
+      },
+      "buste": [
+        -2.5,
+        0
+      ],
+      "casque": [
+        -1.5,
+        0
+      ],
+      "conforme": "phi -10 exact ; outil au-dessus du casque, haut de la tete a 20.9 (le sprite commence a 20) ; les deux bras montent, main droite plus haute que la gauche ; buste recule de 2.5 px, casque decale de 1.5 px vers l'arriere ; pieds fixes ; hublot non traverse (14.6 px) ; hauteur 72 px.",
+      "ecart": "le manche longe le bord droit du casque et recouvre une partie du dome : il est au-dessus et derriere le casque en profondeur, sans toucher le hublot. Coudes ecartes : a verifier sur la planche, non mesure en degres."
+    },
+    {
+      "n": 3,
+      "nom": "sommet",
+      "duree": "tres courte",
+      "phi": 35,
+      "head": [
+        70.0,
+        27.0
+      ],
+      "f": {
+        "L": 0.55,
+        "R": 0.65
+      },
+      "buste": [
+        1,
+        0
+      ],
+      "casque": [
+        1,
+        0
+      ],
+      "conforme": "phi +35 exact ; outil au-dessus du casque, penche vers l'avant (haut a 23.3) ; bras droit a +16 % et bras gauche a +9 %, les deux tendus vers le haut et l'avant ; buste revient a la verticale (+1 px vers l'avant) ; pieds fixes ; hublot non traverse (9 px).",
+      "ecart": "aucun ecart de la fiche. Note : les deux mains sont a environ 4 px l'une de l'autre sur le manche (les deux bras sont tendus)."
+    },
+    {
+      "n": 4,
+      "nom": "descente",
+      "duree": "tres courte",
+      "phi": 110,
+      "head": [
+        98.9,
+        72.0
+      ],
+      "f": {
+        "L": 0.05,
+        "R": 0.25
+      },
+      "buste": [
+        3,
+        0.5
+      ],
+      "casque": [
+        3,
+        2
+      ],
+      "conforme": "phi +110 exact ; tete de pioche a hauteur des hanches (y 72, hanche a 68-69), a droite du corps ; bras descendent cote droit ; buste incline de 3 px vers l'avant (environ 9 deg) ; casque baisse de 2 px ; pieds fixes ; hublot loin (22 px).",
+      "ecart": "(1) « un peu devant le corps » : la profondeur ne se lit pas en 2D, rien n'est montre. (2) le bout du manche part de l'epaule droite, a 1.2 px du flanc du torse, et la tete est a 33 px a droite du bout : c'est la consequence de +110 deg, un manche plus court a droite ne peut pas eviter le torse. (3) ordre des mains inverse : a +110 deg le bout du manche est en haut a l'ecran, donc la main gauche le tient en haut (f 0.05) et la droite est plus bas (f 0.25) ; la main gauche ne peut pas aller plus loin sans depasser +25 %."
+    },
+    {
+      "n": 5,
+      "nom": "impact",
+      "duree": "longue",
+      "phi": 150,
+      "head": [
+        84.0,
+        88.75
+      ],
+      "f": {
+        "L": 0.2,
+        "R": 0.56
+      },
+      "buste": [
+        4,
+        1.5
+      ],
+      "casque": [
+        4,
+        5
+      ],
+      "conforme": "phi +150 exact (30 deg de la verticale) ; tete au sol (bas a 92.0 = sol de l'ancre), devant et a droite des pieds (x 84 contre 66 pour le pied droit) ; le manche ne traverse pas la jambe gauche (0 px) ; buste penche de 4 px vers l'avant, casque baisse de 5 px (dans 4 a 6) ; main gauche sur le manche au ventre cote droit (70,64.5) ; bras presque tendus (gauche +4 %, droit a 84 %) ; pieds fixes ; hublot non touche (18.8 px).",
+      "ecart": "(1) ordre des mains inverse et main droite pas devant le ventre : la main droite est en (76,75), a hauteur de la hanche, la gauche tient le haut du manche au ventre. Raison : le bras gauche part de son cote et ne peut pas tenir plus bas sans depasser +25 % ; le bout du manche est a x 66 au flanc droit, donc la main droite ne peut pas remonter sans bras trop plie. (2) bout du manche au flanc droit du torse (1 px). (3) genoux non flechis dans le squelette : a traiter en 3D, pas en planche."
+    },
+    {
+      "n": 6,
+      "nom": "retour",
+      "duree": "moyenne",
+      "phi": 60,
+      "head": [
+        97.0,
+        53.0
+      ],
+      "f": {
+        "L": 0.0,
+        "R": 0.25
+      },
+      "buste": [
+        0,
+        0
+      ],
+      "casque": [
+        0,
+        0
+      ],
+      "conforme": "phi +60 exact ; pioche qui se retire vers la droite (tete a 97,53) ; buste redresse (0) ; main droite qui remonte (74,66) au-dessus de la gauche au bout (67,70) ; pieds fixes ; hublot loin (33.7 px).",
+      "ecart": "bras gauche a +24 % d'etirement, limite +25 % : la main gauche est au bout du manche, au flanc droit, et c'est le point limite. Bout du manche a 0.5 px du flanc droit (negligeable)."
+    }
   ]
 }

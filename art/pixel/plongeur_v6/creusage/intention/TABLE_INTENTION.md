@@ -1,28 +1,21 @@
-# TABLE D'INTENTION — creusage (planche d'intention, RÈGLE ANIMATION A bis)
+# Table d'intention : creusage (fiche « creusage à la pioche, style Stardew »)
 
-Coordonnées écran du sprite 112 x 112, caméra de l'ancre (projection Blender de l'idle).
-Données : `intention.json` ; planche : `planche_intention.png` ; contrôles : `planche_intention.txt`.
-Angle phi = direction manche (butt -> tête), en degrés, sens horaire depuis la verticale haute
-(0 = haut, 90 = droite, 180 = bas). Angle depuis la verticale basse = |phi − 180|.
-Triche = allongement de bras nécessaire (B bis, plafond +40 %).
+Angles : depuis la verticale haute, sens horaire ; le manche va du bout (butt) à la tête d'acier. Écart d'angle de l'image 1 : avec l'image 6 (la séquence boucle). Étirements : triche déclarée (bras allongé jusqu'à +25 % au plus). Décalages : buste et casque en px sprite. Mains : fraction du manche depuis le bout (0 = bout, 1 = tête).
 
-| n | nom | phi | depuis la verticale basse | manche (butt -> tête) | mains (gauche, droite) | buste (dx, dy) | triche bras G / D | à lire en silhouette |
-|---|---|---|---|---|---|---|---|---|
-| 1 | ancre (sans outil) | — | — | — | repos | 0, 0 | 0 / 0 % | silhouette de l'ancre |
-| 2 | prête | 170 | 10° | (70, 40) -> (75.7, 72.5) | (71.7, 49.8), (73.1, 59.5) | 0, 0 | +32 % / 0 | outil sur le côté droit, tête vers le bas-droit, rien devant le ventre |
-| 3 | anticipation | 35 | 145° | (70, 58) -> (88.9, 31) | (70.2, 57.3), (78.5, 45.9) | −1, 0 | +25 % / +7 % | pioche levée vers le haut-droit, au-dessus de l'épaule droite |
-| 4 | frappe | 180 | 0° | (70, 56) -> (70, 89) | (70, 64.9), (70, 73.5) | 0, 0 | +26 % / 0 | manche vertical sur le côté droit, tête en bas à droite |
-| 5 | impact | 140 | 40° | (34.8, 60.7) -> (56, 86) | (38.1, 67.6), (47.5, 75.9) | +3, +2 | 0 / +22 % | tête posée au sol entre les pieds, manche incliné de 40° vers le bas-droit, buste penché à droite |
-| 6 | retour | 50 | 130° | (68, 72) -> (93.3, 50.8) | (69.3, 70.9), (78.1, 63.5) | 0, 0 | +36 % / 0 | pioche remontée vers l'épaule droite, rien ne dépasse à gauche |
+| image | nom | durée | phi cible | phi obtenu | écart d'angle avec l'image précédente | buste dx ; dy | casque dx ; dy | étirement des bras | mains L / R | bout / tête (x, y) | contrôles calculés |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | prete | longue | -30 | -30 | 90 | +0.0 ; +0.0 | +0.0 ; +0.0 | G +0 % / D +0 % | 0.15 / 0.35 | (67.0, 63.3) / (49.5, 33.0) | manche dans le torse 7.3 px |
+| 2 | armement | longue | -10 | -10 | 20 | -2.5 ; +0.0 | -1.5 ; +0.0 | G +0 % / D +0 % | 0.30 / 0.45 | (62.1, 56.5) / (56.0, 22.0) | OK |
+| 3 | sommet | tres courte | +35 | +35 | 45 | +1.0 ; +0.0 | +1.0 ; +0.0 | G +9 % / D +16 % | 0.55 / 0.65 | (49.9, 55.7) / (70.0, 27.0) | OK |
+| 4 | descente | tres courte | +110 | +110 | 75 | +3.0 ; +0.5 | +3.0 ; +2.0 | G +0 % / D +0 % | 0.05 / 0.25 | (66.0, 60.0) / (98.9, 72.0) | manche dans le torse 1.2 px |
+| 5 | impact | longue | +150 | +150 | 40 | +4.0 ; +1.5 | +4.0 ; +5.0 | G +4 % / D +0 % | 0.20 / 0.56 | (66.5, 58.4) / (84.0, 88.8) | manche dans le torse 1.0 px |
+| 6 | retour | moyenne | +60 | +60 | 90 | +0.0 ; +0.0 | +0.0 ; +0.0 | G +24 % / D +0 % | 0.00 / 0.25 | (66.7, 70.5) / (97.0, 53.0) | manche dans le torse 0.5 px |
 
-Contrôles 2D (calculés) : écarts d'angle entre images successives 135°, 145°, 40° (limite), 90° ;
-mains espacées de plus de 8 px sur les six images ; outil hors du torse sur les six images ;
-bas de la tête de l'impact à 90,2 px (sol 91,5) ; triches toutes sous +40 %.
+Écarts d'angle entre images successives (cible >= 40 deg) :
 
-Points à juger par Julien dans cette planche :
-1. Image 5 : le manche traverse la jambe gauche (devant), la tête est entre les pieds (à gauche du centre
-   des pieds, x = 56 pour des pieds en 49 et 61). Le plan la place « devant et au milieu » ; à confirmer.
-2. Image 4 : le manche descend exactement à la verticale (0°) sur le côté droit ; l'écart avec l'impact
-   est de 40° pile, à la limite.
-3. Images 2, 4, 5 : le bras gauche traverse le torse en diagonale pour tenir la pioche (triche +25 à +32 %).
-   Cette traversée est visible sur la planche : c'est la triche déclarée, à valider ou refuser.
+- 6 -> 1 : 90 deg
+- 1 -> 2 : 20 deg : ÉCART
+- 2 -> 3 : 45 deg
+- 3 -> 4 : 75 deg
+- 4 -> 5 : 40 deg
+- 5 -> 6 : 90 deg

@@ -1,15 +1,19 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
-## Phase courante : CREUSAGE, planche d'intention 2D (A bis) — ARRÊT POUR VALIDATION DE JULIEN
-Julien a retenu une nouvelle méthode, ajoutée à AGENTS.md : A bis (planche d'intention 2D avant toute 3D), B bis (triche caméra déclarée : bras étiré jusqu'à +40 %, épaule décalée, buste tourné, outil déplacé), C bis (contrôles sans la portée physique des bras). Ordre : planche d'intention validée → cible 3D → pixel art.
+## Phase courante : CREUSAGE, planche d'intention selon la FICHE « creusage à la pioche, style Stardew » — ARRÊT POUR VALIDATION DE JULIEN
 
-- Planche d'intention : `art/pixel/plongeur_v6/creusage/intention/planche_intention.png` (ancre estompée, squelette à plat, outil à ses deux extrémités, numérotation, lignes de contrôle). Table : `TABLE_INTENTION.md` ; données : `intention.json` ; outil : `tools/planches/intention.py`.
-- Contrôles 2D : mains espacées de 8 px ou plus (OK), outil hors du torse (OK), écarts d'angle 135°, 145°, 40° (limite), 90°, triches de +0 à +36 % (sous le plafond de +40 %), impact : tête à 90,2 px, sol à 91,5 (OK).
-- À juger : traversée du bras gauche devant le torse sur 2, 4, 5 (triche +25 à +32 %) ; impact à 40° avec le manche devant la jambe gauche, tête entre les pieds plutôt que devant et à droite ; écart de 40° pile entre frappe et impact.
-- Ancienne cible 3D v7 : toujours dans le dossier `creusage/cible3d` et `TABLE_POSES.md` (non validée, remplacée par la planche d'intention).
+Pas de 3D, pas de pixel art, pas d'attaque tant que Julien n'a pas validé cette planche. La planche précédente (version B bis) est remplacée ; elle reste dans l'historique git.
 
-Pas de 3D, pas de pixel art tant que la planche d'intention n'est pas validée. Pas d'attaque sans l'accord de Julien.
-Blocage : aucun.
+- Planche : `art/pixel/plongeur_v6/creusage/intention/planche_intention.png`. Table : `TABLE_INTENTION.md`. Données : `intention.json`. Outil : `tools/planches/intention.py` (silhouette pleine, squelette, outil aux deux bouts, contrôles calculés, liste conforme / écart sous la planche).
+- Mesures de l'ancre utilisées : bbox alpha (haut 20, sol 92, soit 72 px) ; hublot au centre (46,5 ; 43,5), cadre de 7,5 px.
+- Contrôles calculés (sortie du script) : angles exacts (-30, -10, +35, +110, +150, +60) ; écarts 90, 20 (ÉCART), 45, 75, 40, 90 ; étirement max +24 % (image 6, limite +25 %) ; hublot jamais traversé (7,7 px minimum) ; impact : tête au sol (bas à 92,0), à droite des pieds (x 84 contre 66), manche hors de la jambe gauche.
+- Écarts à trancher :
+  1. Image 1, écart d'angle 1 -> 2 = 20° (la règle exige 40°, la fiche ne liste pas cette paire). Alternative proposée : prête à -50° (tête (43,30), bout (69,8 ; 52,5)) : écart 40°, hublot à 8,1 px, aucun passage sur le torse, étirement +5 %. Non appliquée.
+  2. Image 1, à -30° le manche descend sur le haut de la poitrine (7,3 px) : c'est la conséquence de la main gauche devant la poitrine combinée à -30°.
+  3. Images 4 et 5 : ordre des mains inversé (la main gauche tient le haut du manche), car le bras gauche ne peut pas aller plus bas sans dépasser +25 %.
+  4. Image 5 : main droite à hauteur de hanche (et non devant le ventre) pour garder les bras presque tendus ; genoux non fléchis dans le squelette (à traiter en 3D).
+  5. Image 4 : « un peu devant le corps » non lisible en 2D.
+- Blocage : aucun. Julien décide : valider la planche, ou choisir prête -30° (écart 20° accepté) ou prête -50° (proposition).
 
 ## Ancienne phase : CREUSAGE, cible 3D v7 (non validée)
 Julien : v5 non validée (bras disparu et pioche flottante à l'image 2 ; manche trop vertical ; tête trop petite ; image 5 à 73 px). Règle permanente ajoutée à AGENTS.md (RÈGLE ANIMATION A à E). Appliquée au creusage : table de poses, planche cible 3D, contrôles automatiques. Pas de pixel art tant que la cible n'est pas validée.
