@@ -123,3 +123,36 @@ Une sandbox réinitialisée perd les outils installés, pas le travail commité 
 
 Tout ce qu'il faut pour reprendre est dans `ETAT.md` et `git log`. Mets `ETAT.md` à jour à chaque
 étape importante, pas seulement à la fin.
+
+## RÈGLE ANIMATION (permanente, pour tout lot : creusage, attaque, saut, dégâts, mort)
+
+Julien ne demande plus d'image pour appliquer cette règle : elle s'applique à chaque lot.
+
+A. **Table de poses d'abord.** Avant de poser quoi que ce soit, une ligne par image dans
+   `art/pixel/plongeur_v6/<lot>/TABLE_POSES.md` : nom, angle du manche ou de l'arme (plan x-z
+   et inclinaison 3D par rapport à la verticale), point d'impact ou position de l'outil, inclinaison
+   du buste, position des deux mains, ce qui doit se lire en silhouette.
+
+B. **Cible 3D haute qualité.** Pose le modèle 3D d'après la table et rends chaque pose en haute
+   qualité (plus grande que 112 px, même caméra, même modèle). C'est la planche « cible » du lot :
+   Julien la valide EN PREMIER. Tant que la planche cible n'est pas validée, pas de pixel art.
+
+C. **Contrôles automatiques sur chaque pose, dans la scène 3D, avant le rendu :**
+   1. les deux mains touchent l'outil (distance main-manche proche de zéro, les deux mains) ;
+   2. l'outil est relié au corps (jamais flottant) ;
+   3. les deux bras visibles : bras proche au moins 45 %, bras lointain au moins 40 % (carte
+      d'identité) ;
+   4. angle de l'outil différent d'au moins 40 degrés de l'image précédente quand le geste l'exige ;
+   5. hauteur du sprite finale dans la plage de l'ancre (70 à 72 px, outil compris) ;
+   6. zéro pixel isolé, images distinctes (hash), aucun contour (au moment du pixel art).
+   Si un contrôle échoue, change la pose (épaule, buste, position de l'outil). Ne jamais lâcher
+   l'outil, ni cacher un bras, pour passer un test. Si aucune pose ne passe, dis-le à Julien avec
+   les chiffres au lieu de rendre une pose qui triche.
+
+D. **Outil (pioche ou autre)** : modélisé comme une vraie pièce. Manche 3 px minimum. Tête de
+   pioche de mineur courbée, une pointe de chaque côté, 12 à 14 px de large quand elle est de profil
+   (au moins 10 px à l'impact), mesurée à ×1 et notée dans le fichier de mesures.
+
+E. **Présentation puis arrêt.** Planche cible 3D d'abord, puis planche pixel à côté de l'ancre
+   (×4 et ×1), avec le tableau des contrôles (OK ou échec pour chaque image), les mesures de tête et
+   de hauteur, les écarts annoncés tels quels. Arrêt pour validation après chaque lot.

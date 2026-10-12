@@ -510,7 +510,7 @@ def boite_orientee(centre, axes, demi, mat, nom):
     return o
 
 
-def fer_pioche(centre, mat, nom, a=0.22, pointe=0.10, epaisseur=0.08, largeur=0.035, courbure=0.11):
+def fer_pioche(centre, mat, nom, a=0.27, pointe=0.08, epaisseur=0.08, largeur=0.035, courbure=0.11):
     """Tête de pioche de mineur en 3D : barre d'acier horizontale à l'écran (dessin à plat, face caméra), courbée
     vers le bas, épaisseur visible. Une pointe nette côté +x, un biseau plat côté -x. Largeur = 2 x a + pointe."""
     c = Vector(centre)
@@ -904,17 +904,12 @@ def rendre_idle_images(dossier, n=6):
 # bout du bras), 6 retour (la pioche revient en arrière).
 PIOCHE_BOUT = 0.40   # m : manche derrière le point de prise (longueur totale ~42 à 49 px)
 PIOCHE_TETE = 0.55   # m : tête au-delà de la main droite
-CREUSAGE = {  # une main sur le manche (1 prête sur l'épaule, 2 anticipation, 3 frappe, 4 impact, 5 retour)
-    1: {"R": (0.48, 0.05, 1.45), "u": (0.60, 0.00, -0.80), "dx": 0.00, "penche": 0.00,
-        "opt": {"tete": 0.75, "bout": 0.65}},
-    2: {"R": (0.45, 0.20, 1.90), "u": (0.50, 0.05, 0.87), "dx": -0.02, "penche": 0.04,
-        "opt": {"tete": 0.75, "bout": 0.65}},
-    3: {"R": (0.62, -0.05, 1.75), "u": (0.79, -0.10, -0.59), "dx": 0.03, "penche": -0.03,
-        "opt": {"tete": 0.85, "bout": 0.55}, "bras_g": (-0.60, -0.25, 1.42)},
-    4: {"R": (0.946, -0.110, 1.143), "u": (0.14, -0.627, -0.766), "dx": 0.12, "penche": -0.16, "dz": -0.10,
-        "ep_d": (0.05, -0.05, 0.0), "opt": {"tete": 1.10, "bout": 0.30}, "bras_g": (-0.60, -0.25, 1.42)},
-    5: {"R": (0.60, -0.10, 1.50), "u": (0.32, 0.26, 0.92), "dx": 0.02, "penche": 0.02,
-        "opt": {"tete": 0.85, "bout": 0.55}, "bras_g": (-0.60, -0.25, 1.42)},
+CREUSAGE = {  # deux mains sur la pioche partout (solutions calculées sous les contraintes de portée, cf. TABLE_POSES.md)
+    1: {"L": (0.00, -0.50, 1.70), "R": (0.40, -0.50, 1.30), "dx": 0.00, "penche": 0.00, "dz": 0.00},    # prête
+    2: {"L": (0.00, -0.50, 1.30), "R": (0.30, -0.50, 1.80), "dx": -0.02, "penche": 0.04, "dz": 0.00},  # anticipation
+    3: {"L": (0.00, -0.50, 1.60), "R": (0.40, -0.70, 1.30), "dx": 0.03, "penche": -0.03, "dz": 0.00},  # frappe
+    4: {"L": (0.10, -0.50, 1.50), "R": (0.40, -0.60, 0.90), "dx": 0.10, "penche": -0.12, "dz": -0.10}, # impact
+    5: {"L": (-0.10, -0.70, 1.40), "R": (0.30, -0.50, 1.70), "dx": 0.02, "penche": 0.02, "dz": 0.00},  # retour
 }
 
 

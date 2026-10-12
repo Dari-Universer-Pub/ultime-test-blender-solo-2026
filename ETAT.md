@@ -1,6 +1,19 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
-## Phase courante : LOT 2 CREUSAGE v6 — ARRÊT POUR VALIDATION DE JULIEN (non validé par les critères)
+## Phase courante : CREUSAGE, cible 3D v7 (règle ANIMATION appliquée) — ARRÊT POUR VALIDATION DE JULIEN
+Julien : v5 non validée (bras disparu et pioche flottante à l'image 2 ; manche trop vertical ; tête trop petite ; image 5 à 73 px). Règle permanente ajoutée à AGENTS.md (RÈGLE ANIMATION A à E). Appliquée au creusage : table de poses, planche cible 3D, contrôles automatiques. Pas de pixel art tant que la cible n'est pas validée.
+
+- Table : `art/pixel/plongeur_v6/creusage/TABLE_POSES.md`.
+- Planche cible 3D : `art/pixel/plongeur_v6/creusage/cible3d/planche_cible3d.png` (rendus 448 px, même modèle et même caméra).
+- Deux mains sur la pioche sur les six images. Bras proche 58 à 83 %, lointain 41 à 59 % : OK.
+- Hauteurs à 112 px : 72, 72, 72, 72, **69** (impact), 72.
+- ÉCHECS : impact (manche à 28° au lieu de 35 à 45°, tête à 0,41 du sol au lieu du sol, écart d'angle de 26° avec la frappe). Manche de la frappe qui passe devant la poitrine. Tête d'acier non mesurable proprement à 112 px.
+- Résultat de calcul : aucune pose à deux mains ne réunit l'impact visible, au sol, à 35 à 45°. Décision à prendre (voir TABLE_POSES.md, options 1 à 3).
+
+Lots restants : pixel art du creusage (après validation de la cible), attaque, saut, dégâts, mort. Chacun suit la règle ANIMATION. Pas d'attaque sans l'accord de Julien.
+Blocage : aucun.
+
+## Ancienne phase : CREUSAGE v6 (non validé par les critères)
 Julien : trois faiblesses à corriger, poses 1 à 4 et 6 intactes.
 
 - Corps : images 1, 2, 3, 4 et 6 identiques à la v5 pixel pour pixel (corps seul). Seul l'outil change sur 2 à 6, et le corps change sur 5 (impact).

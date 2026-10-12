@@ -665,6 +665,24 @@
         "impact presque vertical à l'écran : l'inclinaison vers l'avant (40° en 3D) se projette presque à la verticale avec cette caméra, ce qui contredit l'écart de 40° avec la frappe",
         "image 5 : tête à gauche du manche à l'écran"
       ]
+    },
+    {
+      "lot": "CREUSAGE v7 : cible 3D (règle ANIMATION appliquée, sans pixel art) : deux mains sur la pioche sur les six images ; table TABLE_POSES.md ; contrôles automatiques dans la scène 3D",
+      "planche": "art/pixel/plongeur_v6/creusage/cible3d/planche_cible3d.png",
+      "controles": {
+        "C1_mains_sur_outil": "OK à 0 à 3 px près (écart gant-manche 0,003 à 0,117 unité)",
+        "C2_outil_relie": "OK",
+        "C3_bras": "bras proche 58 à 83 %, lointain 41 à 59 % : OK (marge de 1 point sur l'image 3)",
+        "C4_ecart_angle": "2→3 104°, 3→4 96°, 4→5 26° ÉCHEC, 5→6 100°",
+        "C5_hauteur": "72, 72, 72, 72, 69 ÉCHEC (impact), 72",
+        "C6_pixels": "non vérifié (pixel art non fait)"
+      },
+      "verdict": "NON VALIDÉ : impact en échec (manche à 28° au lieu de 35 à 45°, tête à 0,41 du sol, écart d'angle 26°, 69 px) ; manche de la frappe devant la poitrine ; tête d'acier non mesurable à 112 px ; impact à deux mains impossible sous les contraintes de portée (recherche exhaustive)",
+      "points_faibles": [
+        "impact : aucune pose à deux mains ne réunit tête au sol, manche à 35 à 45°, mains visibles",
+        "frappe (image 4) : manche visible devant la poitrine",
+        "image 5 à 69 px, sous la plage 70 à 72"
+      ]
     }
   ]
 }
