@@ -1,178 +1,178 @@
 {
- "lot": "creusage",
- "perso": "plongeur_v6",
- "canevas": [
-  112,
-  112
- ],
- "sol_px": 92,
- "hauteur_max_px": 72,
- "role": "creuser à la pioche : arc vers la droite, l'outil est gros et lisible, le corps accompagne le coup",
- "outil": {
-  "nom": "pioche de mineur",
-  "manche_px": 35,
-  "tete_px_min": [
-   12,
-   4
+  "lot": "creusage",
+  "perso": "plongeur_v6",
+  "canevas": [
+    112,
+    112
   ],
-  "pointe": "une pointe de chaque côté du manche, reflet clair sur la face éclairée",
-  "prise": "main droite sur le manche (bloc main + pioche, une seule pièce) ; main gauche libre"
- },
- "cible_impact": {
-  "tete_au_sol_px": [
-   84.0,
-   88.75
+  "sol_px": 92,
+  "hauteur_max_px": 72,
+  "role": "creuser à la pioche : arc vers la droite, l'outil est gros et lisible, le corps accompagne le coup",
+  "outil": {
+    "nom": "pioche de mineur",
+    "manche_px": 35,
+    "tete_px_min": [
+      12,
+      4
+    ],
+    "pointe": "une pointe de chaque côté du manche, reflet clair sur la face éclairée",
+    "prise": "main droite sur le manche (bloc main + pioche, une seule pièce) ; main gauche libre"
+  },
+  "cible_impact": {
+    "tete_au_sol_px": [
+      84.0,
+      88.75
+    ],
+    "devant_droite_des_pieds": true
+  },
+  "images": [
+    {
+      "n": 1,
+      "nom": "prete",
+      "duree_images": 4,
+      "phi_deg": -50,
+      "pose": "pioche posée sur l'épaule droite, tête vers l'arrière-haut, main gauche le long du corps",
+      "bras_d": "haut et avant-bras pliés, visible",
+      "bras_g": "pendu, visible",
+      "calques": [
+        "torse",
+        "jambes",
+        "bras_g_haut",
+        "bras_g_avant",
+        "bras_d_haut",
+        "bras_d_avant",
+        "bloc_main_d",
+        "casque"
+      ],
+      "bloc_main_d": {
+        "angle_deg": -50
+      },
+      "chevauchements": "pioche derrière le casque déclaré : la tête de pioche est cachée par le casque, seul le manche et la poignée restent visibles au-dessus de l'épaule (passage légal déclaré)"
+    },
+    {
+      "n": 2,
+      "nom": "armement",
+      "duree_images": 4,
+      "phi_deg": -10,
+      "pose": "pioche levée au-dessus du casque, bras levés, coudes écartés, buste recule de 2 px, casque recule de 1 px",
+      "bras_d": "levé, visible",
+      "bras_g": "levé, coude écarté, visible",
+      "calques": [
+        "torse",
+        "jambes",
+        "bras_g_haut",
+        "bras_g_avant",
+        "bras_d_haut",
+        "bras_d_avant",
+        "casque",
+        "bloc_main_d"
+      ],
+      "bloc_main_d": {
+        "angle_deg": -10
+      },
+      "chevauchements": "outil devant le casque (passe à côté du dôme, jamais dedans)"
+    },
+    {
+      "n": 3,
+      "nom": "sommet",
+      "duree_images": 2,
+      "phi_deg": 35,
+      "pose": "pioche au-dessus du casque, penchée vers l'avant, bras tendus vers le haut et l'avant",
+      "bras_d": "tendu, visible",
+      "bras_g": "tendu, visible",
+      "calques": [
+        "torse",
+        "jambes",
+        "bras_g_haut",
+        "bras_g_avant",
+        "casque",
+        "bras_d_haut",
+        "bras_d_avant",
+        "bloc_main_d"
+      ],
+      "bloc_main_d": {
+        "angle_deg": 35
+      },
+      "chevauchements": "outil devant le casque ; bras gauche derrière le casque autorisé"
+    },
+    {
+      "n": 4,
+      "nom": "frappe_descente",
+      "duree_images": 2,
+      "phi_deg": 110,
+      "pose": "pioche en diagonale vers le bas-droit, tête à hauteur des hanches, buste penché de 2 px, casque baissé de 2 px",
+      "bras_d": "descend côté droit, visible",
+      "bras_g": "libre, peut être caché derrière le torse",
+      "calques": [
+        "torse",
+        "jambes",
+        "bras_g_haut",
+        "bras_g_avant",
+        "bras_d_haut",
+        "bras_d_avant",
+        "casque",
+        "bloc_main_d"
+      ],
+      "bloc_main_d": {
+        "angle_deg": 110
+      },
+      "chevauchements": "outil devant le torse côté droit autorisé (il ne traverse pas la poitrine en silhouette)"
+    },
+    {
+      "n": 5,
+      "nom": "impact",
+      "duree_images": 4,
+      "phi_deg": 150,
+      "pose": "tête de pioche au sol, devant et à droite des pieds, buste penché de 4 px, casque baissé de 5 px, genoux fléchis",
+      "bras_d": "bras droit presque tendu, visible",
+      "bras_g": "replié devant le ventre, peut être caché",
+      "calques": [
+        "jambes",
+        "torse",
+        "bras_g_haut",
+        "bras_g_avant",
+        "bras_d_haut",
+        "bras_d_avant",
+        "casque",
+        "bloc_main_d"
+      ],
+      "bloc_main_d": {
+        "angle_deg": 150
+      },
+      "moment_impact": true,
+      "chevauchements": "tête de pioche touche le sol (1 px), manche ne traverse pas la jambe gauche"
+    },
+    {
+      "n": 6,
+      "nom": "retour",
+      "duree_images": 3,
+      "phi_deg": 60,
+      "pose": "pioche qui se retire vers la droite, buste redressé, bras remontent côté droit",
+      "bras_d": "remonte, visible",
+      "bras_g": "replié, visible",
+      "calques": [
+        "torse",
+        "jambes",
+        "bras_g_haut",
+        "bras_g_avant",
+        "bras_d_haut",
+        "bras_d_avant",
+        "casque",
+        "bloc_main_d"
+      ],
+      "bloc_main_d": {
+        "angle_deg": 60
+      },
+      "chevauchements": "outil passe devant le torse à droite, jamais le hublot"
+    }
   ],
-  "devant_droite_des_pieds": true
- },
- "images": [
-  {
-   "n": 1,
-   "nom": "prete",
-   "duree_images": 4,
-   "phi_deg": -50,
-   "pose": "pioche posée sur l'épaule droite, tête vers l'arrière-haut, main gauche le long du corps",
-   "bras_d": "haut et avant-bras pliés, visible",
-   "bras_g": "pendu, visible",
-   "calques": [
-    "torse",
-    "jambes",
-    "bras_g_haut",
-    "bras_g_avant",
-    "bras_d_haut",
-    "bras_d_avant",
-    "casque",
-    "bloc_main_d"
-   ],
-   "bloc_main_d": {
-    "angle_deg": -50
-   },
-   "chevauchements": "outil devant le casque en profondeur déclaré : l'outil recouvre le casque sans le traverser (le manche passe derrière, légal)"
+  "politique_paires": {
+    "pioche_casque": "interdit (tolérance 2 px), sauf passage derrière déclaré",
+    "main_pioche": "contact requis (au moins 6 px de recouvrement)",
+    "pioche_hublot": "0 pixel",
+    "bras_casque": "interdit (tolérance 1 px)",
+    "gant_casque": "interdit sauf passage devant déclaré"
   },
-  {
-   "n": 2,
-   "nom": "armement",
-   "duree_images": 4,
-   "phi_deg": -10,
-   "pose": "pioche levée au-dessus du casque, bras levés, coudes écartés, buste recule de 2 px, casque recule de 1 px",
-   "bras_d": "levé, visible",
-   "bras_g": "levé, coude écarté, visible",
-   "calques": [
-    "torse",
-    "jambes",
-    "bras_g_haut",
-    "bras_g_avant",
-    "bras_d_haut",
-    "bras_d_avant",
-    "casque",
-    "bloc_main_d"
-   ],
-   "bloc_main_d": {
-    "angle_deg": -10
-   },
-   "chevauchements": "outil devant le casque (passe à côté du dôme, jamais dedans)"
-  },
-  {
-   "n": 3,
-   "nom": "sommet",
-   "duree_images": 2,
-   "phi_deg": 35,
-   "pose": "pioche au-dessus du casque, penchée vers l'avant, bras tendus vers le haut et l'avant",
-   "bras_d": "tendu, visible",
-   "bras_g": "tendu, visible",
-   "calques": [
-    "torse",
-    "jambes",
-    "bras_g_haut",
-    "bras_g_avant",
-    "casque",
-    "bras_d_haut",
-    "bras_d_avant",
-    "bloc_main_d"
-   ],
-   "bloc_main_d": {
-    "angle_deg": 35
-   },
-   "chevauchements": "outil devant le casque ; bras gauche derrière le casque autorisé"
-  },
-  {
-   "n": 4,
-   "nom": "frappe_descente",
-   "duree_images": 2,
-   "phi_deg": 110,
-   "pose": "pioche en diagonale vers le bas-droit, tête à hauteur des hanches, buste penché de 2 px, casque baissé de 2 px",
-   "bras_d": "descend côté droit, visible",
-   "bras_g": "libre, peut être caché derrière le torse",
-   "calques": [
-    "torse",
-    "jambes",
-    "bras_g_haut",
-    "bras_g_avant",
-    "bras_d_haut",
-    "bras_d_avant",
-    "casque",
-    "bloc_main_d"
-   ],
-   "bloc_main_d": {
-    "angle_deg": 110
-   },
-   "chevauchements": "outil devant le torse côté droit autorisé (il ne traverse pas la poitrine en silhouette)"
-  },
-  {
-   "n": 5,
-   "nom": "impact",
-   "duree_images": 4,
-   "phi_deg": 150,
-   "pose": "tête de pioche au sol, devant et à droite des pieds, buste penché de 4 px, casque baissé de 5 px, genoux fléchis",
-   "bras_d": "bras droit presque tendu, visible",
-   "bras_g": "replié devant le ventre, peut être caché",
-   "calques": [
-    "jambes",
-    "torse",
-    "bras_g_haut",
-    "bras_g_avant",
-    "bras_d_haut",
-    "bras_d_avant",
-    "casque",
-    "bloc_main_d"
-   ],
-   "bloc_main_d": {
-    "angle_deg": 150
-   },
-   "moment_impact": true,
-   "chevauchements": "tête de pioche touche le sol (1 px), manche ne traverse pas la jambe gauche"
-  },
-  {
-   "n": 6,
-   "nom": "retour",
-   "duree_images": 3,
-   "phi_deg": 60,
-   "pose": "pioche qui se retire vers la droite, buste redressé, bras remontent côté droit",
-   "bras_d": "remonte, visible",
-   "bras_g": "replié, visible",
-   "calques": [
-    "torse",
-    "jambes",
-    "bras_g_haut",
-    "bras_g_avant",
-    "bras_d_haut",
-    "bras_d_avant",
-    "casque",
-    "bloc_main_d"
-   ],
-   "bloc_main_d": {
-    "angle_deg": 60
-   },
-   "chevauchements": "outil passe devant le torse à droite, jamais le hublot"
-  }
- ],
- "politique_paires": {
-  "pioche_casque": "interdit (tolérance 2 px), sauf passage derrière déclaré",
-  "main_pioche": "contact requis (au moins 6 px de recouvrement)",
-  "pioche_hublot": "0 pixel",
-  "bras_casque": "interdit (tolérance 1 px)",
-  "gant_casque": "interdit sauf passage devant déclaré"
- },
- "boucle": "la première (prête) et la dernière (retour) doivent être proches de l'ancre",
- "effets_separes": "arc de mouvement : croissant clair sur la trajectoire, 3 à 4 images, sans contour"
+  "boucle": "la première (prête) et la dernière (retour) doivent être proches de l'ancre",
+  "effets_separes": "arc de mouvement : croissant clair sur la trajectoire, 3 à 4 images, sans contour"
 }

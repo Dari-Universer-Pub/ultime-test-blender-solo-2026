@@ -1,0 +1,47 @@
+{
+ "tag": "creusage",
+ "canevas": [
+  112,
+  112
+ ],
+ "images": [
+  {
+   "index": 0,
+   "nom": "01_prete",
+   "duree_images": 4
+  },
+  {
+   "index": 1,
+   "nom": "02_armement",
+   "duree_images": 4
+  },
+  {
+   "index": 2,
+   "nom": "03_sommet",
+   "duree_images": 2
+  },
+  {
+   "index": 3,
+   "nom": "04_frappe_descente",
+   "duree_images": 2
+  },
+  {
+   "index": 4,
+   "nom": "05_impact",
+   "duree_images": 4
+  },
+  {
+   "index": 5,
+   "nom": "06_retour",
+   "duree_images": 3
+  }
+ ],
+ "tags": {
+  "creusage": {
+   "debut": 0,
+   "fin": 5,
+   "boucle": true
+  }
+ },
+ "total_duree_images": 19
+}

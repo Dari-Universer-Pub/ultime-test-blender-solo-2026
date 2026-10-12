@@ -1,20 +1,38 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
-## Phase courante : CREUSAGE, méthode 2D par pièces — ÉTAPE 2 (bibliothèque d'angles) — ARRÊT POUR VALIDATION DE JULIEN
+## Phase courante : CREUSAGE, méthode 2D par pièces — LOT COMPLET (images 1 à 6), fin de lot, pour validation de Julien
 
-Étape 1 validée (remontage 99,976 %). Corrections de méthode appliquées :
-1. Profondeur par pixel : seulement pour le test de remontage de l'ancre. Pour les poses, l'assembleur (étape 3) utilisera un ordre d'affichage explicite par pièce et par image, écrit dans le fichier de pose.
-2. Extrémités : pas de coupe plate visible. Au coude, un capuchon (sphère de même matière, r = 0,19 m) et l'avant-bras sont translatés du déplacement du coude (translation entière, pas de rotation de pixels). Vérifié à ×6 pour un bras à 90 degrés : pas de trou (0 pixel enclos), une marche d'un pixel sur le bord inférieur du coude, à corriger si vous la jugez gênante.
-3. Tête de pioche : épaisseur réelle (0,12 m) et courbure, pointe de chaque côté. À 0 degré : 12 px de large, 5 px de haut à ×1 ; tons #a8b6d6 et #5a6490, les mêmes que le cadre d'acier de l'ancre.
+Autonomie demandée (Julien) : étapes 3 et 4 puis le lot complet, arrêt en fin de lot. Fait : assembleur, contrôles, six images, feuille, planches ×4 par image, entrées de journal, relecture indépendante (voir Relecture). Non fait : arc de mouvement, retouche Aseprite (voir Écarts).
 
-Bibliothèque : `art/pixel/plongeur_v6/creusage/bibliotheque/`
-- variantes à 15 degrés, de −60 à +180 (17 angles), à la taille finale 112 px, pour le bras droit et le gauche (haut et avant-bras avec gant), et la pioche (manche et tête ensemble) ;
-- pivots et règles : `bibliotheque.json` (épaule, coude, poignée en px écran) et `rapport.json`.
-- Sens : bras = anti-horaire depuis le bras pendu (+90 = vers la droite) ; pioche = horaire depuis la tête en haut (+90 = vers la droite, comme la fiche).
+Lot : `art/pixel/plongeur_v6/creusage/lot/`
+- fiche : `fiche.json` (images, durées 4,4,2,2,4,3, politique des paires) et `FICHE.md`.
+- poses : `poses/01_prete.json` … `06_retour.json` (angles bras droit haut/avant, pioche, buste, casque, ordre des calques).
+- images assemblées : `sortie/<nom>.png` (112 x 112), masques par calque `sortie/masques/`, mesures `sortie/<nom>.json`.
+- contrôles mécaniques : `controles/controles.md` et `controles.json`.
+- planches ×4 (ancre avant, image après) : `boards/creusage_<n>_<nom>.png`.
+- feuille (tag `creusage`, durées) : `feuille/creusage.png` + `feuille/creusage.json`.
+- journal : `art/journal/plongeur_creusage.json` (une entrée par image, SHA-256 des planches).
 
-Planches : `planche_bras_d_haut.png`, `planche_bras_d_avant.png`, `planche_pioche.png` (×3), `jonctions.png` (×6).
+Contrôles (sortie de `python3 tools/animation/controles.py ...`, sans modification de contrôle) : 6 images OK ; images distinctes OK ; isolés 0 ; palette hors ancre 0 ; hauteur 68 à 72 ; pioche/casque 0 à 1 px (tolérance 2) ; hublot 0 ; bras/casque 0 (tolérance 1). Boucle : prête vs ancre 480 px, retour vs prête 414 px (pas de seuil numérique défini).
 
-Blocage : aucun. Étape 3 (assembleur) non commencée.
+## Écarts et décisions à prendre (Julien)
+1. **Contrôle de tête non fiable** : `controles.py` compte comme acier les pixels bleu-violet des gants. La tête mesurée est donc fausse (16x20, 30x16 : bbox gants + manche). Mesure réelle de la tête de pioche à 0° : 11 px de large, 5 px de haut (bloc +000, pixels d'acier de la tête). Le critère 12 x 4 n'est pas vérifié. À corriger dans `controles.py` (interdit de ma part sans accord) ou à vérifier à la main.
+2. **Prête** : la tête de pioche est cachée derrière le casque (72 px visibles sur 180) ; le geste ne se lit pas bien. Décision : passer la tête devant le casque (pose plus haute), ou garder le passage derrière déclaré.
+3. **Angles de pioche snappés à 15°** (fiche : prête −50, armement −10, sommet 35, frappe 110, impact 150, retour 60) :
+   - prête −45 (−5°) ; armement −15 (−5°) ; frappe 105 (−5°) ; retour 60 (0°) ;
+   - sommet 15 au lieu de 30 : à 30°, la pioche traverse le casque (53 px de chevauchement), et l'atteindre exige une portée plus grande que les bras (18,4 px) ;
+   - impact 165 au lieu de 150 : à 150° le manche touche le casque (13 à 15 px) ; à 165°, 0 à 1 px.
+4. **Tête de pioche petite** : 11 à 12 px de large, pâle à ×1 (image 4 surtout). À revoir dans le rendu du bloc.
+5. **Arc de mouvement** (effet séparé, 3 à 4 images) : NON FAIT. Demande un rendu Blender de la trajectoire (pas de dessin par code).
+6. **Retouche Aseprite** : NON FAITE (pas nécessaire pour les contrôles ; à faire après validation de la pose).
+7. **Outils hors dossiers permis** : `tools/animation/assembleur.py`, `controles.py`, `essai.py` utilisent numpy/Pillow hors des dossiers listés dans AGENTS.md (tools/mesure, tools/planches, tools/pixelisation, tests/robot). Ils assemblent et mesurent, ils ne dessinent pas. À trancher : les déplacer ou autoriser le dossier.
+8. **Bug corrigé dans `essai.py`** : comparait les noms de calques à un index (toujours 0). Corrigé. Les valeurs d'essai antérieures à la correction sont invalides.
+9. Angles des bras gauches réglés à l'œil (aucune contrainte mesurée).
+
+## Relecture
+Relecteur indépendant (sous-agent, sans mes conclusions) : résultat à consigner ci-dessous.
+
+Blocage : aucun bloquant technique. Les écarts 1 à 3 demandent une décision de Julien.
 
 ## Ancienne phase : CREUSAGE, cible 3D v7 (non validée)
 Julien : v5 non validée (bras disparu et pioche flottante à l'image 2 ; manche trop vertical ; tête trop petite ; image 5 à 73 px). Règle permanente ajoutée à AGENTS.md (RÈGLE ANIMATION A à E). Appliquée au creusage : table de poses, planche cible 3D, contrôles automatiques. Pas de pixel art tant que la cible n'est pas validée.
