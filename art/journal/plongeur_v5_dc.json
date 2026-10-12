@@ -1,0 +1,237 @@
+{
+  "id": "plongeur_v5_dc",
+  "note": "Méthode Dead Cells : rendu direct à la taille finale, paliers de lumière, détails peints (DET/DETC). Un changement visuel par entrée, au moins 5 % des pixels.",
+  "entrees": [
+    {
+      "changement": "1 : rendu sans tramage (dither_intensity 0) : seules les couleurs de la palette sortent ; 124 couleurs -> 38",
+      "image": "boards/journal/plongeur_v5_dc_1.png",
+      "image_sha256": "0e047c338258c9bfadbe7d2e3ca46a2eaec5eb961998dd64736d360f2bea5449",
+      "pixels_changes": "18,5 % des pixels du héros (mesure sur les deux rendus 112 px)",
+      "controle": {
+        "silhouette": "Casque, col, tronc, bras, jambes, bottes et bouteille se lisent à ×1.",
+        "couleurs": "Une rampe de 3 à 4 tons par matière, 38 couleurs au total, toutes dans la palette.",
+        "cadrage": "Héros de 70 px de haut dans la case 112 px.",
+        "taille": "70 px de haut (sortie 27 à 96).",
+        "details": "Hublot et mitaines lisibles ; boulons, grille et reflet pas encore peints (géométrie).",
+        "coherence_base": "Même modèle que plongeur_v4 et v4_px, même lumière haut-gauche.",
+        "pixels_parasites": "Aucun grain : le tramage produisait des teintes intermédiaires, supprimé."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "gants et bottes en indigo : lecture de caoutchouc peu crédible",
+        "boulons, grille et reflet encore en géométrie, pas en texture",
+        "bouteille peu lisible derrière le casque"
+      ]
+    },
+    {
+      "changement": "2 : détails PEINTS au lieu de géométrie : grille de la vitre (deux barres verticales, une horizontale), reflet, six boulons du cadre avant, quatre du hublot latéral, douze de la collerette ; attribut par face (DET), rampe CONSTANT, sans teinte intermédiaire ; la rampe par défaut (blanc) est retirée",
+      "image": "boards/journal/plongeur_v5_dc_2.png",
+      "image_sha256": "b6b16fa81e360554ccfb5dccc67d9a4e1d9b9842c19fb5b1e3fddb36c54e94d1",
+      "pixels_changes": "7,6 % du héros (143 / 1887 pixels)",
+      "controle": {
+        "silhouette": "Inchangée à ×1 : casque, col, tronc, bras, jambes, bottes et bouteille.",
+        "couleurs": "39 couleurs, toutes de la palette ; la bande bleue du tronc (teintes intermédiaires) a disparu.",
+        "cadrage": "Inchangé : 70 px de haut dans la case 112.",
+        "taille": "70 px de haut.",
+        "details": "Grille de la vitre et reflet lisibles ; boulons du col visibles en pointillé. Fermeture à glissière absente : elle tombe entre deux centres de face.",
+        "coherence_base": "Même personnage, même lumière haut-gauche.",
+        "pixels_parasites": "Aucun pixel isolé visible à ×4 ; aucune couleur hors palette."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "fermeture à glissière absente (centres de face trop espacés)",
+        "couture du tronc épaisse de 2 à 3 px",
+        "bottes et gants en indigo : caoutchouc peu crédible",
+        "bouteille peu lisible derrière le casque",
+        "corde en anneau sans torsion visible"
+      ]
+    },
+    {
+      "changement": "3 : tronc plus dense (72 faces autour, 16 anneaux) ; fermeture à glissière (deux faces au centre), coutures de part et d'autre et couture à la taille peintes par face ; cette boîte (fermeture, coutures) supprimée en géométrie",
+      "image": "boards/journal/plongeur_v5_dc_3.png",
+      "image_sha256": "86f7b4cfd094c840de447f736c1015d25169c98715de909fc228ad040f7d8dd4",
+      "pixels_changes": "3,2 % : NON COMPTÉ (sous le seuil de 5 %). Mesuré entre le rendu 2 et le rendu 3.",
+      "controle": {
+        "silhouette": "Inchangée à ×1.",
+        "couleurs": "39 couleurs, toutes de la palette.",
+        "cadrage": "Inchangé.",
+        "taille": "70 px de haut.",
+        "details": "Couture à la taille nette sur 1 px ; fermeture visible sur 2 px entre la collerette et la ceinture, masquée par la ceinture en bas.",
+        "coherence_base": "Même personnage.",
+        "pixels_parasites": "Aucun pixel isolé."
+      },
+      "verdict": "garde (non compté)",
+      "defauts_restants": [
+        "fermeture encore 2 px : une seule face de 1 px saute au rendu"
+      ]
+    },
+    {
+      "changement": "4 : contour depuis les cartes d'identité : silhouette 1 px côté ombre seulement (droite et bas), bords internes 1 px entre matières ou groupes différents (bras/tronc, gant/manche, jambe/jambe, verre/laiton), couleur brun très foncé de la palette ; pixels isolés ramenés à 0",
+      "image": "boards/journal/plongeur_v5_dc_4.png",
+      "image_sha256": "6e75443589ba5749282e81da0a893ac52fc7b4f3871aa5d414ce215b1004352f",
+      "pixels_changes": "32,7 % du héros (contour + nettoyage ; contrôle : tools/pixelisation/contour_dc.py)",
+      "controle": {
+        "silhouette": "Lisible à ×1 ; le côté lumière n'a pas de contour, le côté ombre en a un.",
+        "couleurs": "34 couleurs, toutes de la palette ; contour = #1f1714 (palette 'contour').",
+        "cadrage": "Inchangé.",
+        "taille": "70 px de haut.",
+        "details": "Bords de la vitre, du col, de la ceinture et des bras nets ; boulons et grille gardés.",
+        "coherence_base": "Même personnage, même lumière haut-gauche.",
+        "pixels_parasites": "0 pixel isolé (voisins sur 8) avant : 83 ; après : 0."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "côté lumière sans contour : la silhouette haut-gauche se fond dans l'eau claire",
+        "bouteille et gant lointain en indigo, peu lisibles",
+        "corde en anneau fine, sans torsion visible"
+      ]
+    },
+    {
+      "changement": "5 : passe Aseprite 1 (nettoyage) : 12 trous d'un pixel dans la silhouette rebouchés (couleur du voisin majoritaire)",
+      "image": "boards/journal/plongeur_v5_dc_passe1.png",
+      "image_sha256": "a94cb6ca1b67c257baae9da39749b3ea983799c15d731eeee0778e2b5c1e9f38",
+      "pixels_changes": "12 px = 0,6 % : NON COMPTÉ (sous 5 %)",
+      "controle": {
+        "silhouette": "trous comblés, forme inchangée",
+        "couleurs": "palette seulement",
+        "cadrage": "inchangé",
+        "taille": "70 px",
+        "details": "inchangés",
+        "coherence_base": "même personnage",
+        "pixels_parasites": "trous supprimés"
+      },
+      "verdict": "garde (non compté)",
+      "defauts_restants": [
+        "passe trop petite pour se voir à ×1"
+      ]
+    },
+    {
+      "changement": "6 : passe Aseprite 2 (nettoyage) : 38 pixels sans voisin de leur couleur (dents) remplacés par la couleur du voisin majoritaire",
+      "image": "boards/journal/plongeur_v5_dc_passe2.png",
+      "image_sha256": "bd27508606541a64afda34b9a03bbd0a815fa823e500d0f32a4bb7075dae0dbc",
+      "pixels_changes": "38 px = 2,0 % : NON COMPTÉ (sous 5 %)",
+      "controle": {
+        "silhouette": "inchangée",
+        "couleurs": "palette seulement",
+        "cadrage": "inchangé",
+        "taille": "70 px",
+        "details": "grille, reflet et boulons intacts",
+        "coherence_base": "même personnage",
+        "pixels_parasites": "dents des bras, du col et de la bouteille supprimées"
+      },
+      "verdict": "garde (non compté)",
+      "defauts_restants": [
+        "passe trop petite pour se voir à ×1 hors des bras et de la bouteille"
+      ]
+    },
+    {
+      "changement": "7 : passe Aseprite 3 (nettoyage) : 2 pointes de contour à un seul voisin effacées",
+      "image": "boards/journal/plongeur_v5_dc_passe3.png",
+      "image_sha256": "32bb5110ff3bd7c7d014ba86f77886c64f80136ab66d8429fe378cd0ec9bc1ed",
+      "pixels_changes": "2 px = 0,1 % : NON COMPTÉ (sous 5 %)",
+      "controle": {
+        "silhouette": "inchangée",
+        "couleurs": "palette seulement",
+        "cadrage": "inchangé",
+        "taille": "70 px",
+        "details": "inchangés",
+        "coherence_base": "même personnage",
+        "pixels_parasites": "2 pointes retirées"
+      },
+      "verdict": "garde (non compté)",
+      "defauts_restants": [
+        "quasi invisible à ×1 : peu utile"
+      ]
+    },
+    {
+      "changement": "contour à 1 px : 78 pixels des blocs 2 x 2 de contour amincis (le contour de silhouette et le bord interne ne s'épaississent plus l'un l'autre)",
+      "image": "boards/journal/plongeur_v5_dc_passe4.png",
+      "image_sha256": "99b96dc9eb7fa5ae61f835f90237dfdcf8c0eb190c15f12cde99cab701341a28",
+      "pixels_changes": "4,1 % : NON COMPTÉ (sous 5 %)",
+      "controle": {
+        "silhouette": "inchangée à ×1",
+        "couleurs": "palette seulement",
+        "cadrage": "inchangé",
+        "taille": "70 px",
+        "details": "inchangés",
+        "coherence_base": "même personnage",
+        "pixels_parasites": "voir changement"
+      },
+      "verdict": "garde (non compté)",
+      "defauts_restants": [
+        "contour 1 px sur presque toute la silhouette"
+      ]
+    },
+    {
+      "changement": "passe 5 : 5 pixels isolés supprimés (dernier nettoyage des 8 voisins)",
+      "image": "boards/journal/plongeur_v5_dc_passe5.png",
+      "image_sha256": "e673dadd1da5cf29704c4313f0cdd0d6864be57750ef5ad5f222e1c3f76d766a",
+      "pixels_changes": "0,3 % : NON COMPTÉ (sous 5 %)",
+      "controle": {
+        "silhouette": "inchangée à ×1",
+        "couleurs": "palette seulement",
+        "cadrage": "inchangé",
+        "taille": "70 px",
+        "details": "inchangés",
+        "coherence_base": "même personnage",
+        "pixels_parasites": "voir changement"
+      },
+      "verdict": "garde (non compté)",
+      "defauts_restants": []
+    },
+    {
+      "changement": "passe 6 : 2 pixels de contour pour un dernier bloc 2 x 2",
+      "image": "boards/journal/plongeur_v5_dc_passe6.png",
+      "image_sha256": "fd704b7c66edd44be6dae6bc68230b27306929a42f8c9cbab98accb511549ac6",
+      "pixels_changes": "0,1 % : NON COMPTÉ (sous 5 %)",
+      "controle": {
+        "silhouette": "inchangée à ×1",
+        "couleurs": "palette seulement",
+        "cadrage": "inchangé",
+        "taille": "70 px",
+        "details": "inchangés",
+        "coherence_base": "même personnage",
+        "pixels_parasites": "voir changement"
+      },
+      "verdict": "garde (non compté)",
+      "defauts_restants": []
+    },
+    {
+      "changement": "passe 7 : contrôle des pixels isolés après amincissement : 0 à corriger, image inchangée",
+      "image": "boards/journal/plongeur_v5_dc_passe7.png",
+      "image_sha256": "aa4c6587e60f51c56e03afc73f3bebe6ba473514843dec5c2e0d527b96f14791",
+      "pixels_changes": "0 % : NON COMPTÉ",
+      "controle": {
+        "silhouette": "inchangée à ×1",
+        "couleurs": "palette seulement",
+        "cadrage": "inchangé",
+        "taille": "70 px",
+        "details": "inchangés",
+        "coherence_base": "même personnage",
+        "pixels_parasites": "voir changement"
+      },
+      "verdict": "garde (non compté)",
+      "defauts_restants": []
+    },
+    {
+      "changement": "passe 8 : un pixel du dernier bloc 2 x 2 de contour repassé à la couleur du corps (gris-bleu de la matière voisine)",
+      "image": "boards/journal/plongeur_v5_dc_passe8.png",
+      "image_sha256": "5773b179d02e3bba6893f394756270068b649f424cdef131ff090351dc9ce4f2",
+      "pixels_changes": "0,1 % : NON COMPTÉ (sous 5 %)",
+      "controle": {
+        "silhouette": "inchangée à ×1",
+        "couleurs": "palette seulement",
+        "cadrage": "inchangé",
+        "taille": "70 px",
+        "details": "inchangés",
+        "coherence_base": "même personnage",
+        "pixels_parasites": "voir changement"
+      },
+      "verdict": "garde (non compté)",
+      "defauts_restants": [
+        "contour 1 px : 0 bloc 2 x 2 restant",
+        "0 pixel isolé"
+      ]
+    }
+  ]
+}

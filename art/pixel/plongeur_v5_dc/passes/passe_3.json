@@ -1,0 +1,29 @@
+{
+ "nom": "passe 3 : pointes de contour",
+ "pixels": [
+  {
+   "x": 39,
+   "y": 35,
+   "rgb": "#e8b84a",
+   "raison": "pointe de contour a un seul voisin"
+  },
+  {
+   "x": 70,
+   "y": 35,
+   "rgb": "#ae9a64",
+   "raison": "pointe de contour a un seul voisin"
+  },
+  {
+   "x": 76,
+   "y": 77,
+   "rgb": "#1f1714",
+   "raison": "pointe de contour a un seul voisin"
+  },
+  {
+   "x": 67,
+   "y": 78,
+   "rgb": "#1f1714",
+   "raison": "pointe de contour a un seul voisin"
+  }
+ ]
+}

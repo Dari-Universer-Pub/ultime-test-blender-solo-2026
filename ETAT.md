@@ -1,6 +1,46 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
-## Phase courante : PLONGEUR V4_PX, FINITION MANUELLE (passe 7), EN ATTENTE DE VALIDATION DE JULIEN
+## Phase courante : PLONGEUR V5_DC (méthode Dead Cells), POSE IDLE FIXE — ARRÊT POUR VALIDATION DE JULIEN
+Rien d'autre n'est fait : ni nage, ni autre animation, ni feuille, ni jeu, ni robot, ni `gate.py M3`.
+Attendre la validation de Julien sur la pose idle (planche `boards/plongeur_v5_dc_planche.png`).
+
+- Script : `art/source/blender/plongeur_v5_dc.py` (refait le `.blend` et les rendus de zéro). Rendu DIRECT à 112 px, héros de 70 px.
+  Lumière plate par paliers (produit scalaire normale · lumière haut-gauche, rampe CONSTANT), émission seule, pas de spéculaire,
+  filtre à 0, tramage à 0, alpha 0/255. Sorties : `art/rendu/plongeur_v5_dc/` (rendu couleur, cartes d'identité matière et groupes).
+- Détails PEINTS par face (attribut DET = code de palette), plus en géométrie : grille de la vitre, reflet, six boulons du cadre avant,
+  quatre du hublot latéral, douze de la collerette, fermeture et coutures du tronc.
+- Contour et nettoyage : `tools/pixelisation/contour_dc.py` (silhouette côté ombre, bords internes entre matières ou groupes, amincissement des blocs 2 x 2).
+  Puis passes Aseprite 1 à 8 (`tools/pixelisation/passe_aseprite.py`, listes de pixels dans `art/pixel/plongeur_v5_dc/passes/`).
+  Sprite final : `art/pixel/plongeur_v5_dc/idle_01.png`.
+- Journal : `art/journal/plongeur_v5_dc.json`, 12 entrées. COMPTÉES (au moins 5 % des pixels) : changement 1 (tramage, 18,5 %), 2 (détails peints, 7,6 %), 4 (contour, 32,7 %).
+  NON COMPTÉES : 3 (tronc et fermeture, 3,2 %) et les passes Aseprite 1 à 8 (de 0,0 à 4,1 %).
+- Mesures du sprite final (`idle_01.png`) :
+  | mesure | valeur | cible | verdict |
+  |---|---|---|---|
+  | hauteur | 70 px | 70 à 74 | OK |
+  | pixels isolés (8 voisins) | 0 | 0 | OK |
+  | blocs 2 x 2 de contour | 0 (contour 1 px) | 1 px constant | OK |
+  | couleurs | palette de 66 couleurs (8 tons x 8 familles + 2 contours) ; 33 utilisées dans le sprite, toutes de la palette | palette de 64 à 96 | OK |
+  | tuyau (corde) | 5,5 % de la silhouette | < 10 % | OK |
+  | bras proche (carte d'identité, 112 px) | 177 px / 87 % | >= 30 px, >= 60 % | OK |
+  | bras lointain | 154 px / 74 % | idem | OK |
+  | jambe proche | 180 px / 83 % | idem | OK |
+  | jambe lointaine | 163 px / 75 % | idem | OK |
+- Planche : `boards/plongeur_v5_dc_planche.png` (v4 haute résolution ; v4_px actuel x4 ; v5 x4 sur eau claire, eau sombre, damier).
+- Les trois points les plus faibles, vus sur la planche :
+  1. Gants et bottes en indigo : lus comme du violet, peu crédibles, sans volume.
+  2. Tronc et jambes presque d'un seul ton beige : peu de volume ; la fermeture à glissière tient à peine sur 2 px.
+  3. Bouteille cachée derrière le casque ; corde fine, sans torsion visible.
+- Écarts avec le brief, à valider :
+  - Passes Aseprite : aucune ne dépasse 5 %. Le nettoyage seul ne change pas assez de pixels pour passer le seuil ;
+    elles sont comptées « non comptées » comme dans la série manuelle précédente. Julien décide si la règle s'applique au nettoyage.
+  - Torsion de la corde et plis de toile : encore en géométrie (corde : courbe biseautée ; plis : déplacement), pas peints.
+  - Couture de ceinture et boucle : encore en géométrie.
+  - Les lumières de scène ne servent pas aux matières (émission seule) : elles ne changent rien au rendu.
+  - Reproductibilité : `contour_dc.py` a produit `idle_01_contour.png` AVANT l'ajout de l'amincissement ; les passes 4 à 8 (listes de pixels générées puis appliquées dans Aseprite) complètent la chaîne. Le sprite final ne se refait donc pas en une seule commande.
+- Gate : `tools/gate.py` et `tools/outils.json` non touchés.
+
+## Ancienne phase (v4_px, finition manuelle, archivée) : PLONGEUR V4_PX, EN ATTENTE DE VALIDATION
 - Julien a rejeté l'aspect « dessin d'enfant » : formes en boîtes et lignes droites. Refonte à la main, cartes de pixels explicites dans `art/pixel/plongeur_v4_px/main/dessin.py` (calques ; `carte_<passe>.txt`).
 - Calque 'repère' = réduction automatique ; calque 'dessin' = la main, exporté seul (`assembler.py`, fichiers `plongeur_v4_px_passe<n>.aseprite/.png`).
 - Passes comptées (au moins 10 % des pixels changés) : passe 1 (92,6 %), passe 7 (46,4 %). Journal : `art/journal/plongeur_v4_px_manuel.json`.

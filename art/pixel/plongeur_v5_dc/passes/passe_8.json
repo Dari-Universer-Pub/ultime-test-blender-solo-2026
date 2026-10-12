@@ -1,0 +1,11 @@
+{
+ "nom": "passe 8 : dernier bloc 2 x 2 de contour",
+ "pixels": [
+  {
+   "x": 44,
+   "y": 59,
+   "rgb": "#93a2ad",
+   "raison": "bloc 2 x 2 de contour : un pixel repasse au corps voisin"
+  }
+ ]
+}

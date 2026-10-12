@@ -1,0 +1,17 @@
+{
+ "nom": "passe 6 : contour à 1 px (reste de blocs 2 x 2)",
+ "pixels": [
+  {
+   "x": 41,
+   "y": 44,
+   "rgb": "#4f4898",
+   "raison": "contour à 1 px"
+  },
+  {
+   "x": 41,
+   "y": 45,
+   "rgb": "#4f4898",
+   "raison": "contour à 1 px"
+  }
+ ]
+}

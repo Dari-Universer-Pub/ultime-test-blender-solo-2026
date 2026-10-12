@@ -1,0 +1,233 @@
+{
+ "nom": "passe 2 : pixels sans voisin de leur couleur",
+ "pixels": [
+  {
+   "x": 67,
+   "y": 31,
+   "rgb": "#ae9a64",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 68,
+   "y": 31,
+   "rgb": "#1f1714",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 56,
+   "y": 32,
+   "rgb": "#fbf6e2",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 68,
+   "y": 32,
+   "rgb": "#ae9a64",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 55,
+   "y": 33,
+   "rgb": "#fbf6e2",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 56,
+   "y": 33,
+   "rgb": "#dccb9a",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 46,
+   "y": 38,
+   "rgb": "#1f1714",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 42,
+   "y": 44,
+   "rgb": "#1f1714",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 48,
+   "y": 44,
+   "rgb": "#1f1714",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 41,
+   "y": 45,
+   "rgb": "#1f1714",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 42,
+   "y": 45,
+   "rgb": "#748592",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 41,
+   "y": 46,
+   "rgb": "#1f1714",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 61,
+   "y": 49,
+   "rgb": "#e8b84a",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 61,
+   "y": 50,
+   "rgb": "#fff0a8",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 60,
+   "y": 52,
+   "rgb": "#b07a1e",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 41,
+   "y": 53,
+   "rgb": "#1f1714",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 65,
+   "y": 53,
+   "rgb": "#b07a1e",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 41,
+   "y": 54,
+   "rgb": "#1f1714",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 51,
+   "y": 56,
+   "rgb": "#1f1714",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 52,
+   "y": 56,
+   "rgb": "#748592",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 50,
+   "y": 57,
+   "rgb": "#1f1714",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 51,
+   "y": 57,
+   "rgb": "#748592",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 49,
+   "y": 58,
+   "rgb": "#1f1714",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 50,
+   "y": 58,
+   "rgb": "#748592",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 63,
+   "y": 61,
+   "rgb": "#1f1714",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 46,
+   "y": 68,
+   "rgb": "#fbf4e0",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 45,
+   "y": 69,
+   "rgb": "#fbf4e0",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 35,
+   "y": 70,
+   "rgb": "#cdb48e",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 34,
+   "y": 71,
+   "rgb": "#cdb48e",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 35,
+   "y": 71,
+   "rgb": "#e2cfa8",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 31,
+   "y": 75,
+   "rgb": "#8a84cc",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 34,
+   "y": 75,
+   "rgb": "#1f1714",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 33,
+   "y": 76,
+   "rgb": "#8a84cc",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 47,
+   "y": 84,
+   "rgb": "#2f2a6a",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 46,
+   "y": 85,
+   "rgb": "#2f2a6a",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 50,
+   "y": 89,
+   "rgb": "#1f1714",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 59,
+   "y": 89,
+   "rgb": "#1f1714",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  },
+  {
+   "x": 65,
+   "y": 92,
+   "rgb": "#221d52",
+   "raison": "pixel sans voisin de sa couleur (dent)"
+  }
+ ]
+}

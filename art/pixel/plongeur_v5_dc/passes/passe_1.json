@@ -1,0 +1,77 @@
+{
+ "nom": "passe 1 : trous de silhouette",
+ "pixels": [
+  {
+   "x": 67,
+   "y": 35,
+   "rgb": "#ae9a64",
+   "raison": "trou d un pixel dans la silhouette"
+  },
+  {
+   "x": 38,
+   "y": 37,
+   "rgb": "#1f1714",
+   "raison": "trou d un pixel dans la silhouette"
+  },
+  {
+   "x": 38,
+   "y": 39,
+   "rgb": "#1f1714",
+   "raison": "trou d un pixel dans la silhouette"
+  },
+  {
+   "x": 65,
+   "y": 41,
+   "rgb": "#1f1714",
+   "raison": "trou d un pixel dans la silhouette"
+  },
+  {
+   "x": 64,
+   "y": 57,
+   "rgb": "#1f1714",
+   "raison": "trou d un pixel dans la silhouette"
+  },
+  {
+   "x": 42,
+   "y": 58,
+   "rgb": "#1f1714",
+   "raison": "trou d un pixel dans la silhouette"
+  },
+  {
+   "x": 29,
+   "y": 69,
+   "rgb": "#3e3885",
+   "raison": "trou d un pixel dans la silhouette"
+  },
+  {
+   "x": 37,
+   "y": 72,
+   "rgb": "#1f1714",
+   "raison": "trou d un pixel dans la silhouette"
+  },
+  {
+   "x": 39,
+   "y": 72,
+   "rgb": "#1f1714",
+   "raison": "trou d un pixel dans la silhouette"
+  },
+  {
+   "x": 67,
+   "y": 76,
+   "rgb": "#1f1714",
+   "raison": "trou d un pixel dans la silhouette"
+  },
+  {
+   "x": 54,
+   "y": 79,
+   "rgb": "#1f1714",
+   "raison": "trou d un pixel dans la silhouette"
+  },
+  {
+   "x": 56,
+   "y": 89,
+   "rgb": "#1f1714",
+   "raison": "trou d un pixel dans la silhouette"
+  }
+ ]
+}
