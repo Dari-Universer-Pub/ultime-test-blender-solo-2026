@@ -87,6 +87,7 @@ def composer_pose(pose, sortie_dir):
     tete = ch.get("casque", [0, 0])
     # épaules : suivent le torse si la pose le demande (attaque : le corps se penche, les bras suivent)
     decal = tuple(buste) if pose.get("epaules_suivent_buste") else (0, 0)
+    jambes_dec = tuple(ch.get("jambes", [0, 0]))   # saut : décalage vertical du corps entier (jambes rigides)
     bloc_dir = BIBLIO / "variantes" / pose.get("bloc_dossier", "bloc_main_d")
 
     def ajouter(nom, img):
@@ -95,7 +96,7 @@ def composer_pose(pose, sortie_dir):
 
     dessin = {
         "torse": lambda: translater(charger(PIECES / "torse.png"), buste[0], buste[1]),
-        "jambes": lambda: charger(PIECES / "jambes.png"),
+        "jambes": lambda: translater(charger(PIECES / "jambes.png"), jambes_dec[0], jambes_dec[1]),
         "casque": lambda: translater(charger(PIECES / "casque.png"), tete[0], tete[1]),
     }
     # bras et bloc main : tournés puis translatés (chaîne)
@@ -123,7 +124,7 @@ def composer_pose(pose, sortie_dir):
             Ep = np.array(blocs["pivots_px"]["coude"])
             G_new = E_new + np.array(tourner_px(Gp - Ep, a["avant"]))
             t_b = (int(round(G_new[0] - Gp[0])), int(round(G_new[1] - Gp[1])))
-            dessin["bloc_main_d"] = (lambda th=ch["bloc_main_d"], t_b=t_b:
+            dessin["bloc_main_d"] = (lambda th=ch.get("bloc_main_d", 0), t_b=t_b:
                                      translater(charger(bloc_dir / angle_cle(th)),
                                                 t_b[0], t_b[1]))
         dessin["cap_epaule_%s" % cote] = (lambda cote=cote: translater(charger(BIBLIO / "capuchons" / ("epaule_%s.png" % cote)),

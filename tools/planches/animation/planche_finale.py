@@ -39,11 +39,13 @@ def main():
     for f in fiche["images"]:
         nom = "%02d_%s" % (f["n"], f["nom"])
         images.append((nom, Image.open(lot / "sortie" / (nom + ".png")).convert("RGBA")))
-    effets = [("arc_%d" % k, Image.open(lot / "effets" / ("arc_%d.png" % k)).convert("RGBA")) for k in range(1, 5)]
-    effets.append(("impact+part.", Image.open(lot / "effets" / "impact_particules.png").convert("RGBA")))
+    effets = []
+    if (lot / "effets").is_dir():  # lot sans effets (saut) : pas de troisième rangée
+        effets = [("arc_%d" % k, Image.open(lot / "effets" / ("arc_%d.png" % k)).convert("RGBA")) for k in range(1, 5)]
+        effets.append(("impact+part.", Image.open(lot / "effets" / "impact_particules.png").convert("RGBA")))
     cote = 112
     colonnes = max(len(images), len(effets))
-    lignes = [(4, images), (1, images), (4, effets)]
+    lignes = [(4, images), (1, images)] + ([(4, effets)] if effets else [])
     hauteur = sum(e * cote + 22 + MARGE for e, _ in lignes) + MARGE
     largeur = colonnes * (cote * 4 + MARGE) + MARGE
     planche = Image.new("RGB", (largeur, hauteur), (14, 32, 52))

@@ -85,7 +85,8 @@ def main():
         # 1. pioche (bloc main + pioche) et casque : chevauchement visible interdit (tolérance 2 px)
         bloc = masques.get("bloc_main_d", np.zeros_like(qui, bool))
         casque = masques.get("casque", np.zeros_like(qui, bool))
-        i_bloc, i_casque = ordre.index("bloc_main_d"), ordre.index("casque")
+        # sans pioche dans la pose (saut) : l'indice du bloc ne correspond à aucun calque, les mesures d'outil valent 0
+        i_bloc, i_casque = (ordre.index("bloc_main_d") if "bloc_main_d" in ordre else -2), ordre.index("casque")
         pioche_sur_casque = int(np.sum(bloc & casque & (qui == i_bloc)))
         contr["pioche_casque_px"] = {"valeur": pioche_sur_casque, "tolerance": TOLERANCE_PIOCHE_CASQUE,
                                      "ok": pioche_sur_casque <= TOLERANCE_PIOCHE_CASQUE}
