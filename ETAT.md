@@ -1,94 +1,49 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
-## Phase courante : PLONGEUR V6 (cible décrite, dessin animé), POSE IDLE — ARRÊT POUR VALIDATION DE JULIEN
-Julien a repris le héros avec une cible décrite (pas encore d'image cible). Pose idle seulement ; ensuite la nage, les autres animations, la feuille, le jeu, les tuiles 24 px, le robot et `gate.py M3` restent à faire.
-Rien n'est téléchargé. Références : `art/references/` (1951 Stockholm, 1970 USF). `tools/gate.py` et `tools/outils.json` non touchés ; HAUTEUR_PLONGEUR = (56, 80).
+## Phase courante : PLONGEUR V6 SANS CONTOUR (style peint doux) — ARRÊT POUR VALIDATION DE JULIEN
+Julien a retiré le contour : trop lourd, « affreux ». Style peint, doux, SANS trait sombre sur le pourtour ni entre parties. La forme tient à la valeur et à l'ombrage. Plus aucun objectif de contour (épaisseur, blocs 2x2, part dans la silhouette).
+Le contour est encore dans l'historique git (commit `cb8d19f`). Rien n'est téléchargé. `tools/gate.py` et `tools/outils.json` non touchés.
 
-- Script : `art/source/blender/plongeur_v6.py` (refait tout, corps en Skin lissé puis découpé, pièces rigides, détails peints par face, rampes CONSTANT par matière, contour froid cyan sur le bord droit).
-- Session Blender persistante : `tools/blender_session/serveur.py` (lancé avec `blender -b`, lit des commandes dans un dossier) et `envoyer.py`. Aucun serveur MCP Blender n'est disponible dans cet environnement : c'est le seul moyen utilisé. Un rendu de contrôle prend 4 à 6 s, une carte d'identité 25 à 30 s.
-- Essais rapides : 16 essais de forme (`essai0` à `essai16`), mesurés deux à deux (pourcentage de pixels changés). Détail dans le journal.
-- Sprite final : `art/pixel/plongeur_v6/idle_01.png` (= contour, étape 14). Rendus : `art/rendu/plongeur_v6/`. Carte d'identité : matière et groupe, à 112 px.
-- Journal : `art/journal/plongeur_v6.json`, 13 entrées, SHA-256 vérifiés. Annulations listées à part.
-- Planche : `boards/plongeur_v6_planche.png` (références 1951 et 1970 | v6 eau claire | v6 eau sombre | v6 damier | v5 précédent, et le bloc de mesures et d'écarts).
+- Script : `art/source/blender/plongeur_v6.py`. Pipeline : rendu couleur (session persistante `tools/blender_session/`) -> `tools/pixelisation/nettoyage.py` (pixels isolés seulement) -> sprite. Le contour (`contour_dc.py`) est retiré du dépôt.
+- Sprite final : `art/pixel/plongeur_v6/idle_01.png`. Archive de la version avec contour : `art/pixel/plongeur_v6/archive_contour/`.
+- Journal : `art/journal/plongeur_v6.json` (20 entrées). Règle : 5 % minimum des pixels changés par passe ; sous le seuil, l'étape est annulée (sauf mention).
+- Planche : `boards/plongeur_v6_sans_contour.png` (eau claire, eau sombre, damier, niveaux de gris, x6) + mesures et écarts.
 
-### Objectifs chiffrés (mesurés sur le sprite final)
-| objectif | cible | mesure | écart |
+### Retouches (une à la fois, planche avant/après x6)
+| étape | changement | mesure | verdict |
 |---|---|---|---|
-| hauteur | 70 à 74 px | 71 px | OK |
-| couleurs | 24 à 32 | 24 utilisées sur 25 de palette | OK |
-| rampes par matière | 3 ou 4 tons | laiton 4, beige 4, cuir 3, violet 3, métal 3, verre 3, corde 3, contour 2 | OK |
-| pixels isolés | 0 | 0 (8 voisins) | OK |
-| contour 1 px constant | 1 px partout | 3 blocs 2x2 restants | ÉCART (3 blocs) |
-| contour dense | léger | 28 % de la silhouette | ÉCART |
-| membres | >= 30 px, >= 60 % | bras proche 206 px / 89 %, bras lointain 184 px / 63 %, jambe proche 249 px / 94 %, jambe lointaine 211 px / 64 % | OK |
+| 15 | retrait du contour + 38 pixels isolés corrigés | 29,8 % | garde |
+| 16 | vitre bleu-noir, reflet net 2 px | 9,3 % | garde |
+| 17 | bras identiques (longueur, épaisseur), manchette sombre, gant en mitaine | 16,9 % | garde |
+| 18 | ceinture seule à 3 px | 1,6 % | annulée (sous 5 %), reprise à 19 |
+| 19 | ceinture 3 px avec boucle, quatre plis nets (tronc et manches) | 5,0 % | garde |
+| 20 | bouteille arrondie derrière l'épaule, valve laiton, corde 3 px à torsion (6 faces), reliée à la valve | 5,5 % | garde |
+| 21 | jambes plus longues, genou plus rond | 7,0 % | garde |
+
+### Objectifs chiffrés (sprite final, mesurés)
+| objectif | cible | mesure | verdict |
+|---|---|---|---|
+| hauteur | 70 à 74 px | 72 px | OK |
+| couleurs | 24 à 32, rampes de 3 à 4 tons | 23 utilisées sur 26 de palette ; laiton 4, beige 4, cuir 3, violet 3, métal 3, verre 3, reflet 1, corde 3 | OK (23 utilisées : sous 24) |
+| pixels isolés | 0 | 0 | OK |
+| hors palette / noir pur / blanc pur | 0 | 0 / 0 / 0 | OK |
+| membres visibles | >= 30 px, >= 60 % | bras proche 227 px / 97 %, bras lointain 165 px / 73 %, jambe proche 246 px / 98 %, jambe lointaine 183 px / 68 % | OK |
 | tuyau (corde) | < 10 % | 6,1 % | OK |
-| plis nets | 3 ou 4 | quasi absents (1 à 10 faces par pli) | ÉCART |
-| reflets caoutchouc 1-2 px | présents | non peints | ÉCART |
-| boulons visibles | présents | invisibles à x1 | ÉCART |
-| torsion de corde | visible | corde à 3 px, torsion illisible | ÉCART |
 
-### Écarts restants, numérotés (comparaison à la description)
-1. Plis : les 3 ou 4 plis nets (épaule, coude, ceinture, genou) sont presque absents. Les réglages de plis sont sous le seuil de 5 %.
-2. Jambes : ombres en plaques sombres (plis en bloc), visibles à x4 : bruit. Retirer le pli du genou ne change que 0,8 % : annulé.
-3. Matières : reflets de caoutchouc (gants, bottes) non peints ; boulons du cadre et de la collerette invisibles ; arc de reflet du laiton trop large.
-4. Corde : 3 px, torsion illisible ; cible « épaisse » non atteinte (la corde à 0,085 ne change que 3,1 % : annulée).
-5. Bouteille : partiellement cachée derrière l'épaule gauche.
-6. Ceinture : 2,4 % seulement pour l'élargir (conservée, voir ci-dessous).
-7. Combinaison : ombres mauve-gris, beige encore froid.
-8. Contour : 28 % de la silhouette, 3 blocs 2x2 restants.
-9. Lumière : contour cyan présent sur le bord droit (58 px) ; lumière haut-gauche OK.
-10. Proportions : tête environ 40 % de la hauteur, tronc court et rond, bras et jambes courts et épais : OK.
+### Écarts et trois points les plus faibles (planche)
+1. Bras proche et tronc : même valeur (beige), séparés seulement par l'ombrage.
+2. Plis du tronc : lus comme une coupure en deux tons, pas comme des plis nets.
+3. Corde : torsion à peine lisible à x6 ; bouteille : bord gauche qui se fond dans l'eau sombre (à corriger par la valeur, pas par un trait : non fait, sous le seuil de 5 %).
+- Genou : arrondi mais de même valeur que la cuisse.
+- Lumière cyan : présente sur le bord droit (pixels clairs) ; silhouette haut-gauche lisible sur eau claire.
 
-Les trois points les plus faibles : (1) plis et corde sans relief ; (2) contour trop dense, 3 blocs 2x2 ; (3) reflets caoutchouc et boulons absents.
+### Passes annulées ou non faites
+- Retrait du pli du genou (test, 0,8 %) annulé ; passes de majorité 3x3 de la version précédente (0,5 à 1,2 %) annulées ; corde à 0,085 (3,1 %) annulée ; ceinture seule (1,6 %) annulée.
+- La correction de la valeur du bord de la bouteille n'a pas été faite : elle changerait moins de 5 % des pixels.
 
-### Règle des 5 %, appliquée et discutée (à trancher par Julien)
-- ANNULÉS (sous 5 % des pixels, et sans réduire d'écart à mes yeux) : passes de finition majorité 3x3 casque (0,7 %), jambes (0,5 %), bras-gants-tronc-corde (1,2 %) ; retrait du pli du genou (0,8 %) ; corde à 0,085 (3,1 %). Les fichiers des passes sont dans `art/pixel/plongeur_v6/passes/annulees/`.
-- CONSERVÉS SOUS LE SEUIL, marqués « NON COMPTÉ » dans le journal : ceinture élargie (2,4 %), plis (1,1 %, et 0,5 % pour le pli d'épaule), section ronde du Skin (4,8 %). Ce sont des corrections de forme demandées par la description ; annulées, la ceinture et le tronc rond disparaîtraient. Je ne les ai pas annulées sans votre accord.
-- CONSÉQUENCE : aucune passe de finition Aseprite n'est appliquée. La consigne « au moins 3 passes visibles » et la règle « annule si < 5 % » ne peuvent pas être tenues ensemble avec du simple nettoyage. Options : (a) autoriser des repeintes de 5 % ou plus (une zone entière) ; (b) abaisser le seuil pour les passes de nettoyage ; (c) compter les détails à part.
-
-### Ce qui n'est pas fait (à reprendre après validation)
-- Nage (quatre membres lisibles à chaque image), autres animations, feuille, jeu (miroir, collisions, caméra), tuiles 24 px avec créatures et props agrandis ×1,5, robot, `python tools/gate.py M3` dans un clone neuf.
-- Image cible : quand Julien la fournira, la comparer à la planche avant toute nouvelle passe.
-
-
-Rien d'autre n'est fait : ni nage, ni autre animation, ni feuille, ni jeu, ni robot, ni `gate.py M3`.
-Attendre la validation de Julien sur la pose idle (planche `boards/plongeur_v5_dc_planche.png`).
-
-- Script : `art/source/blender/plongeur_v5_dc.py` (refait le `.blend` et les rendus de zéro). Rendu DIRECT à 112 px, héros de 70 px.
-  Lumière plate par paliers (produit scalaire normale · lumière haut-gauche, rampe CONSTANT), émission seule, pas de spéculaire,
-  filtre à 0, tramage à 0, alpha 0/255. Sorties : `art/rendu/plongeur_v5_dc/` (rendu couleur, cartes d'identité matière et groupes).
-- Détails PEINTS par face (attribut DET = code de palette), plus en géométrie : grille de la vitre, reflet, six boulons du cadre avant,
-  quatre du hublot latéral, douze de la collerette, fermeture et coutures du tronc.
-- Contour et nettoyage : `tools/pixelisation/contour_dc.py` (silhouette côté ombre, bords internes entre matières ou groupes, amincissement des blocs 2 x 2).
-  Puis passes Aseprite 1 à 8 (`tools/pixelisation/passe_aseprite.py`, listes de pixels dans `art/pixel/plongeur_v5_dc/passes/`).
-  Sprite final : `art/pixel/plongeur_v5_dc/idle_01.png`.
-- Journal : `art/journal/plongeur_v5_dc.json`, 12 entrées. COMPTÉES (au moins 5 % des pixels) : changement 1 (tramage, 18,5 %), 2 (détails peints, 7,6 %), 4 (contour, 32,7 %).
-  NON COMPTÉES : 3 (tronc et fermeture, 3,2 %) et les passes Aseprite 1 à 8 (de 0,0 à 4,1 %).
-- Mesures du sprite final (`idle_01.png`) :
-  | mesure | valeur | cible | verdict |
-  |---|---|---|---|
-  | hauteur | 70 px | 70 à 74 | OK |
-  | pixels isolés (8 voisins) | 0 | 0 | OK |
-  | blocs 2 x 2 de contour | 0 (contour 1 px) | 1 px constant | OK |
-  | couleurs | palette de 66 couleurs (8 tons x 8 familles + 2 contours) ; 33 utilisées dans le sprite, toutes de la palette | palette de 64 à 96 | OK |
-  | tuyau (corde) | 5,5 % de la silhouette | < 10 % | OK |
-  | bras proche (carte d'identité, 112 px) | 177 px / 87 % | >= 30 px, >= 60 % | OK |
-  | bras lointain | 154 px / 74 % | idem | OK |
-  | jambe proche | 180 px / 83 % | idem | OK |
-  | jambe lointaine | 163 px / 75 % | idem | OK |
-- Planche : `boards/plongeur_v5_dc_planche.png` (v4 haute résolution ; v4_px actuel x4 ; v5 x4 sur eau claire, eau sombre, damier).
-- Les trois points les plus faibles, vus sur la planche :
-  1. Gants et bottes en indigo : lus comme du violet, peu crédibles, sans volume.
-  2. Tronc et jambes presque d'un seul ton beige : peu de volume ; la fermeture à glissière tient à peine sur 2 px.
-  3. Bouteille cachée derrière le casque ; corde fine, sans torsion visible.
-- Écarts avec le brief, à valider :
-  - Passes Aseprite : aucune ne dépasse 5 %. Le nettoyage seul ne change pas assez de pixels pour passer le seuil ;
-    elles sont comptées « non comptées » comme dans la série manuelle précédente. Julien décide si la règle s'applique au nettoyage.
-  - Torsion de la corde et plis de toile : encore en géométrie (corde : courbe biseautée ; plis : déplacement), pas peints.
-  - Couture de ceinture et boucle : encore en géométrie.
-  - Les lumières de scène ne servent pas aux matières (émission seule) : elles ne changent rien au rendu.
-  - Reproductibilité : `contour_dc.py` a produit `idle_01_contour.png` AVANT l'ajout de l'amincissement ; les passes 4 à 8 (listes de pixels générées puis appliquées dans Aseprite) complètent la chaîne. Le sprite final ne se refait donc pas en une seule commande.
-- Gate : `tools/gate.py` et `tools/outils.json` non touchés.
+### À faire après validation
+- NAGE d'abord : huit images, quatre membres lisibles et mesurés à chaque image, hauteur 44 à 80 px, amplitude >= 0,45 ; planche de toutes les images x4 sur eau claire et eau sombre ; arrêt pour validation.
+- Puis les autres animations, la feuille, le jeu, les tuiles 24 px, le robot, `python tools/gate.py M3` dans un clone neuf.
 
 ## Ancienne phase (v5 Dead Cells, arrêt pour validation de la pose idle)
 Voir `art/journal/plongeur_v5_dc.json`. Le sprite v5 sert de comparaison dans la planche v6.

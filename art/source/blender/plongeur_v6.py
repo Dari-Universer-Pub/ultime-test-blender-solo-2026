@@ -43,7 +43,8 @@ PALETTE = {
     "cuir": ["#2a1a30", "#5c3024", "#8e5530"],
     "violet": ["#17123a", "#2c2366", "#4b3fa0"],
     "metal": ["#2a2e52", "#5a6490", "#a8b6d6"],
-    "verre": ["#0e2a4c", "#2f6e9a", "#8fd0ea"],
+    "verre": ["#060d18", "#0e2a4c", "#1b4a70"],
+    "reflet": ["#d8f4fa"],
     "corde": ["#4e3e4a", "#9a7444", "#e0be80"],
     "contour": ["#120c28", "#3c3a7a"],
 }
@@ -62,7 +63,7 @@ SEUIL_CONTOUR_DROIT = 0.80   # contour froid sur le bord droit
 # codes des détails peints (attribut DET) -> ton exact de la palette
 CODES = [  # (code, famille, index du ton)
     (0.20, "metal", 1),     # boulon
-    (0.40, "verre", 2),     # reflet de vitre
+    (0.40, "reflet", 0),    # reflet net de la vitre (2 px)
     (0.60, "laiton", 3),    # reflet en arc sur le laiton
     (0.80, "cuir", 0),      # couture, manchette, semelle
     (0.95, "metal", 2),     # métal clair (cadre)
@@ -254,7 +255,7 @@ def boite(centre, taille, mat, nom, biseau=0.02):
     return o
 
 
-def cylindre(centre, rayon, longueur, mat, nom, rotation=(0.0, 0.0, 0.0)):
+def cylindre(centre, rayon, longueur, mat, nom, rotation=(0.0, 0.0, 0.0), biseau=0.0):
     bpy.ops.mesh.primitive_cylinder_add(radius=rayon, depth=longueur, vertices=40, location=centre,
                                         rotation=rotation)
     o = bpy.context.object
@@ -262,6 +263,12 @@ def cylindre(centre, rayon, longueur, mat, nom, rotation=(0.0, 0.0, 0.0)):
     _appliquer(o)
     o.data.materials.append(mat)
     _lisser(o)
+    if biseau > 0.0:
+        b = o.modifiers.new("arrondi", "BEVEL")
+        b.width = biseau
+        b.segments = 4
+        bpy.context.view_layer.objects.active = o
+        bpy.ops.object.modifier_apply(modifier=b.name)
     _subdiviser(o, 1)
     return o
 
@@ -323,18 +330,18 @@ SQUELETTE = {
     "taille": ((0.0, 0.0, 1.06), (0.37, 0.30)),
     "poitrine": ((0.0, 0.0, 1.27), (0.48, 0.40)),
     "cou": ((0.0, 0.0, 1.44), (0.26, 0.24)),
-    "epaule_g": ((-0.44, 0.0, 1.19), (0.21, 0.21)),
-    "epaule_d": ((0.42, 0.0, 1.28), (0.21, 0.21)),
-    "coude_g": ((-0.86, -0.26, 0.90), (0.19, 0.19)),
-    "coude_d": ((0.62, -0.04, 1.06), (0.19, 0.19)),
-    "poignet_g": ((-0.94, -0.30, 0.64), (0.165, 0.165)),
-    "poignet_d": ((0.72, -0.08, 0.84), (0.165, 0.165)),
+    "epaule_g": ((-0.42, 0.0, 1.27), (0.21, 0.21)),
+    "epaule_d": ((0.42, 0.0, 1.27), (0.21, 0.21)),
+    "coude_g": ((-0.70, -0.12, 1.02), (0.19, 0.19)),
+    "coude_d": ((0.70, -0.12, 1.02), (0.19, 0.19)),
+    "poignet_g": ((-0.80, -0.18, 0.78), (0.165, 0.165)),
+    "poignet_d": ((0.80, -0.18, 0.78), (0.165, 0.165)),
     "hanche_g": ((-0.22, 0.0, 0.84), (0.25, 0.25)),
     "hanche_d": ((0.22, 0.0, 0.84), (0.25, 0.25)),
-    "genou_g": ((-0.24, -0.04, 0.50), (0.23, 0.22)),
-    "genou_d": ((0.24, -0.04, 0.50), (0.23, 0.22)),
-    "cheville_g": ((-0.26, 0.0, 0.20), (0.20, 0.20)),
-    "cheville_d": ((0.26, 0.0, 0.20), (0.20, 0.20)),
+    "genou_g": ((-0.24, -0.06, 0.44), (0.24, 0.23)),
+    "genou_d": ((0.24, -0.06, 0.44), (0.24, 0.23)),
+    "cheville_g": ((-0.26, 0.0, 0.16), (0.20, 0.20)),
+    "cheville_d": ((0.26, 0.0, 0.16), (0.20, 0.20)),
 }
 ARETES = [("bassin", "taille"), ("taille", "poitrine"), ("poitrine", "cou"),
           ("poitrine", "epaule_g"), ("epaule_g", "coude_g"), ("coude_g", "poignet_g"),
@@ -344,6 +351,34 @@ ARETES = [("bassin", "taille"), ("taille", "poitrine"), ("poitrine", "cou"),
 
 
 PROFONDEUR_CORPS = 1.3   # échelle en y du corps lissé (section ovale du Skin -> tronc rond)
+
+
+def plier_manche(o, a, b, rayon):
+    """Pli longitudinal d'une manche : faces du devant (proches de la direction avant), sur le tiers central."""
+    axe = (b - a)
+    M = o.matrix_world
+    pli = _attribut(o.data, "OMB")
+    n = 0
+    for f in o.data.polygons:
+        p = M @ f.center
+        t = max(0.0, min(1.0, (p - a).dot(axe) / axe.length_squared))
+        q = a + axe * t
+        d = p - q
+        r = d.length
+        if r < 1e-6 or not (0.10 < t < 0.90) or abs(r - rayon) > 0.05:
+            continue
+        devant = Vector((0.0, -1.0, 0.0))
+        devant = devant - axe.normalized() * devant.dot(axe.normalized())
+        if (d.normalized().dot(devant.normalized())) > 0.95:
+            pli[f.index].value = 1.0
+            n += 1
+    return n
+
+
+def _distance_segment(p, a, b):
+    ab = b - a
+    t = max(0.0, min(1.0, (p - a).dot(ab) / max(ab.length_squared, 1e-9)))
+    return (p - (a + ab * t)).length
 
 
 def corps(scene, mat):
@@ -375,16 +410,21 @@ def corps(scene, mat):
     o.scale = (1.0, PROFONDEUR_CORPS, 1.0)
     _appliquer(o)
     _lisser(o)
-    # découpe : torse, bras, jambes (un objet par partie, même matière)
+    # découpe : chaque face va au segment d'os le plus proche (torse, bras, jambes)
+    def etiquette(a, b):
+        # épaules et bassin appartiennent au tronc ; seuls coude, poignet, genou, cheville définissent un membre
+        for cote in ("g", "d"):
+            if any(n.endswith("_" + cote) and n.split("_")[0] in ("coude", "poignet") for n in (a, b)):
+                return "bras_" + cote
+            if any(n.endswith("_" + cote) and n.split("_")[0] in ("genou", "cheville") for n in (a, b)):
+                return "jambe_" + cote
+        return "torse"
+    segments = [(Vector(SQUELETTE[a][0]), Vector(SQUELETTE[b][0]), etiquette(a, b)) for a, b in ARETES]
     parties = {"torse": [], "bras_g": [], "bras_d": [], "jambe_g": [], "jambe_d": []}
     for f in o.data.polygons:
         c = f.center
-        if c.z > 0.86 and abs(c.x) > 0.36 and c.z > 0.80:
-            parties["bras_g" if c.x < 0 else "bras_d"].append(f.index)
-        elif c.z < 0.86:
-            parties["jambe_g" if c.x < 0 else "jambe_d"].append(f.index)
-        else:
-            parties["torse"].append(f.index)
+        meilleur = min(segments, key=lambda sg: _distance_segment(c, sg[0], sg[1]))
+        parties[meilleur[2]].append(f.index)
     objets = {}
     for nom, indices in parties.items():
         morceau = bmesh.new()
@@ -404,7 +444,7 @@ def corps(scene, mat):
     return objets
 
 
-def corde_torsadee(points, rayon, scene, mat, nom, cotes=16, nseg=14):
+def corde_torsadee(points, rayon, scene, mat, nom, cotes=16, nseg=14):  # cotes=6 : torsion lisible à 3 px
     """Corde en un seul tube le long d'un chemin lisse, torsion PEINTE : bandes en hélice par OMB."""
     pts = [Vector(p) for p in points]
     pts = [pts[0]] + pts + [pts[-1]]
@@ -459,7 +499,7 @@ def corde_torsadee(points, rayon, scene, mat, nom, cotes=16, nseg=14):
             continue
         i = f.index // cotes
         k = f.index % cotes
-        if ((k + i * 1) % cotes) < cotes // 2:
+        if ((k + i * 1) % cotes) < cotes // 2:   # bandes en hélice, décalées d'un anneau à l'autre
             pli[f.index].value = 1.0
     bpy.context.view_layer.objects.active = o
     o.select_set(True)
@@ -477,16 +517,22 @@ def construire(scene):
     for p in parties.values():
         p.data.materials.clear()
         p.data.materials.append(m["toile"])
-    # plis (3 ou 4 grands plis nets) sur le côté proche (+X, la caméra est côté +X)
+    # quatre plis nets : deux sur le devant du tronc, un sur le haut de chaque manche (lignes d'une face)
+    torse = parties["torse"]
+    for sg in (-1.0, 1.0):
+        plier(torse, lambda p, sg=sg: p.y < -0.20 and 0.84 < p.z < 1.32 and abs(p.x - sg * 0.07) < 0.075)
+    plier_manche(parties["bras_d"], Vector((0.42, 0.0, 1.27)), Vector((0.70, -0.12, 1.02)), 0.21)
+    plier_manche(parties["bras_g"], Vector((-0.42, 0.0, 1.27)), Vector((-0.70, -0.12, 1.02)), 0.21)
+    # plis (anciens) sur le côté proche (+X, la caméra est côté +X)
     torse = parties["torse"]
     plier(parties["bras_d"], lambda p: 0.36 < p.x < 0.56 and p.y < -0.08 and 1.19 < p.z < 1.235)
     plier(torse, lambda p: p.y < -0.18 and 0.04 < p.x < 0.36 and 1.095 < p.z < 1.125)
-    coude = Vector((0.60, -0.04, 1.06))
+    coude = Vector((0.70, -0.12, 1.02))
     plier(parties["bras_d"], lambda p: abs((p - coude).length - 0.17) < 0.02 and p.y < -0.02)
-    genou = Vector((0.24, -0.04, 0.50))
+    genou = Vector((0.24, -0.06, 0.44))
     plier(parties["jambe_d"], lambda p: abs((p - genou).length - 0.21) < 0.02 and p.y < -0.05)
     # manchettes de cuir au poignet, plus loin que la mitaine
-    for cote, poignet in (("g", (-0.94, -0.30, 0.64)), ("d", (0.72, -0.08, 0.84))):
+    for cote, poignet in (("g", (-0.80, -0.18, 0.78)), ("d", (0.80, -0.18, 0.78))):
         P = Vector(poignet)
         peindre(parties["bras_" + cote], lambda p, P=P: 0.12 < (p - P).length < 0.19, C_COUTURE)
 
@@ -498,7 +544,7 @@ def construire(scene):
             C_REFLET_LAITON)
     hublot = ellipsoide((0.0, -0.52, 1.98), 0.30, (1.0, 0.22, 1.0), m["verre"], "hublot_verre", niveau=1)
     objets["hublot_verre"] = hublot
-    peindre(hublot, lambda p: p.y < -0.48 and (p.x + 0.12) ** 2 + (p.z - 2.12) ** 2 < 0.065 ** 2, C_REFLET_VERRE)
+    peindre(hublot, lambda p: p.y < -0.48 and (p.x + 0.12) ** 2 + (p.z - 2.12) ** 2 < 0.045 ** 2, C_REFLET_VERRE)
     cadre = tore((0.0, -0.56, 1.98), 0.32, 0.055, m["acier"], "cadre_hublot", rotation=(math.pi / 2, 0.0, 0.0))
     objets["cadre_hublot"] = cadre
     peindre(cadre, anneau((0.0, -0.56, 1.98), (1, 0, 0), (0, 0, 1), 0.32,
@@ -511,13 +557,13 @@ def construire(scene):
                                [k * math.pi / 6 for k in range(12)], 0.09, lambda p: p.z > 1.46), C_BOULON)
 
     # --- ceinture de cuir marron, boucle laiton
-    ceinture = tore((0.0, 0.0, 1.02), 0.45, 0.085, m["cuir"], "ceinture", echelle=(1.0, 0.85, 1.0))
+    ceinture = tore((0.0, 0.0, 1.02), 0.45, 0.06, m["cuir"], "ceinture", echelle=(1.0, 0.85, 1.0))
     objets["ceinture"] = ceinture
     objets["boucle"] = boite((0.0, -0.42, 1.02), (0.11, 0.04, 0.11), m["laiton"], "boucle", biseau=0.01)
 
     # --- gants en mitaine, bleu-violet sombre, avec pouce
-    for cote, poignet, coude_p in (("g", (-0.94, -0.30, 0.64), (-0.86, -0.26, 0.90)),
-                                   ("d", (0.72, -0.08, 0.84), (0.62, -0.04, 1.06))):
+    for cote, poignet, coude_p in (("g", (-0.80, -0.18, 0.78), (-0.70, -0.12, 1.02)),
+                                   ("d", (0.80, -0.18, 0.78), (0.70, -0.12, 1.02))):
         P, E = Vector(poignet), Vector(coude_p)
         d = (P - E).normalized()
         centre = P + d * 0.13
@@ -530,19 +576,19 @@ def construire(scene):
 
     # --- bottes lourdes, bleu-violet sombre, semelle peinte
     for cote, s in (("g", -1.0), ("d", 1.0)):
-        botte = ellipsoide((0.26 * s, -0.07, 0.19), 0.24, (1.0, 1.40, 0.90), m["caoutchouc"], "botte_" + cote,
+        botte = ellipsoide((0.26 * s, -0.07, 0.15), 0.24, (1.0, 1.40, 0.90), m["caoutchouc"], "botte_" + cote,
                            niveau=1)
         objets["botte_" + cote] = botte
         peindre(botte, lambda p: p.z < 0.06, C_COUTURE)
 
     # --- bouteille violette derrière l'épaule gauche, col et valve laiton
-    bouteille = cylindre((-0.92, 0.12, 1.42), 0.14, 0.56, m["bouteille"], "bouteille")
+    bouteille = cylindre((-0.92, 0.12, 1.42), 0.15, 0.56, m["bouteille"], "bouteille", biseau=0.07)
     objets["bouteille"] = bouteille
     objets["valve"] = cylindre((-0.92, 0.12, 1.74), 0.045, 0.10, m["laiton"], "valve")
 
     # --- corde torsadée : tube unique, une boucle courte du casque vers la valve
     tuyau = corde_torsadee([(0.0, 0.02, 2.44), (0.02, 0.22, 2.62), (-0.36, 0.42, 2.66), (-0.78, 0.40, 2.38),
-                            (-0.92, 0.14, 1.84)], 0.065, scene, m["corde"], "tuyau")
+                            (-0.92, 0.13, 1.80)], 0.065, scene, m["corde"], "tuyau", cotes=6)
     objets["tuyau"] = tuyau
 
     # --- scène

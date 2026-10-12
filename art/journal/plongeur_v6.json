@@ -209,6 +209,162 @@
         "coherence_base": "Cohérent.",
         "pixels_parasites": "0 isolé ; 3 blocs 2 x 2 restants (écart)."
       }
+    },
+    {
+      "changement": "15 : RETRAIT DU CONTOUR (demande de Julien). Le sprite devient le rendu couleur seul ; les 38 pixels isolés du rendu brut sont corrigés dans la même étape (nettoyage sans contour, tools/pixelisation/nettoyage.py). Le contour indigo est conservé dans l'historique git (commit cb8d19f).",
+      "image": "boards/journal/plongeur_v6_15.png",
+      "image_sha256": "bea0f9b22c4f5f5ee6ae606bd6086692982208b3838549babe97dd05b6e16805",
+      "pixels_changes": "29,8 % des pixels (mesuré entre le sprite avec contour et le sprite sans contour)",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Lisible sur eau claire ; sur eau sombre le bras lointain et la bouteille se fondent un peu.",
+        "couleurs": "Rampes par matière inchangées ; plus aucune couleur de contour.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Plus de trait autour du casque et des bras : la séparation tient à la couleur seule, et le bras et le tronc se confondent (même beige).",
+        "coherence_base": "Même modèle.",
+        "pixels_parasites": "38 pixels isolés corrigés, 0 restant."
+      },
+      "defauts_restants": [
+        "bras et tronc de même valeur",
+        "bouteille peu visible",
+        "vitre trop pâle",
+        "jambes peu séparées"
+      ]
+    },
+    {
+      "changement": "16 (retouche 2) : hublot : vitre bleu-noir (palette verre sombre) et reflet net de 2 px couleur claire (famille reflet), au lieu d'un bleu pâle plat",
+      "image": "boards/journal/plongeur_v6_16.png",
+      "image_sha256": "ec274760a0290ef316f942de33ec423d4232b22e613678041aafc52c05c6cba7",
+      "pixels_changes": "9,3 % des pixels",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Inchangée.",
+        "couleurs": "Vitre sur trois tons sombres ; reflet 1 ton clair ; 23 couleurs utilisées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Vitre lisible comme vitre ; reflet net sur le coin haut-gauche.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "0 isolé."
+      },
+      "defauts_restants": [
+        "bras proche et tronc de même valeur",
+        "bras lointain peu séparé du tronc",
+        "bouteille peu visible"
+      ]
+    },
+    {
+      "changement": "17 (retouche 3) : bras identiques (même longueur, même épaisseur, épaule arrondie, coude et poignet symétriques), manchette sombre et gant en mitaine ; découpe du corps par segment d'os le plus proche",
+      "image": "boards/journal/plongeur_v6_17.png",
+      "image_sha256": "9de39a6ff33e42895b60eac05b0d0fd20f09f9f7b9009a21613529a819841840",
+      "pixels_changes": "25,4 % des pixels",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Bras de même longueur ; les deux gants sont à la même hauteur.",
+        "couleurs": "23 couleurs ; inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Manchettes sombres visibles au poignet ; bras proche encore confondu avec le tronc (même beige).",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "0 isolé après nettoyage."
+      },
+      "mesures": {
+        "bras_proche": "265 px / 80 %",
+        "bras_lointain": "186 px / 62 %",
+        "jambe_proche": "250 px / 80 %",
+        "jambe_lointaine": "193 px / 58 % (échec, traité à la retouche 6)"
+      },
+      "defauts_restants": [
+        "bras proche et tronc de même valeur",
+        "jambe lointaine sous 60 %",
+        "ceinture trop épaisse (plus de 3 px)"
+      ]
+    },
+    {
+      "changement": "18 : ceinture seule, réduite à 3 px (rayon 0,06) : ANNULÉE (1,6 % des pixels, sous le seuil de 5 % par passe). Reprise dans la retouche 4 avec les plis.",
+      "image": "boards/journal/plongeur_v6_18.png",
+      "image_sha256": "dd54eb4c9dc7275e46c23605c43f604ddaf5698cd16d9e1a7c9aa6a3bb01b64c",
+      "pixels_changes": "1,6 % (mesuré contre l'étape 17)",
+      "verdict": "annulée (code conservé, reprise à 19)",
+      "controle": {
+        "silhouette": "Inchangée.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Ceinture plus fine, sans plis : trop peu de changement.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "Aucun."
+      }
+    },
+    {
+      "changement": "19 (retouche 4) : ceinture de cuir 3 px avec boucle laiton, et quatre plis nets (deux sur le devant du tronc, un sur le haut de chaque manche). Mesuré en un seul passage : ceinture et plis ensemble.",
+      "image": "boards/journal/plongeur_v6_19.png",
+      "image_sha256": "09c6d4253160c3dbabd590df8394913360668fdc95a90faf208ed3a14e640f04",
+      "pixels_changes": "5,0 % (95 pixels sur 1 900), contre l'étape 17",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Ceinture et manches mieux détachées du tronc.",
+        "couleurs": "23 couleurs ; inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Boucle laiton visible au centre de la ceinture ; plis visibles sur le devant du tronc, en deux tons.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "0 isolé."
+      },
+      "defauts_restants": [
+        "pli du tronc lu comme une coupure en deux tons, pas comme un pli",
+        "bras proche et tronc encore de même valeur",
+        "bouteille peu visible",
+        "jambe lointaine 58 %"
+      ]
+    },
+    {
+      "changement": "20 (retouche 5) : bouteille cylindrique à bords arrondis (biseau 0,07), plus grosse, derrière l'épaule gauche, valve laiton au col ; corde en tube à 6 faces pour que la torsion (bandes en hélice) se lise à 3 px, reliée à la valve",
+      "image": "boards/journal/plongeur_v6_20.png",
+      "image_sha256": "377bc686aa3619018f2cb6e473247588fee236c3eedd24b1883e8212e58f94f7",
+      "pixels_changes": "5,5 % (contre l'étape 19)",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Bouteille plus visible au-dessus de l'épaule gauche.",
+        "couleurs": "23 couleurs ; inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Bouteille arrondie et valve laiton visibles ; corde de 3 px reliée à la valve, torsion faible.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "0 isolé."
+      },
+      "defauts_restants": [
+        "torsion de la corde à peine lisible",
+        "bras proche et tronc de même valeur",
+        "jambe lointaine à vérifier"
+      ]
+    },
+    {
+      "changement": "21 (retouche 6) : jambes plus longues (genoux 0,06 plus bas, chevilles plus hautes, bottes 0,04 plus basses), genou plus rond (rayon 0,24)",
+      "image": "boards/journal/plongeur_v6_21.png",
+      "image_sha256": "0b49d4dd2053a9e1352d117981269a2965518c78ee56326078c1c5642d298906",
+      "pixels_changes": "7,0 % (contre l'étape 20)",
+      "verdict": "garde",
+      "mesures": {
+        "bras_proche": "227 px / 97 %",
+        "bras_lointain": "165 px / 73 %",
+        "jambe_proche": "246 px / 98 %",
+        "jambe_lointaine": "183 px / 68 %"
+      },
+      "controle": {
+        "silhouette": "Jambes plus longues, pieds plus bas, silhouette plus haute.",
+        "couleurs": "23 couleurs ; inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "72 px.",
+        "details": "Genou arrondi peu visible : même valeur que la cuisse.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "0 isolé."
+      },
+      "defauts_restants": [
+        "genou peu marqué (même valeur que la cuisse)",
+        "torsion de corde à peine visible",
+        "bras proche et tronc de même valeur"
+      ]
     }
   ],
   "annulations": [

@@ -20,9 +20,6 @@ import numpy as np
 from PIL import Image
 
 
-CONTOURS = {"#120c28", "#3c3a7a"}     # contours de la palette v6 (ombre, lumière) : jamais retouchés ici
-
-
 def charger(chemin):
     return np.asarray(Image.open(chemin).convert("RGBA")).copy()
 
@@ -52,7 +49,7 @@ def main():
         groupe_px[y, x] = nom_de.get(contour_hex % tuple(ident[y, x, :3]), "")
     couleur = np.array([[contour_hex % tuple(img[y, x, :3]) if corps[y, x] else "" for x in range(w)]
                         for y in range(h)], dtype=object)
-    contours = CONTOURS
+    contours = set()        # pas de contour dans la méthode sans contour
     pixels = []
     for y in range(h):
         for x in range(w):
