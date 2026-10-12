@@ -20,7 +20,7 @@ import sys
 
 import bmesh
 import bpy
-from mathutils import Vector
+from mathutils import Matrix, Vector
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.abspath(os.path.join(HERE, "..", "..", ".."))
@@ -344,7 +344,9 @@ SQUELETTE = {
     "cheville_d": ((0.26, 0.0, 0.16), (0.20, 0.20)),
 }
 POSE = {}              # surcharge des positions du squelette (nage) ; vide = pose idle validée
-MANCHES_SOMBRES = False  # nage : manches d'un ton plus foncé que le tronc (séparation par la valeur)
+INCLINAISON = 0.0        # nage : élévation de la tête au-dessus de l'horizontale, en degrés (0 = pas de nage, idle)
+OMBRE_BRAS = False       # nage : ombre portée des bras sur le tronc (séparation par l'ombre, pas par la couleur)
+PIVOT_NAGE = (0.0, 0.0, 0.92)   # centre de rotation du corps incliné (les hanches)
 
 
 def pose_de(nom):
@@ -532,10 +534,6 @@ def construire(scene):
         plier(torse, lambda p, sg=sg: p.y < -0.20 and 0.84 < p.z < 1.32 and abs(p.x - sg * 0.07) < 0.075)
     for cote, sg in (("d", 1.0), ("g", -1.0)):
         plier_manche(parties["bras_" + cote], pose_de("epaule_" + cote), pose_de("coude_" + cote), 0.21)
-    if MANCHES_SOMBRES:
-        # nage : toute la manche d'un ton plus foncé que le tronc (séparation par la valeur)
-        for cote in ("g", "d"):
-            plier(parties["bras_" + cote], lambda p: True)
     if not POSE:
         # plis fixes de l'idle (validée) ; en nage ils ne suivent pas la pose et sont omis
         plier(parties["bras_d"], lambda p: 0.36 < p.x < 0.56 and p.y < -0.08 and 1.19 < p.z < 1.235)
@@ -659,58 +657,81 @@ def reglages(scene):
     scene.render.dither_intensity = 0.0
 
 
-# ------------------------------------------------------------------ nage (huit images, plan visible)
-def pose_nage(k, n=8):
-    """Pose de nage de l'image k sur n : bras qui se lèvent au-dessus de la tête et s'abaissent sur les côtés
-    (crawl dans le plan visible, bras opposés en décalage d'une demi-période), jambes en ciseaux écartées
-    latéralement. Les articulations fixes (épaules, hanches, tronc, casque) ne bougent pas."""
+# ------------------------------------------------------------------ nage (huit images, plan de l'écran)
+CRAWL = {"centre": 0.5, "amplitude": 0.5, "coude": 0.5, "phase_glisse": 0.35,
+         "jambe_centre": 0.15, "jambe": 0.25}   # réglages de la nage (essais)
+
+
+def pose_crawl(k, n=8, roulis=70.0):
+    """Nage de l'image k sur n. Les bras et les jambes battent dans le plan frontal du corps (X-Z) :
+    un bras passe au-dessus du tronc pendant que l'autre tire vers le bas, et réciproquement ; les jambes
+    battent en alternance. Le corps est roulé de `roulis` degrés (incliner) : ce plan devient le plan de
+    l'écran, la tête part à droite, le visage reste tourné vers la caméra. Phase asymétrique avec glisse :
+    les huit images sont toutes différentes."""
+    global INCLINAISON
+    INCLINAISON = roulis
     phi = 2.0 * math.pi * k / n
+    warp = phi + CRAWL["phase_glisse"] * math.sin(phi)
     pose = {}
     for cote, s_, decal in (("d", 1.0, 0.0), ("g", -1.0, math.pi)):
-        ph = phi + decal
+        p = warp + decal
+        theta = math.pi * (CRAWL["centre"] + CRAWL["amplitude"] * math.cos(p))   # 0 pendant, pi/2 côté, pi au-dessus
+        beta = CRAWL["coude"] * max(0.0, math.cos(p - 0.8))                       # coude plié en récupération
         epaule = Vector(SQUELETTE["epaule_" + cote][0])
-        alpha = math.pi * (0.5 + 0.5 * math.cos(ph))          # 0 = bras pendant, pi = bras au-dessus de la tête
-        beta = 0.25 + 0.45 * math.cos(ph) ** 2 * (1.0 if math.cos(ph) > 0 else 0.3)   # coude plié quand le bras est levé
-        d_bras = Vector((s_ * math.sin(alpha), 0.0, -math.cos(alpha)))
+        d_bras = Vector((s_ * math.sin(theta), 0.0, -math.cos(theta)))
         coude = epaule + d_bras * 0.39
-        d_avant = Vector((s_ * math.sin(alpha - beta), 0.0, -math.cos(alpha - beta)))
+        d_avant = Vector((s_ * math.sin(theta - beta), 0.0, -math.cos(theta - beta)))
         poignet = coude + d_avant * 0.27
         pose["coude_" + cote] = tuple(coude)
         pose["poignet_" + cote] = tuple(poignet)
     for cote, s_, decal in (("d", 1.0, 0.0), ("g", -1.0, math.pi)):
-        ph = phi + decal
+        q = 2.0 * phi + decal                                                      # deux battements par cycle
+        gamma = math.pi * (CRAWL["jambe_centre"] + CRAWL["jambe"] * math.cos(q))  # écart latéral des jambes
+        flex = 0.25 * (1.0 + math.cos(q)) * 0.5                                    # genou plié quand la jambe monte
         hanche = Vector(SQUELETTE["hanche_" + cote][0])
-        gamma = 0.30 + 0.20 * math.cos(ph)                     # ciseaux : jambes ouvertes en alternance
-        d_cuisse = Vector((s_ * math.sin(gamma), 0.0, -math.cos(gamma)))
-        genou = hanche + d_cuisse * 0.40
-        d_mollet = Vector((s_ * math.sin(gamma * 0.6), 0.0, -math.cos(gamma * 0.6)))
-        cheville = genou + d_mollet * 0.28
+        genou = hanche + Vector((s_ * math.sin(gamma), 0.0, -math.cos(gamma))) * 0.40
+        cheville = genou + Vector((s_ * math.sin(gamma - flex), 0.0, -math.cos(gamma - flex))) * 0.28
         pose["genou_" + cote] = tuple(genou)
         pose["cheville_" + cote] = tuple(cheville)
     return pose
 
 
-def rendre_nage_images(dossier, n=8, identite=False):
-    """Rend les n images de nage (couleur, ou carte d'identité d'une image) dans dossier."""
-    global MANCHES_SOMBRES
+def incliner(scene, roulis):
+    """Roulis du corps (racine : bassin, tout le squelette suit) autour de l'axe de profondeur Y, en degrés.
+    La tête part vers la droite (+X), le visage et le hublot restent tournés vers la caméra. Caméra, lumière
+    et orientation du modèle ne changent pas : seule la pose du corps tourne."""
+    if not roulis:
+        return
+    centre = Vector(PIVOT_NAGE)
+    rot = Matrix.Rotation(math.radians(roulis), 4, "Y")
+    m = Matrix.Translation(Vector(CIBLE)) @ rot @ Matrix.Translation(-centre)
+    for o in scene.objects:
+        if o.type in ("MESH", "CURVE"):
+            o.matrix_world = m @ o.matrix_world
+
+
+def rendre_nage_images(dossier, n=8, incl=70.0, identite=False, images=None, rapide=False):
+    """Rend les images de nage (couleur, ou carte d'identité de chaque image) dans dossier."""
+    global SORTIE, INCLINAISON
     os.makedirs(dossier, exist_ok=True)
-    for k in range(n):
+    for k in (images if images is not None else range(n)):
         POSE.clear()
-        POSE.update(pose_nage(k, n))
-        MANCHES_SOMBRES = True
-        scene = construire_tout()
+        POSE.update(pose_crawl(k, n, incl))
+        scene = construire_tout()          # le roulis est appliqué dans construire_tout
         if identite:
             dossier_k = os.path.join(dossier, "image_%02d" % (k + 1))
             os.makedirs(dossier_k, exist_ok=True)
-            global SORTIE
-            ancienne = SORTIE
-            SORTIE = dossier_k
-            rendre_identite(scene)
-            SORTIE = ancienne
+            if rapide:
+                rendre_membres_rapide(scene, dossier_k)
+            else:
+                ancienne = SORTIE
+                SORTIE = dossier_k
+                rendre_identite(scene)
+                SORTIE = ancienne
         else:
             rendre_fichier(scene, os.path.join(dossier, "nage_%02d.png" % (k + 1)))
     POSE.clear()
-    MANCHES_SOMBRES = False
+    INCLINAISON = 0.0
 
 
 # ------------------------------------------------------------------ cartes d'identité
@@ -829,11 +850,33 @@ def rendre_identite(scene):
     print("IDENTITE_OK", len(set(groupes.values())), "groupes", flush=True)
 
 
+def rendre_membres_rapide(scene, dossier):
+    """Carte d'identité rapide pour les essais : image complète et seules les parties des membres
+    (bras, gants, jambes, bottes), soit neuf rendus au lieu de quinze."""
+    import json
+    objets = [o for o in scene.objects if o.type in ("MESH", "CURVE")]
+    os.makedirs(os.path.join(dossier, "identite"), exist_ok=True)
+    groupes = passe_couleurs(objets, groupe_objet, GROUPE_COULEUR)
+    with open(os.path.join(dossier, "identite_palette.json"), "w", encoding="utf-8") as f:
+        json.dump({"rampes": {g: [h] for g, h in GROUPE_COULEUR.items()}}, f, indent=1)
+    rendre_fichier(scene, os.path.join(dossier, "identite", "idle_01.png"))
+    for g in ("bras_d", "gant_d", "bras_g", "gant_g", "jambe_d", "botte_d", "jambe_g", "botte_g"):
+        for o in objets:
+            if o in groupes:
+                o.hide_render = groupes[o] != g
+        os.makedirs(os.path.join(dossier, "parties", g), exist_ok=True)
+        rendre_fichier(scene, os.path.join(dossier, "parties", g, "idle_01.png"))
+    for o in objets:
+        if o in groupes:
+            o.hide_render = False
+
+
 def construire_tout():
     """Refait la scène de zéro : tout ce qui n'est pas la caméra ou les réglages."""
     bpy.ops.wm.read_factory_settings(use_empty=True)
     scene = bpy.context.scene
     construire(scene)
+    incliner(scene, INCLINAISON)
     eclairer(scene)
     camera(scene)
     reglages(scene)
