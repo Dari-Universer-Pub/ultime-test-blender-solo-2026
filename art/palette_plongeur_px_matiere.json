@@ -1,0 +1,52 @@
+{
+ "note": "Palette v4_px (grille 72 px) : par MATIÈRE, un ton choisi par la luminance seule. Laiton jaune d'or franc (jamais orange ni beige), toile beige 4 tons, cuir brun 3, caoutchouc bleu-violet 4, acier gris-bleu 3, vitre 3 (bleu-noir et reflet), corde beige-jaune 3, bouteille violet-bleu 3, contour brun 2.",
+ "rampes": {
+  "laiton": [
+   "#4a3606",
+   "#8a6410",
+   "#c9981e",
+   "#ffdf55"
+  ],
+  "toile": [
+   "#6e5a3c",
+   "#9c8560",
+   "#c8b08a",
+   "#eedfbe"
+  ],
+  "cuir": [
+   "#3a1c0e",
+   "#6a3618",
+   "#9a5a2c"
+  ],
+  "caoutchouc": [
+   "#14102e",
+   "#221c48",
+   "#332b6a",
+   "#463d88"
+  ],
+  "corde": [
+   "#7a6a3e",
+   "#b3a062",
+   "#ddd08e"
+  ],
+  "verre": [
+   "#06121a",
+   "#143646",
+   "#e8fbff"
+  ],
+  "acier": [
+   "#2a343c",
+   "#5a6c78",
+   "#a8bcc8"
+  ],
+  "bouteille": [
+   "#18143a",
+   "#2c2766",
+   "#4e47a0"
+  ],
+  "contour": [
+   "#140e0c",
+   "#2a1d17"
+  ]
+ }
+}

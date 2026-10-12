@@ -1,22 +1,21 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
-## Phase courante : PLONGEUR V4 (refonte complète demandée par Julien), étape 1 = rendu haute résolution, EN ATTENTE DE VALIDATION
-Julien trouve le héros v3 trop moche et demande de tout recommencer. Décisions :
-- v3 est archivé : `art/source/blender/archive/plongeur_v3.py` (+ `.blend`), journal `art/journal/plongeur_v3.json` conservé ; ne pas le réutiliser.
-- Nouveau script : `art/source/blender/plongeur_v4.py`, construit tout dans Blender (pas de téléchargement, pas de pixel par code).
-- Méthode en deux temps : (1) rendu HAUTE RÉSOLUTION 768 px, sans pixelisation, trois quarts (azimut 35°, élévation 15°), clé haut-gauche, fond transparent : ARRÊT pour validation de Julien ; (2) seulement après validation : réduction à 46-48 px, quantification, contour sombre sélectif + contour interne, carte d'identité, mesure des quatre membres (>= 20 px et >= 60 %) : ARRÊT pour validation.
-- Ensuite seulement : nage (44-48 px, amplitude >= 0,45), puis idle, creusage, attaque, saut, dégâts, mort, feuille, manifeste, jeu, captures, robot, `python tools/gate.py M3` dans un clone neuf, remise à l'échelle des créatures.
+## Phase courante : PLONGEUR V4_PX (grille de pixels, 72 px), pose idle EN ATTENTE DE VALIDATION
+- Julien a modifié `HAUTEUR_PLONGEUR` dans `tools/gate.py` ; ce changement n'est PAS dans la branche (ni sur `origin/main`) : le gate y lit encore `(28, 48)`. Je n'ai pas touché au gate ; à corriger par Julien ou à reprendre.
+- Nouvelle échelle : 70 à 74 px de haut, case 112 x 112 (rendu à 4 fois : 448 px).
+- Modèle : `art/source/blender/plongeur_v4_px.py` (référence : `plongeur_v4.py`). Bras de 6 px, jambes épaisses avec un vide de 3 px, corde de 3 px en boucle courte (sommet à 0,24 au-dessus du casque), 6 boulons par grand hublot, 4 au petit, grille à 2 barres de 1 px.
+- Pixelisation par matière : `tools/pixelisation/pixel_px.sh` (rendu, carte d'identité, `pixeliser_matiere.py`, mesures). Palette : `art/palette_plongeur_px_matiere.json`.
+- Finition Aseprite (3 passes + nettoyage) : `tools/pixelisation/finition_px.lua`.
+- Sprite final : `art/pixel/plongeur_v4_px/idle_01.png`.
+- Planche finale : `boards/journal/plongeur_v4_px_final.png` (rendu v4 haute résolution à gauche, pixel ×4 sur eau claire, eau sombre et damier).
+- Mesures : 72 px de haut ; 0 pixel isolé ; 22 couleurs ; aucun noir pur ; quatre membres OK (bras proche 161 px / 71 %, bras lointain 138 px / 62 %, jambe proche 173 px / 77 %, jambe lointaine 154 px / 66 %) ; tuyau 4,3 % de la silhouette.
+- Journal : `art/journal/plongeur_v4_px.json`, entrées 1 à 6.
+- Reste à voir par Julien : grille du hublot à peine visible (1 px) ; le laiton est jaune d'or, à confirmer.
 
-### v4 : pixelisation par matière (à valider) — les retouches 1 à 4 sont faites
-- Julien a rejeté la première pixelisation (blob beige, laiton perdu, bruit violet) : refaite de zéro, pilotée par matière.
-- Méthode : rendu 320 px (4 x 80, cadre 5,6), carte d'identité des matières (laiton, acier, verre, toile, cuir, caoutchouc, corde, bouteille) et des groupes (membres) ; réduction couleur par moyenne, matière et groupe par majorité ; quantification par matière sur la luminance seule ; contour sombre sélectif ; contour interne 1 px ; nettoyage des pixels isolés.
-- Outils : `tools/pixelisation/pixeliser_matiere.py`, `tools/planches/pixel_quatre.py`, palette `art/palette_plongeur_v4_matiere.json` (30 tons).
-- Mesures : 47 px de haut ; 0 pixel isolé après nettoyage (40 avant) ; 17 couleurs distinctes dans l'image ; aucun noir pur.
-- Membres (critère >= 20 px et >= 60 % non cachés) : ÉCHEC pour le bras lointain (43 px, 51 %) et la jambe lointaine (49 px, 60 %). Cause : ils sont cachés par le tronc et la jambe proche dans cette pose. Corriger demande une décision de pose (écarter le bras et la jambe lointains) : je n'ai pas touché au modèle.
-- Points que le modèle doit changer, à décider avec Julien : corde à 2-3 px (aujourd'hui ~5 px) ; reflet du hublot à 2 px (aujourd'hui 1 px) ; anneau gris du hublot plus épais.
-- Palette : 30 tons par matière (demande de Julien) ; l'ancienne cible 64-96 couleurs n'est pas atteinte, à trancher.
-- Planche finale : `boards/journal/plongeur_v4_pixel_final.png` (rendu haute résolution à gauche, pixel ×4 sur eau claire, eau sombre et damier).
-- Journal : `art/journal/plongeur_v4.json`, entrées 21 à 28.
+### Plan du passage du jeu (à faire après validation du héros et de sa nage, pas avant)
+- Tuiles de 24 px : le héros de 72 px fait 3 tuiles de haut.
+- Créatures et props agrandis d'environ 1,5 fois pour rester à la même échelle que le héros.
+- M3 et les fonds ne sont pas touchés pour l'instant.
 
 ## Ancienne phase (v3, archivée) : NOUVEAU MODÈLE DU HÉROS (vue de trois quarts), étape 1 = pose idle
 Julien a demandé un modèle refait de zéro, pensé pour être lu de trois quarts : `art/source/blender/plongeur_v3.py`.

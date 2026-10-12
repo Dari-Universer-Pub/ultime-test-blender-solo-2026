@@ -1,0 +1,120 @@
+{
+  "id": "plongeur_v4_px",
+  "entrees": [
+    {
+      "changement": "modèle px base : plongeur_v4_px.py (modèle v4 réglé pour la grille : bras de 6 px, jambes épaisses avec vide de 3 px, corde de 3 px en boucle courte, 6 boulons par hublot, grille à 2 barres de 1 px), rendu 448 px, pixelisation par matière (4 fois la cible)",
+      "image": "boards/journal/plongeur_v4_px_1.png",
+      "image_sha256": "24c9cb1f22f63d90702fce2b8573fe6c0c3a37f2bf3156cecebb4ed3c4e97e52",
+      "controle": {
+        "silhouette": "Chibi lisible : casque, collerette, tuyau en boucle, bras, jambes et bottes ; le casque est la plus grande forme.",
+        "couleurs": "Laiton jaune d'or, toile beige, gants et bottes bleu-violet, corde crème, vitre bleu-noir ; 22 couleurs.",
+        "cadrage": "Héros centré dans la case de 112 px.",
+        "taille": "72 px de haut dans la case de 112 px (cible 70 à 74).",
+        "details": "Hublot avec anneau gris, reflet, boulons ; grille à peine visible à cette taille ; pouce des gants lisible.",
+        "coherence_base": "Même personnage que la référence haute résolution v4.",
+        "pixels_parasites": "0 pixel isolé après nettoyage."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "bras lointain à 56 % : sous le seuil de 60 %, à corriger (étape 2)",
+        "grille du hublot à peine visible (1 px)"
+      ],
+      "mesure_membres": "idle 1 (sprite 112 px, 72 px de haut) : bras proche 161 px / 71 %, bras lointain 138 px / 62 %, jambe proche 173 px / 77 %, jambe lointaine 154 px / 66 % : tous OK (seuil 30 px et 60 %)"
+    },
+    {
+      "changement": "pose px : bras lointain écarté (épaule, coude et poignet un peu plus vers l'extérieur) pour qu'il ne soit plus caché par le tronc",
+      "image": "boards/journal/plongeur_v4_px_2.png",
+      "image_sha256": "e2cf2963d652f5bc39ad60ff22d90c9904d0d730dc1aec37c541f07f5b25ee13",
+      "controle": {
+        "silhouette": "Le bras lointain se détache du tronc ; la silhouette s'élargit légèrement.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "72 px de haut.",
+        "details": "Les quatre membres se lisent ; le bras lointain est visible sur toute sa longueur.",
+        "coherence_base": "Pose idle, bras écartés en A.",
+        "pixels_parasites": "0 pixel isolé."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "grille du hublot à peine visible (1 px)"
+      ],
+      "mesure_membres": "idle 1 (sprite 112 px, 72 px de haut) : bras proche 161 px / 71 %, bras lointain 138 px / 62 %, jambe proche 173 px / 77 %, jambe lointaine 154 px / 66 % : tous OK (seuil 30 px et 60 %)"
+    },
+    {
+      "changement": "finition Aseprite, passe 1 : reflets (coin haut-gauche du laiton du casque et bord haut-gauche de la vitre passent aux tons clairs)",
+      "image": "boards/journal/plongeur_v4_px_3.png",
+      "image_sha256": "5bd6a360ac3c980df113783b3076882b7f386764945d494b608705d8ce0a6b31",
+      "controle": {
+        "silhouette": "Inchangée.",
+        "couleurs": "Le casque gagne un reflet jaune clair en haut à gauche ; la vitre a un reflet blanc.",
+        "cadrage": "Inchangé.",
+        "taille": "72 px.",
+        "details": "Le reflet du casque se lit à x1 ; celui de la vitre reste discret.",
+        "coherence_base": "Reflets du laiton et de la vitre, comme demandé.",
+        "pixels_parasites": "Pixels isolés apparus avec le reflet : 42 (traités à la passe 6)."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "pixels isolés issus du reflet : traités à la passe 6"
+      ],
+      "mesure_membres": "idle 1 (sprite 112 px, 72 px de haut) : bras proche 161 px / 71 %, bras lointain 138 px / 62 %, jambe proche 173 px / 77 %, jambe lointaine 154 px / 66 % : tous OK (seuil 30 px et 60 %)"
+    },
+    {
+      "changement": "finition Aseprite, passe 2 : liseré de lumière haut-gauche sur les arêtes de chaque matière (laiton, toile, caoutchouc, cuir, bouteille)",
+      "image": "boards/journal/plongeur_v4_px_4.png",
+      "image_sha256": "ab76e86a020a314eb3ae83caaa412257d4c033bd11903d1c1b4c0996c53a9068",
+      "controle": {
+        "silhouette": "Les arêtes du haut-gauche sont plus claires ; la silhouette reste la même.",
+        "couleurs": "Liseré dans le ton clair de chaque matière ; pas de couleur nouvelle.",
+        "cadrage": "Inchangé.",
+        "taille": "72 px.",
+        "details": "Le liseré se lit sur le casque, les bras et le tronc.",
+        "coherence_base": "Lumière haut-gauche, comme demandé.",
+        "pixels_parasites": "Pixels isolés à traiter (passe 6)."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "pixels isolés : traités à la passe 6"
+      ],
+      "mesure_membres": "idle 1 (sprite 112 px, 72 px de haut) : bras proche 161 px / 71 %, bras lointain 138 px / 62 %, jambe proche 173 px / 77 %, jambe lointaine 154 px / 66 % : tous OK (seuil 30 px et 60 %)"
+    },
+    {
+      "changement": "finition Aseprite, passe 3 : ombre sous le col laiton et sous la ceinture (la toile juste sous le trait de contour passe au ton sombre)",
+      "image": "boards/journal/plongeur_v4_px_5.png",
+      "image_sha256": "92e240e4e2fb6d8acd55cb5fb8f523dd97a49516cf5c56004e6b41bb338ea9ec",
+      "controle": {
+        "silhouette": "Inchangée.",
+        "couleurs": "Ombre brune sous le col et sous la ceinture ; couleurs de base conservées.",
+        "cadrage": "Inchangé.",
+        "taille": "72 px.",
+        "details": "La collerette et la ceinture se détachent du tronc.",
+        "coherence_base": "Ombre sous la collerette et la ceinture, comme demandé.",
+        "pixels_parasites": "Pixels isolés à traiter (passe 6)."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "pixels isolés : traités à la passe 6"
+      ],
+      "mesure_membres": "idle 1 (sprite 112 px, 72 px de haut) : bras proche 161 px / 71 %, bras lointain 138 px / 62 %, jambe proche 173 px / 77 %, jambe lointaine 154 px / 66 % : tous OK (seuil 30 px et 60 %)"
+    },
+    {
+      "changement": "nettoyage après finition : pixels isolés ramenés à la couleur majoritaire de leurs voisins (42 avant, 0 après)",
+      "image": "boards/journal/plongeur_v4_px_6.png",
+      "image_sha256": "2e73d968637297deba5857c006536764df3cd798184caa9b31aa0f0896807cc2",
+      "controle": {
+        "silhouette": "Inchangée.",
+        "couleurs": "Pas de nouvelle couleur ; 22 couleurs.",
+        "cadrage": "Inchangé.",
+        "taille": "72 px de haut.",
+        "details": "Le reflet du casque reste visible après nettoyage.",
+        "coherence_base": "Sprite propre, sans bruit.",
+        "pixels_parasites": "0 pixel isolé (mesuré)."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "grille du hublot à peine visible (1 px)"
+      ],
+      "mesure_membres": "idle 1 (sprite 112 px, 72 px de haut) : bras proche 161 px / 71 %, bras lointain 138 px / 62 %, jambe proche 173 px / 77 %, jambe lointaine 154 px / 66 % : tous OK (seuil 30 px et 60 %)"
+    }
+  ]
+}
