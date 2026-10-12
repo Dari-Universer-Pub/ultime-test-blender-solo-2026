@@ -1,0 +1,101 @@
+{
+ "note": "Palette du plongeur v4 (pixelisation à 48 px) : laiton, beige lin, brun cuir, bleu-violet sombre (gants), verre bleuté, acier gris, corde, bouteille violet-bleu, bottes violet-noir, contours. Pas de noir pur.",
+ "rampes": {
+  "laiton": [
+   "#2a1e0c",
+   "#5a4214",
+   "#8a6420",
+   "#b88f34",
+   "#dcb858",
+   "#f4e09a"
+  ],
+  "beige": [
+   "#5e4e34",
+   "#7a6446",
+   "#9c8460",
+   "#bca47a",
+   "#d4bf96",
+   "#e8d9b4",
+   "#f6eed2"
+  ],
+  "brun": [
+   "#2a1610",
+   "#4a2a18",
+   "#6e4124",
+   "#8f5a32",
+   "#b07a4e",
+   "#c99a6c"
+  ],
+  "gant": [
+   "#14102c",
+   "#221c48",
+   "#332b6a",
+   "#463d88",
+   "#5e58a4",
+   "#7e7ac0"
+  ],
+  "verre": [
+   "#06161f",
+   "#0a2a3c",
+   "#124258",
+   "#1f6078",
+   "#3a8aa0",
+   "#e6fbff"
+  ],
+  "acier": [
+   "#1e262c",
+   "#34414a",
+   "#4f5f69",
+   "#6e808a",
+   "#93a4ad",
+   "#c4d2d8"
+  ],
+  "corde": [
+   "#5e5234",
+   "#7d6c46",
+   "#9e8c5e",
+   "#c0ae7e",
+   "#dccb9c",
+   "#f0e4c0"
+  ],
+  "bouteille": [
+   "#120e26",
+   "#1c1842",
+   "#2a2660",
+   "#3c3880",
+   "#55509e",
+   "#7470b8"
+  ],
+  "botte": [
+   "#0c0a18",
+   "#15122a",
+   "#1f1c3a",
+   "#2c2950",
+   "#3b3868"
+  ],
+  "contour_sombre": [
+   "#0c0818",
+   "#170f2e",
+   "#241a44",
+   "#34285e",
+   "#4a3a6e",
+   "#5e4a80"
+  ],
+  "contour_chaud": [
+   "#3a2040",
+   "#4a2a4a",
+   "#7a3a52",
+   "#b06048",
+   "#e8966a",
+   "#f4b48a"
+  ],
+  "bulle": [
+   "#2c5a6a",
+   "#3f7d8c",
+   "#5ea6b0",
+   "#8acdd0",
+   "#b6e6e4",
+   "#e0fcfa"
+  ]
+ }
+}

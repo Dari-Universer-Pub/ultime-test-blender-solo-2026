@@ -7,24 +7,16 @@ Julien trouve le héros v3 trop moche et demande de tout recommencer. Décisions
 - Méthode en deux temps : (1) rendu HAUTE RÉSOLUTION 768 px, sans pixelisation, trois quarts (azimut 35°, élévation 15°), clé haut-gauche, fond transparent : ARRÊT pour validation de Julien ; (2) seulement après validation : réduction à 46-48 px, quantification, contour sombre sélectif + contour interne, carte d'identité, mesure des quatre membres (>= 20 px et >= 60 %) : ARRÊT pour validation.
 - Ensuite seulement : nage (44-48 px, amplitude >= 0,45), puis idle, creusage, attaque, saut, dégâts, mort, feuille, manifeste, jeu, captures, robot, `python tools/gate.py M3` dans un clone neuf, remise à l'échelle des créatures.
 
-### v4 : deuxième série de corrections de Julien sur le rendu haute résolution (à valider)
-Julien ne valide pas encore la v4 : corrections demandées (un changement à la fois, planche avant/après à chaque étape).
-| étape | correction | planche | verdict |
-|---|---|---|---|
-| 13 | 1 : tuyau d'air : boucle courte et arrondie vers l'arrière, à moins d'un demi-diamètre au-dessus du casque | `plongeur_v4_hd_13.png` | garde |
-| 14 | 2 : proportions chibi : tronc en tonneau, jambes et bras courts et épais, bottes et genoux descendus | `plongeur_v4_hd_14.png` | garde |
-| 15 | 3 : bras à volume rond, plis au coude et à l'épaule, manche qui s'évase vers le gant | `plongeur_v4_hd_15.png` | garde |
-| 16 | 4 : toile beige clair chaud, ombres brun doux | `plongeur_v4_hd_16.png` | garde |
-| 17 | 3 suite : plis renforcés (encore peu visibles) | `plongeur_v4_hd_17.png` | garde |
-| 18 | 5 : genouillères bombées, enfoncées dans le genou (trop grandes) | `plongeur_v4_hd_18.png` | garde |
-| 19 | 6 : bouteille plus visible derrière l'épaule lointaine, valve laiton reliée à la corde | `plongeur_v4_hd_19.png` | garde |
-| 20 | 7 : fermeture avec coutures, ceinture plus large avec boucle, coutures de manche | `plongeur_v4_hd_20.png` | garde |
-
-- **Planche finale** : `boards/journal/plongeur_v4_final.png` (rendu seul sur gris clair, 768 px).
-- Journal : `art/journal/plongeur_v4.json`, entrées 1 à 20, SHA-256 dans chaque entrée.
-- Pas de pixelisation, pas de mesure des membres avant le retour de Julien.
-- Restent ouverts : plis du coude et de l'épaule peu visibles ; genouillères un peu grandes ; valve laiton petite ; coutures très fines ; gants un peu petits ; corde bosselée aux courbes serrées.
-- Référence cartoon de Julien : toujours absente de `art/references/`.
+### v4 : pixelisation par matière (à valider) — les retouches 1 à 4 sont faites
+- Julien a rejeté la première pixelisation (blob beige, laiton perdu, bruit violet) : refaite de zéro, pilotée par matière.
+- Méthode : rendu 320 px (4 x 80, cadre 5,6), carte d'identité des matières (laiton, acier, verre, toile, cuir, caoutchouc, corde, bouteille) et des groupes (membres) ; réduction couleur par moyenne, matière et groupe par majorité ; quantification par matière sur la luminance seule ; contour sombre sélectif ; contour interne 1 px ; nettoyage des pixels isolés.
+- Outils : `tools/pixelisation/pixeliser_matiere.py`, `tools/planches/pixel_quatre.py`, palette `art/palette_plongeur_v4_matiere.json` (30 tons).
+- Mesures : 47 px de haut ; 0 pixel isolé après nettoyage (40 avant) ; 17 couleurs distinctes dans l'image ; aucun noir pur.
+- Membres (critère >= 20 px et >= 60 % non cachés) : ÉCHEC pour le bras lointain (43 px, 51 %) et la jambe lointaine (49 px, 60 %). Cause : ils sont cachés par le tronc et la jambe proche dans cette pose. Corriger demande une décision de pose (écarter le bras et la jambe lointains) : je n'ai pas touché au modèle.
+- Points que le modèle doit changer, à décider avec Julien : corde à 2-3 px (aujourd'hui ~5 px) ; reflet du hublot à 2 px (aujourd'hui 1 px) ; anneau gris du hublot plus épais.
+- Palette : 30 tons par matière (demande de Julien) ; l'ancienne cible 64-96 couleurs n'est pas atteinte, à trancher.
+- Planche finale : `boards/journal/plongeur_v4_pixel_final.png` (rendu haute résolution à gauche, pixel ×4 sur eau claire, eau sombre et damier).
+- Journal : `art/journal/plongeur_v4.json`, entrées 21 à 28.
 
 ## Ancienne phase (v3, archivée) : NOUVEAU MODÈLE DU HÉROS (vue de trois quarts), étape 1 = pose idle
 Julien a demandé un modèle refait de zéro, pensé pour être lu de trois quarts : `art/source/blender/plongeur_v3.py`.

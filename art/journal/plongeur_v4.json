@@ -429,6 +429,161 @@
         "valve laiton petite"
       ],
       "mesure_membres": "non applicable au rendu haute résolution"
+    },
+    {
+      "changement": "v4 retouche 1 (tuyau d'air) : une seule boucle propre, sans rabat ; la corde sort du sommet du casque, monte, passe par l'arrière et redescend vers la bouteille (première version, à régler)",
+      "image": "boards/journal/plongeur_v4_hd_21.png",
+      "image_sha256": "d85db63492a146a32cf15370b90986b301faf580ee3fed9be6665ac8a6027a38",
+      "controle": {
+        "silhouette": "Une seule boucle au-dessus du casque, plus de nœud papillon ; la descente vers la gauche forme une pointe au-dessus du casque.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "Rendu 768 px, non pixelisé.",
+        "details": "La boucle est propre ; la partie qui redescend vers la bouteille fait une pointe horizontale au-dessus du casque.",
+        "coherence_base": "Une seule boucle, comme demandé.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "descente de la corde vers la bouteille : pointe horizontale au-dessus du casque, à adoucir"
+      ],
+      "mesure_membres": "non applicable au rendu haute résolution"
+    },
+    {
+      "changement": "v4 retouche 1 suite (tuyau d'air) : la descente de la corde se fait par l'arrière, en pente douce, jusqu'au col de la bouteille ; plus de pointe au-dessus du casque",
+      "image": "boards/journal/plongeur_v4_hd_22.png",
+      "image_sha256": "4a46a68f4f8b2118b874a0dfb8975876806ed6f58500e66679172c6dbc58fa98",
+      "controle": {
+        "silhouette": "Une seule boucle propre au-dessus du casque, qui redescend derrière le casque vers la bouteille.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "Rendu 768 px, non pixelisé.",
+        "details": "La corde est continue de la sortie du casque à la bouteille ; la pointe a disparu.",
+        "coherence_base": "Une seule boucle, comme demandé par Julien.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "extrémité de la corde masquée par le casque et la bouteille : à peine lisible"
+      ],
+      "mesure_membres": "non applicable au rendu haute résolution"
+    },
+    {
+      "changement": "v4 retouche 2 (jambes) : jambes en toile beige clair comme le haut de la combinaison (le brun n'apparaît que dans les ombres de la lumière)",
+      "image": "boards/journal/plongeur_v4_hd_23.png",
+      "image_sha256": "5bccd893ab563e4635d7f60de661acdce2d3c8a054c1b8e8abac488a1ec34cf4",
+      "controle": {
+        "silhouette": "Inchangée.",
+        "couleurs": "Pantalon beige clair, même teinte que le buste ; genouillères sombres conservées.",
+        "cadrage": "Inchangé.",
+        "taille": "Rendu 768 px, non pixelisé.",
+        "details": "Les ombres brunes sont faibles : le pantalon est presque uniforme.",
+        "coherence_base": "Jambes beige clair, comme demandé.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "ombres brun doux peu marquées sur le pantalon : à renforcer si Julien le demande"
+      ],
+      "mesure_membres": "non applicable au rendu haute résolution"
+    },
+    {
+      "changement": "v4 retouche 3 (bras) : bras allongés (coude et poignet descendus et écartés), arrondis, manche qui s'évase vers la manchette sombre et le gant",
+      "image": "boards/journal/plongeur_v4_hd_24.png",
+      "image_sha256": "6d1c4e42cdccd04f397d37e1314b1460a0de3fdee6c123e9d24efc4093ad6cef",
+      "controle": {
+        "silhouette": "Les bras ne sortent plus comme des moignons ; ils descendent avec un coude arrondi.",
+        "couleurs": "Inchangées ; la manchette sombre et le gant bleu-violet se détachent.",
+        "cadrage": "Inchangé.",
+        "taille": "Rendu 768 px, non pixelisé.",
+        "details": "La manche s'évase vers la manchette ; le gant recouvre son bord.",
+        "coherence_base": "Bras plus longs et arrondis, comme demandé.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "le coude reste léger : volume à renforcer si besoin"
+      ],
+      "mesure_membres": "non applicable au rendu haute résolution"
+    },
+    {
+      "changement": "v4 retouche 4 (tronc) : ventre plus rond sous les épaules ; ceinture, fermeture et couture recalées sur le nouveau volume",
+      "image": "boards/journal/plongeur_v4_hd_25.png",
+      "image_sha256": "616a6dc131df8f9aa30af6416a0e8c0b0c92613bdb56b9c70e415a5e6b350615",
+      "controle": {
+        "silhouette": "Le tronc est plus plein au milieu, sous les épaules ; le corps reste trapu.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "Rendu 768 px, non pixelisé.",
+        "details": "La ceinture et la fermeture suivent le ventre ; l'effet de rondeur est discret.",
+        "coherence_base": "Ventre rond, comme demandé.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "rondeur du ventre discrète à cette échelle"
+      ],
+      "mesure_membres": "non applicable au rendu haute résolution"
+    },
+    {
+      "changement": "pixelisation v4 par matière, étape 1 : quantification par matière (chaque pixel prend le ton de sa rampe selon la luminance seule), nettoyage des pixels isolés (0 après nettoyage) et contour sombre sélectif",
+      "image": "boards/journal/plongeur_v4_pixel_1.png",
+      "image_sha256": "b7fc8481daa797266fe6e4749db7008806d3ebf2e81e97d33fd68868663dadea",
+      "controle": {
+        "silhouette": "Silhouette de 47 px dans la case de 80 px ; le casque, le tuyau et les membres se lisent à x9.",
+        "couleurs": "17 couleurs distinctes dans l'image ; pas de noir pur ; plus de violet parasite dans le corps.",
+        "cadrage": "Héros centré, case de 80 px.",
+        "taille": "47 px de haut (cible 46-48).",
+        "details": "Le hublot est une vitre sombre avec un anneau gris ; le reflet tient en un pixel ; la corde reste une tache beige.",
+        "coherence_base": "Même personnage que le rendu haute résolution.",
+        "pixels_parasites": "Points isolés retirés : 40 avant nettoyage, 0 après."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "bras et jambes lointains cachés : mesure en échec (voir mesure)",
+        "corde : tache beige de 5 px, à 2-3 px seulement par modèle",
+        "reflet du hublot : 1 px, à agrandir par modèle"
+      ],
+      "mesure_membres": "idle 1 (pixel 80 px, 47 px de haut) : bras proche 61 px / 73 %, bras lointain 43 px / 51 % (KO), jambe proche 57 px / 71 %, jambe lointaine 49 px / 60 % (limite) : échec, cause = le bras lointain et la jambe lointaine sont cachés par le tronc et la jambe proche : décision de pose à prendre avec Julien"
+    },
+    {
+      "changement": "pixelisation v4, étape 2 : laiton plus franc (rampe jaune-orangé de 4 tons, plus saturée et plus claire)",
+      "image": "boards/journal/plongeur_v4_pixel_2.png",
+      "image_sha256": "c4ada90c1dbc359511210fbdba8c0fbdfdbab2a7915f857909b48e17051f1f5e",
+      "controle": {
+        "silhouette": "Inchangée.",
+        "couleurs": "Le casque passe d'ocre terne à or orangé avec des reflets clairs.",
+        "cadrage": "Inchangé.",
+        "taille": "Inchangée (47 px).",
+        "details": "Le laiton se lit comme du métal brillant à x9.",
+        "coherence_base": "Laiton du casque, comme demandé par Julien.",
+        "pixels_parasites": "Aucun pixel isolé (0)."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "reflet du hublot : 1 px"
+      ],
+      "mesure_membres": "idle 1 (pixel 80 px, 47 px de haut) : bras proche 61 px / 73 %, bras lointain 43 px / 51 % (KO), jambe proche 57 px / 71 %, jambe lointaine 49 px / 60 % (limite) : échec, cause = le bras lointain et la jambe lointaine sont cachés par le tronc et la jambe proche : décision de pose à prendre avec Julien"
+    },
+    {
+      "changement": "pixelisation v4, étape 3 : vitre plus sombre, bleu-noir avec un seul reflet clair (rampe de 3 tons sombres + reflet)",
+      "image": "boards/journal/plongeur_v4_pixel_3.png",
+      "image_sha256": "ba0cea6c2dd9daaa98ac98decab00466253dc50686b1082910a7b1e930002ef7",
+      "controle": {
+        "silhouette": "Inchangée.",
+        "couleurs": "La vitre passe du teal au bleu-noir ; le cadre gris reste à côté.",
+        "cadrage": "Inchangé.",
+        "taille": "Inchangée (47 px).",
+        "details": "La vitre se détache du casque ; le reflet ne fait qu'un pixel.",
+        "coherence_base": "Vitre bleu-noir, comme demandé.",
+        "pixels_parasites": "Aucun pixel isolé (0)."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "reflet du hublot : 1 px au lieu de 2 : demande un reflet plus grand dans le modèle",
+        "anneau gris du hublot fin : à épaissir dans le modèle"
+      ],
+      "mesure_membres": "idle 1 (pixel 80 px, 47 px de haut) : bras proche 61 px / 73 %, bras lointain 43 px / 51 % (KO), jambe proche 57 px / 71 %, jambe lointaine 49 px / 60 % (limite) : échec, cause = le bras lointain et la jambe lointaine sont cachés par le tronc et la jambe proche : décision de pose à prendre avec Julien"
     }
   ]
 }

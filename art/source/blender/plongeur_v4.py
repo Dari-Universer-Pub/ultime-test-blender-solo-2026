@@ -14,6 +14,8 @@ Variables : PLONGEUR_SORTIE (dossier de rendu), PLONGEUR_RES (défaut 768), PLON
 """
 import math
 import os
+import re
+import json
 import sys
 
 import bmesh
@@ -30,13 +32,18 @@ ECHANTILLONS = int(os.environ.get("PLONGEUR_ECHANTILLONS", "64"))
 AZIMUT = 35.0       # depuis la face vers +X
 ELEVATION = 15.0
 CIBLE = Vector((0.0, 0.1, 1.55))
-CADRE = 3.9         # largeur du cadre en unités (ortho) : place le tuyau au-dessus du casque
+CADRE = float(os.environ.get("PLONGEUR_CADRE", "3.9"))   # largeur du cadre (unités) : tuyau au-dessus du casque
+IDENTITE = os.environ.get("PLONGEUR_IDENTITE") == "1"    # carte d'identité des membres (pixelisation)
 
 
 def srgb(hexa):
-    """Couleur hexadécimale sRGB -> linéaire (Blender travaille en linéaire)."""
+    """Couleur hexadécimale sRGB -> linéaire (Blender travaille en linéaire) : fonction exacte de l'sRGB,
+    pour qu'une couleur plate ressorte à l'identique au rendu (la carte d'identité compare des couleurs exactes)."""
     h = hexa.lstrip("#")
-    return tuple((int(h[k:k + 2], 16) / 255.0) ** 2.2 for k in (0, 2, 4))
+    def lin(v):
+        v = v / 255.0
+        return v / 12.92 if v <= 0.04045 else ((v + 0.055) / 1.055) ** 2.4
+    return tuple(lin(int(h[k:k + 2], 16)) for k in (0, 2, 4))
 
 
 # ------------------------------------------------------------------ matériaux PBR
@@ -322,30 +329,30 @@ def construire(scene):
 
     # --- torse court et arrondi, toile kaki avec plis, fermeture centrale, bassin
     # tonneau plein et lisse : une seule surface (bassin, ventre, poitrine), section élargie en X
-    torse = membre([(0.0, 0.0, 0.74), (0.0, 0.0, 1.04), (0.0, 0.0, 1.34)], [0.48, 0.58, 0.40], m["kaki"],
+    torse = membre([(0.0, 0.0, 0.74), (0.0, 0.0, 1.04), (0.0, 0.0, 1.34)], [0.46, 0.62, 0.44], m["kaki"],
                    "torse", nseg=10, cotes=40, plis=(7, 0.09))
     torse.scale = (1.15, 0.84, 1.0)
     _appliquer(torse)
-    boite((0.0, -0.46, 1.04), (0.035, 0.03, 0.56), cadre_fer, biseau=0.0, nom="fermeture")
+    boite((0.0, -0.51, 1.04), (0.035, 0.03, 0.56), cadre_fer, biseau=0.0, nom="fermeture")
     # coutures de part et d'autre de la fermeture
     for x in (-0.07, 0.07):
-        boite((x, -0.44, 1.04), (0.010, 0.012, 0.50), m["kaki_sombre"], biseau=0.0, nom="couture_fermeture")
+        boite((x, -0.49, 1.04), (0.010, 0.012, 0.50), m["kaki_sombre"], biseau=0.0, nom="couture_fermeture")
     # coutures horizontales fines, sur la toile
-    tore((0.0, 0.0, 1.24), 0.50, 0.012, m["kaki_sombre"], echelle=(1.0, 0.84, 1.0), nom="couture")
+    tore((0.0, 0.0, 1.24), 0.56, 0.012, m["kaki_sombre"], echelle=(1.0, 0.84, 1.0), nom="couture")
     # --- ceinture de cuir brun, boucle métallique
     # ceinture de cuir plus large (bande de 0,14), coutures sur ses bords, boucle métallique
-    tore((0.0, 0.0, 1.0), 0.64, 0.05, m["cuir"], echelle=(1.07, 0.84, 1.4), nom="ceinture")
+    tore((0.0, 0.0, 1.0), 0.66, 0.05, m["cuir"], echelle=(1.07, 0.84, 1.4), nom="ceinture")
     for z in (0.94, 1.06):
-        tore((0.0, 0.0, z), 0.66, 0.009, m["kaki_sombre"], echelle=(1.07, 0.84, 1.0), nom="couture_ceinture")
+        tore((0.0, 0.0, z), 0.68, 0.009, m["kaki_sombre"], echelle=(1.07, 0.84, 1.0), nom="couture_ceinture")
     boite((0.0, -0.60, 1.0), (0.17, 0.05, 0.15), m["laiton"], biseau=0.015, nom="boucle")
 
     # --- bras courts et épais, manchettes sombres, gros gants caoutchouc avec pouce
     for s in (-1.0, 1.0):
-        epaule = (0.56 * s, 0.0, 1.16)
-        coude = (0.78 * s, -0.10, 0.96)
-        poignet = (0.84 * s, -0.12, 0.80)
-        # bras : volume rond, plis de toile à l'épaule et au coude, manche qui s'évase vers le poignet
-        membre([epaule, coude, poignet], [0.22, 0.18, 0.20], m["kaki"], "bras", nseg=12,
+        epaule = (0.52 * s, 0.0, 1.18)
+        coude = (0.82 * s, -0.12, 0.96)
+        poignet = (0.88 * s, -0.15, 0.74)
+        # bras : plus longs et arrondis, plis de toile à l'épaule et au coude, manche qui s'évase vers le poignet
+        membre([epaule, coude, poignet], [0.22, 0.19, 0.20], m["kaki"], "bras", nseg=12,
                plis=(5, 0.18, [0.10, 0.52]))
         d = (Vector(poignet) - Vector(coude)).normalized()
         # manchette de toile : la fin de la manche, avec une bande sombre ; elle prolonge le bras
@@ -368,7 +375,7 @@ def construire(scene):
         hanche = (0.22 * s, 0.0, 0.78)
         genou = (0.25 * s, -0.02, 0.46)
         cheville = (0.27 * s, 0.0, 0.22)
-        membre([hanche, genou, cheville], [0.25, 0.21, 0.19], m["kaki_sombre"], "jambe")
+        membre([hanche, genou, cheville], [0.25, 0.21, 0.19], m["kaki"], "jambe")
         # genouillère : plaque arrondie collée à l'avant du genou (enfoncée de 2 cm dans la jambe)
         # genouillère : plaque bombée, enfoncée dans le genou (son bord rentre dans la jambe)
         ellipsoide((genou[0], -0.20, genou[2]), 0.15, (0.93, 0.46, 1.0), m["genouillere"],
@@ -388,8 +395,8 @@ def construire(scene):
     # --- tuyau d'air en corde torsadée, sortant du sommet du casque, grande boucle vers l'arrière
     # une seule corde épaisse : sort du sommet du casque, monte, fait une grande boucle lisse vers l'arrière,
     # puis redescend jusqu'au col de la bouteille (derrière l'épaule lointaine). Trois brins serrés.
-    cordon([(0.0, 0.02, 2.40), (0.0, 0.14, 2.66), (0.0, 0.50, 2.86), (0.0, 0.90, 2.66), (0.0, 1.06, 2.26),
-            (-0.12, 0.92, 2.10), (-0.55, 0.68, 2.08), (-1.08, 0.50, 2.04)],
+    cordon([(0.0, 0.00, 2.40), (0.0, 0.25, 2.74), (0.0, 0.70, 2.86), (0.0, 1.00, 2.56), (-0.14, 1.04, 2.30),
+            (-0.46, 0.92, 2.08), (-0.84, 0.66, 2.00), (-1.04, 0.50, 2.06)],
            rayon_helice=0.095, rayon_fil=0.085, torsions=7.0, scene=scene, mat=m["corde"], nom="tuyau_air")
 
 
@@ -447,6 +454,141 @@ def reglages(scene):
     scene.eevee.taa_render_samples = ECHANTILLONS
 
 
+# ------------------------------------------------------------------ carte d'identité (pixelisation)
+GROUPE_COULEUR = {"tete": "#ffd400", "collerette": "#40ffb0", "tronc": "#ff0000", "tuyau": "#00e0ff",
+                  "bouteille": "#ff7f00", "bras_g": "#00ff00", "bras_d": "#005000", "gant_g": "#a0ff00",
+                  "gant_d": "#00a070", "jambe_g": "#0000ff", "jambe_d": "#000090", "botte_g": "#ff0080",
+                  "botte_d": "#ff80c0"}
+
+
+def groupe_objet(o):
+    """Groupe de la carte d'identité d'un objet, d'après son nom (et son côté X pour les membres)."""
+    base = re.sub(r"\.\d+$", "", o.name)
+    if base.startswith(("boulon_modele",)):
+        return None
+    if base.startswith(("boulon_hublot", "boulon_cote", "casque", "calotte", "raccord", "hublot", "barre")):
+        return "tete"
+    if base.startswith(("boulon_collerette", "collerette")):
+        return "collerette"
+    if base.startswith(("torse", "fermeture", "couture_fermeture", "couture_ceinture", "couture", "ceinture", "boucle")):
+        return "tronc"
+    if base.startswith(("tuyau_air",)):
+        return "tuyau"
+    if base.startswith(("bouteille", "col_bouteille", "valve")):
+        return "bouteille"
+    membre_groupe = None
+    for prefixe, g in (("couture_manche", "bras"), ("manchette", "bras"), ("bras", "bras"),
+                       ("gant", "gant"), ("pouce", "gant"), ("jambe", "jambe"), ("genouillere", "jambe"),
+                       ("botte", "botte")):
+        if base.startswith(prefixe):
+            membre_groupe = g
+            break
+    if membre_groupe is None:
+        return None
+    # côté : moyenne X des sommets dans le monde (négatif = gauche, positif = droite)
+    xs = [(o.matrix_world @ v.co).x for v in o.data.vertices]
+    cote = "g" if sum(xs) / len(xs) < 0 else "d"
+    return f"{membre_groupe}_{cote}"
+
+
+def materiau_plat(nom, hexa):
+    """Couleur plate (émission) : la carte d'identité relit une couleur exacte par partie."""
+    m = bpy.data.materials.new("id_" + nom)
+    m.use_nodes = True
+    arbre = m.node_tree
+    arbre.nodes.clear()
+    sortie = arbre.nodes.new("ShaderNodeOutputMaterial")
+    em = arbre.nodes.new("ShaderNodeEmission")
+    em.inputs["Color"].default_value = (*srgb(hexa), 1.0)
+    em.inputs["Strength"].default_value = 1.0
+    arbre.links.new(em.outputs["Emission"], sortie.inputs["Surface"])
+    return m
+
+
+def rendre_fichier(scene, chemin):
+    if os.path.exists(chemin):
+        os.remove(chemin)
+    scene.render.filepath = chemin
+    bpy.ops.render.render(write_still=True)
+    if not os.path.exists(chemin):
+        sys.exit("rendu absent : " + chemin)
+
+
+MATIERE_COULEUR = {"laiton": "#ffd400", "acier": "#00b4ff", "verre": "#ff2bd6", "toile": "#00ff80",
+                   "cuir": "#ff6a00", "caoutchouc": "#3a00ff", "corde": "#f0f0f0", "bouteille": "#9400ff"}
+
+
+def matiere_objet(o):
+    """Matière de chaque partie (laiton, acier, verre, toile, cuir, caoutchouc, corde, bouteille)."""
+    base = re.sub(r"\.\d+$", "", o.name)
+    if base == "boulon_modele":
+        return None
+    if base.startswith(("reflet", "hublot_verre", "hublot_cote_verre")):
+        return "verre"
+    if base.startswith(("casque", "calotte", "raccord", "collerette", "boulon_collerette", "boucle", "valve",
+                        "hublot_cote_cadre")):
+        return "laiton"
+    if base.startswith(("hublot_cadre", "barre", "boulon_hublot", "boulon_cote", "fermeture")):
+        return "acier"
+    if base.startswith(("torse", "bras", "jambe", "couture")):
+        return "toile"
+    if base.startswith("ceinture"):
+        return "cuir"
+    if base.startswith(("gant", "pouce", "manchette", "genouillere", "botte")):
+        return "caoutchouc"
+    if base.startswith("tuyau_air"):
+        return "corde"
+    if base.startswith(("bouteille", "col_bouteille")):
+        return "bouteille"
+    return None
+
+
+def passe_couleurs(objets, classer, couleurs):
+    """Une couleur plate par classe : remplace les matériaux des parties. Renvoie {objet: classe}."""
+    etiquettes = {}
+    for o in objets:
+        c = classer(o)
+        if c is None:
+            o.hide_render = True
+            continue
+        etiquettes[o] = c
+        if o.data.users > 1:
+            o.data = o.data.copy()
+        o.data.materials.clear()
+        o.data.materials.append(materiau_plat(c, couleurs[c]))
+    return etiquettes
+
+
+def rendre_identite(scene):
+    """Deux cartes d'identité en couleurs plates : par MATIÈRE (quantification) et par GROUPE (membres)."""
+    objets = [o for o in scene.objects if o.type in ("MESH", "CURVE")]
+    # 1) matières
+    dossier_m = os.path.join(SORTIE, "matiere")
+    os.makedirs(dossier_m, exist_ok=True)
+    passe_couleurs(objets, matiere_objet, MATIERE_COULEUR)
+    with open(os.path.join(SORTIE, "matiere_palette.json"), "w", encoding="utf-8") as fichier:
+        json.dump({"rampes": {g: [h] for g, h in MATIERE_COULEUR.items()}}, fichier, indent=1)
+    rendre_fichier(scene, os.path.join(dossier_m, "idle_01.png"))
+    # 2) groupes (membres) : image complète puis une image par groupe
+    dossier = os.path.join(SORTIE, "identite")
+    os.makedirs(dossier, exist_ok=True)
+    groupes = passe_couleurs(objets, groupe_objet, GROUPE_COULEUR)
+    with open(os.path.join(SORTIE, "identite_palette.json"), "w", encoding="utf-8") as fichier:
+        json.dump({"rampes": {g: [h] for g, h in GROUPE_COULEUR.items()}}, fichier, indent=1)
+    rendre_fichier(scene, os.path.join(dossier, "idle_01.png"))
+    for g in sorted(set(groupes.values())):
+        for o in objets:
+            if o in groupes:
+                o.hide_render = groupes[o] != g
+        dossier_g = os.path.join(SORTIE, "parties", g)
+        os.makedirs(dossier_g, exist_ok=True)
+        rendre_fichier(scene, os.path.join(dossier_g, "idle_01.png"))
+    for o in objets:
+        if o in groupes:
+            o.hide_render = False
+    print("IDENTITE_OK", len(set(groupes.values())), "groupes", len(MATIERE_COULEUR), "matieres", flush=True)
+
+
 def main():
     bpy.ops.wm.read_factory_settings(use_empty=True)
     scene = bpy.context.scene
@@ -455,6 +597,11 @@ def main():
     camera(scene)
     reglages(scene)
     os.makedirs(SORTIE, exist_ok=True)
+    if IDENTITE:
+        # pas de tramage ni d'anticrénelage au fond : chaque partie garde sa couleur exacte
+        scene.render.dither_intensity = 0.0
+        rendre_identite(scene)
+        return
     bpy.ops.wm.save_as_mainfile(filepath=BLEND)
     chemin = os.path.join(SORTIE, "hd_base.png")
     if os.path.exists(chemin):

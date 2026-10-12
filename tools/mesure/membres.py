@@ -88,11 +88,13 @@ def main():
     ap.add_argument("--facteur", type=int, default=8)
     ap.add_argument("--groupe", choices=sorted(PREFIXES), default="nage")
     ap.add_argument("--cote-proche", choices=["g", "d"], default=None)
+    ap.add_argument("--images", type=int, default=None, help="nombre d'images (défaut : 6 idle, 8 nage)")
     a = ap.parse_args()
     membres = membres_pour(a.cote_proche)
     palette = json.load(open(os.path.join(a.dossier, "identite_palette.json"), encoding="utf-8"))["rampes"]
     couleurs = {g: couleur(palette, g) for g in palette}
-    images = [f"{a.groupe}_{i:02d}.png" for i in range(1, PREFIXES[a.groupe] + 1)]
+    nombre = a.images or PREFIXES[a.groupe]
+    images = [f"{a.groupe}_{i:02d}.png" for i in range(1, nombre + 1)]
 
     echecs = []
     print("| image | " + " | ".join(f"{m} (vis / non caché)" for m in membres) + " | verdict |")

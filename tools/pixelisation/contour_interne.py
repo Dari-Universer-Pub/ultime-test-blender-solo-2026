@@ -31,7 +31,7 @@ import numpy as np
 from PIL import Image
 
 RACINE = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-PALETTE = os.path.join(RACINE, "art", "palette.json")
+PALETTE = os.path.join(RACINE, "art", "palette.json")  # défaut ; --palette pour une autre palette
 
 
 def lire_palette_identite(dossier_identite):
@@ -69,9 +69,10 @@ def main():
     ap.add_argument("dossier_sortie")
     ap.add_argument("--facteur", type=int, default=8)
     ap.add_argument("--ton", type=int, default=2, help="ton de la rampe contour_sombre (0 = le plus sombre)")
+    ap.add_argument("--palette", default=PALETTE, help="palette JSON (rampe contour_sombre)")
     a = ap.parse_args()
 
-    palette = json.load(open(PALETTE, encoding="utf-8"))
+    palette = json.load(open(a.palette, encoding="utf-8"))
     rampes = palette.get("rampes", palette)
     ton = rampes["contour_sombre"][a.ton].lstrip("#")
     couleur_trait = tuple(int(ton[k:k + 2], 16) for k in (0, 2, 4)) + (255,)

@@ -1,0 +1,53 @@
+{
+ "note": "Palette du plongeur v4 par MATIÈRE : chaque matière a sa rampe ; un pixel prend le ton de SA rampe selon la luminance seule. Contour : 2 tons bruns foncés, jamais violets.",
+ "rampes": {
+  "laiton": [
+   "#5c3408",
+   "#a8660e",
+   "#dd9a22",
+   "#ffe27a"
+  ],
+  "toile": [
+   "#6e5a3c",
+   "#9c8560",
+   "#c8b08a",
+   "#eedfbe"
+  ],
+  "cuir": [
+   "#3a1c0e",
+   "#6a3618",
+   "#9a5a2c"
+  ],
+  "caoutchouc": [
+   "#1a1636",
+   "#2c2858",
+   "#43408a"
+  ],
+  "corde": [
+   "#7a6a3e",
+   "#b3a062",
+   "#ddd08e"
+  ],
+  "verre": [
+   "#040c13",
+   "#0a1d2a",
+   "#143646",
+   "#e8fbff"
+  ],
+  "acier": [
+   "#1f262c",
+   "#3c4a54",
+   "#66788a",
+   "#b8c8d2"
+  ],
+  "bouteille": [
+   "#18143a",
+   "#2c2766",
+   "#4e47a0"
+  ],
+  "contour": [
+   "#140e0c",
+   "#2a1d17"
+  ]
+ }
+}
