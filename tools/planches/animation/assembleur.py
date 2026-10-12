@@ -124,9 +124,16 @@ def composer_pose(pose, sortie_dir):
             Ep = np.array(blocs["pivots_px"]["coude"])
             G_new = E_new + np.array(tourner_px(Gp - Ep, a["avant"]))
             t_b = (int(round(G_new[0] - Gp[0])), int(round(G_new[1] - Gp[1])))
-            dessin["bloc_main_d"] = (lambda th=ch.get("bloc_main_d", 0), t_b=t_b:
-                                     translater(charger(bloc_dir / angle_cle(th)),
-                                                t_b[0], t_b[1]))
+            if "bloc_main_d" in pose["calques"]:
+                dessin["bloc_main_d"] = (lambda th=ch.get("bloc_main_d", 0), t_b=t_b:
+                                         translater(charger(bloc_dir / angle_cle(th)),
+                                                    t_b[0], t_b[1]))
+            # gant seul (saut, dégâts : pas de pioche) : même pivot que le bloc, angle = celui de l'avant-bras
+            # (ou « gant_angle » de la pose)
+            th_g = ch.get("gant_angle", a["avant"])
+            dessin["gant_d"] = (lambda th=th_g, t_b=t_b:
+                                translater(charger(BIBLIO / "variantes" / "gant_d" / angle_cle(th)),
+                                           t_b[0], t_b[1]))
         dessin["cap_epaule_%s" % cote] = (lambda cote=cote: translater(charger(BIBLIO / "capuchons" / ("epaule_%s.png" % cote)),
                                                                        decal[0], decal[1]))
 

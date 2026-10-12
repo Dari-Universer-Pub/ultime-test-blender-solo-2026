@@ -578,6 +578,22 @@ def ajouter_reflet_tete(o, a, epaisseur, courbure):
     bm.free()
 
 
+def ajouter_ombre_tete(o):
+    """Moitié de la face de la tête tournée vers le manche : ton sombre de l'acier (#5a6490), pour lire l'épaisseur.
+    La face est coupée à la ligne médiane de la barre (z = -0,1 m) ; la moitié proche du manche est sombre."""
+    o.data.materials.append(materiau_plat("acier_ombre", "#5a6490"))
+    bm = bmesh.new()
+    bm.from_mesh(o.data)
+    geom = list(bm.verts) + list(bm.edges) + list(bm.faces)
+    bmesh.ops.bisect_plane(bm, geom=geom, plane_co=(0.0, 0.0, -0.1), plane_no=(0.0, 0.0, 1.0),
+                           clear_inner=False, clear_outer=False)
+    for f in bm.faces:
+        if f.material_index == 0 and abs(f.normal.y) > 0.5 and f.calc_center_median().z > -0.1:
+            f.material_index = 2
+    bm.to_mesh(o.data)
+    bm.free()
+
+
 def tete_orientee(H, bout, mat, nom):
     """Tête d'acier à plat dans le plan de l'écran, perpendiculaire au manche, une pointe à chaque bout."""
     H, bout = Vector(H), Vector(bout)
@@ -590,6 +606,7 @@ def tete_orientee(H, bout, mat, nom):
                    courbure=courbure, pointe_arriere=0.07)
     if TETE_MASSE:
         ajouter_reflet_tete(o, TETE_A, epaisseur, courbure)
+        ajouter_ombre_tete(o)
     o.matrix_world = Matrix.Translation(H) @ Matrix((x, y, z)).transposed().to_4x4()
     return o
 
@@ -1688,14 +1705,18 @@ def rendre_blocs_main(dossier):
     PIOCHE = (G, None, None, {"B": tuple(B0), "H": tuple(H0)})
     scene = construire_tout()
     bloc = [o for o in scene.objects if o.name in ("pioche_manche", "pioche_tete", "gant_d", "pouce_d")]
+    variante = "bloc_main_d"
+    if os.environ.get("PLONGEUR_GANT_SEUL") == "1":   # gant seul (sans pioche) : même pivot, même caméra
+        bloc = [o for o in scene.objects if o.name in ("gant_d", "pouce_d")]
+        variante = "gant_d"
     base = {o.name: o.matrix_world.copy() for o in scene.objects if o.type == "MESH"}
     for x in scene.objects:
         if x.type == "MESH" and x not in bloc:
             x.hide_render = True
-    os.makedirs(os.path.join(dossier, "variantes", "bloc_main_d"), exist_ok=True)
+    os.makedirs(os.path.join(dossier, "variantes", variante), exist_ok=True)
     for theta in ANGLES_BIBLIO:
         _pivoter(bloc, G, F, math.radians(theta), base)
-        rendre_fichier(scene, os.path.join(dossier, "variantes", "bloc_main_d", "%+04d.png" % theta))
+        rendre_fichier(scene, os.path.join(dossier, "variantes", variante, "%+04d.png" % theta))
     POSE.clear()
     PIOCHE, HAUT_DX, HAUT_DY, HAUT_DZ = None, 0.0, 0.0, 0.0
     with open(os.path.join(dossier, "blocs_main.json"), "w", encoding="utf-8") as f:

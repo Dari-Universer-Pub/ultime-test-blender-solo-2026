@@ -19,7 +19,7 @@
      "ok": true
     },
     "hauteur_px": {
-     "valeur": 72,
+     "valeur": 68,
      "max": 72,
      "ok": true
     },
@@ -40,7 +40,7 @@
      "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
     }
    },
-   "hash": "5a93073982af9f5a"
+   "hash": "f8b930c274cf4872"
   },
   {
    "n": 2,
@@ -82,7 +82,7 @@
      "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
     }
    },
-   "hash": "4efcc98ee8f8a497"
+   "hash": "0024fa6969bade25"
   },
   {
    "n": 3,
@@ -124,7 +124,7 @@
      "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
     }
    },
-   "hash": "d629684b4580b8ff"
+   "hash": "7bd44fe9695782cb"
   },
   {
    "n": 4,
@@ -166,7 +166,7 @@
      "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
     }
    },
-   "hash": "6f0a4e358ef6f566"
+   "hash": "0998a86500df1052"
   }
  ],
  "sequence": {
@@ -174,13 +174,13 @@
    "ok": true
   },
   "changements_px_entre_images": [
-   2029,
-   1706,
-   2222
+   2174,
+   1842,
+   2373
   ],
   "boucle": {
-   "premiere_vs_ancre_px_differents": 1286,
-   "derniere_vs_premiere_px_differents": 967
+   "premiere_vs_ancre_px_differents": 1389,
+   "derniere_vs_premiere_px_differents": 1286
   }
  }
 }

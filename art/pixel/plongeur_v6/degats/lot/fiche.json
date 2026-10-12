@@ -10,7 +10,8 @@
   "role": "dégâts (3 images) : choc reçu, déséquilibre, reprise ; le corps entier réagit (épaules, casque et jambes suivent le torse)",
   "outil": {
     "nom": "aucun",
-    "note": "pas de pioche : la main droite ne tient rien"
+    "note": "pas de pioche : la main droite ne tient rien",
+    "gant": "le gant droit reste visible sans pioche (gant seul, angle de l'avant-bras)"
   },
   "images": [
     {
@@ -28,7 +29,8 @@
         "bras_g_avant",
         "bras_d_haut",
         "bras_d_avant",
-        "casque"
+        "casque",
+        "gant_d"
       ],
       "chevauchements": "aucun passage devant le casque",
       "critere_tete": false
@@ -48,7 +50,8 @@
         "bras_g_avant",
         "bras_d_haut",
         "bras_d_avant",
-        "casque"
+        "casque",
+        "gant_d"
       ],
       "chevauchements": "aucun passage devant le casque",
       "critere_tete": false
@@ -68,7 +71,8 @@
         "bras_g_avant",
         "bras_d_haut",
         "bras_d_avant",
-        "casque"
+        "casque",
+        "gant_d"
       ],
       "chevauchements": "aucun passage devant le casque",
       "critere_tete": false

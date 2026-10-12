@@ -29,9 +29,9 @@ MORT_IMAGES = [
     (-35, -5, 1),
     (-55, -9, 3),
     (-72, -13, 6),
-    (-84, -17, 10),
-    (-88, -19, 9),
-    (-90, -19, 9),
+    (-84, -17, 8),
+    (-88, -19, 7),
+    (-90, -19, 8),
 ]
 PIVOT_PX = (56.0, 66.0)     # hanches (px écran) : le corps tourne autour de ce point
 SENS = float(os.environ.get("PLONGEUR_MORT_SENS", "-1"))   # -1 : chute vers la gauche (écran)

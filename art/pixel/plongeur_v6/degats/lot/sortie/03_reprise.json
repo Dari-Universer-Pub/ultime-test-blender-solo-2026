@@ -4,6 +4,7 @@
   "jambes<bras_d_haut": 6,
   "jambes<bras_d_avant": 19,
   "jambes<cap_coude_d": 9,
+  "jambes<gant_d": 45,
   "torse<bras_g_haut": 71,
   "torse<bras_g_avant": 12,
   "torse<cap_coude_g": 10,
@@ -27,11 +28,12 @@
   "cap_epaule_d<bras_d_avant": 4,
   "cap_epaule_d<cap_coude_d": 3,
   "cap_epaule_d<casque": 27,
-  "bras_d_avant<cap_coude_d": 67
+  "bras_d_avant<cap_coude_d": 67,
+  "bras_d_avant<gant_d": 7
  },
  "hauteur_px": 72,
  "pixels_isoles": 0,
- "image_sha256": "ebc7926f633e5625",
+ "image_sha256": "63c6d79cb950d007",
  "pieces": [
   "jambes",
   "torse",
@@ -43,7 +45,8 @@
   "cap_epaule_d",
   "bras_d_avant",
   "cap_coude_d",
-  "casque"
+  "casque",
+  "gant_d"
  ],
  "nom": "03_reprise",
  "utilisees_px": {
@@ -57,6 +60,7 @@
   "cap_epaule_d": 84,
   "bras_d_avant": 94,
   "cap_coude_d": 69,
-  "casque": 923
+  "casque": 923,
+  "gant_d": 81
  }
 }

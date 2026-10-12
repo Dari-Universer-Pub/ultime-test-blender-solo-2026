@@ -27,11 +27,13 @@
   "cap_epaule_d<bras_d_avant": 3,
   "cap_epaule_d<cap_coude_d": 4,
   "cap_epaule_d<casque": 27,
-  "bras_d_avant<cap_coude_d": 65
+  "bras_d_avant<cap_coude_d": 65,
+  "bras_d_avant<gant_d": 9,
+  "cap_coude_d<gant_d": 2
  },
  "hauteur_px": 71,
  "pixels_isoles": 0,
- "image_sha256": "6f0a4e358ef6f566",
+ "image_sha256": "0998a86500df1052",
  "pieces": [
   "jambes",
   "torse",
@@ -43,7 +45,8 @@
   "cap_epaule_d",
   "bras_d_avant",
   "cap_coude_d",
-  "casque"
+  "casque",
+  "gant_d"
  ],
  "nom": "04_reception",
  "utilisees_px": {
@@ -57,6 +60,7 @@
   "cap_epaule_d": 84,
   "bras_d_avant": 94,
   "cap_coude_d": 69,
-  "casque": 923
+  "casque": 923,
+  "gant_d": 82
  }
 }

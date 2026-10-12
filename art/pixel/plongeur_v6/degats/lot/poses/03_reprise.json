@@ -12,7 +12,8 @@
   "cap_epaule_d",
   "bras_d_avant",
   "cap_coude_d",
-  "casque"
+  "casque",
+  "gant_d"
  ],
  "epaules_suivent_buste": true,
  "chaine": {

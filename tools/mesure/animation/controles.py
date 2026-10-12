@@ -64,7 +64,7 @@ def main():
     ancre = couleur(RACINE / "art" / "references" / "ancre_plongeur_v6.png")
     palette_ancre = set(map(tuple, ancre[ancre[..., 3] > 0][:, :3].tolist()))
     # palette de la chaîne : ancre + couleurs des pièces de la bibliothèque (même rendu, mêmes matières)
-    for piece in (CREUSAGE / "bibliotheque" / "variantes" / "bloc_main_d").glob("*.png"):
+    for piece in [q for d in (CREUSAGE / "bibliotheque" / "variantes").glob("bloc_main_d*") for q in d.glob("*.png")]:
         im = couleur(piece)
         palette_ancre |= set(map(tuple, im[im[..., 3] > 0][:, :3].tolist()))
 

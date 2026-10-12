@@ -1,9 +1,11 @@
 {
  "chevauchements_visibles": {
-  "jambes<torse": 50,
-  "jambes<bras_d_haut": 6,
-  "jambes<bras_d_avant": 19,
-  "jambes<cap_coude_d": 9,
+  "jambes<torse": 130,
+  "jambes<bras_g_haut": 5,
+  "jambes<bras_d_haut": 26,
+  "jambes<bras_d_avant": 39,
+  "jambes<cap_coude_d": 24,
+  "jambes<gant_d": 49,
   "torse<bras_g_haut": 55,
   "torse<cap_coude_g": 1,
   "torse<cap_epaule_g": 60,
@@ -28,11 +30,12 @@
   "cap_epaule_d<bras_d_avant": 4,
   "cap_epaule_d<cap_coude_d": 3,
   "cap_epaule_d<casque": 27,
-  "bras_d_avant<cap_coude_d": 67
+  "bras_d_avant<cap_coude_d": 67,
+  "bras_d_avant<gant_d": 7
  },
- "hauteur_px": 72,
+ "hauteur_px": 68,
  "pixels_isoles": 0,
- "image_sha256": "5a93073982af9f5a",
+ "image_sha256": "f8b930c274cf4872",
  "pieces": [
   "jambes",
   "torse",
@@ -44,7 +47,8 @@
   "cap_epaule_d",
   "bras_d_avant",
   "cap_coude_d",
-  "casque"
+  "casque",
+  "gant_d"
  ],
  "nom": "01_accroupi",
  "utilisees_px": {
@@ -58,6 +62,7 @@
   "cap_epaule_d": 84,
   "bras_d_avant": 94,
   "cap_coude_d": 69,
-  "casque": 923
+  "casque": 923,
+  "gant_d": 81
  }
 }

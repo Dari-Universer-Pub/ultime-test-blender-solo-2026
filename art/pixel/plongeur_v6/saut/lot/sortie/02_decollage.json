@@ -24,11 +24,12 @@
   "cap_epaule_d<bras_d_avant": 4,
   "cap_epaule_d<cap_coude_d": 5,
   "cap_epaule_d<casque": 27,
-  "bras_d_avant<cap_coude_d": 63
+  "bras_d_avant<cap_coude_d": 63,
+  "bras_d_avant<gant_d": 1
  },
  "hauteur_px": 72,
  "pixels_isoles": 0,
- "image_sha256": "4efcc98ee8f8a497",
+ "image_sha256": "0024fa6969bade25",
  "pieces": [
   "jambes",
   "torse",
@@ -40,7 +41,8 @@
   "cap_epaule_d",
   "bras_d_avant",
   "cap_coude_d",
-  "casque"
+  "casque",
+  "gant_d"
  ],
  "nom": "02_decollage",
  "utilisees_px": {
@@ -54,6 +56,7 @@
   "cap_epaule_d": 84,
   "bras_d_avant": 89,
   "cap_coude_d": 69,
-  "casque": 923
+  "casque": 923,
+  "gant_d": 82
  }
 }
