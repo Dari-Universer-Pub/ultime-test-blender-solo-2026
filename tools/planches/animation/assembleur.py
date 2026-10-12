@@ -65,12 +65,14 @@ def translater(img, dx, dy):
     return out
 
 
-def chaine_bras(cote, lib, theta_haut, theta_avant):
-    """Pièces d'un bras et translations entières. Le haut du bras tourne autour de l'épaule ; l'avant-bras
-    (sans gant) et le capuchon du coude sont tournés autour du coude de repos puis translatés au coude nouveau."""
-    S = np.array(lib["pieces"]["bras_%s_haut" % cote]["pivot_px"])
+def chaine_bras(cote, lib, theta_haut, theta_avant, decal=(0, 0)):
+    """Pièces d'un bras et translations entières. Le haut du bras tourne autour de l'épaule (décalée de `decal`
+    quand le torse se penche : option epaules_suivent_buste) ; l'avant-bras (sans gant) et le capuchon du coude
+    sont tournés autour du coude de repos puis translatés au coude nouveau."""
+    S0 = np.array(lib["pieces"]["bras_%s_haut" % cote]["pivot_px"])
     E = np.array(lib["capuchons"]["coude_%s" % cote]["centre_px"])
-    E_new = S + np.array(tourner_px(E - S, theta_haut))
+    S = S0 + np.array(decal, dtype=float)
+    E_new = S + np.array(tourner_px(E - S0, theta_haut))
     t_e = (int(round(E_new[0] - E[0])), int(round(E_new[1] - E[1])))
     return S, E, E_new, t_e
 
@@ -83,6 +85,9 @@ def composer_pose(pose, sortie_dir):
     utilisees = {}
     buste = ch.get("buste", [0, 0])
     tete = ch.get("casque", [0, 0])
+    # épaules : suivent le torse si la pose le demande (attaque : le corps se penche, les bras suivent)
+    decal = tuple(buste) if pose.get("epaules_suivent_buste") else (0, 0)
+    bloc_dir = BIBLIO / "variantes" / pose.get("bloc_dossier", "bloc_main_d")
 
     def ajouter(nom, img):
         couches.append((nom, img))
@@ -96,10 +101,11 @@ def composer_pose(pose, sortie_dir):
     # bras et bloc main : tournés puis translatés (chaîne)
     for cote in ("g", "d"):
         a = ch["bras_%s" % cote]
-        S, E, E_new, t_e = chaine_bras(cote, lib, a["haut"], a["avant"])
+        S, E, E_new, t_e = chaine_bras(cote, lib, a["haut"], a["avant"], decal)
         wrist = np.array(blocs["pivots_px"]["poignet"]) if cote == "d" else None
         dessin["bras_%s_haut" % cote] = (lambda cote=cote, th=a["haut"]:
-                                         charger(BIBLIO / "variantes" / ("bras_%s_haut" % cote) / angle_cle(th)))
+                                         translater(charger(BIBLIO / "variantes" / ("bras_%s_haut" % cote) / angle_cle(th)),
+                                                    decal[0], decal[1]))
         if cote == "g":
             dessin["bras_g_avant"] = (lambda th=a["avant"], t_e=t_e, E=E:
                                       translater(charger(BIBLIO / "variantes" / "bras_g_avant" / angle_cle(th)),
@@ -118,9 +124,10 @@ def composer_pose(pose, sortie_dir):
             G_new = E_new + np.array(tourner_px(Gp - Ep, a["avant"]))
             t_b = (int(round(G_new[0] - Gp[0])), int(round(G_new[1] - Gp[1])))
             dessin["bloc_main_d"] = (lambda th=ch["bloc_main_d"], t_b=t_b:
-                                     translater(charger(BIBLIO / "variantes" / "bloc_main_d" / angle_cle(th)),
+                                     translater(charger(bloc_dir / angle_cle(th)),
                                                 t_b[0], t_b[1]))
-        dessin["cap_epaule_%s" % cote] = (lambda cote=cote: charger(BIBLIO / "capuchons" / ("epaule_%s.png" % cote)))
+        dessin["cap_epaule_%s" % cote] = (lambda cote=cote: translater(charger(BIBLIO / "capuchons" / ("epaule_%s.png" % cote)),
+                                                                       decal[0], decal[1]))
 
     for nom in pose["calques"]:
         if nom not in dessin:

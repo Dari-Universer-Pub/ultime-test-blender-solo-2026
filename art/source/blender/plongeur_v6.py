@@ -552,6 +552,32 @@ MANCHE_RAYON = 0.085   # rayon du manche de pioche (m) : 4,2 px de diamètre à 
 TETE_A = 0.26   # demi-longueur de la tête de pioche (m) : environ 14 px de long à 112 px (décision Julien, creusage)
 
 
+# variante d'attaque : tête plus épaisse et reflet clair sur le bord opposé au manche (PLONGEUR_TETE_MASSE=1).
+# Sans cette variable, la tête est celle du creusage (épaisseur 0,12 m, pas de reflet) : rendu inchangé.
+TETE_MASSE = os.environ.get("PLONGEUR_TETE_MASSE") == "1"
+
+
+def ajouter_reflet_tete(o, a, epaisseur, courbure):
+    """Bande claire sur le bord de la tête opposé au manche, deuxième matière de l'objet (face plate, émission)."""
+    bm = bmesh.new()
+    bm.from_mesh(o.data)
+    n = 6
+    anneaux = []
+    for i in range(n):
+        s_ = -0.6 * a + 1.2 * a * i / (n - 1)
+        f = 1.0 - (s_ / a) ** 2
+        zc = -courbure * f - 0.5 * epaisseur * (0.5 + 0.5 * f)
+        anneaux.append([bm.verts.new((s_, -0.012, zc - 0.022)), bm.verts.new((s_, 0.012, zc - 0.022)),
+                        bm.verts.new((s_, 0.012, zc + 0.010)), bm.verts.new((s_, -0.012, zc + 0.010))])
+    o.data.materials.append(materiau_plat("reflet_tete", "#d8f4fa"))
+    for i in range(n - 1):
+        for k in range(4):
+            f_ = bm.faces.new((anneaux[i][k], anneaux[i][(k + 1) % 4], anneaux[i + 1][(k + 1) % 4], anneaux[i + 1][k]))
+            f_.material_index = 1
+    bm.to_mesh(o.data)
+    bm.free()
+
+
 def tete_orientee(H, bout, mat, nom):
     """Tête d'acier à plat dans le plan de l'écran, perpendiculaire au manche, une pointe à chaque bout."""
     H, bout = Vector(H), Vector(bout)
@@ -559,8 +585,11 @@ def tete_orientee(H, bout, mat, nom):
     x = (H - bout).normalized().cross(F).normalized()           # le long de la barre, dans le plan de l'écran
     z = ((bout - H) - x * (bout - H).dot(x)).normalized()        # vers le manche : la courbe s'ouvre vers lui
     y = z.cross(x)
-    o = fer_pioche((0.0, 0.0, 0.0), mat, nom, a=TETE_A, pointe=0.07, epaisseur=0.12, largeur=0.035,
-                   courbure=0.10, pointe_arriere=0.07)
+    epaisseur, courbure = (0.26, 0.10) if TETE_MASSE else (0.12, 0.10)
+    o = fer_pioche((0.0, 0.0, 0.0), mat, nom, a=TETE_A, pointe=0.07, epaisseur=epaisseur, largeur=0.035,
+                   courbure=courbure, pointe_arriere=0.07)
+    if TETE_MASSE:
+        ajouter_reflet_tete(o, TETE_A, epaisseur, courbure)
     o.matrix_world = Matrix.Translation(H) @ Matrix((x, y, z)).transposed().to_4x4()
     return o
 

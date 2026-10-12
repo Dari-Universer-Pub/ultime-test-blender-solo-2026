@@ -15,3 +15,8 @@ Chaque décision porte sa date. Les décisions anciennes sont remplacées ici, p
 - Contour indigo 1 px : retiré le 12/10 (demande de Julien : « lourd et affreux »). Historique : commit `cb8d19f`.
 - Le gate (`tools/gate.py`, `tools/outils.json`) n'est jamais modifié par l'agent. `HAUTEUR_PLONGEUR = (56, 80)`
   est voulu par Julien.
+
+## Creusage — décisions de Julien (validé ensuite tel quel, commit 8689ca8)
+- **A. Prête** : manche à +30 degrés, tête de pioche visible au-dessus et à droite de l'épaule. Une pioche invisible est une erreur de lecture.
+- **B. Frappe** : le critère de largeur de tête (12 px) s'applique UNIQUEMENT aux images où la pioche est vue de face ou presque (armement, sommet, impact). Une tête vue de profil fait 4 px de large : c'est la géométrie, pas un échec. Tête allongée à 14 px ; frappe à 135 degrés, bloc plus à droite.
+- **C. Continuité** : 6 images passent à 8 (descente et remontée). Déplacement du gant : 10 px au plus entre images successives, sans zigzag.

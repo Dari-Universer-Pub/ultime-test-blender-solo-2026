@@ -26,7 +26,7 @@ import plongeur_v6 as P  # noqa: E402
 
 RACINE = os.path.abspath(os.path.join(HERE, "..", "..", ".."))
 CREUSAGE = os.path.join(RACINE, "art", "pixel", "plongeur_v6", "creusage")
-LOT = os.path.join(CREUSAGE, "lot")
+LOT = os.environ.get("PLONGEUR_LOT", os.path.join(CREUSAGE, "lot"))   # lot à rendre (creusage par défaut)
 BIBLIO = os.path.join(CREUSAGE, "bibliotheque")
 # décalage de la tête par rapport au centre du gant, pour la pioche à 0 degré (mesuré sur la variante +000)
 TETE_DECALAGE = (-0.18, -23.08)
@@ -118,8 +118,8 @@ def main():
     os.makedirs(dossier, exist_ok=True)
     poses = positions_tete()
     # trajectoire : armement -> sommet -> descente -> frappe -> impact
-    idx = [i for i, p in enumerate(poses) if p["pose"] in ("02_armement", "03_sommet", "04_descente", "05_frappe",
-                                                            "06_impact")]
+    trajet = os.environ.get("ARC_POSES", "02_armement,03_sommet,04_descente,05_frappe,06_impact").split(",")
+    idx = [i for i, p in enumerate(poses) if p["pose"] in trajet]
     points = [poses[i]["tete"] for i in idx]
     chemin = catmull(points, 16)
     chemin_px = chemin
@@ -137,7 +137,8 @@ def main():
         resultats.append({"image": "arc_%d.png" % k, "fraction": f})
         print("ARC", k, flush=True)
     # particules d'impact : débris bruns et bulles claires autour du point de contact (tête au sol)
-    impact = [p for p in poses if p["pose"] == "06_impact"][0]["tete"]
+    nom_impact = os.environ.get("ARC_IMPACT", "06_impact")
+    impact = [p for p in poses if p["pose"] == nom_impact][0]["tete"]
     mat_debris = P.materiau_plat("debris", "#b77a36")   # bois de la palette
     mat_bulle = P.materiau_plat("bulle_claire", "#d8f4fa")
     graines = [(-7.0, -6.0, 0.9, 0), (-4.0, -9.0, 0.7, 0), (-1.0, -5.0, 1.0, 1), (2.5, -8.0, 0.8, 1),

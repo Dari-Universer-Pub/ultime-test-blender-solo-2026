@@ -1,0 +1,57 @@
+{
+ "tag": "attaque",
+ "canevas": [
+  112,
+  112
+ ],
+ "images": [
+  {
+   "index": 0,
+   "nom": "01_garde",
+   "duree_images": 3
+  },
+  {
+   "index": 1,
+   "nom": "02_recul",
+   "duree_images": 4
+  },
+  {
+   "index": 2,
+   "nom": "03_accel",
+   "duree_images": 2
+  },
+  {
+   "index": 3,
+   "nom": "04_accel2",
+   "duree_images": 2
+  },
+  {
+   "index": 4,
+   "nom": "05_impact",
+   "duree_images": 3
+  },
+  {
+   "index": 5,
+   "nom": "06_suivi",
+   "duree_images": 2
+  },
+  {
+   "index": 6,
+   "nom": "07_retour",
+   "duree_images": 2
+  },
+  {
+   "index": 7,
+   "nom": "08_fin",
+   "duree_images": 3
+  }
+ ],
+ "tags": {
+  "attaque": {
+   "debut": 0,
+   "fin": 7,
+   "boucle": true
+  }
+ },
+ "total_duree_images": 21
+}

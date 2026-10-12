@@ -127,7 +127,14 @@ def main():
         hors = len(couleurs - palette_ancre)
         contr["palette_hors_ancre_couleurs"] = {"valeur": hors, "ok": True,
                                                 "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"}
-        # 8. contact au sol à l'impact
+        # 8. cible à l'impact (attaque) : centre de la tête d'acier visible à moins de la tolérance de la cible
+        if f.get("evenement") == "impact" and "cible" in fiche and np.any(st):
+            cx_, cy_ = fiche["cible"]["tete_au_contact_px"]
+            tol_ = fiche["cible"].get("tolerance_px", 2)
+            yy, xx = np.nonzero(st)
+            dist_ = float(np.hypot(xx.mean() - cx_, yy.mean() - cy_))
+            contr["cible_impact_px"] = {"ecart": round(dist_, 2), "tolerance": tol_, "ok": dist_ <= tol_}
+        # 9. contact au sol à l'impact
         if f.get("moment_impact") and np.any(st):
             contr["contact_sol_impact"] = {"bas_outil_px": int(np.max(np.nonzero(st)[0])),
                                            "ok": int(np.max(np.nonzero(st)[0])) >= 91}

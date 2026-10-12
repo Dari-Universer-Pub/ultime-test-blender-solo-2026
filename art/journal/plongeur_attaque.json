@@ -1,0 +1,201 @@
+{
+ "entrees": [
+  {
+   "changement": "attaque image 1 (01_garde) : garde : pioche tenue haute à droite de la tête (vue de face)",
+   "image": "art/pixel/plongeur_v6/attaque/lot/boards/attaque_1_01_garde.png",
+   "image_sha256": "d3c3fe01479afaff1408dde44cd1d8cd19a91d73730bb1e8560ce9cf10e64eda",
+   "controle": {
+    "silhouette": "oui : pioche haute à droite, buste droit",
+    "couleurs": "base de l'ancre conservée (palette hors ancre 0)",
+    "cadrage": "personnage dans la case",
+    "taille": "72 px (plage 70 à 72)",
+    "details": "tête 15 x 8 px (critère appliqué, OK) ; gant droit sur le manche ; reflet clair de la tête visible",
+    "coherence_base": "cohérent avec l'ancre",
+    "pixels_parasites": "0 pixel isolé"
+   },
+   "verdict": "garde",
+   "defauts_restants": [
+    "bras gauche : pendu ou avancé, jamais levé dans le vide ; main gauche hors de portée du manche (voir ETAT.md)"
+   ]
+  },
+  {
+   "changement": "attaque image 2 (02_recul) : anticipation : buste recule de 3 px, casque de 2 px, pioche levée et armée (vue de face)",
+   "image": "art/pixel/plongeur_v6/attaque/lot/boards/attaque_2_02_recul.png",
+   "image_sha256": "d1c4302472d80b1833cbbdd96bd6b9a6eb9eabe21bbef989a421addee159714d",
+   "controle": {
+    "silhouette": "oui : recul du corps et pioche haute, lisible",
+    "couleurs": "base de l'ancre conservée (palette hors ancre 0)",
+    "cadrage": "personnage dans la case",
+    "taille": "72 px (plage 70 à 72)",
+    "details": "tête 15 x 8 px (critère appliqué, OK) ; pioche à 0 degré : à -30 degrés elle touche le casque (6 à 26 px) ; gant droit sur le manche ; reflet clair de la tête visible",
+    "coherence_base": "cohérent avec l'ancre",
+    "pixels_parasites": "0 pixel isolé"
+   },
+   "verdict": "garde",
+   "defauts_restants": [
+    "bras gauche : pendu ou avancé, jamais levé dans le vide ; main gauche hors de portée du manche (voir ETAT.md)"
+   ]
+  },
+  {
+   "changement": "attaque image 3 (03_accel) : accélération : pioche qui part vers l'avant-droite",
+   "image": "art/pixel/plongeur_v6/attaque/lot/boards/attaque_3_03_accel.png",
+   "image_sha256": "0e4c6c2f9321ddaef418098bf841ed1c056c6a9a779c467b64e6a8d16d0925ff",
+   "controle": {
+    "silhouette": "oui : mouvement vers la droite, lisible",
+    "couleurs": "base de l'ancre conservée (palette hors ancre 0)",
+    "cadrage": "personnage dans la case",
+    "taille": "72 px (plage 70 à 72)",
+    "details": "tête vue en diagonale (12 x 12 px), critère non appliqué ; gant droit sur le manche ; reflet clair de la tête visible",
+    "coherence_base": "cohérent avec l'ancre",
+    "pixels_parasites": "0 pixel isolé"
+   },
+   "verdict": "garde",
+   "defauts_restants": [
+    "bras gauche : pendu ou avancé, jamais levé dans le vide ; main gauche hors de portée du manche (voir ETAT.md)"
+   ]
+  },
+  {
+   "changement": "attaque image 4 (04_accel2) : accélération fin : pioche presque horizontale, bras presque tendu",
+   "image": "art/pixel/plongeur_v6/attaque/lot/boards/attaque_4_04_accel2.png",
+   "image_sha256": "8b73732e436a127ab30f1a5fe8d00fc24bbc639936ef3c072fe52b3580a744b0",
+   "controle": {
+    "silhouette": "oui : la pioche file vers la droite",
+    "couleurs": "base de l'ancre conservée (palette hors ancre 0)",
+    "cadrage": "personnage dans la case",
+    "taille": "72 px (plage 70 à 72)",
+    "details": "tête 9 x 15 px, critère non appliqué ; gant droit sur le manche ; reflet clair de la tête visible",
+    "coherence_base": "cohérent avec l'ancre",
+    "pixels_parasites": "0 pixel isolé"
+   },
+   "verdict": "garde",
+   "defauts_restants": [
+    "bras gauche : pendu ou avancé, jamais levé dans le vide ; main gauche hors de portée du manche (voir ETAT.md)"
+   ]
+  },
+  {
+   "changement": "attaque image 5 (05_impact) : impact tenu : tête de pioche sur la cible à droite (hanches), buste penché de 4 px, casque baissé de 3 à 4 px",
+   "image": "art/pixel/plongeur_v6/attaque/lot/boards/attaque_5_05_impact.png",
+   "image_sha256": "11568a8912f0051917ae46c10f6ad725ddafb0a40bbbec240c6b87d665f695c7",
+   "controle": {
+    "silhouette": "oui : tête sur la cible à hauteur des hanches, buste penché",
+    "couleurs": "base de l'ancre conservée (palette hors ancre 0)",
+    "cadrage": "personnage dans la case",
+    "taille": "69 px (dans la plage)",
+    "details": "écart à la cible 0,7 px (tolérance 2) ; tête 9 x 15 px ; 69 px de haut ; gant droit sur le manche ; reflet clair de la tête visible",
+    "coherence_base": "cohérent avec l'ancre",
+    "pixels_parasites": "0 pixel isolé"
+   },
+   "verdict": "garde",
+   "defauts_restants": [
+    "bras gauche : pendu ou avancé, jamais levé dans le vide ; main gauche hors de portée du manche (voir ETAT.md)"
+   ]
+  },
+  {
+   "changement": "attaque image 6 (06_suivi) : suivi : la pioche continue vers le bas-droit",
+   "image": "art/pixel/plongeur_v6/attaque/lot/boards/attaque_6_06_suivi.png",
+   "image_sha256": "f6777bb5b77f4ea8a5bcdbbf00ed7cd3c08380e2733683c1dc0cb8b796b620ef",
+   "controle": {
+    "silhouette": "oui : suivi lisible",
+    "couleurs": "base de l'ancre conservée (palette hors ancre 0)",
+    "cadrage": "personnage dans la case",
+    "taille": "72 px (plage 70 à 72)",
+    "details": "tête 12 x 12 px, critère non appliqué ; gant droit sur le manche ; reflet clair de la tête visible",
+    "coherence_base": "cohérent avec l'ancre",
+    "pixels_parasites": "0 pixel isolé"
+   },
+   "verdict": "garde",
+   "defauts_restants": [
+    "bras gauche : pendu ou avancé, jamais levé dans le vide ; main gauche hors de portée du manche (voir ETAT.md)"
+   ]
+  },
+  {
+   "changement": "attaque image 7 (07_retour) : retour : pioche remontée à l'horizontale vers la droite",
+   "image": "art/pixel/plongeur_v6/attaque/lot/boards/attaque_7_07_retour.png",
+   "image_sha256": "6e7cd2991ebbf143a8487116d6653362ab29600d4c5f3552578231328cd73e9d",
+   "controle": {
+    "silhouette": "oui : retrait lisible",
+    "couleurs": "base de l'ancre conservée (palette hors ancre 0)",
+    "cadrage": "personnage dans la case",
+    "taille": "72 px (plage 70 à 72)",
+    "details": "tête 8 x 16 px (vue de profil), critère non appliqué ; gant droit sur le manche ; reflet clair de la tête visible",
+    "coherence_base": "cohérent avec l'ancre",
+    "pixels_parasites": "0 pixel isolé"
+   },
+   "verdict": "garde",
+   "defauts_restants": [
+    "bras gauche : pendu ou avancé, jamais levé dans le vide ; main gauche hors de portée du manche (voir ETAT.md)"
+   ]
+  },
+  {
+   "changement": "attaque image 8 (08_fin) : retour au garde : pioche remontée à droite",
+   "image": "art/pixel/plongeur_v6/attaque/lot/boards/attaque_8_08_fin.png",
+   "image_sha256": "a37cdb0ec6ce8fae13f9cf1fce2ea9517dd96209dbeec1e2aebc640da84f5f57",
+   "controle": {
+    "silhouette": "oui : retour au garde",
+    "couleurs": "base de l'ancre conservée (palette hors ancre 0)",
+    "cadrage": "personnage dans la case",
+    "taille": "72 px (plage 70 à 72)",
+    "details": "tête 14 x 10 px, critère non appliqué ; gant droit sur le manche ; reflet clair de la tête visible",
+    "coherence_base": "cohérent avec l'ancre",
+    "pixels_parasites": "0 pixel isolé"
+   },
+   "verdict": "garde",
+   "defauts_restants": [
+    "bras gauche : pendu ou avancé, jamais levé dans le vide ; main gauche hors de portée du manche (voir ETAT.md)"
+   ]
+  },
+  {
+   "changement": "effet séparé : arc de mouvement de l'attaque (croissant clair sur la trajectoire, 4 images)",
+   "image": "art/pixel/plongeur_v6/attaque/lot/effets/arc_4.png",
+   "image_sha256": "7523fd9ba249a5b5772a4906dd1685dfd36e1754a726763499ee207ba6222599",
+   "controle": {
+    "silhouette": "oui : croissant qui suit la trajectoire ; particules au contact",
+    "couleurs": "couleurs plates de la palette (reflet, bois)",
+    "cadrage": "112 x 112, effet séparé",
+    "taille": "5 px au plus",
+    "details": "bords nets",
+    "coherence_base": "effet séparé, jamais composé dans les images",
+    "pixels_parasites": "aucun"
+   },
+   "verdict": "garde",
+   "defauts_restants": [
+    "effet non composé avec les images (superposition dans le jeu)"
+   ]
+  },
+  {
+   "changement": "effet séparé : particules d'impact sur la cible (débris bruns, bulles claires)",
+   "image": "art/pixel/plongeur_v6/attaque/lot/effets/impact_particules.png",
+   "image_sha256": "ccdfe3ca4e5794d1ed5a4969787a9a14880555715eb5ebf3133be5c6e0bcec7e",
+   "controle": {
+    "silhouette": "oui : croissant qui suit la trajectoire ; particules au contact",
+    "couleurs": "couleurs plates de la palette (reflet, bois)",
+    "cadrage": "112 x 112, effet séparé",
+    "taille": "5 px au plus",
+    "details": "bords nets",
+    "coherence_base": "effet séparé, jamais composé dans les images",
+    "pixels_parasites": "aucun"
+   },
+   "verdict": "garde",
+   "defauts_restants": [
+    "effet non composé avec les images (superposition dans le jeu)"
+   ]
+  }
+ ],
+ "sequence": {
+  "changement": "attaque : huit images (garde, recul, accélération x2, impact, suivi, retour, fin) + arc et particules",
+  "feuille": "art/pixel/plongeur_v6/attaque/lot/feuille/attaque.png",
+  "tag": "attaque",
+  "durees": [
+   3,
+   4,
+   2,
+   2,
+   3,
+   2,
+   2,
+   3
+  ],
+  "planche_finale": "art/pixel/plongeur_v6/attaque/lot/planche_finale.png",
+  "controles": "art/pixel/plongeur_v6/attaque/lot/controles/controles.md"
+ }
+}
