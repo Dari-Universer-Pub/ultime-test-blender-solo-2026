@@ -1,52 +1,46 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
-## Phase courante : CREUSAGE, méthode 2D par pièces — LOT EN COURS, 4 images sur 6 en contrôle OK, 2 en échec à décider par Julien
+## Phase courante : CREUSAGE, méthode 2D par pièces — LOT : huit images, décisions A, B, C de Julien appliquées
 
-Lot : `art/pixel/plongeur_v6/creusage/lot/` (fiche.json, poses/, sortie/, controles/, boards/, feuille/creusage.png + .json, journal : `art/journal/plongeur_creusage.json`).
+Lot : `art/pixel/plongeur_v6/creusage/lot/` (fiche.json, poses/ 01 à 08, sortie/, controles/, boards/, feuille/creusage.png + .json, effets/, planche_finale.png). Journal : `art/journal/plongeur_creusage.json` (dix entrées : huit images, arc, particules).
 
-### Contrôles (sortie de `python3 tools/animation/controles.py`)
-| image | pioche/casque | hublot | bras/casque | hauteur | tête visible (LxH) | verdict |
-|---|---|---|---|---|---|---|
-| 1 prête | 0 | 0 | 0 | 72 | 0x0 (cachée) | **ÉCHEC** |
-| 2 armement | 0 | 0 | 0 | 72 | 12x6 | OK |
-| 3 sommet | 0 | 0 | 0 | 72 | 12x6 | OK |
-| 4 frappe | 0 | 0 | 0 | 70 | 6x12 | **ÉCHEC** |
-| 5 impact | 0 | 0 | 0 | 68 | 12x6 | OK |
-| 6 retour | 1 | 0 | 0 | 72 | 12x6 | OK |
+### Décisions de Julien (appliquées)
+- **A. Prête** : manche à +30 degrés, tête visible au-dessus et à droite de l'épaule (13 x 8 px d'acier visible). Fiche mise à jour.
+- **B. Frappe** : critère de largeur de tête (12 x 4) appliqué UNIQUEMENT à armement, sommet et impact (`critere_tete` dans la fiche). Tête allongée à 14 px (demi-longueur 0,26 m, `TETE_A` dans plongeur_v6.py). Frappe à 135 degrés, gant plus à droite (80 à 82 px).
+- **C. Continuité** : 6 → 8 images (descente et remontée ajoutées). Déplacements du gant entre images successives : 2,5 à 9,8 px (contrôle recalculé à partir des poses, pas des cibles).
 
-Séquence : images distinctes OK ; isolés 0 ; palette hors ancre 0 ; boucle prête vs ancre 480 px, retour vs prête 401 px (pas de seuil numérique défini).
+### Autres corrections demandées
+1. **Bras gauche** : pendu le long du corps sur les 8 images ; sur la remontée il tient le manche (portée 15,3 px, gant sur la ligne du manche à 0,8 px).
+2. **Manche et tête** : manche de rayon 0,085 m, au moins 3,0 px à tous les angles (mesure par angle). Tête 14 px de long à 0 degré, 6 px de haut à l'impact. Reflet clair : NON FAIT.
+3. **Arc de mouvement** : 4 images séparées (`effets/arc_1..4.png`, rendu Blender par `art/source/blender/creusage_arc.py`), croissant d'une couleur plate de la palette, sans contour, 5 px au plus. Image d'impact avec particules : `effets/impact_particules.png`.
+4. **Bords** : (43,69) en armement supprimé (buste -1 px au lieu de -2). (33,64) : présent dans l'ancre validée elle-même et donc dans les 8 images ; non retiré (le retirer d'une seule image la ferait diverger de l'ancre : décision à prendre). La bande orange de la descente de la version précédente a disparu ; l'orange actuel est le manche (62 px dans la pièce pioche).
+5. **Outils** : `tools/animation/` déplacé. Assemblage : `tools/planches/animation/` (assembleur.py, feuille.py, planche_finale.py). Mesure : `tools/mesure/animation/` (controles.py, essai.py). Chemins corrigés. `tools/gate.py` et `tools/outils.json` non touchés.
+6. **Ombrage du torse** : NON CORRIGÉ. À l'arrêt, 37 px sur 208 de la zone poitrine diffèrent de l'ancre dans la pièce torse elle-même (couleurs d'anneau du casque et de verre présentes dans la pièce torse) : ce n'est pas l'effet des bras. Rendu séparé du torse non fait. Correction proposée : découper la pièce torse par le masque du casque et combler le trou par rendu séparé.
 
-### Correction du contrôle de tête (faite, tolérance inchangée : 12 x 4)
-`controles.py` comptait comme acier les pixels bleu-violet des GANTS (75,63,160 passait le critère), et comptait les pixels cachés derrière le casque. Corrigé : acier = pixels bleu-gris dont le vert dépasse le rouge (#a8b6d6, #5a6490), visibles seulement. Les anciennes valeurs (16x20, 30x16, 12x17 pour la prête) étaient fausses. Le relecteur l'avait signalé.
+### Contrôles (sortie de `python3 tools/mesure/animation/controles.py`)
+| image | pioche/casque | hublot | bras/casque | hauteur | tête visible (LxH) | critère tête | verdict |
+|---|---|---|---|---|---|---|---|
+| 1 prête | 0 | 0 | 0 | 72 | 13x8 | non appliqué | OK |
+| 2 armement | 0 | 0 | 0 | 72 | 14x6 | appliqué | OK |
+| 3 sommet | 0 | 0 | 0 | 72 | 15x6 | appliqué | OK |
+| 4 descente | 0 | 0 | 0 | 72 | 8x13 | non appliqué (profil) | OK |
+| 5 frappe | 2 | 0 | 0 | 70 | 11x11 | non appliqué (135 degrés) | OK |
+| 6 impact | 0 | 0 | 0 | 68 | 15x6 | appliqué | OK |
+| 7 remontée | 0 | 0 | 0 | 72 | 4x16 | non appliqué (profil) | OK |
+| 8 retour | 0 | 0 | 0 | 72 | 15x6 | non appliqué | OK |
 
-### Relecture indépendante (sous-agent, première passe) : 5 défauts bloquants — suite donnée
-1. Prête : pas de tête visible au-dessus de l'épaule. → NON RÉSOLU (voir Décision A).
-2. Frappe : pioche presque horizontale, pas de frappe en pleine descente. → NON RÉSOLU (voir Décision B).
-3. Sommet : pas plus haut que l'armement. → RÉSOLU : armement abaissé (tête y 28), sommet au plafond (y 22).
-4. Gant droit : centre qui saute (23 px entre images 3 et 4). → NON RÉSOLU (voir Décision C).
-5. Images 2-3 : gant gauche absent. → RÉSOLU : coude gauche sorti du casque (armement -90/-60, sommet -75/-75), gant visible à x 28-34.
-Non bloquants : manche qui dépasse le gant (2-3) ; manche devant la poitrine (6, déclaré) ; arc de mouvement absent (NON FAIT) ; contrôle tête (RÉSOLU, voir ci-dessus).
-Deuxième relecture (sous-agent, mêmes critères, sans mes conclusions) : 3 bloquants, tous déjà listés comme décisions A (prête : tête absente), B (frappe : pas de descente nette) et C (gant : déplacements en zigzag, F3 à F5). Aucun nouveau bloquant.
-Non bloquants, relevés :
-- bande orange #e9a964 sur la poitrine (F4, x 51-59, y 61-64) : c'est le manche vu de dos, à vérifier ;
-- ombrage du torse en damier crème/mauve (F1-F3, F5-F6) : 94 à 193 px de la zone du torse diffèrent de l'ancre, ces pixels sont surtout ceux où les bras recouvrent le torse (à confirmer par rendu séparé) ;
-- pixel saillant #c9ab88 à (33,64) en F4 et colonne crème à x 43 en F2 : 1 px relié à ses voisins (pas isolé, donc contrôle 0 OK), bords à nettoyer si Julien le demande ;
-- couleurs du manche (#e9a964, #b77a36, #6a3e1e) absentes de l'ancre : voulues (la pioche n'existe pas dans l'ancre).
-Relecture relancée après les décisions A à C.
+Séquence : images distinctes OK ; isolés 0 ; palette hors ancre 0 ; boucle prête vs ancre 505 px, retour vs prête 359 px (pas de seuil numérique défini). Le contrôle de tête mesure l'acier visible seulement (correction du correction de la 2e relecture, tolérance inchangée).
 
-### Décisions à prendre (Julien)
-- **A. Prête** : à -45 degrés, la tête de pioche est dans la silhouette du casque pour toute position atteignable du gant (portée 18,4 px). Options : (1) garder la tête cachée et accepter l'échec ; (2) passer le manche à +30 degrés (tête en haut-droite, visible) : cela change l'angle validé dans la fiche d'intention ; (3) autoriser la pioche devant le casque (alors le contrôle pioche/casque passe à interdit).
-- **B. Frappe** : tête de 12 px de large et 4 px d'épaisseur : vue de profil (90 degrés), elle fait 4 px de large, vue à 105 degrés, 6 px. Le critère 12 px de large est donc impossible pour toute pioche vue de profil. À 135 ou 150 degrés (vraie frappe), la pioche touche le casque (52 à 60 px) avec le gant au niveau de la poitrine ; il faut un gant plus loin (portée insuffisante, +40 % interdits sans rendu nouveau) ou une tête plus longue (14 px à 135 degrés : tête vue de côté à 12,7 px). Options : (1) appliquer le critère de largeur aux images clés seulement (armement, sommet, impact) ; (2) allonger la tête à 14 px (fiche : 12 à 14 px) et refaire la frappe à 135 degrés avec le gant plus à droite ; (3) garder la frappe à 105 degrés et accepter l'échec.
-- **C. Continuité du geste** : le gant droit saute de 12 à 23 px entre les images. Des images intermédiaires (descente, remontée) sont nécessaires, mais elles traversent les angles de tête vus de profil (45 à 135 degrés), où le critère B échoue. Lié à la décision B.
+### Écarts restants (à trancher ou à faire)
+- **Main gauche hors de portée sur 6 images** (distance épaule -> manche, portée 18,4 px, +40 % = 25,8 px) : prête 23,7 ; armement 29,6 ; sommet 25,8 ; descente 19,8 (il faudrait +8 % d'étirement, non rendu) ; frappe 25,3 ; impact 27,3 ; retour 25,5. Sur ces images le bras gauche reste pendu : pas de pose possible sans bras plus long.
+- **Reflet clair de la tête** : non fait (la face éclairée est déjà en acier clair, mais pas de reflet à 1 px). À faire en retouche Aseprite si Julien le confirme.
+- **Pièce torse** : voir correction 6.
+- **Frappe à 135 degrés** : tête vue en diagonale, 11 x 11 px : critère de largeur non appliqué (décision B).
+- **Particules d'impact** : petites (1 à 3 px). À agrandir si Julien les juge trop discrètes.
+- **Effets** : l'arc et les particules ne sont pas superposés aux images (effets séparés, comme demandé).
 
-### Autres écarts
-- Angles snappés à 15 degrés (fiche : prête -50, armement -10, sommet 35, frappe 110, impact 150, retour 60) : prête -45, armement -15, sommet 15 (30 traverse le casque : 53 px), frappe 105, impact 165 (150 touche le casque : 13 px), retour 15 (60 : tête de 7 px).
-- Arc de mouvement (effet séparé) : NON FAIT (demande un rendu Blender de la trajectoire).
-- Retouche Aseprite : NON FAITE.
-- `tools/animation/` (assembleur, contrôles, essai) utilise numpy/Pillow hors des dossiers listés dans AGENTS.md. À trancher : déplacer ou autoriser.
-- Bug corrigé dans `essai.py` (comparaison de noms de calques à un index) : les mesures antérieures étaient fausses.
-
-Blocage : décisions A à C (aucun blocage technique).
+Relecture : troisième relecture indépendante lancée sur la version 9ef2d05 ; résultat à consigner ici.
+Blocage : aucun technique. Décisions ouvertes : bord (33,64) (ancre), reflet, torse.
 
 ## Ancienne phase : CREUSAGE, cible 3D v7 (non validée)
 Julien : v5 non validée (bras disparu et pioche flottante à l'image 2 ; manche trop vertical ; tête trop petite ; image 5 à 73 px). Règle permanente ajoutée à AGENTS.md (RÈGLE ANIMATION A à E). Appliquée au creusage : table de poses, planche cible 3D, contrôles automatiques. Pas de pixel art tant que la cible n'est pas validée.
