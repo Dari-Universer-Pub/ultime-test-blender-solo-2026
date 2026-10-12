@@ -548,14 +548,18 @@ def fer_pioche(centre, mat, nom, a=0.27, pointe=0.08, epaisseur=0.08, largeur=0.
     return o
 
 
+MANCHE_RAYON = 0.085   # rayon du manche de pioche (m) : 4,2 px de diamètre à 112 px, au moins 3 px à tout angle
+TETE_A = 0.26   # demi-longueur de la tête de pioche (m) : environ 14 px de long à 112 px (décision Julien, creusage)
+
+
 def tete_orientee(H, bout, mat, nom):
-    """Tête d'acier à plat dans le plan de l'écran, perpendiculaire au manche, une pointe à chaque bout (13 px)."""
+    """Tête d'acier à plat dans le plan de l'écran, perpendiculaire au manche, une pointe à chaque bout."""
     H, bout = Vector(H), Vector(bout)
     R, U, F = base_camera()
     x = (H - bout).normalized().cross(F).normalized()           # le long de la barre, dans le plan de l'écran
     z = ((bout - H) - x * (bout - H).dot(x)).normalized()        # vers le manche : la courbe s'ouvre vers lui
     y = z.cross(x)
-    o = fer_pioche((0.0, 0.0, 0.0), mat, nom, a=0.20, pointe=0.07, epaisseur=0.12, largeur=0.035,
+    o = fer_pioche((0.0, 0.0, 0.0), mat, nom, a=TETE_A, pointe=0.07, epaisseur=0.12, largeur=0.035,
                    courbure=0.10, pointe_arriere=0.07)
     o.matrix_world = Matrix.Translation(H) @ Matrix((x, y, z)).transposed().to_4x4()
     return o
@@ -733,7 +737,7 @@ def construire(scene):
         if opt.get("B") is not None:
             # cible 3D : bout et tête du manche fixés (pose_fiche) ; la tête est à plat dans le plan de l'écran
             bout, H = Vector(opt["B"]), Vector(opt["H"])
-            objets["pioche_manche"] = tube_entre(bout, H, 0.065, m["bois"], "pioche_manche")
+            objets["pioche_manche"] = tube_entre(bout, H, MANCHE_RAYON, m["bois"], "pioche_manche")
             objets["pioche_tete"] = tete_orientee(H, bout, m["acier"], "pioche_tete")
         else:
             if PIOCHE[1] is not None:
@@ -745,7 +749,7 @@ def construire(scene):
                 u = Vector(PIOCHE[2]).normalized()
                 H = R + u * opt.get("tete", PIOCHE_TETE)
                 bout = R - u * opt.get("bout", 1.15)
-            objets["pioche_manche"] = tube_entre(bout, H, 0.065, m["bois"], "pioche_manche")
+            objets["pioche_manche"] = tube_entre(bout, H, MANCHE_RAYON, m["bois"], "pioche_manche")
             objets["pioche_tete"] = fer_pioche(H, m["acier"], "pioche_tete")
         peindre(objets["pioche_tete"], lambda p, H=H: (p - H).dot(LUMIERE) > 0.01, C_METAL_CLAIR)
 

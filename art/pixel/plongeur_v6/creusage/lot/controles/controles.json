@@ -24,9 +24,11 @@
      "ok": true
     },
     "tete_acier_px": {
-     "largeur": 0,
-     "hauteur": 0,
-     "ok": false
+     "largeur": 13,
+     "hauteur": 8,
+     "ok": true,
+     "applicable": false,
+     "note": "tête vue de profil : critère non applicable (géométrie, décision Julien)"
     },
     "pixels_isoles": {
      "valeur": 0,
@@ -38,7 +40,7 @@
      "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
     }
    },
-   "hash": "f9feb70ac2be7bb9"
+   "hash": "2fb92c7f0a2458e4"
   },
   {
    "n": 2,
@@ -64,7 +66,7 @@
      "ok": true
     },
     "tete_acier_px": {
-     "largeur": 12,
+     "largeur": 14,
      "hauteur": 6,
      "ok": true
     },
@@ -78,7 +80,7 @@
      "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
     }
    },
-   "hash": "eba3cecb475f002f"
+   "hash": "e8bf5e841adaa034"
   },
   {
    "n": 3,
@@ -104,7 +106,7 @@
      "ok": true
     },
     "tete_acier_px": {
-     "largeur": 12,
+     "largeur": 15,
      "hauteur": 6,
      "ok": true
     },
@@ -118,14 +120,56 @@
      "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
     }
    },
-   "hash": "a2167835ab3951bd"
+   "hash": "98ea4ae18fb1d660"
   },
   {
    "n": 4,
-   "nom": "frappe_descente",
+   "nom": "descente",
    "controles": {
     "pioche_casque_px": {
      "valeur": 0,
+     "tolerance": 2,
+     "ok": true
+    },
+    "outil_dans_hublot_px": {
+     "valeur": 0,
+     "ok": true
+    },
+    "bras_sur_casque_px": {
+     "valeur": 0,
+     "tolerance": 1,
+     "ok": true
+    },
+    "hauteur_px": {
+     "valeur": 72,
+     "max": 72,
+     "ok": true
+    },
+    "tete_acier_px": {
+     "largeur": 8,
+     "hauteur": 13,
+     "ok": true,
+     "applicable": false,
+     "note": "tête vue de profil : critère non applicable (géométrie, décision Julien)"
+    },
+    "pixels_isoles": {
+     "valeur": 0,
+     "ok": true
+    },
+    "palette_hors_ancre_couleurs": {
+     "valeur": 0,
+     "ok": true,
+     "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
+    }
+   },
+   "hash": "7a36950ae4967698"
+  },
+  {
+   "n": 5,
+   "nom": "frappe",
+   "controles": {
+    "pioche_casque_px": {
+     "valeur": 2,
      "tolerance": 2,
      "ok": true
     },
@@ -144,9 +188,11 @@
      "ok": true
     },
     "tete_acier_px": {
-     "largeur": 6,
-     "hauteur": 12,
-     "ok": false
+     "largeur": 11,
+     "hauteur": 11,
+     "ok": true,
+     "applicable": false,
+     "note": "tête vue de profil : critère non applicable (géométrie, décision Julien)"
     },
     "pixels_isoles": {
      "valeur": 0,
@@ -158,10 +204,10 @@
      "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
     }
    },
-   "hash": "14e6071c7815be76"
+   "hash": "70ca3c70b622b125"
   },
   {
-   "n": 5,
+   "n": 6,
    "nom": "impact",
    "controles": {
     "pioche_casque_px": {
@@ -184,7 +230,7 @@
      "ok": true
     },
     "tete_acier_px": {
-     "largeur": 12,
+     "largeur": 15,
      "hauteur": 6,
      "ok": true
     },
@@ -202,14 +248,14 @@
      "ok": true
     }
    },
-   "hash": "ffbcd32364c0ff88"
+   "hash": "7f50fed7b7bf2635"
   },
   {
-   "n": 6,
-   "nom": "retour",
+   "n": 7,
+   "nom": "remontee",
    "controles": {
     "pioche_casque_px": {
-     "valeur": 1,
+     "valeur": 0,
      "tolerance": 2,
      "ok": true
     },
@@ -228,9 +274,11 @@
      "ok": true
     },
     "tete_acier_px": {
-     "largeur": 12,
-     "hauteur": 6,
-     "ok": true
+     "largeur": 4,
+     "hauteur": 16,
+     "ok": true,
+     "applicable": false,
+     "note": "tête vue de profil : critère non applicable (géométrie, décision Julien)"
     },
     "pixels_isoles": {
      "valeur": 0,
@@ -242,7 +290,49 @@
      "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
     }
    },
-   "hash": "a22bb70a19de1f96"
+   "hash": "d45dbf7039a73b15"
+  },
+  {
+   "n": 8,
+   "nom": "retour",
+   "controles": {
+    "pioche_casque_px": {
+     "valeur": 0,
+     "tolerance": 2,
+     "ok": true
+    },
+    "outil_dans_hublot_px": {
+     "valeur": 0,
+     "ok": true
+    },
+    "bras_sur_casque_px": {
+     "valeur": 0,
+     "tolerance": 1,
+     "ok": true
+    },
+    "hauteur_px": {
+     "valeur": 72,
+     "max": 72,
+     "ok": true
+    },
+    "tete_acier_px": {
+     "largeur": 15,
+     "hauteur": 6,
+     "ok": true,
+     "applicable": false,
+     "note": "tête vue de profil : critère non applicable (géométrie, décision Julien)"
+    },
+    "pixels_isoles": {
+     "valeur": 0,
+     "ok": true
+    },
+    "palette_hors_ancre_couleurs": {
+     "valeur": 0,
+     "ok": true,
+     "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
+    }
+   },
+   "hash": "a874de639ca893dd"
   }
  ],
  "sequence": {
@@ -250,15 +340,17 @@
    "ok": true
   },
   "changements_px_entre_images": [
-   1051,
-   1119,
-   1452,
-   1386,
-   1711
+   804,
+   1089,
+   816,
+   1068,
+   1296,
+   1716,
+   989
   ],
   "boucle": {
-   "premiere_vs_ancre_px_differents": 480,
-   "derniere_vs_premiere_px_differents": 401
+   "premiere_vs_ancre_px_differents": 505,
+   "derniere_vs_premiere_px_differents": 359
   }
  }
 }

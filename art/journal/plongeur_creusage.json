@@ -1,124 +1,192 @@
 {
  "entrees": [
   {
-   "changement": "creusage image 1 (prête) : pose 2D par pièces, pioche derrière le casque, main à l'épaule droite",
+   "changement": "prête : pioche au-dessus et à droite de l'épaule (manche à +30 degrés), visible hors du casque",
    "image": "art/pixel/plongeur_v6/creusage/lot/boards/creusage_1_01_prete.png",
-   "image_sha256": "4dc6f1d929763328b27a9d66190eeccc030a80d23421e42c456decfcfb70d23b",
+   "image_sha256": "2f73fe0d94302ae94d8cc01ff8a9835d04bdab33b286448563b9a7f870b65e0b",
    "controle": {
-    "silhouette": "NON : la tête de pioche est cachée derrière le casque (72 px visibles sur 180), seul un fragment de manche et le gant à l'épaule restent lisibles ; le geste « pioche sur l'épaule » ne se lit pas",
-    "couleurs": "base de l'ancre conservée (palette hors ancre : 0 couleur)",
-    "cadrage": "personnage dans la case, pas de coupure",
-    "taille": "72 px de haut, outil compris (plage 70 à 72)",
-    "details": "casque et hublot lisibles ; tête de pioche non lisible",
-    "coherence_base": "cohérent avec l'ancre (même corps, mêmes jambes)",
-    "pixels_parasites": "0 pixel isolé"
-   },
-   "verdict": "garde",
-   "defauts_restants": [
-    "CONTRÔLE EN ÉCHEC : tête de pioche cachée derrière le casque ; à -45 degrés, aucune position atteignable ne la sort du casque sans cacher la main (décision à prendre)",
-    "geste « pioche sur l'épaule » peu lisible (72 px visibles sur 180), relecteur : bloquant"
-   ],
-   "controle_mecanique": "ÉCHEC : tête non visible (0 px d'acier visible ; la tête de pioche est derrière le casque)"
-  },
-  {
-   "changement": "creusage image 2 (armement) : pioche levée au-dessus du casque, angle -15 (fiche -10, écart 5°), bras gauche sorti du casque (coude -90, avant-bras -60)",
-   "image": "art/pixel/plongeur_v6/creusage/lot/boards/creusage_2_02_armement.png",
-   "image_sha256": "b23c9fb36f6a6c77dddbf5dca85f7cae194001ef71c816564923ec1b62d52ee7",
-   "controle": {
-    "silhouette": "oui : pioche levée à droite du casque, gant gauche visible hors du casque à gauche, geste d'armement lisible",
-    "couleurs": "base de l'ancre conservée",
+    "silhouette": "oui : la pioche est lisible au-dessus de l'épaule droite (tête 13 x 8 px visible)",
+    "couleurs": "base de l'ancre conservée (palette hors ancre 0)",
     "cadrage": "personnage dans la case",
-    "taille": "72 px de haut (plage 70 à 72)",
-    "details": "tête de pioche visible (12 x 6 px, contrôle OK), gants visibles des deux côtés",
-    "coherence_base": "cohérent avec les autres images",
-    "pixels_parasites": "0 pixel isolé"
+    "taille": "72 px (plage 70 à 72)",
+    "details": "tête visible ; gant droit à l'épaule ; casque et hublot lisibles",
+    "coherence_base": "cohérent avec l'ancre",
+    "pixels_parasites": "0 pixel isolé ; un bord de 1 px (33,64) est déjà dans l'ancre validée (non retiré)"
    },
    "verdict": "garde",
    "defauts_restants": [
-    "manche traverse l'épaule droite (passe devant le bras, légal)"
-   ],
-   "controle_mecanique": "OK (tête 12x6, pioche/casque 0 px, bras/casque 0 px, hauteur 72)"
-  },
-  {
-   "changement": "creusage image 3 (sommet) : pioche la plus haute de la séquence, angle 15 (fiche 35 : 30 traverse le casque, 53 px), bras gauche levé hors du casque",
-   "image": "art/pixel/plongeur_v6/creusage/lot/boards/creusage_3_03_sommet.png",
-   "image_sha256": "441815c77ce85448b50f66dfae39814a06fe391a73b0436540302fd3eeff7cca",
-   "controle": {
-    "silhouette": "oui : pioche la plus haute (pointe à y 22, plus haut que l'armement à y 28), bras tendus vers le haut, geste de sommet lisible",
-    "couleurs": "base de l'ancre conservée",
-    "cadrage": "personnage dans la case, pioche à 2 px du bord haut (y 20 pour le casque, hauteur 72)",
-    "taille": "72 px de haut (plage 70 à 72)",
-    "details": "tête de pioche visible (12 x 6 px, contrôle OK), gants visibles des deux côtés",
-    "coherence_base": "cohérent avec les autres images",
-    "pixels_parasites": "0 pixel isolé"
-   },
-   "verdict": "garde",
-   "defauts_restants": [
-    "angle 15 au lieu de 30 : à 30 la pioche traverse le casque (53 px) ; écart de 20 degrés avec la fiche"
-   ],
-   "controle_mecanique": "OK (tête 12x6, pioche/casque 0 px, bras/casque 0 px, hauteur 72)"
-  },
-  {
-   "changement": "creusage image 4 (frappe, descente) : pioche en diagonale vers le bas-droit, angle 105",
-   "image": "art/pixel/plongeur_v6/creusage/lot/boards/creusage_4_04_frappe_descente.png",
-   "image_sha256": "e4829d4b973f3c042167ea69659821f682376a49015698042134a40de0c9f1fb",
-   "controle": {
-    "silhouette": "oui : diagonale bas-droit lisible, le bras descend du côté droit",
-    "couleurs": "base de l'ancre conservée",
-    "cadrage": "personnage dans la case, tête de pioche dans la case",
-    "taille": "70 px de haut (plage 70 à 72)",
-    "details": "tête de pioche pâle, petite (environ 5 px) ; gants visibles",
-    "coherence_base": "cohérent avec les autres images",
-    "pixels_parasites": "0 pixel isolé"
-   },
-   "verdict": "garde",
-   "defauts_restants": [
-    "CONTRÔLE EN ÉCHEC (tête 6 px de large) : à 105 degrés la tête est vue de profil ; à 135 ou 150, la pioche touche le casque (52 à 60 px) ; décision à prendre (ETAT.md)",
-    "pioche presque horizontale à hauteur des hanches : lue comme un balayage plutôt que comme une frappe en pleine descente (relecteur, défaut bloquant)"
-   ],
-   "controle_mecanique": "ÉCHEC : tête 6x12 (contrôle 12x4 : largeur 6 < 12). Tête vue de profil à 105 degrés : cause géométrique, voir ETAT.md"
-  },
-  {
-   "changement": "creusage image 5 (impact) : tête de pioche au sol devant et à droite des pieds, angle 165 (fiche 150, écart 15°)",
-   "image": "art/pixel/plongeur_v6/creusage/lot/boards/creusage_5_05_impact.png",
-   "image_sha256": "f3f029276bb176475f3e818d3f79d12fc16e766f668b75250db1c0ca77e9c728",
-   "controle": {
-    "silhouette": "oui : tête de pioche posée au sol à droite des pieds, manche en diagonale, geste d'impact lisible",
-    "couleurs": "base de l'ancre conservée",
-    "cadrage": "personnage dans la case",
-    "taille": "68 px de haut (plage 70 à 72 : 2 px sous la plage, tolérance vers le bas)",
-    "details": "tête de pioche posée au sol ; mains visibles",
-    "coherence_base": "cohérent avec les autres images",
-    "pixels_parasites": "0 pixel isolé"
-   },
-   "verdict": "garde",
-   "defauts_restants": [
-    "angle 165 au lieu de 150 (écart 15°) : choisi pour éviter le casque (1 px de chevauchement)",
-    "contact au sol : base de la tête à 90 à 91 px, sol à 92 px (contrôle >= 91 passé de justesse)"
+    "bras gauche pendu le long du corps (règle : jamais levé dans le vide)",
+    "reflet clair de la tête non fait (Aseprite à prévoir)",
+    "ombrage du torse : 37 px de la pièce torse diffèrent de l'ancre (voir ETAT.md)"
    ]
   },
   {
-   "changement": "creusage image 6 (retour) : pioche remontée à droite, angle 15 (fiche 60 : 60 traverse le casque ou tête de 7 px de large), passe devant le torse",
-   "image": "art/pixel/plongeur_v6/creusage/lot/boards/creusage_6_06_retour.png",
-   "image_sha256": "6b27f428026d68b778e4f39dbe73ff5c556cd49cd7024ef5e9b47a3e0bcea646",
+   "changement": "armement : pioche levée au-dessus et à droite du casque, bras droit levé, buste -1 px",
+   "image": "art/pixel/plongeur_v6/creusage/lot/boards/creusage_2_02_armement.png",
+   "image_sha256": "ea19d954b2e31f6fc98d54a07d6365025c9e500df840e6470a9cc86766b1435d",
    "controle": {
-    "silhouette": "oui : pioche remontée en diagonale à droite de la tête, lue comme un retrait vers le haut",
-    "couleurs": "base de l'ancre conservée",
+    "silhouette": "oui : pioche levée à droite du casque, bras droit tendu, geste lisible",
+    "couleurs": "base conservée",
     "cadrage": "personnage dans la case",
-    "taille": "72 px de haut (plage 70 à 72)",
-    "details": "tête de pioche visible (12 x 6 px, contrôle OK)",
+    "taille": "72 px",
+    "details": "tête 14 x 6 px (critère de tête appliqué et OK)",
     "coherence_base": "cohérent avec les autres images",
+    "pixels_parasites": "0 pixel isolé ; bord x 43 supprimé en passant le buste à -1 px"
+   },
+   "verdict": "garde",
+   "defauts_restants": [
+    "bras gauche pendu le long du corps",
+    "reflet clair de la tête non fait"
+   ]
+  },
+  {
+   "changement": "sommet : pioche la plus haute (tête à y 22, plafond de 72 px), bras droit tendu vers le haut",
+   "image": "art/pixel/plongeur_v6/creusage/lot/boards/creusage_3_03_sommet.png",
+   "image_sha256": "9cab090a3198de7489b5046f896cdd2660afe9528348f5817678f29749bb8f33",
+   "controle": {
+    "silhouette": "oui : pioche la plus haute de la séquence, geste de sommet lisible",
+    "couleurs": "base conservée",
+    "cadrage": "personnage dans la case",
+    "taille": "72 px",
+    "details": "tête 15 x 6 px (critère appliqué et OK)",
+    "coherence_base": "cohérent",
     "pixels_parasites": "0 pixel isolé"
    },
    "verdict": "garde",
    "defauts_restants": [
-    "manche devant la poitrine (passage déclaré dans la fiche) : lisible, mais la pioche est presque verticale : retrait peu marqué"
-   ],
-   "controle_mecanique": "OK (tête 12x6, pioche/casque 1 px (tolérance 2), bras/casque 0 px, hauteur 72)"
+    "angle 15 au lieu de 35 (à 30 la pioche traverse le casque) ; bras gauche pendu"
+   ]
+  },
+  {
+   "changement": "descente (intermédiaire) : pioche qui tombe vers l'avant-droite, manche à 60 degrés, sous le bord du casque",
+   "image": "art/pixel/plongeur_v6/creusage/lot/boards/creusage_4_04_descente.png",
+   "image_sha256": "3d75191f0ffa7ea5e95ecfe02fd1a6743cf88a4628c5d66cee2fc9b037e4b484",
+   "controle": {
+    "silhouette": "partielle : la pioche descend vers l'avant-droite, lisible comme mouvement, pas comme frappe",
+    "couleurs": "base conservée",
+    "cadrage": "personnage dans la case",
+    "taille": "72 px",
+    "details": "tête vue de profil (8 x 13 px) : critère non appliqué",
+    "coherence_base": "cohérent",
+    "pixels_parasites": "0 pixel isolé ; la bande orange de la version précédente a disparu"
+   },
+   "verdict": "garde",
+   "defauts_restants": [
+    "bras gauche pendu le long du corps",
+    "tête vue de profil : largeur non mesurable (géométrie, décision B)"
+   ]
+  },
+  {
+   "changement": "frappe en pleine descente : pioche à 135 degrés, tête vers le bas-droit, à droite du corps",
+   "image": "art/pixel/plongeur_v6/creusage/lot/boards/creusage_5_05_frappe.png",
+   "image_sha256": "61eb779a0cb11d2b8d882efa230893be892ad61b78008de8d13bd7100d729c0f",
+   "controle": {
+    "silhouette": "oui : pioche en diagonale bas-droit à hauteur du bassin, lue comme une frappe",
+    "couleurs": "base conservée",
+    "cadrage": "personnage dans la case",
+    "taille": "70 px",
+    "details": "tête 11 x 11 px (vue en diagonale, critère non appliqué)",
+    "coherence_base": "cohérent",
+    "pixels_parasites": "0 pixel isolé"
+   },
+   "verdict": "garde",
+   "defauts_restants": [
+    "pioche/casque : 2 px (tolérance 2, à la limite) ; bras gauche pendu"
+   ]
+  },
+  {
+   "changement": "impact : tête de pioche au sol devant et à droite des pieds, angle 165 degrés",
+   "image": "art/pixel/plongeur_v6/creusage/lot/boards/creusage_6_06_impact.png",
+   "image_sha256": "6101d92e84707d69ac4ac0f9e7eaef6ce800474c4403642969ddf39e9f270b24",
+   "controle": {
+    "silhouette": "oui : tête posée au sol à droite des pieds, manche en diagonale, geste d'impact lisible",
+    "couleurs": "base conservée",
+    "cadrage": "personnage dans la case, genoux fléchis",
+    "taille": "68 px (2 px sous la plage, tolérance vers le bas)",
+    "details": "tête 15 x 6 px (critère appliqué et OK), contact sol 91 px",
+    "coherence_base": "cohérent",
+    "pixels_parasites": "0 pixel isolé"
+   },
+   "verdict": "garde",
+   "defauts_restants": [
+    "angle 165 au lieu de 150 (à 150 le manche touche le casque) ; reflet clair non fait"
+   ]
+  },
+  {
+   "changement": "remontée (intermédiaire) : pioche qui remonte à l'horizontale vers la droite, sous le casque",
+   "image": "art/pixel/plongeur_v6/creusage/lot/boards/creusage_7_07_remontee.png",
+   "image_sha256": "edce25ee55aed66a6f2ebae108abf772b9b283d59373cb8591f047c02cb4e5d1",
+   "controle": {
+    "silhouette": "partielle : pioche horizontale qui passe devant la poitrine, lisible comme retrait",
+    "couleurs": "base conservée",
+    "cadrage": "personnage dans la case",
+    "taille": "72 px",
+    "details": "remontée : gant gauche sur le manche (portée 15,3 px, tenu) ; bras gauche en travers du torse",
+    "coherence_base": "cohérent",
+    "pixels_parasites": "0 pixel isolé"
+   },
+   "verdict": "garde",
+   "defauts_restants": [
+    "manche devant la poitrine (passage déclaré dans la fiche) ; pioche presque horizontale : retrait peu marqué"
+   ]
+  },
+  {
+   "changement": "retour : pioche remontée à droite de la tête, angle 15 degrés, bras droit replié",
+   "image": "art/pixel/plongeur_v6/creusage/lot/boards/creusage_8_08_retour.png",
+   "image_sha256": "00943d7baba6aeadf83cf23365f9f8b961ec2be68fd4f67255a716c6f9dd71b3",
+   "controle": {
+    "silhouette": "oui : pioche remontée à droite, lue comme un retrait vers le haut",
+    "couleurs": "base conservée",
+    "cadrage": "personnage dans la case",
+    "taille": "72 px",
+    "details": "tête 15 x 6 px",
+    "coherence_base": "cohérent",
+    "pixels_parasites": "0 pixel isolé"
+   },
+   "verdict": "garde",
+   "defauts_restants": [
+    "bras gauche pendu ; boucle vers la prête : 359 px de différence avec la première image"
+   ]
+  },
+  {
+   "changement": "effet séparé : arc de mouvement (croissant clair sur la trajectoire de la tête de pioche, 4 images, sans contour)",
+   "image": "art/pixel/plongeur_v6/creusage/lot/effets/arc_4.png",
+   "image_sha256": "2e346c9c76337c8c05410cc272d640ec0b0afe6993838b4f548a1e25335ea704",
+   "controle": {
+    "silhouette": "oui : croissant qui s'allonge le long de la trajectoire de l'armement à l'impact",
+    "couleurs": "une couleur plate de la palette (reflet #d8f4fa)",
+    "cadrage": "image 112 x 112, effet séparé du personnage",
+    "taille": "épaisseur max 5 px, nulle aux bouts",
+    "details": "bords nets, pas de contour",
+    "coherence_base": "effet séparé, jamais composé dans les images du personnage",
+    "pixels_parasites": "aucun"
+   },
+   "verdict": "garde",
+   "defauts_restants": [
+    "effet non composé avec les images (à superposer dans le jeu)"
+   ]
+  },
+  {
+   "changement": "effet séparé : particules d'impact (débris bruns et bulles claires) sur l'image d'impact",
+   "image": "art/pixel/plongeur_v6/creusage/lot/effets/impact_particules.png",
+   "image_sha256": "afdc6764bc2635af01724031f86cbe61433fb57fdd83a7264cdf5e09cc683fed",
+   "controle": {
+    "silhouette": "oui : quelques particules au point de contact de la tête de pioche",
+    "couleurs": "bois et reflet de la palette",
+    "cadrage": "dans la case",
+    "taille": "particules de 1 à 3 px",
+    "details": "lisibles à ×4",
+    "coherence_base": "cohérent",
+    "pixels_parasites": "aucun"
+   },
+   "verdict": "garde",
+   "defauts_restants": [
+    "particules petites : à augmenter si Julien les juge trop discrètes"
+   ]
   }
  ],
  "sequence": {
-  "changement": "creusage : six images, séquence complète (feuille)",
+  "changement": "creusage : huit images (prête, armement, sommet, descente, frappe, impact, remontée, retour) + arc et particules",
   "feuille": "art/pixel/plongeur_v6/creusage/lot/feuille/creusage.png",
   "tag": "creusage",
   "durees": [
@@ -126,9 +194,12 @@
    4,
    2,
    2,
+   2,
    4,
+   2,
    3
   ],
+  "planche_finale": "art/pixel/plongeur_v6/creusage/lot/planche_finale.png",
   "controles": "art/pixel/plongeur_v6/creusage/lot/controles/controles.md"
  }
 }

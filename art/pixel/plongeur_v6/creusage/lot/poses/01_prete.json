@@ -1,6 +1,6 @@
 {
  "nom": "01_prete",
- "phi_deg": -50,
+ "phi_deg": 30,
  "calques": [
   "jambes",
   "torse",
@@ -12,8 +12,8 @@
   "cap_epaule_d",
   "bras_d_avant",
   "cap_coude_d",
-  "bloc_main_d",
-  "casque"
+  "casque",
+  "bloc_main_d"
  ],
  "chaine": {
   "buste": [
@@ -25,14 +25,14 @@
    0
   ],
   "bras_g": {
-   "haut": -15,
-   "avant": -15
+   "haut": 0,
+   "avant": 0
   },
   "bras_d": {
-   "haut": 0,
-   "avant": 180
+   "haut": 135,
+   "avant": 30
   },
-  "bloc_main_d": -45
+  "bloc_main_d": 30
  },
  "angle_pioche_fiche_deg": null
 }

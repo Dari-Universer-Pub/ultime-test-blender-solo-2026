@@ -1,6 +1,6 @@
 {
  "nom": "03_sommet",
- "phi_deg": 35,
+ "phi_deg": 15,
  "calques": [
   "jambes",
   "torse",
@@ -25,8 +25,8 @@
    0
   ],
   "bras_g": {
-   "haut": -75,
-   "avant": -75
+   "haut": 0,
+   "avant": 0
   },
   "bras_d": {
    "haut": 120,

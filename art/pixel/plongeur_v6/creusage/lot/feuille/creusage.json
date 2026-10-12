@@ -22,26 +22,36 @@
   },
   {
    "index": 3,
-   "nom": "04_frappe_descente",
+   "nom": "04_descente",
    "duree_images": 2
   },
   {
    "index": 4,
-   "nom": "05_impact",
-   "duree_images": 4
+   "nom": "05_frappe",
+   "duree_images": 2
   },
   {
    "index": 5,
-   "nom": "06_retour",
+   "nom": "06_impact",
+   "duree_images": 4
+  },
+  {
+   "index": 6,
+   "nom": "07_remontee",
+   "duree_images": 2
+  },
+  {
+   "index": 7,
+   "nom": "08_retour",
    "duree_images": 3
   }
  ],
  "tags": {
   "creusage": {
    "debut": 0,
-   "fin": 5,
+   "fin": 7,
    "boucle": true
   }
  },
- "total_duree_images": 19
+ "total_duree_images": 23
 }
