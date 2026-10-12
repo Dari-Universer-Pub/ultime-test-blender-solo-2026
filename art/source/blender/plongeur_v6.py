@@ -658,8 +658,8 @@ def reglages(scene):
 
 
 # ------------------------------------------------------------------ nage (huit images, plan de l'écran)
-CRAWL = {"centre": 0.5, "amplitude": 0.5, "coude": 0.5, "phase_glisse": 0.35,
-         "jambe_centre": 0.15, "jambe": 0.25}   # réglages de la nage (essais)
+CRAWL = {"centre": 0.5, "amplitude": 0.35, "coude": 0.5, "phase_glisse": 0.35,
+         "jambe_centre": 0.15, "jambe": 0.25}   # nage retenue : r03 (bras latéraux), jambes d'origine
 
 
 def pose_crawl(k, n=8, roulis=70.0):

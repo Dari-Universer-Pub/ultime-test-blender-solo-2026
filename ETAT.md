@@ -1,6 +1,41 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
-## Phase courante : NAGE (essai 1) — ÉCHEC DU TROIS QUARTS, ARRÊT POUR VALIDATION DE JULIEN
+## Phase courante : NAGE r03 (huit images définitives) — ARRÊT POUR VALIDATION DE JULIEN
+Roulis de 70° du squelette entier autour de l'axe de profondeur (tête à droite, visage et hublot vers la caméra). Caméra, lumière et orientation de l'ancre inchangées. Bras latéraux r03 comme base de la nage. Essai unique de jambes latérales (r04) : rejeté (jambes lointaines 39 à 65 %, image 1 à 54 px de haut, sous 56 px).
+
+Mesures par carte d'identité (`python3 tools/mesure/membres_nage.py DOSSIER --proche d`, repères : proche >= 45 %, lointain >= 40 %, sortie vérifiée image par image) :
+
+| image | bras proche | bras lointain | jambe proche | jambe lointaine | hauteur | repères |
+|---|---|---|---|---|---|---|
+| nage_01 | 75 % | 77 % | 62 % | 55 % | 58 px | OK |
+| nage_02 | 88 % | 82 % | 54 % | 61 % | 61 px | OK |
+| nage_03 | 80 % | 82 % | 53 % | 66 % | 68 px | OK |
+| nage_04 | 72 % | 82 % | 58 % | 59 % | 60 px | OK |
+| nage_05 | 43 % KO | 77 % | 45 % KO | 53 % | 59 px | ÉCHEC (2 membres proches) |
+| nage_06 | 72 % | 83 % | 58 % | 59 % | 62 px | OK |
+| nage_07 | 82 % | 83 % | 53 % | 66 % | 69 px | OK |
+| nage_08 | 87 % | 82 % | 54 % | 61 % | 57 px | OK |
+
+Global : hauteur 57 à 69 px (cible 56 à 80) OK ; amplitude 0,452 (cible >= 0,45), de justesse ; 0 pixel isolé après nettoyage ; 23 couleurs par image ; 8 images distinctes (octets différents) ; hublot visible dans les huit images (vu sur la planche).
+
+Écarts (planche, `art/pixel/plongeur_v6/nage/planche_nage_r03.png`) :
+- Image 5 : bras proche recouvert par le tronc et la collerette pendant le tirage vers le bas ; jambe proche juste sous 45 %.
+- Cycle presque symétrique : images 2/8 (9,9 % de pixels différents), 3/7 (11,4 %), 4/6 (7,0 %). Elles se lisent comme un aller-retour.
+- Figure plus large que l'ancre (61 à 64 px contre 45 px) : conséquence du roulis, pas de la caméra.
+- Style : couleurs, ombrages et absence de contour identiques à l'ancre ; manches non assombries.
+
+Trois points les plus faibles :
+1. Image 5 : bras proche (43 %) et jambe proche (45 %) sous le repère.
+2. Cycle presque symétrique (paires 2/8, 3/7, 4/6) : la glisse de phase ne suffit pas à casser la symétrie.
+3. Amplitude 0,452 à la limite, et jambes proches entre 53 et 62 % près du repère.
+
+Fichiers : `art/pixel/plongeur_v6/nage/` (nage_01 à nage_08, planche_nage_r03.png, mesures_r03.txt). Journal : `art/journal/plongeur_v6.json`, liste `nage`, deuxième entrée. Code : `art/source/blender/plongeur_v6.py` (`pose_crawl`, `incliner`, `CRAWL` r03, `rendre_nage_images`). Outil : `tools/mesure/membres_nage.py` (seuils en paramètres, défauts 45 % et 40 %).
+
+Décision demandée à Julien : valider cette nage (lecture roulée, sept images sur huit dans les repères) ou demander d'abord la correction de l'image 5 et du cycle symétrique. Rien d'autre ne sera fait avant son retour.
+
+Non fait (attend Julien) : idle animé, creusage, attaque, saut, dégâts, mort, feuille, manifeste, jeu, tuiles 24 px, robot, `gate.py M3`.
+
+## Ancienne phase : NAGE (essai 1) — ÉCHEC DU TROIS QUARTS (archivée)
 Julien a validé la pose idle v6 (`add270b`). L'ancre est verrouillée : `art/references/ancre_plongeur_v6.png` (+ rendus x6 eau claire et eau sombre). STYLE.md, DECISIONS.md et AGENTS.md sont à jour.
 
 Essai de nage (pose dans le plan visible, bras qui se lèvent et s'abaissent, jambes en ciseaux) : mesuré, il ne tient pas.

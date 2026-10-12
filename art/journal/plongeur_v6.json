@@ -408,6 +408,42 @@
       "hauteur": "71 à 72 px (cible 56 à 80) OK",
       "amplitude": "0,50 (cible >= 0,45) OK",
       "isoles": 0
+    },
+    {
+      "essai": "nage r03 définitive : bras latéraux (r03), roulis de 70° du squelette entier autour de l'axe de profondeur (tête à droite, visage et hublot vers la caméra), caméra, lumière et orientation de l'ancre inchangées ; essai UNIQUE de jambes latérales (r04) : rejeté (jambes lointaines 39 à 65 %, image 1 à 54 px de haut, sous 56)",
+      "planche": "art/pixel/plongeur_v6/nage/planche_nage_r03.png",
+      "planche_sha256": "a10d9eef122d9e3bda93c1d946e7cc406fb1cf7fdf133a3b7ef43cdad9a3f629",
+      "images": "art/pixel/plongeur_v6/nage/nage_01.png à nage_08.png (112 x 112, 23 couleurs chacune, 8 images distinctes)",
+      "sha256_images": {
+        "nage_01": "a4075b9d24ef5fe5184919d4ee36c8d65be771bdd037112e6f6fd49ccfa03b95",
+        "nage_02": "2d6cc0901f12fe1444f7b63055caaf37aae2a0c33ab97d7ca7a58645551b82d8",
+        "nage_03": "f722d0100b0548e43864bb0c4beb41da221710fcca1cb0a7cbdd879e216f4fd2",
+        "nage_04": "8692cefc1ba0155e4b24248bb0e3de6bd07875de36bf644d02aecf645b4b4f89",
+        "nage_05": "b7b9399e6931193a2ea34f90fb6b466053e33638d82fd531b17ba60f77218050",
+        "nage_06": "af0fe724a0c707c8853c114ea4ec5b61895fe2759ad19e9d9642544bc36ca73c",
+        "nage_07": "3e2cb554be1c9a05c591eee7af48e633cc56a7d1c8911d64d9a38fa1433d1330",
+        "nage_08": "b3e4daae6887723f7b8ea494c2f0c14c6a4ebce96c5eeb1d2630ead0b185321c"
+      },
+      "verdict": "7 images sur 8 dans les repères (proche 45 %, lointain 40 %) ; image 5 SOUS le repère sur deux membres (bras proche 43 %, jambe proche 45 % KO, membres_nage code 1) ; hublot visible et figure non debout dans les 8 images (lecture à valider par Julien)",
+      "mesures_par_image": {
+        "1": "bras proche 166 px / 75 % ; bras lointain 163 px / 77 % ; jambe proche 214 px / 62 % ; jambe lointaine 151 px / 55 % ; hauteur 58",
+        "2": "205 px / 88 % ; 193 px / 82 % ; 180 px / 54 % ; 199 px / 61 % ; hauteur 61",
+        "3": "191 px / 80 % ; 192 px / 82 % ; 156 px / 53 % ; 227 px / 66 % ; hauteur 68",
+        "4": "152 px / 72 % ; 183 px / 82 % ; 184 px / 58 % ; 201 px / 59 % ; hauteur 60",
+        "5": "99 px / 43 % KO ; 171 px / 77 % ; 145 px / 45 % KO ; 160 px / 53 % ; hauteur 59",
+        "6": "152 px / 72 % ; 191 px / 83 % ; 184 px / 58 % ; 201 px / 59 % ; hauteur 62",
+        "7": "197 px / 82 % ; 188 px / 83 % ; 156 px / 53 % ; 228 px / 66 % ; hauteur 69",
+        "8": "202 px / 87 % ; 192 px / 82 % ; 180 px / 54 % ; 199 px / 61 % ; hauteur 57"
+      },
+      "hauteur": "57 à 69 px (cible 56 à 80) OK",
+      "amplitude": "0,452 (cible >= 0,45) OK, de justesse",
+      "isoles": 0,
+      "paires_quasi_symetriques": "2/8 : 9,9 % de pixels différents ; 3/7 : 11,4 % ; 4/6 : 7,0 % (cycle encore presque symétrique)",
+      "points_faibles": [
+        "image 5 : bras proche caché par le tronc et la collerette pendant le tirage (43 %), jambe proche à 45 % KO",
+        "cycle presque symétrique : images 2/8, 3/7 et 4/6 se lisent comme un aller-retour (7 à 11 % de pixels différents)",
+        "amplitude 0,452 à la limite du seuil, et jambes proches entre 53 et 62 % (proches du repère)"
+      ]
     }
   ]
 }
