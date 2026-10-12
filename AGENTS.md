@@ -61,9 +61,10 @@ il est bon parce que tu l'as REGARDÉ et qu'il est beau.
    `python tools/planches/comparer.py AVANT.png APRES.png boards/journal/<id>_<n>.png [--case x,y,w,h]`.
 3. **Ouvre et REGARDE l'image** (lis le fichier image, pas son nom). Puis juge-la avec ces 7 critères,
    chacun en une phrase précise : silhouette lisible à ×1 ? couleurs de la base conservées ?
-   cadrage (personnage qui remplit sa case) ? taille finale (plongeur 32 à 40 px de haut) ?
-   détails (casque, hublot, mains) lisibles ? cohérence avec les références et le reste du jeu ?
-   pixels parasites ou bords sales ?
+   cadrage (personnage qui remplit sa case) ? taille finale (héros 70 à 74 px de haut, case 112 x 112) ?
+   détails (casque, hublot, mains) lisibles ? cohérence avec l'ancre (`art/references/ancre_plongeur_v6.png`)
+   et le reste du jeu ? pixels parasites ou bords sales ? Style peint doux, SANS contour : la forme tient à la
+   valeur et à l'ombrage (on regarde aussi en niveaux de gris et sur eau sombre).
 4. **Décide** : `garde` si c'est mieux, `annule` si ce n'est pas mieux (tu reviens en arrière).
 5. **Écris l'entrée** dans `art/journal/<id>.json` : l'image, son SHA-256 (affiché par comparer.py), les 7 critères
    et le verdict (format dans `PLAN.md`). Une entrée laissée vide fait échouer le contrôle. Le contrôle vérifie ce journal : une entrée par changement, une image
@@ -101,9 +102,12 @@ qui doit afficher `SUCCES`.
 - Python avec numpy si la sandbox n'en a pas : `/opt/outils-varekh/bin/python`
 - **Assets** : Blender en ligne de commande, `/opt/outils-varekh/bin/blender -b --python <script.py>`. Tu écris
   toi-même toute la chaîne : construction du modèle, rig, animation, rendu (caméra orthographique fixe, mêmes réglages
-  pour tous les assets), puis pixelisation (réduction, quantification à la palette, contour) dans `tools/pixelisation/`,
-  et finition dans Aseprite. Garde un style commun : écris tes réglages (lumière, caméra, taille en px, contour) une
-  fois dans `STYLE.md` et réutilise-les pour tous les assets.
+  pour tous les assets), rendu DIRECT à la taille finale (pas de réduction après coup), quantification PAR MATIÈRE
+  dans `tools/pixelisation/`, nettoyage des pixels isolés, et finition dans Aseprite. Garde un style commun : écris
+  tes réglages (lumière, caméra, taille en px) une fois dans `STYLE.md` et réutilise-les pour tous les assets.
+  Décision de Julien du 12/10 (voir `DECISIONS.md`) : héros 70 à 74 px de haut dans une case 112 x 112, trois quarts
+  de face, style peint doux SANS contour, une seule lumière en haut à gauche. L'ancre est le sprite
+  `art/references/ancre_plongeur_v6.png` (rendus x6 à côté) : chaque nouvel asset du héros doit la respecter.
 - Vision : `bin/godot` ouvre tout seul un écran virtuel avec OpenGL, donc `get_viewport().get_texture().get_image().save_png()`
   marche. `bin/godot-capture <projet> <dossier> <nb_images> [scène]` filme le jeu image par image en PNG.
   `bin/capture-ecran sortie.png` capture tout l'écran pendant que le jeu tourne. Ensuite tu REGARDES le PNG.

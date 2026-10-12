@@ -1,6 +1,26 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
-## Phase courante : PLONGEUR V6 SANS CONTOUR (style peint doux) — ARRÊT POUR VALIDATION DE JULIEN
+## Phase courante : NAGE (essai 1) — ÉCHEC DU TROIS QUARTS, ARRÊT POUR VALIDATION DE JULIEN
+Julien a validé la pose idle v6 (`add270b`). L'ancre est verrouillée : `art/references/ancre_plongeur_v6.png` (+ rendus x6 eau claire et eau sombre). STYLE.md, DECISIONS.md et AGENTS.md sont à jour.
+
+Essai de nage (pose dans le plan visible, bras qui se lèvent et s'abaissent, jambes en ciseaux) : mesuré, il ne tient pas.
+- Bras lointain caché dans les 8 images : 12 à 59 % non cachés (seuil 60 %). Cause : la caméra est en trois quarts, le bras du côté opposé passe derrière le tronc quand il est sur le côté.
+- Cycle en 5 poses distinctes sur 8 : images 2=8, 3=7, 4=6 identiques pixel pour pixel (phase symétrique).
+- Lecture : figure debout de face, pas de glisse ni d'anticipation.
+- Tenu : hauteur 71 à 72 px, amplitude 0,50, 0 pixel isolé, 23 couleurs.
+- Écart de style à valider : la séparation par la valeur (bras proche 81 contre tronc 131 en luminance) vient d'un assombrissement des manches, que l'ancre idle n'a pas.
+
+Planche : `boards/plongeur_v6_nage_essai1.png` (ancre idle et huit images, quatre fonds, x4, mesures image par image). Images : `art/pixel/plongeur_v6/nage_essai1/`. Code : `art/source/blender/plongeur_v6.py` (`pose_nage`, `rendre_nage_images`).
+
+### Proposition (non réalisée, à valider)
+- A (recommandée) : nage horizontale en crawl, corps incliné vers l'avant de 60 à 70° (tout le corps tourne d'un bloc), bras qui passent au-dessus de la tête dans le plan sagittal. Le bras proche passe devant le corps, le bras lointain reste au-dessus, donc visible en trois quarts. Risque : la hauteur du sprite doit rester entre 56 et 80 px. Un seul essai, puis mesure.
+- B : bras en crawl dans le plan vertical de l'axe de nage, sans inclinaison : seul le bras qui avance est visible, à mesurer.
+- À corriger dans tous les cas : la phase de l'animation n'est pas symétrique (images 2=8, 3=7, 4=6).
+
+### Non fait (attend Julien)
+- Idle (animation), creusage, attaque, saut, dégâts, mort, feuille, manifeste, jeu, tuiles 24 px, robot, `gate.py M3`.
+
+## Ancienne phase : PLONGEUR V6 SANS CONTOUR (style peint doux) — ARRÊT POUR VALIDATION DE JULIEN
 Julien a retiré le contour : trop lourd, « affreux ». Style peint, doux, SANS trait sombre sur le pourtour ni entre parties. La forme tient à la valeur et à l'ombrage. Plus aucun objectif de contour (épaisseur, blocs 2x2, part dans la silhouette).
 Le contour est encore dans l'historique git (commit `cb8d19f`). Rien n'est téléchargé. `tools/gate.py` et `tools/outils.json` non touchés.
 

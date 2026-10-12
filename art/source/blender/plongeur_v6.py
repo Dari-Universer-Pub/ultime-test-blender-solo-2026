@@ -343,6 +343,15 @@ SQUELETTE = {
     "cheville_g": ((-0.26, 0.0, 0.16), (0.20, 0.20)),
     "cheville_d": ((0.26, 0.0, 0.16), (0.20, 0.20)),
 }
+POSE = {}              # surcharge des positions du squelette (nage) ; vide = pose idle validée
+MANCHES_SOMBRES = False  # nage : manches d'un ton plus foncé que le tronc (séparation par la valeur)
+
+
+def pose_de(nom):
+    """Position d'une articulation : la pose en cours si elle la surcharge, sinon la pose idle."""
+    return Vector(POSE[nom]) if nom in POSE else Vector(SQUELETTE[nom][0])
+
+
 ARETES = [("bassin", "taille"), ("taille", "poitrine"), ("poitrine", "cou"),
           ("poitrine", "epaule_g"), ("epaule_g", "coude_g"), ("coude_g", "poignet_g"),
           ("poitrine", "epaule_d"), ("epaule_d", "coude_d"), ("coude_d", "poignet_d"),
@@ -386,8 +395,8 @@ def corps(scene, mat):
     bm = bmesh.new()
     couche = bm.verts.layers.skin.verify()
     sommets = {}
-    for nom, (pos, rayon) in SQUELETTE.items():
-        v = bm.verts.new(pos)
+    for nom, (_, rayon) in SQUELETTE.items():
+        v = bm.verts.new(tuple(pose_de(nom)))
         v[couche].radius = (rayon[0], rayon[0])     # section ronde : le rayon en y est réduit par le Skin
         sommets[nom] = v
     sommets["bassin"][couche].use_root = True
@@ -419,7 +428,7 @@ def corps(scene, mat):
             if any(n.endswith("_" + cote) and n.split("_")[0] in ("genou", "cheville") for n in (a, b)):
                 return "jambe_" + cote
         return "torse"
-    segments = [(Vector(SQUELETTE[a][0]), Vector(SQUELETTE[b][0]), etiquette(a, b)) for a, b in ARETES]
+    segments = [(pose_de(a), pose_de(b), etiquette(a, b)) for a, b in ARETES]
     parties = {"torse": [], "bras_g": [], "bras_d": [], "jambe_g": [], "jambe_d": []}
     for f in o.data.polygons:
         c = f.center
@@ -521,19 +530,24 @@ def construire(scene):
     torse = parties["torse"]
     for sg in (-1.0, 1.0):
         plier(torse, lambda p, sg=sg: p.y < -0.20 and 0.84 < p.z < 1.32 and abs(p.x - sg * 0.07) < 0.075)
-    plier_manche(parties["bras_d"], Vector((0.42, 0.0, 1.27)), Vector((0.70, -0.12, 1.02)), 0.21)
-    plier_manche(parties["bras_g"], Vector((-0.42, 0.0, 1.27)), Vector((-0.70, -0.12, 1.02)), 0.21)
-    # plis (anciens) sur le côté proche (+X, la caméra est côté +X)
+    for cote, sg in (("d", 1.0), ("g", -1.0)):
+        plier_manche(parties["bras_" + cote], pose_de("epaule_" + cote), pose_de("coude_" + cote), 0.21)
+    if MANCHES_SOMBRES:
+        # nage : toute la manche d'un ton plus foncé que le tronc (séparation par la valeur)
+        for cote in ("g", "d"):
+            plier(parties["bras_" + cote], lambda p: True)
+    if not POSE:
+        # plis fixes de l'idle (validée) ; en nage ils ne suivent pas la pose et sont omis
+        plier(parties["bras_d"], lambda p: 0.36 < p.x < 0.56 and p.y < -0.08 and 1.19 < p.z < 1.235)
+        coude = pose_de("coude_d")
+        plier(parties["bras_d"], lambda p: abs((p - coude).length - 0.17) < 0.02 and p.y < -0.02)
+        genou = pose_de("genou_d")
+        plier(parties["jambe_d"], lambda p: abs((p - genou).length - 0.21) < 0.02 and p.y < -0.05)
     torse = parties["torse"]
-    plier(parties["bras_d"], lambda p: 0.36 < p.x < 0.56 and p.y < -0.08 and 1.19 < p.z < 1.235)
     plier(torse, lambda p: p.y < -0.18 and 0.04 < p.x < 0.36 and 1.095 < p.z < 1.125)
-    coude = Vector((0.70, -0.12, 1.02))
-    plier(parties["bras_d"], lambda p: abs((p - coude).length - 0.17) < 0.02 and p.y < -0.02)
-    genou = Vector((0.24, -0.06, 0.44))
-    plier(parties["jambe_d"], lambda p: abs((p - genou).length - 0.21) < 0.02 and p.y < -0.05)
     # manchettes de cuir au poignet, plus loin que la mitaine
-    for cote, poignet in (("g", (-0.80, -0.18, 0.78)), ("d", (0.80, -0.18, 0.78))):
-        P = Vector(poignet)
+    for cote in ("g", "d"):
+        P = pose_de("poignet_" + cote)
         peindre(parties["bras_" + cote], lambda p, P=P: 0.12 < (p - P).length < 0.19, C_COUTURE)
 
     # --- casque laiton, grand hublot cerclé de métal, boulons et reflets peints
@@ -562,9 +576,8 @@ def construire(scene):
     objets["boucle"] = boite((0.0, -0.42, 1.02), (0.11, 0.04, 0.11), m["laiton"], "boucle", biseau=0.01)
 
     # --- gants en mitaine, bleu-violet sombre, avec pouce
-    for cote, poignet, coude_p in (("g", (-0.80, -0.18, 0.78), (-0.70, -0.12, 1.02)),
-                                   ("d", (0.80, -0.18, 0.78), (0.70, -0.12, 1.02))):
-        P, E = Vector(poignet), Vector(coude_p)
+    for cote in ("g", "d"):
+        P, E = pose_de("poignet_" + cote), pose_de("coude_" + cote)
         d = (P - E).normalized()
         centre = P + d * 0.13
         gant = ellipsoide(tuple(centre), 0.19, (1.0, 1.0, 1.2), m["caoutchouc"], "gant_" + cote,
@@ -575,9 +588,10 @@ def construire(scene):
         objets["pouce_" + cote] = pouce
 
     # --- bottes lourdes, bleu-violet sombre, semelle peinte
-    for cote, s in (("g", -1.0), ("d", 1.0)):
-        botte = ellipsoide((0.26 * s, -0.07, 0.15), 0.24, (1.0, 1.40, 0.90), m["caoutchouc"], "botte_" + cote,
-                           niveau=1)
+    for cote in ("g", "d"):
+        cheville = pose_de("cheville_" + cote)
+        botte = ellipsoide(tuple(cheville + Vector((0.0, -0.07, -0.01))), 0.24, (1.0, 1.40, 0.90), m["caoutchouc"],
+                           "botte_" + cote, niveau=1)
         objets["botte_" + cote] = botte
         peindre(botte, lambda p: p.z < 0.06, C_COUTURE)
 
@@ -643,6 +657,60 @@ def reglages(scene):
     scene.eevee.taa_render_samples = 1
     scene.render.filter_size = 0.0
     scene.render.dither_intensity = 0.0
+
+
+# ------------------------------------------------------------------ nage (huit images, plan visible)
+def pose_nage(k, n=8):
+    """Pose de nage de l'image k sur n : bras qui se lèvent au-dessus de la tête et s'abaissent sur les côtés
+    (crawl dans le plan visible, bras opposés en décalage d'une demi-période), jambes en ciseaux écartées
+    latéralement. Les articulations fixes (épaules, hanches, tronc, casque) ne bougent pas."""
+    phi = 2.0 * math.pi * k / n
+    pose = {}
+    for cote, s_, decal in (("d", 1.0, 0.0), ("g", -1.0, math.pi)):
+        ph = phi + decal
+        epaule = Vector(SQUELETTE["epaule_" + cote][0])
+        alpha = math.pi * (0.5 + 0.5 * math.cos(ph))          # 0 = bras pendant, pi = bras au-dessus de la tête
+        beta = 0.25 + 0.45 * math.cos(ph) ** 2 * (1.0 if math.cos(ph) > 0 else 0.3)   # coude plié quand le bras est levé
+        d_bras = Vector((s_ * math.sin(alpha), 0.0, -math.cos(alpha)))
+        coude = epaule + d_bras * 0.39
+        d_avant = Vector((s_ * math.sin(alpha - beta), 0.0, -math.cos(alpha - beta)))
+        poignet = coude + d_avant * 0.27
+        pose["coude_" + cote] = tuple(coude)
+        pose["poignet_" + cote] = tuple(poignet)
+    for cote, s_, decal in (("d", 1.0, 0.0), ("g", -1.0, math.pi)):
+        ph = phi + decal
+        hanche = Vector(SQUELETTE["hanche_" + cote][0])
+        gamma = 0.30 + 0.20 * math.cos(ph)                     # ciseaux : jambes ouvertes en alternance
+        d_cuisse = Vector((s_ * math.sin(gamma), 0.0, -math.cos(gamma)))
+        genou = hanche + d_cuisse * 0.40
+        d_mollet = Vector((s_ * math.sin(gamma * 0.6), 0.0, -math.cos(gamma * 0.6)))
+        cheville = genou + d_mollet * 0.28
+        pose["genou_" + cote] = tuple(genou)
+        pose["cheville_" + cote] = tuple(cheville)
+    return pose
+
+
+def rendre_nage_images(dossier, n=8, identite=False):
+    """Rend les n images de nage (couleur, ou carte d'identité d'une image) dans dossier."""
+    global MANCHES_SOMBRES
+    os.makedirs(dossier, exist_ok=True)
+    for k in range(n):
+        POSE.clear()
+        POSE.update(pose_nage(k, n))
+        MANCHES_SOMBRES = True
+        scene = construire_tout()
+        if identite:
+            dossier_k = os.path.join(dossier, "image_%02d" % (k + 1))
+            os.makedirs(dossier_k, exist_ok=True)
+            global SORTIE
+            ancienne = SORTIE
+            SORTIE = dossier_k
+            rendre_identite(scene)
+            SORTIE = ancienne
+        else:
+            rendre_fichier(scene, os.path.join(dossier, "nage_%02d.png" % (k + 1)))
+    POSE.clear()
+    MANCHES_SOMBRES = False
 
 
 # ------------------------------------------------------------------ cartes d'identité

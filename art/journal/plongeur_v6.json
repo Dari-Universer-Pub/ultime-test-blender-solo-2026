@@ -388,5 +388,26 @@
       "changement": "corde à rayon 0,085 (essai 11) : annulé, revenu à 0,065",
       "mesure": "3,1 %"
     }
+  ],
+  "nage": [
+    {
+      "essai": "nage essai 1 : pose de nage dans le plan visible (bras qui se lèvent et s'abaissent sur les côtés, jambes en ciseaux), huit images, sans contour",
+      "planche": "boards/plongeur_v6_nage_essai1.png",
+      "planche_sha256": "32d4919ff8176a9e17286c7d1273878db887aff9238f935b8c7a7951ed8c7003",
+      "verdict": "ÉCHEC : le trois quarts ne tient pas (bras lointain caché 8 images sur 8, 12 à 59 %) ; 5 poses distinctes sur 8 ; figure debout, pas de nage lisible",
+      "mesures_par_image": {
+        "1": "bras lointain 29 px / 12 %",
+        "2": "113 px / 50 %",
+        "3": "132 px / 59 %",
+        "4": "97 px / 43 %",
+        "5": "46 px / 22 %",
+        "6": "copie de 4",
+        "7": "copie de 3",
+        "8": "copie de 2"
+      },
+      "hauteur": "71 à 72 px (cible 56 à 80) OK",
+      "amplitude": "0,50 (cible >= 0,45) OK",
+      "isoles": 0
+    }
   ]
 }
