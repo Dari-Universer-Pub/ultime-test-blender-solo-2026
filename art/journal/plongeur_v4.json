@@ -1,0 +1,28 @@
+{
+  "id": "plongeur_v4",
+  "entrees": [
+    {
+      "changement": "v4 étape 1 : rendu haute résolution 768 px, base de la refonte (casque laiton grand avec hublot à cadre gris, grille et boulons ; petit hublot ; collerette à 12 boulons ; torse kaki arrondi avec plis ; ceinture cuir et boucle ; manches, gants bleu-violet avec pouce ; bottes ; cordon torsadé en grande boucle arrière ; fond transparent, clé haut-gauche)",
+      "image": "boards/journal/plongeur_v4_hd_1.png",
+      "image_sha256": "269a236cb4b9b331d3ca8cacfb372327314aa191370e20c9165825e9e431a753",
+      "controle": {
+        "silhouette": "Lisible d'un coup d'œil : casque, tuyau en boucle, bras, jambes et bottes se distinguent ; les bras restent des boudins à renflements aux jointures.",
+        "couleurs": "Laiton chaud, toile kaki, caoutchouc bleu-violet, cordon crème : quatre familles distinctes ; la bouteille violette n'apparaît pas.",
+        "cadrage": "Plongeur centré, tuyau entier dans le cadre, marge en haut et en bas.",
+        "taille": "Rendu 768 px, non pixelisé : la taille de 46 à 48 px viendra à l'étape 2, après validation.",
+        "details": "Grille du hublot, boulons du cadre, petit hublot, boulons de collerette et pouce des gants se lisent.",
+        "coherence_base": "Proportions chibi : casque d'environ 40 % de la hauteur hors tuyau. La référence cartoon de Julien n'est pas dans art/references/ : comparaison à faire à sa validation.",
+        "pixels_parasites": "Aucun pixel parasite au rendu ; le reflet principal tombe en haut à droite du casque, pas en haut à gauche comme demandé."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "bouteille de plongée cachée derrière l'épaule gauche : à rendre visible",
+        "bras et jambes en boudins, renflements visibles aux jointures : à lisser",
+        "torse en bloc irrégulier : à reprendre",
+        "reflet de la clé en haut à droite : à remettre en haut à gauche",
+        "bottes et genouillères : formes à affiner"
+      ],
+      "mesure_membres": "non applicable au rendu haute résolution ; carte d'identité des membres à l'étape 2, après validation"
+    }
+  ]
+}

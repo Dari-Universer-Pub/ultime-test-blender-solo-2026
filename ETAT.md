@@ -1,6 +1,20 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
-## Phase courante : NOUVEAU MODÈLE DU HÉROS (vue de trois quarts), étape 1 = pose idle, EN ATTENTE DE VALIDATION
+## Phase courante : PLONGEUR V4 (refonte complète demandée par Julien), étape 1 = rendu haute résolution, EN ATTENTE DE VALIDATION
+Julien trouve le héros v3 trop moche et demande de tout recommencer. Décisions :
+- v3 est archivé : `art/source/blender/archive/plongeur_v3.py` (+ `.blend`), journal `art/journal/plongeur_v3.json` conservé ; ne pas le réutiliser.
+- Nouveau script : `art/source/blender/plongeur_v4.py`, construit tout dans Blender (pas de téléchargement, pas de pixel par code).
+- Méthode en deux temps : (1) rendu HAUTE RÉSOLUTION 768 px, sans pixelisation, trois quarts (azimut 35°, élévation 15°), clé haut-gauche, fond transparent : ARRÊT pour validation de Julien ; (2) seulement après validation : réduction à 46-48 px, quantification, contour sombre sélectif + contour interne, carte d'identité, mesure des quatre membres (>= 20 px et >= 60 %) : ARRÊT pour validation.
+- Ensuite seulement : nage (44-48 px, amplitude >= 0,45), puis idle, creusage, attaque, saut, dégâts, mort, feuille, manifeste, jeu, captures, robot, `python tools/gate.py M3` dans un clone neuf, remise à l'échelle des créatures.
+
+### v4 étape 1 : base haute résolution (à valider)
+- Planche : `boards/journal/plongeur_v4_hd_1.png` (rendu seul sur gris clair, 768 px ; outil `tools/planches/fond_clair.py`).
+- Journal : `art/journal/plongeur_v4.json`, entrée 1, verdict garde, SHA-256 `269a236cb4b9b331...`.
+- Défauts connus, à traiter après le retour de Julien (un changement à la fois) : bouteille cachée ; bras et jambes en
+  boudins à renflements ; torse irrégulier ; reflet de la clé en haut à droite ; bottes et genouillères à affiner.
+- Référence cartoon de Julien : toujours absente de `art/references/` (seuls ref_03 et ref_05 existent) ; à comparer quand elle arrive.
+
+## Ancienne phase (v3, archivée) : NOUVEAU MODÈLE DU HÉROS (vue de trois quarts), étape 1 = pose idle
 Julien a demandé un modèle refait de zéro, pensé pour être lu de trois quarts : `art/source/blender/plongeur_v3.py`.
 Ancien modèle (profil) archivé : `art/source/blender/archive/plongeur_profil_v2.py` (non réutilisé).
 `art/source/blender/plongeur.py` est revenu à son état commité : aucune retouche d'angle n'y reste.

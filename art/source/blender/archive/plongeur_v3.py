@@ -131,7 +131,8 @@ def P(*v):
 # Nom de matériau -> (groupe de la carte, couleur plate). Un groupe = une partie mesurable.
 GROUPES_ID = {
     "tronc": ("tronc", "#ff0000"), "tete": ("tete", "#ffd400"), "cadre": ("tete", "#ffd400"),
-    "hublot_verre": ("tete", "#ffd400"), "collerette": ("collerette", "#40ffb0"),
+    "hublot_verre": ("tete", "#ffd400"), "cadre_gris": ("tete", "#ffd400"), "hublot_reflet": ("tete", "#ffd400"),
+    "collerette": ("collerette", "#40ffb0"), "boucle": ("ceinture", "#7a3cff"),
     "ceinture": ("ceinture", "#7a3cff"), "tuyau": ("tuyau", "#00e0ff"),
     "bouteilles": ("bouteilles", "#ff7f00"), "palmes": ("palmes", "#ff00c8"),
     "bras_g": ("bras_g", "#00ff00"), "bras_d": ("bras_d", "#005000"),
@@ -210,8 +211,8 @@ for _s, _x in (("g", -1.0), ("d", 1.0)):
     OS_REPOS_PX.update({
         f"bras_{_s}_1": ((_x * 8.5, 0, 27), (_x * 12.5, -1, 18), "buste"),
         f"bras_{_s}_2": ((_x * 12.5, -1, 18), (_x * 14, -2, 10), f"bras_{_s}_1"),
-        f"jambe_{_s}_1": ((_x * 4.8, 0, 14), (_x * 5.5, 0, 8.5), "buste"),
-        f"jambe_{_s}_2": ((_x * 5.5, 0, 8.5), (_x * 5.8, 0, 4.5), f"jambe_{_s}_1"),
+        f"jambe_{_s}_1": ((_x * 4.8, 0, 14), (_x * 5.5, 0, 7.6), "buste"),
+        f"jambe_{_s}_2": ((_x * 5.5, 0, 7.6), (_x * 5.8, 0, 3.4), f"jambe_{_s}_1"),
     })
 OS_REPOS = {nom: (P(*a), P(*b), parent) for nom, (a, b, parent) in OS_REPOS_PX.items()}
 
@@ -267,8 +268,11 @@ def construire_modele():
     m_botte = {s: materiau(f"botte_{s}", "gant", 0, 0.6, bandes=(0, 0, 1)) for s in "gd"}  # bottes : presque noires
     m_laiton = materiau("tete", "laiton", 2, 0.25, bandes=(1, 2, 3, 3))                  # casque laiton doré
     m_cadre = materiau("cadre", "laiton", 0, 0.3, bandes=(0, 0, 1, 1))                   # cadre et boulons : bronze sombre
-    m_verre = materiau("hublot_verre", "verre", 4, 0.08, bandes=(2, 3, 4, 5))            # hublot clair
-    m_ceinture = materiau("ceinture", "gant", 0, 0.7, bandes=(0, 0, 1))                  # ceinture sombre
+    m_verre = materiau("hublot_verre", "verre", 2, 0.08, bandes=(1, 2, 2, 3))            # hublot : cyan sombre
+    m_cadre_gris = materiau("cadre_gris", "metal", 2, 0.3, bandes=(1, 2, 3, 3))          # cadre épais gris
+    m_reflet = materiau("hublot_reflet", "verre", 5, 0.05, bandes=(3, 4, 5, 5))          # reflet clair
+    m_ceinture = materiau("ceinture", "cuivre", 2, 0.7, bandes=(1, 2, 2, 3))             # ceinture brune
+    m_boucle = materiau("boucle", "laiton", 3, 0.25, bandes=(2, 3, 3, 3))                # boucle laiton
     m_tuyau = materiau("tuyau", "cuivre", 3, 0.5, bandes=(1, 2, 3, 4))                   # tuyau de corde
     m_bout = materiau("bouteilles", "bouteille", 2, 0.4, bandes=(1, 2, 3, 4))            # bouteilles de dos
     m_palme = materiau("palmes", "bouteille", 3, 0.45, bandes=(1, 2, 3, 4))
@@ -276,8 +280,9 @@ def construire_modele():
     pieces = []
     # casque : sphère, hublot sur la face, cadre bronze, boulons, anneau de cou
     pieces.append(sphere(P(0, 0, 39), 9 * PX, m_laiton))
-    pieces.append(sphere(P(0, -7.8, 39), 4.4 * PX, m_verre))
-    cadre = anneau(P(0, -8.6, 39), 5.8 * PX, 1.2 * PX, m_cadre)
+    pieces.append(sphere(P(0, -7.8, 39), 5.0 * PX, m_verre))
+    pieces.append(sphere(P(-2.1, -10.8, 41.8), 1.0 * PX, m_reflet))
+    cadre = anneau(P(0, -8.6, 39), 6.2 * PX, 1.5 * PX, m_cadre_gris)
     cadre.rotation_euler = (math.pi / 2, 0.0, 0.0)
     pieces.append(cadre)
     for b in ((-7.6, -3.6, 38), (7.6, -3.6, 38), (0, -8.4, 46)):
@@ -291,6 +296,7 @@ def construire_modele():
     pieces.append(sphere(P(0, 0, 23), 7 * PX, m_tronc, (0.89, 0.65, 1.0)))
     pieces.append(sphere(P(0, 0, 14.5), 5.6 * PX, m_tronc, (1.0, 0.75, 0.6)))
     pieces.append(anneau(P(0, 0, 17.2), 7.3 * PX, 1.4 * PX, m_ceinture))
+    pieces.append(sphere(P(0, -8.6, 17.2), 1.6 * PX, m_boucle, (1.0, 0.55, 1.0)))             # boucle sur le devant, qui sort de la ceinture
     # bouteilles de dos et tuyau de corde devant
     for s in (-1.0, 1.0):
         pieces.append(tube(P(3.2 * s, 4.2, 13), P(3.2 * s, 4.2, 30), 2.2 * PX, m_bout))
@@ -304,14 +310,14 @@ def construire_modele():
         pieces.append(tube(P(*a1), P(*b1), 2.5 * PX, m_bras[s]))
         pieces.append(sphere(P(*b1), 2.6 * PX, m_bras[s]))
         pieces.append(tube(P(*a2), P(*b2), 2.3 * PX, m_bras[s]))
-        pieces.append(sphere(P(b2[0] + x * 0.5, b2[1], b2[2] - 1.5), 4.0 * PX, m_gant[s], (1.0, 1.0, 1.15)))
+        pieces.append(sphere(P(b2[0] + x * 0.5, b2[1], b2[2] - 1.5), 3.4 * PX, m_gant[s], (1.0, 1.0, 1.1)))   # moufle plus petite
         pieces.append(anneau(P(b2[0], b2[1], b2[2] + 2.0), 3.2 * PX, 0.9 * PX, m_gant[s]))
         a1, b1 = OS_REPOS_PX[f"jambe_{s}_1"][0], OS_REPOS_PX[f"jambe_{s}_1"][1]
         a2, b2 = OS_REPOS_PX[f"jambe_{s}_2"][0], OS_REPOS_PX[f"jambe_{s}_2"][1]
         pieces.append(tube(P(*a1), P(*b1), 3.2 * PX, m_jambe[s]))
         pieces.append(sphere(P(*b1), 3.2 * PX, m_jambe[s]))
         pieces.append(tube(P(*a2), P(*b2), 2.9 * PX, m_jambe[s]))
-        pieces.append(sphere(P(b2[0] + x * 0.8, -2.5, 4.2), 4.0 * PX, m_botte[s], (1.1, 1.6, 0.75)))   # bottes écartées
+        pieces.append(sphere(P(b2[0] + x * 0.8, -2.5, 3.3), 4.0 * PX, m_botte[s], (1.1, 1.6, 0.75)))   # bottes écartées
         pieces.append(anneau(P(b2[0], b2[1], b2[2] + 1.8), 3.0 * PX, 0.9 * PX, m_botte[s]))
         pieces.append(sphere(P(x * 7.0, -7.2, 1.6), 3.0 * PX, m_palme, (1.3, 0.8, 0.35)))
 
