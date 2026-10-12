@@ -59,7 +59,7 @@
       "phi_deg": 0,
       "pose": "anticipation : buste recule de 3 px, casque recule de 2 px, pioche ramenée derrière l'épaule et levée",
       "bras_d": "levé en arrière, visible",
-      "bras_g": "pendu, coude replié devant le ventre",
+      "bras_g": "projeté vers l'arrière-gauche pour l'équilibre (tenu à l'écart du corps)",
       "calques": [
         "torse",
         "jambes",
@@ -129,7 +129,7 @@
       "nom": "impact",
       "duree_images": 3,
       "phi_deg": 105,
-      "pose": "impact tenu : tête de pioche sur la cible à droite (hanches), buste penché de 4 px vers l'avant, casque baissé de 3 à 4 px",
+      "pose": "impact tenu : tête de pioche sur la cible à droite (hanches), buste penché de 4 px, casque baissé de 2 px",
       "bras_d": "bras presque tendu, visible",
       "bras_g": "avancé devant le ventre, pendu",
       "calques": [
@@ -178,7 +178,7 @@
       "nom": "retour",
       "duree_images": 2,
       "phi_deg": 90,
-      "pose": "retour : la pioche remonte à l'horizontale vers la droite, buste qui se redresse",
+      "pose": "retour : la pioche remonte en oblique vers la droite (45 degrés, tête visible), buste qui se redresse",
       "bras_d": "replié, visible",
       "bras_g": "pendu le long du corps",
       "calques": [

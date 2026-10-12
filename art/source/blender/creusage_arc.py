@@ -31,6 +31,7 @@ BIBLIO = os.path.join(CREUSAGE, "bibliotheque")
 # décalage de la tête par rapport au centre du gant, pour la pioche à 0 degré (mesuré sur la variante +000)
 TETE_DECALAGE = (-0.18, -23.08)
 ARC_IMAGES = [0.40, 0.62, 0.82, 1.00]     # fraction de la trajectoire dessinée dans chaque image de l'arc
+PARTICULES_ECHELLE = float(os.environ.get("PARTICULES_ECHELLE", "1.0"))   # taille des particules (1.0 : creusage)
 LARGEUR_ARC_PX = 5.0                       # épaisseur maximale du croissant (px à 112), nulle aux deux bouts
 
 
@@ -148,7 +149,7 @@ def main():
         x, y = impact[0] + dx, impact[1] + dy
         c = P.monde(x, y, 0.0)
         mat = mat_bulle if genre else mat_debris
-        crees.append(sphere(c, 0.05 * r + 0.02, mat, "particule_%d" % i))
+        crees.append(sphere(c, (0.05 * r + 0.02) * PARTICULES_ECHELLE, mat, "particule_%d" % i))
     chemin_png = os.path.join(dossier, "particules_impact.png")
     P.rendre_fichier(scene, chemin_png)
     resultats.append({"image": "particules_impact.png", "points": len(graines)})

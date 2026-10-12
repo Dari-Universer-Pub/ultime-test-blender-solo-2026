@@ -1,6 +1,6 @@
 {
  "nom": "07_retour",
- "phi_deg": 90,
+ "phi_deg": 45,
  "calques": [
   "jambes",
   "torse",
@@ -30,10 +30,10 @@
    "avant": 15
   },
   "bras_d": {
-   "haut": -15,
-   "avant": 90
+   "haut": 90,
+   "avant": 15
   },
-  "bloc_main_d": 90
+  "bloc_main_d": 45
  },
  "angle_pioche_fiche_deg": null,
  "bloc_dossier": "bloc_main_d_attaque"

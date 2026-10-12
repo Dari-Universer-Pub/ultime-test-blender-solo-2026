@@ -7,17 +7,22 @@ Creusage VALIDÉ par Julien tel quel (commit 8689ca8). Points notés pour plus t
 3. Ombrage de la pièce torse non corrigé (37 px sur 208 de la zone poitrine diffèrent de l'ancre, voir la section creusage).
 4. Arc de mouvement et particules d'impact non intégrés à la feuille (effets séparés, dans effets/).
 
-## Phase courante : ATTAQUE (lot en cours, première version)
+## Phase courante : ATTAQUE (première version, relecture 3 traitée en partie)
 
-Lot : `art/pixel/plongeur_v6/attaque/lot/` (fiche.json, poses/ 01 à 08, sortie/, controles/, boards/, silhouettes/, effets/, feuille/attaque.png + .json, planche_finale.png). Journal : `art/journal/plongeur_attaque.json` (dix entrées). Décisions (DECISIONS.md) : creusage validé, attaque ensuite.
+Lot : `art/pixel/plongeur_v6/attaque/lot/` (fiche, poses 01 à 08, sortie, controles, boards, silhouettes, effets, feuille/attaque.png + .json, planche_finale.png). Journal : `art/journal/plongeur_attaque.json`.
 
 ### Ce qui est fait
-- Fiche écrite (8 images, 21 images au total). Coup large vers l'avant-droite : garde, recul (anticipation), accélération x2, impact tenu sur la cible à hauteur des hanches (105 degrés), suivi, retour, fin.
-- Épaules qui suivent le torse : option `epaules_suivent_buste` dans l'assembleur (le recul et la penche déplacent les bras). Option désactivée pour le creusage : sorties du creusage vérifiées identiques octet pour octet.
-- Pioche d'attaque : tête plus épaisse (0,26 m au lieu de 0,12 m, environ 15 x 8 px à 0 degré) et reflet clair sur le bord opposé au manche, bloc `bloc_main_d_attaque` (variante `PLONGEUR_TETE_MASSE=1`). Manche de rayon 0,085 m, 3 px au moins.
-- Silhouette noire de chaque image (`silhouettes/`) lue avant la couleur : le geste se lit (levée, balayage à droite, frappe, suivi, retour).
-- Contrôle nouveau : écart de la tête à la cible à l'impact (0,7 px, tolérance 2 px). Les contrôles existants sont inchangés.
-- Effets séparés : arc de mouvement (4 images, Blender, croissant clair, sans contour) et particules sur la cible (`effets/`).
+- Fiche (8 images, 21 unités de durée). Coup large vers l'avant-droite : garde, recul, accélération x2, impact tenu sur la cible à hauteur des hanches (105 degrés), suivi, retour, fin.
+- Épaules qui suivent le torse (option `epaules_suivent_buste`). Sorties du creusage vérifiées identiques.
+- Pioche d'attaque : tête plus épaisse (0,26 m, 15 x 8 px à 0 degré) avec reflet clair (`PLONGEUR_TETE_MASSE=1`, bloc `bloc_main_d_attaque`). Manche de rayon 0,085 m, 3 px au moins.
+- Contrôle nouveau : écart de la tête à la cible à l'impact (0,7 px, tolérance 2 px).
+- Effets séparés : arc de mouvement (5 images, de la garde au suivi) et particules d'impact (93 px).
+- Silhouettes noires (`silhouettes/`) lues avant la couleur.
+
+### Corrections après la relecture 3 (défauts bloquants)
+- Retour : la tête était de profil (8 x 16 px). Retour à 45 degrés : tête 12 x 12 px, distance du gant 6,9 px.
+- Recul : la pioche ne peut pas se relever davantage (à -15 degrés avec une prise plus haute, elle touche le casque : 6 à 18 px, et la tête dépasse le plafond de 72 px). Le recul se lit maintenant par le bras gauche projeté (-45 / -60) et le corps penché (-3 px). Le mouvement de la pioche reste faible (2 px) : limite géométrique à noter.
+- Impact : casque baissé de 2 px au lieu de 3 : 70 px de haut (plage 70 à 72).
 
 ### Contrôles
 | image | pioche/casque | hublot | bras/casque | hauteur | tête (LxH) | critère tête | verdict |
@@ -26,26 +31,20 @@ Lot : `art/pixel/plongeur_v6/attaque/lot/` (fiche.json, poses/ 01 à 08, sortie/
 | 2 recul | 0 | 0 | 0 | 72 | 15x8 | appliqué | OK |
 | 3 accel | 0 | 0 | 0 | 72 | 12x12 | non appliqué | OK |
 | 4 accel2 | 0 | 0 | 0 | 72 | 9x15 | non appliqué | OK |
-| 5 impact | 0 | 0 | 0 | 69 | 9x15 | non appliqué | OK |
+| 5 impact | 0 | 0 | 0 | 70 | 9x15 | non appliqué | OK |
 | 6 suivi | 0 | 0 | 0 | 70 | 12x12 | non appliqué | OK |
-| 7 retour | 0 | 0 | 0 | 72 | 8x16 | non appliqué | OK |
+| 7 retour | 0 | 0 | 0 | 72 | 12x12 | non appliqué | OK |
 | 8 fin | 0 | 0 | 0 | 72 | 14x10 | non appliqué | OK |
 
-Séquence : images distinctes OK ; changements px entre images [1051, 1595, 1300, 1862, 1340, 1768, 1218] ; boucle : garde vs ancre 1122 px, fin vs garde 1096 px (la garde n'est pas l'ancre : voir écarts).
-
-### Décisions prises par moi (notées ici et dans la fiche)
-- Pioche à 0 degré pour la garde et le recul (critère de tête appliqué) : à -30 degrés, la pioche touche le casque (6 à 26 px). Le recul se lit par le corps (buste -3 px, casque -2 px) et le coude replié.
-- Impact à 105 degrés et non 150 : la cible est à hauteur des hanches, pas au sol.
-- Images intermédiaires : accélération x2 (écart de gant limité à 10 px). Pas d'image dessinée à la main : les écarts de gant restent sous 10 px.
-- Bras gauche pendu ou avancé devant le ventre (règle : jamais levé dans le vide).
-- Retour au garde et loop : fin placée à (71 ; 58) pour rester à 10 px de la remontée et de la garde.
+Séquence : images distinctes OK ; changements px entre images [1067, 1587, 1300, 1806, 1150, 1827, 1198] ; boucle : garde vs ancre 1122 px, fin vs garde 1096 px. Pas d'étape de gant au-dessus de 8,4 px ; boucle gant 9,6 px.
 
 ### Écarts annoncés tels quels
-- **Boucle non fermée vers l'ancre** : la garde (pioche levée) diffère de l'ancre de 1122 px (critère « première pose proche de l'ancre » non atteint). La fin revient à la garde, pas à l'ancre (1096 px). Attaque : la première pose est une attaque armée, pas l'ancre au repos ; à trancher.
-- **Main gauche jamais sur le manche** : distance épaule -> manche de 22,9 à 29,1 px selon l'image (portée 18,4 px, +40 % = 25,8 px). Dans les images accélération, impact et suivi (22,9 à 25,6 px), la main pourrait tenir le manche avec un étirement déclaré : l'étirement d'un bras n'est pas encore rendu (chaîne rigide). Les images garde et recul (27 à 29 px) sont hors de toute portée.
-- **Reflet et masse** : reflet clair de 2 à 4 px ; la tête est plus épaisse que celle du creusage (8 px au lieu de 5 à 0 degré).
-- **Effets** : arc et particules non superposés aux images (effets séparés, comme demandé).
-- **Relecture** : pas encore lancée sur l'attaque (à faire après ce commit).
+- **Boucle non fermée vers l'ancre** : la garde (pioche levée) diffère de l'ancre de 1122 px ; la fin revient à la garde (1096 px). À trancher : l'attaque commence armée.
+- **Main gauche jamais sur le manche** : distance épaule -> manche de 22,9 à 29,1 px (garde et recul hors de portée, 27 à 29 px). Dans les images accélération, impact et suivi (23 à 26 px), elle pourrait tenir le manche avec un étirement déclaré : l'étirement n'est pas rendu (chaîne rigide).
+- **Tête qui fouette** : la pioche passe de 26 à 31 px entre deux images (recul -> accélération, fin) alors que le gant bouge de moins de 9 px : la pioche tourne vite. Des images intermédiaires de pioche seraient nécessaires pour un mouvement plus doux.
+- **Teintes** : la pièce torse garde les blocs crème à la poitrine (image 5) : dette d'ombrage du creusage.
+- **Recul** : voir ci-dessus (limite géométrique, pas de rendu de pioche à l'arrière).
+- Relecture 3 : deux défauts bloquants (retour en tranche, recul non lisible), corrigés ; relecture 4 à lancer.
 
 ## Lots suivants (première version) : saut, dégâts, mort
 
