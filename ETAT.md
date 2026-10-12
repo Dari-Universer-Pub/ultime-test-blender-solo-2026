@@ -7,23 +7,15 @@ Creusage VALIDÉ par Julien tel quel (commit 8689ca8). Points notés pour plus t
 3. Ombrage de la pièce torse non corrigé (37 px sur 208 de la zone poitrine diffèrent de l'ancre, voir la section creusage).
 4. Arc de mouvement et particules d'impact non intégrés à la feuille (effets séparés, dans effets/).
 
-## Phase courante : ATTAQUE (première version, relecture 4 traitée)
+## Phase courante : ATTAQUE (première version, relectures 3 à 5 traitées)
 
-Lot : `art/pixel/plongeur_v6/attaque/lot/` (fiche, poses 01 à 08, sortie, controles, boards, silhouettes, effets, feuille/attaque.png + .json, planche_finale.png). Journal : `art/journal/plongeur_attaque.json`.
+Lot : `art/pixel/plongeur_v6/attaque/lot/`. Journal : `art/journal/plongeur_attaque.json`.
 
 ### Ce qui est fait
-- Fiche (8 images, 21 unités de durée). Coup large vers l'avant-droite : garde, recul, accélération x2, impact tenu sur la cible à droite (hanches et cuisse, pioche à 150 degrés), suivi, retour, fin.
-- Épaules qui suivent le torse (option `epaules_suivent_buste`). Sorties du creusage vérifiées identiques.
-- Pioche d'attaque : tête plus épaisse (0,26 m, 14 x 10 px à 150 degrés, 15 x 8 px à 0 degré) avec reflet clair (`PLONGEUR_TETE_MASSE=1`, bloc `bloc_main_d_attaque`). Manche de rayon 0,085 m, 3 px au moins.
-- Contrôle nouveau : écart de la tête à la cible à l'impact (tolérance 2 px). Les contrôles existants sont inchangés.
-- Effets séparés : arc de mouvement (4 images, du recul au suivi) et particules d'impact (93 px).
-- Silhouettes noires (`silhouettes/`) lues avant la couleur.
-
-### Corrections (relectures 3 et 4)
-- Retour : la tête était de profil (8 x 16 px) ; retour à 75 degrés, pas plus de 60 degrés entre deux images.
-- Impact : passé de 105 à 150 degrés, face à la caméra (14 x 10 px, critère de largeur appliqué et OK) ; cible à (92 ; 80), à droite, à hauteur des hanches et de la cuisse.
-- Recul : bras gauche pendu (et non projeté dans le vide). La pioche ne peut pas se relever davantage (casque).
-- Hauteur : impact et suivi à 70 px (plage 70 à 72).
+- 8 images (21 unités de durée) : garde, recul, accélération x2, impact tenu sur la cible (150 degrés, tête 14 x 10 px, cible à (92 ; 80)), suivi, retour, fin.
+- Pioche d'attaque : tête 0,26 m, reflet clair sur le bord opposé au manche, moitié sombre (#5a6490) côté manche : lecture de l'épaisseur. Manche 3 px au moins.
+- Gant droit, épaules qui suivent le torse, arc de mouvement (4 images, du recul au suivi), particules d'impact (93 px), silhouettes noires.
+- Pas de step de gant au-dessus de 8,4 px ; la pioche tourne au plus de 60 degrés par image ; bras gauche pendu ou à la hanche.
 
 ### Contrôles
 | image | pioche/casque | hublot | bras/casque | hauteur | tête (LxH) | critère tête | verdict |
@@ -37,15 +29,16 @@ Lot : `art/pixel/plongeur_v6/attaque/lot/` (fiche, poses 01 à 08, sortie, contr
 | 7 retour | 0 | 0 | 0 | 72 | 9x15 | non appliqué | OK |
 | 8 fin | 0 | 0 | 0 | 72 | 14x10 | non appliqué | OK |
 
-Séquence : images distinctes OK ; changements px entre images [1021, 1597, 1288, 1782, 1063, 1785, 1197] ; boucle : garde vs ancre 1122 px, fin vs garde 1096 px. Pas de step de gant au-dessus de 8,4 px ; boucle 9,6 px ; la pioche tourne au plus de 60 degrés entre deux images.
+### Décision à prendre (Julien) : tête vue de profil pendant le balayage
+- Le balayage passe de 45 à 150 degrés. La tête de 14 px est vue de profil autour de 90 degrés : sa largeur visible vaut son épaisseur, soit 8 px à 90 degrés (mesure : accélération fin, 8 x 16 px). Aucune tête de cette épaisseur ne fait 12 px de large à 90 degrés : c'est géométrique, pas un défaut de rendu.
+- Le critère de 12 px est donc appliqué seulement aux images de face (garde, recul, impact : 14 à 15 px). Accélération fin (90 degrés), suivi (11 x 13 px), retour (9 x 15 px) : non appliqué.
+- Options : (1) garder cette règle (recommandé) ; (2) étendre le lot à 9 images : ne supprime pas la tranche (60 à 120 degrés restent vus de profil) ; (3) rallonger la pioche (hors du cadre fixé pour le lot).
 
 ### Écarts annoncés tels quels
-- **Critère de tête (règle de 12 px)** : appliqué seulement aux images où la pioche est vue de face (garde, recul, impact), décision de Julien (lot creusage). Accélération fin (90 degrés) et suivi, retour (75 à 120 degrés) ont une tête vue de profil ou en biais (8 à 13 px) : une pioche qui passe de la frappe au retour traverse forcément ces angles.
-- **Boucle non fermée vers l'ancre** : la garde (pioche levée) diffère de l'ancre de 1122 px ; la fin revient à la garde (1096 px). À trancher : l'attaque commence armée.
-- **Main gauche jamais sur le manche** : distance épaule -> manche de 23 à 29 px selon l'image. L'étirement déclaré n'est pas rendu (chaîne rigide).
-- **Teintes** : le torse garde des blocs crème à la poitrine (images 4 à 6) : dette d'ombrage du creusage.
-- **Recul** : mouvement de la pioche faible (2 px) : limite du casque (voir ci-dessus).
-- Relecture 5 à lancer.
+- **Boucle non fermée vers l'ancre** : garde vs ancre 1122 px ; fin vs garde 1096 px. L'attaque commence armée.
+- **Main gauche jamais sur le manche** : distance épaule -> manche de 23 à 29 px. L'étirement déclaré n'est pas rendu (chaîne rigide).
+- **Recul** : mouvement de la pioche faible (2 px) : le casque limite son relèvement (à -30 degrés, la pioche touche le casque).
+- **Teintes** : le torse garde des blocs crème à la poitrine (images 4 à 6) : dette d'ombrage du creusage. Un bord de 6 px #6a3e1e (manche) est une couleur de la palette bois.
 
 ## Lots suivants (première version) : saut, dégâts, mort
 

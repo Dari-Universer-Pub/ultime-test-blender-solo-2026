@@ -3,13 +3,13 @@
   {
    "changement": "dégâts image 1 (choc) : buste -4 px, casque -3 px, bras projetés",
    "image": "art/pixel/plongeur_v6/degats/lot/boards/degats_1_01_choc.png",
-   "image_sha256": "79c5b087c2848c18a4cab7740808ff49fcaa6c90ddccd390fd8e930c8ce514cf",
+   "image_sha256": "28579554efe7af5fa6c5320b64bc6a71157e9ef02a08386a395e8e6c6143f479",
    "controle": {
     "silhouette": "oui : choc reçu lisible",
     "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
     "cadrage": "personnage dans la case",
     "taille": "hauteur selon la pose (voir fiche)",
-    "details": "bras projetés devant le ventre, peu lisibles",
+    "details": "bras projetés devant le ventre, peu lisibles ; gant droit visible (gant seul ajouté)",
     "coherence_base": "cohérent avec l'ancre",
     "pixels_parasites": "0 pixel isolé après nettoyage"
    },
@@ -19,13 +19,13 @@
   {
    "changement": "dégâts image 2 (déséquilibre) : corps qui revient vers l'avant",
    "image": "art/pixel/plongeur_v6/degats/lot/boards/degats_2_02_recul.png",
-   "image_sha256": "21c570f36f3a36857007383dce29e157b170bffed7d07d095d6c3a254d060b53",
+   "image_sha256": "45c248fdfff6c7d6d17a3433811680973e8dbacba9b4ac497ca033d5b924118c",
    "controle": {
     "silhouette": "oui : déséquilibre lisible",
     "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
     "cadrage": "personnage dans la case",
     "taille": "hauteur selon la pose (voir fiche)",
-    "details": "bras qui cherchent l'équilibre",
+    "details": "bras qui cherchent l'équilibre ; gant droit visible (gant seul ajouté)",
     "coherence_base": "cohérent avec l'ancre",
     "pixels_parasites": "0 pixel isolé après nettoyage"
    },
@@ -35,13 +35,13 @@
   {
    "changement": "dégâts image 3 (reprise) : retour au garde",
    "image": "art/pixel/plongeur_v6/degats/lot/boards/degats_3_03_reprise.png",
-   "image_sha256": "ce6e6c4632735a8c7ab278519b6a1034dc87883e0a98b27803e15b427b86bbc6",
+   "image_sha256": "4d5adac3e52132057d61935dacac04f3c152cf8d14e19285eca2142797791488",
    "controle": {
     "silhouette": "oui : reprise lisible",
     "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
     "cadrage": "personnage dans la case",
     "taille": "hauteur selon la pose (voir fiche)",
-    "details": "bras au repos",
+    "details": "bras au repos ; gant droit visible (gant seul ajouté)",
     "coherence_base": "cohérent avec l'ancre",
     "pixels_parasites": "0 pixel isolé après nettoyage"
    },

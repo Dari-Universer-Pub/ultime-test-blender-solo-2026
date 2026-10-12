@@ -3,9 +3,9 @@
   {
    "changement": "saut image 1 (accroupi) : corps bas de 2 px, jambes comprimées",
    "image": "art/pixel/plongeur_v6/saut/lot/boards/saut_1_01_accroupi.png",
-   "image_sha256": "dcacfdbb36ac3f31e4193c187eb02add2e5c62555cc7365eee46f5fa44dea5bf",
+   "image_sha256": "9d3d8bf1ed7592b1f4f0d4ad9b1e02441afcf1f23397534974f359faaee24241",
    "controle": {
-    "silhouette": "oui : accroupissement lisible",
+    "silhouette": "oui : accroupissement lisible (corps bas de 4 px, pieds au sol, gant visible)",
     "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
     "cadrage": "personnage dans la case",
     "taille": "hauteur selon la pose (voir fiche)",
@@ -19,7 +19,7 @@
   {
    "changement": "saut image 2 (décollage) : corps monté de 4 px, pieds quittent le sol",
    "image": "art/pixel/plongeur_v6/saut/lot/boards/saut_2_02_decollage.png",
-   "image_sha256": "8dbaa6ab31a96afd245292b59ea7704c45773ce1150c9445230ba37773cc9e0b",
+   "image_sha256": "aeedb4aa02ca747f44c3f85a2bd204d2e5224adbb402e102ad122cee3c390644",
    "controle": {
     "silhouette": "oui : décollage lisible",
     "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
@@ -35,7 +35,7 @@
   {
    "changement": "saut image 3 (apex) : corps au plus haut (8 px), bras en équilibre",
    "image": "art/pixel/plongeur_v6/saut/lot/boards/saut_3_03_apex.png",
-   "image_sha256": "e7f11a26b19550bd80799b17f07154a5473e0148cdb64480091fd81dc79e1f1f",
+   "image_sha256": "6a015666c44f88b8461ade36ec32e3607abd4fc59cab418e7ef178de74bc7256",
    "controle": {
     "silhouette": "oui : apex lisible",
     "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
@@ -51,7 +51,7 @@
   {
    "changement": "saut image 4 (réception) : retour au sol, buste bas de 1 px",
    "image": "art/pixel/plongeur_v6/saut/lot/boards/saut_4_04_reception.png",
-   "image_sha256": "18194d6114739deac7106ddc75f27f491f00913e0499b848646dd1645bd7ca77",
+   "image_sha256": "2b7c95c57bca175f4dd400930f510ef1a4f9b918318a27bb9c30856677e9f570",
    "controle": {
     "silhouette": "oui : réception lisible",
     "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",

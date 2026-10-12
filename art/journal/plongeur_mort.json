@@ -83,7 +83,7 @@
   {
    "changement": "mort image 6 (au sol) : -84 degrés, 2 px sous la ligne du sol",
    "image": "art/pixel/plongeur_v6/mort/lot/boards/mort_6_06_au_sol.png",
-   "image_sha256": "7ddab280af74098c78ea40f44e38a2c5ad2ef6398b0097b0f16b930a084be0d2",
+   "image_sha256": "17edacca15ba9d68e7fd7160ca0e44c29717e59b4b0c61ce5b5b062baad6d2d7",
    "controle": {
     "silhouette": "oui : le corps est au sol",
     "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
@@ -99,7 +99,7 @@
   {
    "changement": "mort image 7 (s'affale) : -88 degrés",
    "image": "art/pixel/plongeur_v6/mort/lot/boards/mort_7_07_s_affale.png",
-   "image_sha256": "fa693fc60b6cfae21bdcbd1ebb23e455c71fa9b5754658e43b3c33578f283b64",
+   "image_sha256": "1180fde53624cab47978f9e5b59c1cb75c8a738f4365b9468fc49292e4c45d56",
    "controle": {
     "silhouette": "oui",
     "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
@@ -115,7 +115,7 @@
   {
    "changement": "mort image 8 (immobile) : -90 degrés, sur le sol",
    "image": "art/pixel/plongeur_v6/mort/lot/boards/mort_8_08_immobile.png",
-   "image_sha256": "1a71deb2424ed7d037f2a9b4f7f7dbd823ad89509a47dc49f0b2674c3a38af7b",
+   "image_sha256": "cf8e65f8efcbd204b715e8bbc9e03f7ff57d1e8d10d5440db09b2d17f560bff2",
    "controle": {
     "silhouette": "oui : posé au sol",
     "couleurs": "base de l'ancre conservée (rendu direct du même personnage)",
