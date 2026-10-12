@@ -26,7 +26,13 @@ Séquence : images distinctes OK ; isolés 0 ; palette hors ancre 0 ; boucle pr�
 4. Gant droit : centre qui saute (23 px entre images 3 et 4). → NON RÉSOLU (voir Décision C).
 5. Images 2-3 : gant gauche absent. → RÉSOLU : coude gauche sorti du casque (armement -90/-60, sommet -75/-75), gant visible à x 28-34.
 Non bloquants : manche qui dépasse le gant (2-3) ; manche devant la poitrine (6, déclaré) ; arc de mouvement absent (NON FAIT) ; contrôle tête (RÉSOLU, voir ci-dessus).
-Relecteur à relancer après décisions A à C.
+Deuxième relecture (sous-agent, mêmes critères, sans mes conclusions) : 3 bloquants, tous déjà listés comme décisions A (prête : tête absente), B (frappe : pas de descente nette) et C (gant : déplacements en zigzag, F3 à F5). Aucun nouveau bloquant.
+Non bloquants, relevés :
+- bande orange #e9a964 sur la poitrine (F4, x 51-59, y 61-64) : c'est le manche vu de dos, à vérifier ;
+- ombrage du torse en damier crème/mauve (F1-F3, F5-F6) : 94 à 193 px de la zone du torse diffèrent de l'ancre, ces pixels sont surtout ceux où les bras recouvrent le torse (à confirmer par rendu séparé) ;
+- pixel saillant #c9ab88 à (33,64) en F4 et colonne crème à x 43 en F2 : 1 px relié à ses voisins (pas isolé, donc contrôle 0 OK), bords à nettoyer si Julien le demande ;
+- couleurs du manche (#e9a964, #b77a36, #6a3e1e) absentes de l'ancre : voulues (la pioche n'existe pas dans l'ancre).
+Relecture relancée après les décisions A à C.
 
 ### Décisions à prendre (Julien)
 - **A. Prête** : à -45 degrés, la tête de pioche est dans la silhouette du casque pour toute position atteignable du gant (portée 18,4 px). Options : (1) garder la tête cachée et accepter l'échec ; (2) passer le manche à +30 degrés (tête en haut-droite, visible) : cela change l'angle validé dans la fiche d'intention ; (3) autoriser la pioche devant le casque (alors le contrôle pioche/casque passe à interdit).
