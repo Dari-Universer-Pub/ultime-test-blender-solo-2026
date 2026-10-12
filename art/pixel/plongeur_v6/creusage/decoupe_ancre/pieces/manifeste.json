@@ -1,0 +1,79 @@
+{
+ "ordre": [
+  "torse",
+  "jambes",
+  "bras_g_haut",
+  "bras_g_avant",
+  "bras_d_haut",
+  "bras_d_avant",
+  "casque"
+ ],
+ "pieces": {
+  "torse": {
+   "objets": [
+    "torse",
+    "ceinture",
+    "boucle"
+   ]
+  },
+  "jambes": {
+   "objets": [
+    "jambe_g",
+    "jambe_d",
+    "botte_g",
+    "botte_d"
+   ]
+  },
+  "bras_g_haut": {
+   "objets": [
+    "bras_g_haut"
+   ],
+   "pivot_px": [
+    46.72,
+    56.64
+   ]
+  },
+  "bras_g_avant": {
+   "objets": [
+    "bras_g_avant",
+    "gant_g",
+    "pouce_g"
+   ],
+   "pivot_px": [
+    39.3,
+    62.24
+   ]
+  },
+  "bras_d_haut": {
+   "objets": [
+    "bras_d_haut"
+   ],
+   "pivot_px": [
+    63.85,
+    59.74
+   ]
+  },
+  "bras_d_avant": {
+   "objets": [
+    "bras_d_avant",
+    "gant_d",
+    "pouce_d"
+   ],
+   "pivot_px": [
+    67.84,
+    67.42
+   ]
+  },
+  "casque": {
+   "objets": [
+    "casque",
+    "hublot_verre",
+    "cadre_hublot",
+    "collerette",
+    "tuyau",
+    "bouteille",
+    "valve"
+   ]
+  }
+ }
+}

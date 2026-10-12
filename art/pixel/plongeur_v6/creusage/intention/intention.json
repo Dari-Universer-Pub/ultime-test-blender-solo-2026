@@ -6,14 +6,13 @@
       "n": 1,
       "nom": "prete",
       "duree": "longue",
-      "phi": -30,
+      "phi": -50,
       "head": [
-        49.5,
-        33.0
+        40.2,
+        31.5
       ],
       "f": {
-        "L": 0.15,
-        "R": 0.35
+        "R": 0.0
       },
       "buste": [
         0,
@@ -23,8 +22,13 @@
         0,
         0
       ],
-      "conforme": "phi -30 exact ; pioche posee sur l'epaule droite, tete vers l'arriere-haut ; main droite sur le haut du manche, au-dessus de l'epaule ; main gauche sur le manche devant la poitrine ; outil a 7.7 px du hublot, hublot non traverse ; buste droit et pieds comme l'ancre ; etirement 0 %.",
-      "ecart": "(1) manche sur le haut du torse, 7.3 px : a -30 deg, le manche qui passe a droite du hublot (8 px minimum) descend forcement sur le haut de la poitrine, avec la main gauche devant elle. Alternative proposee : prete a -50 deg, tete (43,30), bout (69.8,52.5) : hublot a 8.1 px, manche dans le torse 0 px, etirement +5 %, et l'ecart 1 -> 2 passe a 40 deg. (2) ecart 1 -> 2 = 20 deg, sous les 40 deg de la regle (la fiche ne liste pas cette paire) : c'est le conflit avec armement -10 deg, fixe par la fiche. Non applique a la planche : a valider."
+      "conforme": "phi -50 ; pioche posee sur l'epaule droite, main droite au bout du manche sur l'epaule ; manche et tete derriere le casque (profondeur) ; main gauche libre le long du corps ; buste droit, pieds comme l'ancre.",
+      "ecart": "une seule main sur le manche (propose : deux mains bloquent les mains dans le casque). La main gauche ne tient pas la pioche. Le manche recouvre le casque en 2D : il passe derriere (profondeur), jamais a travers.",
+      "libre": [
+        35.0,
+        69.9
+      ],
+      "derriere": true
     },
     {
       "n": 2,
@@ -32,12 +36,11 @@
       "duree": "longue",
       "phi": -10,
       "head": [
-        56.0,
+        76.0,
         22.0
       ],
       "f": {
-        "L": 0.3,
-        "R": 0.45
+        "R": 0.2
       },
       "buste": [
         -2.5,
@@ -47,8 +50,12 @@
         -1.5,
         0
       ],
-      "conforme": "phi -10 exact ; outil au-dessus du casque, haut de la tete a 20.9 (le sprite commence a 20) ; les deux bras montent, main droite plus haute que la gauche ; buste recule de 2.5 px, casque decale de 1.5 px vers l'arriere ; pieds fixes ; hublot non traverse (14.6 px) ; hauteur 72 px.",
-      "ecart": "le manche longe le bord droit du casque et recouvre une partie du dome : il est au-dessus et derriere le casque en profondeur, sans toucher le hublot. Coudes ecartes : a verifier sur la planche, non mesure en degres."
+      "conforme": "phi -10 ; outil au-dessus et a droite du casque, haut de la tete a 20 px ; main droite sur le manche, a l'exterieur du dome ; bras gauche leve, coude ecarte ; buste recule de 2,5 px, casque de 1,5 px ; pieds fixes.",
+      "ecart": "une seule main sur le manche (deux mains impossibles sans que les mains entrent dans le casque, portee des bras). Manche decale a droite du casque (pour que la main reste hors du dome).",
+      "libre": [
+        35.0,
+        42.0
+      ]
     },
     {
       "n": 3,
@@ -56,12 +63,11 @@
       "duree": "tres courte",
       "phi": 35,
       "head": [
-        70.0,
-        27.0
+        82.0,
+        28.0
       ],
       "f": {
-        "L": 0.55,
-        "R": 0.65
+        "R": 0.4
       },
       "buste": [
         1,
@@ -71,8 +77,12 @@
         1,
         0
       ],
-      "conforme": "phi +35 exact ; outil au-dessus du casque, penche vers l'avant (haut a 23.3) ; bras droit a +16 % et bras gauche a +9 %, les deux tendus vers le haut et l'avant ; buste revient a la verticale (+1 px vers l'avant) ; pieds fixes ; hublot non traverse (9 px).",
-      "ecart": "aucun ecart de la fiche. Note : les deux mains sont a environ 4 px l'une de l'autre sur le manche (les deux bras sont tendus)."
+      "conforme": "phi +35 ; outil au-dessus du casque, penche vers l'avant ; main droite sur le manche, a l'exterieur du dome ; bras gauche tendu vers le haut et l'avant, coude devant ; buste revient a la verticale puis s'avance ; pieds fixes.",
+      "ecart": "une seule main sur le manche (deux mains entraient dans le casque). Bras gauche libre, sans prise.",
+      "libre": [
+        30.5,
+        49.3
+      ]
     },
     {
       "n": 4,

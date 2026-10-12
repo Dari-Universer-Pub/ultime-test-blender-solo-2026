@@ -119,7 +119,9 @@ def calcul(f):
     bar_b = (head[0] + TETE_DEMI * p[0], head[1] + TETE_DEMI * p[1])
     bx, by = f["buste"]
     cx, cy = f["casque"]
-    mains = {c: (butt[0] + f["f"][c] * MANCHE * u[0], butt[1] + f["f"][c] * MANCHE * u[1]) for c in ("L", "R")}
+    mains = {c: (butt[0] + f["f"][c] * MANCHE * u[0], butt[1] + f["f"][c] * MANCHE * u[1]) for c in f["f"]}
+    if "libre" in f:                              # main non posée sur le manche (C ter : sortie du casque)
+        mains.setdefault("L", tuple(f["libre"]))
     ep = f.get("epaule", {"g": [0, 0], "d": [0, 0]})
     S = {"g": sh(ANCRE["ep_g"], (bx + ep["g"][0], by + ep["g"][1])),
          "d": sh(ANCRE["ep_d"], (bx + ep["d"][0], by + ep["d"][1]))}
@@ -148,6 +150,34 @@ def calcul(f):
         "jambe_g_px": longueur_dans_rect(butt, head, JAMBE_G),
         "jambe_d_px": longueur_dans_rect(butt, head, JAMBE_D),
     }
+
+
+RAYON_CASQUE = 12.5   # disque du casque en px (dôme), marge de la main non comprise
+
+
+def dist_disque(P, C, r):
+    return math.hypot(P[0] - C[0], P[1] - C[1]) - r
+
+
+def dist_rect(P, r):
+    x0, y0, x1, y1 = r
+    dx = max(x0 - P[0], 0.0, P[0] - x1)
+    dy = max(y0 - P[1], 0.0, P[1] - y1)
+    return math.hypot(dx, dy)
+
+
+def cter_2d(f, r, N=60):
+    """C ter (a) : distance minimale (px) des mains et du manche aux volumes du casque, du torse et des jambes.
+    Une distance négative = à l'intérieur. Mains : tolérée seulement à la jonction épaule-bras (non calculée ici)."""
+    C = (ANCRE["casque"][0] + f.get("casque", [0, 0])[0], ANCRE["casque"][1] + f.get("casque", [0, 0])[1])
+    main_casque = min(dist_disque(p, C, RAYON_CASQUE) for p in r["mains"].values())
+    A, B = r["butt"], r["head"]
+    pts = [(A[0] + (B[0] - A[0]) * i / N, A[1] + (B[1] - A[1]) * i / N) for i in range(N + 1)]
+    manche_casque = min(dist_disque(p, C, RAYON_CASQUE) for p in pts)
+    manche_torse = min(dist_rect(p, TORSE) for p in pts)
+    manche_jambes = min(min(dist_rect(p, JAMBE_G), dist_rect(p, JAMBE_D)) for p in pts)
+    return {"main_casque": main_casque, "manche_casque": manche_casque, "manche_torse": manche_torse,
+            "manche_jambes": manche_jambes}
 
 
 def controles(n, r):
@@ -280,14 +310,19 @@ def main():
         ko = [t for (_, ok, t) in ok_list if ok is False]
         phi_obt = ((r["phi_obt"] + 180) % 360) - 180      # affiché entre -180 et +180
         lignes_table.append("| %d | %s | %s | %+d | %+.0f | %.0f | %+.1f ; %+.1f | %+.1f ; %+.1f | G %+.0f %% / D %+.0f %% | "
-                            "%.2f / %.2f | (%.1f, %.1f) / (%.1f, %.1f) | %s |" % (
+                            "%s / %.2f | (%.1f, %.1f) / (%.1f, %.1f) | %s |" % (
                                 f["n"], f["nom"], f["duree"], f["phi"], phi_obt,
                                 gaps[i][2],
                                 f["buste"][0], f["buste"][1], f["casque"][0], f["casque"][1],
-                                r["etire"]["g"], r["etire"]["d"], f["f"]["L"], f["f"]["R"],
+                                r["etire"]["g"], r["etire"]["d"], ("%.2f" % f["f"]["L"]) if "L" in f["f"] else "libre", f["f"]["R"],
                                 r["butt"][0], r["butt"][1], r["head"][0], r["head"][1],
                                 "; ".join(ko) if ko else "OK"))
         lignes_ctrl.append("%d. %s (%s) : %s" % (f["n"], f["nom"], f["duree"], " ; ".join(t for (_, _, t) in ok_list)))
+        cter = cter_2d(f, r)
+        lignes_ctrl.append("   C ter (a) : main-casque %.1f px ; manche-casque %.1f px ; manche-torse %.1f px ; "
+                           "manche-jambes %.1f px (distance en dehors ; negatif = dedans) %s" % (
+                               cter["main_casque"], cter["manche_casque"], cter["manche_torse"], cter["manche_jambes"],
+                               "; manche derriere le casque : declare" if f.get("derriere") else ""))
         lignes_ctrl.append("   conforme : %s" % f["conforme"])
         lignes_ctrl.append("   ECART : %s" % f["ecart"])
     gaps_txt = "ecarts d'angle successifs : " + " ; ".join(

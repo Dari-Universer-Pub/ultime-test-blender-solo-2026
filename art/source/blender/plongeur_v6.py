@@ -13,6 +13,7 @@ bord droit. Émission seule : pas de spéculaire, pas de réflexion d'environnem
     /opt/outils-varekh/bin/blender -b --factory-startup --python art/source/blender/plongeur_v6.py
 Variables : PLONGEUR_SORTIE (défaut art/rendu/plongeur_v6), PLONGEUR_IDENTITE=1 (cartes d'identité).
 """
+import json
 import math
 import os
 import re
@@ -349,6 +350,7 @@ POSE = {}              # surcharge des positions du squelette (nage) ; vide = po
 GARDER_PLIS = False      # idle animé : garde les plis fixes de l'idle quand la pose change (petits décalages)
 HAUT_DZ = 0.0            # idle animé : buste, épaules et casque montent de HAUT_DZ (respiration), 0 = idle validée
 HAUT_DX = 0.0            # creusage : décalage vers la droite du haut du corps (buste penché)
+HAUT_DY = 0.0            # creusage cible 3D : profondeur du haut du corps (penché vers l'avant), 0 = rien
 BULLE = None             # idle animé : (centre, rayon) d'une bulle qui sort du casque, None = pas de bulle
 VERSION_NAGE = 1         # 1 = nage r03 validée ; 2 = corrigée (corde qui flotte derrière, cycle asymétrique)
 ROTATION_CORDE = 0.0     # nage v2 : battement de la corde flottante (phase, en radians)
@@ -510,7 +512,8 @@ def boite_orientee(centre, axes, demi, mat, nom):
     return o
 
 
-def fer_pioche(centre, mat, nom, a=0.27, pointe=0.08, epaisseur=0.08, largeur=0.035, courbure=0.11):
+def fer_pioche(centre, mat, nom, a=0.27, pointe=0.08, epaisseur=0.08, largeur=0.035, courbure=0.11,
+               pointe_arriere=None):
     """Tête de pioche de mineur en 3D : barre d'acier horizontale à l'écran (dessin à plat, face caméra), courbée
     vers le bas, épaisseur visible. Une pointe nette côté +x, un biseau plat côté -x. Largeur = 2 x a + pointe."""
     c = Vector(centre)
@@ -527,16 +530,34 @@ def fer_pioche(centre, mat, nom, a=0.27, pointe=0.08, epaisseur=0.08, largeur=0.
     for i in range(n - 1):
         for k in range(4):
             bm.faces.new((anneaux[i][k], anneaux[i][(k + 1) % 4], anneaux[i + 1][(k + 1) % 4], anneaux[i + 1][k]))
-    bm.faces.new(anneaux[0][::-1])
     pointe_v = bm.verts.new(c + Vector((a + pointe, 0.0, 0.0)))
     for k in range(4):
         bm.faces.new((anneaux[-1][k], anneaux[-1][(k + 1) % 4], pointe_v))
+    if pointe_arriere is None:
+        bm.faces.new(anneaux[0][::-1])
+    else:
+        pointe_w = bm.verts.new(c + Vector((-a - pointe_arriere, 0.0, 0.0)))
+        for k in range(4):
+            bm.faces.new((anneaux[0][k], anneaux[0][(k + 1) % 4], pointe_w))
     bmesh.ops.recalc_face_normals(bm, faces=bm.faces[:])
     me = bpy.data.meshes.new(nom)
     bm.to_mesh(me)
     bm.free()
     o = bpy.data.objects.new(nom, me)
     o.data.materials.append(mat)
+    return o
+
+
+def tete_orientee(H, bout, mat, nom):
+    """Tête d'acier à plat dans le plan de l'écran, perpendiculaire au manche, une pointe à chaque bout (13 px)."""
+    H, bout = Vector(H), Vector(bout)
+    R, U, F = base_camera()
+    x = (H - bout).normalized().cross(F).normalized()           # le long de la barre, dans le plan de l'écran
+    z = ((bout - H) - x * (bout - H).dot(x)).normalized()        # vers le manche : la courbe s'ouvre vers lui
+    y = z.cross(x)
+    o = fer_pioche((0.0, 0.0, 0.0), mat, nom, a=0.20, pointe=0.07, epaisseur=0.08, largeur=0.035,
+                   courbure=0.07, pointe_arriere=0.07)
+    o.matrix_world = Matrix.Translation(H) @ Matrix((x, y, z)).transposed().to_4x4()
     return o
 
 
@@ -663,7 +684,7 @@ def construire(scene):
     for cote in ("g", "d"):
         P, E = pose_de("poignet_" + cote), pose_de("coude_" + cote)
         d = (P - E).normalized()
-        centre = P + d * 0.13
+        centre = Vector(POSE["gant_" + cote]) if ("gant_" + cote) in POSE else P + d * 0.13
         gant = ellipsoide(tuple(centre), 0.19, (1.0, 1.0, 1.2), gant_mat, "gant_" + cote,
                           rotation_dir=d, niveau=1)
         objets["gant_" + cote] = gant
@@ -691,12 +712,13 @@ def construire(scene):
         # nage v2 : la corde part de la valve et flotte derrière le dos, vers les pieds (côté opposé à la direction)
         ondule = 0.06 * math.sin(ROTATION_CORDE)
         chemin_corde += [(-0.98 + ondule, 0.36, 1.30), (-1.06 - ondule, 0.52, 0.80), (-1.10 + ondule, 0.58, 0.30)]
-    chemin_corde = [(x + HAUT_DX, y, z + HAUT_DZ) for x, y, z in chemin_corde]
+    chemin_corde = [(x + HAUT_DX, y + HAUT_DY, z + HAUT_DZ) for x, y, z in chemin_corde]
     tuyau = corde_torsadee(chemin_corde, 0.065, scene, m["corde"], "tuyau", cotes=6)
     objets["tuyau"] = tuyau
     # idle animé : la tête, le hublot, la collerette et la valve montent avec le buste (respiration)
     for nom in ("casque", "hublot_verre", "cadre_hublot", "collerette", "bouteille", "valve"):
         objets[nom].location.x += HAUT_DX
+        objets[nom].location.y += HAUT_DY
         objets[nom].location.z += HAUT_DZ
     if BULLE is not None:
         centre, rayon = BULLE
@@ -708,17 +730,23 @@ def construire(scene):
     if PIOCHE is not None:
         R = Vector(PIOCHE[0])
         opt = PIOCHE[3] or {}
-        if PIOCHE[1] is not None:
-            L = Vector(PIOCHE[1])
-            u = (R - L).normalized()
-            H = R + u * PIOCHE_TETE
-            bout = L - u * PIOCHE_BOUT
+        if opt.get("B") is not None:
+            # cible 3D : bout et tête du manche fixés (pose_fiche) ; la tête est à plat dans le plan de l'écran
+            bout, H = Vector(opt["B"]), Vector(opt["H"])
+            objets["pioche_manche"] = tube_entre(bout, H, 0.065, m["bois"], "pioche_manche")
+            objets["pioche_tete"] = tete_orientee(H, bout, m["acier"], "pioche_tete")
         else:
-            u = Vector(PIOCHE[2]).normalized()
-            H = R + u * opt.get("tete", PIOCHE_TETE)              # tête à `tete` de la main
-            bout = R - u * opt.get("bout", 1.15)                  # manche : `bout` derrière la main
-        objets["pioche_manche"] = tube_entre(bout, H, 0.065, m["bois"], "pioche_manche")
-        objets["pioche_tete"] = fer_pioche(H, m["acier"], "pioche_tete")
+            if PIOCHE[1] is not None:
+                L = Vector(PIOCHE[1])
+                u = (R - L).normalized()
+                H = R + u * PIOCHE_TETE
+                bout = L - u * PIOCHE_BOUT
+            else:
+                u = Vector(PIOCHE[2]).normalized()
+                H = R + u * opt.get("tete", PIOCHE_TETE)
+                bout = R - u * opt.get("bout", 1.15)
+            objets["pioche_manche"] = tube_entre(bout, H, 0.065, m["bois"], "pioche_manche")
+            objets["pioche_tete"] = fer_pioche(H, m["acier"], "pioche_tete")
         peindre(objets["pioche_tete"], lambda p, H=H: (p - H).dot(LUMIERE) > 0.01, C_METAL_CLAIR)
 
     # --- scène
@@ -902,86 +930,258 @@ def rendre_idle_images(dossier, n=6):
 # Image 1 = ancre idle sans pioche. 2 prête (pioche basse à droite), 3 anticipation (levée derrière l'épaule droite,
 # au-dessus du casque), 4 frappe (bras tendus, tête à droite à mi-hauteur), 5 impact (corps penché à droite, pioche au
 # bout du bras), 6 retour (la pioche revient en arrière).
-PIOCHE_BOUT = 0.40   # m : manche derrière le point de prise (longueur totale ~42 à 49 px)
-PIOCHE_TETE = 0.55   # m : tête au-delà de la main droite
-CREUSAGE = {  # deux mains sur la pioche partout (solutions calculées sous les contraintes de portée, cf. TABLE_POSES.md)
-    1: {"L": (0.00, -0.50, 1.70), "R": (0.40, -0.50, 1.30), "dx": 0.00, "penche": 0.00, "dz": 0.00},    # prête
-    2: {"L": (0.00, -0.50, 1.30), "R": (0.30, -0.50, 1.80), "dx": -0.02, "penche": 0.04, "dz": 0.00},  # anticipation
-    3: {"L": (0.00, -0.50, 1.60), "R": (0.40, -0.70, 1.30), "dx": 0.03, "penche": -0.03, "dz": 0.00},  # frappe
-    4: {"L": (0.10, -0.50, 1.50), "R": (0.40, -0.60, 0.90), "dx": 0.10, "penche": -0.12, "dz": -0.10}, # impact
-    5: {"L": (-0.10, -0.70, 1.40), "R": (0.30, -0.50, 1.70), "dx": 0.02, "penche": 0.02, "dz": 0.00},  # retour
-}
+# ------------------------------------------------------------------ creusage : cible 3D (fiche Stardew)
+# Six poses, planche d'intention validée (tools/planches/intention.py). La caméra est orthographique : une
+# position écran ne dépend que de (x, y). La profondeur w (m ; négatif = devant le plongeur, positif = derrière)
+# ne change pas la silhouette : elle range les pièces devant ou derrière le casque et garde les bras à portée.
+# Unités : px = pixel du sprite 112 px (le cadre fait 4,5 m, donc 0,0402 m par px) ; m = unité Blender.
+PX = CADRE / 112.0
+MANCHE_PX = 35.0            # manche de la planche : 35 px, de la tête au bout
+TETE_DEMI_M = 0.27          # demi-longueur de la tête d'acier (0,54 m = 13,4 px à l'écran)
+CREUSAGE_FICHE = [          # images 1 à 6 de la planche validée ; w = profondeur (m) dans le repère de la caméra
+    # w_epaule_g : l'épaule gauche est avancée de ce montant (triche déclarée : le bras gauche atteint l'outil)
+    {"nom": "prete", "phi": -50, "tete": (40.2, 31.5), "R": 0.0, "libre3d": (-0.84, -0.22, 0.70),
+     "buste": (0.0, 0.0), "casque": (0.0, 0.0), "w_tete": 1.00, "w_bout": 0.20, "w_buste": 0.0,
+     "w_casque": 0.0, "w_epaule_g": 0.0, "w_epaule_d": 0.0, "epaule_g": (0.0, 0.0), "genoux": 0.0,
+     "pole": {"d": (1.0, 1.0, -0.6), "g": (-1.0, 0.8, 0.0)}},
+    {"nom": "armement", "phi": -10, "tete": (76.0, 22.0), "R": 0.20, "bras_libre": (35.0, 42.0, 0.0),
+     "buste": (-2.5, 0.0), "casque": (-1.5, 0.0), "w_tete": -0.80, "w_bout": -0.10, "w_buste": 0.0,
+     "w_casque": 0.0, "w_epaule_g": 0.0, "w_epaule_d": 0.0, "epaule_g": (0.0, 0.0), "genoux": 0.0,
+     "pole": {"d": (1.0, 0.3, 0.0), "g": (-1.0, 0.0, 0.0)}},
+    {"nom": "sommet", "phi": 35, "tete": (82.0, 28.0), "R": 0.40, "libre3d": (-0.90, -0.45, 1.60),
+     "buste": (1.0, 0.0), "casque": (1.0, 0.0), "w_tete": -0.50, "w_bout": -1.00, "w_buste": 0.0,
+     "w_casque": 0.0, "w_epaule_g": -0.20, "w_epaule_d": -0.10, "epaule_g": (0.0, 0.0), "genoux": 0.0,
+     "pole": {"g": (-1.0, -0.5, 0.0), "d": (1.0, -0.8, 0.0)}},
+    {"nom": "descente", "phi": 110, "tete": (98.9, 72.0), "L": 0.05, "R": 0.25, "buste": (3.0, 0.5),
+     "casque": (3.0, 2.0), "w_tete": -0.30, "w_bout": -0.50, "w_buste": -0.08, "w_casque": -0.08,
+     "w_epaule_g": -0.25, "epaule_g": (0.0, 0.0), "genoux": 0.0},
+    {"nom": "impact", "phi": 150, "tete": (84.0, 88.75), "L": 0.20, "R": 0.56, "buste": (4.0, 1.5),
+     "casque": (4.0, 5.0), "w_tete": -0.30, "w_bout": -0.50, "w_buste": -0.16, "w_casque": -0.16,
+     "w_epaule_g": -0.25, "epaule_g": (0.0, 0.0), "genoux": -0.10},
+    {"nom": "retour", "phi": 60, "tete": (97.0, 53.0), "L": 0.00, "R": 0.25, "buste": (0.0, 0.0),
+     "casque": (0.0, 0.0), "w_tete": -0.20, "w_bout": -0.10, "w_buste": 0.0, "w_casque": 0.0,
+     "w_epaule_g": -0.20, "w_epaule_d": 0.0, "epaule_g": (2.0, 0.0), "genoux": 0.0},
+]
 
 
-def bras_vers(S, cible, pole):
-    """Coude et poignet pour que le gant arrive en `cible` (cinématique inverse à deux os, mêmes longueurs
-    que pose_crawl). Le coude part dans la direction `pole`."""
-    l1, l2 = 0.39, 0.27
-    cible = Vector(cible)
-    direction = (cible - S).normalized()
-    W = cible - direction * 0.13                      # le gant est à 0,13 m du poignet
-    D = min((W - S).length, l1 + l2 - 1e-3)
+def base_camera():
+    """Repère de la caméra : R = droite de l'écran, U = haut de l'écran, F = direction de visée (vers le fond)."""
+    az, el = math.radians(AZIMUT), math.radians(ELEVATION)
+    F = -Vector((math.sin(az) * math.cos(el), -math.cos(az) * math.cos(el), math.sin(el)))
+    R = F.cross(Vector((0.0, 0.0, 1.0))).normalized()
+    U = (-F).cross(R).normalized()
+    return R, U, F
+
+
+def ecran(P):
+    """Position écran (px du sprite 112) d'un point 3D : même formule que la caméra orthographique."""
+    R, U, F = base_camera()
+    d = Vector(P) - CIBLE
+    return 56.0 + d.dot(R) / PX, 56.0 - d.dot(U) / PX
+
+
+def monde(px, py, w=0.0):
+    """Point 3D de la position écran (px, py) à la profondeur w (m, + = derrière)."""
+    R, U, F = base_camera()
+    return CIBLE + R * ((px - 56.0) * PX) + U * ((56.0 - py) * PX) + F * w
+
+
+def decal(dx, dy, w=0.0):
+    """Décalage écran (px, + = droite et bas) plus profondeur w (m) en vecteur 3D."""
+    R, U, F = base_camera()
+    return R * (dx * PX) + U * (-dy * PX) + F * w
+
+
+def ik_bras(S, cible, pole):
+    """Coude et poignet pour que le gant arrive en `cible` (gant à 0,13 m du poignet, bras de 0,39 et 0,27 m).
+    Triche déclarée : si le gant est plus loin que la portée (0,79 m), les os et le gant s'allongent de k ;
+    k est renvoyé, en % (k - 1) comme sur la planche."""
+    l1, l2, gant = 0.39, 0.27, 0.13
+    S, cible = Vector(S), Vector(cible)
+    d = (cible - S).length
+    k = max(1.0, d / (l1 + l2 + gant))
+    axe = (cible - S).normalized()
+    W = cible - axe * gant * k
+    D = min((W - S).length, (l1 + l2) * k - 1e-6)
     axe = (W - S).normalized()
-    a = (l1 * l1 - l2 * l2 + D * D) / (2.0 * D)
-    h = math.sqrt(max(0.0, l1 * l1 - a * a))
+    a = ((l1 * k) ** 2 - (l2 * k) ** 2 + D * D) / (2.0 * D)
+    h = math.sqrt(max(0.0, (l1 * k) ** 2 - a * a))
     perp = Vector(pole) - axe * Vector(pole).dot(axe)
     perp.normalize()
-    return S + axe * a + perp * h, S + axe * D
+    return S + axe * a + perp * h, S + axe * D, k
 
 
-def pose_creusage(k):
-    """Image k du creusage (k = 0 : l'ancre idle, sans pioche). Une main sur la pioche (images 2 à 6) ; le bras
-    non tenant la pioche reste au repos. Le haut du corps se décale de dx (vers la droite), de dz (vertical) et
-    penche vers l'avant ; il entraîne la tête, le hublot et la corde (HAUT_DX, HAUT_DZ)."""
-    global PIOCHE, HAUT_DX, HAUT_DZ
-    if k == 0:
-        PIOCHE, HAUT_DX, HAUT_DZ = None, 0.0, 0.0
-        return {}
-    c = CREUSAGE[k]
-    dx, p, dz = c["dx"], c["penche"], c.get("dz", 0.0)
-    HAUT_DX, HAUT_DZ = dx, dz
-    PIOCHE = (c["R"], c.get("L"), c.get("u"), c.get("opt"))
-    pose = {}
-    for nom in ("poitrine", "cou", "epaule_g", "epaule_d"):
-        x, y, z = SQUELETTE[nom][0]
-        pose[nom] = (x + dx, y + p, z + dz)
-    ex, ey, ez = c.get("ep_d", (0.0, 0.0, 0.0))
-    pose["epaule_d"] = (pose["epaule_d"][0] + ex, pose["epaule_d"][1] + ey, pose["epaule_d"][2] + ez)
-    pose["taille"] = (dx * 0.5, 0.5 * p, 1.06)
-    cotes = [("d", "R", (0.5, -0.8, -0.2))]
+def pose_fiche(k, sur=None):
+    """Image k + 1 de la planche : POSE (articulations), PIOCHE (mains, bout et tête du manche), décalage du
+    haut du corps (casque, hublot), et les contrôles calculés (étirements, angles, tête, manche)."""
+    c = dict({"w_epaule_d": 0.0}, **(CREUSAGE_FICHE[k] if sur is None else sur))
+    phi = math.radians(c["phi"])
+    u = (math.sin(phi), -math.cos(phi))
+    tx, ty = c["tete"]
+    bx2, by2 = tx - MANCHE_PX * u[0], ty - MANCHE_PX * u[1]
+    B = monde(bx2, by2, c["w_bout"])
+    H = monde(tx, ty, c["w_tete"])
+    mains = {"R": B + (H - B) * c["R"]}
     if c.get("L") is not None:
-        cotes.append(("g", "L", (-0.5, -0.8, -0.2)))
-    elif c.get("bras_g") is not None:
-        cotes.append(("g", "bras_g", (-0.5, -0.8, -0.2)))
-    for cote, cle, pole in cotes:
-        coude, poignet = bras_vers(Vector(pose["epaule_" + cote]), c[cle], pole)
+        mains["L"] = B + (H - B) * c["L"]
+    cibles = dict(mains)                       # main libre : bras posé sur sa cible, sans le manche
+    if "bras_libre" in c:
+        lx, ly, lw = c["bras_libre"]
+        cibles["L"] = monde(lx, ly, lw)
+    if "libre3d" in c:
+        cibles["L"] = Vector(c["libre3d"])
+    pose = {}
+    dx, dy = c["buste"]
+    for nom in ("cou", "poitrine"):
+        pose[nom] = tuple(Vector(SQUELETTE[nom][0]) + decal(dx, dy, c["w_buste"]))
+    pose["taille"] = tuple(Vector(SQUELETTE["taille"][0]) + decal(dx / 2, dy / 2, c["w_buste"] / 2))
+    ex, ey = c["epaule_g"]
+    pose["epaule_g"] = tuple(Vector(SQUELETTE["epaule_g"][0]) + decal(dx + ex, dy + ey,
+                                                                      c["w_buste"] + c["w_epaule_g"]))
+    pose["epaule_d"] = tuple(Vector(SQUELETTE["epaule_d"][0]) + decal(dx, dy, c["w_buste"] + c["w_epaule_d"]))
+    if c["genoux"]:
+        for cote in ("g", "d"):
+            pose["genou_" + cote] = tuple(Vector(SQUELETTE["genou_" + cote][0]) + decal(0.0, 0.0, c["genoux"])
+                                          + Vector((0.0, 0.0, -0.03)))
+    R, U, F = base_camera()
+    etire = {}
+    for cote, cle, cote_x in (("g", "L", -1.0), ("d", "R", 1.0)):
+        dx_p, dy_p, dw_p = c.get("pole", {}).get(cote, (cote_x, 0.6, 0.0))   # coude : écran (+ = droite, bas) + profondeur
+        pole = R * dx_p + U * (-dy_p) + F * dw_p
+        coude, poignet, kk = ik_bras(pose["epaule_" + cote], cibles[cle], pole)
         pose["coude_" + cote] = tuple(coude)
         pose["poignet_" + cote] = tuple(poignet)
-    return pose
+        etire[cote] = round((kk - 1.0) * 100.0, 1)
+    pose["gant_g"], pose["gant_d"] = tuple(cibles["L"]), tuple(cibles["R"])
+    haut = decal(c["casque"][0], c["casque"][1], c["w_casque"])
+    pioche = (mains["R"], mains.get("L"), None, {"B": tuple(B), "H": tuple(H)})
+    bras_fiche = {"etirement": etire}
+    return pose, pioche, tuple(haut), bras_fiche, (B, H, mains)
 
 
-def rendre_creusage_images(dossier, n=6, identite=False, rapide=False):
-    """Rend les six images du creusage (couleur, ou carte d'identité de chaque image) dans dossier."""
-    global PIOCHE, HAUT_DX, HAUT_DZ, SORTIE
-    os.makedirs(dossier, exist_ok=True)
-    for k in range(n):
-        POSE.clear()
-        POSE.update(pose_creusage(k))
-        scene = construire_tout()
-        if identite:
-            dossier_k = os.path.join(dossier, "image_%02d" % (k + 1))
-            os.makedirs(dossier_k, exist_ok=True)
-            if rapide:
-                rendre_membres_rapide(scene, dossier_k)
-            else:
-                ancienne = SORTIE
-                SORTIE = dossier_k
-                rendre_identite(scene)
-                SORTIE = ancienne
-        else:
-            rendre_fichier(scene, os.path.join(dossier, "creusage_%02d.png" % (k + 1)))
-    POSE.clear()
-    PIOCHE, HAUT_DX, HAUT_DZ = None, 0.0, 0.0
+def controles_fiche(k, info):
+    """Contrôles de la règle C, calculés dans la scène avant le rendu. Chaque valeur est en px (sprite 112) ou m."""
+    pose, pioche, haut, bras, (B, H, mains) = info
+    c = CREUSAGE_FICHE[k]
+    R, U, F = base_camera()
+    p3 = (H - B).cross(F).normalized()                       # tête d'acier : dans le plan de l'écran
+    a, b = ecran(H + p3 * TETE_DEMI_M), ecran(H - p3 * TETE_DEMI_M)
+    tete_px = math.hypot(a[0] - b[0], a[1] - b[1])
+    manche_px = math.hypot(ecran(H)[0] - ecran(B)[0], ecran(H)[1] - ecran(B)[1])
+    ecart_main = {cle: round((mains[cle] - (B + (H - B) * c[cle])).length, 6) for cle in mains}
+    return {
+        "image": k + 1, "nom": c["nom"], "phi_deg": c["phi"],
+        "manche_px": round(manche_px, 2), "tete_acier_px": round(tete_px, 2),
+        "manche_epaisseur_px": round(2 * 0.065 / PX, 2),
+        "main_sur_manche_m": ecart_main,
+        "etirement_pct": bras["etirement"],
+        "tete_profondeur_m": c["w_tete"], "bout_profondeur_m": c["w_bout"],
+        "outil_derriere_tete": c["w_tete"] > 0.0,
+    }
+
+
+# ------------------------------------------------------------------ contrôle C ter : pénétrations (fiche)
+# Test 3D sur la scène construite : sommets des gants, de la pioche et des bras contre les volumes du corps.
+# Dedans = nombre impair de croisements avec la surface (rayons) ; profondeur = distance à la surface la plus proche.
+# Exclus : le contact main-manche (on tient la pioche) et la jonction épaule-bras (within 0,15 m de l'épaule).
+CORPS_SOLIDES = {  # volume plein : un point intérieur connu oriente les normales (vers l'extérieur)
+    "casque": (0.0, 0.0, 1.92), "hublot_verre": (0.0, -0.40, 1.98), "torse": (0.0, 0.0, 1.27),
+    "jambe_g": (-0.24, 0.0, 0.44), "jambe_d": (0.24, 0.0, 0.44), "botte_g": (-0.26, 0.0, 0.16),
+    "botte_d": (0.26, 0.0, 0.16), "bouteille": (-0.92, 0.12, 1.42), "valve": (-0.92, 0.12, 1.74),
+}
+_RAYON_DIR = Vector((0.31, 0.52, 0.80)).normalized()
+
+
+def _volume(obj, interieur=None):
+    """Enveloppe convexe du maillage (monde) : volume plein fermé, faces (centre, normale sortante).
+    Conservateur pour les pièces non convexes (torse) : la pénétration mesurée est un majorant."""
+    import bmesh
+    bm = bmesh.new()
+    bm.from_mesh(obj.data)
+    bm.transform(obj.matrix_world)
+    centre = Vector((0.0, 0.0, 0.0))
+    for v in bm.verts:
+        centre += v.co
+    centre /= max(1, len(bm.verts))
+    res = bmesh.ops.convex_hull(bm, input=bm.verts[:])
+    faces = []
+    for f in [g for g in res["geom"] if isinstance(g, bmesh.types.BMFace)]:   # faces de l'enveloppe seulement
+        n = f.normal.copy()
+        c = f.calc_center_median()
+        if (centre - c).dot(n) > 0.0:
+            n = -n
+        faces.append((c, n))
+    bm.free()
+    return faces
+
+
+def _pen(faces, P):
+    """(dedans, profondeur) : profondeur = distance au plan de face le plus proche, 0 si dehors."""
+    P = Vector(P)
+    sd = max((P - c).dot(n) for c, n in faces)
+    return sd < 0.0, max(0.0, -sd)
+
+
+def controle_penetrations(scene, pas=1):
+    """Oracle de collision : traverse / ne traverse pas. Intersection des surfaces (BVH de Blender) entre les
+    gants, la pioche et les bras, et le corps. Profondeur approchée = distance de la face en intersection à la
+    surface la plus proche de l'autre volume (mm). Exclus : contact main-manche (on tient la pioche), et dans
+    un rayon de 0,30 m autour de l'épaule (jonction épaule-bras, tolérée)."""
+    import bmesh
+    from mathutils.bvhtree import BVHTree
+    bpy.context.view_layer.update()
+
+    def surface(o, avec_centres=True):
+        bm = bmesh.new()
+        bm.from_mesh(o.data)
+        bm.transform(o.matrix_world)
+        centres = [f.calc_center_median() for f in bm.faces] if avec_centres else []
+        arbre = BVHTree.FromBMesh(bm)
+        bm.free()
+        return arbre, centres
+
+    corps = [scene.objects[n] for n in CORPS_SOLIDES if n in scene.objects]
+    cache = {o.name: surface(o, avec_centres=False) for o in corps}
+    for c in ("g", "d"):
+        cache["bras_" + c] = surface(scene.objects["bras_" + c])
+        cache["gant_" + c] = surface(scene.objects["gant_" + c])
+    epaule = {c: Vector(POSE["epaule_" + c]) if ("epaule_" + c) in POSE else Vector(SQUELETTE["epaule_" + c][0])
+              for c in ("g", "d")}
+    groupes = {}
+
+    def mesurer(nom, sonde, solides, exclure=None):
+        """sonde = (arbre, centres) ; solides = liste de noms d'objets."""
+        arbre_s, centres_s = sonde
+        pire, nb, solide_pire = 0.0, 0, "-"
+        for nom_s in solides:
+            arbre_b, _ = cache[nom_s]
+            vus = set()
+            for i, j in arbre_s.overlap(arbre_b):          # une distance par face de sonde (rapide)
+                if i in vus or (exclure is not None and exclure(centres_s[i])):
+                    continue
+                vus.add(i)
+                loc, _, _, dist = arbre_b.find_nearest(centres_s[i])
+                if dist is not None and dist > pire:
+                    pire, solide_pire = dist, nom_s
+            nb += len(vus)
+        groupes[nom] = {"max_mm": round(pire * 1000.0, 2), "solide": solide_pire, "sommets_dedans": nb}
+
+    for c in ("g", "d"):
+        autre = "d" if c == "g" else "g"
+        corps_noms = [o.name for o in corps]
+        for nom in ("gant_" + c,):
+            mesurer("main_" + c + ":" + nom, cache[nom], corps_noms + ["bras_" + autre, "gant_" + autre])
+        mesurer("main_" + c + ":pouce_" + c, cache["gant_" + c], corps_noms + ["bras_" + autre, "gant_" + autre])
+        bras_noms = [n for n in corps_noms if n in ("torse", "casque", "collerette", "ceinture", "jambe_g", "jambe_d")]
+        bras_noms.append("bras_" + autre)
+        mesurer("haut_bras_" + c, cache["bras_" + c], bras_noms,
+                exclure=lambda P, c=c: (P - epaule[c]).length >= 0.30)
+        mesurer("avant_bras_" + c, cache["bras_" + c], bras_noms,
+                exclure=lambda P, c=c: (P - epaule[c]).length < 0.30)
+    for nom in ("pioche_manche", "pioche_tete"):
+        if nom in scene.objects:
+            mesurer(nom, surface(scene.objects[nom]), [o.name for o in corps])
+    return groupes
 
 
 # ------------------------------------------------------------------ cartes d'identité
@@ -1139,7 +1339,263 @@ def construire_tout():
     return scene
 
 
+def rendre_creusage_fiche(dossier):
+    """Rend les six images de la fiche (cible 3D) et écrit controles_3d.json à côté."""
+    global PIOCHE, HAUT_DX, HAUT_DY, HAUT_DZ
+    os.makedirs(dossier, exist_ok=True)
+    controles = []
+    for k in range(len(CREUSAGE_FICHE)):
+        POSE.clear()
+        info = pose_fiche(k)
+        POSE.update(info[0])
+        PIOCHE = info[1]
+        HAUT_DX, HAUT_DY, HAUT_DZ = info[2]
+        controles.append(controles_fiche(k, info))
+        scene = construire_tout()
+        controles[-1]["collisions"] = controle_penetrations(scene)
+        rendre_fichier(scene, os.path.join(dossier, "creusage_%02d.png" % (k + 1)))
+    POSE.clear()
+    PIOCHE, HAUT_DX, HAUT_DY, HAUT_DZ = None, 0.0, 0.0, 0.0
+    with open(os.path.join(dossier, "controles_3d.json"), "w", encoding="utf-8") as f:
+        json.dump(controles, f, ensure_ascii=False, indent=1)
+    return controles
+
+
+def rendre_identite_fiche(dossier):
+    """Carte d'identité de chaque image de la fiche (membres seuls), pour mesurer la visibilité des bras."""
+    global PIOCHE, HAUT_DX, HAUT_DY, HAUT_DZ
+    for k in range(len(CREUSAGE_FICHE)):
+        POSE.clear()
+        info = pose_fiche(k)
+        POSE.update(info[0])
+        PIOCHE = info[1]
+        HAUT_DX, HAUT_DY, HAUT_DZ = info[2]
+        scene = construire_tout()
+        rendre_membres_rapide(scene, os.path.join(dossier, "image_%02d" % (k + 1)))
+    POSE.clear()
+    PIOCHE, HAUT_DX, HAUT_DY, HAUT_DZ = None, 0.0, 0.0, 0.0
+
+
+# ------------------------------------------------------------------ découpage en pièces plates (creusage, étape 1)
+# L'ancre est découpée en pièces rendues seules, à la taille finale, avec la même caméra, les mêmes matières et le
+# même nettoyage que l'ancre : remontées par empilement, elles doivent redonner l'ancre pixel pour pixel.
+PIECES_CORPS = {  # pièce -> objets du corps rigides (casque avec corde, bouteille et col ; torse et ceinture ; jambes)
+    "casque": ["casque", "hublot_verre", "cadre_hublot", "collerette", "tuyau", "bouteille", "valve"],
+    "torse": ["torse", "ceinture", "boucle"],
+    "jambes": ["jambe_g", "jambe_d", "botte_g", "botte_d"],
+}
+ORDRE_PIECES = ["torse", "jambes", "bras_g_haut", "bras_g_avant", "bras_d_haut", "bras_d_avant", "casque"]
+
+
+def _distance_seg(p, a, b):
+    ab = b - a
+    t = max(0.0, min(1.0, (p - a).dot(ab) / max(ab.dot(ab), 1e-9)))
+    return (p - (a + ab * t)).length
+
+
+def copie_partielle(src, nom, garde):
+    """Copie de src ne gardant que les faces dont le centre (monde) vérifie garde(centre). Attributs conservés."""
+    import bmesh
+    o = src.copy()
+    o.data = src.data.copy()
+    o.name = nom
+    bm = bmesh.new()
+    bm.from_mesh(o.data)
+    retirer = [f for f in bm.faces if not garde(o.matrix_world @ f.calc_center_median())]
+    bmesh.ops.delete(bm, geom=retirer, context="FACES")
+    bm.to_mesh(o.data)
+    bm.free()
+    o.data.name = nom
+    return o
+
+
+def decouper_membre(scene, cote):
+    """Bras du côté cote : deux pièces (haut : épaule-coude ; avant-bras : coude-poignet) avec recouvrement."""
+    S, E, W = pose_de("epaule_" + cote), pose_de("coude_" + cote), pose_de("poignet_" + cote)
+    src = scene.objects["bras_" + cote]
+    haut = copie_partielle(src, "bras_%s_haut" % cote,
+                           lambda c: _distance_seg(c, S, E) <= _distance_seg(c, E, W) + 0.03)
+    avant = copie_partielle(src, "bras_%s_avant" % cote,
+                            lambda c: _distance_seg(c, E, W) <= _distance_seg(c, S, E) + 0.03)
+    for o in (haut, avant):
+        scene.collection.objects.link(o)
+    return haut, avant
+
+
+def _materiau_profondeur():
+    """Matière de profondeur : la distance à la caméra (View Z Depth) en gris, de 9 à 11 m (8 bits)."""
+    mat = bpy.data.materials.get("profondeur_creusage")
+    if mat is None:
+        mat = bpy.data.materials.new("profondeur_creusage")
+        mat.use_nodes = True
+        nt = mat.node_tree
+        nt.nodes.clear()
+        cam = nt.nodes.new("ShaderNodeCameraData")
+        mr = nt.nodes.new("ShaderNodeMapRange")
+        mr.clamp = True
+        mr.inputs["From Min"].default_value = 9.0
+        mr.inputs["From Max"].default_value = 11.0
+        mr.inputs["To Min"].default_value = 0.0
+        mr.inputs["To Max"].default_value = 1.0
+        comb = nt.nodes.new("ShaderNodeCombineColor")
+        em = nt.nodes.new("ShaderNodeEmission")
+        out = nt.nodes.new("ShaderNodeOutputMaterial")
+        nt.links.new(cam.outputs["View Z Depth"], mr.inputs["Value"])
+        for k in ("Red", "Green", "Blue"):
+            nt.links.new(mr.outputs["Result"], comb.inputs[k])
+        nt.links.new(comb.outputs["Color"], em.inputs["Color"])
+        nt.links.new(em.outputs["Emission"], out.inputs["Surface"])
+    return mat
+
+
+def rendre_profondeur_pieces(scene, groupes, dossier):
+    """Carte de profondeur de chaque pièce (même cadre, même découpe) : sert à l'ordre d'affichage par pixel."""
+    os.makedirs(os.path.join(dossier, "profondeur"), exist_ok=True)
+    tous = [o for o in scene.objects if o.type == "MESH"]
+    mat = _materiau_profondeur()
+    sauve = {}
+    for o in tous:
+        sauve[o.name] = list(o.data.materials)
+        o.data.materials.clear()
+        o.data.materials.append(mat)
+    for nom, objets in groupes.items():
+        for o in tous:
+            o.hide_render = o.name not in objets
+        rendre_fichier(scene, os.path.join(dossier, "profondeur", nom + ".png"))
+    for o in tous:
+        o.hide_render = False
+        o.data.materials.clear()
+        for m in sauve[o.name]:
+            o.data.materials.append(m)
+
+
+def rendre_pioche_pieces(dossier):
+    """Pioche en deux pièces séparées (manche, tête d'acier), rendues seules à 112 px, pose de l'image 2 de la fiche
+    (armement). Pivots : la main droite (poignée) et la tête, en px écran."""
+    global PIOCHE, HAUT_DX, HAUT_DY, HAUT_DZ
+    os.makedirs(os.path.join(dossier, "pieces"), exist_ok=True)
+    POSE.clear()
+    info = pose_fiche(1)
+    POSE.update(info[0])
+    PIOCHE = info[1]
+    HAUT_DX, HAUT_DY, HAUT_DZ = info[2]
+    scene = construire_tout()
+    tous = [o for o in scene.objects if o.type == "MESH"]
+    groupes = {"pioche_manche": ["pioche_manche"], "pioche_tete": ["pioche_tete"]}
+    for nom, objets in groupes.items():
+        for o in tous:
+            o.hide_render = o.name not in objets
+        rendre_fichier(scene, os.path.join(dossier, "pieces", nom + ".png"))
+    for o in tous:
+        o.hide_render = False
+    B, H, mains = info[4]
+    manifeste = {"pieces": {
+        "pioche_manche": {"objets": groupes["pioche_manche"], "pivot_px": [round(v, 2) for v in ecran(mains["R"])]},
+        "pioche_tete": {"objets": groupes["pioche_tete"], "pivot_px": [round(v, 2) for v in ecran(H)]}}}
+    with open(os.path.join(dossier, "pieces", "pioche.json"), "w", encoding="utf-8") as f:
+        json.dump(manifeste, f, ensure_ascii=False, indent=1)
+    POSE.clear()
+    PIOCHE, HAUT_DX, HAUT_DY, HAUT_DZ = None, 0.0, 0.0, 0.0
+
+
+def rendre_pieces_ancre(dossier):
+    """Rend l'ancre complète et chaque pièce seule (112 px), avec un manifeste (pivots en px écran)."""
+    os.makedirs(os.path.join(dossier, "pieces"), exist_ok=True)
+    POSE.clear()
+    scene = construire_tout()
+    rendre_fichier(scene, os.path.join(dossier, "ancre_rendu.png"))
+    groupes = {}
+    for nom, objets in PIECES_CORPS.items():
+        groupes[nom] = [n for n in objets if n in scene.objects]
+    for cote in ("g", "d"):
+        haut, avant = decouper_membre(scene, cote)
+        groupes["bras_%s_haut" % cote] = [haut.name]
+        groupes["bras_%s_avant" % cote] = [avant.name]
+        groupes["gant_%s" % cote] = ["gant_" + cote, "pouce_" + cote]
+    # gants : rattachés à l'avant-bras (la pièce avant-bras porte le gant)
+    groupes["bras_g_avant"] += groupes.pop("gant_g")
+    groupes["bras_d_avant"] += groupes.pop("gant_d")
+    tous = [o for o in scene.objects if o.type == "MESH"]
+    manifeste = {"ordre": ORDRE_PIECES, "pieces": {}}
+    for nom in ORDRE_PIECES:
+        for o in tous:
+            o.hide_render = o.name not in groupes[nom]
+        chemin = os.path.join(dossier, "pieces", nom + ".png")
+        rendre_fichier(scene, chemin)
+        manifeste["pieces"][nom] = {"objets": groupes[nom]}
+    for o in tous:
+        o.hide_render = False
+    pivots = {"bras_g_haut": ("epaule_g", None), "bras_g_avant": ("coude_g", None),
+              "bras_d_haut": ("epaule_d", None), "bras_d_avant": ("coude_d", None)}
+    for nom, (pt, _) in pivots.items():
+        manifeste["pieces"][nom]["pivot_px"] = [round(v, 2) for v in ecran(pose_de(pt))]
+    rendre_profondeur_pieces(scene, {nom: groupes[nom] for nom in ORDRE_PIECES}, dossier)
+    with open(os.path.join(dossier, "pieces", "manifeste.json"), "w", encoding="utf-8") as f:
+        json.dump(manifeste, f, ensure_ascii=False, indent=1)
+    return manifeste
+
+
+def executer_essais(chemin, dossier):
+    """Boucle rapide : chaque essai = une pose (k + surcharges), un rendu et le test de collision (oracle)."""
+    global PIOCHE, HAUT_DX, HAUT_DY, HAUT_DZ
+    os.makedirs(dossier, exist_ok=True)
+    essais = []
+    for j in json.load(open(chemin, encoding="utf-8")):
+        sur = dict(dict({"w_epaule_d": 0.0}, **CREUSAGE_FICHE[j["k"]]), **j.get("sur", {}))
+        POSE.clear()
+        info = pose_fiche(j["k"], sur)
+        POSE.update(info[0])
+        PIOCHE = info[1]
+        HAUT_DX, HAUT_DY, HAUT_DZ = info[2]
+        scene = construire_tout()
+        rendre_fichier(scene, os.path.join(dossier, j["id"] + ".png"))
+        col = controle_penetrations(scene, pas=j.get("pas", 3))
+        essais.append({"id": j["id"], "k": j["k"], "sur": j.get("sur", {}), "collisions": col})
+        print("ESSAI", j["id"], json.dumps(col), flush=True)
+    POSE.clear()
+    PIOCHE, HAUT_DX, HAUT_DY, HAUT_DZ = None, 0.0, 0.0, 0.0
+    with open(os.path.join(dossier, "essais.json"), "w", encoding="utf-8") as f:
+        json.dump(essais, f, ensure_ascii=False, indent=1)
+
+
 def main():
+    if os.environ.get("PLONGEUR_PIECES_PIOCHE"):
+        rendre_pioche_pieces(os.environ["PLONGEUR_PIECES_PIOCHE"])
+        print("PIOCHE_PIECES_OK", flush=True)
+        return
+    if os.environ.get("PLONGEUR_PIECES"):
+        rendre_pieces_ancre(os.environ["PLONGEUR_PIECES"])
+        print("PIECES_OK", flush=True)
+        return
+    if os.environ.get("PLONGEUR_JOBS"):
+        executer_essais(os.environ["PLONGEUR_JOBS"], os.environ["PLONGEUR_DOSSIER"])
+        print("ESSAIS_OK", flush=True)
+        return
+    if os.environ.get("PLONGEUR_CREUSAGE") == "identite":
+        rendre_identite_fiche(os.environ["PLONGEUR_DOSSIER"])
+        print("IDENTITE_FICHE_OK", flush=True)
+        return
+    if os.environ.get("PLONGEUR_CREUSAGE") == "collision":
+        choix = [int(x) - 1 for x in os.environ.get("PLONGEUR_FRAMES", "1,2,3,4,5,6").split(",")]
+        global PIOCHE, HAUT_DX, HAUT_DY, HAUT_DZ
+        for k in choix:
+            POSE.clear()
+            if k < 0:                       # référence : l'idle validée, sans pioche (repos des bras de l'ancre)
+                PIOCHE, HAUT_DX, HAUT_DY, HAUT_DZ = None, 0.0, 0.0, 0.0
+                nom = "idle_ancre"
+            else:
+                info = pose_fiche(k)
+                POSE.update(info[0])
+                PIOCHE = info[1]
+                HAUT_DX, HAUT_DY, HAUT_DZ = info[2]
+                nom = CREUSAGE_FICHE[k]["nom"]
+            scene = construire_tout()
+            print("COLLISION", k + 1, nom, json.dumps(controle_penetrations(scene)), flush=True)
+        return
+    if os.environ.get("PLONGEUR_CREUSAGE") == "fiche":
+        rendre_creusage_fiche(os.environ.get("PLONGEUR_DOSSIER", os.path.join(ROOT, "art", "rendu", ID, "fiche")))
+        print("FICHE_OK", flush=True)
+        return
     scene = construire_tout()
     os.makedirs(SORTIE, exist_ok=True)
     if IDENTITE:

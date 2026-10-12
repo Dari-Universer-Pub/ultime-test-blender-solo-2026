@@ -1,19 +1,18 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
-## Phase courante : CREUSAGE, planche d'intention selon la FICHE « creusage à la pioche, style Stardew » — ARRÊT POUR VALIDATION DE JULIEN
+## Phase courante : CREUSAGE, méthode 2D par pièces plates — ÉTAPE 1 (découpe et remontage de l'ancre) — ARRÊT POUR VALIDATION DE JULIEN
 
-Pas de 3D, pas de pixel art, pas d'attaque tant que Julien n'a pas validé cette planche. La planche précédente (version B bis) est remplacée ; elle reste dans l'historique git.
+Pose 3D du corps abandonnée (demande de Julien) : la cible 3D n'est pas validée et n'est pas utilisée. Ancre, caméra, lumière, palette et style sans contour inchangés (vérifié : rendu par défaut, nettoyé, = ancre validée à 100 %).
 
-- Planche : `art/pixel/plongeur_v6/creusage/intention/planche_intention.png`. Table : `TABLE_INTENTION.md`. Données : `intention.json`. Outil : `tools/planches/intention.py` (silhouette pleine, squelette, outil aux deux bouts, contrôles calculés, liste conforme / écart sous la planche).
-- Mesures de l'ancre utilisées : bbox alpha (haut 20, sol 92, soit 72 px) ; hublot au centre (46,5 ; 43,5), cadre de 7,5 px.
-- Contrôles calculés (sortie du script) : angles exacts (-30, -10, +35, +110, +150, +60) ; écarts 90, 20 (ÉCART), 45, 75, 40, 90 ; étirement max +24 % (image 6, limite +25 %) ; hublot jamais traversé (7,7 px minimum) ; impact : tête au sol (bas à 92,0), à droite des pieds (x 84 contre 66), manche hors de la jambe gauche.
-- Écarts à trancher :
-  1. Image 1, écart d'angle 1 -> 2 = 20° (la règle exige 40°, la fiche ne liste pas cette paire). Alternative proposée : prête à -50° (tête (43,30), bout (69,8 ; 52,5)) : écart 40°, hublot à 8,1 px, aucun passage sur le torse, étirement +5 %. Non appliquée.
-  2. Image 1, à -30° le manche descend sur le haut de la poitrine (7,3 px) : c'est la conséquence de la main gauche devant la poitrine combinée à -30°.
-  3. Images 4 et 5 : ordre des mains inversé (la main gauche tient le haut du manche), car le bras gauche ne peut pas aller plus bas sans dépasser +25 %.
-  4. Image 5 : main droite à hauteur de hanche (et non devant le ventre) pour garder les bras presque tendus ; genoux non fléchis dans le squelette (à traiter en 3D).
-  5. Image 4 : « un peu devant le corps » non lisible en 2D.
-- Blocage : aucun. Julien décide : valider la planche, ou choisir prête -30° (écart 20° accepté) ou prête -50° (proposition).
+- Pièces rendues seules à 112 px, même caméra et mêmes matières : `art/pixel/plongeur_v6/creusage/decoupe_ancre/pieces/` (casque avec corde, bouteille, valve et col ; torse avec ceinture et boucle ; jambes avec bottes ; bras haut et avant-bras avec gant, droit et gauche ; pioche : manche et tête séparés).
+- Profondeur par pièce (`profondeur/`) : ordre d'affichage par pixel (la pièce la plus proche gagne). Sans elle, 94 pixels étaient faux, quel que soit l'ordre de pile.
+- Remontage (`tools/planches/pieces.py`) : 99,976 % des pixels identiques au rendu complet (alpha : 0 pixel différent) ; remonté puis nettoyé comme l'ancre, 99,976 % identique à l'ancre validée. Les 3 pixels restants sont des égalités de profondeur (8 bits) dans le recouvrement du bras droit ; ils ne sont pas réglés.
+- Planches : `planche_pieces.png`, `planche_remontage.png` (ancre validée, remontage, pixels différents).
+- Limites connues : les bras sont courts sur l'ancre (haut 138 px, avant-bras 167 px) ; pas de pièce de recouvrement séparée aux jonctions (la bande de recouvrement de 0,03 m suffit, aucun trou mesuré).
+- Oracle de collision 3D abandonné avec la pose 3D : il surestimait l'enveloppe convexe du torse quand les genoux plient.
+
+Étapes 2 (bibliothèque d'angles), 3 (assembleur) et 4 (quatre poses clés) : non commencées, attendent la validation de cette étape.
+Blocage : aucun.
 
 ## Ancienne phase : CREUSAGE, cible 3D v7 (non validée)
 Julien : v5 non validée (bras disparu et pioche flottante à l'image 2 ; manche trop vertical ; tête trop petite ; image 5 à 73 px). Règle permanente ajoutée à AGENTS.md (RÈGLE ANIMATION A à E). Appliquée au creusage : table de poses, planche cible 3D, contrôles automatiques. Pas de pixel art tant que la cible n'est pas validée.

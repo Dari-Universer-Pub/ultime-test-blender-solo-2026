@@ -1,0 +1,22 @@
+{
+ "pieces": {
+  "pioche_manche": {
+   "objets": [
+    "pioche_manche"
+   ],
+   "pivot_px": [
+    80.86,
+    49.57
+   ]
+  },
+  "pioche_tete": {
+   "objets": [
+    "pioche_tete"
+   ],
+   "pivot_px": [
+    76.0,
+    22.0
+   ]
+  }
+ }
+}

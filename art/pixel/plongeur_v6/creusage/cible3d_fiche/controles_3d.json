@@ -1,0 +1,116 @@
+[
+ {
+  "image": 1,
+  "nom": "prete",
+  "phi_deg": -50,
+  "manche_px": 35.0,
+  "tete_acier_px": 13.44,
+  "manche_epaisseur_px": 3.24,
+  "main_sur_manche_m": {
+   "L": 0.0,
+   "R": 0.0
+  },
+  "etirement_pct": {
+   "g": 24.4,
+   "d": 0.0
+  },
+  "tete_profondeur_m": -0.7,
+  "bout_profondeur_m": -0.55,
+  "outil_derriere_tete": false
+ },
+ {
+  "image": 2,
+  "nom": "armement",
+  "phi_deg": -10,
+  "manche_px": 35.0,
+  "tete_acier_px": 13.44,
+  "manche_epaisseur_px": 3.24,
+  "main_sur_manche_m": {
+   "L": 0.0,
+   "R": 0.0
+  },
+  "etirement_pct": {
+   "g": 18.7,
+   "d": 1.1
+  },
+  "tete_profondeur_m": -0.6,
+  "bout_profondeur_m": -0.6,
+  "outil_derriere_tete": false
+ },
+ {
+  "image": 3,
+  "nom": "sommet",
+  "phi_deg": 35,
+  "manche_px": 35.0,
+  "tete_acier_px": 13.44,
+  "manche_epaisseur_px": 3.24,
+  "main_sur_manche_m": {
+   "L": 0.0,
+   "R": 0.0
+  },
+  "etirement_pct": {
+   "g": 22.8,
+   "d": 20.7
+  },
+  "tete_profondeur_m": -0.6,
+  "bout_profondeur_m": -0.8,
+  "outil_derriere_tete": false
+ },
+ {
+  "image": 4,
+  "nom": "descente",
+  "phi_deg": 110,
+  "manche_px": 35.0,
+  "tete_acier_px": 13.44,
+  "manche_epaisseur_px": 3.24,
+  "main_sur_manche_m": {
+   "L": 0.0,
+   "R": 0.0
+  },
+  "etirement_pct": {
+   "g": 4.3,
+   "d": 0.0
+  },
+  "tete_profondeur_m": -0.3,
+  "bout_profondeur_m": -0.5,
+  "outil_derriere_tete": false
+ },
+ {
+  "image": 5,
+  "nom": "impact",
+  "phi_deg": 150,
+  "manche_px": 35.0,
+  "tete_acier_px": 13.44,
+  "manche_epaisseur_px": 3.24,
+  "main_sur_manche_m": {
+   "L": 0.0,
+   "R": 0.0
+  },
+  "etirement_pct": {
+   "g": 8.5,
+   "d": 0.0
+  },
+  "tete_profondeur_m": -0.3,
+  "bout_profondeur_m": -0.5,
+  "outil_derriere_tete": false
+ },
+ {
+  "image": 6,
+  "nom": "retour",
+  "phi_deg": 60,
+  "manche_px": 35.0,
+  "tete_acier_px": 13.44,
+  "manche_epaisseur_px": 3.24,
+  "main_sur_manche_m": {
+   "L": 0.0,
+   "R": 0.0
+  },
+  "etirement_pct": {
+   "g": 16.3,
+   "d": 0.0
+  },
+  "tete_profondeur_m": -0.2,
+  "bout_profondeur_m": -0.1,
+  "outil_derriere_tete": false
+ }
+]
