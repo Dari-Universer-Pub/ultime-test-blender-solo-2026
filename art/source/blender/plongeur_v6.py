@@ -510,9 +510,9 @@ def boite_orientee(centre, axes, demi, mat, nom):
     return o
 
 
-def fer_pioche(centre, axes, mat, nom, demi_barre=0.20, epaisseur=0.05, pointe=0.08):
-    """Tête de pioche : une barre perpendiculaire au manche (axes = u, v, w), deux pointes aux extrémités.
-    La barre fait 2 x demi_barre (10 à 14 px à l'échelle), les pointes ajoutent `pointe` de chaque côté."""
+def fer_pioche(centre, axes, mat, nom, demi_barre=0.22, epaisseur=0.05, pointe_a=0.09, pointe_b=0.03):
+    """Tête de pioche de mineur : une barre d'acier qui dépasse des deux côtés du manche (axes = u, v, w).
+    Côté +w : une pointe nette (pointe_a) ; côté -w : un biseau court (pointe_b). La barre fait 2 x demi_barre."""
     u, v, w = axes
     c = Vector(centre)
     bm = bmesh.new()
@@ -522,8 +522,8 @@ def fer_pioche(centre, axes, mat, nom, demi_barre=0.20, epaisseur=0.05, pointe=0
         sy = 1 if k & 2 else -1
         sz = 1 if k & 4 else -1
         s.append(bm.verts.new(c + u * sx * epaisseur + v * sy * epaisseur * 0.8 + w * sz * demi_barre))
-    pa = bm.verts.new(c + w * (demi_barre + pointe))
-    pb = bm.verts.new(c - w * (demi_barre + pointe))
+    pa = bm.verts.new(c + w * (demi_barre + pointe_a))
+    pb = bm.verts.new(c - w * (demi_barre + pointe_b))
     for quad in ((0, 2, 6, 4), (1, 5, 7, 3), (0, 1, 5, 4), (2, 3, 7, 6)):
         bm.faces.new([s[i] for i in quad])
     for a, b in ((4, 5), (5, 7), (7, 6), (6, 4)):
@@ -702,28 +702,25 @@ def construire(scene):
         objets["bulle"] = ellipsoide((centre[0] + HAUT_DX, centre[1], centre[2] + HAUT_DZ), rayon, (1.0, 1.0, 1.0),
                                      m["acier"], "bulle", niveau=1)
 
-    # --- pioche (creusage) : manche clair, tête en acier à deux pointes ; deux mains (chemin de l'arc) ou une main
+    # --- pioche (creusage) : manche de bois clair (3 px), tête d'acier à deux pointes (barre à plat, face caméra) ;
+    # une main sur le manche (images 2 à 6)
     if PIOCHE is not None:
         R = Vector(PIOCHE[0])
         opt = PIOCHE[3] or {}
         if PIOCHE[1] is not None:
             L = Vector(PIOCHE[1])
             u = (R - L).normalized()
-            H = R + u * PIOCHE_TETE                              # tête au-delà de la main droite
-            bout = L - u * PIOCHE_BOUT
-        elif "tete" in opt:
-            u = Vector(PIOCHE[2]).normalized()
-            H = R + u * opt["tete"]                              # tête à `tete` de la main, manche tenu près du bout
-            bout = R - u * opt["bout"]
-        else:
-            u = Vector(PIOCHE[2]).normalized()
-            L = R - u * 0.75                                     # point de prise virtuel : pioche tenue d'une main
             H = R + u * PIOCHE_TETE
             bout = L - u * PIOCHE_BOUT
-        objets["pioche_manche"] = tube_entre(bout, H, 0.05, m["bois"], "pioche_manche")
-        w = u.cross(Vector((0.0, 1.0, 0.0))).normalized()
+        else:
+            u = Vector(PIOCHE[2]).normalized()
+            H = R + u * opt.get("tete", PIOCHE_TETE)              # tête à `tete` de la main
+            bout = R - u * opt.get("bout", 1.15)                  # manche : `bout` derrière la main
+        objets["pioche_manche"] = tube_entre(bout, H, 0.065, m["bois"], "pioche_manche")
+        w = (Vector((1.0, 0.0, 0.0)) - u * u.x).normalized()     # barre de la tête tournée vers la caméra
         v = u.cross(w).normalized()
-        objets["pioche_tete"] = fer_pioche(H, (u, v, w), m["acier"], "pioche_tete", demi_barre=opt.get("demi", 0.20))
+        objets["pioche_tete"] = fer_pioche(H, (u, v, w), m["acier"], "pioche_tete")
+        peindre(objets["pioche_tete"], lambda p, H=H: (p - H).dot(LUMIERE) > 0.05, C_METAL_CLAIR)
 
     # --- scène
     for o in objets.values():
@@ -908,13 +905,17 @@ def rendre_idle_images(dossier, n=6):
 # bout du bras), 6 retour (la pioche revient en arrière).
 PIOCHE_BOUT = 0.40   # m : manche derrière le point de prise (longueur totale ~42 à 49 px)
 PIOCHE_TETE = 0.55   # m : tête au-delà de la main droite
-OPT4 = {"tete": 1.15, "bout": 0.55, "demi": 0.26, "gant_clair": True}   # images 4 à 6 : une main, manche tenu près du bout
-CREUSAGE = {  # 1 : prête sur l'épaule droite, 2 : anticipation (pioche levée) ; 3 à 5 : frappe, impact, retour (une main)
-    1: {"R": (0.48, 0.05, 1.45), "u": (0.60, 0.00, -0.80), "dx": 0.00, "penche": 0.00},
-    2: {"R": (0.45, 0.20, 1.90), "u": (0.50, 0.05, 0.87), "dx": -0.02, "penche": 0.04},
-    3: {"R": (0.62, -0.05, 1.75), "u": (0.79, -0.10, -0.59), "dx": 0.03, "penche": -0.03, "opt": {"tete": 1.15, "bout": 0.55, "demi": 0.30, "gant_clair": True}},
-    4: {"R": (0.95, -0.30, 1.25), "u": (0.18, -0.16, -0.97), "dx": 0.10, "penche": -0.12, "dz": -0.14, "opt": OPT4},
-    5: {"R": (0.60, -0.10, 1.50), "u": (0.32, 0.26, 0.92), "dx": 0.02, "penche": 0.02, "opt": OPT4},
+CREUSAGE = {  # une main sur le manche (1 prête sur l'épaule, 2 anticipation, 3 frappe, 4 impact, 5 retour)
+    1: {"R": (0.48, 0.05, 1.45), "u": (0.60, 0.00, -0.80), "dx": 0.00, "penche": 0.00,
+        "opt": {"tete": 0.75, "bout": 0.65}},
+    2: {"R": (0.45, 0.20, 1.90), "u": (0.50, 0.05, 0.87), "dx": -0.02, "penche": 0.04,
+        "opt": {"tete": 0.75, "bout": 0.65}},
+    3: {"R": (0.62, -0.05, 1.75), "u": (0.79, -0.10, -0.59), "dx": 0.03, "penche": -0.03,
+        "opt": {"tete": 0.85, "bout": 0.55}, "bras_g": (-0.60, -0.25, 1.42)},
+    4: {"R": (1.02, -0.35, 1.05), "u": (0.18, -0.45, -0.87), "dx": 0.10, "penche": -0.12, "dz": -0.14,
+        "opt": {"tete": 1.10, "bout": 0.30}, "bras_g": (-0.60, -0.25, 1.42)},
+    5: {"R": (0.60, -0.10, 1.50), "u": (0.32, 0.26, 0.92), "dx": 0.02, "penche": 0.02,
+        "opt": {"tete": 0.85, "bout": 0.55}, "bras_g": (-0.60, -0.25, 1.42)},
 }
 
 
@@ -954,6 +955,8 @@ def pose_creusage(k):
     cotes = [("d", "R", (0.5, -0.8, -0.2))]
     if c.get("L") is not None:
         cotes.append(("g", "L", (-0.5, -0.8, -0.2)))
+    elif c.get("bras_g") is not None:
+        cotes.append(("g", "bras_g", (-0.5, -0.8, -0.2)))
     for cote, cle, pole in cotes:
         coude, poignet = bras_vers(Vector(pose["epaule_" + cote]), c[cle], pole)
         pose["coude_" + cote] = tuple(coude)

@@ -611,6 +611,32 @@
         "impact lu comme un montant presque vertical, pas comme une diagonale",
         "gants clairs sur les images 4 à 6 seulement : à trancher par Julien"
       ]
+    },
+    {
+      "lot": "LOT 2 v5 (passe d'outil seulement, demandée par Julien) : manche 3 px en bois clair, longueur d'outil 35 px, tête d'acier à deux pointes à barre face caméra, gants revenus à la teinte de l'ancre, bras gauche levé sur les images 4 à 6, impact avec la tête posée au sol devant les pieds",
+      "planche": "art/pixel/plongeur_v6/creusage/planche_creusage.png",
+      "planche_sha256": "9a762daf5f609703c1217b5bcd10909e1aeac48c155c6a721024a5d158f202b5",
+      "images": "art/pixel/plongeur_v6/creusage/creusage_01.png à creusage_06.png (112 x 112, nettoyées, 0 pixel isolé, 6 images distinctes par hash)",
+      "criteres": {
+        "silhouette_a_x1": "arc lisible (prête, lève, frappe, pose au sol, remontée) ; impact encore lu comme un montant vertical",
+        "couleurs_de_base": "oui : gants revenus à la teinte de l'ancre ; manche bois clair",
+        "cadrage": "oui : base fixe, figure dans sa case",
+        "taille_finale": "72 px sauf image 5 à 73 px (tête posée au sol, cible 70 à 72)",
+        "details": "tête d'acier 9 à 10 px (cible 12 à 14) ; à l'impact 5 x 2 px : non lisible",
+        "coherence_ancre": "même caméra, lumière et palette ; corps inchangé ; seuls l'outil et le bras gauche des images 4 à 6 changent",
+        "pixels_parasites": "0 pixel isolé après nettoyage"
+      },
+      "verdict": "à valider par Julien : manche et gants corrigés ; tête d'acier et impact NON conformes (tête trop petite, impact vertical, 73 px à l'impact)",
+      "mesures": {
+        "reperes": "6 images sur 6 (bras proche 57 à 89 %, bras lointain 49 à 73 %, jambes 53 à 88 %) ; image 4 bras lointain 49 %",
+        "tete_a_x1": "image 2 : 10 x 7 px ; image 3 : 10 x 9 px ; image 4 : 9 x 10 px ; image 5 : 5 x 2 px ; image 6 : 10 x 7 px",
+        "hauteur": "72 px, image 5 à 73 px"
+      },
+      "points_faibles": [
+        "tête d'acier sous la cible (9 à 10 px au lieu de 12 à 14) sur les images 2 à 6 ; 5 x 2 px à l'impact",
+        "impact presque vertical, lu comme un montant posé au sol",
+        "image 5 à 73 px (tête posée au sol)"
+      ]
     }
   ]
 }

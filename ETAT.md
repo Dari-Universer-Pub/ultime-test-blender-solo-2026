@@ -1,6 +1,21 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
-## Phase courante : LOT 2 CREUSAGE v4 — ARRÊT POUR VALIDATION DE JULIEN
+## Phase courante : LOT 2 CREUSAGE v5 (passe d'outil) — ARRÊT POUR VALIDATION DE JULIEN
+Julien : geste et arc validés en v4 ; passe d'outil seulement. Résultat : manche et gants corrigés, mais tête d'acier et impact NON conformes.
+
+- Manche : 3 px, bois clair à face claire et face sombre ; longueur d'outil 35 px (au lieu de 42 à 49) ; angles de la pioche inchangés.
+- Tête : barre d'acier à plat, face caméra, pointe nette d'un côté, biseau de l'autre, reflet clair. Mesurée à ×1 : 9 à 10 px (cible 12 à 14) : NON CONFORME.
+- Impact (5) : la tête est posée au sol devant les pieds (main droite déplacée de 0,2 unité, seul bras touché) ; mais le manche reste presque vertical et la tête ne fait que 5 x 2 px : NON CONFORME. Image 5 à 73 px (cible 70 à 72).
+- Bras gauche levé sur les images 4 à 6 (pas de deux mains : le bras droit ne peut pas amener le bras gauche jusqu'au manche de l'impact). Bras proche 57 à 89 %, lointain 49 à 73 %.
+- Gants : teinte de l'ancre sur toutes les images (les gants clairs sont retirés).
+- Images 1 : identique à la v4. Images 2 et 3 : seul l'outil a changé (zone x 67 à 80) ; le corps est identique.
+- Planche : `art/pixel/plongeur_v6/creusage/planche_creusage.png` ; mesures : `mesures_creusage.txt`.
+
+Lots restants : attaque, saut, dégâts, mort. Ne pas commencer l'attaque sans l'accord de Julien.
+Décision à prendre : accepter l'impact et la tête actuels (écarts listés), ou autoriser une nouvelle passe sur la tête et sur la pose de l'impact.
+Blocage : aucun.
+
+## Ancienne phase : LOT 2 CREUSAGE v4 (remplacée)
 Julien : images 1 à 3 bonnes, ne plus les toucher (vérifiées pixel par pixel : identiques à la v3). Refaites : images 4 (frappe), 5 (impact), 6 (retour).
 
 - Frappe (4) : une main, pioche du haut-droit vers le bas-droit, tête à droite. Lisible en silhouette. Tête 10 x 13 px.

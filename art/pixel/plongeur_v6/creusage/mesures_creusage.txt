@@ -1,12 +1,11 @@
-CREUSAGE v4 (carte d'identite 112 px ; proche = bras droit ; reperes proche >= 45 %, lointain >= 40 %)
+CREUSAGE v5 (carte d'identite 112 px ; proche = bras droit ; reperes proche >= 45 %, lointain >= 40 %)
 image 1 (ancre, sans pioche) : bras proche 94 % ; bras lointain 69 % ; jambe proche 85 % ; jambe lointaine 59 % ; hauteur 72 px
-image 2 (prete, pioche sur le cote droit) : bras proche 68 % ; bras lointain 66 % ; jambe proche 88 % ; jambe lointaine 59 % ; hauteur 72 px
-image 3 (anticipation, pioche levee derriere l'epaule droite) : bras proche 63 % ; bras lointain 73 % ; jambe proche 86 % ; jambe lointaine 57 % ; hauteur 72 px
-image 4 (frappe, une main, pioche du haut-droit vers le bas-droit) : bras proche 76 % ; bras lointain 69 % ; jambe proche 87 % ; jambe lointaine 58 % ; hauteur 72 px
-image 5 (impact, buste penche, casque descendu de 4 px) : bras proche 84 % ; bras lointain 65 % ; jambe proche 85 % ; jambe lointaine 58 % ; hauteur 70 px
-image 6 (retour, pioche remontee vers l'epaule droite) : bras proche 61 % ; bras lointain 73 % ; jambe proche 87 % ; jambe lointaine 58 % ; hauteur 72 px
-TETE DE PIOCHE A X1 (acier, mesure sur le rendu) : image 2 : 5 x 4 px ; image 3 : 6 x 7 px ; image 4 : 10 x 13 px (barre elargie a 0,30) ; image 5 : 6 x 3 px, vue de biais, SOUS LES 10 PX ; image 6 : 12 x 8 px
-GLOBAL : 6 images sur 6 dans les reperes ; 6 images distinctes (hash SHA-256) ; 0 pixel isole ; hauteur 70 a 72 px (image 5 a la limite basse)
-ARC : sommet de la pioche (image 3) a z = 2,38 ; impact (image 5) a z = 0,14 : 2,2 unites, soit environ 55 px d'ecart vertical
-ECARTS : impact encore presque vertical, le manche descend le long du cote droit et se lit comme un montant ; une seule main sur la pioche pour les images 2 a 6 ; gants clairs (reflet) sur les images 4 a 6 seulement, gants sombres sur les images 1 a 3
-TROIS POINTS FAIBLES : 1) tete de l'impact trop petite (6 x 3 px vue de biais), sous les 10 px demandes ; 2) impact lu comme un montant presque vertical ; 3) gants clairs sur les images 4 a 6 seulement, a trancher par Julien
+image 2 (prete, pioche sur le cote droit) : bras proche 67 % ; bras lointain 66 % ; jambe proche 88 % ; jambe lointaine 59 % ; hauteur 72 px
+image 3 (anticipation, pioche levee derriere l'epaule droite) : bras proche 62 % ; bras lointain 73 % ; jambe proche 86 % ; jambe lointaine 57 % ; hauteur 72 px
+image 4 (frappe, une main, diagonale haut-droit vers bas-droit) : bras proche 72 % ; bras lointain 49 % ; jambe proche 87 % ; jambe lointaine 59 % ; hauteur 72 px
+image 5 (impact, buste penche, tete posee au sol devant les pieds) : bras proche 89 % ; bras lointain 60 % ; jambe proche 82 % ; jambe lointaine 58 % ; hauteur 73 px (SOUS la cible 70-72)
+image 6 (retour, pioche remontee vers l'epaule droite) : bras proche 57 % ; bras lointain 50 % ; jambe proche 87 % ; jambe lointaine 58 % ; hauteur 72 px
+TETE DE PIOCHE A X1 (acier, mesure sur le rendu, zone x >= 69) : image 2 : 10 x 7 px ; image 3 : 10 x 9 px ; image 4 : 9 x 10 px ; image 5 : 5 x 2 px (SOUS LES 12 PX) ; image 6 : 10 x 7 px. Cible 12 a 14 px : NON ATTEINTE.
+GLOBAL : 6 images distinctes (hash) ; 0 pixel isole ; images 2 a 6 : une main sur le manche, bras gauche leve pour l'equilibre sur les images 4 a 6 ; gants de teinte d'ancre
+ECARTS : tete d'acier trop petite (9 a 10 px au lieu de 12 a 14) ; impact encore presque vertical (manche a l'aplomb du cote droit) ; image 5 a 73 px
+TROIS POINTS FAIBLES : 1) tete d'acier sous la cible sur les images 2 a 6 (5 x 2 px a l'impact) ; 2) impact presque vertical, lu comme un montant ; 3) image 5 a 73 px (tete posee au sol)
