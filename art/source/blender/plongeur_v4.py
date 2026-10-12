@@ -16,6 +16,7 @@ import math
 import os
 import sys
 
+import bmesh
 import bpy
 from mathutils import Vector
 
@@ -54,7 +55,8 @@ def materiaux():
     return {
         "laiton": materiau("laiton", "#c99a3a", metal=1.0, rugosite=0.26),
         "acier": materiau("acier", "#7b8a92", metal=1.0, rugosite=0.34),
-        "verre": materiau("verre", "#1c5566", rugosite=0.04),
+        "verre": materiau("verre", "#0a2a3c", rugosite=0.03),   # vitre sombre bleutée
+        "reflet": materiau("reflet", "#eafcff", rugosite=0.05),  # reflet clair sur la vitre
         "kaki": materiau("kaki", "#8c7c52", rugosite=0.86),
         "kaki_sombre": materiau("kaki_sombre", "#5f5538", rugosite=0.86),
         "gant": materiau("gant", "#2b3170", rugosite=0.42),
@@ -109,19 +111,61 @@ def ellipsoide(centre, rayon, echelle, mat, biseau=0.0, plis=0.0, nom="forme"):
     return o
 
 
-def capsule(a, b, rayon, mat, nom="membre", plis=0.0):
-    """Membre : cylindre orienté de a vers b, à bouts arrondis (biseau large)."""
-    a, b = Vector(a), Vector(b)
-    d = b - a
-    bpy.ops.mesh.primitive_cylinder_add(radius=rayon, depth=d.length, vertices=28, location=(a + b) / 2)
-    o = bpy.context.object
-    o.name = nom
-    o.rotation_mode = "QUATERNION"
-    o.rotation_quaternion = Vector((0.0, 0.0, 1.0)).rotation_difference(d.normalized())
-    _appliquer(o)
-    o.data.materials.append(mat)
+def membre(points, rayons, mat, nom, nseg=14, cotes=28, plis=None):
+    """Membre continu : UNE surface balayée le long d'un chemin lisse (coude ou genou arrondi), rayon
+    interpolé entre les points de contrôle. Pas de sphère ni de jointure : une seule surface, puis subdivision."""
+    chemin = chemin_catmull(points, nseg)
+    n = len(chemin)
+    rayons_ech = []
+    for i in range(n):
+        j = min(i // nseg, len(points) - 2)
+        t = (i - j * nseg) / nseg
+        t = t * t * (3 - 2 * t)
+        rayons_ech.append(rayons[j] + (rayons[j + 1] - rayons[j]) * t)
+    rayons_ech[-1] = rayons[-1]
+    bm = bmesh.new()
+    anneaux = []
+    normale_prec = None
+    for i, p in enumerate(chemin):
+        a = chemin[max(i - 1, 0)]
+        b = chemin[min(i + 1, n - 1)]
+        tangente = (b - a).normalized()
+        if normale_prec is None:
+            nrm = tangente.cross(Vector((0.0, 0.0, 1.0)))
+            if nrm.length < 1e-4:
+                nrm = tangente.cross(Vector((1.0, 0.0, 0.0)))
+            nrm.normalize()
+        else:
+            nrm = normale_prec - tangente * normale_prec.dot(tangente)
+            nrm.normalize()
+        normale_prec = nrm
+        bn = tangente.cross(nrm).normalized()
+        r = rayons_ech[i]
+        anneau = []
+        for k in range(cotes):
+            th = 2.0 * math.pi * k / cotes
+            rk = r
+            if plis:
+                # plis de toile : creux doux et étroits, répartis autour de la section (pas de bosse)
+                nb, amp = plis
+                rk = r * (1.0 - amp * (0.5 + 0.5 * math.cos(nb * th)) ** 6)
+            anneau.append(bm.verts.new(p + rk * (math.cos(th) * nrm + math.sin(th) * bn)))
+        anneaux.append(anneau)
+    for i in range(n - 1):
+        A, B = anneaux[i], anneaux[i + 1]
+        for k in range(cotes):
+            bm.faces.new((A[k], A[(k + 1) % cotes], B[(k + 1) % cotes], B[k]))
+    bm.faces.new(anneaux[0][::-1])
+    bm.faces.new(anneaux[-1])
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces[:])
+    me = bpy.data.meshes.new(nom)
+    bm.to_mesh(me)
+    bm.free()
+    me.materials.append(mat)
+    o = bpy.data.objects.new(nom, me)
+    bpy.context.scene.collection.objects.link(o)
     _lisser(o)
-    _modifieurs(o, rayon * 0.72, 2, plis)
+    _modifieurs(o, 0.0, 2, 0.0)
     return o
 
 
@@ -241,16 +285,19 @@ def construire(scene):
     ellipsoide((0.0, 0.0, 2.27), 0.20, (1.0, 1.0, 0.45), m["laiton"], nom="calotte")
     cylindre((0.0, 0.02, 2.42), 0.085, 0.13, m["laiton"], nom="raccord_sommet")
     # --- grand hublot avant : verre bleuté, cadre gris épais, grille de barres, boulons
-    ellipsoide((0.0, -0.44, 1.90), 0.30, (1.0, 0.24, 1.0), m["verre"], nom="hublot_verre")
-    tore((0.0, -0.47, 1.90), 0.315, 0.05, cadre_fer, rotation=(math.pi / 2, 0.0, 0.0), nom="hublot_cadre")
+    # vitre posée DEVANT le casque (sa face avant dépasse celle du casque) : plus de casque qui perce le verre
+    ellipsoide((0.0, -0.50, 1.90), 0.30, (1.0, 0.2, 1.0), m["verre"], nom="hublot_verre")
+    tore((0.0, -0.56, 1.90), 0.315, 0.05, cadre_fer, rotation=(math.pi / 2, 0.0, 0.0), nom="hublot_cadre")
+    # reflet : petite tache claire en haut à gauche de la vitre, posée juste devant elle
+    ellipsoide((-0.13, -0.555, 2.05), 0.05, (1.0, 0.25, 0.9), m["reflet"], nom="reflet_vitre")
     for x in (-0.12, 0.12):
-        cylindre((x, -0.52, 1.90), 0.018, 0.52, cadre_fer, biseau=0.0, nom="barre_v")
-    cylindre((0.0, -0.52, 1.90), 0.018, 0.52, cadre_fer, rotation=(0.0, math.pi / 2, 0.0), biseau=0.0,
+        cylindre((x, -0.60, 1.90), 0.018, 0.52, cadre_fer, biseau=0.0, nom="barre_v")
+    cylindre((0.0, -0.60, 1.90), 0.018, 0.52, cadre_fer, rotation=(0.0, math.pi / 2, 0.0), biseau=0.0,
              nom="barre_h")
     boulon = ellipsoide((0.0, 0.0, 0.0), 0.028, (1.0, 1.0, 0.7), m["acier"], nom="boulon_modele")
     boulon.location = (0.0, 0.0, -10.0)
     # boulons posés sur la face avant du cadre (le centre du tore est à -0,47, son rayon de tube 0,05)
-    cercle_hublot = [(0.315 * math.cos(k * math.pi / 4), -0.515, 1.90 + 0.315 * math.sin(k * math.pi / 4))
+    cercle_hublot = [(0.315 * math.cos(k * math.pi / 4), -0.605, 1.90 + 0.315 * math.sin(k * math.pi / 4))
                      for k in range(8)]
     instancier(boulon, cercle_hublot, scene, "boulon_hublot")
     # --- petit hublot rond sur le côté : cadre laiton
@@ -267,71 +314,87 @@ def construire(scene):
     instancier(boulon, anneau_boulons, scene, "boulon_collerette")
 
     # --- torse court et arrondi, toile kaki avec plis, fermeture centrale, bassin
-    ellipsoide((0.0, 0.0, 1.12), 0.5, (0.56, 0.42, 0.42), m["kaki"], plis=0.035, nom="torse")
-    ellipsoide((0.0, 0.0, 0.84), 0.46, (1.0, 0.72, 0.42), m["kaki_sombre"], plis=0.03, nom="bassin")
-    boite((0.0, -0.42, 1.12), (0.035, 0.03, 0.66), cadre_fer, biseau=0.0, nom="fermeture")
+    # tonneau plein et lisse : une seule surface (bassin, ventre, poitrine), section élargie en X
+    torse = membre([(0.0, 0.0, 0.84), (0.0, 0.0, 1.10), (0.0, 0.0, 1.36)], [0.42, 0.50, 0.44], m["kaki"],
+                   "torse", nseg=10, cotes=40, plis=(7, 0.05))
+    torse.scale = (1.12, 0.84, 1.0)
+    _appliquer(torse)
+    boite((0.0, -0.40, 1.12), (0.035, 0.03, 0.62), cadre_fer, biseau=0.0, nom="fermeture")
+    # coutures horizontales fines, sur la toile
+    tore((0.0, 0.0, 1.27), 0.52, 0.012, m["kaki_sombre"], echelle=(1.0, 0.84, 1.0), nom="couture")
     # --- ceinture de cuir brun, boucle métallique
-    tore((0.0, 0.0, 1.0), 0.5, 0.06, m["cuir"], echelle=(1.05, 0.82, 1.0), nom="ceinture")
-    boite((0.0, -0.44, 1.0), (0.14, 0.035, 0.11), m["laiton"], biseau=0.012, nom="boucle")
+    tore((0.0, 0.0, 1.0), 0.56, 0.058, m["cuir"], echelle=(1.05, 0.84, 1.0), nom="ceinture")
+    boite((0.0, -0.47, 1.0), (0.14, 0.035, 0.11), m["laiton"], biseau=0.012, nom="boucle")
 
     # --- bras courts et épais, manchettes sombres, gros gants caoutchouc avec pouce
     for s in (-1.0, 1.0):
-        epaule = (0.52 * s, 0.0, 1.18)
-        coude = (0.74 * s, -0.08, 0.90)
+        epaule = (0.50 * s, 0.0, 1.20)
+        coude = (0.74 * s, -0.10, 0.90)
         poignet = (0.80 * s, -0.14, 0.64)
-        ellipsoide(epaule, 0.19, (1.0, 1.0, 1.0), m["kaki"], nom="epaule")
-        capsule(epaule, coude, 0.165, m["kaki"], nom="bras_sup", plis=0.02)
-        capsule(coude, poignet, 0.15, m["kaki"], nom="avant_bras", plis=0.02)
-        direction = Vector(poignet) - Vector(coude)
-        cuff = tore(Vector(poignet) + direction.normalized() * 0.03, 0.158, 0.04, m["manchette"], nom="manchette")
-        orienter(cuff, direction)
-        paume = (poignet[0] + 0.03 * s, poignet[1] - 0.10, poignet[2] - 0.20)
-        ellipsoide(paume, 0.21, (0.92, 0.82, 1.12), m["gant"], biseau=0.02, nom="gant")
-        ellipsoide((paume[0] - 0.12 * s, paume[1] - 0.14, paume[2] + 0.02), 0.085, (0.9, 1.15, 0.8),
-                   m["gant"], nom="pouce")
+        membre([epaule, coude, poignet], [0.19, 0.155, 0.145], m["kaki"], "bras")
+        d = (Vector(poignet) - Vector(coude)).normalized()
+        # manchette de toile : la fin de la manche, avec une bande sombre ; elle prolonge le bras
+        membre([Vector(poignet) - d * 0.14, Vector(poignet) + d * 0.02], [0.160, 0.170],
+               m["manchette"], "manchette", nseg=2)
+        # gant en mitaine : l'éllipsoïde part du poignet, son bord recouvre le bord de la manchette
+        gant_c = Vector(poignet) + d * 0.12
+        gant = ellipsoide(gant_c, 0.17, (1.0, 0.92, 1.25), m["gant"], biseau=0.02, nom="gant")
+        gant.rotation_mode = "QUATERNION"
+        gant.rotation_quaternion = Vector((0.0, 0.0, 1.0)).rotation_difference(d)
+        # pouce : un petit doigt du côté intérieur et devant, qui fait la mitaine
+        pouce_c = gant_c + Vector((-0.13 * s, -0.11, 0.02))
+        ellipsoide(pouce_c, 0.075, (0.9, 1.15, 0.8), m["gant"], nom="pouce")
 
     # --- jambes courtes, genouillères sombres, grosses bottes lourdes
     for s in (-1.0, 1.0):
         hanche = (0.20 * s, 0.0, 0.84)
         genou = (0.24 * s, -0.02, 0.54)
         cheville = (0.26 * s, 0.0, 0.24)
-        capsule(hanche, genou, 0.19, m["kaki_sombre"], nom="cuisse", plis=0.025)
-        ellipsoide((genou[0], genou[1] - 0.2, genou[2]), 0.16, (1.0, 0.5, 1.0), m["genouillere"], nom="genouillere")
-        capsule(genou, cheville, 0.16, m["kaki_sombre"], nom="tibia", plis=0.02)
+        membre([hanche, genou, cheville], [0.21, 0.165, 0.14], m["kaki_sombre"], "jambe")
+        # genouillère : plaque arrondie collée à l'avant du genou (enfoncée de 2 cm dans la jambe)
+        ellipsoide((genou[0], genou[1] - 0.165, genou[2]), 0.13, (1.0, 0.4, 0.95), m["genouillere"],
+                   biseau=0.02, nom="genouillere")
         ellipsoide((0.27 * s, -0.07, 0.13), 0.2, (0.95, 1.4, 0.72), m["botte"], biseau=0.03, nom="botte")
 
     # --- bouteille de plongée violet-bleu, derrière l'épaule gauche (lointaine)
-    cylindre((-0.66, 0.36, 1.50), 0.13, 0.62, m["bouteille"], rotation=(0.0, -0.12, 0.0), biseau=0.05,
+    # bouteille : dépasse derrière l'épaule lointaine (gauche), penchée vers l'arrière ; son col reçoit la corde
+    cylindre((-0.86, 0.45, 1.55), 0.14, 0.66, m["bouteille"], rotation=(0.0, -0.25, 0.0), biseau=0.05,
              nom="bouteille")
-    cylindre((-0.66, 0.36, 1.86), 0.05, 0.12, m["bouteille"], rotation=(0.0, -0.12, 0.0), biseau=0.02,
+    cylindre((-0.955, 0.45, 1.92), 0.05, 0.12, m["bouteille"], rotation=(0.0, -0.25, 0.0), biseau=0.02,
              nom="col_bouteille")
 
     # --- tuyau d'air en corde torsadée, sortant du sommet du casque, grande boucle vers l'arrière
-    cordon([(0.0, 0.05, 2.40), (0.06, 0.22, 2.84), (0.0, 0.66, 3.10), (-0.02, 1.06, 2.90), (0.0, 1.26, 2.36),
-            (0.05, 1.10, 1.80), (0.22, 0.80, 1.38), (0.46, 0.46, 1.16)],
-           rayon_helice=0.055, rayon_fil=0.032, torsions=5.0, scene=scene, mat=m["corde"], nom="tuyau_air")
+    # une seule corde épaisse : sort du sommet du casque, monte, fait une grande boucle lisse vers l'arrière,
+    # puis redescend jusqu'au col de la bouteille (derrière l'épaule lointaine). Trois brins serrés.
+    cordon([(0.0, 0.05, 2.40), (0.03, 0.30, 2.86), (0.0, 0.80, 3.10), (-0.10, 1.25, 2.85), (-0.22, 1.42, 2.25),
+            (-0.45, 1.20, 1.85), (-0.66, 0.78, 1.95), (-0.95, 0.45, 2.02)],
+           rayon_helice=0.095, rayon_fil=0.085, torsions=7.0, scene=scene, mat=m["corde"], nom="tuyau_air")
 
 
 # ------------------------------------------------------------------ scène
 def eclairer(scene):
-    """Clef douce haut-gauche (sur le cadre : gauche = -X-Y, haut), contre-jour froid bas-droite."""
-    def soleil(nom, direction_vers_lumiere, energie, teinte):
-        l = bpy.data.lights.new(nom, "SUN")
+    """Clé douce haut-gauche (grande source, reflets du laiton en haut à gauche) et lumière de contour
+    douce côté opposé. Les sources sont des surfaces carrées : ombres et reflets doux, pas de tranchant."""
+    def surface(nom, direction_vers_lumiere, distance, taille, energie, teinte):
+        l = bpy.data.lights.new(nom, "AREA")
         l.energy = energie
         l.color = teinte
+        l.shape = "SQUARE"
+        l.size = taille
         o = bpy.data.objects.new(nom, l)
         scene.collection.objects.link(o)
+        d = Vector(direction_vers_lumiere).normalized()
+        o.location = CIBLE + d * distance
         o.rotation_mode = "QUATERNION"
-        # un soleil émet le long de son -Z : on le tourne pour qu'il vienne de la direction voulue
-        o.rotation_quaternion = Vector((0.0, 0.0, -1.0)).rotation_difference(
-            -Vector(direction_vers_lumiere).normalized())
-    soleil("clef_haut_gauche", (-0.27, -0.66, 0.90), 4.0, (1.0, 0.93, 0.80))
-    soleil("contre_jour", (0.6, 0.7, 0.45), 0.8, (0.62, 0.80, 1.0))
+        # une surface émet le long de son -Z : on la tourne vers le centre de la scène
+        o.rotation_quaternion = Vector((0.0, 0.0, -1.0)).rotation_difference(-d)
+    surface("clef_haut_gauche", (-0.50, -0.40, 1.00), 6.0, 3.0, 260.0, (1.0, 0.93, 0.80))
+    surface("contour_doux", (0.6, 0.7, 0.45), 6.0, 4.0, 70.0, (0.66, 0.82, 1.0))
     monde = bpy.data.worlds.new("monde")
     monde.use_nodes = True
     fond = monde.node_tree.nodes["Background"]
     fond.inputs["Color"].default_value = (0.42, 0.46, 0.50, 1.0)
-    fond.inputs["Strength"].default_value = 0.9
+    fond.inputs["Strength"].default_value = 0.7
     scene.world = monde
 
 

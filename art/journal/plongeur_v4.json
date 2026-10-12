@@ -23,6 +23,242 @@
         "bottes et genouillères : formes à affiner"
       ],
       "mesure_membres": "non applicable au rendu haute résolution ; carte d'identité des membres à l'étape 2, après validation"
+    },
+    {
+      "changement": "v4 étape 2 (correction 1, bras et jambes) : chaque membre est une seule surface continue balayée le long d'un chemin lisse (épaule-coude-poignet, hanche-genou-cheville), rayon régulier, sans sphère de jointure, puis subdivision",
+      "image": "boards/journal/plongeur_v4_hd_2.png",
+      "image_sha256": "57dfbecdc0639b59254d2f1df2c2b8ed6e48a60c0b2cd16d8fb97083e36aecaa",
+      "controle": {
+        "silhouette": "Les bras et les jambes se lisent comme des membres continus, avec un coude et un genou arrondis ; la silhouette est plus nette qu'avant.",
+        "couleurs": "Kaki clair pour les bras, kaki sombre pour les jambes, inchangé.",
+        "cadrage": "Inchangé : plongeur centré, tuyau entier dans le cadre.",
+        "taille": "Rendu 768 px, non pixelisé : la taille de pixel viendra après validation.",
+        "details": "Coudes et genoux arrondis sans renflement ; les gants restent détachés (étape suivante).",
+        "coherence_base": "Membres plus effilés, comme demandé par Julien.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "gants détachés du poignet : à corriger (étape 3)",
+        "manchettes : anneau flottant à remplacer par une manchette de toile (étape 3)",
+        "tuyau d'air : à refaire en une seule corde épaisse (étape 4)",
+        "tronc : bosses à supprimer (étape 5)",
+        "genouillères : boules devant le genou (étape 6)",
+        "bouteille cachée (étape 7)",
+        "hublot : tache orange à retirer (étape 8)",
+        "lumière : reflet principal à remettre en haut à gauche (étape 11)"
+      ],
+      "mesure_membres": "non applicable au rendu haute résolution"
+    },
+    {
+      "changement": "v4 étape 3 (correction 2, gants et manchettes) : manchette de toile à bande sombre en prolongement de la manche ; gant en mitaine partant du poignet, son bord recouvre l'extrémité de la manchette ; plus de vide ni d'anneau flottant",
+      "image": "boards/journal/plongeur_v4_hd_3.png",
+      "image_sha256": "b11ea0866ea13d1cc499b9b858e2761679455b342a67107172f06942ec37141c",
+      "controle": {
+        "silhouette": "Chaque bras finit par une manchette sombre puis une mitaine ; le gant ne flotte plus.",
+        "couleurs": "Bande sombre de la manchette, caoutchouc bleu-violet du gant : deux familles distinctes.",
+        "cadrage": "Inchangé.",
+        "taille": "Rendu 768 px, non pixelisé.",
+        "details": "Le pouce se lit du côté intérieur ; l'arête de la manchette est visible au-dessus du gant.",
+        "coherence_base": "Manchette et gant tels que demandés ; les gants restent un peu petits par rapport à la demande de gros gants.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "gants un peu petits : à grossir (demande de gros gants)"
+      ],
+      "mesure_membres": "non applicable au rendu haute résolution"
+    },
+    {
+      "changement": "v4 étape 4 (correction 3, tuyau d'air) : une seule corde épaisse (rayon de fil 0,085 et hélice 0,095, soit plus du double de l'ancienne), trois brins serrés (7 tours), sort du sommet du casque, fait une grande boucle lisse vers l'arrière et redescend vers le col de la bouteille",
+      "image": "boards/journal/plongeur_v4_hd_4.png",
+      "image_sha256": "7bebb2c0c9f13e2ddaaa9d3ebbf5649fef45642cf48569b41ceb370d2e07fc9d",
+      "controle": {
+        "silhouette": "La corde se lit d'un coup comme un seul câble épais ; la boucle arrière ajoute une forme lisible au-dessus du casque.",
+        "couleurs": "Crème chaud uniforme, aucune couleur parasite.",
+        "cadrage": "Le sommet de la boucle reste dans le cadre avec de la marge.",
+        "taille": "Rendu 768 px, non pixelisé.",
+        "details": "La torsade se lit à x1 : brins serrés, sans effilochage.",
+        "coherence_base": "Corde épaisse torsadée, comme demandé ; la boucle reste lisse.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "extrémité de la corde cachée derrière le casque : elle rejoint la bouteille, à vérifier après la bouteille",
+        "bouteille toujours cachée (étape 7)",
+        "tronc : bosses à supprimer (étape 5)",
+        "genouillères : boules devant le genou (étape 6)",
+        "hublot : tache orange à retirer (étape 8)",
+        "lumière : reflet principal à remettre en haut à gauche (étape 11)",
+        "gants un peu petits : à grossir"
+      ],
+      "mesure_membres": "non applicable au rendu haute résolution"
+    },
+    {
+      "changement": "v4 étape 5 (correction 4, tronc) : un tonneau plein et lisse, une seule surface de la hanche à la poitrine, section élargie en largeur, sans bruit de déplacement (les bosses sont supprimées) ; plis doux de toile répartis autour, coutures fines, fermeture centrale, ceinture repositionnée",
+      "image": "boards/journal/plongeur_v4_hd_5.png",
+      "image_sha256": "f50fa83aa679ffc48c7bb7e446808f85046b72a7a8f19913920575edd2f7910c",
+      "controle": {
+        "silhouette": "Le tronc est une forme pleine et arrondie, la transition avec les jambes est nette ; plus de bosses.",
+        "couleurs": "Kaki uniforme sur le tronc, ceinture brune et boucle laiton se détachent.",
+        "cadrage": "Inchangé.",
+        "taille": "Rendu 768 px, non pixelisé.",
+        "details": "La fermeture centrale se lit à peine ; les plis et les coutures sont trop doux pour se voir à cette échelle.",
+        "coherence_base": "Tronc court et rond, comme demandé.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "plis et coutures peu visibles : à renforcer si Julien le demande",
+        "fermeture centrale peu lisible : à marquer davantage",
+        "genouillères : boules devant le genou (étape 6)",
+        "bouteille cachée (étape 7)",
+        "hublot : tache orange à retirer (étape 8)",
+        "lumière : reflet principal à remettre en haut à gauche (étape 11)"
+      ],
+      "mesure_membres": "non applicable au rendu haute résolution"
+    },
+    {
+      "changement": "v4 étape 6 (correction 5, genouillères) : plaque arrondie collée à l'avant de chaque genou (enfoncée de 2 cm dans la jambe) à la place de la boule sombre",
+      "image": "boards/journal/plongeur_v4_hd_6.png",
+      "image_sha256": "f92896081ba31aa52af033ac775e0abfd00a309599972116ff3a773a29e8e93d",
+      "controle": {
+        "silhouette": "Les genouillères sont des plaques plates contre le genou, plus des boules devant la jambe.",
+        "couleurs": "Caoutchouc sombre sur toile kaki : contraste suffisant, mais faible sur la face sombre.",
+        "cadrage": "Inchangé.",
+        "taille": "Rendu 768 px, non pixelisé.",
+        "details": "La plaque se lit comme une genouillère à x1 ; son bord arrondi se voit.",
+        "coherence_base": "Genouillères sombres attachées à la jambe, comme demandé.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "genouillères peu contrastées sur la face sombre : à éclaircir légèrement si Julien le demande",
+        "bouteille cachée (étape 7)",
+        "hublot : tache orange à retirer (étape 8)",
+        "lumière : reflet principal à remettre en haut à gauche (étape 11)"
+      ],
+      "mesure_membres": "non applicable au rendu haute résolution"
+    },
+    {
+      "changement": "v4 étape 7 (correction 6, bouteille) : bouteille violet-bleu sombre unique, penchée, qui dépasse derrière l'épaule lointaine (gauche) ; son col est relié à l'extrémité de la corde",
+      "image": "boards/journal/plongeur_v4_hd_7.png",
+      "image_sha256": "0e386a3f50a4a58dcceaf50e67cfcfc22ab36a95763b9fc15cc44656552a5e90",
+      "controle": {
+        "silhouette": "La bouteille apparaît à gauche du casque et au-dessus de l'épaule ; elle reste en partie cachée par le casque.",
+        "couleurs": "Violet-bleu sombre, distinct du laiton et de la toile.",
+        "cadrage": "Le col de la bouteille reste dans le cadre.",
+        "taille": "Rendu 768 px, non pixelisé.",
+        "details": "Le col et la liaison avec la corde se lisent à x1 ; le corps de la bouteille paraît plat.",
+        "coherence_base": "Bouteille derrière l'épaule lointaine, reliée au tuyau, comme demandé.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "bouteille plate et partiellement cachée par le casque : à rendre plus volumineuse et plus visible",
+        "hublot : tache orange à retirer (étape 8)",
+        "lumière : reflet principal à remettre en haut à gauche (étape 11)"
+      ],
+      "mesure_membres": "non applicable au rendu haute résolution"
+    },
+    {
+      "changement": "v4 étape 8 (correction 7a, hublot) : la vitre est posée devant le casque (sa face avant dépasse celle du casque, cadre et barres avancés avec elle) : la tache orange qui perçait le verre a disparu",
+      "image": "boards/journal/plongeur_v4_hd_8.png",
+      "image_sha256": "6136dd7593520d67cd71191b0291a6e281dc23d47ecfa0e5d4792f7b98f502f8",
+      "controle": {
+        "silhouette": "Inchangée ; le hublot sort un peu plus du casque.",
+        "couleurs": "Plus aucune tache orange dans le verre ; le verre reste cyan clair.",
+        "cadrage": "Inchangé.",
+        "taille": "Rendu 768 px, non pixelisé.",
+        "details": "Le cadre gris, les barres et les boulons du cadre restent lisibles.",
+        "coherence_base": "Hublot du casque, sans percée parasite.",
+        "pixels_parasites": "La tache orange a disparu ; aucun autre pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "verre trop clair et trop vif : à assombrir et bleuter (étape 9)",
+        "reflet absent sur la vitre : à ajouter (étape 10)",
+        "lumière : reflet principal à remettre en haut à gauche (étape 11)"
+      ],
+      "mesure_membres": "non applicable au rendu haute résolution"
+    },
+    {
+      "changement": "v4 étape 9 (correction 7b, vitre) : verre sombre et bleuté (#0a2a3c, très lisse) à la place du cyan clair",
+      "image": "boards/journal/plongeur_v4_hd_9.png",
+      "image_sha256": "d5628075b406557a5ab56a383b52166d8dab52e12010e4846047aa4c702c5bfe",
+      "controle": {
+        "silhouette": "Inchangée.",
+        "couleurs": "Vitre bleu-nuit, cadre gris-bleu et laiton autour : hiérarchie nette.",
+        "cadrage": "Inchangé.",
+        "taille": "Rendu 768 px, non pixelisé.",
+        "details": "Cadre, barres et boulons se lisent sur la vitre sombre.",
+        "coherence_base": "Vitre sombre et bleutée, comme demandé par Julien.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "vitre sans reflet : à ajouter (étape 10)",
+        "lumière : reflet principal à remettre en haut à gauche (étape 11)"
+      ],
+      "mesure_membres": "non applicable au rendu haute résolution"
+    },
+    {
+      "changement": "v4 étape 10 (correction 7c, vitre) : reflet clair en haut à gauche de la vitre, posé juste devant elle",
+      "image": "boards/journal/plongeur_v4_hd_10.png",
+      "image_sha256": "fc930ad117e4c57746949a9d7c2ac57172ecb0150dfce19a2dac955fe9e77d9e",
+      "controle": {
+        "silhouette": "Inchangée.",
+        "couleurs": "Tache blanche-cyan sur la vitre bleu-nuit : contraste net.",
+        "cadrage": "Inchangé.",
+        "taille": "Rendu 768 px, non pixelisé.",
+        "details": "Le reflet se lit à x1 en haut à gauche du verre, du côté de la lumière.",
+        "coherence_base": "Reflet de vitre, comme demandé.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "lumière : reflet du laiton encore en haut à droite (étape 11)"
+      ],
+      "mesure_membres": "non applicable au rendu haute résolution"
+    },
+    {
+      "changement": "v4 étape 11 (correction 8, lumière) : clé et contour passés en grandes sources carrées douces (clé haut-gauche, contour doux bleuté côté opposé) à la place des soleils durs ; monde plus bas",
+      "image": "boards/journal/plongeur_v4_hd_11.png",
+      "image_sha256": "dbb7125bb384783ee36d498ca65bcd310bd0626b77a22233ea5026f8a5304ae5",
+      "controle": {
+        "silhouette": "Inchangée.",
+        "couleurs": "Le laiton reçoit un reflet moins froid ; le kaki du tronc paraît plus sombre, à rééquilibrer.",
+        "cadrage": "Inchangé.",
+        "taille": "Rendu 768 px, non pixelisé.",
+        "details": "Les reflets du casque sont plus doux ; le plus lumineux est encore au centre-haut, pas tout à fait à gauche.",
+        "coherence_base": "Éclairage plus doux, comme demandé ; clé à remonter davantage à gauche.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "clé : reflet du laiton encore au centre-haut, à pousser à gauche (étape 12)",
+        "tronc et jambes un peu sombres : à rééquilibrer avec la clé (étape 12)"
+      ],
+      "mesure_membres": "non applicable au rendu haute résolution"
+    },
+    {
+      "changement": "v4 étape 12 (correction 8, lumière) : clé déplacée vers la gauche et plus haut (direction -0,50 / -0,40 / 1,00) ; le reflet principal du casque passe en haut à gauche",
+      "image": "boards/journal/plongeur_v4_hd_12.png",
+      "image_sha256": "391da730c8bace8802ea940403fd23ca6e7be4bc124411ab97d8926b59192b9a",
+      "controle": {
+        "silhouette": "Inchangée.",
+        "couleurs": "Le laiton a son reflet chaud en haut à gauche ; la toile du tronc et des jambes est plus homogène.",
+        "cadrage": "Inchangé.",
+        "taille": "Rendu 768 px, non pixelisé.",
+        "details": "Le reflet du casque est en haut à gauche ; la vitre garde son reflet blanc à gauche.",
+        "coherence_base": "Clé haut-gauche, contour doux à l'opposé, comme demandé.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "gants un peu petits : à grossir, si Julien le demande (non prévu dans sa liste)"
+      ],
+      "mesure_membres": "non applicable au rendu haute résolution"
     }
   ]
 }

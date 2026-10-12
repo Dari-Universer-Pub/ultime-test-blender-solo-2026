@@ -7,12 +7,28 @@ Julien trouve le héros v3 trop moche et demande de tout recommencer. Décisions
 - Méthode en deux temps : (1) rendu HAUTE RÉSOLUTION 768 px, sans pixelisation, trois quarts (azimut 35°, élévation 15°), clé haut-gauche, fond transparent : ARRÊT pour validation de Julien ; (2) seulement après validation : réduction à 46-48 px, quantification, contour sombre sélectif + contour interne, carte d'identité, mesure des quatre membres (>= 20 px et >= 60 %) : ARRÊT pour validation.
 - Ensuite seulement : nage (44-48 px, amplitude >= 0,45), puis idle, creusage, attaque, saut, dégâts, mort, feuille, manifeste, jeu, captures, robot, `python tools/gate.py M3` dans un clone neuf, remise à l'échelle des créatures.
 
-### v4 étape 1 : base haute résolution (à valider)
-- Planche : `boards/journal/plongeur_v4_hd_1.png` (rendu seul sur gris clair, 768 px ; outil `tools/planches/fond_clair.py`).
-- Journal : `art/journal/plongeur_v4.json`, entrée 1, verdict garde, SHA-256 `269a236cb4b9b331...`.
-- Défauts connus, à traiter après le retour de Julien (un changement à la fois) : bouteille cachée ; bras et jambes en
-  boudins à renflements ; torse irrégulier ; reflet de la clé en haut à droite ; bottes et genouillères à affiner.
-- Référence cartoon de Julien : toujours absente de `art/references/` (seuls ref_03 et ref_05 existent) ; à comparer quand elle arrive.
+### v4 : corrections de Julien sur le rendu haute résolution (à valider)
+Julien ne valide pas encore la base : corrections demandées, un changement à la fois, planche avant/après à chaque fois.
+| étape | correction | planche | verdict |
+|---|---|---|---|
+| 1 | base haute résolution | `plongeur_v4_hd_1.png` | garde |
+| 2 | 1 : bras et jambes en membres continus (un seul balayage par membre) | `plongeur_v4_hd_2.png` | garde |
+| 3 | 2 : manchette de toile à bande sombre, gant qui recouvre son bord | `plongeur_v4_hd_3.png` | garde |
+| 4 | 3 : une seule corde épaisse (double), brins serrés, grande boucle arrière | `plongeur_v4_hd_4.png` | garde |
+| 5 | 4 : tronc plein et lisse, sans bosse, plis doux et coutures | `plongeur_v4_hd_5.png` | garde |
+| 6 | 5 : genouillères en plaques collées au genou | `plongeur_v4_hd_6.png` | garde |
+| 7 | 6 : bouteille violet-bleu derrière l'épaule lointaine, reliée à la corde | `plongeur_v4_hd_7.png` | garde |
+| 8 | 7a : vitre posée devant le casque, tache orange supprimée | `plongeur_v4_hd_8.png` | garde |
+| 9 | 7b : vitre sombre bleutée | `plongeur_v4_hd_9.png` | garde |
+| 10 | 7c : reflet clair en haut à gauche de la vitre | `plongeur_v4_hd_10.png` | garde |
+| 11 | 8a : clé et contour en grandes sources douces | `plongeur_v4_hd_11.png` | garde |
+| 12 | 8b : clé poussée à gauche et en haut | `plongeur_v4_hd_12.png` | garde |
+
+- **Planche finale** : `boards/journal/plongeur_v4_final.png` (rendu seul sur gris clair, 768 px).
+- Journal : `art/journal/plongeur_v4.json`, entrées 1 à 12, SHA-256 dans chaque entrée.
+- Pas de pixelisation, pas de mesure des membres avant le retour de Julien (ordre demandé).
+- Restent ouverts, à décider avec Julien : gants un peu petits (non prévus dans sa liste) ; bouteille plate et en partie cachée ; plis et coutures du tronc peu visibles.
+- Référence cartoon de Julien : toujours absente de `art/references/` (seuls ref_03 et ref_05 existent).
 
 ## Ancienne phase (v3, archivée) : NOUVEAU MODÈLE DU HÉROS (vue de trois quarts), étape 1 = pose idle
 Julien a demandé un modèle refait de zéro, pensé pour être lu de trois quarts : `art/source/blender/plongeur_v3.py`.
