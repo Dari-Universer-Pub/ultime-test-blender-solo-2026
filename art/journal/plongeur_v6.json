@@ -683,6 +683,24 @@
         "frappe (image 4) : manche visible devant la poitrine",
         "image 5 à 69 px, sous la plage 70 à 72"
       ]
+    },
+    {
+      "lot": "CREUSAGE v8 : planche d'intention 2D (RÈGLE ANIMATION A bis) avant toute 3D ; triche caméra déclarée (B bis) ; contrôles 2D (C bis)",
+      "planche": "art/pixel/plongeur_v6/creusage/intention/planche_intention.png",
+      "tables": "art/pixel/plongeur_v6/creusage/intention/TABLE_INTENTION.md ; intention.json",
+      "controles": {
+        "mains_espacees_8px": "OK sur 1 à 6",
+        "outil_hors_torse": "OK sur 2 à 6",
+        "ecarts_angle": "2→3 135°, 3→4 145°, 4→5 40° (limite), 5→6 90°",
+        "triche_bras": "max +36 % (image 6), sous le plafond de +40 %",
+        "tete_au_sol_impact": "bas à 90,2 px (sol 91,5) : OK"
+      },
+      "verdict": "PLANCHE D'INTENTION À VALIDER par Julien avant toute 3D ; points à juger : traversée du bras gauche sur 2, 4 et 5 ; manche de l'impact devant la jambe gauche ; écart de 40° pile entre frappe et impact",
+      "points_faibles": [
+        "traversée du bras gauche devant le torse pour tenir la pioche (triche +25 à +32 %)",
+        "impact : tête entre les pieds plutôt que devant et à droite (x = 56)",
+        "écart de 40° pile entre frappe (verticale) et impact : sans marge"
+      ]
     }
   ]
 }

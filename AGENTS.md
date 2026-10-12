@@ -156,3 +156,24 @@ D. **Outil (pioche ou autre)** : modélisé comme une vraie pièce. Manche 3 px 
 E. **Présentation puis arrêt.** Planche cible 3D d'abord, puis planche pixel à côté de l'ancre
    (×4 et ×1), avec le tableau des contrôles (OK ou échec pour chaque image), les mesures de tête et
    de hauteur, les écarts annoncés tels quels. Arrêt pour validation après chaque lot.
+
+A bis. **Planche d'intention (avant toute 3D).** Pour chaque lot, une planche en deux dimensions, en
+   coordonnées écran : l'ancre estompée en fond, et par-dessus, pour chaque image, un squelette à plat
+   (tête, buste, épaules, coudes, deux mains, hanches, pieds) et l'outil (manche et tête, avec ses deux
+   extrémités). Images numérotées. Sous chaque image, une ligne : angle de l'outil (degrés depuis la
+   verticale basse, sens horaire), inclinaison du buste, ce que la silhouette doit raconter. La table de
+   l'intention est dans le JSON du lot. Julien valide ou corrige cette planche avant tout passage à la 3D.
+
+B bis. **Triche caméra déclarée.** Pour atteindre les positions de la planche d'intention, pose par pose,
+   tu peux : étirer un bras jusqu'à +40 % de sa longueur, décaler une épaule, tourner le buste, déplacer
+   l'outil. Seule la silhouette à l'écran compte. Interdits : cacher un bras, laisser l'outil flotter sans
+   main, faire traverser le torse par le manche, changer la caméra, la lumière ou le style de l'ancre.
+   Chaque triche est notée dans `TABLE_POSES.md` (valeur par image).
+
+C bis. **Contrôles.** Ils remplacent le contrôle 3 de C pour la portée des bras : deux mains sur le manche
+   (distance en pixels écran proche de zéro, les deux mains) ; deux bras visibles (bras proche au moins 45 %,
+   lointain au moins 40 %) ; hauteur 70 à 72 px outil compris ; tête d'acier 12 à 14 px (10 minimum à
+   l'impact) ; angle entre images successives d'au moins 40 degrés ; zéro pixel isolé (au pixel art).
+   La portée physique des bras n'est plus un contrôle : c'est la triche déclarée de B bis qui la remplace.
+
+Ordre imposé : planche d'intention (A bis), validée par Julien → cible 3D (B) → pixel art.

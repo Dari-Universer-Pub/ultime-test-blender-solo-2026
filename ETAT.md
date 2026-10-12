@@ -1,6 +1,17 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
-## Phase courante : CREUSAGE, cible 3D v7 (règle ANIMATION appliquée) — ARRÊT POUR VALIDATION DE JULIEN
+## Phase courante : CREUSAGE, planche d'intention 2D (A bis) — ARRÊT POUR VALIDATION DE JULIEN
+Julien a retenu une nouvelle méthode, ajoutée à AGENTS.md : A bis (planche d'intention 2D avant toute 3D), B bis (triche caméra déclarée : bras étiré jusqu'à +40 %, épaule décalée, buste tourné, outil déplacé), C bis (contrôles sans la portée physique des bras). Ordre : planche d'intention validée → cible 3D → pixel art.
+
+- Planche d'intention : `art/pixel/plongeur_v6/creusage/intention/planche_intention.png` (ancre estompée, squelette à plat, outil à ses deux extrémités, numérotation, lignes de contrôle). Table : `TABLE_INTENTION.md` ; données : `intention.json` ; outil : `tools/planches/intention.py`.
+- Contrôles 2D : mains espacées de 8 px ou plus (OK), outil hors du torse (OK), écarts d'angle 135°, 145°, 40° (limite), 90°, triches de +0 à +36 % (sous le plafond de +40 %), impact : tête à 90,2 px, sol à 91,5 (OK).
+- À juger : traversée du bras gauche devant le torse sur 2, 4, 5 (triche +25 à +32 %) ; impact à 40° avec le manche devant la jambe gauche, tête entre les pieds plutôt que devant et à droite ; écart de 40° pile entre frappe et impact.
+- Ancienne cible 3D v7 : toujours dans le dossier `creusage/cible3d` et `TABLE_POSES.md` (non validée, remplacée par la planche d'intention).
+
+Pas de 3D, pas de pixel art tant que la planche d'intention n'est pas validée. Pas d'attaque sans l'accord de Julien.
+Blocage : aucun.
+
+## Ancienne phase : CREUSAGE, cible 3D v7 (non validée)
 Julien : v5 non validée (bras disparu et pioche flottante à l'image 2 ; manche trop vertical ; tête trop petite ; image 5 à 73 px). Règle permanente ajoutée à AGENTS.md (RÈGLE ANIMATION A à E). Appliquée au creusage : table de poses, planche cible 3D, contrôles automatiques. Pas de pixel art tant que la cible n'est pas validée.
 
 - Table : `art/pixel/plongeur_v6/creusage/TABLE_POSES.md`.

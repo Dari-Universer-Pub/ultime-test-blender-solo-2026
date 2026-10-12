@@ -1,0 +1,14 @@
+1. ancre (sans outil) : angle outil phi = - deg (depuis la verticale basse : - deg) ; buste dx +0 px, dy +0 px ; triche bras gauche +0 %, bras droit +0 % ; pas d'outil. A lire : silhouette de l'ancre, bras au repos, rien en main
+2. prête : angle outil phi = 170 deg (depuis la verticale basse : 10 deg) ; buste dx +0 px, dy +0 px ; triche bras gauche +32 %, bras droit +0 % ; outil hors du torse. A lire : outil tenu sur le côté droit, tête vers le bas-droit ; rien devant le ventre
+3. anticipation : angle outil phi = 35 deg (depuis la verticale basse : 145 deg) ; buste dx -1 px, dy +0 px ; triche bras gauche +25 %, bras droit +7 % ; outil hors du torse. A lire : pioche levée vers le haut-droit, tête au-dessus de l'épaule droite, buste en léger recul
+4. frappe : angle outil phi = 180 deg (depuis la verticale basse : 0 deg) ; buste dx +0 px, dy +0 px ; triche bras gauche +26 %, bras droit +0 % ; outil hors du torse. A lire : manche vertical sur le côté droit, tête en bas à droite, bras tendus vers le bas
+5. impact : angle outil phi = 140 deg (depuis la verticale basse : 40 deg) ; buste dx +3 px, dy +2 px ; triche bras gauche +0 %, bras droit +22 % ; outil hors du torse. A lire : tête posée au sol entre les pieds, manche incliné de 40° vers le bas-droit, buste penché à droite, casque baissé de 2 px
+6. retour : angle outil phi = 50 deg (depuis la verticale basse : 130 deg) ; buste dx +0 px, dy +0 px ; triche bras gauche +36 %, bras droit +0 % ; outil hors du torse. A lire : pioche remontée vers l'épaule droite, rien ne dépasse à gauche du corps
+
+ecarts d'angle entre images successives : images 2 -> 3 : 135 deg ; images 3 -> 4 : 145 deg ; images 4 -> 5 : 40 deg ; images 5 -> 6 : 90 deg (cible >= 40)
+controle image 1 : mains espacees >= 8 px OK ; outil hors torse OK ; triche bras {'g': 0, 'd': 0} ; bas de la tete - px (sol 91.5) OK
+controle image 2 : mains espacees >= 8 px OK ; outil hors torse OK ; triche bras {'g': 32, 'd': 0} ; bas de la tete 73.62 px (sol 91.5) OK
+controle image 3 : mains espacees >= 8 px OK ; outil hors torse OK ; triche bras {'g': 25, 'd': 7} ; bas de la tete 34.73 px (sol 91.5) OK
+controle image 4 : mains espacees >= 8 px OK ; outil hors torse OK ; triche bras {'g': 26, 'd': 0} ; bas de la tete 89.0 px (sol 91.5) OK
+controle image 5 : mains espacees >= 8 px OK ; outil hors torse OK ; triche bras {'g': 0, 'd': 22} ; bas de la tete 90.17 px (sol 91.5) OK
+controle image 6 : mains espacees >= 8 px OK ; outil hors torse OK ; triche bras {'g': 36, 'd': 0} ; bas de la tete 55.78 px (sol 91.5) OK
