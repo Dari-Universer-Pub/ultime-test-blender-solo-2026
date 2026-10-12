@@ -259,6 +259,176 @@
         "gants un peu petits : à grossir, si Julien le demande (non prévu dans sa liste)"
       ],
       "mesure_membres": "non applicable au rendu haute résolution"
+    },
+    {
+      "changement": "v4 étape 13 (correction 1, tuyau d'air) : la corde sort du sommet du casque et fait une boucle courte et arrondie vers l'arrière (sommet à 0,48 au-dessus du casque, soit moins d'un demi-diamètre), puis redescend derrière le casque vers la bouteille ; elle reste dans l'axe du casque",
+      "image": "boards/journal/plongeur_v4_hd_13.png",
+      "image_sha256": "e4423273551c53928d63a6a0f948bb975524c0bdea540bf7f335af82813a0927",
+      "controle": {
+        "silhouette": "La boucle part du sommet et s'arrondit vers l'arrière ; elle ne part plus sur les côtés, sans oreilles de lapin.",
+        "couleurs": "Crème chaud uniforme, comme avant.",
+        "cadrage": "Le sommet de la boucle reste dans le cadre.",
+        "taille": "Rendu 768 px, non pixelisé.",
+        "details": "La torsade se lit ; les courbes serrées paraissent légèrement bosselées, et l'extrémité vers la bouteille est cachée.",
+        "coherence_base": "Boucle courte et arrondie, comme demandé.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "courbes de la corde légèrement bosselées : torsion trop serrée sur un petit rayon",
+        "extrémité de la corde cachée : à rendre visible avec la bouteille (étape 19)"
+      ],
+      "mesure_membres": "non applicable au rendu haute résolution"
+    },
+    {
+      "changement": "v4 étape 14 (correction 2, proportions) : corps trapu : tronc en tonneau à ventre rond et col plus étroit, ceinture élargie, jambes courtes et épaisses, bras courts et épais, bottes et genoux descendus",
+      "image": "boards/journal/plongeur_v4_hd_14.png",
+      "image_sha256": "d942247b82e29e524ba721ea8ffc8d01c31d7d789426f2aa065dbfccde52e27e",
+      "controle": {
+        "silhouette": "Le corps est trapu : tronc arrondi, jambes et bras courts ; le casque reste la plus grosse forme.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Plongeur centré, tuyau entier dans le cadre.",
+        "taille": "Rendu 768 px, non pixelisé.",
+        "details": "Les genoux sont à peine marqués ; les plaques de genouillère prennent l'allure de taches sombres (étape 18).",
+        "coherence_base": "Chibi : casque à peu près 40 % de la hauteur, tronc court, jambes courtes et épaisses.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "bras encore sans volume marqué ni plis : à traiter (étape 15)",
+        "genouillères : taches sombres à refaire (étape 18)",
+        "couleur de la toile trop foncée (étape 16)",
+        "bouteille et corde : extrémité à rendre visible (étape 19)"
+      ],
+      "mesure_membres": "non applicable au rendu haute résolution"
+    },
+    {
+      "changement": "v4 étape 15 (correction 3, bras) : bras à volume rond, plis de toile localisés au coude et à l'épaule, manche qui s'évase vers le poignet (manchette un peu plus large) et gant plus grand",
+      "image": "boards/journal/plongeur_v4_hd_15.png",
+      "image_sha256": "50d7d251495431ca51624004d0a5b2febdd3f7c1986c9af61daf8ff2423d988f",
+      "controle": {
+        "silhouette": "Les bras ont plus de volume ; la manche s'élargit vers la manchette sombre, qui se lit bien.",
+        "couleurs": "Inchangées (kaki foncé) ; la manchette sombre contraste.",
+        "cadrage": "Inchangé.",
+        "taille": "Rendu 768 px, non pixelisé.",
+        "details": "Les plis du coude et de l'épaule sont à peine visibles : amplitude trop faible à cette échelle.",
+        "coherence_base": "Bras courts, épais, en manche évasée, comme demandé.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "plis du coude et de l'épaule trop faibles : à renforcer",
+        "couleur de la toile trop foncée (étape 16)",
+        "genouillères : taches sombres à refaire (étape 18)",
+        "bouteille : extrémité de la corde à rendre visible (étape 19)"
+      ],
+      "mesure_membres": "non applicable au rendu haute résolution"
+    },
+    {
+      "changement": "v4 étape 16 (correction 4, couleur) : toile en beige clair chaud (type lin) à la place du kaki foncé, ombres en brun doux (pantalon compris) ; les gants bleu-violet et le laiton contrastent nettement",
+      "image": "boards/journal/plongeur_v4_hd_16.png",
+      "image_sha256": "b93dc4b3a3fb61a1d899f82db280660d24140d11b51f577763a936715cbfcfcb",
+      "controle": {
+        "silhouette": "Inchangée.",
+        "couleurs": "Lin beige chaud sur le buste et les bras, brun doux sur le pantalon ; les gants et le laiton ressortent.",
+        "cadrage": "Inchangé.",
+        "taille": "Rendu 768 px, non pixelisé.",
+        "details": "Coutures et plis se lisent un peu mieux sur la toile claire, mais restent faibles.",
+        "coherence_base": "Toile beige clair, comme demandé.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "plis du coude et de l'épaule trop faibles : à renforcer (étape 17)",
+        "genouillères : taches sombres à refaire (étape 18)",
+        "bouteille : extrémité de la corde à rendre visible (étape 19)"
+      ],
+      "mesure_membres": "non applicable au rendu haute résolution"
+    },
+    {
+      "changement": "v4 étape 17 (correction 3 suite, plis) : plis du coude et de l'épaule renforcés, plis du tronc plus marqués",
+      "image": "boards/journal/plongeur_v4_hd_17.png",
+      "image_sha256": "f931b43b9dc309a1945f08f7638e31388db29f07e6057e000eca67fb110723c7",
+      "controle": {
+        "silhouette": "Inchangée.",
+        "couleurs": "Inchangées ; les creux de toile tombent légèrement sur le beige.",
+        "cadrage": "Inchangé.",
+        "taille": "Rendu 768 px, non pixelisé.",
+        "details": "Les plis restent faibles : à peine plus visibles qu'avant à cette échelle.",
+        "coherence_base": "Plis de toile au coude et à l'épaule, comme demandé, mais peu marqués.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "plis encore peu lisibles : à marquer davantage si Julien le demande",
+        "genouillères : taches sombres à refaire (étape 18)",
+        "bouteille : extrémité de la corde à rendre visible (étape 19)",
+        "détails de toile : fermeture, coutures et ceinture à finir (étape 20)"
+      ],
+      "mesure_membres": "non applicable au rendu haute résolution"
+    },
+    {
+      "changement": "v4 étape 18 (correction 5, genouillères) : plaques sombres bombées, enfoncées dans le genou (leur bord rentre dans la jambe) : plus de disques qui flottent devant",
+      "image": "boards/journal/plongeur_v4_hd_18.png",
+      "image_sha256": "2054eef0de9fd983ab82327947976f4d6bdcb6c5aae00a193066d756de7250f9",
+      "controle": {
+        "silhouette": "Les genouillères suivent le genou ; elles ne flottent plus.",
+        "couleurs": "Caoutchouc sombre sur brun doux : contraste fort.",
+        "cadrage": "Inchangé.",
+        "taille": "Rendu 768 px, non pixelisé.",
+        "details": "Les plaques sont trop grandes et paraissent des taches sur le pantalon.",
+        "coherence_base": "Plaques collées au genou, comme demandé ; à réduire.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "genouillères trop grandes, paraissent des taches : à réduire",
+        "plis encore peu lisibles",
+        "bouteille : extrémité de la corde à rendre visible et valve laiton (étape 19)",
+        "détails de toile : fermeture, coutures et ceinture à finir (étape 20)"
+      ],
+      "mesure_membres": "non applicable au rendu haute résolution"
+    },
+    {
+      "changement": "v4 étape 19 (correction 6, bouteille) : bouteille plus grande et plus éloignée derrière l'épaule lointaine, col relié à une valve en laiton ; la corde rejoint la valve",
+      "image": "boards/journal/plongeur_v4_hd_19.png",
+      "image_sha256": "dbc95e87c6dcd4d99c315ea4521884586b32339d897bc8eea816e51663334a3e",
+      "controle": {
+        "silhouette": "La bouteille se détache à gauche du casque, au-dessus de l'épaule lointaine ; la corde la rejoint par l'arrière.",
+        "couleurs": "Violet-bleu sombre distinct de la toile et du laiton du casque.",
+        "cadrage": "Inchangé ; la bouteille reste dans le cadre.",
+        "taille": "Rendu 768 px, non pixelisé.",
+        "details": "La valve en laiton est trop petite pour se lire à cette échelle.",
+        "coherence_base": "Bouteille violet-bleu derrière l'épaule lointaine, reliée au tuyau, comme demandé.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "valve laiton à peine visible : à agrandir si Julien le demande",
+        "détails de toile : fermeture, coutures et ceinture à finir (étape 20)"
+      ],
+      "mesure_membres": "non applicable au rendu haute résolution"
+    },
+    {
+      "changement": "v4 étape 20 (correction 7, détails de toile) : fermeture centrale avec coutures de part et d'autre, ceinture de cuir plus large avec coutures sur ses bords et grande boucle laiton, couture fine au-dessus de chaque manchette",
+      "image": "boards/journal/plongeur_v4_hd_20.png",
+      "image_sha256": "74bc9e7e1ee5ce226785e8eb24ad95dd1f6a438a49bebb2b386cd581bc08b8f1",
+      "controle": {
+        "silhouette": "La ceinture large coupe nettement le tronc ; la boucle se lit.",
+        "couleurs": "Cuir brun, boucle laiton, coutures brun doux sur le beige.",
+        "cadrage": "Inchangé.",
+        "taille": "Rendu 768 px, non pixelisé.",
+        "details": "La boucle et la ceinture se lisent à x1 ; les coutures des manches et de la fermeture sont fines, à peine visibles.",
+        "coherence_base": "Ceinture large avec boucle métallique, comme demandé.",
+        "pixels_parasites": "Aucun pixel parasite."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "coutures de la fermeture et des manches très fines : à peine visibles à cette échelle",
+        "plis encore peu lisibles",
+        "valve laiton petite"
+      ],
+      "mesure_membres": "non applicable au rendu haute résolution"
     }
   ]
 }

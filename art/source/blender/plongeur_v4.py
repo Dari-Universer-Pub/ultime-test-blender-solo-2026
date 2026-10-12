@@ -57,8 +57,8 @@ def materiaux():
         "acier": materiau("acier", "#7b8a92", metal=1.0, rugosite=0.34),
         "verre": materiau("verre", "#0a2a3c", rugosite=0.03),   # vitre sombre bleutée
         "reflet": materiau("reflet", "#eafcff", rugosite=0.05),  # reflet clair sur la vitre
-        "kaki": materiau("kaki", "#8c7c52", rugosite=0.86),
-        "kaki_sombre": materiau("kaki_sombre", "#5f5538", rugosite=0.86),
+        "kaki": materiau("kaki", "#e0cc9e", rugosite=0.86),          # toile : beige clair chaud (lin)
+        "kaki_sombre": materiau("kaki_sombre", "#9c7e58", rugosite=0.86),  # ombres de toile : brun doux
         "gant": materiau("gant", "#2b3170", rugosite=0.42),
         "manchette": materiau("manchette", "#1c1830", rugosite=0.5),
         "botte": materiau("botte", "#15122a", rugosite=0.5),
@@ -147,8 +147,15 @@ def membre(points, rayons, mat, nom, nseg=14, cotes=28, plis=None):
             rk = r
             if plis:
                 # plis de toile : creux doux et étroits, répartis autour de la section (pas de bosse)
-                nb, amp = plis
-                rk = r * (1.0 - amp * (0.5 + 0.5 * math.cos(nb * th)) ** 6)
+                nb, amp = plis[0], plis[1]
+                zones = plis[2] if len(plis) > 2 else None
+                if zones is None:
+                    g = 1.0
+                else:
+                    # plis localisés : seulement autour des positions données (fraction du chemin)
+                    u = i / max(n - 1, 1)
+                    g = max(math.exp(-((u - c) / 0.08) ** 2) for c in zones)
+                rk = r * (1.0 - amp * g * (0.5 + 0.5 * math.cos(nb * th)) ** 5)
             anneau.append(bm.verts.new(p + rk * (math.cos(th) * nrm + math.sin(th) * bn)))
         anneaux.append(anneau)
     for i in range(n - 1):
@@ -315,59 +322,74 @@ def construire(scene):
 
     # --- torse court et arrondi, toile kaki avec plis, fermeture centrale, bassin
     # tonneau plein et lisse : une seule surface (bassin, ventre, poitrine), section élargie en X
-    torse = membre([(0.0, 0.0, 0.84), (0.0, 0.0, 1.10), (0.0, 0.0, 1.36)], [0.42, 0.50, 0.44], m["kaki"],
-                   "torse", nseg=10, cotes=40, plis=(7, 0.05))
-    torse.scale = (1.12, 0.84, 1.0)
+    torse = membre([(0.0, 0.0, 0.74), (0.0, 0.0, 1.04), (0.0, 0.0, 1.34)], [0.48, 0.58, 0.40], m["kaki"],
+                   "torse", nseg=10, cotes=40, plis=(7, 0.09))
+    torse.scale = (1.15, 0.84, 1.0)
     _appliquer(torse)
-    boite((0.0, -0.40, 1.12), (0.035, 0.03, 0.62), cadre_fer, biseau=0.0, nom="fermeture")
+    boite((0.0, -0.46, 1.04), (0.035, 0.03, 0.56), cadre_fer, biseau=0.0, nom="fermeture")
+    # coutures de part et d'autre de la fermeture
+    for x in (-0.07, 0.07):
+        boite((x, -0.44, 1.04), (0.010, 0.012, 0.50), m["kaki_sombre"], biseau=0.0, nom="couture_fermeture")
     # coutures horizontales fines, sur la toile
-    tore((0.0, 0.0, 1.27), 0.52, 0.012, m["kaki_sombre"], echelle=(1.0, 0.84, 1.0), nom="couture")
+    tore((0.0, 0.0, 1.24), 0.50, 0.012, m["kaki_sombre"], echelle=(1.0, 0.84, 1.0), nom="couture")
     # --- ceinture de cuir brun, boucle métallique
-    tore((0.0, 0.0, 1.0), 0.56, 0.058, m["cuir"], echelle=(1.05, 0.84, 1.0), nom="ceinture")
-    boite((0.0, -0.47, 1.0), (0.14, 0.035, 0.11), m["laiton"], biseau=0.012, nom="boucle")
+    # ceinture de cuir plus large (bande de 0,14), coutures sur ses bords, boucle métallique
+    tore((0.0, 0.0, 1.0), 0.64, 0.05, m["cuir"], echelle=(1.07, 0.84, 1.4), nom="ceinture")
+    for z in (0.94, 1.06):
+        tore((0.0, 0.0, z), 0.66, 0.009, m["kaki_sombre"], echelle=(1.07, 0.84, 1.0), nom="couture_ceinture")
+    boite((0.0, -0.60, 1.0), (0.17, 0.05, 0.15), m["laiton"], biseau=0.015, nom="boucle")
 
     # --- bras courts et épais, manchettes sombres, gros gants caoutchouc avec pouce
     for s in (-1.0, 1.0):
-        epaule = (0.50 * s, 0.0, 1.20)
-        coude = (0.74 * s, -0.10, 0.90)
-        poignet = (0.80 * s, -0.14, 0.64)
-        membre([epaule, coude, poignet], [0.19, 0.155, 0.145], m["kaki"], "bras")
+        epaule = (0.56 * s, 0.0, 1.16)
+        coude = (0.78 * s, -0.10, 0.96)
+        poignet = (0.84 * s, -0.12, 0.80)
+        # bras : volume rond, plis de toile à l'épaule et au coude, manche qui s'évase vers le poignet
+        membre([epaule, coude, poignet], [0.22, 0.18, 0.20], m["kaki"], "bras", nseg=12,
+               plis=(5, 0.18, [0.10, 0.52]))
         d = (Vector(poignet) - Vector(coude)).normalized()
         # manchette de toile : la fin de la manche, avec une bande sombre ; elle prolonge le bras
-        membre([Vector(poignet) - d * 0.14, Vector(poignet) + d * 0.02], [0.160, 0.170],
+        membre([Vector(poignet) - d * 0.14, Vector(poignet) + d * 0.02], [0.205, 0.215],
                m["manchette"], "manchette", nseg=2)
         # gant en mitaine : l'éllipsoïde part du poignet, son bord recouvre le bord de la manchette
         gant_c = Vector(poignet) + d * 0.12
-        gant = ellipsoide(gant_c, 0.17, (1.0, 0.92, 1.25), m["gant"], biseau=0.02, nom="gant")
+        gant = ellipsoide(gant_c, 0.19, (1.0, 0.92, 1.22), m["gant"], biseau=0.02, nom="gant")
         gant.rotation_mode = "QUATERNION"
         gant.rotation_quaternion = Vector((0.0, 0.0, 1.0)).rotation_difference(d)
+        # couture de manche juste au-dessus de la manchette
+        couture = tore(Vector(poignet) - d * 0.09, 0.207, 0.009, m["kaki_sombre"], nom="couture_manche")
+        orienter(couture, d)
         # pouce : un petit doigt du côté intérieur et devant, qui fait la mitaine
         pouce_c = gant_c + Vector((-0.13 * s, -0.11, 0.02))
         ellipsoide(pouce_c, 0.075, (0.9, 1.15, 0.8), m["gant"], nom="pouce")
 
     # --- jambes courtes, genouillères sombres, grosses bottes lourdes
     for s in (-1.0, 1.0):
-        hanche = (0.20 * s, 0.0, 0.84)
-        genou = (0.24 * s, -0.02, 0.54)
-        cheville = (0.26 * s, 0.0, 0.24)
-        membre([hanche, genou, cheville], [0.21, 0.165, 0.14], m["kaki_sombre"], "jambe")
+        hanche = (0.22 * s, 0.0, 0.78)
+        genou = (0.25 * s, -0.02, 0.46)
+        cheville = (0.27 * s, 0.0, 0.22)
+        membre([hanche, genou, cheville], [0.25, 0.21, 0.19], m["kaki_sombre"], "jambe")
         # genouillère : plaque arrondie collée à l'avant du genou (enfoncée de 2 cm dans la jambe)
-        ellipsoide((genou[0], genou[1] - 0.165, genou[2]), 0.13, (1.0, 0.4, 0.95), m["genouillere"],
-                   biseau=0.02, nom="genouillere")
-        ellipsoide((0.27 * s, -0.07, 0.13), 0.2, (0.95, 1.4, 0.72), m["botte"], biseau=0.03, nom="botte")
+        # genouillère : plaque bombée, enfoncée dans le genou (son bord rentre dans la jambe)
+        ellipsoide((genou[0], -0.20, genou[2]), 0.15, (0.93, 0.46, 1.0), m["genouillere"],
+                   biseau=0.03, nom="genouillere")
+        ellipsoide((0.28 * s, -0.07, 0.11), 0.22, (1.0, 1.35, 0.7), m["botte"], biseau=0.03, nom="botte")
 
     # --- bouteille de plongée violet-bleu, derrière l'épaule gauche (lointaine)
     # bouteille : dépasse derrière l'épaule lointaine (gauche), penchée vers l'arrière ; son col reçoit la corde
-    cylindre((-0.86, 0.45, 1.55), 0.14, 0.66, m["bouteille"], rotation=(0.0, -0.25, 0.0), biseau=0.05,
+    cylindre((-0.98, 0.50, 1.60), 0.16, 0.72, m["bouteille"], rotation=(0.0, -0.22, 0.0), biseau=0.06,
              nom="bouteille")
-    cylindre((-0.955, 0.45, 1.92), 0.05, 0.12, m["bouteille"], rotation=(0.0, -0.25, 0.0), biseau=0.02,
+    cylindre((-1.07, 0.50, 2.01), 0.06, 0.12, m["bouteille"], rotation=(0.0, -0.22, 0.0), biseau=0.02,
              nom="col_bouteille")
+    # valve en laiton au col : la corde s'y raccorde
+    cylindre((-1.09, 0.50, 2.10), 0.045, 0.09, m["laiton"], rotation=(0.0, -0.22, 0.0), biseau=0.015,
+             nom="valve")
 
     # --- tuyau d'air en corde torsadée, sortant du sommet du casque, grande boucle vers l'arrière
     # une seule corde épaisse : sort du sommet du casque, monte, fait une grande boucle lisse vers l'arrière,
     # puis redescend jusqu'au col de la bouteille (derrière l'épaule lointaine). Trois brins serrés.
-    cordon([(0.0, 0.05, 2.40), (0.03, 0.30, 2.86), (0.0, 0.80, 3.10), (-0.10, 1.25, 2.85), (-0.22, 1.42, 2.25),
-            (-0.45, 1.20, 1.85), (-0.66, 0.78, 1.95), (-0.95, 0.45, 2.02)],
+    cordon([(0.0, 0.02, 2.40), (0.0, 0.14, 2.66), (0.0, 0.50, 2.86), (0.0, 0.90, 2.66), (0.0, 1.06, 2.26),
+            (-0.12, 0.92, 2.10), (-0.55, 0.68, 2.08), (-1.08, 0.50, 2.04)],
            rayon_helice=0.095, rayon_fil=0.085, torsions=7.0, scene=scene, mat=m["corde"], nom="tuyau_air")
 
 
