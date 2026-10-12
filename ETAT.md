@@ -1,6 +1,22 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
-## Phase courante : ANIMATIONS (lot 1 idle animé fait, nage v2 corrigée) — ARRÊT POUR VALIDATION DE JULIEN
+## Phase courante : LOT 2 CREUSAGE (six images) — ARRÊT POUR VALIDATION DE JULIEN
+Julien a validé l'idle animé (c91fb54). Référence de nage : `art/pixel/plongeur_v6/nage_v2/` ; la v1 reste intacte dans `art/pixel/plongeur_v6/nage/` (archive).
+
+Retouche idle (demandée, faite) : bulle de 3 à 4 px (cible 4 à 5 : atteinte au bas de la plage), montée sur les images 2 à 6 puis dissoute ; image 1 = ancre inchangée. Planche v1 de l'idle dans l'historique (`c91fb54`).
+
+Lot 2 : CREUSAGE (`art/pixel/plongeur_v6/creusage/`, planche `planche_creusage.png`, mesures `mesures_creusage.txt`).
+- Pioche construite dans Blender : manche en cuir (tube), tête en acier (pavé), tenue par les deux gants (cinématique inverse à deux os). Hauteur 72 px, pioche comprise.
+- Image 1 = ancre idle sans pioche ; 2 prête ; 3 anticipation ; 4 frappe ; 5 impact ; 6 retour.
+- Repères (proche 45 %, lointain 40 %) : 5 images sur 6 ; image 3 KO (bras lointain 22 %). Image 6 : bras proche 46 %, tout juste au-dessus.
+- Écarts : bras tendus vers l'avant, largeur 36 à 40 px contre 45 ; frappe et impact peu marqués (la pioche reste presque horizontale devant le torse, limite d'atteinte des bras) ; gant gauche de la frappe posé sur la ceinture ; tête de pioche petite sur les images 2, 5 et 6.
+- Trois points faibles : 1) image 3, bras gauche caché ; 2) frappe et impact peu marqués ; 3) tête de pioche petite.
+- Code : `art/source/blender/plongeur_v6.py` : `CREUSAGE`, `PIOCHE`, `bras_vers`, `pose_creusage`, `rendre_creusage_images`, `tube_entre`, `boite_orientee`. Groupe « pioche » (#ff00ff) compté comme obstacle devant les membres.
+
+Lots restants, un par un, arrêt après chacun : attaque (6 images), saut (4), dégâts (3) et mort (8). Puis feuille, manifeste, jeu, tuiles 24 px, robot, `gate.py M3` dans un clone neuf.
+Blocage : aucun.
+
+## Ancienne phase : ANIMATIONS (lot 1 idle animé et nage v2, archivée)
 Julien a validé la nage r03 : ses huit images restent la référence (`art/pixel/plongeur_v6/nage/`, commit `0d78542`), non régénérées.
 
 Corrections demandées par Julien (non bloquantes), en fichiers séparés `art/pixel/plongeur_v6/nage_v2/` (planche `planche_nage_v2.png`) :

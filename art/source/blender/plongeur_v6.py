@@ -349,6 +349,7 @@ HAUT_DZ = 0.0            # idle animé : buste, épaules et casque montent de HA
 BULLE = None             # idle animé : (centre, rayon) d'une bulle qui sort du casque, None = pas de bulle
 VERSION_NAGE = 1         # 1 = nage r03 validée ; 2 = corrigée (corde qui flotte derrière, cycle asymétrique)
 ROTATION_CORDE = 0.0     # nage v2 : battement de la corde flottante (phase, en radians)
+PIOCHE = None            # creusage : (main droite, main gauche) sur le manche, None = pas de pioche
 INCLINAISON = 0.0        # nage : élévation de la tête au-dessus de l'horizontale, en degrés (0 = pas de nage, idle)
 OMBRE_BRAS = False       # nage : ombre portée des bras sur le tronc (séparation par l'ombre, pas par la couleur)
 PIVOT_NAGE = (0.0, 0.0, 0.92)   # centre de rotation du corps incliné (les hanches)
@@ -458,6 +459,52 @@ def corps(scene, mat):
         objets[nom] = p
     bpy.data.objects.remove(o, do_unlink=True)
     return objets
+
+
+def tube_entre(a, b, rayon, mat, nom, cotes=8):
+    """Tube droit de rayon constant entre les points a et b (manche de la pioche), faces plates."""
+    a, b = Vector(a), Vector(b)
+    axe = (b - a).normalized()
+    t = axe.cross(Vector((0.0, 1.0, 0.0)))
+    t.normalize()
+    v = axe.cross(t).normalized()
+    bm = bmesh.new()
+    anneaux = []
+    for p in (a, b):
+        anneaux.append([bm.verts.new(p + rayon * (math.cos(2 * math.pi * k / cotes) * t
+                                                   + math.sin(2 * math.pi * k / cotes) * v))
+                        for k in range(cotes)])
+    for k in range(cotes):
+        bm.faces.new((anneaux[0][k], anneaux[0][(k + 1) % cotes], anneaux[1][(k + 1) % cotes], anneaux[1][k]))
+    bm.faces.new(anneaux[0][::-1])
+    bm.faces.new(anneaux[1])
+    me = bpy.data.meshes.new(nom)
+    bm.to_mesh(me)
+    bm.free()
+    o = bpy.data.objects.new(nom, me)
+    o.data.materials.append(mat)
+    return o
+
+
+def boite_orientee(centre, axes, demi, mat, nom):
+    """Pavé orienté : axes = (u, v, w) unitaires, demi = demi-tailles le long de chaque axe (tête de pioche)."""
+    u, v, w = axes
+    bm = bmesh.new()
+    sommets = []
+    for k in range(8):
+        sx = 1 if k & 1 else -1
+        sy = 1 if k & 2 else -1
+        sz = 1 if k & 4 else -1
+        sommets.append(bm.verts.new(Vector(centre) + u * sx * demi[0] + v * sy * demi[1] + w * sz * demi[2]))
+    for quad in ((0, 1, 3, 2), (4, 6, 7, 5), (0, 2, 6, 4), (1, 5, 7, 3), (0, 4, 5, 1), (2, 3, 7, 6)):
+        bm.faces.new([sommets[i] for i in quad])
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces[:])
+    me = bpy.data.meshes.new(nom)
+    bm.to_mesh(me)
+    bm.free()
+    o = bpy.data.objects.new(nom, me)
+    o.data.materials.append(mat)
+    return o
 
 
 def corde_torsadee(points, rayon, scene, mat, nom, cotes=16, nseg=14):  # cotes=6 : torsion lisible à 3 px
@@ -621,6 +668,16 @@ def construire(scene):
         objets["bulle"] = ellipsoide((centre[0], centre[1], centre[2] + HAUT_DZ), rayon, (1.0, 1.0, 1.0),
                                      m["acier"], "bulle", niveau=1)
 
+    # --- pioche (creusage) : manche en cuir tenu par les deux gants, tête en acier
+    if PIOCHE is not None:
+        R, L = Vector(PIOCHE[0]), Vector(PIOCHE[1])
+        u = (R - L).normalized()
+        H = R + u * 0.14                     # tête : au bout du manche, au-delà de la main droite
+        objets["pioche_manche"] = tube_entre(L - u * 0.08, H, 0.055, m["cuir"], "pioche_manche")
+        w = u.cross(Vector((0.0, 1.0, 0.0))).normalized()
+        v = u.cross(w).normalized()
+        objets["pioche_tete"] = boite_orientee(H, (u, v, w), (0.07, 0.05, 0.26), m["acier"], "pioche_tete")
+
     # --- scène
     for o in objets.values():
         if o.name not in scene.objects:
@@ -760,8 +817,9 @@ def rendre_nage_images(dossier, n=8, incl=70.0, identite=False, images=None, rap
 
 # ------------------------------------------------------------------ idle animé (six images, même caméra)
 RESPIRATION = 0.08      # m : 2 px à l'échelle du cadre (4,5 m sur 112 px) ; buste et épaules montent
-BULLES_IDLE = {1: ((0.00, -0.14, 2.56), 0.05), 2: ((0.02, -0.18, 2.66), 0.06),
-               3: ((0.05, -0.22, 2.78), 0.07), 4: ((0.08, -0.26, 2.91), 0.08)}   # images 2 à 5 (k = 1 à 4)
+BULLES_IDLE = {1: ((0.00, -0.14, 2.54), 0.07), 2: ((0.02, -0.18, 2.59), 0.085),   # images 2 à 6 (k = 1 à 5)
+               3: ((0.04, -0.22, 2.64), 0.09), 4: ((0.06, -0.26, 2.68), 0.08),    # la bulle monte doucement, grossit, puis se dissout
+               5: ((0.08, -0.30, 2.71), 0.06)}
 
 
 def pose_idle(k, n=6):
@@ -795,11 +853,87 @@ def rendre_idle_images(dossier, n=6):
     GARDER_PLIS, HAUT_DZ, BULLE = False, 0.0, None
 
 
+# ------------------------------------------------------------------ creusage (six images, pioche dans les gants)
+# image k : CREUSAGE[k] = centres des gants droit (R) et gauche (L) sur le manche, et penche du buste
+# (négatif = vers la caméra). Image 1 = ancre idle sans pioche ; 2 prête ; 3 anticipation ; 4 frappe ;
+# 5 impact ; 6 retour (la pioche redescend vers le repos).
+CREUSAGE = {  # mains écartées hors de la silhouette (à côté du casque), hampe en travers devant le corps
+    1: {"R": (0.60, -0.45, 1.35), "L": (-0.62, -0.50, 1.30), "penche": 0.00},
+    2: {"R": (0.62, 0.15, 1.80), "L": (-0.60, 0.10, 1.72), "penche": 0.04},
+    3: {"R": (0.58, -0.55, 1.10), "L": (-0.50, -0.60, 1.40), "penche": -0.04},
+    4: {"R": (0.60, -0.60, 1.04), "L": (-0.45, -0.65, 1.25), "penche": -0.08},
+    5: {"R": (0.60, -0.40, 1.25), "L": (-0.60, -0.45, 1.35), "penche": 0.00},
+}
+
+
+def bras_vers(S, cible, pole):
+    """Coude et poignet pour que le gant arrive en `cible` (cinématique inverse à deux os, mêmes longueurs
+    que pose_crawl). Le coude part dans la direction `pole`."""
+    l1, l2 = 0.39, 0.27
+    cible = Vector(cible)
+    direction = (cible - S).normalized()
+    W = cible - direction * 0.13                      # le gant est à 0,13 m du poignet
+    D = min((W - S).length, l1 + l2 - 1e-3)
+    axe = (W - S).normalized()
+    a = (l1 * l1 - l2 * l2 + D * D) / (2.0 * D)
+    h = math.sqrt(max(0.0, l1 * l1 - a * a))
+    perp = Vector(pole) - axe * Vector(pole).dot(axe)
+    perp.normalize()
+    return S + axe * a + perp * h, S + axe * D
+
+
+def pose_creusage(k):
+    """Image k du creusage (k = 0 : l'ancre idle, sans pioche). Les mains tiennent la hampe ; la pioche
+    est construite dans construire() à partir de PIOCHE."""
+    global PIOCHE
+    if k == 0:
+        PIOCHE = None
+        return {}
+    c = CREUSAGE[k]
+    PIOCHE = (tuple(c["R"]), tuple(c["L"]))
+    p = c["penche"]
+    pose = {}
+    for nom in ("poitrine", "cou", "epaule_g", "epaule_d"):
+        x, y, z = SQUELETTE[nom][0]
+        pose[nom] = (x, y + p, z)
+    pose["taille"] = (0.0, 0.5 * p, 1.06)
+    for cote, cle, pole in (("d", "R", (0.5, -0.8, -0.2)), ("g", "L", (-0.5, -0.8, -0.2))):
+        S = Vector(SQUELETTE["epaule_" + cote][0]) + Vector((0.0, p, 0.0))
+        coude, poignet = bras_vers(S, c[cle], pole)
+        pose["coude_" + cote] = tuple(coude)
+        pose["poignet_" + cote] = tuple(poignet)
+    return pose
+
+
+def rendre_creusage_images(dossier, n=6, identite=False, rapide=False):
+    """Rend les six images du creusage (couleur, ou carte d'identité de chaque image) dans dossier."""
+    global PIOCHE, SORTIE
+    os.makedirs(dossier, exist_ok=True)
+    for k in range(n):
+        POSE.clear()
+        POSE.update(pose_creusage(k))
+        scene = construire_tout()
+        if identite:
+            dossier_k = os.path.join(dossier, "image_%02d" % (k + 1))
+            os.makedirs(dossier_k, exist_ok=True)
+            if rapide:
+                rendre_membres_rapide(scene, dossier_k)
+            else:
+                ancienne = SORTIE
+                SORTIE = dossier_k
+                rendre_identite(scene)
+                SORTIE = ancienne
+        else:
+            rendre_fichier(scene, os.path.join(dossier, "creusage_%02d.png" % (k + 1)))
+    POSE.clear()
+    PIOCHE = None
+
+
 # ------------------------------------------------------------------ cartes d'identité
 GROUPE_COULEUR ={"tete": "#ffd400", "collerette": "#40ffb0", "tronc": "#ff0000", "tuyau": "#00e0ff",
                   "bouteille": "#ff7f00", "bras_g": "#00ff00", "bras_d": "#005000", "gant_g": "#a0ff00",
                   "gant_d": "#00a070", "jambe_g": "#0000ff", "jambe_d": "#000090", "botte_g": "#ff0080",
-                  "botte_d": "#ff80c0"}
+                  "botte_d": "#ff80c0", "pioche": "#ff00ff"}
 MATIERE_COULEUR = {"laiton": "#ffd400", "acier": "#00b4ff", "verre": "#ff2bd6", "toile": "#00ff80",
                    "cuir": "#ff6a00", "caoutchouc": "#3a00ff", "corde": "#f0f0f0", "bouteille": "#9400ff"}
 
@@ -824,6 +958,8 @@ def groupe_objet(o):
         return b
     if b in ("pouce_g", "pouce_d"):
         return "gant_" + b[-1]
+    if b.startswith("pioche"):
+        return "pioche"
     return None
 
 
@@ -845,6 +981,10 @@ def matiere_objet(o):
         return "corde"
     if b == "bouteille":
         return "bouteille"
+    if b == "pioche_manche":
+        return "cuir"
+    if b == "pioche_tete":
+        return "acier"
     return None
 
 

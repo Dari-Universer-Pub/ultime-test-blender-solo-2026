@@ -1,0 +1,11 @@
+CREUSAGE (carte d'identité 112 px ; proche = bras droit ; repères proche >= 45 %, lointain >= 40 %)
+image 1 (ancre, sans pioche) : bras proche 94 % ; bras lointain 69 % ; jambe proche 85 % ; jambe lointaine 59 % ; hauteur 72 px
+image 2 (prête) : bras proche 53 % ; bras lointain 54 % ; jambe proche 87 % ; jambe lointaine 58 % ; hauteur 72 px
+image 3 (anticipation) : bras proche 73 % ; bras lointain 22 % KO ; jambe proche 88 % ; jambe lointaine 57 % ; hauteur 72 px
+image 4 (frappe) : bras proche 63 % ; bras lointain 63 % ; jambe proche 79 % ; jambe lointaine 59 % ; hauteur 72 px
+image 5 (impact) : bras proche 68 % ; bras lointain 48 % ; jambe proche 70 % ; jambe lointaine 58 % ; hauteur 72 px
+image 6 (retour) : bras proche 46 % ; bras lointain 57 % ; jambe proche 87 % ; jambe lointaine 58 % ; hauteur 72 px
+GLOBAL : hauteur 72 px (cible 70 a 80, pioche comprise) ; 0 pixel isole ; 6 images distinctes ; 5 images sur 6 dans les reperes
+ECARTS AVEC L'ANCRE : bras tendus vers l'avant, coudes sortis, gants a hauteur du casque au lieu de pendre ; largeur 36 a 40 px contre 45 ; buste penche de 0,08 m a l'impact (valeur de pose)
+ECARTS : pioche presque horizontale devant le torse, la frappe ne descend pas vers le sol (limite d'atteinte des bras) ; gant gauche de la frappe pose sur la ceinture ; tete de pioche petite sur les images 2, 5 et 6
+TROIS POINTS FAIBLES : 1) image 3, bras gauche cache a 22 % (casque et pioche) ; 2) frappe et impact peu marques ; 3) tete de pioche petite sur les images 2, 5 et 6

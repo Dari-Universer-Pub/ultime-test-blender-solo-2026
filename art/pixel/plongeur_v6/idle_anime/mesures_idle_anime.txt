@@ -1,12 +1,12 @@
-IDLE ANIME (6 images, cadre 112 px, image 1 = ancre validée ; haut et bas en px par rapport à l'ancre)
-image 1 : ancre exacte (écart 0 px, même sprite que idle_01 validé) ; hauteur 72 px
-image 2 : haut -1 px, bas 0 ; hauteur 73 px ; 2 px au-dessus de l'ancre ; écart ancre 331 px
-image 3 : haut -2 px, bas 0 ; hauteur 74 px ; 9 px au-dessus (bulle) ; écart ancre 756 px
-image 4 : haut -2 px, bas 0 ; hauteur 74 px ; 14 px au-dessus (bulle) ; écart ancre 896 px
-image 5 : haut -3 px, bas 0 ; hauteur 75 px (bulle comprise) ; 15 px au-dessus (bulle) ; écart ancre 755 px
-image 6 : haut -1 px, bas 0 ; hauteur 73 px ; 2 px au-dessus (plus de bulle) ; écart ancre 325 px
-GLOBAL : base fixe (bas 0 px sur les six images) ; 6 images distinctes ; 0 pixel isolé après nettoyage
-ECART 1 : respiration de 2 px lisible sur la tête et le buste à x4, faible à x1 ; les bras suivent
-ECART 2 : bulle de 3 px seulement (images 3 à 5) : trop petite pour être lue à x1
-ECART 3 : image 5 haute de 75 px à cause de la bulle (cible 70 à 74) ; la bulle disparaît d'un coup entre les images 5 et 6
-TROIS POINTS FAIBLES : 1) bulle trop petite à x1 ; 2) respiration à peine visible à x1 ; 3) saut de la bulle entre les images 5 et 6
+IDLE ANIME v2 (six images, cadre 112 px ; image 1 = ancre validee, sprite identique)
+image 1 : ancre exacte (ecart 0 px) ; hauteur 72 px
+image 2 : haut -1 px, bas 0 ; hauteur 73 px ; bulle 3 px ; ecart ancre 333 px
+image 3 : haut -2 px, bas 0 ; hauteur 74 px ; bulle 4 px ; ecart ancre 763 px
+image 4 : haut -2 px, bas 0 ; hauteur 74 px ; bulle 4 px ; ecart ancre 911 px
+image 5 : haut -2 px, bas 0 ; hauteur 74 px ; bulle 3 px ; ecart ancre 760 px
+image 6 : haut -1 px, bas 0 ; hauteur 73 px ; bulle 3 px (se dissout) ; ecart ancre 332 px
+GLOBAL : base fixe (bas 0 px) ; hauteur 72 a 74 px ; 6 images distinctes ; 0 pixel isole apres nettoyage
+ECART 1 : bulle de 3 a 4 px (cible 4 a 5) : atteinte au bas de la plage, contre 3 px avant
+ECART 2 : bulle montee sur les images 2 a 6 puis dissoute, plus de disparition brutale ; reste la transition 6 vers 1
+ECART 3 : respiration de 2 px faible a x1 (visible a x4)
+TROIS POINTS FAIBLES : 1) bulle a 4 px au maximum, a la limite de la cible ; 2) respiration peu visible a x1 ; 3) transition 6 vers 1 (la bulle disparait)

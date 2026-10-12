@@ -487,6 +487,46 @@
         "respiration à peine visible à x1",
         "la bulle disparaît d'un coup entre les images 5 et 6"
       ]
+    },
+    {
+      "lot": "LOT 1 v2 : bulle retouchée (demande de Julien, validé sur c91fb54 pour le reste) : 3 à 4 px, montée sur les images 2 à 6 puis dissoute ; image 1 inchangée (ancre). Remplace la planche v1 (historique : commit c91fb54)",
+      "planche": "art/pixel/plongeur_v6/idle_anime/planche_idle_anime.png",
+      "planche_sha256": "edffb5488aba6803463da650d7c6b4ecfa2f53473f20150bf3b02b41367bd071",
+      "verdict": "garde : bulle plus visible (3 à 4 px, contre 3 px) ; cible 4 à 5 px atteinte au bas de la plage ; 0 pixel isolé ; image 1 identique à l'ancre",
+      "points_faibles": [
+        "bulle à 4 px au maximum, à la limite de la cible",
+        "respiration peu visible à x1",
+        "transition 6 vers 1 (la bulle disparaît)"
+      ]
+    }
+  ],
+  "creusage": [
+    {
+      "lot": "LOT 2 : creusage, six images ; image 1 = ancre idle sans pioche ; pioche construite dans Blender (manche cuir, tête acier), tenue par les deux gants ; prête 2, anticipation 3, frappe 4, impact 5, retour 6 ; buste penché",
+      "planche": "art/pixel/plongeur_v6/creusage/planche_creusage.png",
+      "planche_sha256": "40f9ad327d2f1c7b1e4dd8bdac6b05519f724148531defc1bed0f29888e22217",
+      "images": "art/pixel/plongeur_v6/creusage/creusage_01.png à creusage_06.png (112 x 112, nettoyées, 0 pixel isolé)",
+      "criteres": {
+        "silhouette_a_x1": "bras et pioche lisibles à l'image 3 ; frappe et impact peu marqués",
+        "couleurs_de_base": "oui : mêmes tons ; manche cuir et tête acier de la palette",
+        "cadrage": "oui : base fixe, figure dans sa case",
+        "taille_finale": "72 px, pioche comprise, dans la cible 70 à 80",
+        "details": "tête de pioche petite (2 à 4 px) sur les images 2, 5 et 6 ; visible à l'image 3",
+        "coherence_ancre": "mêmes tons et lumière, plis du torse conservés ; bras plus tendus que l'ancre",
+        "pixels_parasites": "0 pixel isolé après nettoyage"
+      },
+      "verdict": "garde avec écarts, à valider par Julien : bras séparés du tronc, pioche lisible en partie ; image 3 SOUS le repère (bras lointain 22 %) ; frappe peu marquée",
+      "mesures": {
+        "hauteur": "72 px",
+        "largeur": "36 à 40 px (ancre 45 px)",
+        "images_distinctes": "6 sur 6",
+        "reperes": "5 images sur 6 ; image 3 KO sur le bras lointain"
+      },
+      "points_faibles": [
+        "image 3 : bras gauche caché à 22 % (casque et pioche)",
+        "frappe et impact peu marqués : la pioche reste presque horizontale devant le torse",
+        "tête de pioche petite sur les images 2, 5 et 6"
+      ]
     }
   ]
 }
