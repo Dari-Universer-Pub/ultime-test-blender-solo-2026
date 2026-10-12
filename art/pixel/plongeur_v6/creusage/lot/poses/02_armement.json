@@ -25,12 +25,12 @@
    0
   ],
   "bras_g": {
-   "haut": -120,
-   "avant": -150
+   "haut": -90,
+   "avant": -60
   },
   "bras_d": {
-   "haut": 90,
-   "avant": 150
+   "haut": 135,
+   "avant": 75
   },
   "bloc_main_d": -15
  },

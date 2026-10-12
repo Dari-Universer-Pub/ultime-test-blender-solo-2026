@@ -24,9 +24,9 @@
      "ok": true
     },
     "tete_acier_px": {
-     "largeur": 16,
-     "hauteur": 20,
-     "ok": true
+     "largeur": 0,
+     "hauteur": 0,
+     "ok": false
     },
     "pixels_isoles": {
      "valeur": 0,
@@ -64,8 +64,8 @@
      "ok": true
     },
     "tete_acier_px": {
-     "largeur": 14,
-     "hauteur": 26,
+     "largeur": 12,
+     "hauteur": 6,
      "ok": true
     },
     "pixels_isoles": {
@@ -78,7 +78,7 @@
      "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
     }
    },
-   "hash": "b651047d85c95ab7"
+   "hash": "eba3cecb475f002f"
   },
   {
    "n": 3,
@@ -104,8 +104,8 @@
      "ok": true
     },
     "tete_acier_px": {
-     "largeur": 16,
-     "hauteur": 26,
+     "largeur": 12,
+     "hauteur": 6,
      "ok": true
     },
     "pixels_isoles": {
@@ -118,7 +118,7 @@
      "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
     }
    },
-   "hash": "792ffda5c50730f2"
+   "hash": "a2167835ab3951bd"
   },
   {
    "n": 4,
@@ -144,9 +144,9 @@
      "ok": true
     },
     "tete_acier_px": {
-     "largeur": 30,
-     "hauteur": 16,
-     "ok": true
+     "largeur": 6,
+     "hauteur": 12,
+     "ok": false
     },
     "pixels_isoles": {
      "valeur": 0,
@@ -184,8 +184,8 @@
      "ok": true
     },
     "tete_acier_px": {
-     "largeur": 16,
-     "hauteur": 29,
+     "largeur": 12,
+     "hauteur": 6,
      "ok": true
     },
     "pixels_isoles": {
@@ -209,7 +209,7 @@
    "nom": "retour",
    "controles": {
     "pioche_casque_px": {
-     "valeur": 0,
+     "valeur": 1,
      "tolerance": 2,
      "ok": true
     },
@@ -228,8 +228,8 @@
      "ok": true
     },
     "tete_acier_px": {
-     "largeur": 28,
-     "hauteur": 18,
+     "largeur": 12,
+     "hauteur": 6,
      "ok": true
     },
     "pixels_isoles": {
@@ -242,7 +242,7 @@
      "note": "couleurs nouvelles (pioche, acier) à vérifier à la main"
     }
    },
-   "hash": "fb1f7db3fe44c810"
+   "hash": "a22bb70a19de1f96"
   }
  ],
  "sequence": {
@@ -250,15 +250,15 @@
    "ok": true
   },
   "changements_px_entre_images": [
-   1011,
-   1068,
-   1403,
+   1051,
+   1119,
+   1452,
    1386,
-   1712
+   1711
   ],
   "boucle": {
    "premiere_vs_ancre_px_differents": 480,
-   "derniere_vs_premiere_px_differents": 414
+   "derniere_vs_premiere_px_differents": 401
   }
  }
 }

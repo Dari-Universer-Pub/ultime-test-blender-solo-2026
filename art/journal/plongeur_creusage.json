@@ -15,47 +15,48 @@
    },
    "verdict": "garde",
    "defauts_restants": [
-    "tête de pioche cachée derrière le casque : geste de la prête non lisible ; à trancher (option : passage devant, ou pose plus haute)",
-    "bras gauche : gant au bord du casque, sans chevauchement (0 px)"
-   ]
+    "CONTRÔLE EN ÉCHEC : tête de pioche cachée derrière le casque ; à -45 degrés, aucune position atteignable ne la sort du casque sans cacher la main (décision à prendre)",
+    "geste « pioche sur l'épaule » peu lisible (72 px visibles sur 180), relecteur : bloquant"
+   ],
+   "controle_mecanique": "ÉCHEC : tête non visible (0 px d'acier visible ; la tête de pioche est derrière le casque)"
   },
   {
-   "changement": "creusage image 2 (armement) : pioche levée au-dessus du casque, angle -15 (fiche -10, écart 5°)",
+   "changement": "creusage image 2 (armement) : pioche levée au-dessus du casque, angle -15 (fiche -10, écart 5°), bras gauche sorti du casque (coude -90, avant-bras -60)",
    "image": "art/pixel/plongeur_v6/creusage/lot/boards/creusage_2_02_armement.png",
-   "image_sha256": "0ca6345362b888e1e518ee666ae2262cfc67b2287cb1bceb6d086e937e967c0a",
+   "image_sha256": "b23c9fb36f6a6c77dddbf5dca85f7cae194001ef71c816564923ec1b62d52ee7",
    "controle": {
-    "silhouette": "oui : pioche levée à droite du casque, bras droit tendu vers le haut, geste d'armement lisible",
+    "silhouette": "oui : pioche levée à droite du casque, gant gauche visible hors du casque à gauche, geste d'armement lisible",
     "couleurs": "base de l'ancre conservée",
     "cadrage": "personnage dans la case",
     "taille": "72 px de haut (plage 70 à 72)",
-    "details": "tête de pioche visible, gant droit visible",
+    "details": "tête de pioche visible (12 x 6 px, contrôle OK), gants visibles des deux côtés",
     "coherence_base": "cohérent avec les autres images",
     "pixels_parasites": "0 pixel isolé"
    },
    "verdict": "garde",
    "defauts_restants": [
-    "tête de pioche : contrôle de tête non fiable (compte aussi les gants) ; à mesurer à la main",
-    "gant gauche levé touche le bord gauche du casque (contact, 0 px de chevauchement)"
-   ]
+    "manche traverse l'épaule droite (passe devant le bras, légal)"
+   ],
+   "controle_mecanique": "OK (tête 12x6, pioche/casque 0 px, bras/casque 0 px, hauteur 72)"
   },
   {
-   "changement": "creusage image 3 (sommet) : pioche au-dessus du casque, angle 15 (fiche 35 : 30 impossible sans traverser le casque)",
+   "changement": "creusage image 3 (sommet) : pioche la plus haute de la séquence, angle 15 (fiche 35 : 30 traverse le casque, 53 px), bras gauche levé hors du casque",
    "image": "art/pixel/plongeur_v6/creusage/lot/boards/creusage_3_03_sommet.png",
-   "image_sha256": "efc1e2f296af7b6fc5fcbab64ab3c8e6cb9d5d775b3b601dc1eae3b2f6dbed18",
+   "image_sha256": "441815c77ce85448b50f66dfae39814a06fe391a73b0436540302fd3eeff7cca",
    "controle": {
-    "silhouette": "oui : pioche la plus haute de la séquence, bras tendus vers le haut, geste de sommet lisible",
+    "silhouette": "oui : pioche la plus haute (pointe à y 22, plus haut que l'armement à y 28), bras tendus vers le haut, geste de sommet lisible",
     "couleurs": "base de l'ancre conservée",
-    "cadrage": "personnage dans la case, pioche à 1 px du bord haut au plus (y 22)",
+    "cadrage": "personnage dans la case, pioche à 2 px du bord haut (y 20 pour le casque, hauteur 72)",
     "taille": "72 px de haut (plage 70 à 72)",
-    "details": "tête de pioche visible, mains visibles",
+    "details": "tête de pioche visible (12 x 6 px, contrôle OK), gants visibles des deux côtés",
     "coherence_base": "cohérent avec les autres images",
     "pixels_parasites": "0 pixel isolé"
    },
    "verdict": "garde",
    "defauts_restants": [
-    "angle 15 au lieu de 30 : la pioche à 30 traverse le casque (53 px) ; écart de 20 degrés avec la fiche",
-    "gant gauche levé touche le bord gauche du casque (0 px de chevauchement)"
-   ]
+    "angle 15 au lieu de 30 : à 30 la pioche traverse le casque (53 px) ; écart de 20 degrés avec la fiche"
+   ],
+   "controle_mecanique": "OK (tête 12x6, pioche/casque 0 px, bras/casque 0 px, hauteur 72)"
   },
   {
    "changement": "creusage image 4 (frappe, descente) : pioche en diagonale vers le bas-droit, angle 105",
@@ -72,8 +73,10 @@
    },
    "verdict": "garde",
    "defauts_restants": [
-    "tête de pioche petite et pâle à ×1 : à renforcer dans le rendu du bloc (ombrage)"
-   ]
+    "CONTRÔLE EN ÉCHEC (tête 6 px de large) : à 105 degrés la tête est vue de profil ; à 135 ou 150, la pioche touche le casque (52 à 60 px) ; décision à prendre (ETAT.md)",
+    "pioche presque horizontale à hauteur des hanches : lue comme un balayage plutôt que comme une frappe en pleine descente (relecteur, défaut bloquant)"
+   ],
+   "controle_mecanique": "ÉCHEC : tête 6x12 (contrôle 12x4 : largeur 6 < 12). Tête vue de profil à 105 degrés : cause géométrique, voir ETAT.md"
   },
   {
    "changement": "creusage image 5 (impact) : tête de pioche au sol devant et à droite des pieds, angle 165 (fiche 150, écart 15°)",
@@ -95,22 +98,23 @@
    ]
   },
   {
-   "changement": "creusage image 6 (retour) : pioche qui se retire vers la droite, angle 60 (fiche 60), passe devant le torse",
+   "changement": "creusage image 6 (retour) : pioche remontée à droite, angle 15 (fiche 60 : 60 traverse le casque ou tête de 7 px de large), passe devant le torse",
    "image": "art/pixel/plongeur_v6/creusage/lot/boards/creusage_6_06_retour.png",
-   "image_sha256": "2acfd53820b9adb1c8d30626bfcfcb840670f9af696a2cf8d67ca1a0b205cea3",
+   "image_sha256": "6b27f428026d68b778e4f39dbe73ff5c556cd49cd7024ef5e9b47a3e0bcea646",
    "controle": {
-    "silhouette": "oui : pioche remontée en diagonale à droite, passe devant le torse (déclaré dans la fiche)",
+    "silhouette": "oui : pioche remontée en diagonale à droite de la tête, lue comme un retrait vers le haut",
     "couleurs": "base de l'ancre conservée",
     "cadrage": "personnage dans la case",
     "taille": "72 px de haut (plage 70 à 72)",
-    "details": "tête de pioche visible, gant droit visible",
+    "details": "tête de pioche visible (12 x 6 px, contrôle OK)",
     "coherence_base": "cohérent avec les autres images",
     "pixels_parasites": "0 pixel isolé"
    },
    "verdict": "garde",
    "defauts_restants": [
-    "manche devant le torse : passage déclaré, mais visible sur la poitrine"
-   ]
+    "manche devant la poitrine (passage déclaré dans la fiche) : lisible, mais la pioche est presque verticale : retrait peu marqué"
+   ],
+   "controle_mecanique": "OK (tête 12x6, pioche/casque 1 px (tolérance 2), bras/casque 0 px, hauteur 72)"
   }
  ],
  "sequence": {

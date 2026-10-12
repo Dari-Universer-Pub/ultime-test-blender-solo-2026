@@ -45,9 +45,10 @@ def visible(calques_ordre, masques):
 
 
 def steel(rgba):
-    """Pixels d'acier de la pioche : bleu-gris clair (même tons que le cadre d'acier de l'ancre)."""
+    """Pixels d'acier de la pioche : bleu-gris (#a8b6d6, #5a6490 : vert au-dessus du rouge). Les gants violets
+    (75,63,160) sont exclus : leur vert est sous leur rouge."""
     r, g, b, a = [rgba[..., i].astype(int) for i in range(4)]
-    return (a > 0) & (b > r + 25) & (b > 120)
+    return (a > 0) & (b > r + 25) & (b > 120) & (g >= r + 5)
 
 
 def main():
@@ -105,7 +106,7 @@ def main():
         hauteur = int(ys.max() - ys.min() + 1) if len(ys) else 0
         contr["hauteur_px"] = {"valeur": hauteur, "max": HAUTEUR_MAX, "ok": hauteur <= HAUTEUR_MAX}
         # 5. tête d'acier : bbox des pixels d'acier de la pioche visibles
-        st = steel(rgba) & bloc
+        st = steel(rgba) & bloc & (qui == i_bloc)  # visible seulement : une tête cachée derrière le casque ne compte pas
         if np.any(st):
             yy, xx = np.nonzero(st)
             lw, lh = int(xx.max() - xx.min() + 1), int(yy.max() - yy.min() + 1)

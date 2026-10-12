@@ -29,10 +29,10 @@
    "avant": -30
   },
   "bras_d": {
-   "haut": 105,
+   "haut": 90,
    "avant": -30
   },
-  "bloc_main_d": 60
+  "bloc_main_d": 15
  },
  "angle_pioche_fiche_deg": null
 }
