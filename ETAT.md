@@ -1,18 +1,20 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
-## Phase courante : CREUSAGE, méthode 2D par pièces plates — ÉTAPE 1 (découpe et remontage de l'ancre) — ARRÊT POUR VALIDATION DE JULIEN
+## Phase courante : CREUSAGE, méthode 2D par pièces — ÉTAPE 2 (bibliothèque d'angles) — ARRÊT POUR VALIDATION DE JULIEN
 
-Pose 3D du corps abandonnée (demande de Julien) : la cible 3D n'est pas validée et n'est pas utilisée. Ancre, caméra, lumière, palette et style sans contour inchangés (vérifié : rendu par défaut, nettoyé, = ancre validée à 100 %).
+Étape 1 validée (remontage 99,976 %). Corrections de méthode appliquées :
+1. Profondeur par pixel : seulement pour le test de remontage de l'ancre. Pour les poses, l'assembleur (étape 3) utilisera un ordre d'affichage explicite par pièce et par image, écrit dans le fichier de pose.
+2. Extrémités : pas de coupe plate visible. Au coude, un capuchon (sphère de même matière, r = 0,19 m) et l'avant-bras sont translatés du déplacement du coude (translation entière, pas de rotation de pixels). Vérifié à ×6 pour un bras à 90 degrés : pas de trou (0 pixel enclos), une marche d'un pixel sur le bord inférieur du coude, à corriger si vous la jugez gênante.
+3. Tête de pioche : épaisseur réelle (0,12 m) et courbure, pointe de chaque côté. À 0 degré : 12 px de large, 5 px de haut à ×1 ; tons #a8b6d6 et #5a6490, les mêmes que le cadre d'acier de l'ancre.
 
-- Pièces rendues seules à 112 px, même caméra et mêmes matières : `art/pixel/plongeur_v6/creusage/decoupe_ancre/pieces/` (casque avec corde, bouteille, valve et col ; torse avec ceinture et boucle ; jambes avec bottes ; bras haut et avant-bras avec gant, droit et gauche ; pioche : manche et tête séparés).
-- Profondeur par pièce (`profondeur/`) : ordre d'affichage par pixel (la pièce la plus proche gagne). Sans elle, 94 pixels étaient faux, quel que soit l'ordre de pile.
-- Remontage (`tools/planches/pieces.py`) : 99,976 % des pixels identiques au rendu complet (alpha : 0 pixel différent) ; remonté puis nettoyé comme l'ancre, 99,976 % identique à l'ancre validée. Les 3 pixels restants sont des égalités de profondeur (8 bits) dans le recouvrement du bras droit ; ils ne sont pas réglés.
-- Planches : `planche_pieces.png`, `planche_remontage.png` (ancre validée, remontage, pixels différents).
-- Limites connues : les bras sont courts sur l'ancre (haut 138 px, avant-bras 167 px) ; pas de pièce de recouvrement séparée aux jonctions (la bande de recouvrement de 0,03 m suffit, aucun trou mesuré).
-- Oracle de collision 3D abandonné avec la pose 3D : il surestimait l'enveloppe convexe du torse quand les genoux plient.
+Bibliothèque : `art/pixel/plongeur_v6/creusage/bibliotheque/`
+- variantes à 15 degrés, de −60 à +180 (17 angles), à la taille finale 112 px, pour le bras droit et le gauche (haut et avant-bras avec gant), et la pioche (manche et tête ensemble) ;
+- pivots et règles : `bibliotheque.json` (épaule, coude, poignée en px écran) et `rapport.json`.
+- Sens : bras = anti-horaire depuis le bras pendu (+90 = vers la droite) ; pioche = horaire depuis la tête en haut (+90 = vers la droite, comme la fiche).
 
-Étapes 2 (bibliothèque d'angles), 3 (assembleur) et 4 (quatre poses clés) : non commencées, attendent la validation de cette étape.
-Blocage : aucun.
+Planches : `planche_bras_d_haut.png`, `planche_bras_d_avant.png`, `planche_pioche.png` (×3), `jonctions.png` (×6).
+
+Blocage : aucun. Étape 3 (assembleur) non commencée.
 
 ## Ancienne phase : CREUSAGE, cible 3D v7 (non validée)
 Julien : v5 non validée (bras disparu et pioche flottante à l'image 2 ; manche trop vertical ; tête trop petite ; image 5 à 73 px). Règle permanente ajoutée à AGENTS.md (RÈGLE ANIMATION A à E). Appliquée au creusage : table de poses, planche cible 3D, contrôles automatiques. Pas de pixel art tant que la cible n'est pas validée.

@@ -555,8 +555,8 @@ def tete_orientee(H, bout, mat, nom):
     x = (H - bout).normalized().cross(F).normalized()           # le long de la barre, dans le plan de l'écran
     z = ((bout - H) - x * (bout - H).dot(x)).normalized()        # vers le manche : la courbe s'ouvre vers lui
     y = z.cross(x)
-    o = fer_pioche((0.0, 0.0, 0.0), mat, nom, a=0.20, pointe=0.07, epaisseur=0.08, largeur=0.035,
-                   courbure=0.07, pointe_arriere=0.07)
+    o = fer_pioche((0.0, 0.0, 0.0), mat, nom, a=0.20, pointe=0.07, epaisseur=0.12, largeur=0.035,
+                   courbure=0.10, pointe_arriere=0.07)
     o.matrix_world = Matrix.Translation(H) @ Matrix((x, y, z)).transposed().to_4x4()
     return o
 
@@ -1535,6 +1535,93 @@ def rendre_pieces_ancre(dossier):
     return manifeste
 
 
+# ------------------------------------------------------------------ bibliothèque d'angles (creusage, étape 2)
+# Pièces rendues à la taille finale, pivotées dans le plan de l'écran autour de leur pivot (jamais de rotation de pixels).
+ANGLES_BIBLIO = list(range(-60, 181, 15))   # 17 variantes, de -60 à +180 degrés, pas de 15
+
+
+def _pivoter(objets, pivot, axe, angle_rad, base):
+    """Rotation d'objets autour d'un axe passant par pivot (monde), composée avec leur matrice de départ (base)."""
+    M = Matrix.Translation(Vector(pivot)) @ Matrix.Rotation(angle_rad, 4, Vector(axe)) @ Matrix.Translation(-Vector(pivot))
+    for o in objets:
+        o.matrix_world = M @ base[o.name]
+
+
+def rendre_bibliotheque(dossier):
+    """Bras haut, avant-bras avec gant (droit et gauche), pioche : variantes à 15 degrés dans le plan de l'écran.
+    Sens : bras = anti-horaire depuis le bras pendu (+90 : vers la droite) ; pioche = horaire depuis la tête en haut
+    (comme la fiche). Pivots en px écran, constants d'une variante à l'autre (rotation autour du pivot)."""
+    global PIOCHE, HAUT_DX, HAUT_DY, HAUT_DZ
+    R, U, F = base_camera()
+    POSE.clear()
+    PIOCHE, HAUT_DX, HAUT_DY, HAUT_DZ = None, 0.0, 0.0, 0.0
+    scene = construire_tout()
+    lib = {"angles_deg": ANGLES_BIBLIO, "sens_bras": "anti-horaire depuis le bras pendu (+90 = vers la droite)",
+           "sens_pioche": "horaire depuis la tête en haut (+90 = vers la droite, comme la fiche)", "pieces": {}}
+    groupes_bras = {}
+    for cote in ("d", "g"):
+        haut, avant = decouper_membre(scene, cote)
+        S = pose_de("epaule_" + cote)
+        E = pose_de("coude_" + cote)
+        groupes_bras["bras_%s_haut" % cote] = (S, [haut])
+        groupes_bras["bras_%s_avant" % cote] = (E, [avant] + [scene.objects[n] for n in ("gant_" + cote, "pouce_" + cote)])
+        lib["pieces"]["bras_%s_haut" % cote] = {"pivot": "epaule", "pivot_px": [round(v, 2) for v in ecran(S)]}
+        lib["pieces"]["bras_%s_avant" % cote] = {"pivot": "coude", "pivot_px": [round(v, 2) for v in ecran(E)]}
+    base = {o.name: o.matrix_world.copy() for o in scene.objects if o.type == "MESH"}
+    maillages = lambda: [o for o in scene.objects if o.type == "MESH"]
+    # articulations : capuchons de recouvrement (sphères de même matière) à l'épaule et au coude
+    caps = {}
+    for cote in ("d", "g"):
+        mat = scene.objects["bras_" + cote].data.materials[0]
+        for nom, centre, rayon in (("epaule_" + cote, pose_de("epaule_" + cote), 0.21),
+                                   ("coude_" + cote, pose_de("coude_" + cote), 0.19)):
+            o = ellipsoide(tuple(centre), rayon, (1.0, 1.0, 1.0), mat, "cap_" + nom)
+            caps[nom] = o
+    os.makedirs(os.path.join(dossier, "capuchons"), exist_ok=True)
+    for nom, o in caps.items():
+        for x in maillages():
+            x.hide_render = True
+        o.hide_render = False
+        rendre_fichier(scene, os.path.join(dossier, "capuchons", nom + ".png"))
+        lib.setdefault("capuchons", {})[nom] = {"centre_px": [round(v, 2) for v in ecran(o.location)]}
+    for x in maillages():
+        x.hide_render = False
+    # variantes des bras : rotation autour du pivot (anti-horaire pour le spectateur = angle négatif sur F)
+    for theta in ANGLES_BIBLIO:
+        for nom, (pivot, objets) in groupes_bras.items():
+            _pivoter(objets, pivot, F, -math.radians(theta), base)
+            for x in maillages():
+                x.hide_render = x not in objets
+            os.makedirs(os.path.join(dossier, "variantes", nom), exist_ok=True)
+            rendre_fichier(scene, os.path.join(dossier, "variantes", nom, "%+04d.png" % theta))
+        for nom, (pivot, objets) in groupes_bras.items():
+            _pivoter(objets, pivot, F, 0.0, base)
+    POSE.clear()
+    # pioche : manche et tête ensemble, pivot = poignée (main droite, à 0,4 de la longueur depuis le bout)
+    G = monde(64.0, 60.0, -0.30)
+    L = MANCHE_PX * PX
+    H0 = G + U * (0.6 * L)
+    B0 = G - U * (0.4 * L)
+    PIOCHE = (G, None, None, {"B": tuple(B0), "H": tuple(H0)})
+    scene = construire_tout()
+    pioche = [o for o in scene.objects if o.name in ("pioche_manche", "pioche_tete")]
+    base = {o.name: o.matrix_world.copy() for o in scene.objects if o.type == "MESH"}
+    for x in scene.objects:
+        if x.type == "MESH" and x not in pioche:
+            x.hide_render = True
+    os.makedirs(os.path.join(dossier, "variantes", "pioche"), exist_ok=True)
+    for theta in ANGLES_BIBLIO:
+        _pivoter(pioche, G, F, math.radians(theta), base)
+        rendre_fichier(scene, os.path.join(dossier, "variantes", "pioche", "%+04d.png" % theta))
+    lib["pieces"]["pioche"] = {"pivot": "poignee", "pivot_px": [round(v, 2) for v in ecran(G)],
+                               "tete_repos_px": [round(v, 2) for v in ecran(H0)],
+                               "manche_repos_px": [round(v, 2) for v in ecran(B0)]}
+    PIOCHE, HAUT_DX, HAUT_DY, HAUT_DZ = None, 0.0, 0.0, 0.0
+    with open(os.path.join(dossier, "bibliotheque.json"), "w", encoding="utf-8") as f:
+        json.dump(lib, f, ensure_ascii=False, indent=1)
+    return lib
+
+
 def executer_essais(chemin, dossier):
     """Boucle rapide : chaque essai = une pose (k + surcharges), un rendu et le test de collision (oracle)."""
     global PIOCHE, HAUT_DX, HAUT_DY, HAUT_DZ
@@ -1559,6 +1646,10 @@ def executer_essais(chemin, dossier):
 
 
 def main():
+    if os.environ.get("PLONGEUR_BIBLIO"):
+        rendre_bibliotheque(os.environ["PLONGEUR_BIBLIO"])
+        print("BIBLIO_OK", flush=True)
+        return
     if os.environ.get("PLONGEUR_PIECES_PIOCHE"):
         rendre_pioche_pieces(os.environ["PLONGEUR_PIECES_PIOCHE"])
         print("PIOCHE_PIECES_OK", flush=True)

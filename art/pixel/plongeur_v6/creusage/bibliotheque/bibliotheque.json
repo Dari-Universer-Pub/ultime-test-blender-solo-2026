@@ -1,0 +1,94 @@
+{
+ "angles_deg": [
+  -60,
+  -45,
+  -30,
+  -15,
+  0,
+  15,
+  30,
+  45,
+  60,
+  75,
+  90,
+  105,
+  120,
+  135,
+  150,
+  165,
+  180
+ ],
+ "sens_bras": "anti-horaire depuis le bras pendu (+90 = vers la droite)",
+ "sens_pioche": "horaire depuis la tête en haut (+90 = vers la droite, comme la fiche)",
+ "pieces": {
+  "bras_d_haut": {
+   "pivot": "epaule",
+   "pivot_px": [
+    63.85,
+    59.74
+   ]
+  },
+  "bras_d_avant": {
+   "pivot": "coude",
+   "pivot_px": [
+    67.84,
+    67.42
+   ]
+  },
+  "bras_g_haut": {
+   "pivot": "epaule",
+   "pivot_px": [
+    46.72,
+    56.64
+   ]
+  },
+  "bras_g_avant": {
+   "pivot": "coude",
+   "pivot_px": [
+    39.3,
+    62.24
+   ]
+  },
+  "pioche": {
+   "pivot": "poignee",
+   "pivot_px": [
+    64.0,
+    60.0
+   ],
+   "tete_repos_px": [
+    64.0,
+    39.0
+   ],
+   "manche_repos_px": [
+    64.0,
+    74.0
+   ]
+  }
+ },
+ "capuchons": {
+  "epaule_d": {
+   "centre_px": [
+    63.85,
+    59.74
+   ]
+  },
+  "coude_d": {
+   "centre_px": [
+    67.84,
+    67.42
+   ]
+  },
+  "epaule_g": {
+   "centre_px": [
+    46.72,
+    56.64
+   ]
+  },
+  "coude_g": {
+   "centre_px": [
+    39.3,
+    62.24
+   ]
+  }
+ }
+}
