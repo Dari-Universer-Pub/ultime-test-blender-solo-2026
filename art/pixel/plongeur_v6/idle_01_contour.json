@@ -1,0 +1,16 @@
+{
+ "image": "idle_01_contour.png",
+ "image_sha256": "e4194d4d5f23675dce95d5427d934fc566640840eefc90ecc047c370cced651e",
+ "pixels_changes_pct": 30.1,
+ "isoles_avant": 38,
+ "isoles_apres": 0,
+ "contour_px": 568,
+ "blocs_contour_2x2_avant_amincir": 30,
+ "blocs_contour_2x2_apres": 3,
+ "couleurs": 24,
+ "hauteur_px": 71,
+ "alpha": [
+  0,
+  255
+ ]
+}

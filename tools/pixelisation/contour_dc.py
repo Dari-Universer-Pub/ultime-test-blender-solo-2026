@@ -30,7 +30,15 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
-CONTOUR = (0x1F, 0x17, 0x14)     # « contour » de la palette : brun très foncé
+CONTOUR = (0x1F, 0x17, 0x14)     # « contour » de la palette : brun très foncé (défaut, héros v5)
+
+
+def cle_couleur(hexa):
+    h = hexa.lstrip("#")
+    return (int(h[0:2], 16) << 16) | (int(h[2:4], 16) << 8) | int(h[4:6], 16)
+
+
+CLES_CONTOUR = {cle_couleur("#%02x%02x%02x" % CONTOUR)}   # couleurs de contour reconnues (amincissement, isolés)
 VOISINS4 = ((-1, 0), (1, 0), (0, -1), (0, 1))
 VOISINS8 = [(dy, dx) for dy in (-1, 0, 1) for dx in (-1, 0, 1) if (dy, dx) != (0, 0)]
 
@@ -46,10 +54,12 @@ def identite_plate(arr):
     return cle
 
 
-def contours(corps, matiere, groupe):
-    """Masque des pixels de contour : silhouette côté ombre + bords internes entre parties différentes."""
+def contours(corps, matiere, groupe, lumiere=False):
+    """Masque des pixels de contour : silhouette côté ombre + bords internes entre parties différentes.
+    lumiere=True : la silhouette côté lumière (haut, gauche) reçoit aussi un contour, renvoyé à part."""
     h, w = corps.shape
     marque = np.zeros((h, w), dtype=bool)
+    marque_lumiere = np.zeros((h, w), dtype=bool)
     # silhouette : voisin hors corps à droite (dx=+1) ou en bas (dy=+1)
     for y in range(h):
         for x in range(w):
@@ -60,6 +70,8 @@ def contours(corps, matiere, groupe):
                 hors = yy < 0 or xx < 0 or yy >= h or xx >= w or not corps[yy, xx]
                 if hors and dx + dy >= 1:
                     marque[y, x] = True
+                elif hors and lumiere:
+                    marque_lumiere[y, x] = True
     # bords internes : entre deux pixels du corps de matière ou de groupe différents, le pixel bas-droit
     for y in range(h):
         for x in range(w):
@@ -71,7 +83,7 @@ def contours(corps, matiere, groupe):
                     continue
                 if matiere[y, x] != matiere[yy, xx] or groupe[y, x] != groupe[yy, xx]:
                     marque[yy, xx] = True
-    return marque
+    return marque, marque_lumiere
 
 
 def isoles(arr, corps):
@@ -129,7 +141,7 @@ def amincir(arr, corps, passes=4):
     l'un l'autre. Renvoie le nombre de blocs restants."""
     h, w = corps.shape
     for _ in range(passes):
-        cont = identite_plate(arr) == (CONTOUR[0] << 16 | CONTOUR[1] << 8 | CONTOUR[2])
+        cont = np.isin(identite_plate(arr), list(CLES_CONTOUR))
         restants = 0
         for y in range(h - 1):
             for x in range(w - 1):
@@ -151,7 +163,7 @@ def amincir(arr, corps, passes=4):
 
 
 def blocs_contour(arr):
-    cont = identite_plate(arr) == (CONTOUR[0] << 16 | CONTOUR[1] << 8 | CONTOUR[2])
+    cont = np.isin(identite_plate(arr), list(CLES_CONTOUR))
     return int((cont[:-1, :-1] & cont[1:, :-1] & cont[:-1, 1:] & cont[1:, 1:]).sum())
 
 
@@ -161,7 +173,19 @@ def main():
     ap.add_argument("matiere")
     ap.add_argument("groupe")
     ap.add_argument("sortie")
+    ap.add_argument("--ombre", default=None, help="couleur du contour côté ombre et des bords internes (hex)")
+    ap.add_argument("--lumiere", default=None,
+                    help="couleur du contour côté lumière (hex) ; absent : pas de contour côté lumière")
     args = ap.parse_args()
+    global CLES_CONTOUR
+    if args.ombre:
+        CLES_CONTOUR = {cle_couleur(args.ombre)}
+        couleur_ombre = tuple(int(args.ombre.lstrip("#")[k:k + 2], 16) for k in (0, 2, 4))
+    else:
+        couleur_ombre = CONTOUR
+    if args.lumiere:
+        CLES_CONTOUR = CLES_CONTOUR | {cle_couleur(args.lumiere)}
+        couleur_lumiere = tuple(int(args.lumiere.lstrip("#")[k:k + 2], 16) for k in (0, 2, 4))
 
     rendu = charger(args.rendu)
     matiere = identite_plate(charger(args.matiere))
@@ -172,8 +196,11 @@ def main():
 
     avant_isoles = isoles(rendu, corps)
     sortie = rendu.copy()
-    marque = contours(corps, matiere, groupe)
-    sortie[marque, :3] = CONTOUR
+    marque, marque_lumiere = contours(corps, matiere, groupe, lumiere=bool(args.lumiere))
+    sortie[marque, :3] = couleur_ombre
+    if args.lumiere:
+        sortie[marque_lumiere & ~marque, :3] = couleur_lumiere
+        marque = marque | marque_lumiere
     sortie = nettoyer(sortie, corps)
     blocs_avant = blocs_contour(sortie)
     sortie = amincir(sortie, corps)

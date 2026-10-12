@@ -1,6 +1,56 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
-## Phase courante : PLONGEUR V5_DC (méthode Dead Cells), POSE IDLE FIXE — ARRÊT POUR VALIDATION DE JULIEN
+## Phase courante : PLONGEUR V6 (cible décrite, dessin animé), POSE IDLE — ARRÊT POUR VALIDATION DE JULIEN
+Julien a repris le héros avec une cible décrite (pas encore d'image cible). Pose idle seulement ; ensuite la nage, les autres animations, la feuille, le jeu, les tuiles 24 px, le robot et `gate.py M3` restent à faire.
+Rien n'est téléchargé. Références : `art/references/` (1951 Stockholm, 1970 USF). `tools/gate.py` et `tools/outils.json` non touchés ; HAUTEUR_PLONGEUR = (56, 80).
+
+- Script : `art/source/blender/plongeur_v6.py` (refait tout, corps en Skin lissé puis découpé, pièces rigides, détails peints par face, rampes CONSTANT par matière, contour froid cyan sur le bord droit).
+- Session Blender persistante : `tools/blender_session/serveur.py` (lancé avec `blender -b`, lit des commandes dans un dossier) et `envoyer.py`. Aucun serveur MCP Blender n'est disponible dans cet environnement : c'est le seul moyen utilisé. Un rendu de contrôle prend 4 à 6 s, une carte d'identité 25 à 30 s.
+- Essais rapides : 16 essais de forme (`essai0` à `essai16`), mesurés deux à deux (pourcentage de pixels changés). Détail dans le journal.
+- Sprite final : `art/pixel/plongeur_v6/idle_01.png` (= contour, étape 14). Rendus : `art/rendu/plongeur_v6/`. Carte d'identité : matière et groupe, à 112 px.
+- Journal : `art/journal/plongeur_v6.json`, 13 entrées, SHA-256 vérifiés. Annulations listées à part.
+- Planche : `boards/plongeur_v6_planche.png` (références 1951 et 1970 | v6 eau claire | v6 eau sombre | v6 damier | v5 précédent, et le bloc de mesures et d'écarts).
+
+### Objectifs chiffrés (mesurés sur le sprite final)
+| objectif | cible | mesure | écart |
+|---|---|---|---|
+| hauteur | 70 à 74 px | 71 px | OK |
+| couleurs | 24 à 32 | 24 utilisées sur 25 de palette | OK |
+| rampes par matière | 3 ou 4 tons | laiton 4, beige 4, cuir 3, violet 3, métal 3, verre 3, corde 3, contour 2 | OK |
+| pixels isolés | 0 | 0 (8 voisins) | OK |
+| contour 1 px constant | 1 px partout | 3 blocs 2x2 restants | ÉCART (3 blocs) |
+| contour dense | léger | 28 % de la silhouette | ÉCART |
+| membres | >= 30 px, >= 60 % | bras proche 206 px / 89 %, bras lointain 184 px / 63 %, jambe proche 249 px / 94 %, jambe lointaine 211 px / 64 % | OK |
+| tuyau (corde) | < 10 % | 6,1 % | OK |
+| plis nets | 3 ou 4 | quasi absents (1 à 10 faces par pli) | ÉCART |
+| reflets caoutchouc 1-2 px | présents | non peints | ÉCART |
+| boulons visibles | présents | invisibles à x1 | ÉCART |
+| torsion de corde | visible | corde à 3 px, torsion illisible | ÉCART |
+
+### Écarts restants, numérotés (comparaison à la description)
+1. Plis : les 3 ou 4 plis nets (épaule, coude, ceinture, genou) sont presque absents. Les réglages de plis sont sous le seuil de 5 %.
+2. Jambes : ombres en plaques sombres (plis en bloc), visibles à x4 : bruit. Retirer le pli du genou ne change que 0,8 % : annulé.
+3. Matières : reflets de caoutchouc (gants, bottes) non peints ; boulons du cadre et de la collerette invisibles ; arc de reflet du laiton trop large.
+4. Corde : 3 px, torsion illisible ; cible « épaisse » non atteinte (la corde à 0,085 ne change que 3,1 % : annulée).
+5. Bouteille : partiellement cachée derrière l'épaule gauche.
+6. Ceinture : 2,4 % seulement pour l'élargir (conservée, voir ci-dessous).
+7. Combinaison : ombres mauve-gris, beige encore froid.
+8. Contour : 28 % de la silhouette, 3 blocs 2x2 restants.
+9. Lumière : contour cyan présent sur le bord droit (58 px) ; lumière haut-gauche OK.
+10. Proportions : tête environ 40 % de la hauteur, tronc court et rond, bras et jambes courts et épais : OK.
+
+Les trois points les plus faibles : (1) plis et corde sans relief ; (2) contour trop dense, 3 blocs 2x2 ; (3) reflets caoutchouc et boulons absents.
+
+### Règle des 5 %, appliquée et discutée (à trancher par Julien)
+- ANNULÉS (sous 5 % des pixels, et sans réduire d'écart à mes yeux) : passes de finition majorité 3x3 casque (0,7 %), jambes (0,5 %), bras-gants-tronc-corde (1,2 %) ; retrait du pli du genou (0,8 %) ; corde à 0,085 (3,1 %). Les fichiers des passes sont dans `art/pixel/plongeur_v6/passes/annulees/`.
+- CONSERVÉS SOUS LE SEUIL, marqués « NON COMPTÉ » dans le journal : ceinture élargie (2,4 %), plis (1,1 %, et 0,5 % pour le pli d'épaule), section ronde du Skin (4,8 %). Ce sont des corrections de forme demandées par la description ; annulées, la ceinture et le tronc rond disparaîtraient. Je ne les ai pas annulées sans votre accord.
+- CONSÉQUENCE : aucune passe de finition Aseprite n'est appliquée. La consigne « au moins 3 passes visibles » et la règle « annule si < 5 % » ne peuvent pas être tenues ensemble avec du simple nettoyage. Options : (a) autoriser des repeintes de 5 % ou plus (une zone entière) ; (b) abaisser le seuil pour les passes de nettoyage ; (c) compter les détails à part.
+
+### Ce qui n'est pas fait (à reprendre après validation)
+- Nage (quatre membres lisibles à chaque image), autres animations, feuille, jeu (miroir, collisions, caméra), tuiles 24 px avec créatures et props agrandis ×1,5, robot, `python tools/gate.py M3` dans un clone neuf.
+- Image cible : quand Julien la fournira, la comparer à la planche avant toute nouvelle passe.
+
+
 Rien d'autre n'est fait : ni nage, ni autre animation, ni feuille, ni jeu, ni robot, ni `gate.py M3`.
 Attendre la validation de Julien sur la pose idle (planche `boards/plongeur_v5_dc_planche.png`).
 
@@ -39,6 +89,9 @@ Attendre la validation de Julien sur la pose idle (planche `boards/plongeur_v5_d
   - Les lumières de scène ne servent pas aux matières (émission seule) : elles ne changent rien au rendu.
   - Reproductibilité : `contour_dc.py` a produit `idle_01_contour.png` AVANT l'ajout de l'amincissement ; les passes 4 à 8 (listes de pixels générées puis appliquées dans Aseprite) complètent la chaîne. Le sprite final ne se refait donc pas en une seule commande.
 - Gate : `tools/gate.py` et `tools/outils.json` non touchés.
+
+## Ancienne phase (v5 Dead Cells, arrêt pour validation de la pose idle)
+Voir `art/journal/plongeur_v5_dc.json`. Le sprite v5 sert de comparaison dans la planche v6.
 
 ## Ancienne phase (v4_px, finition manuelle, archivée) : PLONGEUR V4_PX, EN ATTENTE DE VALIDATION
 - Julien a rejeté l'aspect « dessin d'enfant » : formes en boîtes et lignes droites. Refonte à la main, cartes de pixels explicites dans `art/pixel/plongeur_v4_px/main/dessin.py` (calques ; `carte_<passe>.txt`).

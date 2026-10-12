@@ -1,0 +1,236 @@
+{
+  "id": "plongeur_v6",
+  "note": "Héros v6 (scaphandrier dessin animé, méthode Dead Cells, pose idle). Règle : un changement compte s'il modifie au moins 5 % des pixels ET réduit un écart. Les changements sous le seuil sont marqués NON COMPTÉ et sont conservés comme exceptions à trancher par Julien. Les passes annulées sont listées à part.",
+  "entrees": [
+    {
+      "changement": "première version v6 : corps continu (Skin), pièces rigides, rampes par matière, détails peints par face",
+      "image": "boards/journal/plongeur_v6_1.png",
+      "image_sha256": "1dc052b67028f5d7e1f2080e19ff037cb1ceacc226733987d4faee8ce4aed71f",
+      "pixels_changes": "sans objet (première version)",
+      "verdict": "garde (première version)",
+      "controle": {
+        "silhouette": "Silhouette lisible à x1 : tête, tronc, bras, jambes séparés.",
+        "couleurs": "Rampes par matière, 24 couleurs de palette.",
+        "cadrage": "Héros 71 px dans la case 112.",
+        "taille": "71 px de haut.",
+        "details": "Casque laiton, hublot cerclé, reflet, collerette, ceinture, gants, bottes, bouteille, corde.",
+        "coherence_base": "Même design que v5, plus cartoon.",
+        "pixels_parasites": "Aucun pixel isolé après contour."
+      }
+    },
+    {
+      "changement": "bouteille violette déplacée derrière l'épaule gauche (essais 1 et 2)",
+      "image": "boards/journal/plongeur_v6_2.png",
+      "image_sha256": "36d89ee07534e5686dc3291b7deb32e6090b176c3e1fe4fa3510b28d62db1e86",
+      "pixels_changes": "10.6 % des pixels (mesuré entre les deux images)",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Bouteille visible à gauche, derrière l'épaule : oui.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Bouteille et valve lisibles ; corde reliée.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "Aucun."
+      }
+    },
+    {
+      "changement": "jambes courtes et épaisses, bottes plus lourdes (essai 3)",
+      "image": "boards/journal/plongeur_v6_3.png",
+      "image_sha256": "b3f034d55225c7a7e319a3827cfaeb823c23229efb5775c17032c38a711f019a",
+      "pixels_changes": "8.0 % des pixels (mesuré entre les deux images)",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Jambes plus courtes et plus épaisses.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Bottes plus lourdes, semelle en bande sombre.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "Aucun."
+      }
+    },
+    {
+      "changement": "tronc plus rond, bras plus épais (essai 4)",
+      "image": "boards/journal/plongeur_v6_4.png",
+      "image_sha256": "944a4de85adaec3d19714c67babf7451ba7117fc1cce2aaa55fb8e316cb68a95",
+      "pixels_changes": "6.3 % des pixels (mesuré entre les deux images)",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Tronc plus rond, bras plus épais.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Bras lisibles.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "Aucun."
+      }
+    },
+    {
+      "changement": "ceinture élargie (rayon 0,40 -> 0,45) (essai 5) : NON COMPTÉ (sous 5 %) : conservé, à trancher par Julien",
+      "image": "boards/journal/plongeur_v6_5.png",
+      "image_sha256": "6fb93a6fb2d1db2246328d6affeab848616665eb49485cc632109ce964ec8eed",
+      "pixels_changes": "2.4 % des pixels (mesuré entre les deux images)",
+      "verdict": "NON COMPTÉ (sous 5 %) : conservé, à trancher par Julien",
+      "controle": {
+        "silhouette": "Ceinture plus large, lisible à x1.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Ceinture cuir visible sur le tronc.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "Aucun."
+      }
+    },
+    {
+      "changement": "section ronde du Skin (essai 7), suivie d'un pli d'épaule déplacé (essai 6) : NON COMPTÉ (sous 5 %) : conservé, à trancher par Julien",
+      "image": "boards/journal/plongeur_v6_6.png",
+      "image_sha256": "2309be4c401e65e3fe8106591ebe6fd6d911801db757d7056a5d737ec912a62f",
+      "pixels_changes": "4.8 % des pixels (mesuré entre les deux images)",
+      "verdict": "NON COMPTÉ (sous 5 %) : conservé, à trancher par Julien",
+      "controle": {
+        "silhouette": "Non évalué (sous le seuil).",
+        "couleurs": "—",
+        "cadrage": "—",
+        "taille": "71 px.",
+        "details": "Pli d'épaule à peine visible.",
+        "coherence_base": "—",
+        "pixels_parasites": "—"
+      }
+    },
+    {
+      "changement": "profondeur du corps lissé x 1,3 (essai 8) : le tronc passe d'aplati à rond",
+      "image": "boards/journal/plongeur_v6_7.png",
+      "image_sha256": "9aa1789cad8b4b3623f398ba4962ca95cf188dbc3cedb25a790b051691c3a841",
+      "pixels_changes": "10.4 % des pixels (mesuré entre les deux images)",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Tronc passe d'un bloc aplati à un volume rond.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Ceinture et collerette mieux recouvertes.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "Aucun."
+      }
+    },
+    {
+      "changement": "plis élargis puis resserrés (essais 9 et 10) : NON COMPTÉ (sous 5 %) : conservé, à trancher par Julien",
+      "image": "boards/journal/plongeur_v6_8.png",
+      "image_sha256": "7cb38b65cbdbc84329bbc882fe4fcc182ef48a373bf64c73b4b35dc726165f2f",
+      "pixels_changes": "1.1 % des pixels (mesuré entre les deux images)",
+      "verdict": "NON COMPTÉ (sous 5 %) : conservé, à trancher par Julien",
+      "controle": {
+        "silhouette": "Plis presque inchangés.",
+        "couleurs": "—",
+        "cadrage": "—",
+        "taille": "71 px.",
+        "details": "Plis encore quasi absents.",
+        "coherence_base": "—",
+        "pixels_parasites": "—"
+      }
+    },
+    {
+      "changement": "bras lointain écarté vers l'extérieur (essai 13)",
+      "image": "boards/journal/plongeur_v6_9.png",
+      "image_sha256": "555229ba196ae04a2ca20f35e0590b1e149500f17da9c2a1c866706cf95f77eb",
+      "pixels_changes": "10.8 % des pixels (mesuré entre les deux images)",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Bras lointain sort du tronc.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Bras lointain visible à 59 %.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "Aucun."
+      }
+    },
+    {
+      "changement": "bras lointain : coude abaissé et avancé (essai 14)",
+      "image": "boards/journal/plongeur_v6_10.png",
+      "image_sha256": "735d2475fdc114d0d126f85ca125fb072726a1fc562eaf814b118264c303d6b2",
+      "pixels_changes": "5.5 % des pixels (mesuré entre les deux images)",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Bras lointain plus lisible.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Bras lointain à 63 %.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "Aucun."
+      }
+    },
+    {
+      "changement": "bras lointain : coude et poignet vers l'avant (essai 15)",
+      "image": "boards/journal/plongeur_v6_11.png",
+      "image_sha256": "6cc7de3363241eaeb2dbe5731310e836efad58b82d14cbfee21b20fa98f8379c",
+      "pixels_changes": "9.2 % des pixels (mesuré entre les deux images)",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Bras lointain plus lisible, en avant.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Pose plus raide.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "Aucun."
+      }
+    },
+    {
+      "changement": "bras lointain : pendant vers le bas (essai 16) : 63 % visible",
+      "image": "boards/journal/plongeur_v6_12.png",
+      "image_sha256": "b3d08b9e52755cdd583b5d4e786ec0b241210f8d939f50f05847d83657ad0937",
+      "pixels_changes": "10.4 % des pixels (mesuré entre les deux images)",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Bras lointain pendant, pose idle.",
+        "couleurs": "Inchangées.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Bras lointain 63 %, quatre membres OK.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "Aucun."
+      }
+    },
+    {
+      "changement": "contour à deux couleurs depuis les cartes d'identité (ombre indigo très foncé, lumière indigo clair), amincissement des blocs 2 x 2 (3 restants), pixels isolés à 0",
+      "image": "boards/journal/plongeur_v6_14.png",
+      "image_sha256": "01c1e2f341e02bb6552ce2dbbd22900ae7956e020537a451bcfc9911df54172a",
+      "pixels_changes": "30.1 % des pixels (mesuré entre les deux images)",
+      "verdict": "garde",
+      "controle": {
+        "silhouette": "Silhouette plus nette, trait sombre côté ombre et trait clair côté lumière.",
+        "couleurs": "24 couleurs ; contour indigo très foncé et indigo clair, jamais noir pur.",
+        "cadrage": "Inchangé.",
+        "taille": "71 px.",
+        "details": "Bords internes entre bras, tronc, jambes, casque et verre.",
+        "coherence_base": "Cohérent.",
+        "pixels_parasites": "0 isolé ; 3 blocs 2 x 2 restants (écart)."
+      }
+    }
+  ],
+  "annulations": [
+    {
+      "changement": "retrait du pli du genou (test) : annulé, script restauré",
+      "mesure": "0,8 %"
+    },
+    {
+      "changement": "passe de finition 1 : majorité 3 x 3 casque et collerette (13 pixels proposés)",
+      "mesure": "0,7 %"
+    },
+    {
+      "changement": "passe de finition 2 : majorité 3 x 3 jambes et bottes (10 pixels proposés)",
+      "mesure": "0,5 %"
+    },
+    {
+      "changement": "passe de finition 3 : majorité 3 x 3 bras, gants, tronc, corde (24 pixels proposés)",
+      "mesure": "1,2 %"
+    },
+    {
+      "changement": "corde à rayon 0,085 (essai 11) : annulé, revenu à 0,065",
+      "mesure": "3,1 %"
+    }
+  ]
+}
