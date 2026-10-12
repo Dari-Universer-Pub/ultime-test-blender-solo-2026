@@ -1,21 +1,13 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
-## Phase courante : PLONGEUR V4_PX (grille de pixels, 72 px), pose idle EN ATTENTE DE VALIDATION
-- Julien a modifié `HAUTEUR_PLONGEUR` dans `tools/gate.py` ; ce changement n'est PAS dans la branche (ni sur `origin/main`) : le gate y lit encore `(28, 48)`. Je n'ai pas touché au gate ; à corriger par Julien ou à reprendre.
-- Nouvelle échelle : 70 à 74 px de haut, case 112 x 112 (rendu à 4 fois : 448 px).
-- Modèle : `art/source/blender/plongeur_v4_px.py` (référence : `plongeur_v4.py`). Bras de 6 px, jambes épaisses avec un vide de 3 px, corde de 3 px en boucle courte (sommet à 0,24 au-dessus du casque), 6 boulons par grand hublot, 4 au petit, grille à 2 barres de 1 px.
-- Pixelisation par matière : `tools/pixelisation/pixel_px.sh` (rendu, carte d'identité, `pixeliser_matiere.py`, mesures). Palette : `art/palette_plongeur_px_matiere.json`.
-- Finition Aseprite (3 passes + nettoyage) : `tools/pixelisation/finition_px.lua`.
-- Sprite final : `art/pixel/plongeur_v4_px/idle_01.png`.
-- Planche finale : `boards/journal/plongeur_v4_px_final.png` (rendu v4 haute résolution à gauche, pixel ×4 sur eau claire, eau sombre et damier).
-- Mesures : 72 px de haut ; 0 pixel isolé ; 22 couleurs ; aucun noir pur ; quatre membres OK (bras proche 161 px / 71 %, bras lointain 138 px / 62 %, jambe proche 173 px / 77 %, jambe lointaine 154 px / 66 %) ; tuyau 4,3 % de la silhouette.
-- Journal : `art/journal/plongeur_v4_px.json`, entrées 1 à 6.
-- Reste à voir par Julien : grille du hublot à peine visible (1 px) ; le laiton est jaune d'or, à confirmer.
-
-### Plan du passage du jeu (à faire après validation du héros et de sa nage, pas avant)
-- Tuiles de 24 px : le héros de 72 px fait 3 tuiles de haut.
-- Créatures et props agrandis d'environ 1,5 fois pour rester à la même échelle que le héros.
-- M3 et les fonds ne sont pas touchés pour l'instant.
+## Phase courante : PLONGEUR V4_PX, FINITION MANUELLE (passe 7), EN ATTENTE DE VALIDATION DE JULIEN
+- Julien a rejeté l'aspect « dessin d'enfant » : formes en boîtes et lignes droites. Refonte à la main, cartes de pixels explicites dans `art/pixel/plongeur_v4_px/main/dessin.py` (calques ; `carte_<passe>.txt`).
+- Calque 'repère' = réduction automatique ; calque 'dessin' = la main, exporté seul (`assembler.py`, fichiers `plongeur_v4_px_passe<n>.aseprite/.png`).
+- Passes comptées (au moins 10 % des pixels changés) : passe 1 (92,6 %), passe 7 (46,4 %). Journal : `art/journal/plongeur_v4_px_manuel.json`.
+- Retouches 2 à 6 (0,7 à 3,4 %) : sous le seuil, non comptées.
+- Planche finale : `boards/journal/plongeur_v4_px_manuel_final.png` (rendu v4 haute résolution à gauche, pixel ×4 sur eau claire, eau sombre et damier).
+- Reste ouvert, dit honnêtement : jambes encore presque droites (deux colonnes) ; boucle de corde fine, lue comme un crochet ; gant lointain en pavé sombre ; pose encore trop droite (déséquilibre demandé non fait) ; proportions tête 40 / tronc 25 / jambes 35 à vérifier.
+- Gate : `HAUTEUR_PLONGEUR = (56, 80)` toujours absent de la branche ; non touché.
 
 ## Ancienne phase (v3, archivée) : NOUVEAU MODÈLE DU HÉROS (vue de trois quarts), étape 1 = pose idle
 Julien a demandé un modèle refait de zéro, pensé pour être lu de trois quarts : `art/source/blender/plongeur_v3.py`.

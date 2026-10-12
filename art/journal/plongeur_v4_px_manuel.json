@@ -1,0 +1,48 @@
+{
+  "id": "plongeur_v4_px_manuel",
+  "note": "Passes qui changent au moins 10 % des pixels. Les retouches 2 à 6 (0,7 à 3,4 %) ne sont pas comptées.",
+  "entrees": [
+    {
+      "changement": "passe 1 (manuelle) : redessin complet du héros sur calque 'dessin' : contour 1 px, structure, dôme et hublot, tronc, bras, jambes, bottes ; repère = réduction automatique conservée en dessous",
+      "image": "boards/journal/plongeur_v4_px_manuel_1.png",
+      "image_sha256": "3d7311a3fe0c5f88b4af24d92e3e8db7dac7ea2aa06df20ba93543e8a3f50cfb",
+      "pixels_changes": "1950 / 2105 (92,6 %) par rapport à la réduction automatique",
+      "controle": {
+        "silhouette": "Silhouette 1 px régulière ; les membres sont encore des rangées droites.",
+        "couleurs": "Trois tons par matière, toile beige, laiton, caoutchouc violet.",
+        "cadrage": "Héros centré dans la case 80 px.",
+        "taille": "72 px de haut.",
+        "details": "Hublot à anneau gris ; bras et jambes encore en blocs.",
+        "coherence_base": "Même personnage que le rendu v4.",
+        "pixels_parasites": "Aucun pixel isolé (points de contour à 8 voisins)."
+      },
+      "verdict": "garde",
+      "defauts_restants": [
+        "bras, jambes et bottes en formes droites",
+        "fissures du tronc"
+      ]
+    },
+    {
+      "changement": "passe 7 : refonte des formes arrondies (bouteille à col et épaule, corde en anneau, bras en rythme 2:1 avec coude arrondi, gants en mitaine avec pouce, bottes arrondies, jambes qui s'affinent) ; trois plis du tronc",
+      "image": "boards/journal/plongeur_v4_px_manuel_7.png",
+      "image_sha256": "ffc0dc8280d339218db0078130d66ea907301ee8ac4a01c7e031a749eaa180e9",
+      "pixels_changes": "909 / 1959 (46,4 %) par rapport à la passe 6",
+      "controle": {
+        "silhouette": "Gants, bouteille et bottes ont des contours courbes ; les jambes sont encore presque droites.",
+        "couleurs": "Lumière clusterisée en haut à gauche sur le tronc ; trois tons par matière.",
+        "cadrage": "Inchangé.",
+        "taille": "72 px de haut.",
+        "details": "Pouces des gants, valve laiton, plis du tronc lisibles ; la corde reste fine et en anneau serré.",
+        "coherence_base": "Proportions tête/tronc/jambes proches de la consigne ; pose encore droite.",
+        "pixels_parasites": "Aucun pixel isolé hors boulons du col (exception de 1 px voulue)."
+      },
+      "verdict": "garde (à revoir)",
+      "defauts_restants": [
+        "jambes presque droites : deux colonnes",
+        "boucle de corde fine, lue comme un crochet",
+        "gant lointain en pavé sombre",
+        "pose toujours trop droite"
+      ]
+    }
+  ]
+}

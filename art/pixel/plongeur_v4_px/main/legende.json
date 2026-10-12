@@ -1,0 +1,147 @@
+{
+ "a": {
+  "famille": "laiton",
+  "ton": 1,
+  "hex": "#4a3606"
+ },
+ "b": {
+  "famille": "laiton",
+  "ton": 2,
+  "hex": "#8a6410"
+ },
+ "c": {
+  "famille": "laiton",
+  "ton": 3,
+  "hex": "#c9981e"
+ },
+ "d": {
+  "famille": "laiton",
+  "ton": 4,
+  "hex": "#ffdf55"
+ },
+ "e": {
+  "famille": "toile",
+  "ton": 1,
+  "hex": "#6e5a3c"
+ },
+ "f": {
+  "famille": "toile",
+  "ton": 2,
+  "hex": "#9c8560"
+ },
+ "g": {
+  "famille": "toile",
+  "ton": 3,
+  "hex": "#c8b08a"
+ },
+ "h": {
+  "famille": "toile",
+  "ton": 4,
+  "hex": "#eedfbe"
+ },
+ "i": {
+  "famille": "cuir",
+  "ton": 1,
+  "hex": "#3a1c0e"
+ },
+ "j": {
+  "famille": "cuir",
+  "ton": 2,
+  "hex": "#6a3618"
+ },
+ "k": {
+  "famille": "cuir",
+  "ton": 3,
+  "hex": "#9a5a2c"
+ },
+ "l": {
+  "famille": "caoutchouc",
+  "ton": 1,
+  "hex": "#14102e"
+ },
+ "m": {
+  "famille": "caoutchouc",
+  "ton": 2,
+  "hex": "#221c48"
+ },
+ "n": {
+  "famille": "caoutchouc",
+  "ton": 3,
+  "hex": "#332b6a"
+ },
+ "o": {
+  "famille": "caoutchouc",
+  "ton": 4,
+  "hex": "#463d88"
+ },
+ "p": {
+  "famille": "corde",
+  "ton": 1,
+  "hex": "#7a6a3e"
+ },
+ "q": {
+  "famille": "corde",
+  "ton": 2,
+  "hex": "#b3a062"
+ },
+ "r": {
+  "famille": "corde",
+  "ton": 3,
+  "hex": "#ddd08e"
+ },
+ "s": {
+  "famille": "verre",
+  "ton": 1,
+  "hex": "#06121a"
+ },
+ "t": {
+  "famille": "verre",
+  "ton": 2,
+  "hex": "#143646"
+ },
+ "u": {
+  "famille": "verre",
+  "ton": 3,
+  "hex": "#e8fbff"
+ },
+ "v": {
+  "famille": "acier",
+  "ton": 1,
+  "hex": "#2a343c"
+ },
+ "w": {
+  "famille": "acier",
+  "ton": 2,
+  "hex": "#5a6c78"
+ },
+ "x": {
+  "famille": "acier",
+  "ton": 3,
+  "hex": "#a8bcc8"
+ },
+ "z": {
+  "famille": "bouteille",
+  "ton": 1,
+  "hex": "#18143a"
+ },
+ "A": {
+  "famille": "bouteille",
+  "ton": 2,
+  "hex": "#2c2766"
+ },
+ "B": {
+  "famille": "bouteille",
+  "ton": 3,
+  "hex": "#4e47a0"
+ },
+ "#": {
+  "famille": "contour",
+  "ton": 1,
+  "hex": "#140e0c"
+ },
+ "%": {
+  "famille": "contour",
+  "ton": 2,
+  "hex": "#2a1d17"
+ }
+}
