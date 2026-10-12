@@ -1537,7 +1537,7 @@ def rendre_pieces_ancre(dossier):
 
 # ------------------------------------------------------------------ bibliothèque d'angles (creusage, étape 2)
 # Pièces rendues à la taille finale, pivotées dans le plan de l'écran autour de leur pivot (jamais de rotation de pixels).
-ANGLES_BIBLIO = list(range(-60, 181, 15))   # 17 variantes, de -60 à +180 degrés, pas de 15
+ANGLES_BIBLIO = list(range(-150, 181, 15))   # 23 variantes, de -150 à +180 degrés, pas de 15
 
 
 def _pivoter(objets, pivot, axe, angle_rad, base):
@@ -1622,6 +1622,54 @@ def rendre_bibliotheque(dossier):
     return lib
 
 
+def rendre_blocs_main(dossier):
+    """Bloc main + pioche (une seule pièce : gant droit, pouce et pioche, tournant autour de la poignée) et
+    avant-bras droit SANS gant, en 17 variantes. Pivots : centre du gant au repos (poignée) et poignet, en px."""
+    global PIOCHE, HAUT_DX, HAUT_DY, HAUT_DZ
+    R, U, F = base_camera()
+    POSE.clear()
+    PIOCHE, HAUT_DX, HAUT_DY, HAUT_DZ = None, 0.0, 0.0, 0.0
+    scene = construire_tout()
+    S = pose_de("epaule_d")
+    E = pose_de("coude_d")
+    W = pose_de("poignet_d")
+    dirp = (W - E).normalized()
+    G = W + dirp * 0.13                      # centre du gant au repos (même formule que construire)
+    lib = {"angles_deg": ANGLES_BIBLIO, "pivots_px": {
+        "poignee_gant": [round(v, 2) for v in ecran(G)], "poignet": [round(v, 2) for v in ecran(W)],
+        "coude": [round(v, 2) for v in ecran(E)], "epaule": [round(v, 2) for v in ecran(S)]}}
+    avant = decouper_membre(scene, "d")[1]
+    base = {o.name: o.matrix_world.copy() for o in scene.objects if o.type == "MESH"}
+    os.makedirs(os.path.join(dossier, "variantes", "bras_d_avant_nu"), exist_ok=True)
+    for theta in ANGLES_BIBLIO:
+        _pivoter([avant], E, F, -math.radians(theta), base)
+        for x in scene.objects:
+            if x.type == "MESH":
+                x.hide_render = x is not avant
+        rendre_fichier(scene, os.path.join(dossier, "variantes", "bras_d_avant_nu", "%+04d.png" % theta))
+        _pivoter([avant], E, F, 0.0, base)
+    # bloc main + pioche : pioche construite avec la poignée au centre du gant au repos
+    L = MANCHE_PX * PX
+    H0 = G + U * (0.6 * L)
+    B0 = G - U * (0.4 * L)
+    PIOCHE = (G, None, None, {"B": tuple(B0), "H": tuple(H0)})
+    scene = construire_tout()
+    bloc = [o for o in scene.objects if o.name in ("pioche_manche", "pioche_tete", "gant_d", "pouce_d")]
+    base = {o.name: o.matrix_world.copy() for o in scene.objects if o.type == "MESH"}
+    for x in scene.objects:
+        if x.type == "MESH" and x not in bloc:
+            x.hide_render = True
+    os.makedirs(os.path.join(dossier, "variantes", "bloc_main_d"), exist_ok=True)
+    for theta in ANGLES_BIBLIO:
+        _pivoter(bloc, G, F, math.radians(theta), base)
+        rendre_fichier(scene, os.path.join(dossier, "variantes", "bloc_main_d", "%+04d.png" % theta))
+    POSE.clear()
+    PIOCHE, HAUT_DX, HAUT_DY, HAUT_DZ = None, 0.0, 0.0, 0.0
+    with open(os.path.join(dossier, "blocs_main.json"), "w", encoding="utf-8") as f:
+        json.dump(lib, f, ensure_ascii=False, indent=1)
+    return lib
+
+
 def executer_essais(chemin, dossier):
     """Boucle rapide : chaque essai = une pose (k + surcharges), un rendu et le test de collision (oracle)."""
     global PIOCHE, HAUT_DX, HAUT_DY, HAUT_DZ
@@ -1646,6 +1694,10 @@ def executer_essais(chemin, dossier):
 
 
 def main():
+    if os.environ.get("PLONGEUR_BLOCS"):
+        rendre_blocs_main(os.environ["PLONGEUR_BLOCS"])
+        print("BLOCS_OK", flush=True)
+        return
     if os.environ.get("PLONGEUR_BIBLIO"):
         rendre_bibliotheque(os.environ["PLONGEUR_BIBLIO"])
         print("BIBLIO_OK", flush=True)
