@@ -637,6 +637,34 @@
         "impact presque vertical, lu comme un montant posé au sol",
         "image 5 à 73 px (tête posée au sol)"
       ]
+    },
+    {
+      "lot": "LOT 2 v6 (Julien : trois faiblesses à corriger sans toucher aux poses 1 à 4 et 6) : impact (image 5) : manche incliné vers l'avant (40° en 3D), tête au niveau des pieds, buste penché, épaule droite avancée, casque baissé ; tête d'acier 3D (barre courbée, pointe d'un côté, biseau de l'autre) ; image 5 remontée à 70 px",
+      "planche": "art/pixel/plongeur_v6/creusage/planche_creusage.png",
+      "planche_sha256": "864557b9b18df96942e94d995f480bcca97ac655c176cbc4dea2f9d125a28afe",
+      "images": "art/pixel/plongeur_v6/creusage/creusage_01.png à creusage_06.png (112 x 112, nettoyées, 0 pixel isolé, 6 images distinctes par hash)",
+      "controle_corps": "images 1, 2, 3, 4 et 6 identiques à la v5 pixel pour pixel (corps seul, pioche masquée) ; image 1 identique au pixel près ; image 5 : corps modifié (impact)",
+      "criteres": {
+        "silhouette_a_x1": "arc lisible (prête, lève, frappe, pose au sol, remontée) ; à l'impact le manche reste presque vertical à l'écran",
+        "couleurs_de_base": "oui : gants à la teinte de l'ancre ; manche bois clair ; acier 3D",
+        "cadrage": "oui : base fixe",
+        "taille_finale": "72 px sur 1, 2, 3, 4, 6 ; 70 px sur 5",
+        "details": "tête d'acier 11 x 5 px sur 2, 3, 4, 6 (cible 12 à 14) ; 2 x 1 px à l'impact (cible 10 x 4)",
+        "coherence_ancre": "même caméra, lumière et palette",
+        "pixels_parasites": "0 pixel isolé après nettoyage"
+      },
+      "verdict": "NON VALIDÉ par les critères : tête d'acier sous la cible sur 2 à 6 et invisible à l'impact ; impact presque vertical à l'écran (40° en 3D seulement) ; décision à prendre",
+      "mesures": {
+        "reperes": "6 images sur 6 (bras proche 57 à 79 %, bras lointain 49 à 73 %, jambes 53 à 88 %)",
+        "tete_a_x1": "images 2, 3, 4, 6 : 11 x 5 px ; image 5 : 2 x 1 px",
+        "angle_manche_xz": "-53, 60, -37, -80, 71 degrés ; écart image 4 vers 5 : 43 degrés",
+        "hauteur": "72, 72, 72, 72, 70, 72 px"
+      },
+      "points_faibles": [
+        "tête d'acier sous la cible (11 x 5 px au lieu de 12 à 14) sur les images 2 à 6, et invisible à l'impact",
+        "impact presque vertical à l'écran : l'inclinaison vers l'avant (40° en 3D) se projette presque à la verticale avec cette caméra, ce qui contredit l'écart de 40° avec la frappe",
+        "image 5 : tête à gauche du manche à l'écran"
+      ]
     }
   ]
 }

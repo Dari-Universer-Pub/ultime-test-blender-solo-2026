@@ -510,26 +510,27 @@ def boite_orientee(centre, axes, demi, mat, nom):
     return o
 
 
-def fer_pioche(centre, axes, mat, nom, demi_barre=0.22, epaisseur=0.05, pointe_a=0.09, pointe_b=0.03):
-    """Tête de pioche de mineur : une barre d'acier qui dépasse des deux côtés du manche (axes = u, v, w).
-    Côté +w : une pointe nette (pointe_a) ; côté -w : un biseau court (pointe_b). La barre fait 2 x demi_barre."""
-    u, v, w = axes
+def fer_pioche(centre, mat, nom, a=0.22, pointe=0.10, epaisseur=0.08, largeur=0.035, courbure=0.11):
+    """Tête de pioche de mineur en 3D : barre d'acier horizontale à l'écran (dessin à plat, face caméra), courbée
+    vers le bas, épaisseur visible. Une pointe nette côté +x, un biseau plat côté -x. Largeur = 2 x a + pointe."""
     c = Vector(centre)
     bm = bmesh.new()
-    s = []
-    for k in range(8):
-        sx = 1 if k & 1 else -1
-        sy = 1 if k & 2 else -1
-        sz = 1 if k & 4 else -1
-        s.append(bm.verts.new(c + u * sx * epaisseur + v * sy * epaisseur * 0.8 + w * sz * demi_barre))
-    pa = bm.verts.new(c + w * (demi_barre + pointe_a))
-    pb = bm.verts.new(c - w * (demi_barre + pointe_b))
-    for quad in ((0, 2, 6, 4), (1, 5, 7, 3), (0, 1, 5, 4), (2, 3, 7, 6)):
-        bm.faces.new([s[i] for i in quad])
-    for a, b in ((4, 5), (5, 7), (7, 6), (6, 4)):
-        bm.faces.new((s[a], s[b], pa))
-    for a, b in ((1, 0), (0, 2), (2, 3), (3, 1)):
-        bm.faces.new((s[a], s[b], pb))
+    anneaux = []
+    n = 5
+    for i in range(n):
+        s = -a + 2.0 * a * i / (n - 1)
+        f = 1.0 - (s / a) ** 2
+        t = 0.5 * epaisseur * (0.5 + 0.5 * f)
+        p = c + Vector((s, 0.0, -courbure * f))
+        anneaux.append([bm.verts.new(p + Vector((0.0, sy * largeur, sz * t)))
+                        for sy, sz in ((-1, -1), (1, -1), (1, 1), (-1, 1))])
+    for i in range(n - 1):
+        for k in range(4):
+            bm.faces.new((anneaux[i][k], anneaux[i][(k + 1) % 4], anneaux[i + 1][(k + 1) % 4], anneaux[i + 1][k]))
+    bm.faces.new(anneaux[0][::-1])
+    pointe_v = bm.verts.new(c + Vector((a + pointe, 0.0, 0.0)))
+    for k in range(4):
+        bm.faces.new((anneaux[-1][k], anneaux[-1][(k + 1) % 4], pointe_v))
     bmesh.ops.recalc_face_normals(bm, faces=bm.faces[:])
     me = bpy.data.meshes.new(nom)
     bm.to_mesh(me)
@@ -717,10 +718,8 @@ def construire(scene):
             H = R + u * opt.get("tete", PIOCHE_TETE)              # tête à `tete` de la main
             bout = R - u * opt.get("bout", 1.15)                  # manche : `bout` derrière la main
         objets["pioche_manche"] = tube_entre(bout, H, 0.065, m["bois"], "pioche_manche")
-        w = (Vector((1.0, 0.0, 0.0)) - u * u.x).normalized()     # barre de la tête tournée vers la caméra
-        v = u.cross(w).normalized()
-        objets["pioche_tete"] = fer_pioche(H, (u, v, w), m["acier"], "pioche_tete")
-        peindre(objets["pioche_tete"], lambda p, H=H: (p - H).dot(LUMIERE) > 0.05, C_METAL_CLAIR)
+        objets["pioche_tete"] = fer_pioche(H, m["acier"], "pioche_tete")
+        peindre(objets["pioche_tete"], lambda p, H=H: (p - H).dot(LUMIERE) > 0.01, C_METAL_CLAIR)
 
     # --- scène
     for o in objets.values():
@@ -912,8 +911,8 @@ CREUSAGE = {  # une main sur le manche (1 prête sur l'épaule, 2 anticipation, 
         "opt": {"tete": 0.75, "bout": 0.65}},
     3: {"R": (0.62, -0.05, 1.75), "u": (0.79, -0.10, -0.59), "dx": 0.03, "penche": -0.03,
         "opt": {"tete": 0.85, "bout": 0.55}, "bras_g": (-0.60, -0.25, 1.42)},
-    4: {"R": (1.02, -0.35, 1.05), "u": (0.18, -0.45, -0.87), "dx": 0.10, "penche": -0.12, "dz": -0.14,
-        "opt": {"tete": 1.10, "bout": 0.30}, "bras_g": (-0.60, -0.25, 1.42)},
+    4: {"R": (0.946, -0.110, 1.143), "u": (0.14, -0.627, -0.766), "dx": 0.12, "penche": -0.16, "dz": -0.10,
+        "ep_d": (0.05, -0.05, 0.0), "opt": {"tete": 1.10, "bout": 0.30}, "bras_g": (-0.60, -0.25, 1.42)},
     5: {"R": (0.60, -0.10, 1.50), "u": (0.32, 0.26, 0.92), "dx": 0.02, "penche": 0.02,
         "opt": {"tete": 0.85, "bout": 0.55}, "bras_g": (-0.60, -0.25, 1.42)},
 }
@@ -951,6 +950,8 @@ def pose_creusage(k):
     for nom in ("poitrine", "cou", "epaule_g", "epaule_d"):
         x, y, z = SQUELETTE[nom][0]
         pose[nom] = (x + dx, y + p, z + dz)
+    ex, ey, ez = c.get("ep_d", (0.0, 0.0, 0.0))
+    pose["epaule_d"] = (pose["epaule_d"][0] + ex, pose["epaule_d"][1] + ey, pose["epaule_d"][2] + ez)
     pose["taille"] = (dx * 0.5, 0.5 * p, 1.06)
     cotes = [("d", "R", (0.5, -0.8, -0.2))]
     if c.get("L") is not None:

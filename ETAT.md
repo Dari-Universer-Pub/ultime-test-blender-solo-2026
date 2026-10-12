@@ -1,6 +1,20 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
-## Phase courante : LOT 2 CREUSAGE v5 (passe d'outil) — ARRÊT POUR VALIDATION DE JULIEN
+## Phase courante : LOT 2 CREUSAGE v6 — ARRÊT POUR VALIDATION DE JULIEN (non validé par les critères)
+Julien : trois faiblesses à corriger, poses 1 à 4 et 6 intactes.
+
+- Corps : images 1, 2, 3, 4 et 6 identiques à la v5 pixel pour pixel (corps seul). Seul l'outil change sur 2 à 6, et le corps change sur 5 (impact).
+- Impact (5) : manche incliné vers l'avant (40° en 3D), tête au niveau des pieds, buste penché, épaule droite avancée, casque baissé de 3 px. Hauteur 70 px.
+- Tête d'acier 3D (barre courbée, pointe d'un côté, biseau de l'autre) : 11 x 5 px sur 2, 3, 4, 6 (cible 12 à 14) ; 2 x 1 px à l'impact (cible 10 x 4) : NON CONFORME.
+- Angle à l'écran : impact à -80°, écart de 43° avec la frappe (OK). Mais à l'écran le manche est presque vertical : l'inclinaison vers l'avant se projette presque à la verticale avec cette caméra. Les trois contraintes (40° 3D, écart de 40° à l'écran, manche incliné visiblement) ne tiennent pas ensemble avec la frappe actuelle.
+- Repères : 6 sur 6. Hauteurs : 72, 72, 72, 72, 70, 72.
+- Planche : `art/pixel/plongeur_v6/creusage/planche_creusage.png` ; mesures : `mesures_creusage.txt`.
+
+Décisions à prendre : (a) autoriser une nouvelle passe sur la tête (plus grande, ou orientée différemment) ; (b) pour un impact visiblement incliné, accepter de modifier la pose de la frappe (image 4), ou accepter un manche presque vertical.
+Lots restants : attaque, saut, dégâts, mort. Pas d'attaque sans l'accord de Julien.
+Blocage : aucun.
+
+## Ancienne phase : LOT 2 CREUSAGE v5 (remplacée)
 Julien : geste et arc validés en v4 ; passe d'outil seulement. Résultat : manche et gants corrigés, mais tête d'acier et impact NON conformes.
 
 - Manche : 3 px, bois clair à face claire et face sombre ; longueur d'outil 35 px (au lieu de 42 à 49) ; angles de la pioche inchangés.
