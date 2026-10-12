@@ -48,11 +48,12 @@ PALETTE = {
     "corde": ["#4e3e4a", "#9a7444", "#e0be80"],
     "contour": ["#120c28", "#3c3a7a"],
     "bois": ["#6a3e1e", "#b77a36", "#e9a964"],
+    "violet_clair": ["#2c2366", "#4b3fa0", "#6e62c8"],
 }
 # matière -> famille de la palette
 MATIERES = {
     "laiton": "laiton", "toile": "beige", "cuir": "cuir", "caoutchouc": "violet", "bouteille": "violet",
-    "acier": "metal", "verre": "verre", "corde": "corde", "bois": "bois",
+    "acier": "metal", "verre": "verre", "corde": "corde", "bois": "bois", "gant_clair": "violet_clair",
 }
 # seuils des paliers sur m = (normale . lumière + 1) / 2 : 4 tons ou 3 tons
 SEUILS = {4: [0.0, 0.42, 0.62, 0.80], 3: [0.0, 0.45, 0.72]}
@@ -656,16 +657,17 @@ def construire(scene):
     objets["ceinture"] = ceinture
     objets["boucle"] = boite((0.0, -0.42, 1.02), (0.11, 0.04, 0.11), m["laiton"], "boucle", biseau=0.01)
 
+    gant_mat = m["gant_clair"] if (PIOCHE is not None and (PIOCHE[3] or {}).get("gant_clair")) else m["caoutchouc"]
     # --- gants en mitaine, bleu-violet sombre, avec pouce
     for cote in ("g", "d"):
         P, E = pose_de("poignet_" + cote), pose_de("coude_" + cote)
         d = (P - E).normalized()
         centre = P + d * 0.13
-        gant = ellipsoide(tuple(centre), 0.19, (1.0, 1.0, 1.2), m["caoutchouc"], "gant_" + cote,
+        gant = ellipsoide(tuple(centre), 0.19, (1.0, 1.0, 1.2), gant_mat, "gant_" + cote,
                           rotation_dir=d, niveau=1)
         objets["gant_" + cote] = gant
         pouce = ellipsoide(tuple(centre + Vector((-0.12 * (1 if cote == "g" else -1), -0.10, 0.02))), 0.075,
-                           (0.9, 1.15, 0.8), m["caoutchouc"], "pouce_" + cote, niveau=1)
+                           (0.9, 1.15, 0.8), gant_mat, "pouce_" + cote, niveau=1)
         objets["pouce_" + cote] = pouce
 
     # --- bottes lourdes, bleu-violet sombre, semelle peinte
@@ -700,21 +702,28 @@ def construire(scene):
         objets["bulle"] = ellipsoide((centre[0] + HAUT_DX, centre[1], centre[2] + HAUT_DZ), rayon, (1.0, 1.0, 1.0),
                                      m["acier"], "bulle", niveau=1)
 
-    # --- pioche (creusage) : manche clair, tête en acier à deux pointes ; une main (prête, anticipation)
-    # ou deux mains sur le manche (frappe, impact, retour)
+    # --- pioche (creusage) : manche clair, tête en acier à deux pointes ; deux mains (chemin de l'arc) ou une main
     if PIOCHE is not None:
         R = Vector(PIOCHE[0])
+        opt = PIOCHE[3] or {}
         if PIOCHE[1] is not None:
             L = Vector(PIOCHE[1])
             u = (R - L).normalized()
+            H = R + u * PIOCHE_TETE                              # tête au-delà de la main droite
+            bout = L - u * PIOCHE_BOUT
+        elif "tete" in opt:
+            u = Vector(PIOCHE[2]).normalized()
+            H = R + u * opt["tete"]                              # tête à `tete` de la main, manche tenu près du bout
+            bout = R - u * opt["bout"]
         else:
             u = Vector(PIOCHE[2]).normalized()
-            L = R - u * 0.75                                 # point de prise virtuel : pioche tenue d'une main
-        H = R + u * PIOCHE_TETE                               # tête au-delà de la main droite
-        objets["pioche_manche"] = tube_entre(L - u * PIOCHE_BOUT, H, 0.05, m["bois"], "pioche_manche")
+            L = R - u * 0.75                                     # point de prise virtuel : pioche tenue d'une main
+            H = R + u * PIOCHE_TETE
+            bout = L - u * PIOCHE_BOUT
+        objets["pioche_manche"] = tube_entre(bout, H, 0.05, m["bois"], "pioche_manche")
         w = u.cross(Vector((0.0, 1.0, 0.0))).normalized()
         v = u.cross(w).normalized()
-        objets["pioche_tete"] = fer_pioche(H, (u, v, w), m["acier"], "pioche_tete")
+        objets["pioche_tete"] = fer_pioche(H, (u, v, w), m["acier"], "pioche_tete", demi_barre=opt.get("demi", 0.20))
 
     # --- scène
     for o in objets.values():
@@ -899,12 +908,13 @@ def rendre_idle_images(dossier, n=6):
 # bout du bras), 6 retour (la pioche revient en arrière).
 PIOCHE_BOUT = 0.40   # m : manche derrière le point de prise (longueur totale ~42 à 49 px)
 PIOCHE_TETE = 0.55   # m : tête au-delà de la main droite
-CREUSAGE = {  # une main (1 : prête sur l'épaule droite, 2 : anticipation, pioche levée) puis deux mains (3 à 5)
+OPT4 = {"tete": 1.15, "bout": 0.55, "demi": 0.26, "gant_clair": True}   # images 4 à 6 : une main, manche tenu près du bout
+CREUSAGE = {  # 1 : prête sur l'épaule droite, 2 : anticipation (pioche levée) ; 3 à 5 : frappe, impact, retour (une main)
     1: {"R": (0.48, 0.05, 1.45), "u": (0.60, 0.00, -0.80), "dx": 0.00, "penche": 0.00},
     2: {"R": (0.45, 0.20, 1.90), "u": (0.50, 0.05, 0.87), "dx": -0.02, "penche": 0.04},
-    3: {"R": (0.55, -0.45, 1.35), "L": (-0.40, -0.55, 1.25), "dx": 0.03, "penche": -0.03},
-    4: {"R": (0.62, -0.48, 0.88), "L": (-0.20, -0.55, 1.50), "dx": 0.08, "penche": -0.08},
-    5: {"R": (0.50, -0.20, 1.75), "L": (-0.42, -0.50, 1.25), "dx": 0.02, "penche": 0.02},
+    3: {"R": (0.62, -0.05, 1.75), "u": (0.79, -0.10, -0.59), "dx": 0.03, "penche": -0.03, "opt": {"tete": 1.15, "bout": 0.55, "demi": 0.30, "gant_clair": True}},
+    4: {"R": (0.95, -0.30, 1.25), "u": (0.18, -0.16, -0.97), "dx": 0.10, "penche": -0.12, "dz": -0.14, "opt": OPT4},
+    5: {"R": (0.60, -0.10, 1.50), "u": (0.32, 0.26, 0.92), "dx": 0.02, "penche": 0.02, "opt": OPT4},
 }
 
 
@@ -925,21 +935,21 @@ def bras_vers(S, cible, pole):
 
 
 def pose_creusage(k):
-    """Image k du creusage (k = 0 : l'ancre idle, sans pioche). Une main (prête, anticipation) ou deux mains
-    (frappe, impact, retour). Le haut du corps se décale de dx (buste penché à droite) et entraîne la tête, le
-    hublot et la corde (HAUT_DX). Le bras non tenant la pioche reste au repos."""
-    global PIOCHE, HAUT_DX
+    """Image k du creusage (k = 0 : l'ancre idle, sans pioche). Une main sur la pioche (images 2 à 6) ; le bras
+    non tenant la pioche reste au repos. Le haut du corps se décale de dx (vers la droite), de dz (vertical) et
+    penche vers l'avant ; il entraîne la tête, le hublot et la corde (HAUT_DX, HAUT_DZ)."""
+    global PIOCHE, HAUT_DX, HAUT_DZ
     if k == 0:
-        PIOCHE, HAUT_DX = None, 0.0
+        PIOCHE, HAUT_DX, HAUT_DZ = None, 0.0, 0.0
         return {}
     c = CREUSAGE[k]
-    dx, p = c["dx"], c["penche"]
-    HAUT_DX = dx
-    PIOCHE = (c["R"], c.get("L"), c.get("u"))
+    dx, p, dz = c["dx"], c["penche"], c.get("dz", 0.0)
+    HAUT_DX, HAUT_DZ = dx, dz
+    PIOCHE = (c["R"], c.get("L"), c.get("u"), c.get("opt"))
     pose = {}
     for nom in ("poitrine", "cou", "epaule_g", "epaule_d"):
         x, y, z = SQUELETTE[nom][0]
-        pose[nom] = (x + dx, y + p, z)
+        pose[nom] = (x + dx, y + p, z + dz)
     pose["taille"] = (dx * 0.5, 0.5 * p, 1.06)
     cotes = [("d", "R", (0.5, -0.8, -0.2))]
     if c.get("L") is not None:
@@ -953,7 +963,7 @@ def pose_creusage(k):
 
 def rendre_creusage_images(dossier, n=6, identite=False, rapide=False):
     """Rend les six images du creusage (couleur, ou carte d'identité de chaque image) dans dossier."""
-    global PIOCHE, HAUT_DX, SORTIE
+    global PIOCHE, HAUT_DX, HAUT_DZ, SORTIE
     os.makedirs(dossier, exist_ok=True)
     for k in range(n):
         POSE.clear()
@@ -972,7 +982,7 @@ def rendre_creusage_images(dossier, n=6, identite=False, rapide=False):
         else:
             rendre_fichier(scene, os.path.join(dossier, "creusage_%02d.png" % (k + 1)))
     POSE.clear()
-    PIOCHE, HAUT_DX = None, 0.0
+    PIOCHE, HAUT_DX, HAUT_DZ = None, 0.0, 0.0
 
 
 # ------------------------------------------------------------------ cartes d'identité

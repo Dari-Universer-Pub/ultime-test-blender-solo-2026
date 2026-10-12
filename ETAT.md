@@ -1,6 +1,20 @@
 # ETAT.md — Où en est le projet (tenu à jour par l'agent à chaque étape importante)
 
-## Phase courante : LOT 2 CREUSAGE v3 — ARRÊT POUR VALIDATION DE JULIEN
+## Phase courante : LOT 2 CREUSAGE v4 — ARRÊT POUR VALIDATION DE JULIEN
+Julien : images 1 à 3 bonnes, ne plus les toucher (vérifiées pixel par pixel : identiques à la v3). Refaites : images 4 (frappe), 5 (impact), 6 (retour).
+
+- Frappe (4) : une main, pioche du haut-droit vers le bas-droit, tête à droite. Lisible en silhouette. Tête 10 x 13 px.
+- Impact (5) : buste penché à droite et vers l'avant, casque descendu de 4 px, tête la plus basse de la séquence (z = 0,14). Lu encore comme un montant presque vertical, et tête 6 x 3 px : À CORRIGER.
+- Retour (6) : pioche remontée vers l'épaule droite, manche sans débordement à gauche. Tête 12 x 8 px.
+- Repères : 6 images sur 6. Arc : environ 55 px entre le sommet et l'impact.
+- Gants plus clairs (reflet, famille violet_clair) sur les images 4 à 6 seulement : à trancher par Julien (incohérence avec les images 1 à 3).
+- Points faibles : 1) tête de l'impact sous les 10 px ; 2) impact trop vertical ; 3) gants clairs sur 4 à 6 seulement.
+- Planche : `art/pixel/plongeur_v6/creusage/planche_creusage.png` ; mesures : `mesures_creusage.txt`.
+
+Lots restants : attaque, saut, dégâts, mort. Ne pas commencer l'attaque sans l'accord de Julien.
+Blocage : aucun.
+
+## Ancienne phase : LOT 2 CREUSAGE v3 (remplacée)
 Julien a validé le personnage et le style de la v2 mais pas le geste. La v3 reprend le geste seul ; caméra, lumière, casque, hublot et palette inchangés.
 
 - Arc : pioche levée derrière l'épaule droite (image 3), frappe vers l'avant-droite (4), impact bas buste penché (5), remontée devant à droite (6). Prête (2) : pioche sur le côté droit, hors du ventre.

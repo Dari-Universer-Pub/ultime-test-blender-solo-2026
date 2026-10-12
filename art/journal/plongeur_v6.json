@@ -585,6 +585,32 @@
         "pioche de l'anticipation petite (tête de 6 x 7 px vue de biais)",
         "main gauche de l'image 6 plus basse et plus avancée que sur les autres images"
       ]
+    },
+    {
+      "lot": "LOT 2 v4 (Julien : images 1 à 3 bonnes, ne pas les toucher ; refaire 4, 5, 6) : frappe, impact et retour à une main, pioche sur le côté droit du corps ; impact avec buste penché et casque descendu de 4 px ; gants plus clairs (reflet) sur les images 4 à 6 seulement",
+      "planche": "art/pixel/plongeur_v6/creusage/planche_creusage.png",
+      "planche_sha256": "8d6ad08dc20582577f5911ed2b484358d76a1c93f70b2b3e3757e80b9e0febfe",
+      "images": "art/pixel/plongeur_v6/creusage/creusage_01.png à creusage_06.png (112 x 112, nettoyées, 0 pixel isolé, 6 images distinctes par hash). Images 1 à 3 pixel-identiques à la v3",
+      "criteres": {
+        "silhouette_a_x1": "frappe lisible en diagonale vers le bas à droite (image 4) ; impact lu comme un montant presque vertical (image 5) ; retour lisible à droite (image 6)",
+        "couleurs_de_base": "oui ; gants plus clairs (famille violet_clair ajoutée) sur les images 4 à 6 seulement",
+        "cadrage": "oui : base fixe, figure dans sa case",
+        "taille_finale": "70 à 72 px (image 5 à 70 px, limite basse)",
+        "details": "hublot visible ; tête de l'impact trop petite (6 x 3 px) ; tête de la frappe 10 x 13 px",
+        "coherence_ancre": "même caméra, lumière et palette ; gants clairs incohérents avec les images 1 à 3",
+        "pixels_parasites": "0 pixel isolé après nettoyage"
+      },
+      "verdict": "à valider par Julien : frappe et retour lisibles ; impact encore trop vertical et tête trop petite ; gants clairs à trancher",
+      "mesures": {
+        "reperes": "6 images sur 6 (bras proche 61 à 84 %, bras lointain 65 à 73 %, jambes 53 à 88 %)",
+        "tete_a_x1": "image 2 : 5 x 4 px ; image 3 : 6 x 7 px ; image 4 : 10 x 13 px ; image 5 : 6 x 3 px (SOUS 10 PX) ; image 6 : 12 x 8 px",
+        "arc": "sommet à z = 2,38 (image 3), impact à z = 0,14 (image 5) : environ 55 px d'écart vertical"
+      },
+      "points_faibles": [
+        "tête de l'impact trop petite (6 x 3 px vue de biais), sous les 10 px demandés",
+        "impact lu comme un montant presque vertical, pas comme une diagonale",
+        "gants clairs sur les images 4 à 6 seulement : à trancher par Julien"
+      ]
     }
   ]
 }
